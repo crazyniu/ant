@@ -1,0 +1,75 @@
+{
+	"inputs": [
+		{
+			"at_sec": 0.0,
+			"color": "red"
+		},
+		{
+			"at_sec": 1.6,
+			"color": "purple"
+		},
+		{
+			"at_sec": 3.2,
+			"color": "blue"
+		},
+		{
+			"at_sec": 4.8,
+			"color": "purple"
+		},
+		{
+			"at_sec": 6.4,
+			"color": "green"
+		},
+		{
+			"at_sec": 8.0,
+			"color": "blue"
+		},
+		{
+			"at_sec": 9.6,
+			"color": "yellow"
+		},
+		{
+			"at_sec": 11.2,
+			"color": "purple"
+		},
+		{
+			"at_sec": 12.8,
+			"color": "red"
+		},
+		{
+			"at_sec": 14.4,
+			"color": "purple"
+		},
+		{
+			"at_sec": 16.0,
+			"color": "green"
+		},
+		{
+			"at_sec": 17.6,
+			"color": "blue"
+		},
+		{
+			"at_sec": 19.2,
+			"color": "yellow"
+		},
+		{
+			"at_sec": 20.8,
+			"color": "red"
+		},
+		{
+			"at_sec": 22.4,
+			"color": "green"
+		},
+		{
+			"at_sec": 24.0,
+			"color": "yellow"
+		},
+		{
+			"at_sec": 25.6,
+			"color": "blue"
+		}
+	],
+	"label": "red_outer_seal_first",
+	"level_sha256": "e294a4345a093a8a1f7fa1bf6d14c167e3fb0d89254229858844cc52af4e02d6",
+	"minimum_input_gap_sec": 1.6
+}

@@ -1,37 +1,37 @@
 {
-  "status": "PASS_BOUNDED_WOODLAND_CROSSING_WITH_RECORDED_DIAGNOSTICS",
-  "base_commit": "af7d8b1b1024d0a25a970db29027eef8eccfd609",
-  "frozen_at": "2026-10-21T19:52:04.148126+00:00",
-  "current_validation_levels": 11,
-  "scope": "one four-color connected woodland crossing; rules and existing assets unchanged, no new combat or full30",
+  "status": "PASS_BOUNDED_RUINS_SPLIT_SEAL_WITH_RECORDED_DIAGNOSTICS",
+  "base_commit": "f7c09c59f9c729cb3cb568e37b7e557890c1c283",
+  "frozen_at": "2026-10-21T20:05:57.056474+00:00",
+  "current_validation_levels": 12,
+  "scope": "one five-color two-component ruins supply level; rules/assets unchanged, actual map-to-result GL key states, no new combat or full30",
   "checks": {
-    "rules_assertions": 323,
-    "scene_checks": 58,
-    "authored_route_samples": 3216,
-    "minimum_enemy_centerline_separation": 112.344261169434,
-    "new_level_terminal_time_us": 26600000,
-    "new_level_deadline_us": 62000000,
+    "rules_assertions": 47,
+    "scene_checks": 64,
+    "authored_route_samples": 3417,
+    "minimum_enemy_centerline_separation": 70.0001373291016,
+    "new_level_terminal_time_us": 31050000,
+    "new_level_deadline_us": 64000000,
     "new_level_remaining_beads": 6,
     "runtime_source_hashes_match": 26,
     "victory_saved": true,
     "reward_total": 150,
-    "rules_and_levels01_to10_unchanged": true,
+    "map_level12_visible_and_enabled": true,
+    "rules_and_levels01_to11_unchanged": true,
     "static_resources": "resolved; tests include deliberate invalid fixtures",
     "candidate_only_secret_private_path_scan": "no findings"
   },
   "diagnostics": {
-    "scene_headless": "exit0, passing assertions, ObjectDB and2resources inuse at shutdown; not clean exit",
-    "GL": "natural exit; unavailable V-Sync and7.95GiB low-disk warnings; no script or resource-at-exit diagnostics"
+    "scene_headless": "exit0; no error diagnostic in this run; unrelated retained diagnostics not reclassified",
+    "GL": "natural exit after settlement; VSync warning, ObjectDB and1resource inuse at shutdown; not clean"
   },
-  "encoding_diagnostic": "OGV keyframe-marking warnings during transcode; full MP4 decode separately checked, duration retained",
   "retained_not_rerun": [
-    "levels01_to10 and prior common service suites",
+    "levels01_to11 and prior common service suites",
     "old30/33 obsolete for current single-ant mode"
   ],
   "limits": [
-    "1x authored automatic replay, not human interaction or balance acceptance",
-    "native OGV compressed source, not lossless movie; key PNG/event/hash retained outside source",
-    "Dummy cloud output; captured mix is not hardware sound or human listening",
+    "actual GL key-state capture, NOT a continuous movie",
+    "1x authored automatic replay and map-button signal, not human/native interaction or balance acceptance",
+    "Dummy output; player status not soundtrack or hardware/human listening validation",
     "further levels, combo/mechanism and real ad SDK remain",
     "no merge/deployment"
   ]

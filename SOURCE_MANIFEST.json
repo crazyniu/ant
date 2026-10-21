@@ -1,9 +1,9 @@
 {
   "algorithm": "SHA-256",
   "scope": "all files except this manifest",
-  "base_commit": "af7d8b1b1024d0a25a970db29027eef8eccfd609",
-  "file_count": 265,
-  "total_bytes": 54413679,
+  "base_commit": "f7c09c59f9c729cb3cb568e37b7e557890c1c283",
+  "file_count": 274,
+  "total_bytes": 54846003,
   "files": [
     {
       "path": ".gitignore",
@@ -12,8 +12,8 @@
     },
     {
       "path": "ASSETS.md",
-      "bytes": 21770,
-      "sha256": "5918d56e61f3ebedef1af25816703e024fb85513073773564715ad126a1da020"
+      "bytes": 22240,
+      "sha256": "c4063b661312f76a2ca55929a779dd58cfd0182e4fd38a2a8ca851580d53375c"
     },
     {
       "path": "DEPENDENCIES.md",
@@ -22,13 +22,13 @@
     },
     {
       "path": "PUBLICATION_CHECK.json",
-      "bytes": 1792,
-      "sha256": "33e772509f20249c770ed63fdf1f564352bfc952f9ca2adde1baceb4d041436d"
+      "bytes": 1725,
+      "sha256": "4ee61f1fcfa014655b8cb65eb25d9fcf6f66cbc7529537676ef60c8613b8940b"
     },
     {
       "path": "README.md",
-      "bytes": 17628,
-      "sha256": "fb0540abfa7ec4c98e7f6f1a48703d25b06009a6cc69c17ed3a46183dc0f4fec"
+      "bytes": 19053,
+      "sha256": "330c20ab7387c36a3283897a300d8f2a3e5101b1fc71051c8a92fc9473837e3a"
     },
     {
       "path": "assets/ants-atlas.png",
@@ -461,6 +461,11 @@
       "sha256": "74f5b9ec37e16ec284275a027ea7321cc1e91a4b593f8eb9f3d5c5de38a1509d"
     },
     {
+      "path": "data/serpent-levels/serpent-12.json",
+      "bytes": 4391,
+      "sha256": "e294a4345a093a8a1f7fa1bf6d14c167e3fb0d89254229858844cc52af4e02d6"
+    },
+    {
       "path": "docs/BOARD_PLANE.md",
       "bytes": 4078,
       "sha256": "3952379c80354bd5839a5be24157574627a1000466c280b0d2ca3df8df5ddb02"
@@ -472,18 +477,18 @@
     },
     {
       "path": "docs/CURRENT_IMPLEMENTATION.md",
-      "bytes": 24121,
-      "sha256": "d97f2a1e73458ca85bfc879b4b09ccd6f035f458733c1b10199b612e353735bd"
+      "bytes": 25600,
+      "sha256": "588876e81840ccef97b4aa6fbb88f5689a9052fcd2e93156e62000bcc1477db7"
     },
     {
       "path": "docs/PUBLIC_VERIFICATION.md",
-      "bytes": 29051,
-      "sha256": "b5f794d350d16159ed122055c5ccae5ab8825e74bbf8f1586af50d4f30c5cf15"
+      "bytes": 31799,
+      "sha256": "3b48c0104b6c6c159dac44e11ecb48cf18fc3b3261644bbb9587a088ac06bbb2"
     },
     {
       "path": "docs/SCENE_LAYOUTS.md",
-      "bytes": 14020,
-      "sha256": "63d32c7a075e75c43788b0b226231db78dea1563e3cf8729bae8156810d314aa"
+      "bytes": 14817,
+      "sha256": "9b72cfca2891925d8b8fb10e4aea72265b58e89411def4d132e4218833456557"
     },
     {
       "path": "docs/UI_COMPONENTS.md",
@@ -586,6 +591,11 @@
       "sha256": "b7dbfb064e7b333b4476653015f9f7183cb039fe43939f7b7bf3c5d98f696ed8"
     },
     {
+      "path": "reports/authoring/ruinscore-check.json",
+      "bytes": 103987,
+      "sha256": "92534a6edd4031fea76393ded971ce04c31705cf07d9cf6de10a8183275b4074"
+    },
+    {
       "path": "reports/authoring/snowpass-check.json",
       "bytes": 1808,
       "sha256": "1c1bb0916613f9b04ff2ef7a2f66ddfef80332d8ae06ce8547b59cb92cedc6d1"
@@ -671,6 +681,11 @@
       "sha256": "d9fed691926d0928dfc9f372bacb85fe93eac024bca09ad43c5c9cb0231cb52f"
     },
     {
+      "path": "reports/rules/ruins-split-seal-level12.json",
+      "bytes": 285741,
+      "sha256": "4ffd934245f39f0cff6576cb429e4f2ba5c2c6c4862f30d5983c4c68ff53f41a"
+    },
+    {
       "path": "reports/rules/serpent-09-alternate-inputs.json",
       "bytes": 999,
       "sha256": "ee9352b5147051d2bb21d0dae16f0bc3a1425c67ac3cfaf6061dc36a3c0f791d"
@@ -684,6 +699,11 @@
       "path": "reports/rules/serpent-11-alternate-inputs.json",
       "bytes": 950,
       "sha256": "e2e6052bfe6ffab093ee15473695c8ebd3d333e86d2a15835a32499bb43b695f"
+    },
+    {
+      "path": "reports/rules/serpent-12-alternate-inputs.json",
+      "bytes": 975,
+      "sha256": "27bbfe152e3764cf36b4373eae50c2c709f57c4ee005275e2c8ec13c3407d645"
     },
     {
       "path": "reports/rules/serpent-layout-timing.json",
@@ -759,6 +779,16 @@
       "path": "reports/ui/ruins-three-gate-scene.json",
       "bytes": 305,
       "sha256": "9ddfebfbf8342a3cc2806ed9b08f56a116b743459ac99eca950ee07c5664111f"
+    },
+    {
+      "path": "reports/ui/ruinscore-runtime.json",
+      "bytes": 5386,
+      "sha256": "0e437dd264207e30a6f118298bb2ed1b654dce5c62ac4e6cc3fe62d5b3715461"
+    },
+    {
+      "path": "reports/ui/ruinscore-scene.json",
+      "bytes": 319,
+      "sha256": "01506a8f3fb22520d43ef1a059d122099409453890f5c25ecb59836466d6e95c"
     },
     {
       "path": "reports/ui/serpent-color-controls.json",
@@ -917,8 +947,8 @@
     },
     {
       "path": "scripts/level_catalog.gd",
-      "bytes": 1799,
-      "sha256": "b30e31da51903ff13792d384701e70a6b74900c6ab11b0a9f5b16cf293370860"
+      "bytes": 1813,
+      "sha256": "556a89be01e396a42c6e3dcc61ab353adfdbd5b6d3c94148762e9e009ba2fb37"
     },
     {
       "path": "scripts/level_catalog.gd.uid",
@@ -1101,6 +1131,11 @@
       "sha256": "aa6e7835f10260fa56d4d2217de29e7552d8cd7fe97fe6b687b4150842725230"
     },
     {
+      "path": "tests/capture_ruinscore_journey.gd",
+      "bytes": 6689,
+      "sha256": "07375eaf0a7f2c64f85cc7e8b08092bf6611c16b5346aa0dc1cea883ebb9ff77"
+    },
+    {
       "path": "tests/capture_serpent_journey.gd",
       "bytes": 4382,
       "sha256": "bb49fdae0b90530d5e8f3036b9d834d422f8a806e790f31881a3959728d01e65"
@@ -1256,9 +1291,19 @@
       "sha256": "22e2e1751057402604c4d3e997721bf09b9461e4609882abfa82d99b911b062d"
     },
     {
+      "path": "tests/test_ruins_split_seal_level12.gd",
+      "bytes": 12961,
+      "sha256": "f276d2e91a6ca7b2b5ca220564aab1fc120a3f23cdd0f43119770fc74d190e2d"
+    },
+    {
       "path": "tests/test_ruins_three_gate_scene.gd",
       "bytes": 5017,
       "sha256": "c9864b0324e38d98b8568efbed10a5306b4c4057f5299a609746cfe17b20da7b"
+    },
+    {
+      "path": "tests/test_ruinscore_scene.gd",
+      "bytes": 5009,
+      "sha256": "1224a720527c1d51f7132b91836700735d5b018d7c6253ac6271d7e74db524f7"
     },
     {
       "path": "tests/test_serpent_color_controls.gd",

@@ -142,3 +142,8 @@ Level 10 uses the existing `assets/worlds/ice-valley.png`, `assets/worlds/winter
 ### Woodland Branching Crossing reuse
 
 Level 11 uses the existing woodland ground `assets/serpent/environment.png`, fixed traveler `assets/worlds/forest-traveler.png`, default serpent and armor atlases, eight-direction carrier atlas and fused bead sheet. `data/scenes/forest-traveler.json` retains all measured foot, chain, board-plane and physical-scale anchors. No new generated artwork, alpha crops, texture normalization or rights claims are introduced. The level changes occupied cells, segment combinations and authored input routes, not bitmap composition.
+
+
+### Split Seal reuse
+
+Level 12 selects unchanged `assets/worlds/ruins-courtyard.png`, `assets/worlds/supply-cart.png`, `assets/serpent/carapace-serpent-atlas.{png,json}`, the existing armor overlay, eight-direction ants and fused bead sheet. It uses `ruins-cart.json` anchors, not the center-entrance fork geometry. The five-color UI, including blocked purple, is generated from actual data. No new source images, cuts, resolution promises or rights claims are added.

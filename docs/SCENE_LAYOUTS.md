@@ -91,3 +91,10 @@ The connected 25-bead courtyard has distinct red/green opening routes and requir
 `serpent-11` reuses `data/scenes/forest-traveler.json` without changing its ground, actor anchors, center entrance `[5,8]`, finite outer road or fixed traveler. No new raster or scene layout is created merely to duplicate existing geometry. Its single connected 22-bead formation differs from level 8's two islands: central red opens three yellow branches, lower blue opens a blue pocket, and a later yellow pickup makes the right blue route six cells shorter. These route changes must arise from production occupied-grid pathfinding, never an invisible scripted gate.
 
 All four color controls use the existing equal-width single row. The 58-check integrated scene report samples 3,216 carrier-ground positions and measures minimum enemy-centerline separation 112.34 logical pixels. Existing board-plane mapping, foot/chain anchors, opacity and texture setup remain unchanged. This content-level measurement does not replace user visual, native mouse, audio or device acceptance.
+
+
+## Caravan’s Split Seal
+
+Level 12 uses unchanged `data/scenes/ruins-cart.json`: left-biased logical entrance `[3,8]`, original nest/cannon, five one-row stock anchors and a fixed cart at the finite road endpoint. The purple vault and offset terrace form two separate occupied components. The only shortcuts arise when actual pickups remove their occupied cells; no invisible path, wall crossing, custom gate or new mechanic is allowed.
+
+The composed scene checks sample 3,417 carrier positions in the inner walkable hull, at least 70.00 logical pixels from the enemy centerline. Five color controls fit one equal-width row; five required-color values fit the production preparation page. Existing alpha cuts and actor-foot/chain anchors stay authoritative, and there are no new bitmap claims.

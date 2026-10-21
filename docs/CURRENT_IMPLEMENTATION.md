@@ -14,7 +14,7 @@ Version: 2026-10-21 Snow Courtyard continuation; rules API 3.1.0, level schema 3
 | Points, purchase ledger, equipment, frozen run loadout, navigation state | `scripts/ant_progression.gd` |
 | Ordered catalog and level/settings completion save | `scripts/level_catalog.gd`, `scripts/save_service.gd` |
 | Economy parameters | `data/ant-progression.json` |
-| Available authored levels | `data/serpent-levels/serpent-01.json` through `serpent-11.json` |
+| Available authored levels | `data/serpent-levels/serpent-01.json` through `serpent-12.json` |
 
 The gameplay adapter, not animation callbacks, applies the authoritative result. Views consume detached state and emit requests. They must never fabricate balances, damage, unlocks, item ownership, completed levels or ad receipts.
 
@@ -68,7 +68,7 @@ Advertising is unavailable: status/request/claim APIs reject with `ad_sdk_unavai
 
 The broader design remains in `reports/design/current-product-spec.md` and `reports/design/click-ant-current.md`. It includes work not yet implemented. Current source and bounded reports, not a concept image or old checklist, establish implementation status.
 
-Only `serpent-01` through `serpent-11` are current. The reserved `--campaign-drafts` path points to a future serpent catalog with no authored files. Old `data/campaign-drafts/`, old validation levels, the legacy editor/generation chain and old campaign tests must not be substituted or advertised as available new-mode content.
+Only `serpent-01` through `serpent-12` are current. The reserved `--campaign-drafts` path points to a future serpent catalog with no authored files. Old `data/campaign-drafts/`, old validation levels, the legacy editor/generation chain and old campaign tests must not be substituted or advertised as available new-mode content.
 
 Remaining scope: the rest of the new 30 independent levels and a fuller authoring workflow beyond the explicit single-level CLI; further independently authored themed scenes and fixed targets; optional junction combos and hidden supplies; real rewarded ads; human difficulty/economy and natural-input testing; final visual, audio and target-device acceptance. The earlier five-page GL capture at 1440 × 2560 includes the map/preparation/shop fixes and has been visually inspected; it is separate from the level-8 runtime evidence and does not establish traveler user visual acceptance. The separate level-7 runtime report records automated GL evidence, not human approval. User approval and device/native-input acceptance remain separate. Exact retained test results and their limits are in `PUBLIC_VERIFICATION.md`.
 
@@ -148,3 +148,12 @@ The current catalog includes `serpent-11` using unchanged `forest-traveler.json`
 Red pickup at 1.20s opens three yellow neighbors. Blue-first instead opens the lower blue pocket at 1.20s and advances the first blue armor hit from 7.85s to 3.65s. Green-first is also a legal opening, not a forced gate. The authored central-yellow pickup at 12.80s shortens a still-present right blue exterior path from eleven cells to five; reservation alone cannot change it. Both sixteen-input Worker Lv.1 solutions win at 26.60s, with unchanged timing and at most four carriers. This demonstrates a different opening/access decision, not a new rule or a claim of human balance acceptance.
 
 The integrated rule fixture has 323 checks, the scene fixture 58 checks with 3,216 carrier-ground samples and minimum enemy-centerline separation 112.34 logical pixels, and the single-level authoring CLI passes. Previous levels and general rule suites are not rerun by this content increment. Same-source actual-runtime evidence and remaining acceptance boundaries are separate in `PUBLIC_VERIFICATION.md`.
+
+
+## Level 12: split supply seals in ruins
+
+`serpent-12` reuses the original left-biased `[3,8]` ruins-cart scene, fixed parked cart and carapace appearance. Its two occupied components are a twelve-bead purple vault and an eleven-bead offset terrace, not a recolored previous grid. Supplies R4/B4/G5/Y6/P4 total 23; damage R3/B4/G3/Y3/P4 totals 17, with blue/purple HP2. All four purple cells are initially blocked and necessary.
+
+Blue-first reaches purple 52; red-first reaches purple 51. Actual yellow pickup exposes a side entry and shortens red 17→5 and green 16→4-cell routes. Another blue opening enters the offset terrace. The two fully explicit seventeen-click Worker Lv.1 sequences use 1.6s gaps, at most four carriers, and finish at 31.05s before 64s contact. Each has fourteen 3–5-cell routes, two 6-cell routes and one 2-cell route, with longest all-color non-dispatch interval 0.20s. Reward thresholds 33/46s remain provisional, not human economy acceptance.
+
+The integrated 47-check rule report pins exact data/events, while 64 scene checks cover the shared fixed target, preview, five single-row entries and 3,417 carrier-ground samples with 70.00 logical pixels minimum enemy-centerline separation. Runtime evidence includes the real map button into preparation and game loading under a labelled isolated prerequisite/navigation fixture. Actual GL key states and final settlement are distinct from a continuous video, native mouse input or human approval.
