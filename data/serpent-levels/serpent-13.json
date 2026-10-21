@@ -1,0 +1,229 @@
+{
+  "schema_version": 3,
+  "level_id": "serpent-13",
+  "level_number": 13,
+  "title": "Camp’s Two-Step Channel",
+  "width": 10,
+  "height": 8,
+  "palette": {
+    "R": "red",
+    "B": "blue",
+    "G": "green",
+    "Y": "yellow",
+    "W": "white"
+  },
+  "grid": [
+    "..........",
+    "..........",
+    ".....RG...",
+    "...RYWBG..",
+    "..GYWBWY..",
+    "..BRRYGB..",
+    "..G.B.GR..",
+    "....G..Y.."
+  ],
+  "segments": [
+    {
+      "id": "serpent-13-s01",
+      "color": "blue",
+      "kind": "armored",
+      "hp": 2
+    },
+    {
+      "id": "serpent-13-s02",
+      "color": "white",
+      "kind": "armored",
+      "hp": 2
+    },
+    {
+      "id": "serpent-13-s03",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-13-s04",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-13-s05",
+      "color": "yellow",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-13-s06",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-13-s07",
+      "color": "blue",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-13-s08",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-13-s09",
+      "color": "yellow",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-13-s10",
+      "color": "white",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-13-s11",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-13-s12",
+      "color": "blue",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-13-s13",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-13-s14",
+      "color": "yellow",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-13-s15",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    }
+  ],
+  "serpent": {
+    "head_start_s": 62.0,
+    "goal_s": 144.0,
+    "speed_units_sec": 1.2424242424242424,
+    "pitch": 4.0,
+    "art_profile": "ice_crest"
+  },
+  "parameters": {
+    "max_inflight_ants": 4,
+    "projectile_flight_sec": 0.45,
+    "cannon_cooldown_sec": 0.65
+  },
+  "transport": {
+    "carrier_type": "worker",
+    "outbound_speed_cells_sec": 2.5,
+    "returning_speed_cells_sec": 2.0,
+    "pickup_pause_sec": 0.3,
+    "unload_pause_sec": 0.2,
+    "entrance_cell": [
+      5,
+      8
+    ]
+  },
+  "tools": [],
+  "solution": {
+    "kind": "timed_single_click_no_tool_two_step_channel",
+    "minimum_input_gap_sec": 1.6,
+    "inputs": [
+      {
+        "at_sec": 0.0,
+        "color": "blue"
+      },
+      {
+        "at_sec": 1.6,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 3.2,
+        "color": "blue"
+      },
+      {
+        "at_sec": 4.8,
+        "color": "white"
+      },
+      {
+        "at_sec": 6.4,
+        "color": "red"
+      },
+      {
+        "at_sec": 8.0,
+        "color": "green"
+      },
+      {
+        "at_sec": 9.6,
+        "color": "white"
+      },
+      {
+        "at_sec": 11.2,
+        "color": "green"
+      },
+      {
+        "at_sec": 12.8,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 14.4,
+        "color": "red"
+      },
+      {
+        "at_sec": 16.0,
+        "color": "blue"
+      },
+      {
+        "at_sec": 17.6,
+        "color": "white"
+      },
+      {
+        "at_sec": 19.2,
+        "color": "green"
+      },
+      {
+        "at_sec": 20.8,
+        "color": "red"
+      },
+      {
+        "at_sec": 22.4,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 24.0,
+        "color": "green"
+      },
+      {
+        "at_sec": 25.6,
+        "color": "blue"
+      }
+    ]
+  },
+  "validation_scope": "Independent five-color Ice Valley fixed-camp candidate. Unchanged rules API 3.1.0 and Worker Lv.1. No upgrades, tools, ads, bonuses, new assets or snow mechanics. Bounded authored replay is not human pacing, economy, visual, audio, native-input or target-device acceptance.",
+  "content_version": "ice-two-step-channel-20261021.1",
+  "rewards": {
+    "fast_seconds": 33.0,
+    "normal_seconds": 47.0
+  },
+  "region_id": "ice_valley",
+  "boss_profile": "armored_serpent",
+  "defense_target": {
+    "id": "winter_camp",
+    "display_name": "Winter Camp",
+    "fixed": true
+  },
+  "scene_layout": "res://data/scenes/ice-snowpass.json"
+}

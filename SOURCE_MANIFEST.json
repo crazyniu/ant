@@ -1,9 +1,9 @@
 {
   "algorithm": "SHA-256",
   "scope": "all files except this manifest",
-  "base_commit": "f7c09c59f9c729cb3cb568e37b7e557890c1c283",
-  "file_count": 274,
-  "total_bytes": 54846003,
+  "base_commit": "735204832bbb64be19ca7118b05fd6cb23b9c19b",
+  "file_count": 283,
+  "total_bytes": 55355866,
   "files": [
     {
       "path": ".gitignore",
@@ -22,13 +22,13 @@
     },
     {
       "path": "PUBLICATION_CHECK.json",
-      "bytes": 1725,
-      "sha256": "4ee61f1fcfa014655b8cb65eb25d9fcf6f66cbc7529537676ef60c8613b8940b"
+      "bytes": 898,
+      "sha256": "b3d338dba19f8b7156a0ee68457d03e85ae25994c9b2484793f0f9b0cf0e62d0"
     },
     {
       "path": "README.md",
-      "bytes": 19053,
-      "sha256": "330c20ab7387c36a3283897a300d8f2a3e5101b1fc71051c8a92fc9473837e3a"
+      "bytes": 20395,
+      "sha256": "5561bf4ac026f36cf45570e4adf4f9ab772601ceb19e44b987772c9b10c1a41a"
     },
     {
       "path": "assets/ants-atlas.png",
@@ -466,6 +466,11 @@
       "sha256": "e294a4345a093a8a1f7fa1bf6d14c167e3fb0d89254229858844cc52af4e02d6"
     },
     {
+      "path": "data/serpent-levels/serpent-13.json",
+      "bytes": 4426,
+      "sha256": "b5952c81d4030f236ad3d3dd14633f153cfa2602bcf97632429219b4f801778a"
+    },
+    {
       "path": "docs/BOARD_PLANE.md",
       "bytes": 4078,
       "sha256": "3952379c80354bd5839a5be24157574627a1000466c280b0d2ca3df8df5ddb02"
@@ -477,13 +482,13 @@
     },
     {
       "path": "docs/CURRENT_IMPLEMENTATION.md",
-      "bytes": 25600,
-      "sha256": "588876e81840ccef97b4aa6fbb88f5689a9052fcd2e93156e62000bcc1477db7"
+      "bytes": 26942,
+      "sha256": "9734879346707e05c103835487746eda49a3a634c4ed45718bed94083529a296"
     },
     {
       "path": "docs/PUBLIC_VERIFICATION.md",
-      "bytes": 31799,
-      "sha256": "3b48c0104b6c6c159dac44e11ecb48cf18fc3b3261644bbb9587a088ac06bbb2"
+      "bytes": 33141,
+      "sha256": "1c3f18e7c1738a4016c2446c7ce3ed894fc361e20c616776a459f5dc9129efcd"
     },
     {
       "path": "docs/SCENE_LAYOUTS.md",
@@ -586,6 +591,11 @@
       "sha256": "046a81eee381916a5919f189511632a9ea993165b5870b99c285cdc83fc0908d"
     },
     {
+      "path": "reports/authoring/icechannel-check.json",
+      "bytes": 86531,
+      "sha256": "47260b5f0d20fc1955f06a7d1caf74a4bd60fc9fb838fa79d3592bba4b528e82"
+    },
+    {
       "path": "reports/authoring/ruins-three-gate-check.json",
       "bytes": 1510,
       "sha256": "b7dbfb064e7b333b4476653015f9f7183cb039fe43939f7b7bf3c5d98f696ed8"
@@ -651,6 +661,11 @@
       "sha256": "aa21af4e920aec26db1f3f2ed461f02a05ec819ba32bdfe9f1ddb6c41494278c"
     },
     {
+      "path": "reports/rules/ice-channel-level13.json",
+      "bytes": 379202,
+      "sha256": "61035fb4ff8090b7b0265b677b608bfb9db882b9e3796415ae2cc161650ac210"
+    },
+    {
       "path": "reports/rules/ice-courtyard-level10.json",
       "bytes": 271923,
       "sha256": "579f77ffcd743daf8d2d60c93fca1cf49a372113eb361c867ecc7cf050d3d87c"
@@ -706,6 +721,11 @@
       "sha256": "27bbfe152e3764cf36b4373eae50c2c709f57c4ee005275e2c8ec13c3407d645"
     },
     {
+      "path": "reports/rules/serpent-13-alternate-inputs.json",
+      "bytes": 1028,
+      "sha256": "0b4634aa0e8e01251318030b0fefff904b198ce84676df5ded47e50653ec45c8"
+    },
+    {
       "path": "reports/rules/serpent-layout-timing.json",
       "bytes": 3065,
       "sha256": "42eeaf8ea905c3ca5b2635d7d8e28074776743337aa34c83acefa976494ac94c"
@@ -759,6 +779,16 @@
       "path": "reports/ui/ice-supply-scene.json",
       "bytes": 293,
       "sha256": "3345935ac175e9f05276529f1536e863ab2e42b7256ea75d6a0c7300a7151fa2"
+    },
+    {
+      "path": "reports/ui/icechannel-runtime.json",
+      "bytes": 6074,
+      "sha256": "2fd1bd274ae2428a6ed48eb0621b1cc060e26666b90bc0426f02ffab5d5cad0a"
+    },
+    {
+      "path": "reports/ui/icechannel-scene.json",
+      "bytes": 301,
+      "sha256": "30c7c5ba5f6134939215b45390760af3897c0e71b5033af969c44d4f6a3d5119"
     },
     {
       "path": "reports/ui/ruins-runtime.json",
@@ -947,8 +977,8 @@
     },
     {
       "path": "scripts/level_catalog.gd",
-      "bytes": 1813,
-      "sha256": "556a89be01e396a42c6e3dcc61ab353adfdbd5b6d3c94148762e9e009ba2fb37"
+      "bytes": 1827,
+      "sha256": "b1861d96be31e705b0fcf54e1a5bc0bb0269d4eb5232a6ba8fe9f72407fb5d7b"
     },
     {
       "path": "scripts/level_catalog.gd.uid",
@@ -1121,6 +1151,11 @@
       "sha256": "0966cfe08d6c8fbf8a7aeadb91c3bdb6cbed1b0faf509a9fde77b7499d2a18ed"
     },
     {
+      "path": "tests/capture_icechannel_journey.gd",
+      "bytes": 6698,
+      "sha256": "2295d51c768d748cdb6a9f2c2ba045eec0f29e6cf6c1c134f02801334d975b11"
+    },
+    {
       "path": "tests/capture_ruins_journey.gd",
       "bytes": 4639,
       "sha256": "ae9b8d6c0653ec3e021e7e4d9a42c77db61e87cc3f6755b1b7065d53f46ec465"
@@ -1231,6 +1266,11 @@
       "sha256": "6cd046a66b05525f6b73b11109b0cd967f916d6d3660d4ccc0e4efc0f9235e07"
     },
     {
+      "path": "tests/test_ice_channel_level13.gd",
+      "bytes": 16451,
+      "sha256": "b542fbb1d6b1f07a53ae242c281bd02244fe43b804d3ab7ad0f18deebb4c2a09"
+    },
+    {
       "path": "tests/test_ice_courtyard_level10.gd",
       "bytes": 15615,
       "sha256": "975b04586839f84abb3ead9656e04a2d73c6f6a01d3cd446c1687ca06f0b4207"
@@ -1259,6 +1299,11 @@
       "path": "tests/test_ice_supply_scene.gd",
       "bytes": 3428,
       "sha256": "5fc8b4ff3e0eb90b26a88d9ce9c358acfd1604d6f493b9073b45cb9d78f43804"
+    },
+    {
+      "path": "tests/test_icechannel_scene.gd",
+      "bytes": 5939,
+      "sha256": "cf87c8251f813ec67579af409a6508a92d3f9371e2253d33316a945cb4277a3d"
     },
     {
       "path": "tests/test_level_check_entry.gd",

@@ -157,3 +157,12 @@ The integrated rule fixture has 323 checks, the scene fixture 58 checks with 3,2
 Blue-first reaches purple 52; red-first reaches purple 51. Actual yellow pickup exposes a side entry and shortens red 17→5 and green 16→4-cell routes. Another blue opening enters the offset terrace. The two fully explicit seventeen-click Worker Lv.1 sequences use 1.6s gaps, at most four carriers, and finish at 31.05s before 64s contact. Each has fourteen 3–5-cell routes, two 6-cell routes and one 2-cell route, with longest all-color non-dispatch interval 0.20s. Reward thresholds 33/46s remain provisional, not human economy acceptance.
 
 The integrated 47-check rule report pins exact data/events, while 64 scene checks cover the shared fixed target, preview, five single-row entries and 3,417 carrier-ground samples with 70.00 logical pixels minimum enemy-centerline separation. Runtime evidence includes the real map button into preparation and game loading under a labelled isolated prerequisite/navigation fixture. Actual GL key states and final settlement are distinct from a continuous video, native mouse input or human approval.
+
+
+## Level 13: Ice Supply Channels
+
+This bounded five-color winter-camp level reuses the snowpass scene and ice-crown appearance. Twenty-five beads supply 17 damage (13 ordinary and two armored segments). The central yellow-to-blue opening and outer red-to-inner-red route expose different required white beads through actual pickup-based pathfinding. Two explicit Worker Lv.1 solutions use 17 independent inputs and finish on actual last damage at 31.95 simulated seconds, leaving eight beads. Reward thresholds 33/47 seconds remain provisional, not human balance approval.
+
+The retained current-level reports contain 78 rule checks, 89 scene checks with 3,417 route samples and 75 logical-pixel minimum enemy-centerline separation, plus the single-level CLI. Actual GL map/preparation/loading/play/result key states and 26 matching production hashes establish a saved 100+50=150 reward, no conservation error and at most four carriers. This is automatic authored input, not natural human play, a continuous movie, or a fresh audio recording.
+
+The GL log includes unsupported VSync and ALSA output failure followed by Dummy fallback; no script exception is recorded. Human sound, difficulty and target-device acceptance remain unverified. Earlier content/rules and art bytes are unchanged; old suites were not rerun. No merge or deployment.

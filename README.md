@@ -127,3 +127,12 @@ Level-specific evidence is in `reports/rules/forest-crossing-level11.json`, `rep
 Blue-first and red-first select different first purple beads. A yellow pickup shortens real upper red/green routes from 17/16 cells to 5/4, while the right blue opening supports another supply route. Two explicit seventeen-click Worker Lv.1 sequences at 1.6-second gaps both reach final damage at 31.05s before the 64s threat, leaving six beads. The solutions differ in first supply, first armor hit and armor removal order; equal completion times do not imply human balance approval.
 
 Current bounded checks are 47 rules assertions, 64 integrated scene checks and the production single-level CLI. The real GL review captures map entry, preparation, loading, transport, firing and saved-result key states with event/source hashes, not a continuous movie or human playtest. Rules, earlier levels and existing assets remain unchanged. See [verification boundaries](docs/PUBLIC_VERIFICATION.md).
+
+
+## Level 13: Ice Supply Channels
+
+This bounded five-color winter-camp level reuses the snowpass scene and ice-crown appearance. Twenty-five beads supply 17 damage (13 ordinary and two armored segments). The central yellow-to-blue opening and outer red-to-inner-red route expose different required white beads through actual pickup-based pathfinding. Two explicit Worker Lv.1 solutions use 17 independent inputs and finish on actual last damage at 31.95 simulated seconds, leaving eight beads. Reward thresholds 33/47 seconds remain provisional, not human balance approval.
+
+The retained current-level reports contain 78 rule checks, 89 scene checks with 3,417 route samples and 75 logical-pixel minimum enemy-centerline separation, plus the single-level CLI. Actual GL map/preparation/loading/play/result key states and 26 matching production hashes establish a saved 100+50=150 reward, no conservation error and at most four carriers. This is automatic authored input, not natural human play, a continuous movie, or a fresh audio recording.
+
+The GL log includes unsupported VSync and ALSA output failure followed by Dummy fallback; no script exception is recorded. Human sound, difficulty and target-device acceptance remain unverified. Earlier content/rules and art bytes are unchanged; old suites were not rerun. No merge or deployment.

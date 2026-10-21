@@ -1,38 +1,25 @@
 {
-  "status": "PASS_BOUNDED_RUINS_SPLIT_SEAL_WITH_RECORDED_DIAGNOSTICS",
-  "base_commit": "f7c09c59f9c729cb3cb568e37b7e557890c1c283",
-  "frozen_at": "2026-10-21T20:05:57.056474+00:00",
-  "current_validation_levels": 12,
-  "scope": "one five-color two-component ruins supply level; rules/assets unchanged, actual map-to-result GL key states, no new combat or full30",
+  "status": "PASS_BOUNDED_ICE_CHANNELS_WITH_RECORDED_DIAGNOSTICS",
+  "base_commit": "735204832bbb64be19ca7118b05fd6cb23b9c19b",
+  "frozen_at": "2026-10-21T20:49:39.247729+00:00",
+  "current_validation_levels": 13,
+  "scope": "level13 data/catalog, current-level tests and evidence; no rules/art or earlier level changes",
   "checks": {
-    "rules_assertions": 47,
-    "scene_checks": 64,
-    "authored_route_samples": 3417,
-    "minimum_enemy_centerline_separation": 70.0001373291016,
-    "new_level_terminal_time_us": 31050000,
-    "new_level_deadline_us": 64000000,
-    "new_level_remaining_beads": 6,
-    "runtime_source_hashes_match": 26,
-    "victory_saved": true,
-    "reward_total": 150,
-    "map_level12_visible_and_enabled": true,
-    "rules_and_levels01_to11_unchanged": true,
-    "static_resources": "resolved; tests include deliberate invalid fixtures",
-    "candidate_only_secret_private_path_scan": "no findings"
+    "rules": 78,
+    "scene": 89,
+    "route_samples": 3417,
+    "source_hashes_match": 26,
+    "terminal_time_us": 31950000,
+    "remaining_beads": 8,
+    "reward": 150,
+    "victory_saved": true
   },
   "diagnostics": {
-    "scene_headless": "exit0; no error diagnostic in this run; unrelated retained diagnostics not reclassified",
-    "GL": "natural exit after settlement; VSync warning, ObjectDB and1resource inuse at shutdown; not clean"
+    "GL": "unsupported VSync; ALSA output ERR_CANT_OPEN; fallback Dummy. No script exception recorded."
   },
-  "retained_not_rerun": [
-    "levels01_to11 and prior common service suites",
-    "old30/33 obsolete for current single-ant mode"
-  ],
   "limits": [
-    "actual GL key-state capture, NOT a continuous movie",
-    "1x authored automatic replay and map-button signal, not human/native interaction or balance acceptance",
-    "Dummy output; player status not soundtrack or hardware/human listening validation",
-    "further levels, combo/mechanism and real ad SDK remain",
-    "no merge/deployment"
+    "Automatic authored input, not human balance or native input acceptance",
+    "Key-state images and event report, no continuous movie or fresh soundtrack",
+    "Prior suites not rerun; no merge/deployment"
   ]
 }

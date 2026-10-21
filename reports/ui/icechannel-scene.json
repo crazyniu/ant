@@ -1,0 +1,8 @@
+{
+	"checks": 89,
+	"failures": [],
+	"level_sha256": "b5952c81d4030f236ad3d3dd14633f153cfa2602bcf97632429219b4f801778a",
+	"minimum_enemy_centerline_separation": 75.0,
+	"path_samples": 3417,
+	"scope": "one integrated ice supply-channel ground/preview/five-color input contract, no prior campaign rerun"
+}
