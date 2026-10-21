@@ -28,6 +28,10 @@ static func load_for(config:Dictionary)->Dictionary:
 	if not valid_numbers(data.cannon.get("rect"),4) or float(data.cannon.rect[2])<=0 or float(data.cannon.rect[3])<=0:return {"ok":false,"reason":"scene_cannon_rect_invalid"}
 	for value in [data.nest.get("width"),data.stock.get("spacing"),data.defense_target.get("width"),data.defense_target.get("physical_width")]:
 		if not positive_number(value):return {"ok":false,"reason":"scene_scale_invalid"}
+	if data.stock.has("columns"):
+		var columns:Variant=data.stock.columns
+		if not positive_number(columns) or float(columns)!=floorf(float(columns)) or float(columns)>6:return {"ok":false,"reason":"scene_stock_columns_invalid"}
+		if not positive_number(data.stock.get("row_spacing")):return {"ok":false,"reason":"scene_stock_rows_invalid"}
 	for key in ["top_left","top_right","bottom_left","bottom_right"]:
 		if data.board_plane.has(key) and not valid_point(data.board_plane[key]):return {"ok":false,"reason":"scene_board_corner_invalid"}
 	for key in ["cell_width_basis","depth_ratio"]:
@@ -82,3 +86,11 @@ static func add_nest(parent:Node,data:Dictionary)->TextureRect:
 	var source:Texture2D=load("res://assets/serpent/nest-entry.png")
 	var factor:=float(data.nest.width)/float(meta.physical_width)
 	return UiSkin.place_texture(source,Rect2(point(data.nest.position)-point(meta.anchor)*factor,source.get_size()*factor),parent,"Nest")
+
+## One anchor for inventory artwork, dynamic counts and delivery FX. Omitted
+## columns preserves the exact legacy single-row positions.
+static func stock_anchor(data:Dictionary,index:int)->Vector2:
+	var columns:=int(data.stock.get("columns",0))
+	var column:=index if columns<=0 else index%columns
+	var row:=0 if columns<=0 else index/columns
+	return point(data.stock.start)+Vector2(column*float(data.stock.spacing),row*float(data.stock.get("row_spacing",0)))

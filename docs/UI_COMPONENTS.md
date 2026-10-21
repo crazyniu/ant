@@ -49,3 +49,6 @@ Use `UiSkin.place_texture(source, bounds, parent, id, keep_aspect)` for standalo
 Active colors share one equal-width, centered row. `Play.color_control_layout(count)` distributes the available width dynamically rather than wrapping at three; one to six colors keep the same 116-logical-pixel touch height. Icons and live remaining counts scale within each plate. Four-color play is not a 3+1 layout.
 
 An unreachable color uses a desaturated ant and a small road barrier, never an ownership lock. Its tooltip and rejected tap say “No reachable bead”; the click does not queue a task, reserve a target or consume a bead. Ownership padlocks remain valid only on real level/type unlocks. Busy, reserved and collected states keep their distinct feedback.
+
+
+Inventory layouts use `SceneLayout.stock_anchor(layout, index)` for both bead/count placement and unloading FX. Optional `stock.columns` and `stock.row_spacing` are presentation-only. Six-color snow levels use 3×2 light icon/count pairs to avoid the cannon; color-dispatch entries remain one equal-width row with no nested tray. Never treat the number of visible stock positions as storage capacity.

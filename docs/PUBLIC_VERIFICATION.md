@@ -1,6 +1,6 @@
 # Current verification boundary
 
-Updated 2026-10-21 for the bounded Threefold Supply Steps continuation. Current immediate published baseline: `9d3a2842dfdbb16fed12b9d80967541961208479` (eight current single-ant levels and the single-level authoring entry). Published core baseline: [`125646450cd1bf5e90d6d7cbc833ca34ff47bd75`](https://github.com/crazyniu/ant/commit/125646450cd1bf5e90d6d7cbc833ca34ff47bd75). Current development source adds API 3.1.0 growth integration; do not claim it is byte-identical to the frozen API 3.0.0 recording.
+Updated 2026-10-21 for the bounded Snow Courtyard continuation. Current immediate published baseline: `cb9bd8bcd05c4dc8c6bb1743a06bc860612fc3de` (nine current single-ant levels and the single-level authoring entry). Published core baseline: [`125646450cd1bf5e90d6d7cbc833ca34ff47bd75`](https://github.com/crazyniu/ant/commit/125646450cd1bf5e90d6d7cbc833ca34ff47bd75). Current development source adds API 3.1.0 growth integration; do not claim it is byte-identical to the frozen API 3.0.0 recording.
 
 ## Existing bounded reports
 
@@ -142,3 +142,16 @@ The same-version actual GL journey is **1,053 frames at 30 FPS**, **1440×2560**
 Developer inspection covered the new head/tail contact and turning posture, colored shell body and distinct intact/cracked HP2 overlay, cart footing, natural ground transport, four equal-width inputs and real preparation requirements. It does not establish user visual acceptance. The GL log contains the unavailable-V-Sync warning and a low-disk-space warning at 9.93GiB available; recording completed naturally, with no script or resource-at-exit diagnostic. The scene headless fixture exits 0 with passing assertions but reports ObjectDB and two resources still in use at shutdown; it is not called a clean exit.
 
 The soundtrack contains the real production mix while cloud runtime output remains Dummy. A playing BGM player and encoded mix do not establish human listening or hardware acceptance. No old30/33-suite result is reused as evidence for this model, and no full campaign rerun, new combat mechanic, final economy balance, merge or deployment is claimed.
+
+
+## Snow Courtyard, level 10 bounded continuation
+
+The current level-10 file is `8437a4ffc8c18f419f5d9c1d3a4f17c072bea6592503aef49d01c5d49574aaf5`. Rules remain API 3.1.0 with unchanged SHA-256 `14a5b20efdf237fbf271ea8749b35580d012485aee8a529a30e53487852c7c23`; previous levels 1–9 are unchanged and were not rerun. `reports/rules/ice-courtyard-level10.json` has 576 passing assertions for two real 18-input base-worker solutions, pickup-only openings, actual target differences, white 3/3 supply/damage, four-task capacity, final-hit semantics and accounting. Both reach final damage at 29.40s before the 64s goal, leaving seven beads.
+
+`reports/ui/snowpass-scene.json` has 134 passing checks, 3,618 carrier-ground samples and 75 logical pixels minimum enemy-centerline separation. It checks six equal-width input targets, six real preparation values and two-row inventory/FX positions that avoid the cannon and capacity HUD. Previous layouts retain exact stock positions when `columns` is omitted. Headless scene exit is 0 but retains ObjectDB/two-resources-in-use shutdown diagnostics; do not call that a clean shutdown. Single-level production CLI validation also passes.
+
+The same-source actual GL journey uses only isolated prerequisite unlocks for levels 1–9, no granted points or upgrades. It opens preparation, performs real loading, follows the authored 1× clicks, saves the final-hit victory and earns a real 100+50=150-point receipt. The uncut, unsped capture is 1,073 frames at 30fps, 35.766667 seconds, with a 1440×2560 viewport. This duration includes entry and settlement; it is not the 29.40s rule time. All 26 recorded production-source hashes match this build.
+
+Initial, walking, shortened-body and result frames were inspected: white beads remain warm ivory against blue snow, the white carrier retains darker contours, six entrances fit without overlap, the fixed camp sits on its platform, and the inner carrier ground remains separate from the enemy road. This is developer composition review, not final user visual or human pacing acceptance. The physical cloud window is letterboxed; a portrait hardware-window/input test is not claimed.
+
+GL exits naturally without script or resource-at-exit errors; unavailable V-Sync and an 8.91GiB free-space warning are recorded. Fourteen sound cues load, BGM plays and a mixed audio track is captured, but cloud output is Dummy. Waveform levels do not prove speaker output, musical quality or human listening. The existing 30-level target, further authored content, progressed mechanics, real ad SDK, native input, hardware, human difficulty and economy validation remain separate work. No merge or deployment is implied.

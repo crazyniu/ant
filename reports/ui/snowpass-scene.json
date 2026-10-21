@@ -1,0 +1,8 @@
+{
+	"checks": 134,
+	"failures": [],
+	"level_sha256": "8437a4ffc8c18f419f5d9c1d3a4f17c072bea6592503aef49d01c5d49574aaf5",
+	"minimum_enemy_centerline_separation": 75.0,
+	"path_samples": 3618,
+	"scope": "one integrated snow courtyard ground/preview/six-color input/stock anchors contract, no prior campaign rerun"
+}

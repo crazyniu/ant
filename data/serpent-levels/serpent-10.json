@@ -1,0 +1,240 @@
+{
+  "schema_version": 3,
+  "level_id": "serpent-10",
+  "level_number": 10,
+  "title": "Open the Snow Courtyard",
+  "width": 10,
+  "height": 8,
+  "palette": {
+    "R": "red",
+    "B": "blue",
+    "G": "green",
+    "Y": "yellow",
+    "P": "purple",
+    "W": "white"
+  },
+  "grid": [
+    "..........",
+    "..........",
+    "..........",
+    "...RBYYP..",
+    "...GW.WYB.",
+    "...BPRGRR.",
+    "..YGP..GBY",
+    "...WB...P."
+  ],
+  "segments": [
+    {
+      "id": "serpent-10-s01",
+      "color": "white",
+      "kind": "armored",
+      "hp": 2
+    },
+    {
+      "id": "serpent-10-s02",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-10-s03",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-10-s04",
+      "color": "purple",
+      "kind": "armored",
+      "hp": 2
+    },
+    {
+      "id": "serpent-10-s05",
+      "color": "blue",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-10-s06",
+      "color": "yellow",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-10-s07",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-10-s08",
+      "color": "white",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-10-s09",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-10-s10",
+      "color": "yellow",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-10-s11",
+      "color": "blue",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-10-s12",
+      "color": "purple",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-10-s13",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-10-s14",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-10-s15",
+      "color": "blue",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-10-s16",
+      "color": "yellow",
+      "kind": "normal",
+      "hp": 1
+    }
+  ],
+  "serpent": {
+    "head_start_s": 66.0,
+    "goal_s": 142.0,
+    "speed_units_sec": 1.1875,
+    "pitch": 4.0,
+    "art_profile": "ice_crest"
+  },
+  "parameters": {
+    "max_inflight_ants": 4,
+    "projectile_flight_sec": 0.45,
+    "cannon_cooldown_sec": 0.65
+  },
+  "transport": {
+    "carrier_type": "worker",
+    "outbound_speed_cells_sec": 2.5,
+    "returning_speed_cells_sec": 2.0,
+    "pickup_pause_sec": 0.3,
+    "unload_pause_sec": 0.2,
+    "entrance_cell": [
+      6,
+      8
+    ]
+  },
+  "tools": [],
+  "solution": {
+    "kind": "timed_single_click_no_tool_snow_courtyard",
+    "minimum_input_gap_sec": 1.4,
+    "inputs": [
+      {
+        "at_sec": 0.0,
+        "color": "red"
+      },
+      {
+        "at_sec": 1.4,
+        "color": "white"
+      },
+      {
+        "at_sec": 2.8,
+        "color": "green"
+      },
+      {
+        "at_sec": 4.2,
+        "color": "white"
+      },
+      {
+        "at_sec": 5.6,
+        "color": "purple"
+      },
+      {
+        "at_sec": 7.0,
+        "color": "red"
+      },
+      {
+        "at_sec": 8.4,
+        "color": "blue"
+      },
+      {
+        "at_sec": 9.8,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 11.2,
+        "color": "green"
+      },
+      {
+        "at_sec": 12.6,
+        "color": "blue"
+      },
+      {
+        "at_sec": 14.0,
+        "color": "purple"
+      },
+      {
+        "at_sec": 15.4,
+        "color": "red"
+      },
+      {
+        "at_sec": 16.8,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 18.2,
+        "color": "green"
+      },
+      {
+        "at_sec": 19.6,
+        "color": "purple"
+      },
+      {
+        "at_sec": 21.0,
+        "color": "white"
+      },
+      {
+        "at_sec": 22.4,
+        "color": "blue"
+      },
+      {
+        "at_sec": 23.8,
+        "color": "yellow"
+      }
+    ]
+  },
+  "validation_scope": "One independent six-color snow-courtyard candidate using unchanged rules API 3.1.0, Worker Lv.1, no upgrades, tools, ads, bonuses or new mechanisms. Scripted solvability is not human difficulty, economy, visual, native-input, audio or target-device acceptance.",
+  "content_version": "ice-snow-courtyard-20261021.1",
+  "rewards": {
+    "fast_seconds": 32.0,
+    "normal_seconds": 46.0
+  },
+  "region_id": "ice_valley",
+  "boss_profile": "armored_serpent",
+  "defense_target": {
+    "id": "winter_camp",
+    "display_name": "Winter Camp",
+    "fixed": true
+  },
+  "scene_layout": "res://data/scenes/ice-snowpass.json"
+}

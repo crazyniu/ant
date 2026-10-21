@@ -1,6 +1,6 @@
 # Current implementation contract
 
-Version: 2026-10-21 Traveler’s Twin Groves continuation; rules API 3.1.0, level schema 3, economy schema/version 1. This document describes current source behavior and separates it from the broader product target. The earlier automatic-team contract and its 30-level reports are historical. The published API 3.0.0 core is a prior, smaller snapshot, not evidence that the new UI has passed review.
+Version: 2026-10-21 Snow Courtyard continuation; rules API 3.1.0, level schema 3, economy schema/version 1. This document describes current source behavior and separates it from the broader product target. The earlier automatic-team contract and its 30-level reports are historical. The published API 3.0.0 core is a prior, smaller snapshot, not evidence that the new UI has passed review.
 
 ## Authority and data flow
 
@@ -14,7 +14,7 @@ Version: 2026-10-21 Traveler’s Twin Groves continuation; rules API 3.1.0, leve
 | Points, purchase ledger, equipment, frozen run loadout, navigation state | `scripts/ant_progression.gd` |
 | Ordered catalog and level/settings completion save | `scripts/level_catalog.gd`, `scripts/save_service.gd` |
 | Economy parameters | `data/ant-progression.json` |
-| Available authored levels | `data/serpent-levels/serpent-01.json` through `serpent-08.json` |
+| Available authored levels | `data/serpent-levels/serpent-01.json` through `serpent-10.json` |
 
 The gameplay adapter, not animation callbacks, applies the authoritative result. Views consume detached state and emit requests. They must never fabricate balances, damage, unlocks, item ownership, completed levels or ad receipts.
 
@@ -32,7 +32,7 @@ There are no current automatic 20/30-ant teams, queue quotas, five work slots, f
 ## Current entry and meta screens
 
 - Startup performs real resource loading before Home. Home's primary action opens preparation for the saved entrance; its map action opens the full-screen adventure map.
-- Map nodes come from the actual loaded catalog and completion/unlock state. They open full preparation, not a modal level grid. Nine current level definitions are available, including ruins/parked-cart, ice/winter-camp and woodland/traveler slices.
+- Map nodes come from the actual loaded catalog and completion/unlock state. They open full preparation, not a modal level grid. Ten current level definitions are available, including ruins/parked-cart, ice/winter-camp and woodland/traveler slices.
 - Preparation derives segment counts, total HP, supply and fixed-goal preview from the selected configuration. Owned worker/Swift selection is committed before launching the actual game scene.
 - The independent shop is reachable from map and results. Balance, item prices, owned/equipped state and next shared level reflect service state. Product views use separate panels, title sprites, ant actors, ornaments and real text.
 - Navigation persists region, scroll and selected level. Returning from the shop/preparation uses that state, rather than inventing a new selection. Persistence is not evidence that all target devices have passed scrollbar/mouse testing.
@@ -68,7 +68,7 @@ Advertising is unavailable: status/request/claim APIs reject with `ad_sdk_unavai
 
 The broader design remains in `reports/design/current-product-spec.md` and `reports/design/click-ant-current.md`. It includes work not yet implemented. Current source and bounded reports, not a concept image or old checklist, establish implementation status.
 
-Only `serpent-01` through `serpent-08` are current. The reserved `--campaign-drafts` path points to a future serpent catalog with no authored files. Old `data/campaign-drafts/`, old validation levels, the legacy editor/generation chain and old campaign tests must not be substituted or advertised as available new-mode content.
+Only `serpent-01` through `serpent-10` are current. The reserved `--campaign-drafts` path points to a future serpent catalog with no authored files. Old `data/campaign-drafts/`, old validation levels, the legacy editor/generation chain and old campaign tests must not be substituted or advertised as available new-mode content.
 
 Remaining scope: the rest of the new 30 independent levels and a fuller authoring workflow beyond the explicit single-level CLI; further independently authored themed scenes and fixed targets; optional junction combos and hidden supplies; real rewarded ads; human difficulty/economy and natural-input testing; final visual, audio and target-device acceptance. The earlier five-page GL capture at 1440 × 2560 includes the map/preparation/shop fixes and has been visually inspected; it is separate from the level-8 runtime evidence and does not establish traveler user visual acceptance. The separate level-7 runtime report records automated GL evidence, not human approval. User approval and device/native-input acceptance remain separate. Exact retained test results and their limits are in `PUBLIC_VERIFICATION.md`.
 
@@ -130,3 +130,12 @@ Two real nearest-target sequences demonstrate different openings. Red then yello
 The `ruins_carapace` atlas adds 17 independently anchored pieces and eight true yaw views to the existing appearance whitelist. It does not alter authoritative rules, HP, movement speed, target selection, input or events. Ordinary shell art is separate from the HP2 gold intact/cracked overlay. Production preparation and play share the same profile and fixed guardian. Rules and level files 1–8 remain unchanged.
 
 The current rule report contains 1,466 assertions, the asset report 50 checks and the composed scene report 60 checks/3,417 sampled carrier-ground positions, minimum enemy-centerline separation 129.79 logical pixels. Their scopes do not replace actual GL, native-input, human visual or hardware/audio acceptance. See `PUBLIC_VERIFICATION.md` for current runtime evidence and diagnostics.
+
+
+## Level 10: six-color Snow Courtyard
+
+`serpent-10` adds a connected asymmetric courtyard, not a recolored previous grid. Its 25 beads supply R4/B5/G4/Y5/P4/W3; each color needs three damage. Fourteen HP1 and two HP2 segments (white and purple) total 18 HP. White has no surplus, so both initially enclosed white cells must become reachable. The finite threat budget is 64s. Worker Lv.1, four-carrier capacity, speeds, pickup/unload pauses, cannon cooldown and projectile flight remain unchanged.
+
+Two 18-input solutions at 1.40s gaps exercise different real nearest-target routes. Red opens the courtyard; green opens only the right inner white route. At 1.40s the same white click selects the exterior white after red-first, but the right inner white after green-first. Exterior-white pickup also opens adjacent green, without opening either inner white. All openings occur on actual pickup, never reservation. Both authored sequences finish on final hit at 29.40s, leave seven beads, and have 16 single trips of 3–5 grid cells plus two trips of six cells. Maximum all-color no-dispatch window is 0.80s; this is automated timing evidence, not human pacing approval.
+
+`ice-snowpass.json` shares the existing snow ground, camp, board projection, finite enemy route and nest/cannon anchors. Its only new presentation option is a three-column/two-row inventory to keep six icon/count pairs clear of the cannon. `SceneLayout.stock_anchor()` is shared by counts and delivery FX. Omitted columns preserve prior scene positions exactly; no inventory capacity or combat rule changes. All six dispatch controls remain equal-width in one row. Existing white materials, eight-direction workers, ice-crest serpent and visible cracked armor are reused.

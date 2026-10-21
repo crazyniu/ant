@@ -16,7 +16,7 @@ Godot 4.6.3; logical 940×1672 uniformly presented at 1440×2560. Scene layouts 
 - `board_plane`: optional projected corners, fitted width basis and depth ratio. The grid's integer dimensions/occupancy stay in the level config.
 - `nest.position`, `nest.gateway`, `nest.width`: ground anchor, clear visual approach and uniform physical width. Its sprite's measured anchor remains in `assets/serpent/nest-entry.json`.
 - `cannon.rect`, `pivot`, `muzzle`, `center`: independent art bounds, recoil pivot and FX origins.
-- `stock.start`, `spacing`: light icon/count row, not an inventory capacity.
+- `stock.start`, `spacing`: light icon/count placement, not an inventory capacity. Optional positive integer `columns` (1–6) and positive `row_spacing` create multiple rows. Omission preserves the exact single row. `SceneLayout.stock_anchor()` is the sole source for artwork, counts and delivery FX destinations.
 - `route`: finite ordered Curve2D knots with optional tangent handles. `serpent.goal_s` maps to the route endpoint, never modulo. Art-side body compression cannot move the authoritative head.
 - `defense_target`: stable identity, fixed status, texture/optional atlas region, measured local ground anchor, physical width, displayed width and world foot. It must match the level's guardian identity. Win presentation reuses this guardian rather than hardcoding a princess. Optional `contact_shadow=[radius_x,radius_y]` draws a separate ground ellipse at the same foot; it does not alter collision, route or target state.
 - `walkable_polygon`: inspected clear-ground envelope for bounded route verification, not the logical obstacle solver.
@@ -77,3 +77,10 @@ Level 9 reuses `data/scenes/ruins-fork.json` without modifying it: central rule 
 `serpent.art_profile="ruins_carapace"` selects the new broad-shell silhouette, while body color tint, visible HP2 overlays, chain-joint yaw anchors and spacing retain the existing renderer contract. The four color entrances remain equal-width in one row. Preparation shows the real 13 ordinary/two armored counts and four color requirements, not artwork example values.
 
 The bounded scene report `reports/ui/ruins-three-gate-scene.json` checks 3,417 sampled route points remain on inner clear ground and at least 129.79 logical pixels from the enemy centerline, plus the actual profile/guardian/input controls. Rendering and human acceptance remain separate from these checks. See `ASSETS.md` for alpha cutting and joint anchors and `PUBLIC_VERIFICATION.md` for the current real-GL boundary.
+
+
+## Level 10 Snow Courtyard
+
+`data/scenes/ice-snowpass.json` reuses all physical geometry and assets from `ice-camp.json`: entrance `[6,8]`, nest `[530,1010]`, gateway `[530,930]`, cannon `[445,1030,166,141]`, and fixed camp foot `[151,219]`. Only stock presentation changes to start `[220,1082]`, spacing 65, columns 3 and row spacing 66. Counts and beads stay left of the cannon and above the capacity HUD; stock has no gameplay cap. Six dynamic color inputs remain a single row.
+
+The connected 25-bead courtyard has distinct red/green opening routes and requires all three white beads for three white damage. Fourteen ordinary and two armored body segments require 18 hits. The unchanged current ice-crest art is a reusable boss appearance, not a newly invented ice mechanic. The scene test covers all 3,618 sampled route positions, at least 75 logical pixels from the enemy centerline, six touch targets, true preparation counts, matching FX/count anchors and exact previous-layout stock positions. Human visual readability, timing and device input remain separate acceptance.

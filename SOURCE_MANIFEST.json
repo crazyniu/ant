@@ -1,9 +1,9 @@
 {
   "algorithm": "SHA-256",
   "scope": "all files except this manifest",
-  "base_commit": "9d3a2842dfdbb16fed12b9d80967541961208479",
-  "file_count": 246,
-  "total_bytes": 53766798,
+  "base_commit": "cb9bd8bcd05c4dc8c6bb1743a06bc860612fc3de",
+  "file_count": 256,
+  "total_bytes": 54089598,
   "files": [
     {
       "path": ".gitignore",
@@ -12,8 +12,8 @@
     },
     {
       "path": "ASSETS.md",
-      "bytes": 20627,
-      "sha256": "a328e81abd1a5c6844a06aa74ae34cc284e3ab1adce0edbff3298b8db2e4975e"
+      "bytes": 21204,
+      "sha256": "29d94962082180f2a2d8b0a03accc8d9b5f6b35974cc851112ab9e3ae7af3e4f"
     },
     {
       "path": "DEPENDENCIES.md",
@@ -22,13 +22,13 @@
     },
     {
       "path": "PUBLICATION_CHECK.json",
-      "bytes": 1792,
-      "sha256": "dd428d2acad93a0f2c367797f419e023d7c76240220b9192d054abe123f80037"
+      "bytes": 1791,
+      "sha256": "112e416f0137a7ad3ab45732b2bda1d017dad19323b1e663839d1df48a73be06"
     },
     {
       "path": "README.md",
-      "bytes": 15947,
-      "sha256": "8dc9a6766afea0bd72026235c843b31537080f090721a97899f43fb7899ef157"
+      "bytes": 16123,
+      "sha256": "f8030404cd7127019775961323e5b8354e2df81ef687b99c192bf50de3330756"
     },
     {
       "path": "assets/ants-atlas.png",
@@ -386,6 +386,11 @@
       "sha256": "9e04213815f256c1eef33c8280a55f683287b8db75e0fd356dd043e7c09fc102"
     },
     {
+      "path": "data/scenes/ice-snowpass.json",
+      "bytes": 2771,
+      "sha256": "1b5ee43ae6dd2d712d4a8e8e4a01cebd6d6511dc1b87cceda46622116a0056c6"
+    },
+    {
       "path": "data/scenes/ruins-cart.json",
       "bytes": 2528,
       "sha256": "e729226303ae60c5a3424975872bd7bcf0624105f75b51b1f9b2e96266bf45f4"
@@ -446,6 +451,11 @@
       "sha256": "7dc8acdcaf2acf775ed6a20e1ad8bf06c730e61c5ec5ea17f8eb60702c2b5065"
     },
     {
+      "path": "data/serpent-levels/serpent-10.json",
+      "bytes": 4590,
+      "sha256": "8437a4ffc8c18f419f5d9c1d3a4f17c072bea6592503aef49d01c5d49574aaf5"
+    },
+    {
       "path": "docs/BOARD_PLANE.md",
       "bytes": 4078,
       "sha256": "3952379c80354bd5839a5be24157574627a1000466c280b0d2ca3df8df5ddb02"
@@ -457,23 +467,23 @@
     },
     {
       "path": "docs/CURRENT_IMPLEMENTATION.md",
-      "bytes": 20953,
-      "sha256": "388985d46ff3f5cf87a9ef40157ce897a98527880586d0346fd7be94077581a7"
+      "bytes": 22687,
+      "sha256": "182aa28449be8f30e122d292f9a04b412eae9e9666868cb27462ea4e7ef2a4c7"
     },
     {
       "path": "docs/PUBLIC_VERIFICATION.md",
-      "bytes": 23207,
-      "sha256": "df84a635fccda174ca5435bf2e7795876c313f5de6bcddc9caef24260b2ef356"
+      "bytes": 25891,
+      "sha256": "8ea8e1c8a0e700d7a1d8a3898fc0f3101007c287acd5df87ee9a37b23dfc58ad"
     },
     {
       "path": "docs/SCENE_LAYOUTS.md",
-      "bytes": 11682,
-      "sha256": "7feaff5f9f84777ebbf44908e0208c1a478dcd4fdff15c6a966e16b76651e76e"
+      "bytes": 13002,
+      "sha256": "6b116b08b5462b6abfc38bb3b63dafd680042b7254e4b573d1765345fba84b54"
     },
     {
       "path": "docs/UI_COMPONENTS.md",
-      "bytes": 6249,
-      "sha256": "a0416854148682291de94ade7593986d8efda5cc51f7b03c8608c4b4d6afc87a"
+      "bytes": 6652,
+      "sha256": "055a40243d937cd39a2015c1e48848e21f8c5ed290d2dcd96f8e4d1345d1ac78"
     },
     {
       "path": "docs/VERIFICATION.md",
@@ -571,6 +581,11 @@
       "sha256": "b7dbfb064e7b333b4476653015f9f7183cb039fe43939f7b7bf3c5d98f696ed8"
     },
     {
+      "path": "reports/authoring/snowpass-check.json",
+      "bytes": 1808,
+      "sha256": "1c1bb0916613f9b04ff2ef7a2f66ddfef80332d8ae06ce8547b59cb92cedc6d1"
+    },
+    {
       "path": "reports/design/click-ant-current.md",
       "bytes": 1719,
       "sha256": "027bf38ac87c3a084781ad08af9830cb27ae3fb33316d1fad411ab7a3619fb98"
@@ -611,6 +626,11 @@
       "sha256": "aa21af4e920aec26db1f3f2ed461f02a05ec819ba32bdfe9f1ddb6c41494278c"
     },
     {
+      "path": "reports/rules/ice-courtyard-level10.json",
+      "bytes": 271923,
+      "sha256": "579f77ffcd743daf8d2d60c93fca1cf49a372113eb361c867ecc7cf050d3d87c"
+    },
+    {
       "path": "reports/rules/ice-rules.json",
       "bytes": 15024,
       "sha256": "922e07964f0a8c4bc553423f396e1359cebe1eac25e51bbaccbb3c9043ed70f7"
@@ -639,6 +659,11 @@
       "path": "reports/rules/serpent-09-alternate-inputs.json",
       "bytes": 999,
       "sha256": "ee9352b5147051d2bb21d0dae16f0bc3a1425c67ac3cfaf6061dc36a3c0f791d"
+    },
+    {
+      "path": "reports/rules/serpent-10-alternate-inputs.json",
+      "bytes": 1052,
+      "sha256": "26e60ab2f98a7627a423e50522652f7d934be4b137ea031c25780fda3d258b0b"
     },
     {
       "path": "reports/rules/serpent-layout-timing.json",
@@ -724,6 +749,16 @@
       "path": "reports/ui/serpent-scene-check.json",
       "bytes": 165,
       "sha256": "ff425b2850fbb5deb79e5ef1c576c7d7492d20ebc6b13845558609e1472e5827"
+    },
+    {
+      "path": "reports/ui/snowpass-runtime.json",
+      "bytes": 4943,
+      "sha256": "c020d55220f3fa8f942aec7a637b0d9091fc9ae856467b8b2a292b6f5cd4750d"
+    },
+    {
+      "path": "reports/ui/snowpass-scene.json",
+      "bytes": 311,
+      "sha256": "03cc38c311e90b841c223363743ffe16dbf27f69307dc1e3de93db1e06cbd875"
     },
     {
       "path": "scenes/main.tscn",
@@ -852,8 +887,8 @@
     },
     {
       "path": "scripts/level_catalog.gd",
-      "bytes": 1771,
-      "sha256": "1813df34abdefffe9c851a08feb25fe114c38551ae03fae92f8cc1753938a36d"
+      "bytes": 1785,
+      "sha256": "4dfe32e61b3e34ad2ced7f25e5c662149f220739cce198316547eb4c231b1a96"
     },
     {
       "path": "scripts/level_catalog.gd.uid",
@@ -872,8 +907,8 @@
     },
     {
       "path": "scripts/play.gd",
-      "bytes": 44909,
-      "sha256": "df9000fba36fe69a3c1eabb8abc7d91a29978fa1ce066471076a7e0f2e071b10"
+      "bytes": 44801,
+      "sha256": "7d0a6c1edb53411b701690b0f731e856390cbed4447bd43a18dee8b9afc52df9"
     },
     {
       "path": "scripts/play.gd.uid",
@@ -912,8 +947,8 @@
     },
     {
       "path": "scripts/scene_layout.gd",
-      "bytes": 6096,
-      "sha256": "64dd04eaa2a75f7055b9907c176d45718c45600a5ce2c5c61ce9d63d3a588a32"
+      "bytes": 6896,
+      "sha256": "e0f544557962f97636690498c3e5df24a7d1475c29a3a19edc9cff2b7ee0024a"
     },
     {
       "path": "scripts/scene_layout.gd.uid",
@@ -1046,6 +1081,11 @@
       "sha256": "199fd1c2cb01c98e92c87a3584f43829f53cbf28eddda411b8886671264e94b8"
     },
     {
+      "path": "tests/capture_snowpass_journey.gd",
+      "bytes": 5668,
+      "sha256": "786982946d91eeb92068d7e73e8631863c8c8c297e3d42c038c7aca093cd7b30"
+    },
+    {
       "path": "tests/test_adventure_view.gd",
       "bytes": 8340,
       "sha256": "5d04fbc792d3d577ae9000bdbd26dfc6ff3cf8626cd0527511ca5ed32a436398"
@@ -1114,6 +1154,11 @@
       "path": "tests/test_forest_traveler_scene.gd",
       "bytes": 6061,
       "sha256": "6cd046a66b05525f6b73b11109b0cd967f916d6d3660d4ccc0e4efc0f9235e07"
+    },
+    {
+      "path": "tests/test_ice_courtyard_level10.gd",
+      "bytes": 15615,
+      "sha256": "975b04586839f84abb3ead9656e04a2d73c6f6a01d3cd446c1687ca06f0b4207"
     },
     {
       "path": "tests/test_ice_rules.gd",
@@ -1214,6 +1259,11 @@
       "path": "tests/test_serpent_scene.gd.uid",
       "bytes": 20,
       "sha256": "28786bde81acb3ba0a41fd246e620fe4ea15be51ada8ebb35b75a6c49af2f89d"
+    },
+    {
+      "path": "tests/test_snowpass_scene.gd",
+      "bytes": 6520,
+      "sha256": "e3276e8f31719db79f29850381de71f131357cdd18e5801b59abe6185e0cc7d2"
     },
     {
       "path": "tests/test_startup_loader.gd",

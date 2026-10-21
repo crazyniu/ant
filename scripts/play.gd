@@ -158,7 +158,7 @@ func _ready()->void:
 	var stock_colors:Array=[]
 	for color in COLORS:
 		if int(rules.initial_counts.get(color,0))>0:stock_colors.append(color)
-	for i in stock_colors.size():stock_points[stock_colors[i]]=SceneLayout.point(scene_layout.stock.start)+Vector2(24+i*float(scene_layout.stock.spacing),0)
+	for i in stock_colors.size():stock_points[stock_colors[i]]=SceneLayout.stock_anchor(scene_layout,i)+Vector2(24,0)
 	var cell_points:Dictionary={}
 	for cell in rules.board.values():cell_points["%d,%d"%[cell.x,cell.y]]=board_plane.center(cell.x,cell.y)
 	fx.set_layout({"stock_points":stock_points,"cell_points":cell_points})
@@ -294,9 +294,9 @@ func build_transport()->void:
 	for color in COLORS:
 		if int(rules.initial_counts.get(color,0))>0:stock_colors.append(color)
 	for j in stock_colors.size():
-		var color:String=stock_colors[j];var x:float=float(scene_layout.stock.start[0])+j*float(scene_layout.stock.spacing)
-		bead(color,Vector2(x+12,float(scene_layout.stock.start[1])-18),25,stock)
-		var label:=text_label("0",Rect2(x,float(scene_layout.stock.start[1])+13,53,34),23,"Count_"+color,stock,Color("fff7d9"));label.add_theme_color_override("font_outline_color",Color("573719"));label.add_theme_constant_override("outline_size",5)
+		var color:String=stock_colors[j];var anchor:=SceneLayout.stock_anchor(scene_layout,j)
+		bead(color,anchor+Vector2(12,-18),25,stock)
+		var label:=text_label("0",Rect2(anchor+Vector2(0,13),Vector2(53,34)),23,"Count_"+color,stock,Color("fff7d9"));label.add_theme_color_override("font_outline_color",Color("573719"));label.add_theme_constant_override("outline_size",5)
 	var live:=group("LiveCarriers",layer);layer.move_child(live,1)
 
 func build_hud()->void:
