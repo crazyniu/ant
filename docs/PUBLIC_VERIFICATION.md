@@ -1,0 +1,65 @@
+# Current verification boundary
+
+Updated 2026-10-21 for the map/preparation/shop/progression continuation. Published core baseline: [`125646450cd1bf5e90d6d7cbc833ca34ff47bd75`](https://github.com/crazyniu/ant/commit/125646450cd1bf5e90d6d7cbc833ca34ff47bd75). Current development source adds API 3.1.0 growth integration; do not claim it is byte-identical to the frozen API 3.0.0 recording.
+
+## Existing bounded reports
+
+The following records were read for this documentation update. They are retained test evidence, not tests newly rerun by editing this document. Later changes to covered code require revalidation.
+
+| Source | Recorded result | What it establishes |
+|---|---|---|
+| `tests/test_ant_meta_flow.gd` → `reports/ui/ant-meta-flow.json` | 18 checks, no failures | Headless production startup/Home → map → preparation → loading/play → final-hit reward → shop purchase → map → unlocked next-level entry; real 150-point first receipt, duplicate-credit/debit protection, insufficient balance, preparation/shop return-state preservation and actual ×1.05 rules loadout. |
+| `tests/test_ant_growth_integration.gd` → `reports/rules/ant-growth-integration.json` | 133 checks, no failures | Same authored input sequences on three current levels, baseline worker versus Swift Lv.4; earlier delivery and final hit, conserved resources, ≤4 transport tasks, frozen loadout and unchanged enemy speed. |
+| `tests/test_ant_progression.gd` → `reports/rules/ant-progression-tests.json` | 1,062 assertions, passed, no failures | Local progression service: costs/rewards, persistence/restart, duplicates, atomic purchase rollback/retry, frozen loadouts, navigation, injected storage failures, corrupt/future records and rejection of fake ad rewards. |
+
+The flow test invokes production signals/methods and automatically replays authored inputs. It is not native mouse or touchscreen acceptance and does not establish that a human played the game. The service suite does not itself test composed UI, sound, the live ad SDK or economy balance. Do not add these different scopes into a “whole-game checks passed” claim.
+
+## Measured growth result
+
+All times below are authoritative simulation seconds from the three-level growth report, not video duration. Both loadouts use the same authored inputs and unchanged enemy speed.
+
+| Current level | Worker Lv.1 final hit | Swift Lv.4 final hit | Beads remaining in both solves |
+|---|---:|---:|---:|
+| serpent-01 | 19.950000 | 18.958697 | 6 |
+| serpent-02 | 26.450000 | 25.210871 | 4 |
+| serpent-03 | 27.350000 | 25.863045 | 6 |
+
+First delivery is 3.200000 seconds for worker and 2.456523 for Swift Lv.4 in all three cases. These are measurable gains on the current slices, not a claim that 500-point Swift pricing or repeated progression is balanced for players.
+
+## Visual and source status
+
+The actual production `tests/capture_ant_meta_pages.gd` capture produced **five 1440 × 2560 pages: Home, adventure map, preparation, shop and settings**. The separate `meta-pages.json` capture report records a fresh isolated profile, zero points, ready economy state and no fabricated balance. This is real scene rendering, not a concept screenshot. Capture artifacts are kept outside source.
+
+The final capture completed after the map/preparation/shop revisions and was visually inspected on 2026-10-21. The observed fixes are a visible map path with non-stretched nodes; preparation without duplicate slogans, long descriptions or redundant carry/speed copy; boss/segment/target and per-color requirements presented with icons and real counts; neutral locked/disabled 500-point Swift and 100-point training actions at zero balance; and the Swift badge fixed separately in the card corner.
+
+No runtime script error was reported during this capture. A one-resource-still-in-use diagnostic remains on process exit, so this is not a completely clean shutdown claim. Capture/inspection is not user approval, native-input acceptance or a claim that the result screen was included. The published core's normal-speed level-2 recording establishes only its recorded source version; it cannot validate new meta screens, reward presentation or newer navigation changes.
+
+The capture reports 14 loaded sound cues, no load errors and BGM playing, with `audio_driver: Dummy`. These flags establish resource/lifecycle state, not audible speaker/headphone output, a recorded mixed soundtrack or human listening approval.
+
+A read-only source check for this documentation update matched all 11 meta PNGs to their manifest dimensions and SHA-256, and all eight independent crops to the exact corresponding source-atlas pixel regions. No asset was changed. `assets/meta-ui/validation-report.json` records the earlier asset-level checks. It does not replace a composed running-scene inspection, native input test or user approval. Its native dimensions, transparency and source-crop relationships can be verified independently of gameplay. A shop concept reference is not an approved final UI.
+
+Older `docs/`, `reports/campaign/`, automatic-team rule/UI reports and pre-serpent screenshots belong to superseded versions. In particular, historical 33-level runs, 20/30-ant teams, five-slot flows and old campaign candidate entry checks are not evidence for the current single-ant build. This document supersedes the prior automatic-team `PUBLIC_VERIFICATION.md`.
+
+## Reproduce bounded checks
+
+Import first with Godot 4.6.3. Use isolated writable HOME/XDG and `ANT_RESCUE_PROFILE_DIR` locations, not a player's profile. These scripts may refresh their corresponding report JSON files.
+
+```sh
+godot --headless --editor --path . --import
+godot --headless --path . --script tests/test_ant_progression.gd
+godot --headless --path . --script tests/test_ant_growth_integration.gd
+godot --headless --path . --script tests/test_ant_meta_flow.gd
+```
+
+The commands describe reproduction, not an assertion that they were all rerun after every code change. Keep the exact checked source revision with any new report or capture. Capture videos, generated `.godot` caches and temporary profiles are not source assets.
+
+## Still outside acceptance
+
+- New 30-level single-ant campaign and compatible authoring/validation tools.
+- Multiple distinct themed scenes, varied fixed rescue targets and their actual art.
+- Optional junction combos, hidden supplies and real advertising SDK.
+- Natural human input, difficulty and economy tuning, full multi-level playthroughs.
+- Final visual approval, hardware sound listening, macOS-native execution and target-device performance.
+- A fresh whole-project regression for the final integrated source revision.
+
+No report in this batch authorizes or implies merge, release or deployment.

@@ -2,7 +2,7 @@ class_name RescueRules
 extends RefCounted
 ## Deterministic single-click transport and segmented serpent simulation. No Nodes, callbacks, RNG or save I/O.
 ## Time is integer microseconds. Only update/update_us advances it; views consume events.
-const API_VERSION := "3.0.0"
+const API_VERSION := "3.1.0"
 const TIMEBASE := 1000000
 const CARRIER_LIMIT := 4
 const NEVER := 9223372036854775807
@@ -13,6 +13,8 @@ var time_us: int = 0
 var status: String = "unloaded"
 var paused: bool = false
 var speed_multiplier: int = 1
+var ant_loadout:Dictionary={"ant_type":"worker","level":1,"speed_multiplier":1.0}
+var threat_started_us:int=-1
 var level: Dictionary = {}
 var board: Dictionary = {}
 var reservations: Dictionary = {}
@@ -155,6 +157,8 @@ func load_level(config: Dictionary) -> bool:
 	status = "unloaded"
 	paused = false
 	speed_multiplier = 1
+	ant_loadout={"ant_type":"worker","level":1,"speed_multiplier":1.0}
+	threat_started_us=-1
 	level = config.duplicate(true)
 	board.clear()
 	reservations.clear()
@@ -249,6 +253,16 @@ func color_states() -> Dictionary:
 		result[color] = {"state": state, "available_count": int(counts[color]), "reserved_count": reserved, "clickable_count": clickable, "capacity_full": tasks.size() >= CARRIER_LIMIT}
 	return result
 
+func set_ant_loadout(value:Dictionary)->bool:
+	# Equipment is frozen before any successful dispatch. It changes only travel
+	# speed, never pickup/unload, capacity, projectile timing or enemy parameters.
+	if status!="ready" or not tasks.is_empty() or threat_started_us>=0:return false
+	if value.get("ant_type","") not in ["worker","swift"]:return false
+	if not _is_number(value.get("speed_multiplier")) or float(value.speed_multiplier)<1.0 or float(value.speed_multiplier)>1.5:return false
+	if not _is_integer(value.get("level")) or int(value.level)<1 or int(value.level)>4:return false
+	ant_loadout=value.duplicate(true)
+	return true
+
 func click_color(color: String) -> Dictionary:
 	if paused or status not in ["ready", "running"]:
 		return {"ok": false, "reason": "simulation_frozen", "queued": false}
@@ -261,16 +275,20 @@ func click_color(color: String) -> Dictionary:
 		return {"ok": false, "reason": "color_" + str(color_states()[color].state), "queued": false}
 	if status == "ready":
 		status = "running"
+		threat_started_us=time_us
 		_dragon_anchor_us = time_us
 		_recompute_contact()
 		_emit("dragon_started", {"head_s": head_s(), "goal_s": float(level.serpent.goal_s)})
 	_task_sequence += 1
-	var outbound_us := maxi(1, int(ceil(float(target.distance) / float(level.transport.outbound_speed_cells_sec) * TIMEBASE)))
-	var return_us := maxi(1, int(ceil(float(target.distance) / float(level.transport.returning_speed_cells_sec) * TIMEBASE)))
+	var efficiency:float=float(ant_loadout.speed_multiplier)
+	var outbound_us := maxi(1, int(ceil(float(target.distance) / (float(level.transport.outbound_speed_cells_sec)*efficiency) * TIMEBASE)))
+	var return_us := maxi(1, int(ceil(float(target.distance) / (float(level.transport.returning_speed_cells_sec)*efficiency) * TIMEBASE)))
 	var pickup_us := time_us + outbound_us
 	var return_depart_us := pickup_us + seconds_to_us(float(level.transport.pickup_pause_sec))
 	var unload_us := return_depart_us + return_us
 	var task := {"id": _task_sequence, "run_id": run_id, "carrier_type": "worker", "color": color, "cell_id": int(target.cell_id), "path": target.path.duplicate(true), "distance_cells": int(target.distance), "depart_us": time_us, "pickup_us": pickup_us, "return_depart_us": return_depart_us, "unload_us": unload_us, "delivery_us": unload_us + seconds_to_us(float(level.transport.unload_pause_sec)), "leg_duration_us": outbound_us, "outbound_duration_us": outbound_us, "return_duration_us": return_us, "stage": "outbound"}
+	task.carrier_type=ant_loadout.ant_type
+	task.speed_multiplier=efficiency
 	# One accepted click -> exactly one reservation and one task. No queue or timer.
 	reservations[task.cell_id] = task.id
 	dispatched_counts[color] = int(dispatched_counts[color]) + 1

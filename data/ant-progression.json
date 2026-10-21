@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "economy_version": 1,
+  "profile": "game2-ant-single-v1",
+  "max_speed_multiplier": 1.5,
+  "types": {
+    "worker": {"price": 0, "speed_multiplier": 1.0},
+    "swift": {"price": 500, "speed_multiplier": 1.2}
+  },
+  "levels": {
+    "1": {"price": 0, "speed_multiplier": 1.0},
+    "2": {"price": 100, "speed_multiplier": 1.05},
+    "3": {"price": 150, "speed_multiplier": 1.1},
+    "4": {"price": 250, "speed_multiplier": 1.15}
+  },
+  "rewards": {
+    "first_base": 100,
+    "first_time_max": 50,
+    "repeat_base": 20,
+    "repeat_time_max": 10
+  },
+  "rewarded_ad_provider": "unavailable"
+}

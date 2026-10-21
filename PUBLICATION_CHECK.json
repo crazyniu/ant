@@ -1,192 +1,50 @@
 {
-  "scope": "single-click core, API 3.0.0, schema 3; three validation levels only",
-  "baseline_commit": "859594922d10d081ed52567a0c0efa548ecad9fa",
-  "recorded_source_matches": [
-    {
-      "path": "assets/serpent/environment.png",
-      "recorded_sha256": "64549070c131b085178e4c6995f2964b9a04195262b73655636ed5f1423e9f9a",
-      "snapshot_sha256": "64549070c131b085178e4c6995f2964b9a04195262b73655636ed5f1423e9f9a",
-      "match": true
+  "status": "PASS_BOUNDED_CHECKS_WITH_KNOWN_EXIT_DIAGNOSTIC",
+  "base_commit": "125646450cd1bf5e90d6d7cbc833ca34ff47bd75",
+  "rules_api": "3.1.0",
+  "level_schema": 3,
+  "current_validation_levels": 3,
+  "frozen_at": "2026-10-21T17:08:26.586370+00:00",
+  "verified_at": "2026-10-21T17:09:22.396937+00:00",
+  "scope": "Single-click core plus current adventure, preparation, shop and local progression. Not a final product or human acceptance.",
+  "fresh_checks": {
+    "clean_independent_godot_import": "passed",
+    "production_meta_flow": {
+      "checks": 18,
+      "failures": [],
+      "exit_code": 0,
+      "known_exit_diagnostics": [
+        "ERROR: 1 resources still in use at exit (run with --verbose for details)."
+      ],
+      "interpretation": "Assertions pass; exit diagnostic remains unresolved and is not represented as zero-error execution"
     },
-    {
-      "path": "assets/serpent/nest-entry.json",
-      "recorded_sha256": "b8a5b11f27c5884044142f4b89604cec0bfaf6e9f621122f42591632bed1da83",
-      "snapshot_sha256": "b8a5b11f27c5884044142f4b89604cec0bfaf6e9f621122f42591632bed1da83",
-      "match": true
-    },
-    {
-      "path": "assets/serpent/nest-entry.png",
-      "recorded_sha256": "2bf120d083b40251e6b48a2080a286464a322c9f0a67cb57babdd1f99f919e69",
-      "snapshot_sha256": "2bf120d083b40251e6b48a2080a286464a322c9f0a67cb57babdd1f99f919e69",
-      "match": true
-    },
-    {
-      "path": "assets/serpent/serpent-armor-atlas.png",
-      "recorded_sha256": "c8595e610a0b5b17c22ac1d1fa908454b8c3ce9de8560720fb08ed9a23651d2d",
-      "snapshot_sha256": "c8595e610a0b5b17c22ac1d1fa908454b8c3ce9de8560720fb08ed9a23651d2d",
-      "match": true
-    },
-    {
-      "path": "assets/serpent/serpent-atlas.json",
-      "recorded_sha256": "e1c9b6d370cd3509aa2ab9f601ca0f72243b22c22cddaa747ec051ec435a3d69",
-      "snapshot_sha256": "e1c9b6d370cd3509aa2ab9f601ca0f72243b22c22cddaa747ec051ec435a3d69",
-      "match": true
-    },
-    {
-      "path": "assets/serpent/serpent-atlas.png",
-      "recorded_sha256": "caf1130462c58cf121e529e60810218b2ae3d7dc3939670ebdefeb1788f9a360",
-      "snapshot_sha256": "caf1130462c58cf121e529e60810218b2ae3d7dc3939670ebdefeb1788f9a360",
-      "match": true
-    },
-    {
-      "path": "data/serpent-levels/serpent-02.json",
-      "recorded_sha256": "953bef8e1646b2ddaf90c5fb240bf51cdb3fb80837404db3951a7a84c84d96ff",
-      "snapshot_sha256": "953bef8e1646b2ddaf90c5fb240bf51cdb3fb80837404db3951a7a84c84d96ff",
-      "match": true
-    },
-    {
-      "path": "scripts/board_plane.gd",
-      "recorded_sha256": "7ee43e47531706afb6e0be939dfbf19b49ef76106149838283c2af0da0c6fd5a",
-      "snapshot_sha256": "7ee43e47531706afb6e0be939dfbf19b49ef76106149838283c2af0da0c6fd5a",
-      "match": true
-    },
-    {
-      "path": "scripts/carrier_route.gd",
-      "recorded_sha256": "f063fc8c2a66b522292772244ac2a94e75325eb5ac514938d66f5e24bcdd928f",
-      "snapshot_sha256": "f063fc8c2a66b522292772244ac2a94e75325eb5ac514938d66f5e24bcdd928f",
-      "match": true
-    },
-    {
-      "path": "scripts/play.gd",
-      "recorded_sha256": "d095ab4f91db9f939ce78a3f95ecc9494459505cafc24093453dc674fc880f9a",
-      "snapshot_sha256": "d095ab4f91db9f939ce78a3f95ecc9494459505cafc24093453dc674fc880f9a",
-      "match": true
-    },
-    {
-      "path": "scripts/rescue_fx.gd",
-      "recorded_sha256": "baecb8688b4a9992edb84860ec2dbee4d4406e9a2e5c9e3433d236b69e77f89f",
-      "snapshot_sha256": "baecb8688b4a9992edb84860ec2dbee4d4406e9a2e5c9e3433d236b69e77f89f",
-      "match": true
-    },
-    {
-      "path": "scripts/rescue_rules.gd",
-      "recorded_sha256": "2c38fff55215c177ebaf3b403c3d8d0173dd6933eeac51ab00e6849edd35cc31",
-      "snapshot_sha256": "2c38fff55215c177ebaf3b403c3d8d0173dd6933eeac51ab00e6849edd35cc31",
-      "match": true
-    },
-    {
-      "path": "scripts/serpent_path.gd",
-      "recorded_sha256": "09784d7fa0a7a223b89102becd789c08002a6637160195a45c1978a542c83170",
-      "snapshot_sha256": "09784d7fa0a7a223b89102becd789c08002a6637160195a45c1978a542c83170",
-      "match": true
-    },
-    {
-      "path": "scripts/serpent_view.gd",
-      "recorded_sha256": "646ba07aca3b91ab13002da17dc71bea80f3fc48491658334b84f925a8955ce9",
-      "snapshot_sha256": "646ba07aca3b91ab13002da17dc71bea80f3fc48491658334b84f925a8955ce9",
-      "match": true
-    }
-  ],
-  "layout_source_matches": [
-    {
-      "path": "scripts/rescue_rules.gd",
-      "verified_source_sha256": "2c38fff55215c177ebaf3b403c3d8d0173dd6933eeac51ab00e6849edd35cc31",
-      "normalized_snapshot_sha256": "2c38fff55215c177ebaf3b403c3d8d0173dd6933eeac51ab00e6849edd35cc31",
-      "normalization": "none",
-      "match": true
-    },
-    {
-      "path": "tests/test_serpent_rules.gd",
-      "verified_source_sha256": "c931b86cf1b9265652ea746cef523625c356ce2bdba5132ff8f4ac044a5fd01e",
-      "normalized_snapshot_sha256": "c931b86cf1b9265652ea746cef523625c356ce2bdba5132ff8f4ac044a5fd01e",
-      "normalization": "none",
-      "match": true
-    },
-    {
-      "path": "data/serpent-levels/serpent-01.json",
-      "verified_source_sha256": "aa84a054580ab760d214261bd7404cdf85b37a3352b26b6067da7847ee602fda",
-      "normalized_snapshot_sha256": "aa84a054580ab760d214261bd7404cdf85b37a3352b26b6067da7847ee602fda",
-      "normalization": "remove content_version metadata only; serialized JSON uses indent=2 and trailing newline",
-      "match": true
-    },
-    {
-      "path": "data/serpent-levels/serpent-02.json",
-      "verified_source_sha256": "5f41e113cc388f9a2f2959b413fe9ee675013644a63e98621890df7a8271888f",
-      "normalized_snapshot_sha256": "5f41e113cc388f9a2f2959b413fe9ee675013644a63e98621890df7a8271888f",
-      "normalization": "remove content_version metadata only; serialized JSON uses indent=2 and trailing newline",
-      "match": true
-    },
-    {
-      "path": "data/serpent-levels/serpent-03.json",
-      "verified_source_sha256": "aa4c8a4edda3ec5c4370b04829c7c83f6fa93595eaf90b257ed6465c14489b92",
-      "normalized_snapshot_sha256": "aa4c8a4edda3ec5c4370b04829c7c83f6fa93595eaf90b257ed6465c14489b92",
-      "normalization": "remove content_version metadata only; serialized JSON uses indent=2 and trailing newline",
-      "match": true
-    }
-  ],
-  "fresh_import": {
-    "engine": "Godot 4.6.3.stable.official.7d41c59c4",
-    "command": "godot --headless --editor --path <clean-snapshot> --import",
-    "scope": "One fresh import in the isolated snapshot with isolated HOME/XDG directories; no full regression rerun.",
-    "completed": true,
-    "error_or_parse_error_lines": [],
-    "log_sha256": "650a2edf04ef73772446f843a856c05e42b5b8a841db3c90583ec972cc2aed2f",
-    "cache_removed_after_import": true
+    "static_resource_dependencies": "resolved",
+    "candidate_only_pattern_secret_path_scan": "no findings",
+    "meta_assets": "hashes/native dimensions/crop pixels match retained manifests",
+    "core_assets_and_licenses": "retained unchanged from published baseline",
+    "final_GL_capture_source_identity": "all 11 code/config hashes match the parent-reviewed five-page capture; no user acceptance implied"
   },
-  "dependency_scan": {
-    "missing_runtime_dependencies": [],
-    "checked_resource_reference_edges": 139,
-    "intentional_exclusions": [
-      {
-        "source": "scripts/level_catalog.gd",
-        "target": "data/serpent-campaign/serpent-campaign-%02d.json",
-        "reason": "future catalog not part of default core; --campaign-drafts explicitly unsupported"
-      },
-      {
-        "source": "scripts/play.gd",
-        "target": "reports/ui/graphical-play-report.json",
-        "reason": "runtime/test output path, not input dependency"
-      },
-      {
-        "source": "tests/test_serpent_rules.gd",
-        "target": "reports/rules/serpent-core-tests.json",
-        "reason": "runtime/test output path, not input dependency"
-      },
-      {
-        "source": "tests/test_startup_loader.gd",
-        "target": "missing.tres",
-        "reason": "intentional invalid-resource test fixture"
-      },
-      {
-        "source": "tests/test_startup_loader.gd",
-        "target": "bounded_%s.tres",
-        "reason": "intentional invalid-resource test fixture"
-      },
-      {
-        "source": "tests/test_startup_loader.gd",
-        "target": "tests/__unrequested_startup_resource__.tres",
-        "reason": "intentional invalid-resource test fixture"
-      }
-    ]
+  "retained_not_rerun": {
+    "growth_checks": 133,
+    "progression_assertions": 1062,
+    "core_recording_reports": "historical API 3.0.0 evidence, not full current-source identity"
   },
-  "excluded_features": [
-    "adventure map",
-    "shop",
-    "progression/economy/rewards",
-    "ads",
-    "combos",
-    "mechanisms",
-    "30-level campaign",
-    "legacy automatic-team editor"
+  "excluded": [
+    "old 30-level campaign and automatic-team/editor toolchain",
+    "import/cache directories and sidecars",
+    "captures/videos/ZIP",
+    "private machine paths and internal document/conversation links",
+    "project-wide MIT license"
   ],
-  "not_claimed": [
-    "full 33-level regression",
-    "new test-suite run during freeze",
-    "human playtesting",
-    "final visual acceptance",
-    "target-device performance",
-    "hardware listening",
-    "merge",
-    "deployment"
+  "limits": [
+    "ad SDK not integrated; no simulated ad revenue or rewards",
+    "human balance and user final visual acceptance pending",
+    "no whole-project or old 33-level regression",
+    "no native pointer/device/audio acceptance",
+    "no merge or deployment"
+  ],
+  "sanitized_provenance_files": [
+    "reports/rules/ANT_PROGRESSION_API.md",
+    "reports/design/click-ant-current.md"
   ]
 }

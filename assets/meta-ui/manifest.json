@@ -1,0 +1,546 @@
+{
+  "schema_version": 1,
+  "asset_pack": "Ant Rescue meta UI minimal warm workshop",
+  "generation_tool": "built-in image_gen.imagegen",
+  "generated_on_utc": "2026-10-21",
+  "target_display": "2K-class portrait display; assets are native sizes below, never upscaled or claimed as native 2K detail.",
+  "coordinates": "Pixel positions use top-left origin; regions are [x,y,width,height], bounds are exclusive at right/bottom.",
+  "crop_method": "Detect content runs from alpha>4 with >5 effective pixels per row/column, bound each actual content shape, add 8 native pixels of breathing room. No equal-grid slicing. Crops retain original RGBA without alpha replacement, resampling, or color changes. Alpha 1-4 isolated generator noise is excluded from locating visible boundaries but is not altered inside retained regions.",
+  "references": [
+    "Shop design preview reference (user acceptance not implied): exec-706ef7ac-dc90-4139-b101-db3171fe50c9.png",
+    "Existing world: assets/serpent/environment.png",
+    "Existing ant sprites remain separate: assets/motion/ant-directions.png"
+  ],
+  "source_assets": {
+    "shop-workshop-background.png": {
+      "native_size": [
+        941,
+        1672
+      ],
+      "mode": "RGB",
+      "generated_source_filename": "exec-eeed0dc8-f427-4bfc-ba0e-abf487c1ebfc.png",
+      "sha256": "b3fc9980982e744901020b0193cc341917307a18b9647bd8b704ca53bf8d880b",
+      "role": "Production background",
+      "alpha": "Intentionally opaque background"
+    },
+    "titles-atlas.png": {
+      "native_size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "generated_source_filename": "exec-043f995e-ab34-4f7d-ab11-b0021196b8ac.png",
+      "sha256": "3b839fc1ccbba4612c27e34e386cb7e6c1ce6a1e48febedfbdf22077170846c6",
+      "role": "Current native generated transparent atlas source",
+      "alpha_evidence": {
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 254,
+        "fully_transparent_pixels": 789208,
+        "fully_transparent_percent": 50.1765,
+        "effective_visible_alpha_threshold": 4,
+        "effective_visible_bbox_xyxy": [
+          39,
+          77,
+          987,
+          1507
+        ],
+        "effective_visible_pixels": 751003,
+        "border_max_alpha": 1,
+        "nonzero_alpha_bbox_xyxy": [
+          0,
+          47,
+          1006,
+          1536
+        ]
+      }
+    },
+    "icons-atlas.png": {
+      "native_size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "generated_source_filename": "exec-96d21672-bdf4-4b6b-bebe-22e5d475cbd4.png",
+      "sha256": "d52995231c203099a6cd961395688d0dbc974146518a14710f5d157dbedc7530",
+      "role": "Current native generated transparent atlas source",
+      "alpha_evidence": {
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "fully_transparent_pixels": 1116683,
+        "fully_transparent_percent": 71.012,
+        "effective_visible_alpha_threshold": 4,
+        "effective_visible_bbox_xyxy": [
+          262,
+          55,
+          1979,
+          673
+        ],
+        "effective_visible_pixels": 450803,
+        "border_max_alpha": 0,
+        "nonzero_alpha_bbox_xyxy": [
+          260,
+          54,
+          2158,
+          705
+        ]
+      }
+    }
+  },
+  "sprites": {
+    "adventure": {
+      "file": "adventure.png",
+      "source_atlas": "titles-atlas.png",
+      "source_native_size": [
+        1024,
+        1536
+      ],
+      "source_content_bbox_xyxy": [
+        39,
+        77,
+        987,
+        282
+      ],
+      "region": [
+        31,
+        69,
+        964,
+        221
+      ],
+      "native_size": [
+        964,
+        221
+      ],
+      "anchor_normalized": [
+        0.5,
+        0.5
+      ],
+      "anchor_px": [
+        482.0,
+        110.5
+      ],
+      "sha256": "b9043b388f2d66b976cd618c6d52015b572c43f298133cb62e88888a1e85b741",
+      "alpha_evidence": {
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 254,
+        "fully_transparent_pixels": 48402,
+        "fully_transparent_percent": 22.7193,
+        "effective_visible_alpha_threshold": 4,
+        "effective_visible_bbox_xyxy": [
+          8,
+          8,
+          956,
+          214
+        ],
+        "effective_visible_pixels": 158907,
+        "border_max_alpha": 0,
+        "nonzero_alpha_bbox_xyxy": [
+          4,
+          6,
+          961,
+          219
+        ]
+      },
+      "text": "ADVENTURE"
+    },
+    "ready": {
+      "file": "ready.png",
+      "source_atlas": "titles-atlas.png",
+      "source_native_size": [
+        1024,
+        1536
+      ],
+      "source_content_bbox_xyxy": [
+        222,
+        334,
+        813,
+        526
+      ],
+      "region": [
+        214,
+        326,
+        607,
+        208
+      ],
+      "native_size": [
+        607,
+        208
+      ],
+      "anchor_normalized": [
+        0.5,
+        0.5
+      ],
+      "anchor_px": [
+        303.5,
+        104.0
+      ],
+      "sha256": "03d83cfce4727c7acf95b08e604cf4c099dd940d98cb326fe1c56ec45a3a2d63",
+      "alpha_evidence": {
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 254,
+        "fully_transparent_pixels": 21825,
+        "fully_transparent_percent": 17.2863,
+        "effective_visible_alpha_threshold": 4,
+        "effective_visible_bbox_xyxy": [
+          8,
+          8,
+          599,
+          201
+        ],
+        "effective_visible_pixels": 99937,
+        "border_max_alpha": 0,
+        "nonzero_alpha_bbox_xyxy": [
+          5,
+          6,
+          602,
+          204
+        ]
+      },
+      "text": "READY"
+    },
+    "ant-shop": {
+      "file": "ant-shop.png",
+      "source_atlas": "titles-atlas.png",
+      "source_native_size": [
+        1024,
+        1536
+      ],
+      "source_content_bbox_xyxy": [
+        75,
+        578,
+        967,
+        789
+      ],
+      "region": [
+        67,
+        570,
+        908,
+        227
+      ],
+      "native_size": [
+        908,
+        227
+      ],
+      "anchor_normalized": [
+        0.5,
+        0.5
+      ],
+      "anchor_px": [
+        454.0,
+        113.5
+      ],
+      "sha256": "afb41258813b41580dd30567092d34aa2386c30bf9364d141ee68af1caef847c",
+      "alpha_evidence": {
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 254,
+        "fully_transparent_pixels": 54057,
+        "fully_transparent_percent": 26.2265,
+        "effective_visible_alpha_threshold": 4,
+        "effective_visible_bbox_xyxy": [
+          8,
+          8,
+          900,
+          219
+        ],
+        "effective_visible_pixels": 145456,
+        "border_max_alpha": 0,
+        "nonzero_alpha_bbox_xyxy": [
+          4,
+          5,
+          903,
+          224
+        ]
+      },
+      "text": "ANT SHOP"
+    },
+    "worker": {
+      "file": "worker.png",
+      "source_atlas": "titles-atlas.png",
+      "source_native_size": [
+        1024,
+        1536
+      ],
+      "source_content_bbox_xyxy": [
+        134,
+        843,
+        892,
+        1041
+      ],
+      "region": [
+        126,
+        835,
+        774,
+        214
+      ],
+      "native_size": [
+        774,
+        214
+      ],
+      "anchor_normalized": [
+        0.5,
+        0.5
+      ],
+      "anchor_px": [
+        387.0,
+        107.0
+      ],
+      "sha256": "bbce5e5d2ead54a55979fd0faadaf2624b12d1c95f21d853b385910196d53e4e",
+      "alpha_evidence": {
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 254,
+        "fully_transparent_pixels": 32780,
+        "fully_transparent_percent": 19.7904,
+        "effective_visible_alpha_threshold": 4,
+        "effective_visible_bbox_xyxy": [
+          8,
+          8,
+          766,
+          207
+        ],
+        "effective_visible_pixels": 128273,
+        "border_max_alpha": 1,
+        "nonzero_alpha_bbox_xyxy": [
+          3,
+          0,
+          769,
+          213
+        ]
+      },
+      "text": "WORKER"
+    },
+    "swift": {
+      "file": "swift.png",
+      "source_atlas": "titles-atlas.png",
+      "source_native_size": [
+        1024,
+        1536
+      ],
+      "source_content_bbox_xyxy": [
+        248,
+        1091,
+        776,
+        1273
+      ],
+      "region": [
+        240,
+        1083,
+        544,
+        198
+      ],
+      "native_size": [
+        544,
+        198
+      ],
+      "anchor_normalized": [
+        0.5,
+        0.5
+      ],
+      "anchor_px": [
+        272.0,
+        99.0
+      ],
+      "sha256": "2c708ae1276c179f2375917c67f1af91a8b9e13bca0bde0ec394841c5aeee448",
+      "alpha_evidence": {
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 254,
+        "fully_transparent_pixels": 20584,
+        "fully_transparent_percent": 19.1102,
+        "effective_visible_alpha_threshold": 4,
+        "effective_visible_bbox_xyxy": [
+          8,
+          8,
+          536,
+          192
+        ],
+        "effective_visible_pixels": 82165,
+        "border_max_alpha": 0,
+        "nonzero_alpha_bbox_xyxy": [
+          3,
+          4,
+          542,
+          197
+        ]
+      },
+      "text": "SWIFT"
+    },
+    "training": {
+      "file": "training.png",
+      "source_atlas": "titles-atlas.png",
+      "source_native_size": [
+        1024,
+        1536
+      ],
+      "source_content_bbox_xyxy": [
+        98,
+        1314,
+        927,
+        1507
+      ],
+      "region": [
+        90,
+        1306,
+        845,
+        209
+      ],
+      "native_size": [
+        845,
+        209
+      ],
+      "anchor_normalized": [
+        0.5,
+        0.5
+      ],
+      "anchor_px": [
+        422.5,
+        104.5
+      ],
+      "sha256": "5dd329cc0262f931cdbded1ec7267cdb845aaf4a14c1bbd7913c51e7074c818e",
+      "alpha_evidence": {
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 254,
+        "fully_transparent_pixels": 34536,
+        "fully_transparent_percent": 19.5555,
+        "effective_visible_alpha_threshold": 4,
+        "effective_visible_bbox_xyxy": [
+          8,
+          8,
+          837,
+          201
+        ],
+        "effective_visible_pixels": 136265,
+        "border_max_alpha": 0,
+        "nonzero_alpha_bbox_xyxy": [
+          6,
+          5,
+          839,
+          206
+        ]
+      },
+      "text": "TRAINING"
+    },
+    "swift-wing": {
+      "file": "swift-wing.png",
+      "source_atlas": "icons-atlas.png",
+      "source_native_size": [
+        2172,
+        724
+      ],
+      "source_content_bbox_xyxy": [
+        262,
+        55,
+        853,
+        649
+      ],
+      "region": [
+        254,
+        47,
+        607,
+        610
+      ],
+      "native_size": [
+        607,
+        610
+      ],
+      "anchor_normalized": [
+        0.5,
+        0.5
+      ],
+      "anchor_px": [
+        303.5,
+        305.0
+      ],
+      "sha256": "68aba534c2ed376e1b6623a1ccbc0fa09a8971c89a5b75f54373ffc4b1a99d42",
+      "alpha_evidence": {
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "fully_transparent_pixels": 169125,
+        "fully_transparent_percent": 45.6761,
+        "effective_visible_alpha_threshold": 4,
+        "effective_visible_bbox_xyxy": [
+          8,
+          8,
+          599,
+          602
+        ],
+        "effective_visible_pixels": 198698,
+        "border_max_alpha": 1,
+        "nonzero_alpha_bbox_xyxy": [
+          6,
+          7,
+          607,
+          603
+        ]
+      },
+      "optional_attachment_anchor": {
+        "normalized": [
+          0.78,
+          0.75
+        ],
+        "note": "Visually estimated center of curl attachment disk; tune with actual ant sprite orientation, not part of its default centered UI anchor."
+      }
+    },
+    "ant-coin": {
+      "file": "ant-coin.png",
+      "source_atlas": "icons-atlas.png",
+      "source_native_size": [
+        2172,
+        724
+      ],
+      "source_content_bbox_xyxy": [
+        1413,
+        105,
+        1979,
+        673
+      ],
+      "region": [
+        1405,
+        97,
+        582,
+        584
+      ],
+      "native_size": [
+        582,
+        584
+      ],
+      "anchor_normalized": [
+        0.5,
+        0.5
+      ],
+      "anchor_px": [
+        291.0,
+        292.0
+      ],
+      "sha256": "68a34b6320c09ab8b4fe34d26af2cf34e8f81246fbd3b6e2c645ff1740ba7adc",
+      "alpha_evidence": {
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "fully_transparent_pixels": 85358,
+        "fully_transparent_percent": 25.1136,
+        "effective_visible_alpha_threshold": 4,
+        "effective_visible_bbox_xyxy": [
+          8,
+          8,
+          574,
+          576
+        ],
+        "effective_visible_pixels": 252105,
+        "border_max_alpha": 0,
+        "nonzero_alpha_bbox_xyxy": [
+          5,
+          5,
+          576,
+          579
+        ]
+      }
+    }
+  }
+}

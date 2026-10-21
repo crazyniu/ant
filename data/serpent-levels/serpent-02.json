@@ -191,5 +191,16 @@
     "ads"
   ],
   "validation_scope": "Single-click core only. Supersedes prior automatic-team replay; not human acceptance.",
-  "content_version": "serpent-click-core-20261021.1"
+  "content_version": "serpent-click-core-20261021.1",
+  "rewards": {
+    "fast_seconds": 26.5,
+    "normal_seconds": 43.0
+  },
+  "region_id": "forest",
+  "boss_profile": "armored_serpent",
+  "defense_target": {
+    "id": "princess",
+    "display_name": "Princess",
+    "fixed": true
+  }
 }

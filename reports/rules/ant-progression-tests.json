@@ -1,0 +1,16 @@
+{
+	"assertions": 1062,
+	"cases": [
+		"defaults, profile isolation, detached views, durable navigation and restart",
+		"clamped linear first/repeat rewards, effective simulation time, terminal run IDs",
+		"atomic unlock/upgrade costs, request idempotency and frozen run loadout",
+		"six persistence fault stages x five transaction categories, exact rollback and retry",
+		"no mock ad reward capability, no duplicate callbacks, stale reader refresh",
+		"recoverable corruption, future-version guard, missing primary and ledger validation"
+	],
+	"engine": "4.6.3-stable (official)",
+	"failures": [],
+	"passed": true,
+	"scope": "Headless local service only; no UI, Mac, ad SDK or live balancing acceptance.",
+	"test": "ant_progression"
+}

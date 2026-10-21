@@ -1,0 +1,5 @@
+{
+	"checks": 18,
+	"failures": [],
+	"scope": "headless production boot/map/preparation/play/reward/shop/purchase/re-entry flow; no native input or visual claim"
+}

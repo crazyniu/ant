@@ -8,6 +8,7 @@ const CarrierRoute = preload("res://scripts/carrier_route.gd")
 const SerpentView = preload("res://scripts/serpent_view.gd")
 const Saves = preload("res://scripts/save_service.gd")
 const Catalog = preload("res://scripts/level_catalog.gd")
+const Progression = preload("res://scripts/ant_progression.gd")
 # Retained as the default catalog contract; opt-in entries use level_ids below.
 const LEVEL_IDS = ["serpent-01", "serpent-02", "serpent-03"]
 var level_ids: Array[String] = Catalog.level_ids(false)
@@ -27,6 +28,10 @@ var qa_level_config: Dictionary = {}
 var saves: RefCounted
 var profile_state: Dictionary = {}
 var victory_saved := false
+var progression:RefCounted
+var economy_run_id:=""
+var economy_state:Dictionary={}
+var reward_receipt:Dictionary={}
 var pending_save_kind := ""
 var pending_entrance := 0
 var last_save_reason := ""
@@ -128,6 +133,15 @@ func _ready()->void:
 	if not rules.load_level(level_config):
 		level_load_reason=str(config_result.get("reason","invalid_level_configuration"))
 		build_load_failure_ui();return
+	progression=Progression.new(profile_directory)
+	var economy_loaded:Dictionary=progression.load_save();economy_state=economy_loaded.state
+	if not economy_loaded.ok:
+		level_load_reason="economy_"+str(economy_loaded.reason);build_load_failure_ui();return
+	economy_run_id=Progression.generate_run_id()
+	var thresholds:Dictionary=level_config.get("rewards",{})
+	var created:Dictionary=progression.create_run(economy_run_id,str(level_config.level_id),thresholds.get("fast_seconds"),thresholds.get("normal_seconds"))
+	if not created.ok or not rules.set_ant_loadout(created.get("run",{}).get("loadout",{})):
+		level_load_reason=str(created.get("reason","loadout_unavailable"));build_load_failure_ui();return
 	if campaign_drafts:
 		print("CAMPAIGN_PREVIEW ",JSON.stringify({"level_id":level_config.level_id,"human_playtest":level_config.get("validation",{}).get("human_playtest","NOT_RUN"),"production_eligible":false,"profile":profile_directory,"automatic_replay":auto_replay}))
 	shield_shader=preload("res://scripts/combat_tint.gdshader")
@@ -433,6 +447,7 @@ func consume_rule_events()->void:
 			if event.type=="victory":
 				persist_victory();pending_victory_presentation_run=rules.run_id;get_node("TopHUD/PauseButton").disabled=true
 			else:
+				progression.settle_run(economy_run_id,"lost",elapsed_round_seconds())
 				var completed_run:int=rules.run_id
 				get_tree().create_timer(.65).timeout.connect(func():
 					if is_inside_tree() and rules.run_id==completed_run:show_outcome(false);audio_service.play_event("lose"))
@@ -566,18 +581,14 @@ func show_leave()->void:
 	action(m,"LEVEL SELECT",971,show_levels,true)
 	action(m,"CANCEL",1055,show_pause)
 
-func show_levels(page:int=-1)->void:
-	if not profile_state.get("ready",false):show_load_recovery();return
+func show_levels(_page:int=-1)->void:
 	if pending_save_kind=="victory":show_save_error();return
-	profile_state=saves.get_view_state()
-	if campaign_drafts:
-		show_campaign_levels(page);return
-	var m:=modal("CHOOSE A LEVEL",Rect2(149,530,642,530))
-	for entry in profile_state.levels:
-		var number:int=entry.number;var x:=255+(number-1)*156
-		build_level_tile(m,entry,Rect2(x,735,118,100))
-	text_label("3 PLAYABLE LEVELS · 30-LEVEL CAMPAIGN IN DEVELOPMENT",Rect2(180,903,580,42),15,"AvailableContent",m)
-	text_label("EACH ENTRY STARTS A NEW ROUND",Rect2(200,954,540,40),18,"FreshRoundNotice",m)
+	if rules.status=="running":
+		var m:=modal("LEAVE THIS LEVEL?")
+		text_label("THIS ROUND WILL START OVER",Rect2(204,790,532,54),24,"LeaveWarning",m)
+		action(m,"LEAVE",945,func():transition_to_startup("map"),true)
+		action(m,"CANCEL",1040,show_pause)
+	else:transition_to_startup("map")
 
 func build_level_tile(parent:Control,entry:Dictionary,bounds:Rect2)->void:
 	var number:int=entry.number
@@ -615,8 +626,16 @@ func build_page_button(parent:Control,title:String,bounds:Rect2,page:int,disable
 	var button:=Button.new();button.name="PageButton_"+title;button.position=bounds.position;button.size=bounds.size;button.flat=true;button.disabled=disabled;parent.add_child(button)
 	button.pressed.connect(func():show_levels(page))
 
+func elapsed_round_seconds()->float:
+	return maxf(0.,float((rules.terminal_time_us if rules.terminal_time_us>=0 else rules.time_us)-maxi(0,rules.threat_started_us))/1000000.)
+
 func persist_victory()->bool:
 	if rules.status!="victory":return false
+	var reward:Dictionary=progression.settle_run(economy_run_id,"won",elapsed_round_seconds())
+	if not reward.ok:
+		pending_save_kind="victory";last_save_reason=reward.reason;victory_saved=false;return false
+	economy_state=reward.state;reward_receipt=reward.run.receipt
+
 	var result:Dictionary=saves.mark_complete(str(level_config.level_id),str(level_config.get("content_version","")))
 	profile_state=result.state;victory_saved=result.ok
 	if result.ok:pending_save_kind=""
@@ -637,12 +656,22 @@ func show_outcome(won:bool)->void:
 	var m:=modal("PRINCESS SAVED!" if won else "TRY AGAIN",Rect2(98,335,744,1040))
 	if won:
 		serpent.hide()
-		art(Rect2(740,20,324,624),Rect2(387,550,166,320),"RescuedPrincess",m)
+		art(Rect2(740,20,324,624),Rect2(400,535,140,270),"RescuedPrincess",m)
+		var coin:=TextureRect.new();coin.texture=load("res://assets/meta-ui/ant-coin.png");coin.position=Vector2(357,829);coin.size=Vector2(62,62);coin.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;coin.mouse_filter=Control.MOUSE_FILTER_IGNORE;m.add_child(coin)
+		text_label("+%d"%int(reward_receipt.get("total",0)),Rect2(427,825,205,67),40,"PointsEarned",m,INK,true)
+		text_label("%d + %d  ·  %.1fs"%[int(reward_receipt.get("base",0)),int(reward_receipt.get("time_bonus",0)),elapsed_round_seconds()],Rect2(280,891,380,34),19,"RewardBreakdown",m)
+
 	else:serpent.add_head_portrait(m,Rect2(290,570,360,300))
 	var next_id:String=profile_state.get("next_level_id","") if victory_saved else ""
 	if won and not next_id.is_empty():result_action(m,"NEXT LEVEL",934,func():replace_level(level_ids.find(next_id)+1),true)
 	result_action(m,"PLAY AGAIN" if won else "RETRY",1076,func():replace_level(level_index),not won or next_id.is_empty())
-	result_action(m,"LEVEL SELECT",1218,show_levels)
+	var map_bounds:=Rect2(190,1218,260,118)
+	frame(map_bounds,"MapAction",m,30);icon("levels",Rect2(280,1237,80,80),m,INK)
+	var map_button:=Button.new();map_button.name="MapButton";map_button.flat=true;map_button.position=map_bounds.position;map_button.size=map_bounds.size;map_button.tooltip_text="Adventure map";m.add_child(map_button);map_button.pressed.connect(show_levels)
+	var shop_bounds:=Rect2(490,1218,260,118)
+	frame(shop_bounds,"ShopAction",m,30)
+	var coin:=TextureRect.new();coin.texture=load("res://assets/meta-ui/ant-coin.png");coin.position=Vector2(580,1237);coin.size=Vector2(80,80);coin.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;coin.mouse_filter=Control.MOUSE_FILTER_IGNORE;m.add_child(coin)
+	var shop_button:=Button.new();shop_button.name="ShopButton";shop_button.flat=true;shop_button.position=shop_bounds.position;shop_button.size=shop_bounds.size;shop_button.tooltip_text="Ant shop";m.add_child(shop_button);shop_button.pressed.connect(func():transition_to_startup("shop"))
 
 func show_save_error()->void:
 	var m:=modal("COULDN'T SAVE",Rect2(149,520,642,650))
@@ -715,7 +744,7 @@ func replace_level(index:int)->void:
 	var result:Dictionary=saves.set_current_entrance(level_ids[index-1]);profile_state=result.state
 	if not result.ok:
 		pending_save_kind="entrance";pending_entrance=index;last_save_reason=result.reason;show_save_error();return
-	pending_save_kind="";spawn_saved_level()
+	pending_save_kind="";transition_to_startup("play" if index==level_index else "preparation")
 
 func request_home()->void:
 	if pending_save_kind=="victory":show_save_error();return
@@ -736,6 +765,7 @@ func spawn_saved_level()->void:
 func transition_to_startup(mode:String)->void:
 	if replacement_pending:return
 	if pending_save_kind=="victory":show_save_error();return
+	if is_instance_valid(progression) and rules.status not in ["victory","defeat"]:progression.settle_run(economy_run_id,"cancelled",elapsed_round_seconds())
 	replacement_pending=true;ready_to_simulate=false
 	# The lightweight boot shell contains no play-scene dependency. All game assets
 	# and the destination PackedScene are acquired through its threaded loader.
