@@ -1,0 +1,37 @@
+{
+  "asset": "stationary woodland traveler",
+  "source": "AI generated with built-in image generation from project-owned woodland/environment and tent material references; not competitor art",
+  "generation_date": "2026-10-21",
+  "generation_source_filename": "exec-018f8bd8-1688-468f-900d-145dd9cea01e.png",
+  "source_sha256": "b6ae7e5109ff4e156c811dd418faff4e30d248b6c5ebec87fd46dce1f12b1cc7",
+  "native_source_size": [
+    1145,
+    1374
+  ],
+  "runtime_path": "assets/worlds/forest-traveler.png",
+  "runtime_sha256": "b99df1675cd2dddfac63f888358278d43ac1e85d5db9acc6b1beba450cddc564",
+  "crop": [
+    132,
+    91,
+    1068,
+    1295
+  ],
+  "runtime_size": [
+    936,
+    1204
+  ],
+  "alpha_policy": "Largest actual alpha>8 contour, retain original edge alpha within2 pixels,4 pixel transparent margin. No uniform-cell crop or semantic repaint.",
+  "anchor": [
+    498,
+    1186
+  ],
+  "physical_width": 928,
+  "display_width": 88,
+  "projection": "slightly top-down orthographic, upper-left light; boots and staff tip ground contact",
+  "license_boundary": "Generated provenance, not legal clearance; project-wide license not assigned.",
+  "ground_foot": [
+    155,
+    182
+  ],
+  "clearance": "Measured nontransparent outline has zero intersection with the speed button logical rectangle[30,20,88,65]."
+}

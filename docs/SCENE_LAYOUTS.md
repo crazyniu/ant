@@ -8,6 +8,7 @@ Godot 4.6.3; logical 940×1672 uniformly presented at 1440×2560. Scene layouts 
 - Ruins supply cart, level 4: `data/scenes/ruins-cart.json`. A separately generated empty ruins courtyard, left-side open serpent road ending at a fixed upper-right cart, shifted nest/cannon and left-biased grid entrance.
 - Ruins Supply Fork, level 6: `data/scenes/ruins-fork.json`. Existing ruins/cart art with shifted nest/cannon and a central transport approach.
 - Ice Valley winter camp, levels 5 and 7: `data/scenes/ice-camp.json`. Independent snow ground, right-to-upper-left finite serpent road, fixed camp on a circular platform and a right-biased ant entrance. Snow does not alter transport physics. Level 7 changes the bead puzzle and serpent appearance, not this shared scene geometry.
+- Woodland traveler, level 8: `data/scenes/forest-traveler.json`. Existing woodland ground, central nest/gateway and finite right/top enemy road, with an independent fixed traveler on the upper-left platform. The two-island puzzle and fifth color do not add an escort mechanic.
 
 ## Fields
 
@@ -17,7 +18,7 @@ Godot 4.6.3; logical 940×1672 uniformly presented at 1440×2560. Scene layouts 
 - `cannon.rect`, `pivot`, `muzzle`, `center`: independent art bounds, recoil pivot and FX origins.
 - `stock.start`, `spacing`: light icon/count row, not an inventory capacity.
 - `route`: finite ordered Curve2D knots with optional tangent handles. `serpent.goal_s` maps to the route endpoint, never modulo. Art-side body compression cannot move the authoritative head.
-- `defense_target`: stable identity, fixed status, texture/optional atlas region, measured local ground anchor, physical width, displayed width and world foot. It must match the level's guardian identity. Win presentation reuses this guardian rather than hardcoding a princess.
+- `defense_target`: stable identity, fixed status, texture/optional atlas region, measured local ground anchor, physical width, displayed width and world foot. It must match the level's guardian identity. Win presentation reuses this guardian rather than hardcoding a princess. Optional `contact_shadow=[radius_x,radius_y]` draws a separate ground ellipse at the same foot; it does not alter collision, route or target state.
 - `walkable_polygon`: inspected clear-ground envelope for bounded route verification, not the logical obstacle solver.
 
 `transport.entrance_cell` belongs to the level's authoritative rules. It must be an integer cell on the one-cell exterior transit ring. If omitted, `[width/2,height]` preserves earlier timing and routes. Rules choose only a reachable matching unreserved target; pickup, not reservation, opens the cell. Renderer rounds only permitted transit corners and goes through the configured gateway. All four transport stages retain their authoritative event deadlines.
@@ -54,4 +55,16 @@ Red pickup opens the central yellow bridge, then central-yellow pickup opens the
 
 Preparation and play select the same `serpent.art_profile="ice_crest"`: independent white-horned broad head, faceted body, eight head/tail yaws and the existing intact/cracked armor overlays. Use `assets/serpent/ice-serpent-atlas.json` for measured physical scales and chain anchors; do not rotate whole sprites or change route geometry to fit the appearance.
 
-The 43 bounded scene checks cover the authored occupied-grid routes, clear-ground samples, road separation, derived preparation counts and selected appearance. They complement 668 rule assertions and 50 appearance checks, not actual GL/runtime or human visual acceptance. Native input, audio, target devices and difficulty/economy balance still require separate review.
+The 43 bounded scene checks cover the authored occupied-grid routes, clear-ground samples, road separation, derived preparation counts and selected appearance. They complement 668 rule assertions and 50 appearance checks. Automated GL victory is recorded separately in `reports/ui/ice-supply-runtime.json`; none of these establishes human visual acceptance. Native input, audio, target devices and difficulty/economy balance still require separate review.
+
+## Level 8 Traveler’s Twin Groves
+
+`data/scenes/forest-traveler.json` reuses the woodland background, empty default `board_plane` override, nest foot `[467,1008]`, gateway `[467,940]` and existing finite right/top road. The authored rule entrance is `[5,8]`. Enemy approach and the interior carrier lane remain separate; the traveler stays fixed, with no escort or new transport rule. Existing levels 1–7 and the authoritative rules are unchanged.
+
+The 21-bead, five-color board consists of two offset islands of 11 and 10 beads separated by the empty x=5 approach. Supply R4/B4/G4/Y5/P4 funds damage R3/B3/G3/Y2/P4 across 11 normal and two armored segments. Green pickup opens the left purple core; blue pickup opens the right purple core. Exterior purple opens neither, but supplies the purple armor. Both purple cores are necessary; pickup, not reservation, changes access.
+
+The green-first and purple-first Worker Lv.1 sequences each use 15 inputs, with first delivery at 3.20s and 4.10s respectively. Both win on final damage at 25.05s before the 60s threat and leave six beads. Neither requires upgrades, ads, tools, bonuses or new mechanisms. Preparation shows all five required-hit counts in three columns and two rows; live dispatch stays a single row of five equal-width buttons.
+
+The independent `assets/worlds/forest-traveler.png` is a measured-alpha 936×1204 RGBA crop, not a complete scene image. Its local anchor `[498,1186]` maps to world foot `[155,182]`; physical width 928 scales uniformly to 88 logical pixels. Optional contact-shadow radii `[24,7]` share that foot. Use `reports/assets/forest-traveler-assets.json` and [asset placement](../ASSETS.md), not equal-cell crops or the transparent canvas center.
+
+The current same-version 834-check rule report and 63-check integrated scene report pass with distinct scopes. Scene checks cover the shared target, five-color preparation/input layout and 3,015 carrier-ground samples, with minimum enemy-centerline separation about 112.34 logical pixels. Production single-level CLI validation passes. The separate `reports/ui/forest-traveler-runtime.json` records the same-version actual automated GL journey and final hit at 25.05s. These checks and the recording do not establish human visual, native-input, audio or device acceptance; see `PUBLIC_VERIFICATION.md` for the current verification boundary.

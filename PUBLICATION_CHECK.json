@@ -1,26 +1,30 @@
 {
-  "status": "PASS_BOUNDED_ICE_SUPPLY_AND_APPEARANCE_CHECKS",
-  "base_commit": "e67a1cc07cbe8d8ef2f8b558ab052101f7b0c9d1",
-  "frozen_at": "2026-10-21T18:48:53.951158+00:00",
-  "current_validation_levels": 7,
-  "scope": "one two-stage ice supply level plus independent eight-direction ice-crested serpent presentation; rules unchanged, no ice mechanic or full30",
+  "status": "PASS_BOUNDED_FOREST_TRAVELER_WITH_RECORDED_DIAGNOSTICS",
+  "base_commit": "f5b23489c404a778b0f5f1a0f5e899cba46deb79",
+  "frozen_at": "2026-10-21T19:08:36.785143+00:00",
+  "current_validation_levels": 8,
+  "scope": "one two-island woodland traveler level, fifth existing color and independent stationary guardian; rules unchanged, no escort or full30",
   "checks": {
-    "rules_assertions": 668,
-    "skin_checks": 50,
-    "scene_checks": 43,
-    "authored_route_samples": 3417,
-    "minimum_enemy_centerline_separation": 75.0,
-    "new_level_terminal_time_us": 27850000,
-    "new_level_deadline_us": 62000000,
-    "new_level_remaining_beads": 4,
-    "runtime_source_hashes_match": 18,
+    "rules_assertions": 834,
+    "scene_checks": 63,
+    "authored_route_samples": 3015,
+    "minimum_enemy_centerline_separation": 112.344261169434,
+    "new_level_terminal_time_us": 25050000,
+    "new_level_deadline_us": 60000000,
+    "new_level_remaining_beads": 6,
+    "runtime_source_hashes_match": 19,
     "victory_saved": true,
     "reward_total": 150,
-    "rules_and_levels01_to06_unchanged": true,
+    "rules_and_levels01_to07_unchanged": true,
     "static_resources": "resolved; tests include deliberate invalid fixtures",
     "candidate_only_secret_private_path_scan": "no findings"
   },
+  "diagnostics": {
+    "scene_headless": "exit0, passing assertions, ObjectDB and2resources inuse at shutdown; not clean exit",
+    "GL": "natural exit; only unavailable V-Sync warning, no script or resource-at-exit diagnostics"
+  },
   "retained_not_rerun": [
+    "ice-supply668/50/43",
     "fork54/entry16",
     "ice1469/83",
     "ruins707/single-row221",
@@ -30,7 +34,7 @@
   "limits": [
     "1x authored automatic replay, not human interaction or balance acceptance",
     "Dummy cloud output; captured mix is not hardware sound or human listening",
-    "new ice appearance generated/cut/engine-composed, not final user art approval",
+    "traveler generated/cut/engine-composed, not final user art approval",
     "further levels, combo/mechanism and real ad SDK remain",
     "no merge/deployment"
   ]

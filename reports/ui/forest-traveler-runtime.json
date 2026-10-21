@@ -1,0 +1,114 @@
+{
+  "mode": "actual GL production preparation/loading/forest-traveler gameplay; automatic authored clicks, not human playtest",
+  "prerequisite_unlocks": "isolated fixture for first7, no points granted",
+  "speed": 1,
+  "status": "victory",
+  "terminal_time_us": 25050000,
+  "remaining_beads": 6,
+  "maximum_carriers": 4,
+  "conservation_errors": [],
+  "output_pixels": [
+    1440,
+    2560
+  ],
+  "victory_saved": true,
+  "guardian": "traveler",
+  "shots": {
+    "last-hit": {
+      "alive_segments": 0,
+      "carriers": 0,
+      "simulation_us": 25050000
+    },
+    "opened-core": {
+      "alive_segments": 12,
+      "carriers": 3,
+      "simulation_us": 6033273
+    },
+    "projectile": {
+      "alive_segments": 13,
+      "carriers": 2,
+      "simulation_us": 3399966
+    },
+    "result": {
+      "alive_segments": 0,
+      "carriers": 0,
+      "simulation_us": 25050000
+    },
+    "shortened-snake": {
+      "alive_segments": 6,
+      "carriers": 3,
+      "simulation_us": 17999820
+    },
+    "walking": {
+      "alive_segments": 13,
+      "carriers": 2,
+      "simulation_us": 2799972
+    }
+  },
+  "reward": {
+    "base": 100,
+    "elapsed_sim_seconds": 25.05,
+    "first_clear": true,
+    "time_bonus": 50,
+    "total": 150
+  },
+  "source_hashes": {
+    "assets/serpent/environment.png": "64549070c131b085178e4c6995f2964b9a04195262b73655636ed5f1423e9f9a",
+    "assets/serpent/serpent-atlas.json": "e1c9b6d370cd3509aa2ab9f601ca0f72243b22c22cddaa747ec051ec435a3d69",
+    "assets/serpent/serpent-atlas.png": "caf1130462c58cf121e529e60810218b2ae3d7dc3939670ebdefeb1788f9a360",
+    "assets/worlds/forest-traveler.png": "b99df1675cd2dddfac63f888358278d43ac1e85d5db9acc6b1beba450cddc564",
+    "data/scenes/forest-traveler.json": "55b5f3d9ccd58e61e7750139ffbf7ef26b3f6f1dbd14e353b64dc87acac36b27",
+    "data/serpent-levels/serpent-08.json": "670a37e251c42905fbc6102bd135f32deba69d609ced992ee9859a4e5f42aaba",
+    "scripts/adventure_view.gd": "321b45b42a8a851f795426ee84a04754e29ff8c1e835b261d84f5e550f4c3f85",
+    "scripts/board_plane.gd": "89d21ef17ec8e258513c90d30a40eb9b8284d0e3d246bf4059c57d4b5f829bfa",
+    "scripts/carrier_route.gd": "e42ecd8e8d54d8189c1258eb488d81bdeba1b5d0f26331941311a260c116ed6c",
+    "scripts/combat_tint.gdshader": "51d8640c68faee38fc3072f95053ed12f5d40e369fc4ba1d52428e5bde93d393",
+    "scripts/contact_shadow.gd": "ef384880665827ec7bddc9954bce972f13106c74aee14b367489c48df2cbfd0c",
+    "scripts/level_catalog.gd": "e47650cae066beb7f13de2065158ccde50818428919b3f6c6f6e5597b96f3b54",
+    "scripts/play.gd": "e3d1cbd9e152053f3f8454b4c27db56a0b8ab8b4cb70c7a7ed63c443530613a8",
+    "scripts/rescue_rules.gd": "14a5b20efdf237fbf271ea8749b35580d012485aee8a529a30e53487852c7c23",
+    "scripts/scene_layout.gd": "64dd04eaa2a75f7055b9907c176d45718c45600a5ce2c5c61ce9d63d3a588a32",
+    "scripts/serpent_view.gd": "1da68a9763b1653a8743a51fd9a09fc3fa6905499db2d1b2ddc425bfe70ea948",
+    "scripts/startup.gd": "d8792bd628db5c9e749ffc8987915938cc9466e7fe23b2613e8ce1ac5762f072",
+    "scripts/ui_icon.gd": "6ce842b5fd26bf5a5d61c3340094dca724b056d6166b899173d17a230dccaf75",
+    "scripts/ui_skin.gd": "7e4c3ec533912b39a8745c82d52e57f630c464a45194aa4dba574e580d7dc319"
+  },
+  "audio": {
+    "accepted": 76,
+    "active_sfx": 1,
+    "audio_driver": "Dummy",
+    "backgrounded": false,
+    "dropped": {},
+    "game_paused": true,
+    "load_errors": [],
+    "loaded_cues": 14,
+    "master_muted": false,
+    "master_volume_db": 0.0,
+    "max_sfx": 12,
+    "music_bus": "AntMusic",
+    "music_bus_muted": false,
+    "music_bus_volume_db": -3.09803915023804,
+    "music_ducked": true,
+    "music_muted": false,
+    "music_paused": false,
+    "music_player_gain_db": -1.0,
+    "music_playing": true,
+    "music_position": 27.7014064788818,
+    "music_preview": false,
+    "music_volume": 0.7,
+    "output_device": "Default",
+    "sfx_bus": "AntSFX",
+    "sfx_bus_muted": false,
+    "sfx_bus_volume_db": -3.09803915023804,
+    "sfx_muted": false,
+    "sfx_volume": 0.7
+  },
+  "recording": {
+    "frames": 941,
+    "fps": "30/1",
+    "duration_seconds": 31.366667,
+    "unsped": true,
+    "uncut": true,
+    "audio_boundary": "actual captured mix; cloud Dummy output, not human listening or device validation"
+  }
+}

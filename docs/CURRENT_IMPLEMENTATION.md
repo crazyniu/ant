@@ -1,6 +1,6 @@
 # Current implementation contract
 
-Version: 2026-10-21 Ice Supply Ridge continuation; rules API 3.1.0, level schema 3, economy schema/version 1. This document describes current source behavior and separates it from the broader product target. The earlier automatic-team contract and its 30-level reports are historical. The published API 3.0.0 core is a prior, smaller snapshot, not evidence that the new UI has passed review.
+Version: 2026-10-21 Traveler’s Twin Groves continuation; rules API 3.1.0, level schema 3, economy schema/version 1. This document describes current source behavior and separates it from the broader product target. The earlier automatic-team contract and its 30-level reports are historical. The published API 3.0.0 core is a prior, smaller snapshot, not evidence that the new UI has passed review.
 
 ## Authority and data flow
 
@@ -14,7 +14,7 @@ Version: 2026-10-21 Ice Supply Ridge continuation; rules API 3.1.0, level schema
 | Points, purchase ledger, equipment, frozen run loadout, navigation state | `scripts/ant_progression.gd` |
 | Ordered catalog and level/settings completion save | `scripts/level_catalog.gd`, `scripts/save_service.gd` |
 | Economy parameters | `data/ant-progression.json` |
-| Available authored levels | `data/serpent-levels/serpent-01.json` through `serpent-07.json` |
+| Available authored levels | `data/serpent-levels/serpent-01.json` through `serpent-08.json` |
 
 The gameplay adapter, not animation callbacks, applies the authoritative result. Views consume detached state and emit requests. They must never fabricate balances, damage, unlocks, item ownership, completed levels or ad receipts.
 
@@ -32,13 +32,13 @@ There are no current automatic 20/30-ant teams, queue quotas, five work slots, f
 ## Current entry and meta screens
 
 - Startup performs real resource loading before Home. Home's primary action opens preparation for the saved entrance; its map action opens the full-screen adventure map.
-- Map nodes come from the actual loaded catalog and completion/unlock state. They open full preparation, not a modal level grid. Seven current level definitions are available, including ruins/parked-cart and ice/winter-camp slices.
+- Map nodes come from the actual loaded catalog and completion/unlock state. They open full preparation, not a modal level grid. Eight current level definitions are available, including ruins/parked-cart, ice/winter-camp and woodland/traveler slices.
 - Preparation derives segment counts, total HP, supply and fixed-goal preview from the selected configuration. Owned worker/Swift selection is committed before launching the actual game scene.
 - The independent shop is reachable from map and results. Balance, item prices, owned/equipped state and next shared level reflect service state. Product views use separate panels, title sprites, ant actors, ornaments and real text.
 - Navigation persists region, scroll and selected level. Returning from the shop/preparation uses that state, rather than inventing a new selection. Persistence is not evidence that all target devices have passed scrollbar/mouse testing.
 - Result presentation follows committed victory and the real saved reward receipt. Save failure leaves a retryable pending result and must not claim an uncommitted unlock or reward.
 
-Levels 1–3 guard the princess in woodland. Level 4 guards a stationary supply cart in a new ruins ground with a left-side finite enemy route. `scene_layout.gd` shares background, board envelope, nest gateway, cannon, stock and fixed target anchors across preparation and gameplay. Level 5 guards a stationary winter camp in a snow valley with a right-to-upper-left finite road. Level 6 adds a ruins supply fork; level 7 adds an Ice Supply Ridge puzzle in the existing snow scene. These are bounded additional scenes, not delivery of every proposed traveler/camp/region.
+Levels 1–3 guard the princess in woodland. Level 4 guards a stationary supply cart in a new ruins ground with a left-side finite enemy route. `scene_layout.gd` shares background, board envelope, nest gateway, cannon, stock and fixed target anchors across preparation and gameplay. Level 5 guards a stationary winter camp in a snow valley with a right-to-upper-left finite road. Level 6 adds a ruins supply fork; level 7 adds an Ice Supply Ridge puzzle in the existing snow scene; level 8 adds two resource islands and a stationary traveler in the existing woodland. These are bounded additions, not delivery of every proposed target or region.
 
 ## Economy and frozen loadouts
 
@@ -68,9 +68,9 @@ Advertising is unavailable: status/request/claim APIs reject with `ad_sdk_unavai
 
 The broader design remains in `reports/design/current-product-spec.md` and `reports/design/click-ant-current.md`. It includes work not yet implemented. Current source and bounded reports, not a concept image or old checklist, establish implementation status.
 
-Only `serpent-01` through `serpent-07` are current. The reserved `--campaign-drafts` path points to a future serpent catalog with no authored files. Old `data/campaign-drafts/`, old validation levels, the legacy editor/generation chain and old campaign tests must not be substituted or advertised as available new-mode content.
+Only `serpent-01` through `serpent-08` are current. The reserved `--campaign-drafts` path points to a future serpent catalog with no authored files. Old `data/campaign-drafts/`, old validation levels, the legacy editor/generation chain and old campaign tests must not be substituted or advertised as available new-mode content.
 
-Remaining scope: the rest of the new 30 independent levels and a fuller authoring workflow beyond the explicit single-level CLI; further independently authored themed scenes and fixed targets; optional junction combos and hidden supplies; real rewarded ads; human difficulty/economy and natural-input testing; final visual, audio and target-device acceptance. The earlier five-page GL capture at 1440 × 2560 includes the map/preparation/shop fixes and has been visually inspected; it does not establish level-7 runtime or ice-crest visual acceptance. User approval and device/native-input acceptance remain separate. Exact retained test results and their limits are in `PUBLIC_VERIFICATION.md`.
+Remaining scope: the rest of the new 30 independent levels and a fuller authoring workflow beyond the explicit single-level CLI; further independently authored themed scenes and fixed targets; optional junction combos and hidden supplies; real rewarded ads; human difficulty/economy and natural-input testing; final visual, audio and target-device acceptance. The earlier five-page GL capture at 1440 × 2560 includes the map/preparation/shop fixes and has been visually inspected; it is separate from the level-8 runtime evidence and does not establish traveler user visual acceptance. The separate level-7 runtime report records automated GL evidence, not human approval. User approval and device/native-input acceptance remain separate. Exact retained test results and their limits are in `PUBLIC_VERIFICATION.md`.
 
 ## Ruins scene contract
 
@@ -86,7 +86,7 @@ The candidate has 24 beads (six per RGBY), eight normal plus four armored segmen
 
 ## Current authoring entry
 
-`tools/validate_serpent_level.gd` provides one-level schema/scene/base-solution/accounting checks and optional ordered event JSON. It is a small adapter over the unchanged production rules, not a solver or gameplay system. Full visual editing, thumbnail export, authored thirty-level coverage and human testing remain unfinished. Color controls follow the current requirement: equal-width single row, dynamic color count, unobstructed hit areas; blocked color uses a road-barrier symbol and no-reachable feedback, never a purchase lock. Ice snow is presentation only and adds no new movement/damage rule.
+`tools/validate_serpent_level.gd` provides one-level schema/scene/base-solution/accounting checks and optional ordered event JSON. It is a small adapter over the unchanged production rules, not a solver or gameplay system. Full visual editing, thumbnail export, authored thirty-level coverage and human testing remain unfinished. Live color controls follow the current requirement: equal-width single row, dynamic color count, unobstructed hit areas; level 8 has five buttons. Blocked color uses a road-barrier symbol and no-reachable feedback, never a purchase lock. Preparation’s five required-hit counts use a separate three-column, two-row informational layout so the fifth value stays inside its panel. Ice snow is presentation only and adds no new movement/damage rule.
 
 ## Ruins fork contract
 
@@ -104,4 +104,18 @@ The red-first and green-first authored Worker Lv.1 solutions each use 17 indepen
 
 `serpent.art_profile="ice_crest"` selects `assets/serpent/ice-serpent-atlas.json` in both preparation and gameplay. The white-horned broad head, faceted body and eight-yaw head/tail art are presentation only. Measured regions, physical widths and chain anchors own placement; existing intact/cracked armor and normal HP1/armored HP2 behavior remain. Unknown profile IDs or missing resources fail explicitly. Levels 1–6 retain their data and default art/tint behavior.
 
-Bounded evidence: `reports/rules/ice-supply-rules.json` records 668 passing assertions, `reports/assets/ice-serpent-test.json` 50 appearance checks, and `reports/ui/ice-supply-scene.json` 43 scene checks. Their scopes are distinct, not a full campaign pass. Integrated GL/runtime capture, final visual acceptance, native input, sound and human pacing remain separate and are not claimed complete here.
+Bounded evidence: `reports/rules/ice-supply-rules.json` records 668 passing assertions, `reports/assets/ice-serpent-test.json` 50 appearance checks, and `reports/ui/ice-supply-scene.json` 43 scene checks. Their scopes are distinct, not a full campaign pass. `reports/ui/ice-supply-runtime.json` separately records automated GL victory at 27.85s. Final visual acceptance, native input, sound and human pacing remain separate and are not claimed complete here.
+
+## Traveler’s Twin Groves contract
+
+Level 8 uses `data/serpent-levels/serpent-08.json` and `data/scenes/forest-traveler.json`. The existing woodland ground, central nest/gateway, finite right/top enemy road and default serpent appearance remain; the fixed target is `traveler`. This is not a moving escort. Levels 1–7 and `scripts/rescue_rules.gd` remain unchanged.
+
+The 10×8 board has entrance `[5,8]` and two offset islands of 11 and 10 beads separated by an empty approach column. Red/blue/green/yellow/purple supply is 4/4/4/5/4; required damage is 3/3/3/2/4. Eleven normal and two armored segments total 15 HP. Purple and blue each have one HP2 segment. Purple has no surplus, so both enclosed purple cores must be collected; victory leaves six other beads.
+
+When dispatched first, green `[4,6]` is picked up at 1.20s and opens left purple `[3,6]`; blue `[7,6]` is picked up at 1.60s and opens right purple `[7,5]`. An initial exterior purple `[2,7]` pickup opens neither core, but the delivered shot cracks purple armor. These independent openings follow ordinary occupancy and reachability. Reservation does not open gates; only completed unloading credits ammunition.
+
+Both authored Worker Lv.1 routes use 15 independent inputs at 1.40-second gaps. Green-first delivers at 3.20s; swapping the first two inputs gives purple-first delivery at 4.10s. Both finish on actual damage at 25.05s before the 60.00s threat, leaving six beads. Peak capacity is four; the longest all-color no-dispatch interval is 0.80s. No upgrades, tools, ads, combo, bonuses or new rules are required. Reward thresholds 27/40s remain provisional.
+
+Preparation and play share the traveler texture, measured ground anchor and uniform physical scale recorded in `reports/assets/forest-traveler-assets.json`; the optional contact shadow is presentation only. Preparation’s five required-color values fit three columns/two rows, while live play retains five equal-width single-row dispatch buttons.
+
+`reports/rules/forest-traveler-level08.json` records 834 passing bounded rule checks against the current integrated level data and unchanged rules, with exact hashes. `reports/ui/forest-traveler-scene.json` records 63 passing integrated scene checks against that same level version. Production single-level CLI validation also passes. These do not constitute a rerun of prior levels or a whole-project pass. The same-version `reports/ui/forest-traveler-runtime.json` records actual automated GL victory at 25.05 simulation seconds, six unused beads, and saved completion plus 150 points. Runtime diagnostics and evidence limits are in `PUBLIC_VERIFICATION.md`. Human difficulty/economy, visual, native-input, audio and target-device acceptance remain outstanding.

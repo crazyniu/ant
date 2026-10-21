@@ -1,0 +1,79 @@
+{
+  "accepted_inputs": 15,
+  "contact_time_us": 60000000,
+  "errors": [],
+  "event_count": 136,
+  "event_sequence_sha256": "e5fed33fda14cd834dd1d4286756574dde81cc68f512da9abc084df743fe9b39",
+  "guardian_id": "traveler",
+  "hit_counts": {
+    "blue": 3,
+    "green": 3,
+    "purple": 4,
+    "red": 3,
+    "yellow": 2
+  },
+  "level_id": "serpent-08",
+  "level_sha256": "670a37e251c42905fbc6102bd135f32deba69d609ced992ee9859a4e5f42aaba",
+  "loadout": {
+    "ant_type": "worker",
+    "level": 1,
+    "speed_multiplier": 1.0
+  },
+  "longest_no_dispatch_opportunity_us": 800000,
+  "maximum_carriers": 4,
+  "no_dispatch_windows": [
+    {
+      "duration_us": 800000,
+      "end_us": 16200000,
+      "start_us": 15400000
+    },
+    {
+      "duration_us": 800000,
+      "end_us": 17600000,
+      "start_us": 16800000
+    },
+    {
+      "duration_us": 800000,
+      "end_us": 20400000,
+      "start_us": 19600000
+    }
+  ],
+  "ok": true,
+  "path_cells": [
+    3,
+    4,
+    4,
+    4,
+    2,
+    3,
+    3,
+    4,
+    5,
+    5,
+    4,
+    5,
+    5,
+    5,
+    5
+  ],
+  "remaining_beads": 6,
+  "required_damage_by_color": {
+    "blue": 3,
+    "green": 3,
+    "purple": 4,
+    "red": 3,
+    "yellow": 2
+  },
+  "rules_api": "3.1.0",
+  "scene_id": "forest_traveler",
+  "scope": "One authored level and timed solution. Not a solver, editor, GL/ground-support check, human balance or device acceptance.",
+  "status": "victory",
+  "supply_by_color": {
+    "blue": 4,
+    "green": 4,
+    "purple": 4,
+    "red": 4,
+    "yellow": 5
+  },
+  "terminal_time_us": 25050000
+}

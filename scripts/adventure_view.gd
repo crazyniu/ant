@@ -372,7 +372,9 @@ func _build_preparation() -> void:
 	for color in summary.needs:
 		var x := 601 + index * 84
 		var y := 918
-		if summary.needs.size()>3:
+		if summary.needs.size()>4:
+			x=601+(index%3)*84;y=866+(index/3)*52
+		elif summary.needs.size()>3:
 			x=631+(index%2)*126;y=866+(index/2)*52
 		_bead(str(color), Vector2(x, y), 24, _page)
 		_label(str(int(summary.needs[color])), Rect2(x + 27, y-4, 46, 31), 22, "Need_%s" % color, _page)

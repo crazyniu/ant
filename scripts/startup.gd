@@ -10,6 +10,7 @@ const TITLE = preload("res://assets/startup/title.png")
 const HOME_RESOURCES: Array[String] = [
 	"res://assets/worlds/ruins-courtyard.png", "res://assets/worlds/supply-cart.png",
 	"res://assets/worlds/ice-valley.png", "res://assets/worlds/winter-camp.png",
+	"res://assets/worlds/forest-traveler.png",
 	"res://assets/meta-ui/shop-workshop-background.png", "res://assets/meta-ui/adventure.png", "res://assets/meta-ui/ready.png", "res://assets/meta-ui/ant-shop.png",
 	"res://assets/meta-ui/worker.png", "res://assets/meta-ui/swift.png", "res://assets/meta-ui/training.png", "res://assets/meta-ui/swift-wing.png", "res://assets/meta-ui/ant-coin.png",
 	"res://assets/serpent/environment.png", "res://assets/characters-atlas.png",

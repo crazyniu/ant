@@ -1,9 +1,9 @@
 {
   "algorithm": "SHA-256",
   "scope": "all files except this manifest",
-  "base_commit": "e67a1cc07cbe8d8ef2f8b558ab052101f7b0c9d1",
-  "file_count": 220,
-  "total_bytes": 48565341,
+  "base_commit": "f5b23489c404a778b0f5f1a0f5e899cba46deb79",
+  "file_count": 231,
+  "total_bytes": 50359395,
   "files": [
     {
       "path": ".gitignore",
@@ -12,8 +12,8 @@
     },
     {
       "path": "ASSETS.md",
-      "bytes": 16220,
-      "sha256": "8c44ccf6a29858974c518003adc791a491c34ce454bb0aafa758c0da928d7a3f"
+      "bytes": 18609,
+      "sha256": "5aa3993ef69fd1466e5adb4b8abad7023e4e9d972cee21c859f74d1f8ebab4dc"
     },
     {
       "path": "DEPENDENCIES.md",
@@ -22,13 +22,13 @@
     },
     {
       "path": "PUBLICATION_CHECK.json",
-      "bytes": 1489,
-      "sha256": "579066b113f55bb90560bd95a8c5b4e687a72ea3f3176d6f3bec32b7d1718c8f"
+      "bytes": 1732,
+      "sha256": "8d80e2a5ac44f25692b25998a5b0fd49da71d25206d9a85e6e584c06261e9f65"
     },
     {
       "path": "README.md",
-      "bytes": 12937,
-      "sha256": "fa77cb02380e8e9829220ed62a135beea63d29af87bedf34b570b4df19e9729e"
+      "bytes": 14363,
+      "sha256": "7f7bd2d7697569109f4cb9c25066af6a67488e2c8b540a7981e42637d8a280b0"
     },
     {
       "path": "assets/ants-atlas.png",
@@ -321,6 +321,11 @@
       "sha256": "62a40610fcca9d9db8c0928b70c1552a20ab117cf89c4dc543f22e2a560bf43f"
     },
     {
+      "path": "assets/worlds/forest-traveler.png",
+      "bytes": 1533998,
+      "sha256": "b99df1675cd2dddfac63f888358278d43ac1e85d5db9acc6b1beba450cddc564"
+    },
+    {
       "path": "assets/worlds/ice-valley.png",
       "bytes": 2819266,
       "sha256": "d3db37aee85483b32aa5912570a6abcaa6bea4c8d68567c134bd08a1f33ee7a6"
@@ -354,6 +359,11 @@
       "path": "data/ant-regions.json",
       "bytes": 319,
       "sha256": "954b0440eb5d7649108aacd0708fcaa91ac92da96ef3f470e2607cbfd6eb22c5"
+    },
+    {
+      "path": "data/scenes/forest-traveler.json",
+      "bytes": 2386,
+      "sha256": "55b5f3d9ccd58e61e7750139ffbf7ef26b3f6f1dbd14e353b64dc87acac36b27"
     },
     {
       "path": "data/scenes/ice-camp.json",
@@ -411,6 +421,11 @@
       "sha256": "5f355ba14e8af36a0b9ed77f46313d703a82ab43630549dc0235e45cc65d1c60"
     },
     {
+      "path": "data/serpent-levels/serpent-08.json",
+      "bytes": 4027,
+      "sha256": "670a37e251c42905fbc6102bd135f32deba69d609ced992ee9859a4e5f42aaba"
+    },
+    {
       "path": "docs/BOARD_PLANE.md",
       "bytes": 4078,
       "sha256": "3952379c80354bd5839a5be24157574627a1000466c280b0d2ca3df8df5ddb02"
@@ -422,18 +437,18 @@
     },
     {
       "path": "docs/CURRENT_IMPLEMENTATION.md",
-      "bytes": 15942,
-      "sha256": "f69972b2f52b35a1a4a38f6fa9f6bc2cf08320a6d83b31e13c25e49d8def597c"
+      "bytes": 19143,
+      "sha256": "eff4fdf5c680c68c5ea518f9e442a705b64e3c7729a3a9f6597c58a6eb73ae03"
     },
     {
       "path": "docs/PUBLIC_VERIFICATION.md",
-      "bytes": 18272,
-      "sha256": "acc339cf5c31d0ec2fb537388da19056cc1915e6826b1046d44479a5af16b0ed"
+      "bytes": 20644,
+      "sha256": "d77877b392d2c3b867103422d5f823f32a937e4d2090de24633cd4a614c1f07e"
     },
     {
       "path": "docs/SCENE_LAYOUTS.md",
-      "bytes": 7497,
-      "sha256": "c974e421c4d25ddb0aab27e094d47fdadcc1984395512dee61c7e4194a1770ff"
+      "bytes": 10385,
+      "sha256": "6daec283e725710f62fe034e9c55305ae5a985403b8484d9d74ef85f9a1f5640"
     },
     {
       "path": "docs/UI_COMPONENTS.md",
@@ -459,6 +474,11 @@
       "path": "project.godot",
       "bytes": 887,
       "sha256": "dacfbfc62b6caf0b2cfc1c2e2b79f1655129a247bbcbdc3a044af64d32ff829d"
+    },
+    {
+      "path": "reports/assets/forest-traveler-assets.json",
+      "bytes": 1310,
+      "sha256": "f88839a1c9818534ced238cfccd182ecbe95c11e5620d0783856e03e4f1cdbe0"
     },
     {
       "path": "reports/assets/ice-serpent-assets.json",
@@ -494,6 +514,11 @@
       "path": "reports/authoring/entry-tests.json",
       "bytes": 141,
       "sha256": "11fafc4e947bb8f7b9928900d678dbf1a75df71483192d2aa1c3e2ba1a54f474"
+    },
+    {
+      "path": "reports/authoring/forest-traveler-check.json",
+      "bytes": 1549,
+      "sha256": "398af4665aa34acc78c30e5f0be705e635edfead653cd160108d76a219ef6059"
     },
     {
       "path": "reports/authoring/fork-check.json",
@@ -546,6 +571,11 @@
       "sha256": "f8954bb3ae0c3b9e5223a9207ebb06683cce8eadbf43993d3432ed2979b70ab4"
     },
     {
+      "path": "reports/rules/forest-traveler-level08.json",
+      "bytes": 209178,
+      "sha256": "aa21af4e920aec26db1f3f2ed461f02a05ec819ba32bdfe9f1ddb6c41494278c"
+    },
+    {
       "path": "reports/rules/ice-rules.json",
       "bytes": 15024,
       "sha256": "922e07964f0a8c4bc553423f396e1359cebe1eac25e51bbaccbb3c9043ed70f7"
@@ -584,6 +614,16 @@
       "path": "reports/ui/color-row-layout.json",
       "bytes": 9417,
       "sha256": "c114bf43f193d2af48411dcf0116b4f6c590c28cdb49f55675f8d3b2f511aa31"
+    },
+    {
+      "path": "reports/ui/forest-traveler-runtime.json",
+      "bytes": 4221,
+      "sha256": "57f94d0d13164289bbc2d9c8f459a5332e22e25358bcc55ce136c1e01fb7b72a"
+    },
+    {
+      "path": "reports/ui/forest-traveler-scene.json",
+      "bytes": 312,
+      "sha256": "5fc3f5e0def3b239d26c2664dbca5290ea73ca038d41fe0bf8da762233774afd"
     },
     {
       "path": "reports/ui/fork-runtime.json",
@@ -647,8 +687,8 @@
     },
     {
       "path": "scripts/adventure_view.gd",
-      "bytes": 29634,
-      "sha256": "63046cc8f35938f95dbf9ea8ddd322dde31d74f2b2323adc391ad61f10469900"
+      "bytes": 29706,
+      "sha256": "321b45b42a8a851f795426ee84a04754e29ff8c1e835b261d84f5e550f4c3f85"
     },
     {
       "path": "scripts/adventure_view.gd.uid",
@@ -757,8 +797,8 @@
     },
     {
       "path": "scripts/level_catalog.gd",
-      "bytes": 1743,
-      "sha256": "2a10da25256561e625d292a3ace174e31dbfa883e6e6ad59cdc97ff2e2bb6878"
+      "bytes": 1757,
+      "sha256": "e47650cae066beb7f13de2065158ccde50818428919b3f6c6f6e5597b96f3b54"
     },
     {
       "path": "scripts/level_catalog.gd.uid",
@@ -777,8 +817,8 @@
     },
     {
       "path": "scripts/play.gd",
-      "bytes": 44881,
-      "sha256": "725f32d773d31134ee5a7972edb1aa1b6b4302d962fc0d9d91aa2ead804ac55a"
+      "bytes": 44895,
+      "sha256": "e3d1cbd9e152053f3f8454b4c27db56a0b8ab8b4cb70c7a7ed63c443530613a8"
     },
     {
       "path": "scripts/play.gd.uid",
@@ -817,8 +857,8 @@
     },
     {
       "path": "scripts/scene_layout.gd",
-      "bytes": 5546,
-      "sha256": "5a1f7573fa16f67c63a10530846749863934197916539af42fd52618837da5e4"
+      "bytes": 6096,
+      "sha256": "64dd04eaa2a75f7055b9907c176d45718c45600a5ce2c5c61ce9d63d3a588a32"
     },
     {
       "path": "scripts/scene_layout.gd.uid",
@@ -847,8 +887,8 @@
     },
     {
       "path": "scripts/startup.gd",
-      "bytes": 19914,
-      "sha256": "9bed7e9cfb6e14354d745949433411f3f01b39d6230521f3e4e835398b787cd3"
+      "bytes": 19958,
+      "sha256": "d8792bd628db5c9e749ffc8987915938cc9466e7fe23b2613e8ce1ac5762f072"
     },
     {
       "path": "scripts/startup.gd.uid",
@@ -909,6 +949,11 @@
       "path": "tests/capture_color_row.gd",
       "bytes": 2172,
       "sha256": "f28b5207570dcbb0dd5fb638eedc36565fbf25a2f01a67dbe0c9ea34e45d03ec"
+    },
+    {
+      "path": "tests/capture_forest_traveler_journey.gd",
+      "bytes": 5464,
+      "sha256": "b12d5674e65be37f28ff514d34f3a370aff2f39c9e6713807109c92cc4294556"
     },
     {
       "path": "tests/capture_fork_journey.gd",
@@ -994,6 +1039,16 @@
       "path": "tests/test_color_row_layout.gd",
       "bytes": 11323,
       "sha256": "82334da5b8570ee288b34a9492d41aaad1748ad441ff7448a9ccad0a9229bd4c"
+    },
+    {
+      "path": "tests/test_forest_traveler_level.gd",
+      "bytes": 12335,
+      "sha256": "26b17fc34c5606eb67a4d367eac0e50414483c24158fb269c43a9672a8cdb7e9"
+    },
+    {
+      "path": "tests/test_forest_traveler_scene.gd",
+      "bytes": 6061,
+      "sha256": "6cd046a66b05525f6b73b11109b0cd967f916d6d3660d4ccc0e4efc0f9235e07"
     },
     {
       "path": "tests/test_ice_rules.gd",

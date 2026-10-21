@@ -7,6 +7,7 @@ Scope: current single-ant serpent gameplay plus adventure/preparation/shop UI, 2
 - `assets/meta-ui/manifest.json` is the source record for the new meta UI: exact source filenames, SHA-256, native sizes, source regions, centered anchors and measured alpha evidence. `generation-prompts.json` retains generation provenance; `validation-report.json` describes asset-level checks.
 - `assets/serpent/serpent-atlas.json`, `nest-entry.json` and `reports/assets/serpent-actor-assets*.json` describe the default serpent/head/tail/armor/nest source regions, anchors, dimensions and provenance.
 - `assets/serpent/ice-serpent-atlas.json` and `reports/assets/ice-serpent-assets.json` record the independent `ice_crest` appearance, source/packed hashes, measured alpha regions, physical widths and chain-joint anchors.
+- `reports/assets/forest-traveler-assets.json` records the stationary traveler’s generated provenance, source/runtime hashes, measured alpha crop, ground anchor and physical/display widths; `data/scenes/forest-traveler.json` owns scene placement.
 - `assets/motion/ant-directions.json`, `data/ant-regions.json`, `assets/ui/fusion/*-regions.json`, and `assets/ui/v03/*regions.json` define current per-resource regions.
 - `docs/asset-manifest.json` is an older shared-art inventory. Its old board projection, total file count and automatic-team placement descriptions are **not** the current whole-build contract. Use the resource-specific manifests above and current renderer code for new serpent/meta assets. A package `SOURCE_MANIFEST.json` only establishes the exact snapshot for which it was generated; it must be refreshed for a new publication.
 
@@ -16,7 +17,8 @@ The PNG artwork was generated using the built-in image-generation service for th
 
 | Project path | Actual native pixels | Mode | Current role / placement source |
 |---|---:|---|---|
-| `assets/serpent/environment.png` | 941 × 1672 | RGB | Current warm arena background for Home, map, preparation preview and play. Scene actors are independent. |
+| `assets/serpent/environment.png` | 941 × 1672 | RGB | Current warm arena background for Home, map, preparation preview and play, including level 8. Scene actors are independent. |
+| `assets/worlds/forest-traveler.png` | 936 × 1204 | RGBA | Separate fixed level-8 guardian; measured crop/anchor in `reports/assets/forest-traveler-assets.json`, placement in `data/scenes/forest-traveler.json`. |
 | `assets/serpent/serpent-atlas.png` | 1303 × 1774 | RGBA | Eight yaw heads, one body bead, eight yaw tails; `serpent-atlas.json` owns regions and chain-joint anchors. |
 | `assets/serpent/ice-serpent-source.png` | 1122 × 1402 | RGBA | Preserved generated source for the ice-crest head, body and tail; provenance in `reports/assets/ice-serpent-assets.json`. |
 | `assets/serpent/ice-serpent-atlas.png` | 1280 × 1600 | RGBA | Packed eight-yaw heads, faceted body and eight-yaw tails for level 7; `ice-serpent-atlas.json` owns regions, physical scale and chain anchors. |
@@ -61,7 +63,7 @@ The background is **not native 2K** and no upscale is claimed. A 1440 × 2560 vi
 Keep scene/background, paths, targets, ant/serpent actors, panels, ornaments, title sprites, dynamic text and input hit targets independent. Do not slice a complete concept screen into a fake fullscreen UI.
 
 - Adventure: current arena background, independently drawn route/nodes, live completion/unlock state, live points and separate page title. Node panels must not stretch their corner treatment, and the route must remain visible behind nodes.
-- Preparation: a level-derived preview and real HP/supply/target information, separate type cards/previews, current ownership/selection and a real start action. It is a full page, not a decorative modal substitute.
+- Preparation: a level-derived preview and real HP/supply/target information, separate type cards/previews, current ownership/selection and a real start action. Five-color required-hit counts use three columns and two rows within the panel, not an overflowing fifth column. This informational layout does not change the five equal-width live dispatch buttons in one row. Preparation is a full page, not a decorative modal substitute.
 - Shop: workshop background → nine-slice panels → existing ant actor → separate Swift wing badge → title sprites → live balances/prices/levels/effects → button hit targets. The coin has no baked price. Product card layout is not user approval of the concept.
 - Result: the actual persisted receipt owns base points, time bonus and credited total. A coin/title image never owns economic state.
 - Settings: music/sound emblems, slider track, fill and knob are distinct. Numeric/function state stays in real controls. Decorative artwork must ignore mouse input.
@@ -88,7 +90,7 @@ Serpent head/tail views use chain-joint anchors and yaw selection, not whole-car
 
 Asset-level reports establish only their recorded files, measured dimensions/regions and source relationships. The old eight-PNG fusion audit and `docs/asset-manifest.json` are not a current total-file inventory. Current meta-asset checks are not a final assembled GL, native input, human listening or device-performance pass.
 
-The earlier meta-UI GL capture contains five 1440 × 2560 pages after the map/preparation/shop fixes. Developer inspection confirmed visible map paths, correctly proportioned nodes, reduced preparation copy, disabled unaffordable shop buttons and an independent fixed-corner Swift badge. No user visual approval is claimed, and these captures do not validate the new ice-crest appearance. Source, test, asset, rendered-scene and human-acceptance evidence remain separate; see `docs/PUBLIC_VERIFICATION.md`.
+The earlier meta-UI GL capture contains five 1440 × 2560 pages after the map/preparation/shop fixes. Developer inspection confirmed visible map paths, correctly proportioned nodes, reduced preparation copy, disabled unaffordable shop buttons and an independent fixed-corner Swift badge. No user visual approval is claimed, and these captures do not validate later ice-crest or traveler scenes. Source, test, asset, rendered-scene and human-acceptance evidence remain separate; see `docs/PUBLIC_VERIFICATION.md`.
 
 Publish source/resources, runtime manifests, font license and appropriately scoped tests/reports. Exclude generated import caches, temporary profiles, captures/videos, archived concepts and generation workspaces. Refresh package inventory after code/assets change. Old campaign files that remain in a development tree must not be described as the new single-ant campaign.
 
@@ -106,8 +108,18 @@ Both were generated for this project using the built-in image service: the groun
 
 ## Ice-crest serpent appearance
 
-Level 7 selects `serpent.art_profile="ice_crest"`; omission retains the default atlas and tint behavior used by levels 1–6. This is a separate white-horned broad-head/faceted-body silhouette, not a recolored default head. Preparation and play consume the same manifest. Snow/ice art introduces no freezing, slowing, extra health or alternate damage rule.
+Level 7 selects `serpent.art_profile="ice_crest"`; omission retains the default atlas and tint behavior used by levels 1–6 and 8. This is a separate white-horned broad-head/faceted-body silhouette, not a recolored default head. Preparation and play consume the same manifest. Snow/ice art introduces no freezing, slowing, extra health or alternate damage rule.
 
 The original 1122×1402 RGBA source is preserved. Seventeen components were measured at alpha >8, with a three-pixel contour margin and nearest-component fringe retained within two pixels; they were packed into 1280×1600 without resizing. Source rectangles are not equal atlas cells. Use the manifest's per-part regions and chain anchors, head physical width 292, tail physical width 240 and body physical width 226. Heads display at 84 logical pixels; body diameter retains the route-derived 35–62 range and tail width is body diameter ×0.84. Select the eight real yaw poses under fixed lighting, never rotate the whole head/tail card.
 
 The neutral body uses full-region luminance tint so RGBY gameplay colors remain distinct. Intact/cracked armor still uses `serpent-armor-atlas.png`; ordinary HP1 and armored HP2 semantics are unchanged. The 50 checks in `reports/assets/ice-serpent-test.json` cover profile selection, regions/anchors, yaw poses, default tint preservation and unchanged rule snapshots, not assembled GL appearance or final visual approval. Generated provenance and file hashes are recorded in `reports/assets/ice-serpent-assets.json`; they are not a legal-clearance warranty.
+
+## Fixed woodland traveler
+
+Level 8 reuses `assets/serpent/environment.png`; it does not introduce a replacement ground image. The traveler is an independent transparent sprite used by preparation, play and the guardian result. It remains fixed on the upper-left platform, separate from the finite enemy road, bead grid, cannon and carriers. Purple uses the existing supported color rendering, not a new damage or armor rule.
+
+`reports/assets/forest-traveler-assets.json` records a 1145×1374 RGBA generated source and a 936×1204 runtime image. Crop bounds `[132,91,1068,1295]` are `[left,top,right,bottom]`, measured from the largest actual alpha >8 contour, with original edge alpha retained within two pixels and a four-pixel transparent margin. This is not an equal-cell crop, semantic repaint or background removal based on color.
+
+Use local ground anchor `[498,1186]`, physical width 928 source pixels and display width 88 logical pixels. `data/scenes/forest-traveler.json` places that anchor at world foot `[155,182]`; scale the whole sprite uniformly by `88/928`, not by its transparent canvas width. Its optional `contact_shadow=[24,7]` is a separate ground-contact ellipse centered at the same foot, not baked into the sprite. Boots and staff-tip contact follow the measured anchor.
+
+The artwork was generated from project-owned woodland/environment and tent references using the built-in image service, not competitor artwork. Generated provenance is not legal clearance or a project-wide license grant. Actual level-8 GL review, human visual approval, native input and device/audio acceptance are not established by the asset manifest or headless scene checks.

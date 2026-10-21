@@ -4,6 +4,7 @@ extends RefCounted
 const DEFAULT_PATH := "res://data/scenes/woodland-princess.json"
 const Serpent=preload("res://scripts/serpent_view.gd")
 const UiSkin=preload("res://scripts/ui_skin.gd")
+const ContactShadow=preload("res://scripts/contact_shadow.gd")
 
 static func load_for(config:Dictionary)->Dictionary:
 	var appearance_path:=Serpent.manifest_path_for(config.get("serpent",{}))
@@ -34,6 +35,8 @@ static func load_for(config:Dictionary)->Dictionary:
 	if not ResourceLoader.exists(str(data.get("background",""))) or not ResourceLoader.exists(str(data.defense_target.get("texture",""))):return {"ok":false,"reason":"scene_asset_missing"}
 	if not data.defense_target.get("fixed",false) or float(data.defense_target.get("physical_width",0))<=0:return {"ok":false,"reason":"scene_target_invalid"}
 	var expected:Dictionary=config.get("defense_target",{})
+	if data.defense_target.has("contact_shadow"):
+		if not valid_point(data.defense_target.contact_shadow) or float(data.defense_target.contact_shadow[0])<=0 or float(data.defense_target.contact_shadow[1])<=0:return {"ok":false,"reason":"scene_target_shadow_invalid"}
 	if not expected.is_empty() and expected.get("id")!=data.defense_target.get("id"):return {"ok":false,"reason":"scene_target_identity_mismatch"}
 	return {"ok":true,"data":data}
 
@@ -68,6 +71,8 @@ static func add_target(parent:Node,data:Dictionary)->TextureRect:
 	var target:Dictionary=data.defense_target
 	var source:=target_texture(data)
 	var factor:=float(target.width)/float(target.physical_width)
+	if target.has("contact_shadow"):
+		var shadow:=ContactShadow.new();shadow.name="TargetFootShadow";shadow.radius=point(target.contact_shadow);shadow.position=point(target.foot);shadow.strength=.22;parent.add_child(shadow)
 	var node:=UiSkin.place_texture(source,Rect2(point(target.foot)-point(target.anchor)*factor,source.get_size()*factor),parent,"DefenseTarget")
 	node.set_meta("guardian_id",target.id);node.set_meta("ground_anchor",point(target.foot))
 	return node
