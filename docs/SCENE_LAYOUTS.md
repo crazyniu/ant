@@ -41,3 +41,7 @@ The 24-bead RGBY puzzle has a near red gate and farther green gate opening diffe
 New rule checks are limited to level 5, both exact-event and 100ms frame-step replay, pickup-only gate opening, accounting, per-color damage, armor and transport capacity. Scene checks cover the real 16 routes, clear-ground polygon, separation from the outer road, correct preparation/guardian/result, and natural final hit/save. The rules file and existing level 4 data hashes must remain unchanged. No old 30-level pass is inherited.
 
 The snow ground is native 940×1672 RGB. The transparent camp is 1373×981 after measured alpha >1 crop `[93,23,1466,1004]` from 1536×1024; contact anchor `[687,875]`, width 170 logical pixels. The manifest records source and anchor. Snow-ground detail is not claimed to be native 2K.
+
+## Level 6 region variant
+
+`data/scenes/ruins-fork.json` shares current ruins ground and parked-cart art, but uses a shifted center approach and `entrance_cell=[5,8]`. The enemy remains on the finite left/top road. No road, nest, actor or target is baked into a replacement screenshot. Eighteen beads supply twelve HP, with nonuniform blue5/red4/green3 demand and a mandatory enclosed-blue opening. This changes routing and staged supply rather than only recoloring the same 24/16 puzzle.

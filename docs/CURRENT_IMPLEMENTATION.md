@@ -1,6 +1,6 @@
 # Current implementation contract
 
-Version: 2026-10-21 ice-valley continuation; rules API 3.1.0, level schema 3, economy schema/version 1. This document describes current source behavior and separates it from the broader product target. The earlier automatic-team contract and its 30-level reports are historical. The published API 3.0.0 core is a prior, smaller snapshot, not evidence that the new UI has passed review.
+Version: 2026-10-21 ruins-fork continuation; rules API 3.1.0, level schema 3, economy schema/version 1. This document describes current source behavior and separates it from the broader product target. The earlier automatic-team contract and its 30-level reports are historical. The published API 3.0.0 core is a prior, smaller snapshot, not evidence that the new UI has passed review.
 
 ## Authority and data flow
 
@@ -14,7 +14,7 @@ Version: 2026-10-21 ice-valley continuation; rules API 3.1.0, level schema 3, ec
 | Points, purchase ledger, equipment, frozen run loadout, navigation state | `scripts/ant_progression.gd` |
 | Ordered catalog and level/settings completion save | `scripts/level_catalog.gd`, `scripts/save_service.gd` |
 | Economy parameters | `data/ant-progression.json` |
-| Available authored levels | `data/serpent-levels/serpent-01.json` through `serpent-05.json` |
+| Available authored levels | `data/serpent-levels/serpent-01.json` through `serpent-06.json` |
 
 The gameplay adapter, not animation callbacks, applies the authoritative result. Views consume detached state and emit requests. They must never fabricate balances, damage, unlocks, item ownership, completed levels or ad receipts.
 
@@ -32,7 +32,7 @@ There are no current automatic 20/30-ant teams, queue quotas, five work slots, f
 ## Current entry and meta screens
 
 - Startup performs real resource loading before Home. Home's primary action opens preparation for the saved entrance; its map action opens the full-screen adventure map.
-- Map nodes come from the actual loaded catalog and completion/unlock state. They open full preparation, not a modal level grid. Five current level definitions are available, including ruins/parked-cart and ice/winter-camp slices.
+- Map nodes come from the actual loaded catalog and completion/unlock state. They open full preparation, not a modal level grid. Six current level definitions are available, including ruins/parked-cart and ice/winter-camp slices.
 - Preparation derives segment counts, total HP, supply and fixed-goal preview from the selected configuration. Owned worker/Swift selection is committed before launching the actual game scene.
 - The independent shop is reachable from map and results. Balance, item prices, owned/equipped state and next shared level reflect service state. Product views use separate panels, title sprites, ant actors, ornaments and real text.
 - Navigation persists region, scroll and selected level. Returning from the shop/preparation uses that state, rather than inventing a new selection. Persistence is not evidence that all target devices have passed scrollbar/mouse testing.
@@ -68,9 +68,9 @@ Advertising is unavailable: status/request/claim APIs reject with `ad_sdk_unavai
 
 The broader design remains in `reports/design/current-product-spec.md` and `reports/design/click-ant-current.md`. It includes work not yet implemented. Current source and bounded reports, not a concept image or old checklist, establish implementation status.
 
-Only `serpent-01` through `serpent-05` are current. The reserved `--campaign-drafts` path points to a future serpent catalog with no authored files. Old `data/campaign-drafts/`, old validation levels, the legacy editor/generation chain and old campaign tests must not be substituted or advertised as available new-mode content.
+Only `serpent-01` through `serpent-06` are current. The reserved `--campaign-drafts` path points to a future serpent catalog with no authored files. Old `data/campaign-drafts/`, old validation levels, the legacy editor/generation chain and old campaign tests must not be substituted or advertised as available new-mode content.
 
-Remaining scope: new 30 independent levels and a compatible authoring/validation workflow; further independently authored themed scenes and fixed targets; optional junction combos and hidden supplies; real rewarded ads; human difficulty/economy and natural-input testing; final visual, audio and target-device acceptance. The final five-page GL capture at 1440 × 2560 includes the map/preparation/shop fixes and has been visually inspected; user approval and device/native-input acceptance remain separate. Exact retained test results and their limits are in `PUBLIC_VERIFICATION.md`.
+Remaining scope: the rest of the new 30 independent levels and a fuller authoring workflow beyond the explicit single-level CLI; further independently authored themed scenes and fixed targets; optional junction combos and hidden supplies; real rewarded ads; human difficulty/economy and natural-input testing; final visual, audio and target-device acceptance. The final five-page GL capture at 1440 × 2560 includes the map/preparation/shop fixes and has been visually inspected; user approval and device/native-input acceptance remain separate. Exact retained test results and their limits are in `PUBLIC_VERIFICATION.md`.
 
 ## Ruins scene contract
 
@@ -83,3 +83,13 @@ The new base-worker candidate has 24 beads (six per RGBY), 12 segments / 16 init
 `data/scenes/ice-camp.json` shares snow ground, independent camp anchor, board envelope, nest gateway, cannon and enemy route between preparation and play. `transport.entrance_cell=[6,8]` is level 5's exterior BFS source. The nearby red gate at `[6,5]` opens two yellow cells on actual pickup; the farther green gate at `[8,6]` opens one. Blue exterior beads provide ammunition without opening that yellow core. There is no ice-specific movement or damage mechanic.
 
 The candidate has 24 beads (six per RGBY), eight normal plus four armored segments, 16 HP total (four per color), and a 66-second threat budget. Its 16-input Worker Lv.1 authored solution wins at 26.90 simulation seconds, leaving eight beads. The exact 16-route sequence is `[3,4,4,4,4,3,4,5,4,3,6,5,5,5,6,5]`, with 14 routes of 3–5 and two of six. First delivery is 3.20 seconds. Longest wait until any legal new dispatch is 1.70 seconds; the 2.20-second full-capacity span includes a legal handoff at 19.90 seconds, so it is not uninterrupted inactivity. Reward thresholds 28/42 seconds remain candidate tuning, not human balance approval.
+
+## Current authoring entry
+
+`tools/validate_serpent_level.gd` provides one-level schema/scene/base-solution/accounting checks and optional ordered event JSON. It is a small adapter over the unchanged production rules, not a solver or gameplay system. Full visual editing, thumbnail export, authored thirty-level coverage and human testing remain unfinished. Color controls follow the current requirement: equal-width single row, dynamic color count, unobstructed hit areas; blocked color uses a road-barrier symbol and no-reachable feedback, never a purchase lock. Ice snow is presentation only and adds no new movement/damage rule.
+
+## Ruins fork contract
+
+Level 6 uses `data/scenes/ruins-fork.json` and the existing ruins/cart art; no new bitmap is duplicated. Its entrance `[5,8]`, shifted nest/cannon, 18-bead three-color fork and ten-segment combination differ from level 4. Required damage is blue5/red4/green3, including two blue armor segments. Only four blue beads are exterior, so base supply requires opening at least one core bead. A near red gate opens core45 after 1.2 seconds; green opens core46 after 1.6 seconds; an exterior blue pickup opens neither but its first shot cracks armor. Actual pickup, not reservation, owns the opening.
+
+Twelve authored inputs at 1.4-second intervals yield a 20.85-second final hit before the 60-second goal. Routes are `[3,3,4,4,4,4,4,4,4,5,5,5]`; this authored schedule has no interval when all color entries lack a legal opportunity. Six beads remain. This does not prove the choices equally attractive to humans or the candidate 22/35-second bonus thresholds balanced. Current head and body assets are reused; new enemy-species silhouette work remains separate scope.

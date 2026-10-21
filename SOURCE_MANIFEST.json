@@ -1,9 +1,9 @@
 {
   "algorithm": "SHA-256",
   "scope": "all files except this manifest",
-  "base_commit": "2a5b0d18c40b1277abd3cb4728576f154ab77c38",
-  "file_count": 194,
-  "total_bytes": 44963999,
+  "base_commit": "baba1e9f7bc45a112a47e1376db859978536c9fc",
+  "file_count": 206,
+  "total_bytes": 45008267,
   "files": [
     {
       "path": ".gitignore",
@@ -22,13 +22,13 @@
     },
     {
       "path": "PUBLICATION_CHECK.json",
-      "bytes": 1671,
-      "sha256": "4929935cbd9f2f5602124ff45d9c1ad67fe3f4e94a617cee30639dfac0acf3ae"
+      "bytes": 1382,
+      "sha256": "19b2a68e7c0f036c648c9130565c65b436cdd03326f34621e48fcb948da957a1"
     },
     {
       "path": "README.md",
-      "bytes": 10216,
-      "sha256": "00b3b7c06b1aa10695317074a0a7ab069e704b7985724748d9dbd639eb4b6640"
+      "bytes": 11502,
+      "sha256": "bd6bfa52a4977a308a637ceee57c239e42b303a13ece689898026d0b61eb63bc"
     },
     {
       "path": "assets/ants-atlas.png",
@@ -351,6 +351,11 @@
       "sha256": "e729226303ae60c5a3424975872bd7bcf0624105f75b51b1f9b2e96266bf45f4"
     },
     {
+      "path": "data/scenes/ruins-fork.json",
+      "bytes": 2646,
+      "sha256": "4310ca55c3d977c004e4a9fe44c555c1c5ea9b6df994554b8754f40222c36de9"
+    },
+    {
       "path": "data/scenes/woodland-princess.json",
       "bytes": 1845,
       "sha256": "1c64ddbdf8264ebcc3aa0fed9bc38631b4945e7a862932d1564388e410d1f4a0"
@@ -381,6 +386,11 @@
       "sha256": "da1a393599091fc7082fa73a89b31b812999b4d676b147ed44cb505aa42e107c"
     },
     {
+      "path": "data/serpent-levels/serpent-06.json",
+      "bytes": 3183,
+      "sha256": "41313488c04d299f2dacea24c11cfaf61b224796b372a8e007bc7bc09bfbce03"
+    },
+    {
       "path": "docs/BOARD_PLANE.md",
       "bytes": 4078,
       "sha256": "3952379c80354bd5839a5be24157574627a1000466c280b0d2ca3df8df5ddb02"
@@ -392,18 +402,18 @@
     },
     {
       "path": "docs/CURRENT_IMPLEMENTATION.md",
-      "bytes": 11756,
-      "sha256": "0cfc413babd0bd71d365c8c3baddb98c57d7bb41c43484bbe562e3b335f7a6b7"
+      "bytes": 13514,
+      "sha256": "fe0257c35acba169bd6edb73b5d50179642e39361a61383002045966bff68495"
     },
     {
       "path": "docs/PUBLIC_VERIFICATION.md",
-      "bytes": 12634,
-      "sha256": "b59d10ee03705918b09b86b27fb6ff9bcb6b2d7eaf5f904906883071139d2f63"
+      "bytes": 15206,
+      "sha256": "6dd40c88f262e6e422ee81c5e36d8ebbd57f4fcb7fe229d9ed378cc4bc1fc915"
     },
     {
       "path": "docs/SCENE_LAYOUTS.md",
-      "bytes": 5200,
-      "sha256": "ac2de1cfa746d5c0a4c9004e55a4c8cffdf6155912da170b1dbb2ec646857ddd"
+      "bytes": 5690,
+      "sha256": "c6599a729a7eec63eee8c985cb96658821a0f86bf4e87d905914e6190141e78e"
     },
     {
       "path": "docs/UI_COMPONENTS.md",
@@ -451,6 +461,21 @@
       "sha256": "619bc1cda86a21b12c34fbee4c365cd1341da6b3af37fe6213a384ddcea1b055"
     },
     {
+      "path": "reports/authoring/entry-tests.json",
+      "bytes": 141,
+      "sha256": "11fafc4e947bb8f7b9928900d678dbf1a75df71483192d2aa1c3e2ba1a54f474"
+    },
+    {
+      "path": "reports/authoring/fork-check.json",
+      "bytes": 1132,
+      "sha256": "85430799f11a920d8410b91a47ab892f5eaf81876a584570e46eda6cd24092ba"
+    },
+    {
+      "path": "reports/authoring/ice-check.json",
+      "bytes": 1598,
+      "sha256": "7142d76d9f6bfe843d26946faebf8d1c827bca3ad9bff042c2a18e4c8bc9031c"
+    },
+    {
       "path": "reports/design/click-ant-current.md",
       "bytes": 1719,
       "sha256": "027bf38ac87c3a084781ad08af9830cb27ae3fb33316d1fad411ab7a3619fb98"
@@ -491,6 +516,11 @@
       "sha256": "922e07964f0a8c4bc553423f396e1359cebe1eac25e51bbaccbb3c9043ed70f7"
     },
     {
+      "path": "reports/rules/ruins-fork.json",
+      "bytes": 943,
+      "sha256": "2f07e4cc369d5fc54a4ab6755f0d4c42b344aa0a18c1ca3a8f31182362f27dcf"
+    },
+    {
       "path": "reports/rules/ruins-rules.json",
       "bytes": 999,
       "sha256": "d9fed691926d0928dfc9f372bacb85fe93eac024bca09ad43c5c9cb0231cb52f"
@@ -514,6 +544,11 @@
       "path": "reports/ui/color-row-layout.json",
       "bytes": 9417,
       "sha256": "c114bf43f193d2af48411dcf0116b4f6c590c28cdb49f55675f8d3b2f511aa31"
+    },
+    {
+      "path": "reports/ui/fork-runtime.json",
+      "bytes": 3691,
+      "sha256": "6e9af632fab5a823c075c2e7b4f6fe3ac644c7759f2171d7a75cfac8b17077ae"
     },
     {
       "path": "reports/ui/ice-runtime.json",
@@ -672,8 +707,8 @@
     },
     {
       "path": "scripts/level_catalog.gd",
-      "bytes": 1715,
-      "sha256": "5718d13d72efa35dd6f6073a9a0b39269d6902f0f600dc853564b6f7ffd1d212"
+      "bytes": 1729,
+      "sha256": "a03e699934eb8ebfe27e322fe066cd4199edf1eeb189af1a0dd4d2f93cdbabe3"
     },
     {
       "path": "scripts/level_catalog.gd.uid",
@@ -692,8 +727,8 @@
     },
     {
       "path": "scripts/play.gd",
-      "bytes": 44853,
-      "sha256": "77a379de6ad9f683fb10bd76536d63a3b8b07796a9b9f48b5b5cd10a9259a3a6"
+      "bytes": 44867,
+      "sha256": "c74834e1b4e56e2d12994d2a563669e09f096e38fc56bfd492711fc3b8b7bb95"
     },
     {
       "path": "scripts/play.gd.uid",
@@ -826,6 +861,11 @@
       "sha256": "f28b5207570dcbb0dd5fb638eedc36565fbf25a2f01a67dbe0c9ea34e45d03ec"
     },
     {
+      "path": "tests/capture_fork_journey.gd",
+      "bytes": 5143,
+      "sha256": "c1fa1d04203f5bacd11a164165ca89b5947c67d95c2e71b337dff1b16a09d88e"
+    },
+    {
       "path": "tests/capture_ice_journey.gd",
       "bytes": 4679,
       "sha256": "804df9df810f51b109c1adaffa15eda7d92e8a1eed538e0a9f61abfb36b74407"
@@ -911,6 +951,16 @@
       "sha256": "e6ed2ad75d5605df1fd292942630c95c222fcfc11405f4513ae0348c7d3e4dac"
     },
     {
+      "path": "tests/test_level_check_entry.gd",
+      "bytes": 3005,
+      "sha256": "ece9f3625bd19012dd070de1740d8c4c2f6c31a14499057a016ecdfabc34a989"
+    },
+    {
+      "path": "tests/test_ruins_fork.gd",
+      "bytes": 5097,
+      "sha256": "a5e6ff81f75a2103397da9d4ccc0491649552e00122d6b8dbf8689635f06dc99"
+    },
+    {
       "path": "tests/test_ruins_rules.gd",
       "bytes": 13014,
       "sha256": "ce73f0aded53c3f4987065cec36747a02fa8d5c3bdad3ea7cb0131f266994984"
@@ -974,6 +1024,16 @@
       "path": "tests/test_startup_loader.gd.uid",
       "bytes": 20,
       "sha256": "4286ecc6f763b0466f179935c80a3a952cad47df9451f03098e4b3e5aa03123f"
+    },
+    {
+      "path": "tools/README.md",
+      "bytes": 2829,
+      "sha256": "a660f86224b61caa345b9faf0b22ff939fe5a34452730c60a53ecd1896088206"
+    },
+    {
+      "path": "tools/validate_serpent_level.gd",
+      "bytes": 9015,
+      "sha256": "cedd70807758db55d38f0a836c3260e8da167d3268923797a2545fd1fa519a91"
     }
   ]
 }

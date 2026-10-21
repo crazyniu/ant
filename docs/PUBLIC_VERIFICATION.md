@@ -1,6 +1,6 @@
 # Current verification boundary
 
-Updated 2026-10-21 through the bounded Ice Valley continuation. Current immediate published baseline: `2a5b0d18c40b1277abd3cb4728576f154ab77c38` (ruins plus single-row color controls). Published core baseline: [`125646450cd1bf5e90d6d7cbc833ca34ff47bd75`](https://github.com/crazyniu/ant/commit/125646450cd1bf5e90d6d7cbc833ca34ff47bd75). Current development source adds API 3.1.0 growth integration; do not claim it is byte-identical to the frozen API 3.0.0 recording.
+Updated 2026-10-21 through the bounded ruins-fork continuation. Current immediate published baseline: `baba1e9f7bc45a112a47e1376db859978536c9fc` (including Ice Valley). Published core baseline: [`125646450cd1bf5e90d6d7cbc833ca34ff47bd75`](https://github.com/crazyniu/ant/commit/125646450cd1bf5e90d6d7cbc833ca34ff47bd75). Current development source adds API 3.1.0 growth integration; do not claim it is byte-identical to the frozen API 3.0.0 recording.
 
 ## Existing bounded reports
 
@@ -55,7 +55,7 @@ The commands describe reproduction, not an assertion that they were all rerun af
 
 ## Still outside acceptance
 
-- New 30-level single-ant campaign and compatible authoring/validation tools.
+- Remaining content for the new 30-level single-ant campaign and fuller authoring workflow beyond the explicit single-level CLI.
 - Further distinct themed scenes and fixed targets beyond the current woodland, ruins and Ice Valley slices.
 - Optional junction combos, hidden supplies and real advertising SDK.
 - Natural human input, difficulty and economy tuning, full multi-level playthroughs.
@@ -91,3 +91,15 @@ The same-version real GL 1× capture is 995 frames at 30 FPS, 1440×2560, 33.166
 Developer image inspection covers the initial snowfield, walking/pickup opening, projectile, shortened serpent and result: ants approach on the inner snowfield rather than the outside road; the camp sits on its top-left platform; nest/cannon remain independently anchored; four entrances stay in a single row; result content fits. Background native detail is 940×1672, not claimed native 2K. The actual recording reports no script error or resource-at-exit error; a cloud-driver V-Sync warning remains. Its final audio state is Dummy output, BGM playing and 14 cues loaded without load errors. Recorded mix and numerical audio checks are not human listening or hardware-output acceptance.
 
 All 14 recorded production code/config/art hashes must match the frozen candidate. Frozen source excludes captures, raw movies, temporary profiles and old generated variants. Natural user input, listening, difficulty/economy tuning, final visual approval and Mac/device acceptance remain separate.
+
+## Reusable single-level entry and ruins fork
+
+`tools/validate_serpent_level.gd` adds one explicit level-path check over the existing production rules. `tests/test_level_check_entry.gd` passes 16 checks using valid level 5 and deliberately invalid variants; the actual CLI call also exits 0 at the independently established 26.90-second final hit. This is not a solver, framework, automatic catalog sweep or visual editor. It never changes player progress.
+
+`tests/test_ruins_fork.gd` passes 54 bounded checks for level 6: 18-bead/12-HP budget, twelve authored Worker inputs, actual near red/far green/outer blue choices, pickup-only core access, one-point armor cracking, conservation, and 2412 sampled carrier points with minimum 129.79 logical-pixel enemy-centerline separation. The recorded rule final hit is 20.85 seconds against the 60-second contact time, leaving six beads. The reused rules and existing levels are unchanged. No earlier full historical suite was repeated.
+
+The same-version real GL capture completes in 812 frames at 30 FPS, 1440×2560, 27.0667 seconds without speed-up or cuts. Its production base-worker final hit is 20.85 simulation seconds, maximum observed transport occupancy is 3/4, six beads remain, the fixed cart is saved, and the real first-clear 150-point receipt and completion are persisted. Only prerequisite levels 1–5 are marked complete in an isolated fixture; no points are granted for those prerequisites.
+
+The first capture fixture omitted prerequisite 5 and was correctly blocked by the existing unlock guard. That incomplete recording was discarded from deliverables; the fixture now checks prerequisite/entrance success and exits quickly on failure. No gameplay unlock rule was weakened. Developer inspection of the corrected preparation, initial state, walking, projectile and result verifies shared scene projection, inner ant versus outer serpent route separation, the three-entry single row and bounded cart/coin/button dimensions. This is automated authored input, not natural human play or final visual acceptance.
+
+This actual GL recording reports only unavailable V-Sync control; no script or resource-at-exit errors were emitted. Its captured soundtrack includes the production mix while runtime output is Dummy; BGM playing, loaded cues and numerical levels do not establish hardware audio or human listening approval. All fourteen recorded production code/config/art hashes must match the frozen candidate. Older suites were retained, not rerun as whole-project validation.

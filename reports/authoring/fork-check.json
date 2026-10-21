@@ -1,0 +1,54 @@
+{
+  "accepted_inputs": 12,
+  "contact_time_us": 60000000,
+  "errors": [],
+  "event_count": 109,
+  "event_sequence_sha256": "d3015795269446e2eb308727009bd9f39c1e9b5f61e9864c098684749fad375b",
+  "guardian_id": "supply_cart",
+  "hit_counts": {
+    "blue": 5,
+    "green": 3,
+    "red": 4
+  },
+  "level_id": "serpent-06",
+  "level_sha256": "41313488c04d299f2dacea24c11cfaf61b224796b372a8e007bc7bc09bfbce03",
+  "loadout": {
+    "ant_type": "worker",
+    "level": 1,
+    "speed_multiplier": 1.0
+  },
+  "longest_no_dispatch_opportunity_us": 0,
+  "maximum_carriers": 3,
+  "no_dispatch_windows": [],
+  "ok": true,
+  "path_cells": [
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5
+  ],
+  "remaining_beads": 6,
+  "required_damage_by_color": {
+    "blue": 5,
+    "green": 3,
+    "red": 4
+  },
+  "rules_api": "3.1.0",
+  "scene_id": "ruins_fork",
+  "scope": "One authored level and timed solution. Not a solver, editor, GL/ground-support check, human balance or device acceptance.",
+  "status": "victory",
+  "supply_by_color": {
+    "blue": 6,
+    "green": 6,
+    "red": 6
+  },
+  "terminal_time_us": 20850000
+}

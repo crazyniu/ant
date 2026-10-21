@@ -1,0 +1,82 @@
+{
+  "accepted_inputs": 16,
+  "contact_time_us": 66000000,
+  "errors": [],
+  "event_count": 143,
+  "event_sequence_sha256": "2df79540339561baa01991cb5aa31b95013c5868a0ee64dfa8db5f7d5971070c",
+  "guardian_id": "winter_camp",
+  "hit_counts": {
+    "blue": 4,
+    "green": 4,
+    "red": 4,
+    "yellow": 4
+  },
+  "level_id": "serpent-05",
+  "level_sha256": "da1a393599091fc7082fa73a89b31b812999b4d676b147ed44cb505aa42e107c",
+  "loadout": {
+    "ant_type": "worker",
+    "level": 1,
+    "speed_multiplier": 1.0
+  },
+  "longest_no_dispatch_opportunity_us": 1700000,
+  "maximum_carriers": 4,
+  "no_dispatch_windows": [
+    {
+      "duration_us": 800000,
+      "end_us": 14800000,
+      "start_us": 14000000
+    },
+    {
+      "duration_us": 1700000,
+      "end_us": 19900000,
+      "start_us": 18200000
+    },
+    {
+      "duration_us": 500000,
+      "end_us": 20400000,
+      "start_us": 19900000
+    },
+    {
+      "duration_us": 500000,
+      "end_us": 21800000,
+      "start_us": 21300000
+    }
+  ],
+  "ok": true,
+  "path_cells": [
+    3,
+    4,
+    4,
+    4,
+    4,
+    3,
+    4,
+    5,
+    4,
+    3,
+    6,
+    5,
+    5,
+    5,
+    6,
+    5
+  ],
+  "remaining_beads": 8,
+  "required_damage_by_color": {
+    "blue": 4,
+    "green": 4,
+    "red": 4,
+    "yellow": 4
+  },
+  "rules_api": "3.1.0",
+  "scene_id": "ice_camp",
+  "scope": "One authored level and timed solution. Not a solver, editor, GL/ground-support check, human balance or device acceptance.",
+  "status": "victory",
+  "supply_by_color": {
+    "blue": 6,
+    "green": 6,
+    "red": 6,
+    "yellow": 6
+  },
+  "terminal_time_us": 26900000
+}

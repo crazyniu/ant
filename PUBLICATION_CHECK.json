@@ -1,38 +1,34 @@
 {
-  "status": "PASS_BOUNDED_ICE_SCENE_CHECKS_WITH_KNOWN_HEADLESS_EXIT_DIAGNOSTIC",
-  "base_commit": "2a5b0d18c40b1277abd3cb4728576f154ab77c38",
-  "frozen_at": "2026-10-21T18:07:51.120897+00:00",
-  "current_validation_levels": 5,
-  "scope": "one ice/winter-camp authored level; no new mechanics or full30",
+  "status": "PASS_BOUNDED_FORK_AND_AUTHORING_CHECKS",
+  "base_commit": "baba1e9f7bc45a112a47e1376db859978536c9fc",
+  "frozen_at": "2026-10-21T18:29:38.587128+00:00",
+  "current_validation_levels": 6,
+  "scope": "one new ruins supply-fork level and explicit single-level authoring CLI; no new rules/assets or full30",
   "checks": {
-    "ice_rules_assertions": 1469,
-    "ice_scene_checks": 83,
-    "authored_route_samples": 3216,
-    "minimum_enemy_centerline_separation": 75.0,
-    "new_level_terminal_time_us": 26900000,
-    "new_level_deadline_us": 66000000,
-    "new_level_remaining_beads": 8,
-    "scene_test_exit_code": 0,
-    "known_scene_test_shutdown_diagnostic": "ObjectDB instances leaked; 2 resources still in use at exit",
-    "GL_diagnostics": "V-Sync mode unsupported warning; no script/resource-at-exit errors reported in this recording",
+    "fork_checks": 54,
+    "entry_checks": 16,
+    "authored_route_samples": 2412,
+    "minimum_enemy_centerline_separation": 129.793869018555,
+    "new_level_terminal_time_us": 20850000,
+    "new_level_deadline_us": 60000000,
+    "new_level_remaining_beads": 6,
     "runtime_source_hashes_match": 14,
     "victory_saved": true,
     "reward_total": 150,
-    "rules_and_levels01_to04_unchanged": true,
-    "static_resources": "resolved; tests include deliberate missing fixtures",
-    "candidate_only_secret_private_path_scan": "no findings",
-    "current_asset_dimensions": "match manifest"
+    "rules_and_levels01_to05_unchanged": true,
+    "static_resources": "resolved; tests include deliberate invalid fixtures",
+    "candidate_only_secret_private_path_scan": "no findings"
   },
   "retained_not_rerun": [
-    "previous ruins707",
-    "single-row221",
+    "ice1469/83",
+    "ruins707/single-row221",
     "meta18/growth133/progression1062",
-    "old30/33 are obsolete, not current new-mode evidence"
+    "old30/33 obsolete for current single-ant mode"
   ],
   "limits": [
     "1x authored automatic replay, not human interaction or balance acceptance",
     "Dummy cloud output; captured mix is not hardware sound or human listening",
-    "raster ground940x1672 is not native2K art",
+    "no new region/serpent art; reused current ruins assets",
     "further levels, combo/mechanism and real ad SDK remain",
     "no merge/deployment"
   ]
