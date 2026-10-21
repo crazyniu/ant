@@ -2,9 +2,14 @@ extends RefCounted
 ## Minimal shared presentation contract. Rules own the finite route distance and
 ## integer grid; these anchors are consumed identically in preview and gameplay.
 const DEFAULT_PATH := "res://data/scenes/woodland-princess.json"
+const Serpent=preload("res://scripts/serpent_view.gd")
 const UiSkin=preload("res://scripts/ui_skin.gd")
 
 static func load_for(config:Dictionary)->Dictionary:
+	var appearance_path:=Serpent.manifest_path_for(config.get("serpent",{}))
+	if appearance_path.is_empty() or not FileAccess.file_exists(appearance_path):return {"ok":false,"reason":"serpent_appearance_missing"}
+	var appearance:Variant=JSON.parse_string(FileAccess.get_file_as_string(appearance_path))
+	if not appearance is Dictionary or not ResourceLoader.exists(str(appearance.get("path",""))):return {"ok":false,"reason":"serpent_appearance_invalid"}
 	var path:=str(config.get("scene_layout",DEFAULT_PATH))
 	if not FileAccess.file_exists(path):return {"ok":false,"reason":"scene_layout_missing"}
 	var parsed:Variant=JSON.parse_string(FileAccess.get_file_as_string(path))

@@ -13,6 +13,7 @@ const HOME_RESOURCES: Array[String] = [
 	"res://assets/meta-ui/shop-workshop-background.png", "res://assets/meta-ui/adventure.png", "res://assets/meta-ui/ready.png", "res://assets/meta-ui/ant-shop.png",
 	"res://assets/meta-ui/worker.png", "res://assets/meta-ui/swift.png", "res://assets/meta-ui/training.png", "res://assets/meta-ui/swift-wing.png", "res://assets/meta-ui/ant-coin.png",
 	"res://assets/serpent/environment.png", "res://assets/characters-atlas.png",
+	"res://assets/serpent/ice-serpent-atlas.png",
 	"res://assets/serpent/nest-entry.png", "res://assets/serpent/serpent-atlas.png", "res://assets/serpent/serpent-armor-atlas.png",
 	"res://assets/motion/ant-directions.png",
 	"res://assets/ants-atlas.png", "res://assets/fonts/Title.ttf",

@@ -6,8 +6,8 @@ Godot 4.6.3; logical 940×1672 uniformly presented at 1440×2560. Scene layouts 
 
 - Woodland princess, levels 1–3: `data/scenes/woodland-princess.json`. Original right-side open serpent road and center-bottom entrance remain unchanged.
 - Ruins supply cart, level 4: `data/scenes/ruins-cart.json`. A separately generated empty ruins courtyard, left-side open serpent road ending at a fixed upper-right cart, shifted nest/cannon and left-biased grid entrance.
-
-- Ice Valley winter camp, level 5: `data/scenes/ice-camp.json`. Independent snow ground, right-to-upper-left finite serpent road, fixed camp on a circular platform and a right-biased ant entrance. Snow does not alter transport physics.
+- Ruins Supply Fork, level 6: `data/scenes/ruins-fork.json`. Existing ruins/cart art with shifted nest/cannon and a central transport approach.
+- Ice Valley winter camp, levels 5 and 7: `data/scenes/ice-camp.json`. Independent snow ground, right-to-upper-left finite serpent road, fixed camp on a circular platform and a right-biased ant entrance. Snow does not alter transport physics. Level 7 changes the bead puzzle and serpent appearance, not this shared scene geometry.
 
 ## Fields
 
@@ -45,3 +45,13 @@ The snow ground is native 940×1672 RGB. The transparent camp is 1373×981 after
 ## Level 6 region variant
 
 `data/scenes/ruins-fork.json` shares current ruins ground and parked-cart art, but uses a shifted center approach and `entrance_cell=[5,8]`. The enemy remains on the finite left/top road. No road, nest, actor or target is baked into a replacement screenshot. Eighteen beads supply twelve HP, with nonuniform blue5/red4/green3 demand and a mandatory enclosed-blue opening. This changes routing and staged supply rather than only recoloring the same 24/16 puzzle.
+
+## Level 7 Ice Supply Ridge
+
+`serpent-07` reuses the exact level-5 `ice-camp.json`, snow ground, fixed camp, finite road, board projection and `[6,8]` entrance. Existing levels 1–6 stay unchanged. Its 21 beads (R4/B6/G8/Y3) supply 17 HP (R3/B6/G5/Y3) across nine normal and four armored segments. Both enclosed blue cells and all three initially blocked yellow cells are necessary; four red/green surplus beads remain after victory.
+
+Red pickup opens the central yellow bridge, then central-yellow pickup opens the blue core. Green pickup gives an alternative yellow-wing opening and shorter exterior-blue route. Pickup, not reservation, changes reachability. Both complete authored base-Worker routes use 17 inputs and reach the final hit at 27.85s before the 62s goal; there is no freezing, slipping, slowdown or extra-health rule.
+
+Preparation and play select the same `serpent.art_profile="ice_crest"`: independent white-horned broad head, faceted body, eight head/tail yaws and the existing intact/cracked armor overlays. Use `assets/serpent/ice-serpent-atlas.json` for measured physical scales and chain anchors; do not rotate whole sprites or change route geometry to fit the appearance.
+
+The 43 bounded scene checks cover the authored occupied-grid routes, clear-ground samples, road separation, derived preparation counts and selected appearance. They complement 668 rule assertions and 50 appearance checks, not actual GL/runtime or human visual acceptance. Native input, audio, target devices and difficulty/economy balance still require separate review.

@@ -1,0 +1,216 @@
+{
+  "schema_version": 3,
+  "level_id": "serpent-07",
+  "level_number": 7,
+  "title": "Break the Supply Ridge",
+  "width": 10,
+  "height": 8,
+  "palette": {
+    "R": "red",
+    "B": "blue",
+    "G": "green",
+    "Y": "yellow"
+  },
+  "grid": [
+    "..........",
+    "..........",
+    "......R...",
+    ".....GBG..",
+    "....GBYYR.",
+    ".....GRYG.",
+    "...BGB.GB.",
+    "...GB...R."
+  ],
+  "segments": [
+    {
+      "id": "serpent-07-s01",
+      "color": "blue",
+      "kind": "armored",
+      "hp": 2
+    },
+    {
+      "id": "serpent-07-s02",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-07-s03",
+      "color": "green",
+      "kind": "armored",
+      "hp": 2
+    },
+    {
+      "id": "serpent-07-s04",
+      "color": "yellow",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-07-s05",
+      "color": "blue",
+      "kind": "armored",
+      "hp": 2
+    },
+    {
+      "id": "serpent-07-s06",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-07-s07",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-07-s08",
+      "color": "yellow",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-07-s09",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-07-s10",
+      "color": "blue",
+      "kind": "armored",
+      "hp": 2
+    },
+    {
+      "id": "serpent-07-s11",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-07-s12",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-07-s13",
+      "color": "yellow",
+      "kind": "normal",
+      "hp": 1
+    }
+  ],
+  "serpent": {
+    "head_start_s": 58.0,
+    "goal_s": 132.0,
+    "speed_units_sec": 1.1935483870967742,
+    "pitch": 4.0,
+    "art_profile": "ice_crest"
+  },
+  "parameters": {
+    "max_inflight_ants": 4,
+    "projectile_flight_sec": 0.45,
+    "cannon_cooldown_sec": 0.65
+  },
+  "transport": {
+    "carrier_type": "worker",
+    "outbound_speed_cells_sec": 2.5,
+    "returning_speed_cells_sec": 2.0,
+    "pickup_pause_sec": 0.3,
+    "unload_pause_sec": 0.2,
+    "entrance_cell": [
+      6,
+      8
+    ]
+  },
+  "tools": [],
+  "solution": {
+    "kind": "timed_single_click_no_tool_two_stage_ridge",
+    "minimum_input_gap_sec": 1.4,
+    "inputs": [
+      {
+        "at_sec": 0.0,
+        "color": "red"
+      },
+      {
+        "at_sec": 1.4,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 2.8,
+        "color": "blue"
+      },
+      {
+        "at_sec": 4.2,
+        "color": "green"
+      },
+      {
+        "at_sec": 5.6,
+        "color": "blue"
+      },
+      {
+        "at_sec": 7.0,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 8.4,
+        "color": "green"
+      },
+      {
+        "at_sec": 9.8,
+        "color": "blue"
+      },
+      {
+        "at_sec": 11.2,
+        "color": "red"
+      },
+      {
+        "at_sec": 12.6,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 14.0,
+        "color": "blue"
+      },
+      {
+        "at_sec": 15.4,
+        "color": "green"
+      },
+      {
+        "at_sec": 16.8,
+        "color": "green"
+      },
+      {
+        "at_sec": 18.2,
+        "color": "blue"
+      },
+      {
+        "at_sec": 19.6,
+        "color": "red"
+      },
+      {
+        "at_sec": 21.0,
+        "color": "blue"
+      },
+      {
+        "at_sec": 22.4,
+        "color": "green"
+      }
+    ]
+  },
+  "validation_scope": "One ice supply-ridge candidate. Base Worker, no upgrades/ads/bonuses. Two-stage red/yellow opening and alternative green opening. Ice crest is presentation only, no freezing or alternate damage.",
+  "content_version": "ice-supply-ridge-20261021.2",
+  "rewards": {
+    "fast_seconds": 30.0,
+    "normal_seconds": 44.0
+  },
+  "region_id": "ice_valley",
+  "boss_profile": "armored_serpent",
+  "defense_target": {
+    "id": "winter_camp",
+    "display_name": "Winter Camp",
+    "fixed": true
+  },
+  "scene_layout": "res://data/scenes/ice-camp.json"
+}

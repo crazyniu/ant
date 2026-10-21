@@ -1,7 +1,7 @@
 extends RefCounted
 ## Segmented-serpent schema has a separate catalog/profile from legacy single-dragon.
 const PAGE_SIZE := 10
-const VALIDATION_IDS := ["serpent-01", "serpent-02", "serpent-03", "serpent-04", "serpent-05", "serpent-06"]
+const VALIDATION_IDS := ["serpent-01", "serpent-02", "serpent-03", "serpent-04", "serpent-05", "serpent-06", "serpent-07"]
 static func level_ids(campaign_drafts:bool)->Array[String]:
 	var result:Array[String]=[]
 	if campaign_drafts:

@@ -5,7 +5,8 @@ Scope: current single-ant serpent gameplay plus adventure/preparation/shop UI, 2
 ## Source records and rights
 
 - `assets/meta-ui/manifest.json` is the source record for the new meta UI: exact source filenames, SHA-256, native sizes, source regions, centered anchors and measured alpha evidence. `generation-prompts.json` retains generation provenance; `validation-report.json` describes asset-level checks.
-- `assets/serpent/serpent-atlas.json`, `nest-entry.json` and `reports/assets/serpent-actor-assets*.json` describe serpent/head/tail/armor/nest source regions, anchors, dimensions and provenance.
+- `assets/serpent/serpent-atlas.json`, `nest-entry.json` and `reports/assets/serpent-actor-assets*.json` describe the default serpent/head/tail/armor/nest source regions, anchors, dimensions and provenance.
+- `assets/serpent/ice-serpent-atlas.json` and `reports/assets/ice-serpent-assets.json` record the independent `ice_crest` appearance, source/packed hashes, measured alpha regions, physical widths and chain-joint anchors.
 - `assets/motion/ant-directions.json`, `data/ant-regions.json`, `assets/ui/fusion/*-regions.json`, and `assets/ui/v03/*regions.json` define current per-resource regions.
 - `docs/asset-manifest.json` is an older shared-art inventory. Its old board projection, total file count and automatic-team placement descriptions are **not** the current whole-build contract. Use the resource-specific manifests above and current renderer code for new serpent/meta assets. A package `SOURCE_MANIFEST.json` only establishes the exact snapshot for which it was generated; it must be refreshed for a new publication.
 
@@ -17,6 +18,8 @@ The PNG artwork was generated using the built-in image-generation service for th
 |---|---:|---|---|
 | `assets/serpent/environment.png` | 941 × 1672 | RGB | Current warm arena background for Home, map, preparation preview and play. Scene actors are independent. |
 | `assets/serpent/serpent-atlas.png` | 1303 × 1774 | RGBA | Eight yaw heads, one body bead, eight yaw tails; `serpent-atlas.json` owns regions and chain-joint anchors. |
+| `assets/serpent/ice-serpent-source.png` | 1122 × 1402 | RGBA | Preserved generated source for the ice-crest head, body and tail; provenance in `reports/assets/ice-serpent-assets.json`. |
+| `assets/serpent/ice-serpent-atlas.png` | 1280 × 1600 | RGBA | Packed eight-yaw heads, faceted body and eight-yaw tails for level 7; `ice-serpent-atlas.json` owns regions, physical scale and chain anchors. |
 | `assets/serpent/serpent-armor-atlas.png` | 1536 × 748 | RGBA | Separate intact/cracked armor layers; per-entry paths and anchors in the serpent manifest. |
 | `assets/serpent/nest-entry.png` | 905 × 529 | RGBA | Low ground entrance, not a raised doorway; `nest-entry.json` owns the foot anchor. |
 | `assets/motion/ant-directions.png` | 1774 × 887 | RGBA | Eight-yaw worker identity used by directional carriers and current ant previews; sibling JSON owns physical scale and anchors. |
@@ -85,7 +88,7 @@ Serpent head/tail views use chain-joint anchors and yaw selection, not whole-car
 
 Asset-level reports establish only their recorded files, measured dimensions/regions and source relationships. The old eight-PNG fusion audit and `docs/asset-manifest.json` are not a current total-file inventory. Current meta-asset checks are not a final assembled GL, native input, human listening or device-performance pass.
 
-The final production GL capture contains five 1440 × 2560 pages after the map/preparation/shop fixes. Developer inspection confirmed visible map paths, correctly proportioned nodes, reduced preparation copy, disabled unaffordable shop buttons and an independent fixed-corner Swift badge. No user visual approval is claimed. Source, test, asset, rendered-scene and human-acceptance evidence remain separate; see `docs/PUBLIC_VERIFICATION.md`.
+The earlier meta-UI GL capture contains five 1440 × 2560 pages after the map/preparation/shop fixes. Developer inspection confirmed visible map paths, correctly proportioned nodes, reduced preparation copy, disabled unaffordable shop buttons and an independent fixed-corner Swift badge. No user visual approval is claimed, and these captures do not validate the new ice-crest appearance. Source, test, asset, rendered-scene and human-acceptance evidence remain separate; see `docs/PUBLIC_VERIFICATION.md`.
 
 Publish source/resources, runtime manifests, font license and appropriately scoped tests/reports. Exclude generated import caches, temporary profiles, captures/videos, archived concepts and generation workspaces. Refresh package inventory after code/assets change. Old campaign files that remain in a development tree must not be described as the new single-ant campaign.
 
@@ -100,3 +103,11 @@ Generated using the built-in image tool: background prompt used the existing woo
 `assets/worlds/ice-valley.png` is a native 940×1672 RGB empty snow-ground layer. Its finite cobblestone route runs on the right toward an upper-left camp platform; the nest gateway, cannon, bead grid, ants and serpent remain independently composed nodes. `assets/worlds/winter-camp.png` is a 1373×981 RGBA crop from a 1536×1024 generated source, measured alpha >1 bounds `[93,23,1466,1004]`. Retained alpha is unchanged. The contact anchor `[687,875]`, physical width 1373 and displayed width 170 are recorded in `assets/worlds/manifest.json` and `data/scenes/ice-camp.json`.
 
 Both were generated for this project using the built-in image service: the ground prompt specified existing gentle overhead/upper-left-light style, a distinct snow/pine/crystal border, empty central play area and a finite right-to-top road; the camp prompt specified one independent warm tent/lantern/bedroll grouping with real transparency and no people/text/UI. Source filenames are provenance identifiers, not runtime dependencies. No external artwork or legal-clearance guarantee is introduced. The two production files are sufficient current source resources; the rejected/temporary guide and raw generation workspace are not packaged.
+
+## Ice-crest serpent appearance
+
+Level 7 selects `serpent.art_profile="ice_crest"`; omission retains the default atlas and tint behavior used by levels 1–6. This is a separate white-horned broad-head/faceted-body silhouette, not a recolored default head. Preparation and play consume the same manifest. Snow/ice art introduces no freezing, slowing, extra health or alternate damage rule.
+
+The original 1122×1402 RGBA source is preserved. Seventeen components were measured at alpha >8, with a three-pixel contour margin and nearest-component fringe retained within two pixels; they were packed into 1280×1600 without resizing. Source rectangles are not equal atlas cells. Use the manifest's per-part regions and chain anchors, head physical width 292, tail physical width 240 and body physical width 226. Heads display at 84 logical pixels; body diameter retains the route-derived 35–62 range and tail width is body diameter ×0.84. Select the eight real yaw poses under fixed lighting, never rotate the whole head/tail card.
+
+The neutral body uses full-region luminance tint so RGBY gameplay colors remain distinct. Intact/cracked armor still uses `serpent-armor-atlas.png`; ordinary HP1 and armored HP2 semantics are unchanged. The 50 checks in `reports/assets/ice-serpent-test.json` cover profile selection, regions/anchors, yaw poses, default tint preservation and unchanged rule snapshots, not assembled GL appearance or final visual approval. Generated provenance and file hashes are recorded in `reports/assets/ice-serpent-assets.json`; they are not a legal-clearance warranty.

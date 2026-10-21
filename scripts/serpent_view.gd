@@ -3,6 +3,7 @@ extends Control
 const Route = preload("res://scripts/serpent_path.gd")
 const Shadow = preload("res://scripts/contact_shadow.gd")
 const PALETTE={"red":Color("ed4137"),"blue":Color("329cfa"),"yellow":Color("fbc52c"),"green":Color("68d849"),"purple":Color("a25fe6"),"white":Color("f7efdb")}
+const ART_PROFILES={"default":"res://assets/serpent/serpent-atlas.json","ice_crest":"res://assets/serpent/ice-serpent-atlas.json"}
 const DIRECTIONS=["E","SE","S","SW","W","NW","N","NE"]
 var route:RefCounted=Route.new()
 var atlas:Texture2D
@@ -29,8 +30,11 @@ var current_head_direction:=""
 var ready_art:=false
 func _init()->void:
 	name="Serpent";mouse_filter=Control.MOUSE_FILTER_IGNORE
+static func manifest_path_for(config:Dictionary)->String:
+	return str(ART_PROFILES.get(str(config.get("art_profile","default")),""))
 func configure(config:Dictionary,knots:Array)->bool:
-	var metadata_path:="res://assets/serpent/serpent-atlas.json"
+	var metadata_path:=manifest_path_for(config)
+	if metadata_path.is_empty():return false
 	if not FileAccess.file_exists(metadata_path):return false
 	var parsed:Variant=JSON.parse_string(FileAccess.get_file_as_string(metadata_path))
 	if not parsed is Dictionary:return false
@@ -84,7 +88,7 @@ func _make_body(segment:Dictionary,rank:int,s:float)->void:
 	var shadow:=Shadow.new();shadow.name="GroundContact";shadow.radius=Vector2(body_diameter*.46,body_diameter*.18);node.add_child(shadow)
 	var art:=TextureRect.new();art.name="ScaleArt";art.mouse_filter=Control.MOUSE_FILTER_IGNORE;art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;node.add_child(art)
 	_apply_region(art,manifest.body,body_diameter)
-	var material:=ShaderMaterial.new();material.shader=preload("res://scripts/combat_tint.gdshader");material.set_shader_parameter("tint",PALETTE[segment.color]);art.material=material
+	var material:=ShaderMaterial.new();material.shader=preload("res://scripts/combat_tint.gdshader");material.set_shader_parameter("tint",PALETTE[segment.color]);material.set_shader_parameter("tint_all",bool(manifest.get("body_tint_all",false)));art.material=material
 	bodies[str(segment.id)]={"node":node,"art":art,"rank":rank,"canonical":s,"display_s":s,"offset":0.0,"start":clock,"hit_start":-9.0}
 func _apply_region(art:TextureRect,info:Dictionary,diameter:float)->void:
 	var a:Array=info.region;var key:=str(a)

@@ -3,6 +3,7 @@ render_mode unshaded;
 uniform vec4 tint : source_color = vec4(1.0);
 uniform vec4 tint_region = vec4(0.0,0.0,1.0,1.0);
 uniform bool is_dragon = false;
+uniform bool tint_all = false;
 uniform float collapse = 0.0;
 uniform vec4 dragon_region = vec4(0.0143229167,0.1416015625,0.46484375,0.46875);
 varying vec4 item_modulate;
@@ -26,5 +27,10 @@ void fragment(){
 	float mask=smoothstep(0.08,0.3,c.r-max(c.g*1.2,c.b*1.2))*within;
 	float shade=max(c.r,max(c.g,c.b));
 	vec3 painted=mix(tint.rgb*shade,vec3(shade),min(c.g,c.b)*0.35);
+	if(tint_all){
+		float neutral=dot(c.rgb,vec3(0.299,0.587,0.114));
+		painted=mix(tint.rgb*(0.40+0.60*neutral),vec3(neutral),smoothstep(0.80,0.99,neutral)*0.22);
+		mask=within;
+	}
 	COLOR=vec4(mix(c.rgb,painted,mask),c.a)*item_modulate;
 }

@@ -1,0 +1,8 @@
+{
+	"checks": 43,
+	"failures": [],
+	"level_sha256": "5f355ba14e8af36a0b9ed77f46313d703a82ab43630549dc0235e45cc65d1c60",
+	"minimum_enemy_centerline_separation": 75.0,
+	"path_samples": 3417,
+	"scope": "one integrated ice supply-ridge ground/preview/appearance contract, no prior campaign rerun"
+}

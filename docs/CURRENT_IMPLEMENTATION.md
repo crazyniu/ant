@@ -1,6 +1,6 @@
 # Current implementation contract
 
-Version: 2026-10-21 ruins-fork continuation; rules API 3.1.0, level schema 3, economy schema/version 1. This document describes current source behavior and separates it from the broader product target. The earlier automatic-team contract and its 30-level reports are historical. The published API 3.0.0 core is a prior, smaller snapshot, not evidence that the new UI has passed review.
+Version: 2026-10-21 Ice Supply Ridge continuation; rules API 3.1.0, level schema 3, economy schema/version 1. This document describes current source behavior and separates it from the broader product target. The earlier automatic-team contract and its 30-level reports are historical. The published API 3.0.0 core is a prior, smaller snapshot, not evidence that the new UI has passed review.
 
 ## Authority and data flow
 
@@ -14,7 +14,7 @@ Version: 2026-10-21 ruins-fork continuation; rules API 3.1.0, level schema 3, ec
 | Points, purchase ledger, equipment, frozen run loadout, navigation state | `scripts/ant_progression.gd` |
 | Ordered catalog and level/settings completion save | `scripts/level_catalog.gd`, `scripts/save_service.gd` |
 | Economy parameters | `data/ant-progression.json` |
-| Available authored levels | `data/serpent-levels/serpent-01.json` through `serpent-06.json` |
+| Available authored levels | `data/serpent-levels/serpent-01.json` through `serpent-07.json` |
 
 The gameplay adapter, not animation callbacks, applies the authoritative result. Views consume detached state and emit requests. They must never fabricate balances, damage, unlocks, item ownership, completed levels or ad receipts.
 
@@ -32,13 +32,13 @@ There are no current automatic 20/30-ant teams, queue quotas, five work slots, f
 ## Current entry and meta screens
 
 - Startup performs real resource loading before Home. Home's primary action opens preparation for the saved entrance; its map action opens the full-screen adventure map.
-- Map nodes come from the actual loaded catalog and completion/unlock state. They open full preparation, not a modal level grid. Six current level definitions are available, including ruins/parked-cart and ice/winter-camp slices.
+- Map nodes come from the actual loaded catalog and completion/unlock state. They open full preparation, not a modal level grid. Seven current level definitions are available, including ruins/parked-cart and ice/winter-camp slices.
 - Preparation derives segment counts, total HP, supply and fixed-goal preview from the selected configuration. Owned worker/Swift selection is committed before launching the actual game scene.
 - The independent shop is reachable from map and results. Balance, item prices, owned/equipped state and next shared level reflect service state. Product views use separate panels, title sprites, ant actors, ornaments and real text.
 - Navigation persists region, scroll and selected level. Returning from the shop/preparation uses that state, rather than inventing a new selection. Persistence is not evidence that all target devices have passed scrollbar/mouse testing.
 - Result presentation follows committed victory and the real saved reward receipt. Save failure leaves a retryable pending result and must not claim an uncommitted unlock or reward.
 
-Levels 1–3 guard the princess in woodland. Level 4 guards a stationary supply cart in a new ruins ground with a left-side finite enemy route. `scene_layout.gd` shares background, board envelope, nest gateway, cannon, stock and fixed target anchors across preparation and gameplay. Level 5 guards a stationary winter camp in a snow valley with a right-to-upper-left finite road. These are bounded additional scenes, not delivery of every proposed traveler/camp/region.
+Levels 1–3 guard the princess in woodland. Level 4 guards a stationary supply cart in a new ruins ground with a left-side finite enemy route. `scene_layout.gd` shares background, board envelope, nest gateway, cannon, stock and fixed target anchors across preparation and gameplay. Level 5 guards a stationary winter camp in a snow valley with a right-to-upper-left finite road. Level 6 adds a ruins supply fork; level 7 adds an Ice Supply Ridge puzzle in the existing snow scene. These are bounded additional scenes, not delivery of every proposed traveler/camp/region.
 
 ## Economy and frozen loadouts
 
@@ -68,9 +68,9 @@ Advertising is unavailable: status/request/claim APIs reject with `ad_sdk_unavai
 
 The broader design remains in `reports/design/current-product-spec.md` and `reports/design/click-ant-current.md`. It includes work not yet implemented. Current source and bounded reports, not a concept image or old checklist, establish implementation status.
 
-Only `serpent-01` through `serpent-06` are current. The reserved `--campaign-drafts` path points to a future serpent catalog with no authored files. Old `data/campaign-drafts/`, old validation levels, the legacy editor/generation chain and old campaign tests must not be substituted or advertised as available new-mode content.
+Only `serpent-01` through `serpent-07` are current. The reserved `--campaign-drafts` path points to a future serpent catalog with no authored files. Old `data/campaign-drafts/`, old validation levels, the legacy editor/generation chain and old campaign tests must not be substituted or advertised as available new-mode content.
 
-Remaining scope: the rest of the new 30 independent levels and a fuller authoring workflow beyond the explicit single-level CLI; further independently authored themed scenes and fixed targets; optional junction combos and hidden supplies; real rewarded ads; human difficulty/economy and natural-input testing; final visual, audio and target-device acceptance. The final five-page GL capture at 1440 × 2560 includes the map/preparation/shop fixes and has been visually inspected; user approval and device/native-input acceptance remain separate. Exact retained test results and their limits are in `PUBLIC_VERIFICATION.md`.
+Remaining scope: the rest of the new 30 independent levels and a fuller authoring workflow beyond the explicit single-level CLI; further independently authored themed scenes and fixed targets; optional junction combos and hidden supplies; real rewarded ads; human difficulty/economy and natural-input testing; final visual, audio and target-device acceptance. The earlier five-page GL capture at 1440 × 2560 includes the map/preparation/shop fixes and has been visually inspected; it does not establish level-7 runtime or ice-crest visual acceptance. User approval and device/native-input acceptance remain separate. Exact retained test results and their limits are in `PUBLIC_VERIFICATION.md`.
 
 ## Ruins scene contract
 
@@ -92,4 +92,16 @@ The candidate has 24 beads (six per RGBY), eight normal plus four armored segmen
 
 Level 6 uses `data/scenes/ruins-fork.json` and the existing ruins/cart art; no new bitmap is duplicated. Its entrance `[5,8]`, shifted nest/cannon, 18-bead three-color fork and ten-segment combination differ from level 4. Required damage is blue5/red4/green3, including two blue armor segments. Only four blue beads are exterior, so base supply requires opening at least one core bead. A near red gate opens core45 after 1.2 seconds; green opens core46 after 1.6 seconds; an exterior blue pickup opens neither but its first shot cracks armor. Actual pickup, not reservation, owns the opening.
 
-Twelve authored inputs at 1.4-second intervals yield a 20.85-second final hit before the 60-second goal. Routes are `[3,3,4,4,4,4,4,4,4,5,5,5]`; this authored schedule has no interval when all color entries lack a legal opportunity. Six beads remain. This does not prove the choices equally attractive to humans or the candidate 22/35-second bonus thresholds balanced. Current head and body assets are reused; new enemy-species silhouette work remains separate scope.
+Twelve authored inputs at 1.4-second intervals yield a 20.85-second final hit before the 60-second goal. Routes are `[3,3,4,4,4,4,4,4,4,5,5,5]`; this authored schedule has no interval when all color entries lack a legal opportunity. Six beads remain. This does not prove the choices equally attractive to humans or the candidate 22/35-second bonus thresholds balanced. Level 6 retains the default head/body assets; level 7 selects the separate ice-crest appearance described below.
+
+## Ice Supply Ridge contract
+
+Level 7, “Break the Supply Ridge,” reuses `data/scenes/ice-camp.json`, the fixed winter camp and entrance `[6,8]`. Its 21-bead budget is red4/blue6/green8/yellow3; required damage is red3/blue6/green5/yellow3. Nine normal and four armored segments total 17 HP. Blue and yellow have no surplus: both inner blue cells and all yellow cells must be collected. Victory leaves one red and three green beads, not a cleared board.
+
+All yellow cells begin blocked. Actual red `[6,5]` pickup at 1.20s opens yellow `[6,4]` and `[7,5]`; picking the central yellow at 3.00s opens blue `[6,3]` and `[5,4]`. Reservation opens nothing and pickup does not credit inventory. Green `[7,6]` instead opens the yellow wing and shortens an exterior blue route; exterior blue supplies armor ammunition without opening yellow. These are ordinary occupancy/BFS consequences, not a required scripted red-only gate or an ice mechanic.
+
+The red-first and green-first authored Worker Lv.1 solutions each use 17 independent inputs at 1.40-second gaps and finish on actual damage at 27.85 simulation seconds, before the 62-second finite goal. Sixteen transport routes are 3–5 cells and one is six; peak capacity is four. The longest all-color no-dispatch window is 0.80s. Reward thresholds 30/44s are provisional, not human difficulty/economy approval.
+
+`serpent.art_profile="ice_crest"` selects `assets/serpent/ice-serpent-atlas.json` in both preparation and gameplay. The white-horned broad head, faceted body and eight-yaw head/tail art are presentation only. Measured regions, physical widths and chain anchors own placement; existing intact/cracked armor and normal HP1/armored HP2 behavior remain. Unknown profile IDs or missing resources fail explicitly. Levels 1–6 retain their data and default art/tint behavior.
+
+Bounded evidence: `reports/rules/ice-supply-rules.json` records 668 passing assertions, `reports/assets/ice-serpent-test.json` 50 appearance checks, and `reports/ui/ice-supply-scene.json` 43 scene checks. Their scopes are distinct, not a full campaign pass. Integrated GL/runtime capture, final visual acceptance, native input, sound and human pacing remain separate and are not claimed complete here.

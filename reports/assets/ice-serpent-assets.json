@@ -1,0 +1,481 @@
+{
+  "asset": "ice_crest serpent appearance",
+  "source": "AI generated with built-in image generation from project-owned red-serpent style reference; not competitor art",
+  "generation_date": "2026-10-21",
+  "generation_source_filename": "exec-953ca34f-01d2-4997-b545-870a63a38cb2.png",
+  "license_boundary": "Generated provenance, not legal clearance; no project-wide open-source license selected.",
+  "native_source_size": [
+    1122,
+    1402
+  ],
+  "source_path": "assets/serpent/ice-serpent-source.png",
+  "source_sha256": "0c924d7bf903b2b3ada0a87fbc533a2457e23d125879ff28eecc297bea1a5c39",
+  "packed_path": "assets/serpent/ice-serpent-atlas.png",
+  "packed_sha256": "6fce37ff2481c0aefd6101390240d0297cd382b3d2ad5b989802bb7ba6a3d20c",
+  "packed_size": [
+    1280,
+    1600
+  ],
+  "parts": [
+    {
+      "part": "head_E",
+      "source_bbox_alpha_gt8": [
+        25,
+        58,
+        318,
+        304
+      ],
+      "source_crop": [
+        22,
+        55,
+        321,
+        307
+      ],
+      "contour_pixels": 46753,
+      "region": [
+        8,
+        8,
+        299,
+        252
+      ],
+      "anchor": [
+        53,
+        173
+      ],
+      "physical_width": 292
+    },
+    {
+      "part": "head_SE",
+      "source_bbox_alpha_gt8": [
+        318,
+        53,
+        560,
+        322
+      ],
+      "source_crop": [
+        315,
+        50,
+        563,
+        325
+      ],
+      "contour_pixels": 44292,
+      "region": [
+        328,
+        8,
+        248,
+        275
+      ],
+      "anchor": [
+        63,
+        137
+      ],
+      "physical_width": 292
+    },
+    {
+      "part": "head_S",
+      "source_bbox_alpha_gt8": [
+        593,
+        62,
+        825,
+        327
+      ],
+      "source_crop": [
+        590,
+        59,
+        828,
+        330
+      ],
+      "contour_pixels": 43545,
+      "region": [
+        648,
+        8,
+        238,
+        271
+      ],
+      "anchor": [
+        119,
+        83
+      ],
+      "physical_width": 292
+    },
+    {
+      "part": "head_SW",
+      "source_bbox_alpha_gt8": [
+        861,
+        55,
+        1096,
+        323
+      ],
+      "source_crop": [
+        858,
+        52,
+        1099,
+        326
+      ],
+      "contour_pixels": 44636,
+      "region": [
+        968,
+        8,
+        241,
+        274
+      ],
+      "anchor": [
+        180,
+        137
+      ],
+      "physical_width": 292
+    },
+    {
+      "part": "head_W",
+      "source_bbox_alpha_gt8": [
+        17,
+        367,
+        307,
+        599
+      ],
+      "source_crop": [
+        14,
+        364,
+        310,
+        602
+      ],
+      "contour_pixels": 46141,
+      "region": [
+        8,
+        328,
+        296,
+        238
+      ],
+      "anchor": [
+        241,
+        170
+      ],
+      "physical_width": 292
+    },
+    {
+      "part": "head_NW",
+      "source_bbox_alpha_gt8": [
+        340,
+        374,
+        580,
+        609
+      ],
+      "source_crop": [
+        337,
+        371,
+        583,
+        612
+      ],
+      "contour_pixels": 39323,
+      "region": [
+        328,
+        328,
+        246,
+        241
+      ],
+      "anchor": [
+        183,
+        198
+      ],
+      "physical_width": 292
+    },
+    {
+      "part": "head_N",
+      "source_bbox_alpha_gt8": [
+        601,
+        361,
+        819,
+        609
+      ],
+      "source_crop": [
+        598,
+        358,
+        822,
+        612
+      ],
+      "contour_pixels": 38335,
+      "region": [
+        648,
+        328,
+        224,
+        254
+      ],
+      "anchor": [
+        112,
+        218
+      ],
+      "physical_width": 292
+    },
+    {
+      "part": "head_NE",
+      "source_bbox_alpha_gt8": [
+        849,
+        373,
+        1097,
+        609
+      ],
+      "source_crop": [
+        846,
+        370,
+        1100,
+        612
+      ],
+      "contour_pixels": 39653,
+      "region": [
+        968,
+        328,
+        254,
+        242
+      ],
+      "anchor": [
+        61,
+        198
+      ],
+      "physical_width": 292
+    },
+    {
+      "part": "tail_W",
+      "source_bbox_alpha_gt8": [
+        38,
+        695,
+        294,
+        817
+      ],
+      "source_crop": [
+        35,
+        692,
+        297,
+        820
+      ],
+      "contour_pixels": 23452,
+      "region": [
+        8,
+        648,
+        262,
+        128
+      ],
+      "anchor": [
+        49,
+        64
+      ],
+      "physical_width": 240
+    },
+    {
+      "part": "tail_NW",
+      "source_bbox_alpha_gt8": [
+        336,
+        657,
+        551,
+        837
+      ],
+      "source_crop": [
+        333,
+        654,
+        554,
+        840
+      ],
+      "contour_pixels": 21545,
+      "region": [
+        328,
+        648,
+        221,
+        186
+      ],
+      "anchor": [
+        52,
+        44
+      ],
+      "physical_width": 240
+    },
+    {
+      "part": "tail_N",
+      "source_bbox_alpha_gt8": [
+        650,
+        646,
+        768,
+        849
+      ],
+      "source_crop": [
+        647,
+        643,
+        771,
+        852
+      ],
+      "contour_pixels": 17402,
+      "region": [
+        648,
+        648,
+        124,
+        209
+      ],
+      "anchor": [
+        62,
+        30
+      ],
+      "physical_width": 240
+    },
+    {
+      "part": "tail_NE",
+      "source_bbox_alpha_gt8": [
+        871,
+        657,
+        1084,
+        839
+      ],
+      "source_crop": [
+        868,
+        654,
+        1087,
+        842
+      ],
+      "contour_pixels": 21455,
+      "region": [
+        968,
+        648,
+        219,
+        188
+      ],
+      "anchor": [
+        167,
+        43
+      ],
+      "physical_width": 240
+    },
+    {
+      "part": "tail_E",
+      "source_bbox_alpha_gt8": [
+        37,
+        930,
+        291,
+        1049
+      ],
+      "source_crop": [
+        34,
+        927,
+        294,
+        1052
+      ],
+      "contour_pixels": 23285,
+      "region": [
+        8,
+        968,
+        260,
+        125
+      ],
+      "anchor": [
+        220,
+        63
+      ],
+      "physical_width": 240
+    },
+    {
+      "part": "tail_SE",
+      "source_bbox_alpha_gt8": [
+        357,
+        892,
+        570,
+        1087
+      ],
+      "source_crop": [
+        354,
+        889,
+        573,
+        1090
+      ],
+      "contour_pixels": 22003,
+      "region": [
+        328,
+        968,
+        219,
+        201
+      ],
+      "anchor": [
+        171,
+        153
+      ],
+      "physical_width": 240
+    },
+    {
+      "part": "tail_S",
+      "source_bbox_alpha_gt8": [
+        648,
+        884,
+        773,
+        1091
+      ],
+      "source_crop": [
+        645,
+        881,
+        776,
+        1094
+      ],
+      "contour_pixels": 19242,
+      "region": [
+        648,
+        968,
+        131,
+        213
+      ],
+      "anchor": [
+        65,
+        178
+      ],
+      "physical_width": 240
+    },
+    {
+      "part": "tail_SW",
+      "source_bbox_alpha_gt8": [
+        875,
+        891,
+        1080,
+        1086
+      ],
+      "source_crop": [
+        872,
+        888,
+        1083,
+        1089
+      ],
+      "contour_pixels": 20835,
+      "region": [
+        968,
+        968,
+        211,
+        201
+      ],
+      "anchor": [
+        46,
+        158
+      ],
+      "physical_width": 240
+    },
+    {
+      "part": "body_body",
+      "source_bbox_alpha_gt8": [
+        41,
+        1112,
+        274,
+        1359
+      ],
+      "source_crop": [
+        38,
+        1109,
+        277,
+        1362
+      ],
+      "contour_pixels": 43048,
+      "region": [
+        8,
+        1288,
+        239,
+        253
+      ],
+      "anchor": [
+        119,
+        135
+      ],
+      "physical_width": 226
+    }
+  ],
+  "cutting": "Measured connected components alpha>8; retain original fringe within 2px nearest component, preserve original RGBA, pack without resizing. Noise-only background removed as part of requested transparent slicing. All independent objects and runtime anchors remain separate."
+}

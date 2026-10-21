@@ -1,0 +1,286 @@
+{
+  "version": 1,
+  "path": "res://assets/serpent/ice-serpent-atlas.png",
+  "texture_size": [
+    1280,
+    1600
+  ],
+  "heads": {
+    "E": {
+      "region": [
+        8,
+        8,
+        299,
+        252
+      ],
+      "anchor": [
+        53,
+        173
+      ],
+      "physical_width": 292
+    },
+    "SE": {
+      "region": [
+        328,
+        8,
+        248,
+        275
+      ],
+      "anchor": [
+        63,
+        137
+      ],
+      "physical_width": 292
+    },
+    "S": {
+      "region": [
+        648,
+        8,
+        238,
+        271
+      ],
+      "anchor": [
+        119,
+        83
+      ],
+      "physical_width": 292
+    },
+    "SW": {
+      "region": [
+        968,
+        8,
+        241,
+        274
+      ],
+      "anchor": [
+        180,
+        137
+      ],
+      "physical_width": 292
+    },
+    "W": {
+      "region": [
+        8,
+        328,
+        296,
+        238
+      ],
+      "anchor": [
+        241,
+        170
+      ],
+      "physical_width": 292
+    },
+    "NW": {
+      "region": [
+        328,
+        328,
+        246,
+        241
+      ],
+      "anchor": [
+        183,
+        198
+      ],
+      "physical_width": 292
+    },
+    "N": {
+      "region": [
+        648,
+        328,
+        224,
+        254
+      ],
+      "anchor": [
+        112,
+        218
+      ],
+      "physical_width": 292
+    },
+    "NE": {
+      "region": [
+        968,
+        328,
+        254,
+        242
+      ],
+      "anchor": [
+        61,
+        198
+      ],
+      "physical_width": 292
+    }
+  },
+  "tails": {
+    "W": {
+      "region": [
+        8,
+        648,
+        262,
+        128
+      ],
+      "anchor": [
+        49,
+        64
+      ],
+      "physical_width": 240
+    },
+    "NW": {
+      "region": [
+        328,
+        648,
+        221,
+        186
+      ],
+      "anchor": [
+        52,
+        44
+      ],
+      "physical_width": 240
+    },
+    "N": {
+      "region": [
+        648,
+        648,
+        124,
+        209
+      ],
+      "anchor": [
+        62,
+        30
+      ],
+      "physical_width": 240
+    },
+    "NE": {
+      "region": [
+        968,
+        648,
+        219,
+        188
+      ],
+      "anchor": [
+        167,
+        43
+      ],
+      "physical_width": 240
+    },
+    "E": {
+      "region": [
+        8,
+        968,
+        260,
+        125
+      ],
+      "anchor": [
+        220,
+        63
+      ],
+      "physical_width": 240
+    },
+    "SE": {
+      "region": [
+        328,
+        968,
+        219,
+        201
+      ],
+      "anchor": [
+        171,
+        153
+      ],
+      "physical_width": 240
+    },
+    "S": {
+      "region": [
+        648,
+        968,
+        131,
+        213
+      ],
+      "anchor": [
+        65,
+        178
+      ],
+      "physical_width": 240
+    },
+    "SW": {
+      "region": [
+        968,
+        968,
+        211,
+        201
+      ],
+      "anchor": [
+        46,
+        158
+      ],
+      "physical_width": 240
+    }
+  },
+  "directions": [
+    "E",
+    "SE",
+    "S",
+    "SW",
+    "W",
+    "NW",
+    "N",
+    "NE"
+  ],
+  "body_tint_all": true,
+  "skin_id": "ice_crest",
+  "armor": {
+    "intact": {
+      "path": "res://assets/serpent/serpent-armor-atlas.png",
+      "region": [
+        0,
+        0,
+        768,
+        748
+      ],
+      "anchor": [
+        384,
+        374
+      ],
+      "physical_width": 734
+    },
+    "cracked": {
+      "path": "res://assets/serpent/serpent-armor-atlas.png",
+      "region": [
+        768,
+        0,
+        768,
+        748
+      ],
+      "anchor": [
+        384,
+        374
+      ],
+      "physical_width": 734
+    }
+  },
+  "body": {
+    "region": [
+      8,
+      1288,
+      239,
+      253
+    ],
+    "anchor": [
+      119,
+      135
+    ],
+    "physical_width": 226
+  },
+  "usage": {
+    "render": "Real eight yaw poses, fixed light; no whole-head/tail rotation. Heads attach at rear neck, tail key is movement direction with tip opposite. Body uses neutral full-region luminance tint to keep every gameplay color clear.",
+    "alpha": "17 measured alpha>8 components, nearest-component fringe retained within 2 pixels, 3px contour margin; source atlas preserved. No uniform-grid crop assumptions.",
+    "target_logical_size": {
+      "head_width": 84,
+      "body_diameter": "same route-derived 35..62 as current serpent",
+      "tail_width": "body_diameter*0.84"
+    },
+    "skin_only": "No cold/sliding/slowdown/extra health; ordinary HP1/visible armored HP2 unchanged."
+  },
+  "provenance_report": "res://reports/assets/ice-serpent-assets.json"
+}

@@ -2,7 +2,7 @@
 
 A portrait Godot **4.6.3** game: click a color to send one ant for one bead, deliver it to fire one matching projectile, and destroy a segmented serpent before its head reaches the fixed goal. Runtime UI is English and icon-first. Normal play is offline and needs no account, backend, external plugin or secret.
 
-This development continuation includes adventure/preparation/shop progression plus independently authored ruins and Ice Valley slices, with a new ruins supply-fork variant. Its immediate published baseline is `baba1e9f7bc45a112a47e1376db859978536c9fc`; it builds on the single-click core at [`125646450cd1bf5e90d6d7cbc833ca34ff47bd75`](https://github.com/crazyniu/ant/commit/125646450cd1bf5e90d6d7cbc833ca34ff47bd75). Rules API is now **3.1.0**, with level schema **3**. There are **six current validation levels**, not a playable or accepted new 30-level campaign. The [draft PR](https://github.com/crazyniu/ant/pull/1) is not a merge, deployment or final acceptance.
+This development continuation includes adventure/preparation/shop progression plus independently authored ruins and Ice Valley slices, with ruins supply-fork and Ice Supply Ridge variants. Its immediate published baseline is `baba1e9f7bc45a112a47e1376db859978536c9fc`; it builds on the single-click core at [`125646450cd1bf5e90d6d7cbc833ca34ff47bd75`](https://github.com/crazyniu/ant/commit/125646450cd1bf5e90d6d7cbc833ca34ff47bd75). Rules API is now **3.1.0**, with level schema **3**. There are **seven current validation levels**, not a playable or accepted new 30-level campaign. The [draft PR](https://github.com/crazyniu/ant/pull/1) is not a merge, deployment or final acceptance.
 
 ## Run
 
@@ -28,11 +28,11 @@ The viewport is **1440 × 2560**, with a uniformly scaled **940 × 1672** logica
 - Each bead funds one matching projectile for one damage. Normal segments have **HP1**; armored segments have **HP2**, with a cracked state after the first hit. Stable segment IDs prevent retargeting errors.
 - The serpent follows a **finite, non-looping route**. Removing a segment shortens the body without moving its head backward. The head has no extra hidden health bar.
 - Actual damage removing the final live segment wins. Board clear, pickup, delivery or firing does not win; leftover beads and inventory are allowed. Earlier head contact loses. At exactly the same simulation microsecond, due damage resolves before contact.
-- The base worker can solve all six current authored levels without upgrades, advertising, combos or mechanisms. No automatic 20/30-ant teams, five work slots, team quotas or board-equals-armor rule remain in current play.
+- The base worker can solve all seven current authored levels without upgrades, advertising, combos or mechanisms. No automatic 20/30-ant teams, five work slots, team quotas or board-equals-armor rule remain in current play.
 
 ## Map, preparation, points and shop
 
-The full-screen map uses the real six-level catalog and saved completion/unlock states. Preparation shows the selected level's scene preview, segment/HP information, fixed target and owned ant types. Map region, scroll and selected level are persisted for return navigation. The fourth level adds a ruins ground and stationary supply-cart objective; level five adds a snow valley, fixed winter camp and independently authored two-gate opening; level six returns to ruins with a smaller three-color, blue-armor supply fork. Further themed regions and targets remain content work.
+The full-screen map uses the real seven-level catalog and saved completion/unlock states. Preparation shows the selected level's scene preview, segment/HP information, fixed target and owned ant types. Map region, scroll and selected level are persisted for return navigation. The fourth level adds a ruins ground and stationary supply-cart objective; level five adds a snow valley, fixed winter camp and independently authored two-gate opening; level six returns to ruins with a smaller three-color, blue-armor supply fork; level seven reuses the snow scene for a two-stage supply ridge and the independent ice-crest serpent appearance. Further themed regions and targets remain content work.
 
 - First clear: **100 + 0–50** time-bonus points. Replay clear: **20 + 0–10**. Failed or abandoned runs earn no new points and do not deduct existing points.
 - Reward time is effective simulation time from first legal dispatch to final damage, not recording length or wall-clock time. Each level supplies its own bonus thresholds.
@@ -55,7 +55,7 @@ Music and effects have independent controls; saved zero remains silent. Human li
 - `scripts/play.gd`, `rescue_rules.gd`: live scene adapter and authoritative microsecond rules.
 - `scripts/level_catalog.gd`, `save_service.gd`: current catalog identity, completion/settings saves.
 - `scripts/serpent_view.gd`, `serpent_path.gd`, `directional_carrier.gd`, `carrier_route.gd`: independent serpent and transport presentation.
-- `data/serpent-levels/`: only the six current authored validation levels.
+- `data/serpent-levels/`: only the seven current authored validation levels.
 
 Start with [current implementation](docs/CURRENT_IMPLEMENTATION.md), [UI components](docs/UI_COMPONENTS.md), [asset placement](ASSETS.md) and [verification boundaries](docs/PUBLIC_VERIFICATION.md). Older documents with a historical-version notice are reference material, not current acceptance criteria.
 
@@ -63,7 +63,9 @@ Start with [current implementation](docs/CURRENT_IMPLEMENTATION.md), [UI compone
 
 Retained reports record **18** headless production-flow checks, **133** three-level same-input growth checks and **1,062** local progression-service assertions without reported failures. The growth report measures earlier delivery and final hits for Swift Lv.4 while keeping enemy speed unchanged. These reports have different scopes and are not one whole-project pass. See [PUBLIC_VERIFICATION.md](docs/PUBLIC_VERIFICATION.md) for exact sources and timings.
 
-Actual **1440 × 2560 GL captures** now cover Home, adventure map, preparation, shop and settings using a fresh profile with zero points. The final capture includes the revised map path/node proportions, reduced preparation copy and disabled unaffordable shop actions; these pages were visually inspected. Do not label the meta UI user-approved or reuse the old core recording as evidence of these new screens. Headless signal-driven checks are not native mouse input or natural human play. The capture reports 14 loaded cues and BGM playing on a **Dummy** audio driver, not human sound-quality approval. No runtime script error was reported, but a one-resource-in-use diagnostic remains at shutdown.
+Earlier **1440 × 2560 GL captures** cover Home, adventure map, preparation, shop and settings using a fresh profile with zero points. The final capture includes the revised map path/node proportions, reduced preparation copy and disabled unaffordable shop actions; these pages were visually inspected. Do not label the meta UI user-approved or reuse the old core recording as evidence of these new screens. Headless signal-driven checks are not native mouse input or natural human play. The capture reports 14 loaded cues and BGM playing on a **Dummy** audio driver, not human sound-quality approval. No runtime script error was reported, but a one-resource-in-use diagnostic remains at shutdown.
+
+Level 7 has **668** bounded rule assertions, **50** appearance checks and **43** integrated scene checks with no reported failures. These do not establish completed level-7 GL/runtime or visual acceptance; earlier captures are not evidence for the new appearance. See the current contract and verification boundaries for scope.
 
 Still pending: the remaining new 30-level content and a fuller authoring workflow beyond the explicit single-level CLI; further themed scenes and fixed defense targets; optional junction combos and hidden supplies; real ad SDK; human difficulty/economy testing, final visual approval, hardware audio and device acceptance. No automatic merge or deployment is implied.
 
@@ -86,3 +88,9 @@ Current catalog also includes `serpent-04`: an independently generated ruins cou
 ## Ruins Supply Fork
 
 `serpent-06` reuses the current ruins region's ground/cart resources, with a new central transport approach and a distinct 18-bead fork layout. Ten segments need 12 damage: blue 5 (two HP2 armored segments), red 4 and green 3. The four exterior blue beads are insufficient by themselves: at least one enclosed core bead must be opened and carried. Red opens the nearer core entrance, green the farther one, while exterior blue starts cracking armor without opening either. The authored twelve-click Worker Lv.1 solution wins at 20.85 simulation seconds, leaving six beads. This is a new level configuration, not a newly illustrated region, new enemy species, or human difficulty approval.
+
+## Ice Supply Ridge
+
+`serpent-07`, “Break the Supply Ridge,” reuses the level-5 snow ground, winter camp, finite road and entrance `[6,8]`. Its 21 beads (R4/B6/G8/Y3) fund 17 damage (R3/B6/G5/Y3) across nine normal and four armored segments. Actual red pickup opens a yellow bridge; that yellow pickup exposes two inner blue cells. A green-first route opens a separate yellow wing. These are occupancy-based choices, not scripted gates or new ice rules.
+
+The authored 17-input Worker Lv.1 solution finishes on actual damage at 27.85 simulation seconds before the 62-second threat, leaving four beads. `serpent.art_profile="ice_crest"` selects a separate white-horned broad head, faceted body and eight-yaw head/tail atlas without changing HP, armor or timing. Existing levels 1–6 retain their data and default appearance. See [scene layout](docs/SCENE_LAYOUTS.md) and [art usage](ASSETS.md); human balance, final visual and target-device acceptance remain pending.
