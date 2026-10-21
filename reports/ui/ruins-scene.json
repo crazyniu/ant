@@ -1,0 +1,7 @@
+{
+	"carrier_path_samples": 3216,
+	"checks": 83,
+	"failures": [],
+	"minimum_enemy_centerline_separation": 70.0000076293945,
+	"scope": "One new ruins level scene/ground/preview-source contract and production victory; automated, not human review."
+}

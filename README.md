@@ -2,7 +2,7 @@
 
 A portrait Godot **4.6.3** game: click a color to send one ant for one bead, deliver it to fire one matching projectile, and destroy a segmented serpent before its head reaches the fixed goal. Runtime UI is English and icon-first. Normal play is offline and needs no account, backend, external plugin or secret.
 
-This development continuation adds the adventure map, preparation screen and local points/shop progression to the published single-click core at [`125646450cd1bf5e90d6d7cbc833ca34ff47bd75`](https://github.com/crazyniu/ant/commit/125646450cd1bf5e90d6d7cbc833ca34ff47bd75). Rules API is now **3.1.0**, with level schema **3**. There are **three current validation levels**, not a playable or accepted new 30-level campaign. The [draft PR](https://github.com/crazyniu/ant/pull/1) is not a merge, deployment or final acceptance.
+This development continuation adds the adventure map, preparation screen and local points/shop progression to the published single-click core at [`125646450cd1bf5e90d6d7cbc833ca34ff47bd75`](https://github.com/crazyniu/ant/commit/125646450cd1bf5e90d6d7cbc833ca34ff47bd75). Rules API is now **3.1.0**, with level schema **3**. There are **four current validation levels**, not a playable or accepted new 30-level campaign. The [draft PR](https://github.com/crazyniu/ant/pull/1) is not a merge, deployment or final acceptance.
 
 ## Run
 
@@ -28,11 +28,11 @@ The viewport is **1440 × 2560**, with a uniformly scaled **940 × 1672** logica
 - Each bead funds one matching projectile for one damage. Normal segments have **HP1**; armored segments have **HP2**, with a cracked state after the first hit. Stable segment IDs prevent retargeting errors.
 - The serpent follows a **finite, non-looping route**. Removing a segment shortens the body without moving its head backward. The head has no extra hidden health bar.
 - Actual damage removing the final live segment wins. Board clear, pickup, delivery or firing does not win; leftover beads and inventory are allowed. Earlier head contact loses. At exactly the same simulation microsecond, due damage resolves before contact.
-- The base worker can solve all three current authored levels without upgrades, advertising, combos or mechanisms. No automatic 20/30-ant teams, five work slots, team quotas or board-equals-armor rule remain in current play.
+- The base worker can solve all four current authored levels without upgrades, advertising, combos or mechanisms. No automatic 20/30-ant teams, five work slots, team quotas or board-equals-armor rule remain in current play.
 
 ## Map, preparation, points and shop
 
-The full-screen map uses the real three-level catalog and saved completion/unlock states. Preparation shows the selected level's scene preview, segment/HP information, fixed target and owned ant types. Map region, scroll and selected level are persisted for return navigation. Additional themed regions and varied target art are not yet delivered.
+The full-screen map uses the real four-level catalog and saved completion/unlock states. Preparation shows the selected level's scene preview, segment/HP information, fixed target and owned ant types. Map region, scroll and selected level are persisted for return navigation. The fourth level adds one ruins ground and stationary supply-cart objective; further themed regions and targets remain content work.
 
 - First clear: **100 + 0–50** time-bonus points. Replay clear: **20 + 0–10**. Failed or abandoned runs earn no new points and do not deduct existing points.
 - Reward time is effective simulation time from first legal dispatch to final damage, not recording length or wall-clock time. Each level supplies its own bonus thresholds.
@@ -55,7 +55,7 @@ Music and effects have independent controls; saved zero remains silent. Human li
 - `scripts/play.gd`, `rescue_rules.gd`: live scene adapter and authoritative microsecond rules.
 - `scripts/level_catalog.gd`, `save_service.gd`: current catalog identity, completion/settings saves.
 - `scripts/serpent_view.gd`, `serpent_path.gd`, `directional_carrier.gd`, `carrier_route.gd`: independent serpent and transport presentation.
-- `data/serpent-levels/`: only the three current authored validation levels.
+- `data/serpent-levels/`: only the four current authored validation levels.
 
 Start with [current implementation](docs/CURRENT_IMPLEMENTATION.md), [UI components](docs/UI_COMPONENTS.md), [asset placement](ASSETS.md) and [verification boundaries](docs/PUBLIC_VERIFICATION.md). Older documents with a historical-version notice are reference material, not current acceptance criteria.
 
@@ -65,8 +65,12 @@ Retained reports record **18** headless production-flow checks, **133** three-le
 
 Actual **1440 × 2560 GL captures** now cover Home, adventure map, preparation, shop and settings using a fresh profile with zero points. The final capture includes the revised map path/node proportions, reduced preparation copy and disabled unaffordable shop actions; these pages were visually inspected. Do not label the meta UI user-approved or reuse the old core recording as evidence of these new screens. Headless signal-driven checks are not native mouse input or natural human play. The capture reports 14 loaded cues and BGM playing on a **Dummy** audio driver, not human sound-quality approval. No runtime script error was reported, but a one-resource-in-use diagnostic remains at shutdown.
 
-Still pending: the new 30-level content and its authoring/validation chain; distinct themed scenes and fixed defense targets; optional junction combos and hidden supplies; real ad SDK; human difficulty/economy testing, final visual approval, hardware audio and device acceptance. No automatic merge or deployment is implied.
+Still pending: the new 30-level content and its authoring/validation chain; further themed scenes and fixed defense targets; optional junction combos and hidden supplies; real ad SDK; human difficulty/economy testing, final visual approval, hardware audio and device acceptance. No automatic merge or deployment is implied.
 
 ## Rights
 
 No project-wide open-source license has been selected. Public hosting alone is not a license grant. DejaVu retains [its bundled license](licenses/DejaVu.txt). Generated-image and original synthesized-audio provenance is recorded in [ASSETS.md](ASSETS.md) and the source manifests; it is not a legal-clearance warranty. No competitor artwork or borrowed recording is bundled. A shop design reference is not evidence of user approval.
+
+## Ruins continuation
+
+Current catalog also includes `serpent-04`: an independently generated ruins courtyard, fixed supply cart, left-side finite serpent road, asymmetric ant entrance and four-color enclosed-core puzzle. Scene geometry is shared by preparation and live play. Use the adventure map after completing level 3; `--auto-replay --level=4` is an isolated automated review, not an unlock bypass for normal profiles. See `docs/SCENE_LAYOUTS.md` for the minimal content contract and `tests/test_ruins_rules.gd` / `tests/test_ruins_scene.gd` for bounded checks.

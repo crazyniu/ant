@@ -63,3 +63,11 @@ The commands describe reproduction, not an assertion that they were all rerun af
 - A fresh whole-project regression for the final integrated source revision.
 
 No report in this batch authorizes or implies merge, release or deployment.
+
+## Ruins-scene continuation, baseline 8901b34
+
+This continuation adds exactly one region/guardian slice, not a new 30-level batch. `test_ruins_rules.gd` passes 707 bounded assertions: all 16 level-4 inputs accepted, 27.35-second final hit before the 66-second deadline, four-carrier maximum, eight remaining beads, per-color accounting, blocked yellow opening, and unchanged original three replay terminal times. `test_ruins_scene.gd` passes 83 checks with 3216 authored-route samples, a minimum 70 logical-pixel separation from the enemy route centerline, shared scene/guardian projection and bounded result/control sizes. The inspected ground hull is limited to this art/layout and solution, not every hypothetical future path.
+
+The final affected-scene headless run exits 0 with passing checks, but reports ObjectDB leaks and seven resources still in use at shutdown. The count varies between runs; assertions passing is not zero-error execution or proof that the earlier shutdown issue was fixed. Retained meta/growth/progression reports are not rerun as full suites by this scene batch.
+
+The final same-version real GL capture is 1440×2560 at 30 FPS, 33.53 seconds unsped and uncut: preparation → real Loading → level 4 → last hit → saved-cart result. Production timers reach victory at 27.35 simulation seconds. Developer image inspection confirms four-color preparation counts fit, the fourth color button is unobscured, the cart stays on its goal platform, and result guardian/coins remain inside their allotted bounds. Cloud X11 reported two `BadShmSeg` startup diagnostics; the capture continued to completion. This is recorded as an environment diagnostic, not hidden as a clean run. Human play, listening and device acceptance are not claimed.

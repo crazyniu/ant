@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "source": "Original generated game artwork, built-in image generation; no third-party copied art. No independent legal clearance warranty.",
+  "lighting": "upper left",
+  "projection": "gentle overhead near-orthographic, same ground convention as forest",
+  "assets": [
+    {
+      "path": "assets/worlds/ruins-courtyard.png",
+      "native_size": [
+        941,
+        1672
+      ],
+      "role": "static empty ruins ground; route/nest/cannon/guardian remain independent nodes",
+      "display_size": [
+        940,
+        1672
+      ],
+      "layout": "data/scenes/ruins-cart.json",
+      "generation_source": "exec-df183732-93ba-4f81-9273-a4096b8e1186.png"
+    },
+    {
+      "path": "assets/worlds/supply-cart.png",
+      "native_size": [
+        1247,
+        942
+      ],
+      "source_size": [
+        1433,
+        1098
+      ],
+      "alpha_crop_xyxy": [
+        155,
+        57,
+        1402,
+        999
+      ],
+      "anchor": [
+        525,
+        873
+      ],
+      "role": "fixed defended supply cart; wheel contact anchor",
+      "display_width": 168,
+      "generation_source": "exec-b9ba08b6-7bd4-43a4-b089-4a8e8017a188.png",
+      "alpha_crop_note": "Bounding box alpha >1 excludes isolated 1/255 generator noise; all retained pixels keep original alpha."
+    }
+  ]
+}

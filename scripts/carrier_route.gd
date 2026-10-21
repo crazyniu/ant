@@ -26,7 +26,7 @@ static func build(path: Array, plane: RefCounted, nest: Vector2 = NEST_POSITION)
 	# joining the exterior BFS origin, never a long diagonal into a side lane.
 	if _is_nest(cells[0], plane):
 		route.start_position = nest
-		var gateway:=Vector2(467.0,940.0)
+		var gateway:Vector2=plane.gateway
 		_append_screen_leg(route,nest,gateway,cells[0])
 		_append_screen_leg(route,gateway,_map(cells[0],plane,nest),cells[0])
 	route.end_position = _map(cells[-1], plane, nest)
@@ -123,7 +123,7 @@ static func _append_segment(route: Dictionary, a: Vector2, b: Vector2, c: Vector
 	route.ends.append(route.total_length)
 
 static func _is_nest(cell: Vector2, plane: RefCounted) -> bool:
-	return cell == Vector2(int(plane.columns) / 2, int(plane.rows))
+	return cell == plane.entrance_cell
 
 static func _map(cell: Vector2, plane: RefCounted, nest: Vector2) -> Vector2:
 	return plane.center(cell.x, cell.y)

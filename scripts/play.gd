@@ -1,6 +1,7 @@
 extends "res://scripts/main.gd"
 ## P3 adapter: rules own gameplay; verified local saves own progression.
 ## Presentation consumes events and never settles gameplay from animation.
+const SceneLayout = preload("res://scripts/scene_layout.gd")
 const Rules = preload("res://scripts/rescue_rules.gd")
 const FX = preload("res://scripts/rescue_fx.gd")
 const CarrierMotion = preload("res://scripts/directional_carrier.gd")
@@ -10,7 +11,7 @@ const Saves = preload("res://scripts/save_service.gd")
 const Catalog = preload("res://scripts/level_catalog.gd")
 const Progression = preload("res://scripts/ant_progression.gd")
 # Retained as the default catalog contract; opt-in entries use level_ids below.
-const LEVEL_IDS = ["serpent-01", "serpent-02", "serpent-03"]
+const LEVEL_IDS = ["serpent-01", "serpent-02", "serpent-03", "serpent-04"]
 var level_ids: Array[String] = Catalog.level_ids(false)
 var campaign_drafts := false
 var use_command_line_catalog := true
@@ -47,6 +48,7 @@ var level_index:=1
 var use_command_line_level:=true
 var rules:RefCounted
 var fx:Control
+var scene_layout:Dictionary={}
 var level_config:Dictionary
 var cells:Dictionary={}
 var color_buttons:Dictionary={}
@@ -126,6 +128,10 @@ func _ready()->void:
 	elif config_result.ok:
 		config_result=Catalog.check_identity(config_result.config,level_index,campaign_drafts)
 	level_config=config_result.get("config",{})
+	var scene_result:=SceneLayout.load_for(level_config)
+	if not scene_result.ok:
+		level_load_reason=str(scene_result.reason);build_load_failure_ui();return
+	scene_layout=scene_result.data
 	# Draft source identity remains unchanged, including its null production number.
 	# Rules use level_number 1..30 for the normal 3/6/9/16 unlock context.
 	if not campaign_drafts:level_config.level_number=level_index
@@ -147,12 +153,12 @@ func _ready()->void:
 	shield_shader=preload("res://scripts/combat_tint.gdshader")
 	super._ready()
 	fx=FX.new();fx.name="RescueFX";add_child(fx)
-	fx.set_layout({"board_origin":grid_origin+Vector2.ONE*cell_edge*.5,"cell_size":Vector2.ONE*cell_edge,"cannon_muzzle":Vector2(487,1060),"cannon_center":Vector2(471,1110),"rescue_center":Vector2(145,145),"nest":Vector2(467,1008),"segment_mode":true})
+	fx.set_layout({"board_origin":grid_origin+Vector2.ONE*cell_edge*.5,"cell_size":Vector2.ONE*cell_edge,"cannon_muzzle":SceneLayout.point(scene_layout.cannon.muzzle),"cannon_center":SceneLayout.point(scene_layout.cannon.center),"rescue_center":SceneLayout.point(scene_layout.defense_target.foot),"nest":SceneLayout.point(scene_layout.nest.position),"segment_mode":true})
 	var stock_points:Dictionary={}
 	var stock_colors:Array=[]
 	for color in COLORS:
 		if int(rules.initial_counts.get(color,0))>0:stock_colors.append(color)
-	for i in stock_colors.size():stock_points[stock_colors[i]]=Vector2(615+i*60,1125)
+	for i in stock_colors.size():stock_points[stock_colors[i]]=SceneLayout.point(scene_layout.stock.start)+Vector2(24+i*float(scene_layout.stock.spacing),0)
 	var cell_points:Dictionary={}
 	for cell in rules.board.values():cell_points["%d,%d"%[cell.x,cell.y]]=board_plane.center(cell.x,cell.y)
 	fx.set_layout({"stock_points":stock_points,"cell_points":cell_points})
@@ -161,10 +167,10 @@ func _ready()->void:
 	sync_view();consume_rule_events()
 	if not profile_state.ready:show_load_recovery()
 	elif not profile_state.tutorial_completed and not is_instance_valid(pause_overlay):show_tutorial()
-	elif (cold_entry or from_startup) and loaded.reason=="loaded" and not qa_fixture_mode:
+	elif cold_entry and loaded.reason=="loaded" and not qa_fixture_mode:
 		# Existing progress restores an entrance, never a partly played round.
 		# This is nonmodal and clears on the first successful team, not a new step.
-		text_label("FRESH ROUND · SAVED PROGRESS KEPT",Rect2(149,1471,642,32),18,"RoundRestartNotice",self,INK,true)
+		text_label("FRESH ROUND · SAVED PROGRESS KEPT",Rect2(149,1570,642,32),18,"RoundRestartNotice",self,INK,true)
 	if entry_screen=="levels" and profile_state.ready:
 		chooser_from_home=true;show_levels()
 	if capture_play:call_deferred("capture_play_start")
@@ -195,7 +201,7 @@ func build_load_failure_ui()->void:
 
 func build_mosaic()->void:
 	var board:=group("Mosaic")
-	board_plane=BoardPlane.new(int(level_config.width),int(level_config.height))
+	board_plane=BoardPlane.new(int(level_config.width),int(level_config.height),scene_layout,level_config.transport.get("entrance_cell",[]))
 	cell_edge=minf(660.0/float(level_config.width),570.0/float(level_config.height))
 	grid_origin=Vector2((940.0-cell_edge*float(level_config.width))*.5,315)
 	for cell in rules.board.values():
@@ -264,38 +270,27 @@ func tint_red(target:CanvasItem,color:String)->void:
 	if target.name=="Cannon":material.set_shader_parameter("tint_region",Vector4(180.0/1536.0,654.0/1024.0,395.0/1536.0,851.0/1024.0))
 
 func build_environment()->void:
-	var bg:=TextureRect.new();bg.name="Environment";bg.texture=load("res://assets/serpent/environment.png")
+	var bg:=TextureRect.new();bg.name="Environment";bg.texture=load(str(scene_layout.get("background","res://assets/serpent/environment.png")))
 	bg.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;bg.size=Vector2(940,1672);bg.mouse_filter=Control.MOUSE_FILTER_IGNORE;add_child(bg)
 
 func build_threat()->void:
 	var route:=group("DragonRoute")
 	serpent=SerpentView.new();route.add_child(serpent)
-	var knots:Array=[
-		{"position":Vector2(583,956),"out":Vector2(90,24)},
-		{"position":Vector2(850,867),"in":Vector2(-38,85),"out":Vector2(17,-85)},
-		{"position":Vector2(867,395),"in":Vector2(8,100),"out":Vector2(-7,-115)},
-		{"position":Vector2(750,228),"in":Vector2(60,35),"out":Vector2(-72,-41)},
-		{"position":Vector2(505,144),"in":Vector2(80,4),"out":Vector2(-80,-4)},
-		{"position":Vector2(230,162),"in":Vector2(60,-18)}]
-	if not serpent.configure(level_config.serpent,knots):push_error("Serpent production atlas is missing")
-	# The platform belongs to the environment; the princess remains independent.
-	serpent.add_princess(route,Vector2(145,168))
+	if not serpent.configure(level_config.serpent,SceneLayout.knots(scene_layout)):push_error("Serpent production atlas is missing")
+	SceneLayout.add_target(route,scene_layout)
 
 func build_transport()->void:
 	var layer:=group("TransportScene")
-	var nest:=TextureRect.new();nest.name="Nest";nest.texture=load("res://assets/serpent/nest-entry.png");nest.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;nest.mouse_filter=Control.MOUSE_FILTER_IGNORE
-	var nest_info:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/serpent/nest-entry.json"))
-	var factor:=110.0/float(nest_info.physical_width);var anchor:Array=nest_info.anchor
-	nest.size=nest.texture.get_size()*factor;nest.position=Vector2(467,1008)-Vector2(anchor[0],anchor[1])*factor;layer.add_child(nest)
-	var cannon:=art(Rect2(48,654,412,337),Rect2(388,1030,166,141),"Cannon",layer);cannon.pivot_offset=Vector2(83,107)
+	SceneLayout.add_nest(layer,scene_layout)
+	var cannon:=art(Rect2(48,654,412,337),SceneLayout.rect(scene_layout.cannon.rect),"Cannon",layer);cannon.pivot_offset=SceneLayout.point(scene_layout.cannon.pivot)
 	var stock:=group("Stock",layer)
 	var stock_colors:Array=[]
 	for color in COLORS:
 		if int(rules.initial_counts.get(color,0))>0:stock_colors.append(color)
 	for j in stock_colors.size():
-		var color:String=stock_colors[j];var x:float=591+j*60
-		bead(color,Vector2(x+12,1107),25,stock)
-		var label:=text_label("0",Rect2(x,1138,53,34),23,"Count_"+color,stock,Color("fff7d9"));label.add_theme_color_override("font_outline_color",Color("573719"));label.add_theme_constant_override("outline_size",5)
+		var color:String=stock_colors[j];var x:float=float(scene_layout.stock.start[0])+j*float(scene_layout.stock.spacing)
+		bead(color,Vector2(x+12,float(scene_layout.stock.start[1])-18),25,stock)
+		var label:=text_label("0",Rect2(x,float(scene_layout.stock.start[1])+13,53,34),23,"Count_"+color,stock,Color("fff7d9"));label.add_theme_color_override("font_outline_color",Color("573719"));label.add_theme_constant_override("outline_size",5)
 	var live:=group("LiveCarriers",layer);layer.move_child(live,1)
 
 func build_hud()->void:
@@ -386,7 +381,7 @@ func apply_gameplay_interaction_motion()->void:
 		if t>=1:stock_arrivals.erase(color)
 
 func map_path_point(point:Variant)->Vector2:
-	if int(point[0])==int(level_config.width)/2 and int(point[1])==int(level_config.height):return Vector2(467,1008)
+	if Vector2(float(point[0]),float(point[1]))==board_plane.entrance_cell:return SceneLayout.point(scene_layout.nest.position)
 	return board_plane.center(float(point[0]),float(point[1]))
 
 func sync_carriers()->void:
@@ -399,7 +394,7 @@ func sync_carriers()->void:
 			var actor:=ground_ant(task.color,Vector2.ZERO,"Carrier%d"%id,container,48)
 			var carried:=bead(task.color,Vector2(-12,-48),24,actor);carried.name="CarriedBead"
 			CarrierMotion.prepare(actor,task.color,48.0)
-			actor.set_meta("carrier_route",CarrierRoute.build(task.path,board_plane,Vector2(467,1008)))
+			actor.set_meta("carrier_route",CarrierRoute.build(task.path,board_plane,SceneLayout.point(scene_layout.nest.position)))
 			carriers[id]=actor
 		var return_depart:int=task.get("return_depart_us",task.pickup_us)
 		var holding:bool=task.stage=="returning" and rules.time_us<return_depart
@@ -431,7 +426,7 @@ func sync_carriers()->void:
 
 func sample_carrier_path(path:Array,t:float)->Dictionary:
 	# Direct diagnostics only; live carriers cache this immutable route once.
-	return CarrierRoute.sample(CarrierRoute.build(path,board_plane),t)
+	return CarrierRoute.sample(CarrierRoute.build(path,board_plane,SceneLayout.point(scene_layout.nest.position)),t)
 
 func consume_rule_events()->void:
 	var events:Array=rules.drain_events()
@@ -471,7 +466,7 @@ func present_pending_outcome()->void:
 
 func apply_actor_poses()->void:
 	var cp:Dictionary=fx.cannon_pose();var cannon:Control=get_node("TransportScene/Cannon")
-	cannon.position=Vector2(388,1030)+cp.offset;cannon.rotation=cp.rotation;cannon.scale=cp.scale
+	cannon.position=SceneLayout.rect(scene_layout.cannon.rect).position+cp.offset;cannon.rotation=cp.rotation;cannon.scale=cp.scale
 
 func modal(title:String,rect:Rect2=Rect2(170,520,600,620))->Control:
 	if is_instance_valid(pause_overlay):
@@ -554,7 +549,7 @@ func commit_settings()->bool:
 func show_tutorial()->void:
 	var m:=modal("YOUR FIRST RESCUE",Rect2(149,423,642,800))
 	ant("red",Rect2(400,552,140,106),"TutorialAnt",m)
-	var steps:Array[String]=["ONE TAP SENDS ONE ANT","UP TO FOUR ANTS CARRY AT ONCE","EACH ANT TAKES ONE MATCHING BEAD","DELIVERED BEADS BECOME AMMO","ARMORED SEGMENTS TAKE TWO HITS","REMOVE EVERY SEGMENT TO RESCUE HER"]
+	var steps:Array[String]=["ONE TAP SENDS ONE ANT","UP TO FOUR ANTS CARRY AT ONCE","EACH ANT TAKES ONE MATCHING BEAD","DELIVERED BEADS BECOME AMMO","ARMORED SEGMENTS TAKE TWO HITS","REMOVE EVERY SEGMENT TO WIN"]
 	for i in steps.size():
 		icon("arrow",Rect2(211,674+i*58,26,30),m,Color("d09536"))
 		text_label(steps[i],Rect2(251,667+i*58,487,46),18,"StepText%d"%i,m)
@@ -653,11 +648,11 @@ func result_action(parent:Control,title:String,y:float,callback:Callable,primary
 
 func show_outcome(won:bool)->void:
 	if won and rules.status=="victory" and not victory_saved:show_save_error();return
-	var m:=modal("PRINCESS SAVED!" if won else "TRY AGAIN",Rect2(98,335,744,1040))
+	var m:=modal("SAVED!" if won else "TRY AGAIN",Rect2(98,335,744,1040))
 	if won:
 		serpent.hide()
-		art(Rect2(740,20,324,624),Rect2(400,535,140,270),"RescuedPrincess",m)
-		var coin:=TextureRect.new();coin.texture=load("res://assets/meta-ui/ant-coin.png");coin.position=Vector2(357,829);coin.size=Vector2(62,62);coin.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;coin.mouse_filter=Control.MOUSE_FILTER_IGNORE;m.add_child(coin)
+		UiSkin.place_texture(SceneLayout.target_texture(scene_layout),Rect2(310,535,320,270),m,"SavedDefenseTarget",true)
+		UiSkin.place_texture(load("res://assets/meta-ui/ant-coin.png"),Rect2(357,829,62,62),m,"RewardCoin",true)
 		text_label("+%d"%int(reward_receipt.get("total",0)),Rect2(427,825,205,67),40,"PointsEarned",m,INK,true)
 		text_label("%d + %d  ·  %.1fs"%[int(reward_receipt.get("base",0)),int(reward_receipt.get("time_bonus",0)),elapsed_round_seconds()],Rect2(280,891,380,34),19,"RewardBreakdown",m)
 
@@ -670,7 +665,7 @@ func show_outcome(won:bool)->void:
 	var map_button:=Button.new();map_button.name="MapButton";map_button.flat=true;map_button.position=map_bounds.position;map_button.size=map_bounds.size;map_button.tooltip_text="Adventure map";m.add_child(map_button);map_button.pressed.connect(show_levels)
 	var shop_bounds:=Rect2(490,1218,260,118)
 	frame(shop_bounds,"ShopAction",m,30)
-	var coin:=TextureRect.new();coin.texture=load("res://assets/meta-ui/ant-coin.png");coin.position=Vector2(580,1237);coin.size=Vector2(80,80);coin.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;coin.mouse_filter=Control.MOUSE_FILTER_IGNORE;m.add_child(coin)
+	UiSkin.place_texture(load("res://assets/meta-ui/ant-coin.png"),Rect2(580,1237,80,80),m,"ShopCoin",true)
 	var shop_button:=Button.new();shop_button.name="ShopButton";shop_button.flat=true;shop_button.position=shop_bounds.position;shop_button.size=shop_bounds.size;shop_button.tooltip_text="Ant shop";m.add_child(shop_button);shop_button.pressed.connect(func():transition_to_startup("shop"))
 
 func show_save_error()->void:

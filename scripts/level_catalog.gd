@@ -1,7 +1,7 @@
 extends RefCounted
 ## Segmented-serpent schema has a separate catalog/profile from legacy single-dragon.
 const PAGE_SIZE := 10
-const VALIDATION_IDS := ["serpent-01", "serpent-02", "serpent-03"]
+const VALIDATION_IDS := ["serpent-01", "serpent-02", "serpent-03", "serpent-04"]
 static func level_ids(campaign_drafts:bool)->Array[String]:
 	var result:Array[String]=[]
 	if campaign_drafts:
@@ -10,7 +10,7 @@ static func level_ids(campaign_drafts:bool)->Array[String]:
 	else:result.assign(VALIDATION_IDS)
 	return result
 static func level_path(number:int,campaign_drafts:bool)->String:
-	if number<1 or number>(30 if campaign_drafts else 3):return ""
+	if number<1 or number>(30 if campaign_drafts else VALIDATION_IDS.size()):return ""
 	return ("res://data/serpent-campaign/serpent-campaign-%02d.json" if campaign_drafts else "res://data/serpent-levels/serpent-%02d.json")%number
 static func profile_path(root:String,campaign_drafts:bool)->String:
 	if root.is_empty():root="user://ant-rescue"

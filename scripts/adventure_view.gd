@@ -9,6 +9,7 @@ signal back_requested
 signal shop_requested
 signal settings_requested
 
+const SceneLayout = preload("res://scripts/scene_layout.gd")
 const UiSkin = preload("res://scripts/ui_skin.gd")
 const Icon = preload("res://scripts/ui_icon.gd")
 const Bead = preload("res://scripts/bead.gd")
@@ -18,14 +19,7 @@ const Carrier = preload("res://scripts/directional_carrier.gd")
 const INK := Color("653513")
 const CREAM := Color("fff3cf")
 const LOGICAL_SIZE := Vector2(940, 1672)
-const PREVIEW_KNOTS := [
-	{"position": Vector2(583, 956), "out": Vector2(90, 24)},
-	{"position": Vector2(850, 867), "in": Vector2(-38, 85), "out": Vector2(17, -85)},
-	{"position": Vector2(867, 395), "in": Vector2(8, 100), "out": Vector2(-7, -115)},
-	{"position": Vector2(750, 228), "in": Vector2(60, 35), "out": Vector2(-72, -41)},
-	{"position": Vector2(505, 144), "in": Vector2(80, 4), "out": Vector2(-80, -4)},
-	{"position": Vector2(230, 162), "in": Vector2(60, -18)},
-]
+
 
 var font: Font
 var skin: RefCounted
@@ -139,6 +133,7 @@ func show_preparation(number: int) -> bool:
 	if _definition(number).is_empty() or not _is_unlocked(number): return false
 	_capture_scroll()
 	selected_level = number; screen = "preparation"; _begin_pending = false
+	map_region=str(_definition(number).get("region_id","forest"))
 	if _ready_to_draw: _render_page()
 	show()
 	return true
@@ -242,6 +237,10 @@ func _build_shell() -> void:
 
 func _render_page() -> void:
 	_clear_page()
+	var layout_result:=SceneLayout.load_for(_definition(selected_level))
+	if layout_result.ok:
+		var background:=_shell.get_node_or_null("ForestEnvironment") as TextureRect
+		if background!=null:background.texture=load(str(layout_result.data.background))
 	if screen == "preparation": _build_preparation()
 	else: _build_map()
 	_build_header()
@@ -262,7 +261,7 @@ func _build_header() -> void:
 	_emblem("settings", Rect2(826, 149, 53, 51), _page, INK)
 
 func _build_map() -> void:
-	_label("WOODLAND TRAIL", Rect2(180, 139, 580, 56), 34, "RegionTitle", _page, CREAM, true)
+	_label("ADVENTURE TRAIL", Rect2(180, 139, 580, 56), 34, "RegionTitle", _page, CREAM, true)
 	_scroll = ScrollContainer.new(); _scroll.name = "MapScroll"
 	_scroll.position = Vector2(16, 226); _scroll.size = Vector2(908, 1174)
 	_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
@@ -283,7 +282,11 @@ func _build_map() -> void:
 		curve.add_point(to, Vector2(0, 150), Vector2.ZERO)
 		trail.points.append_array(curve.tessellate(4, 5))
 	canvas.add_child(trail)
-	for i in level_definitions.size(): _map_node(level_definitions[i], centers[i], canvas)
+	for i in level_definitions.size():
+		_map_node(level_definitions[i], centers[i], canvas)
+		if i==0 or str(level_definitions[i].get("region_id","forest"))!=str(level_definitions[i-1].get("region_id","forest")):
+			var layout:=SceneLayout.load_for(level_definitions[i])
+			if layout.ok:_label(str(layout.data.region_label),Rect2(centers[i].x-195,centers[i].y+130,390,42),25,"Region_%d"%i,canvas,CREAM,true)
 	var complete := 0
 	for config in level_definitions:
 		if _is_completed(int(config.level_number)): complete += 1
@@ -340,6 +343,10 @@ func _build_preparation() -> void:
 	var config := _definition(selected_level)
 	if config.is_empty():
 		screen = "map"; _build_map(); return
+	var scene_check:=SceneLayout.load_for(config)
+	if not scene_check.ok:
+		_label("SCENE UNAVAILABLE",Rect2(150,650,640,90),34,"SceneUnavailable",_page,CREAM,true)
+		return
 	var summary := level_summary(selected_level)
 	_label("LEVEL %02d" % selected_level, Rect2(210, 154, 520, 48), 31, "LevelHeading", _page, CREAM, true)
 	_panel("game/panel", Rect2(42, 280, 856, 700), "PreviewStoneFrame", _page, 40)
@@ -357,14 +364,18 @@ func _build_preparation() -> void:
 		armored_icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		_label(str(summary.armored),Rect2(723,637,102,74),42,"ArmoredCount",_page)
 	_page.set_meta("level_summary",summary)
-	var target:=_atlas(load("res://assets/characters-atlas.png"),Rect2(740,20,324,624),Rect2(653,746,54,104),"DefenseTargetIcon",_page)
+	var layout_result:=SceneLayout.load_for(config)
+	var target:=_texture(SceneLayout.target_texture(layout_result.data),Rect2(619,746,110,104),"DefenseTargetIcon",_page)
 	target.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	_icon("shield",Rect2(735,772,53,58),_page,Color("ffe3a0"))
 	var index := 0
 	for color in summary.needs:
 		var x := 601 + index * 84
-		_bead(str(color), Vector2(x, 918), 24, _page)
-		_label(str(int(summary.needs[color])), Rect2(x + 27, 914, 46, 31), 22, "Need_%s" % color, _page)
+		var y := 918
+		if summary.needs.size()>3:
+			x=631+(index%2)*126;y=866+(index/2)*52
+		_bead(str(color), Vector2(x, y), 24, _page)
+		_label(str(int(summary.needs[color])), Rect2(x + 27, y-4, 46, 31), 22, "Need_%s" % color, _page)
 		index += 1
 	var detail:=Control.new();detail.name="BossDetails";detail.position=Vector2(584,315);detail.size=Vector2(287,625)
 	detail.tooltip_text="%s: %d normal (1 hit), %d armored (2 hits).\nDefeat the whole dragon before it reaches %s.\nMatching bead counts below show the required hits."%["Armored dragon" if summary.armored>0 else "Serpent dragon",summary.normal,summary.armored,summary.target]
@@ -381,10 +392,13 @@ func _build_scene_preview(config: Dictionary, bounds: Rect2, parent: Control) ->
 	var viewport := _group("ScenePreview", parent); viewport.position = bounds.position; viewport.size = bounds.size; viewport.clip_contents = true
 	var scene := _group("ActualLevelScene", viewport)
 	var factor := bounds.size.x / 940.0; scene.scale = Vector2.ONE * factor
-	_texture(load("res://assets/serpent/environment.png"), Rect2(Vector2.ZERO, LOGICAL_SIZE), "Forest", scene)
+	var layout_result:=SceneLayout.load_for(config)
+	if not layout_result.ok:return
+	var layout:Dictionary=layout_result.data
+	_texture(load(str(layout.background)), Rect2(Vector2.ZERO, LOGICAL_SIZE), "Forest", scene)
 	var serpent := Serpent.new(); serpent.name = "PreviewSerpent"; scene.add_child(serpent)
 	var serpent_config: Dictionary = config.get("serpent", {})
-	if serpent_config.has("goal_s") and serpent.configure(serpent_config, config.get("preview_knots", PREVIEW_KNOTS)):
+	if serpent_config.has("goal_s") and serpent.configure(serpent_config, SceneLayout.knots(layout)):
 		var ids: Array = []; var positions: Dictionary = {}
 		var segments: Array = config.get("segments", []).duplicate(true)
 		for i in segments.size():
@@ -392,20 +406,20 @@ func _build_scene_preview(config: Dictionary, bounds: Rect2, parent: Control) ->
 			segments[i]["id"] = id; ids.append(id)
 			positions[id] = float(serpent_config.head_start_s) - float(i + 1) * float(serpent_config.pitch)
 		serpent.sync_snapshot({"paused": true, "speed_multiplier": 1, "status": "ready", "head_s": float(serpent_config.head_start_s), "alive_segment_ids": ids, "segments": segments, "segment_s": positions})
-		# The current three authored validation scenes actually guard this target.
-		# Do not paint unimplemented camps/travellers over the existing objective.
-		if _target_label(config).to_lower() == "princess": serpent.add_princess(scene, Vector2(145, 168))
+		# Guardian is an independent asset from the same level scene contract.
+		SceneLayout.add_target(scene,layout)
 	_mosaic(config, Rect2(), scene, true)
-	var nest := _texture(load("res://assets/serpent/nest-entry.png"), Rect2(410, 974, 114, 66), "PreviewNest", scene)
-	nest.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	_atlas(load("res://assets/characters-atlas.png"), Rect2(48, 654, 412, 337), Rect2(388, 1030, 166, 141), "PreviewCannon", scene)
-	_carrier(Vector2(354, 1012), 66, "blue", "PreviewWorker", scene)
-	_carrier(Vector2(582, 1012), 66, "green", "PreviewWorker2", scene)
+	SceneLayout.add_nest(scene,layout)
+	_atlas(load("res://assets/characters-atlas.png"), Rect2(48, 654, 412, 337), SceneLayout.rect(layout.cannon.rect), "PreviewCannon", scene)
+	var foot:=SceneLayout.point(layout.nest.position)
+	_carrier(foot+Vector2(-95,4), 66, "blue", "PreviewWorker", scene)
+	_carrier(foot+Vector2(95,4), 66, "green", "PreviewWorker2", scene)
 
 func _mosaic(config: Dictionary, bounds: Rect2, parent: Control, actual: bool) -> void:
 	var grid: Array = config.get("grid", []); var palette: Dictionary = config.get("palette", {})
 	var width := maxi(1, int(config.get("width", 1))); var height := maxi(1, int(config.get("height", grid.size())))
-	var plane := BoardPlane.new(width, height)
+	var layout_result:=SceneLayout.load_for(config)
+	var plane := BoardPlane.new(width, height,layout_result.get("data",{}),config.get("transport",{}).get("entrance_cell",[]))
 	var edge := minf(bounds.size.x / width, bounds.size.y / height) if not actual else 0.0
 	var min_y := height; var max_y := 0; var min_x := width; var max_x := 0
 	if not actual:
@@ -487,8 +501,7 @@ func _emblem(kind: String, bounds: Rect2, parent: Node, color: Color = CREAM) ->
 	var emblem := Emblem.new(); emblem.kind = kind; emblem.position = bounds.position; emblem.size = bounds.size; emblem.ink = color; parent.add_child(emblem); return emblem
 
 func _texture(texture: Texture2D, bounds: Rect2, id: String, parent: Node) -> TextureRect:
-	var node := TextureRect.new(); node.name = id; node.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	node.texture = texture; node.position = bounds.position; node.size = bounds.size; node.mouse_filter = Control.MOUSE_FILTER_IGNORE; parent.add_child(node); return node
+	return UiSkin.place_texture(texture,bounds,parent,id)
 
 func _atlas(texture: Texture2D, region: Rect2, bounds: Rect2, id: String, parent: Node) -> TextureRect:
 	var atlas := AtlasTexture.new(); atlas.atlas = texture; atlas.region = region; atlas.filter_clip = true

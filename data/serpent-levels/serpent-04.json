@@ -1,0 +1,205 @@
+{
+  "schema_version": 3,
+  "level_id": "serpent-04",
+  "level_number": 4,
+  "title": "Open the Sunseal Core",
+  "width": 10,
+  "height": 8,
+  "palette": {
+    "R": "red",
+    "B": "blue",
+    "G": "green",
+    "Y": "yellow"
+  },
+  "grid": [
+    "..........",
+    "...RR.....",
+    "..BYYG....",
+    "..GYYB....",
+    ".BRYYG....",
+    "...RG.....",
+    "GB....R...",
+    "BR...GB..."
+  ],
+  "segments": [
+    {
+      "id": "serpent-04-s01",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-04-s02",
+      "color": "blue",
+      "kind": "armored",
+      "hp": 2
+    },
+    {
+      "id": "serpent-04-s03",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-04-s04",
+      "color": "yellow",
+      "kind": "armored",
+      "hp": 2
+    },
+    {
+      "id": "serpent-04-s05",
+      "color": "red",
+      "kind": "armored",
+      "hp": 2
+    },
+    {
+      "id": "serpent-04-s06",
+      "color": "blue",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-04-s07",
+      "color": "green",
+      "kind": "armored",
+      "hp": 2
+    },
+    {
+      "id": "serpent-04-s08",
+      "color": "yellow",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-04-s09",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-04-s10",
+      "color": "blue",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-04-s11",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-04-s12",
+      "color": "yellow",
+      "kind": "normal",
+      "hp": 1
+    }
+  ],
+  "serpent": {
+    "head_start_s": 52.0,
+    "goal_s": 122.0,
+    "speed_units_sec": 1.0606060606060606,
+    "pitch": 4.0
+  },
+  "parameters": {
+    "max_inflight_ants": 4,
+    "projectile_flight_sec": 0.45,
+    "cannon_cooldown_sec": 0.65
+  },
+  "transport": {
+    "carrier_type": "worker",
+    "outbound_speed_cells_sec": 2.5,
+    "returning_speed_cells_sec": 2.0,
+    "pickup_pause_sec": 0.3,
+    "unload_pause_sec": 0.2,
+    "entrance_cell": [
+      3,
+      8
+    ]
+  },
+  "tools": [],
+  "solution": {
+    "kind": "timed_single_click_no_tool_core_replay",
+    "minimum_input_gap_sec": 1.4,
+    "inputs": [
+      {
+        "at_sec": 0.0,
+        "color": "red"
+      },
+      {
+        "at_sec": 1.4,
+        "color": "blue"
+      },
+      {
+        "at_sec": 2.8,
+        "color": "green"
+      },
+      {
+        "at_sec": 4.2,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 5.6,
+        "color": "red"
+      },
+      {
+        "at_sec": 7.0,
+        "color": "blue"
+      },
+      {
+        "at_sec": 8.4,
+        "color": "green"
+      },
+      {
+        "at_sec": 9.8,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 11.2,
+        "color": "red"
+      },
+      {
+        "at_sec": 12.6,
+        "color": "blue"
+      },
+      {
+        "at_sec": 14.0,
+        "color": "green"
+      },
+      {
+        "at_sec": 15.4,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 16.8,
+        "color": "red"
+      },
+      {
+        "at_sec": 18.2,
+        "color": "blue"
+      },
+      {
+        "at_sec": 19.6,
+        "color": "green"
+      },
+      {
+        "at_sec": 21.0,
+        "color": "yellow"
+      }
+    ]
+  },
+  "validation_scope": "One ruins/supply-cart candidate. Base worker, no tools, no rewards, no growth; deterministic accepted-click replay, not human visual acceptance. Yellow is initially enclosed; RGB pickup opens the core.",
+  "content_version": "ruins-supply-cart-20261021.1",
+  "rewards": {
+    "fast_seconds": 30.0,
+    "normal_seconds": 45.0
+  },
+  "region_id": "ruins",
+  "boss_profile": "armored_serpent",
+  "defense_target": {
+    "id": "supply_cart",
+    "display_name": "Supply Cart",
+    "fixed": true
+  },
+  "scene_layout": "res://data/scenes/ruins-cart.json"
+}

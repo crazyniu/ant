@@ -16,7 +16,7 @@ The logical 940 × 1672 canvas is uniformly scaled into the 1440 × 2560 viewpor
 
 ## Current content and independent layers
 
-The current three authored boards are 10 × 8, containing 18, 20 and 22 beads. Empty cells have no bead node. Their base-worker solutions leave 6, 4 and 6 beads respectively. The previous 216/256/172-bead boards and gallery mosaic are not current gameplay counts.
+The first three authored boards are 10 × 8, containing 18, 20 and 22 beads. Empty cells have no bead node. Their base-worker solutions leave 6, 4 and 6 beads respectively. The previous 216/256/172-bead boards and gallery mosaic are not current gameplay counts.
 
 Board beads, carriers, carried beads, nest, cannon, serpent/armor and shadows are independent nodes/layers. Physical materials come from the current atlases; there is no baked board screenshot. A reservation keeps the bead and obstacle present until pickup. Only a rule pickup removes the bead, and only completed unloading adds inventory.
 
@@ -31,3 +31,9 @@ The low nest entrance uses `assets/serpent/nest-entry.json`: foot anchor (454,26
 ## Evidence limit
 
 The current growth report validates three authored solutions and resource conservation; retained route/crop reports cover their recorded sources. Neither a projection calculation nor a screenshot proves every possible route, human difficulty or target-device pointer mapping. See `PUBLIC_VERIFICATION.md` and `ASSETS.md` for the relevant boundaries.
+
+## Scene-local projection
+
+The constructor accepts a shared scene-layout dictionary and optional exterior entrance cell. Defaults above remain unchanged. Ruins uses top x 230/720, bottom (220,850)/(735,850), width basis 505 and depth ratio 0.93. Its 10×8 fitted height is 375.72, upper y 474.28. The nest is (410,1010), gateway (410,930), rule entrance [3,8]. Screen approach legs connect through the open gateway; they do not cut into the outer enemy road. Existing task timestamps remain rule-authoritative; presentation arc-length smoothing does not reschedule them.
+
+The independently rendered supply-cart wheel anchor and native crop are in `assets/worlds/manifest.json`. `data/scenes/ruins-cart.json` includes the inspected clear-ground hull used for a bounded authored-path check. That hull is not a substitute for logical occupancy and is not an assertion that every future layout is safe.

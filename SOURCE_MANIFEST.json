@@ -1,9 +1,9 @@
 {
   "algorithm": "SHA-256",
-  "scope": "All files in this snapshot except SOURCE_MANIFEST.json itself",
-  "base_commit": "125646450cd1bf5e90d6d7cbc833ca34ff47bd75",
-  "file_count": 164,
-  "total_bytes": 35571581,
+  "scope": "all files except this manifest",
+  "base_commit": "8901b3429796e7acd452e3f08c96ce442761ff7a",
+  "file_count": 180,
+  "total_bytes": 40067632,
   "files": [
     {
       "path": ".gitignore",
@@ -12,8 +12,8 @@
     },
     {
       "path": "ASSETS.md",
-      "bytes": 11557,
-      "sha256": "e114f5cdedb2bfaef540a6eb9f49dd2ab24de791383cc32dc767b9eeac7ed2f7"
+      "bytes": 12665,
+      "sha256": "b3c30fdeb91d9023dc1916bcf70cffe9788dfd411dc5ea052b1c6b83c361bd84"
     },
     {
       "path": "DEPENDENCIES.md",
@@ -22,13 +22,13 @@
     },
     {
       "path": "PUBLICATION_CHECK.json",
-      "bytes": 2133,
-      "sha256": "490ad47612406ca42c1e677043e4d9a968eec48b78480ffd55813c26349c8321"
+      "bytes": 1565,
+      "sha256": "41e2860e0238446e158874ed1b4189cc143896dc2aa1a54b839085576ee0546a"
     },
     {
       "path": "README.md",
-      "bytes": 8657,
-      "sha256": "7157315922a2b012cf273a16d57400861138a43b9efcf129181cf4b21ea93461"
+      "bytes": 9284,
+      "sha256": "822b445b8a95aa02ed793d2730a166c51d92557d78042d5e0673b9a3857176af"
     },
     {
       "path": "assets/ants-atlas.png",
@@ -306,6 +306,21 @@
       "sha256": "62a40610fcca9d9db8c0928b70c1552a20ab117cf89c4dc543f22e2a560bf43f"
     },
     {
+      "path": "assets/worlds/manifest.json",
+      "bytes": 1318,
+      "sha256": "69c47d16c5ce49eaad79985a6e6f3d56acf8c88423a6f516181be53bd0f84ba1"
+    },
+    {
+      "path": "assets/worlds/ruins-courtyard.png",
+      "bytes": 2862271,
+      "sha256": "041d6e6122a8b6f5069d7f19c7001ec4368f14d76a42af8f77d5f0d4dbc2493c"
+    },
+    {
+      "path": "assets/worlds/supply-cart.png",
+      "bytes": 1578496,
+      "sha256": "98fe14627851032bbb22d0e44c059e464fb0ba44054b11c53b815fa0c58db731"
+    },
+    {
       "path": "data/ant-progression.json",
       "bytes": 618,
       "sha256": "0db6f00b5d1e8ebe1456090bc242885e81ea18bb8628ab9933804bec22dee0ac"
@@ -314,6 +329,16 @@
       "path": "data/ant-regions.json",
       "bytes": 319,
       "sha256": "954b0440eb5d7649108aacd0708fcaa91ac92da96ef3f470e2607cbfd6eb22c5"
+    },
+    {
+      "path": "data/scenes/ruins-cart.json",
+      "bytes": 2528,
+      "sha256": "e729226303ae60c5a3424975872bd7bcf0624105f75b51b1f9b2e96266bf45f4"
+    },
+    {
+      "path": "data/scenes/woodland-princess.json",
+      "bytes": 1845,
+      "sha256": "1c64ddbdf8264ebcc3aa0fed9bc38631b4945e7a862932d1564388e410d1f4a0"
     },
     {
       "path": "data/serpent-levels/serpent-01.json",
@@ -331,34 +356,44 @@
       "sha256": "ba4cfc1334d33dfadef2bf31efc97ee879499eb093f259f3625695bfeb6a686f"
     },
     {
+      "path": "data/serpent-levels/serpent-04.json",
+      "bytes": 3903,
+      "sha256": "3c3359aff7a523e878c84d2df535eb2a1e058f01806ca29f14e4126cb63dad07"
+    },
+    {
       "path": "docs/BOARD_PLANE.md",
-      "bytes": 3180,
-      "sha256": "2e811220c5ae45af7ae4159793deb7bc10bdae7dc2f667ac7067902ec486e8d7"
+      "bytes": 4078,
+      "sha256": "3952379c80354bd5839a5be24157574627a1000466c280b0d2ca3df8df5ddb02"
     },
     {
       "path": "docs/CORE_CONTRACT.md",
-      "bytes": 702,
-      "sha256": "e2ba27e53c327f9efdefede74b5e62644ca552fe79b629e57e780b39a6dc98f2"
+      "bytes": 748,
+      "sha256": "a341c63d7f9397d79732d6dbf8b528a5eeb5aea316781793d845403edadf70ce"
     },
     {
       "path": "docs/CURRENT_IMPLEMENTATION.md",
-      "bytes": 9294,
-      "sha256": "e741954e4118d7f8417d5115150c4d60423e2cfcfe2ea05f81254e7980a780a1"
+      "bytes": 10492,
+      "sha256": "5b4b4c247aca94736d3a03ecf663c6adb85023673c921bea6e02c8d193a4cbf6"
     },
     {
       "path": "docs/PUBLIC_VERIFICATION.md",
-      "bytes": 6745,
-      "sha256": "6377d8948e578382c9c94c07a08ef26d5bcc6f6e0783637cf8871eee15e891e5"
+      "bytes": 8511,
+      "sha256": "360c0fba9d26929409fc6d52a5b8318b8b021383a34829a97d07a07af3af74eb"
+    },
+    {
+      "path": "docs/SCENE_LAYOUTS.md",
+      "bytes": 3781,
+      "sha256": "356b0ad3a077b554808172e0ea4a42cc5b2511050aea30e20ef5788ffb30671f"
     },
     {
       "path": "docs/UI_COMPONENTS.md",
-      "bytes": 4865,
-      "sha256": "ebbc1628ddb5ffe634e9324fccd1d99483d943623d6ea40070c1e79c389abab5"
+      "bytes": 5552,
+      "sha256": "8e50eb168aeb664940e3959c141347fb3445ddf801ccad7c23e857f7e2e30c96"
     },
     {
       "path": "docs/VERIFICATION.md",
-      "bytes": 847,
-      "sha256": "59a9d4135eb24293b27c8c6456f6e033ecf8494927d0f4f9b2d88f3da5217218"
+      "bytes": 1070,
+      "sha256": "1199bd8792aaa33c7c47209a433e510df1d9fda48e1cffc466c327f8ef7f1378"
     },
     {
       "path": "docs/asset-manifest.json",
@@ -431,6 +466,11 @@
       "sha256": "f8954bb3ae0c3b9e5223a9207ebb06683cce8eadbf43993d3432ed2979b70ab4"
     },
     {
+      "path": "reports/rules/ruins-rules.json",
+      "bytes": 999,
+      "sha256": "d9fed691926d0928dfc9f372bacb85fe93eac024bca09ad43c5c9cb0231cb52f"
+    },
+    {
       "path": "reports/rules/serpent-layout-timing.json",
       "bytes": 3065,
       "sha256": "42eeaf8ea905c3ca5b2635d7d8e28074776743337aa34c83acefa976494ac94c"
@@ -439,6 +479,16 @@
       "path": "reports/ui/ant-meta-flow.json",
       "bytes": 161,
       "sha256": "5c6eb3485cde95e0f21d782a909f92dd413847d1dafaeb90b1e1926e964786ff"
+    },
+    {
+      "path": "reports/ui/ruins-runtime.json",
+      "bytes": 3253,
+      "sha256": "9c1aa55ae24e7415b301e85f264c10f889e6338842fc99c01c8fb1be9cfb9427"
+    },
+    {
+      "path": "reports/ui/ruins-scene.json",
+      "bytes": 246,
+      "sha256": "c193de4ba53581eb433deebae61ed6d460b8f6055c8c260d33302afd85b16162"
     },
     {
       "path": "reports/ui/serpent-color-controls.json",
@@ -467,8 +517,8 @@
     },
     {
       "path": "scripts/adventure_view.gd",
-      "bytes": 29334,
-      "sha256": "737f45a62ec40b815ddb2cbd7ef0837c5376af444cb127ed31a98518724b5529"
+      "bytes": 29634,
+      "sha256": "63046cc8f35938f95dbf9ea8ddd322dde31d74f2b2323adc391ad61f10469900"
     },
     {
       "path": "scripts/adventure_view.gd.uid",
@@ -517,8 +567,8 @@
     },
     {
       "path": "scripts/board_plane.gd",
-      "bytes": 1218,
-      "sha256": "7ee43e47531706afb6e0be939dfbf19b49ef76106149838283c2af0da0c6fd5a"
+      "bytes": 2084,
+      "sha256": "89d21ef17ec8e258513c90d30a40eb9b8284d0e3d246bf4059c57d4b5f829bfa"
     },
     {
       "path": "scripts/board_plane.gd.uid",
@@ -527,8 +577,8 @@
     },
     {
       "path": "scripts/carrier_route.gd",
-      "bytes": 6964,
-      "sha256": "f063fc8c2a66b522292772244ac2a94e75325eb5ac514938d66f5e24bcdd928f"
+      "bytes": 6935,
+      "sha256": "e42ecd8e8d54d8189c1258eb488d81bdeba1b5d0f26331941311a260c116ed6c"
     },
     {
       "path": "scripts/carrier_route.gd.uid",
@@ -577,8 +627,8 @@
     },
     {
       "path": "scripts/level_catalog.gd",
-      "bytes": 1667,
-      "sha256": "543fa8e2be4bc0aa8ecc7f08bfc82288547cc7b286bfc2ee082db5b8c2d6d121"
+      "bytes": 1701,
+      "sha256": "a3cc9e7411cf87dea2df1656e702f5ed4fd8867dc8552cada23b11bce8e3f057"
     },
     {
       "path": "scripts/level_catalog.gd.uid",
@@ -597,8 +647,8 @@
     },
     {
       "path": "scripts/play.gd",
-      "bytes": 44887,
-      "sha256": "0976a30a90948c0523c074f14f7ddb50a241a317a688cf8cf63f54217500591f"
+      "bytes": 44507,
+      "sha256": "6eff5cf0da83c19f46544fb60a22f1e29bc7cb74dcfca7ad40f036b23ae57ff3"
     },
     {
       "path": "scripts/play.gd.uid",
@@ -617,8 +667,8 @@
     },
     {
       "path": "scripts/rescue_rules.gd",
-      "bytes": 30567,
-      "sha256": "8d6e773d5cc033e1f7ccb3163479ce8ee25248fc52f87252f8a2498bb3788730"
+      "bytes": 31169,
+      "sha256": "14a5b20efdf237fbf271ea8749b35580d012485aee8a529a30e53487852c7c23"
     },
     {
       "path": "scripts/rescue_rules.gd.uid",
@@ -634,6 +684,16 @@
       "path": "scripts/save_service.gd.uid",
       "bytes": 20,
       "sha256": "aa11315cbc03e941c185149c1e7b3ed1f0f00ae154dc05f9439ca783d5fe532a"
+    },
+    {
+      "path": "scripts/scene_layout.gd",
+      "bytes": 5039,
+      "sha256": "a9c5f8154b90434126e32421d4e6554443bc94ce8bafae8e92d0770b066fc624"
+    },
+    {
+      "path": "scripts/scene_layout.gd.uid",
+      "bytes": 19,
+      "sha256": "200cad123cddab7aa60acd621099b1785e60c515f08cec74ca02762e6be0c46e"
     },
     {
       "path": "scripts/serpent_path.gd",
@@ -657,8 +717,8 @@
     },
     {
       "path": "scripts/startup.gd",
-      "bytes": 19706,
-      "sha256": "18393f84feaf36fb4b8970501374e432a255fb5019f45ec824479c200a7b7d35"
+      "bytes": 19789,
+      "sha256": "96461f232c8275b39e9d6097984f6fc979504f80130be362e2448df4ad698895"
     },
     {
       "path": "scripts/startup.gd.uid",
@@ -697,8 +757,8 @@
     },
     {
       "path": "scripts/ui_skin.gd",
-      "bytes": 1822,
-      "sha256": "113355d496a8aed1fc90961a38969bf830995c4342be1292bb537151b562a7aa"
+      "bytes": 2313,
+      "sha256": "7e4c3ec533912b39a8745c82d52e57f630c464a45194aa4dba574e580d7dc319"
     },
     {
       "path": "scripts/ui_skin.gd.uid",
@@ -716,6 +776,11 @@
       "sha256": "9156a734655b2668210644343f244eb34a2d75a7dc3394d18d8e1c4830f4b154"
     },
     {
+      "path": "tests/capture_ruins_journey.gd",
+      "bytes": 4639,
+      "sha256": "ae9b8d6c0653ec3e021e7e4d9a42c77db61e87cc3f6755b1b7065d53f46ec465"
+    },
+    {
       "path": "tests/capture_serpent_journey.gd",
       "bytes": 4382,
       "sha256": "bb49fdae0b90530d5e8f3036b9d834d422f8a806e790f31881a3959728d01e65"
@@ -727,8 +792,8 @@
     },
     {
       "path": "tests/test_adventure_view.gd",
-      "bytes": 8263,
-      "sha256": "9a350b763746be2ae0d11aaf40c66613c04fc0997cd6d898ba6b483dac5ffafc"
+      "bytes": 8340,
+      "sha256": "5d04fbc792d3d577ae9000bdbd26dfc6ff3cf8626cd0527511ca5ed32a436398"
     },
     {
       "path": "tests/test_adventure_view.gd.uid",
@@ -774,6 +839,21 @@
       "path": "tests/test_ant_shop_view.gd.uid",
       "bytes": 20,
       "sha256": "c9a26da1f2a7ac310791e639bbfa8438b0cac0c1e623539077bd30dfeb17c69c"
+    },
+    {
+      "path": "tests/test_ruins_rules.gd",
+      "bytes": 13014,
+      "sha256": "ce73f0aded53c3f4987065cec36747a02fa8d5c3bdad3ea7cb0131f266994984"
+    },
+    {
+      "path": "tests/test_ruins_rules.gd.uid",
+      "bytes": 20,
+      "sha256": "7c1e51e9502b35cd948a2e53384e52bbe63de6af0bfe5e75e2ae8ff8b2e50627"
+    },
+    {
+      "path": "tests/test_ruins_scene.gd",
+      "bytes": 6651,
+      "sha256": "22e2e1751057402604c4d3e997721bf09b9461e4609882abfa82d99b911b062d"
     },
     {
       "path": "tests/test_serpent_color_controls.gd",

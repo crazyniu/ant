@@ -39,3 +39,7 @@ Music and sound use separate icons/sliders; zero remains silent, including after
 The rewarded-ad SDK is not integrated. Do not display a mock success or grant points for a simulated click/callback. Unavailable advertising is separate from normal progression, free retry and navigation.
 
 Current headless flow verification drives production handlers, not native mouse/touch input. The final five-page GL capture includes the map/preparation/shop fixes and has been visually inspected. That bounded review remains distinct from user visual acceptance, native-input testing and a whole-game interaction pass. Recheck rapid repeated actions, page back/return, save failures, scroll restoration and input blocking on the final source revision.
+
+## Intrinsic texture-size guard
+
+Use `UiSkin.place_texture(source, bounds, parent, id, keep_aspect)` for standalone bitmap controls. It sets zero custom minimum and `EXPAND_IGNORE_SIZE` before assigning a texture, then applies bounds and attaches the node. `sprite`, adventure thumbnails, scene guardian/nest and result guardian/coins all use it. Do not assign large native textures first and then copy inline size-setting code: cached texture minimums can inflate the result panel. Keep aspect for portraits/coins; use explicit projection dimensions for ground objects. The affected-scene check inspects actual post-tree guardian and coin sizes plus all four preparation count bounds.

@@ -53,7 +53,7 @@ func run() -> void:
 		if child.has_meta("cell"): bead_count += 1
 	check(bead_count == 18, "Preview has one real node per configured bead")
 	check(scene.get_node("PreviewSerpent").bodies.size() == 12, "Preview has one real body node per configured segment")
-	check(scene.get_node_or_null("Princess") != null, "Preview matches the current gameplay guardian rather than inventing a camp")
+	check(scene.get_node_or_null("DefenseTarget") != null and scene.get_node("DefenseTarget").get_meta("guardian_id")=="princess", "Preview matches the current gameplay guardian rather than inventing a camp")
 	check(not view.get_node("AdventurePage/AntChoice_swift").get_meta("owned"), "Locked Swift is not falsely marked owned")
 	view.get_node("AdventurePage/AntChoice_swift/Equip_swift").pressed.emit()
 	check(shops == 1 and view.selected_type == "worker", "Locked Swift requests shop and never equips")

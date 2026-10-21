@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "id": "ruins_cart",
+  "region_id": "ruins",
+  "region_label": "RUINS PASS",
+  "background": "res://assets/worlds/ruins-courtyard.png",
+  "board_plane": {
+    "top_left": [
+      230,
+      365
+    ],
+    "top_right": [
+      720,
+      365
+    ],
+    "bottom_left": [
+      220,
+      850
+    ],
+    "bottom_right": [
+      735,
+      850
+    ],
+    "cell_width_basis": 505,
+    "depth_ratio": 0.93
+  },
+  "nest": {
+    "position": [
+      410,
+      1010
+    ],
+    "gateway": [
+      410,
+      930
+    ],
+    "width": 110
+  },
+  "cannon": {
+    "rect": [
+      308,
+      1030,
+      166,
+      141
+    ],
+    "muzzle": [
+      407,
+      1060
+    ],
+    "center": [
+      391,
+      1110
+    ],
+    "pivot": [
+      83,
+      107
+    ]
+  },
+  "stock": {
+    "start": [
+      570,
+      1125
+    ],
+    "spacing": 60
+  },
+  "route": [
+    {
+      "position": [
+        340,
+        956
+      ],
+      "out": [
+        -120,
+        20
+      ]
+    },
+    {
+      "position": [
+        105,
+        850
+      ],
+      "in": [
+        60,
+        100
+      ],
+      "out": [
+        -17,
+        -100
+      ]
+    },
+    {
+      "position": [
+        95,
+        395
+      ],
+      "in": [
+        0,
+        110
+      ],
+      "out": [
+        6,
+        -120
+      ]
+    },
+    {
+      "position": [
+        250,
+        220
+      ],
+      "in": [
+        -90,
+        45
+      ],
+      "out": [
+        80,
+        -40
+      ]
+    },
+    {
+      "position": [
+        500,
+        148
+      ],
+      "in": [
+        -85,
+        5
+      ],
+      "out": [
+        85,
+        0
+      ]
+    },
+    {
+      "position": [
+        740,
+        190
+      ],
+      "in": [
+        -80,
+        -30
+      ]
+    }
+  ],
+  "defense_target": {
+    "id": "supply_cart",
+    "display_name": "Supply Cart",
+    "texture": "res://assets/worlds/supply-cart.png",
+    "foot": [
+      808,
+      192
+    ],
+    "width": 168,
+    "fixed": true,
+    "anchor": [
+      525,
+      873
+    ],
+    "physical_width": 1247
+  },
+  "walkable_polygon": [
+    [
+      163,
+      280
+    ],
+    [
+      808,
+      280
+    ],
+    [
+      808,
+      885
+    ],
+    [
+      500,
+      950
+    ],
+    [
+      500,
+      1160
+    ],
+    [
+      370,
+      1160
+    ],
+    [
+      370,
+      920
+    ],
+    [
+      163,
+      885
+    ]
+  ],
+  "art_notes": "Near-orthographic 2D ground, top-left light. Enemy road is outer left-to-top route, inner ant ground and open bottom gateway are separate. No objects baked into gameplay paths."
+}

@@ -1,50 +1,35 @@
 {
-  "status": "PASS_BOUNDED_CHECKS_WITH_KNOWN_EXIT_DIAGNOSTIC",
-  "base_commit": "125646450cd1bf5e90d6d7cbc833ca34ff47bd75",
-  "rules_api": "3.1.0",
-  "level_schema": 3,
-  "current_validation_levels": 3,
-  "frozen_at": "2026-10-21T17:08:26.586370+00:00",
-  "verified_at": "2026-10-21T17:09:22.396937+00:00",
-  "scope": "Single-click core plus current adventure, preparation, shop and local progression. Not a final product or human acceptance.",
-  "fresh_checks": {
-    "clean_independent_godot_import": "passed",
-    "production_meta_flow": {
-      "checks": 18,
-      "failures": [],
-      "exit_code": 0,
-      "known_exit_diagnostics": [
-        "ERROR: 1 resources still in use at exit (run with --verbose for details)."
-      ],
-      "interpretation": "Assertions pass; exit diagnostic remains unresolved and is not represented as zero-error execution"
-    },
-    "static_resource_dependencies": "resolved",
-    "candidate_only_pattern_secret_path_scan": "no findings",
-    "meta_assets": "hashes/native dimensions/crop pixels match retained manifests",
-    "core_assets_and_licenses": "retained unchanged from published baseline",
-    "final_GL_capture_source_identity": "all 11 code/config hashes match the parent-reviewed five-page capture; no user acceptance implied"
+  "status": "PASS_BOUNDED_SCENE_CHECKS_WITH_KNOWN_HEADLESS_EXIT_DIAGNOSTIC",
+  "base_commit": "8901b3429796e7acd452e3f08c96ce442761ff7a",
+  "frozen_at": "2026-10-21T17:43:25.032158+00:00",
+  "current_validation_levels": 4,
+  "scope": "one ruins/supply-cart authored level plus shared scene anchors and texture-size helper; not30-level completion",
+  "checks": {
+    "ruins_rules_assertions": 707,
+    "ruins_scene_checks": 83,
+    "retained_woodland_adventure_checks_rerun": 41,
+    "authored_route_samples": 3216,
+    "minimum_route_centerline_separation": 70.0000076293945,
+    "original_three_terminal_times_us": [
+      19950000,
+      26450000,
+      27350000
+    ],
+    "new_level_terminal_time_us": 27350000,
+    "new_level_deadline_us": 66000000,
+    "scene_test_exit_code": 0,
+    "GL_startup_diagnostics": "Two X11 BadShmSeg diagnostics; completed all frames and natural victory",
+    "known_scene_test_shutdown_diagnostic": "ObjectDB instances leaked; 7 resources still in use at exit",
+    "runtime_source_hashes_match": 12,
+    "static_resources": "resolved; tests include deliberate missing fixtures",
+    "candidate_only_secret_private_path_scan": "no findings",
+    "current_asset_dimensions": "match manifest"
   },
-  "retained_not_rerun": {
-    "growth_checks": 133,
-    "progression_assertions": 1062,
-    "core_recording_reports": "historical API 3.0.0 evidence, not full current-source identity"
-  },
-  "excluded": [
-    "old 30-level campaign and automatic-team/editor toolchain",
-    "import/cache directories and sidecars",
-    "captures/videos/ZIP",
-    "private machine paths and internal document/conversation links",
-    "project-wide MIT license"
-  ],
   "limits": [
-    "ad SDK not integrated; no simulated ad revenue or rewards",
-    "human balance and user final visual acceptance pending",
-    "no whole-project or old 33-level regression",
-    "no native pointer/device/audio acceptance",
-    "no merge or deployment"
-  ],
-  "sanitized_provenance_files": [
-    "reports/rules/ANT_PROGRESSION_API.md",
-    "reports/design/click-ant-current.md"
+    "1x authored automated replay, not human interaction or balance acceptance",
+    "Dummy cloud audio output; real mix captured but not human listening approval",
+    "old30 not rerun or included as new content",
+    "further regions/levels, combo/mechanism and real ad SDK remain",
+    "no merge/deployment"
   ]
 }

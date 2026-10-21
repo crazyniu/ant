@@ -125,6 +125,12 @@ static func validate_level(config: Dictionary) -> Array[String]:
 	if not _is_integer(params.get("max_inflight_ants")) or int(params.get("max_inflight_ants", 0)) != CARRIER_LIMIT:
 		errors.append("current slice requires exactly four transport places")
 	var transport: Dictionary = config.transport
+	if transport.has("entrance_cell"):
+		var entry:Variant=transport.entrance_cell
+		if not entry is Array or entry.size()!=2 or not _is_integer(entry[0]) or not _is_integer(entry[1]):
+			errors.append("entrance_cell must be two integer coordinates")
+		elif int(entry[0]) < -1 or int(entry[0]) > width or int(entry[1]) < -1 or int(entry[1]) > height or (int(entry[0])>=0 and int(entry[0])<width and int(entry[1])>=0 and int(entry[1])<height):
+			errors.append("entrance_cell must lie on the exterior transit ring")
 	if str(transport.get("carrier_type", "")) != "worker":
 		errors.append("current slice supports the basic worker transport only")
 	for key in ["outbound_speed_cells_sec", "returning_speed_cells_sec"]:
@@ -423,7 +429,8 @@ func _ensure_routes() -> void:
 	var width := int(level.width)
 	var height := int(level.height)
 	# The one-cell exterior ring is connected to every board edge, including the top.
-	var origin := Vector2i(width / 2, height)
+	var entrance:Array=level.transport.get("entrance_cell",[width/2,height])
+	var origin := Vector2i(int(entrance[0]),int(entrance[1]))
 	var queue: Array[Vector2i] = [origin]
 	var distances: Dictionary = {origin: 0}
 	var parents: Dictionary = {}
