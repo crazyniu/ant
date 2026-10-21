@@ -1,9 +1,8 @@
 {
   "algorithm": "SHA-256",
-  "scope": "all files except this manifest",
-  "base_commit": "8901b3429796e7acd452e3f08c96ce442761ff7a",
-  "file_count": 180,
-  "total_bytes": 40067632,
+  "scope": "All files in this snapshot except SOURCE_MANIFEST.json itself",
+  "file_count": 184,
+  "total_bytes": 40095078,
   "files": [
     {
       "path": ".gitignore",
@@ -22,8 +21,8 @@
     },
     {
       "path": "PUBLICATION_CHECK.json",
-      "bytes": 1565,
-      "sha256": "41e2860e0238446e158874ed1b4189cc143896dc2aa1a54b839085576ee0546a"
+      "bytes": 2360,
+      "sha256": "aa97e121462d29ea44810f9ded5eaea3df151a57d958177197eca048163c9405"
     },
     {
       "path": "README.md",
@@ -377,8 +376,8 @@
     },
     {
       "path": "docs/PUBLIC_VERIFICATION.md",
-      "bytes": 8511,
-      "sha256": "360c0fba9d26929409fc6d52a5b8318b8b021383a34829a97d07a07af3af74eb"
+      "bytes": 9841,
+      "sha256": "54c5f4ddb541508e0880cebb215510de46c218e931f830933089725543b6e052"
     },
     {
       "path": "docs/SCENE_LAYOUTS.md",
@@ -387,8 +386,8 @@
     },
     {
       "path": "docs/UI_COMPONENTS.md",
-      "bytes": 5552,
-      "sha256": "8e50eb168aeb664940e3959c141347fb3445ddf801ccad7c23e857f7e2e30c96"
+      "bytes": 6249,
+      "sha256": "a0416854148682291de94ade7593986d8efda5cc51f7b03c8608c4b4d6afc87a"
     },
     {
       "path": "docs/VERIFICATION.md",
@@ -479,6 +478,16 @@
       "path": "reports/ui/ant-meta-flow.json",
       "bytes": 161,
       "sha256": "5c6eb3485cde95e0f21d782a909f92dd413847d1dafaeb90b1e1926e964786ff"
+    },
+    {
+      "path": "reports/ui/color-row-capture.json",
+      "bytes": 970,
+      "sha256": "a577a58a81eb91e36bb70d1c3a0ff2d1d51cbc4eaf10bd842bf224b5d1ad85b6"
+    },
+    {
+      "path": "reports/ui/color-row-layout.json",
+      "bytes": 9417,
+      "sha256": "c114bf43f193d2af48411dcf0116b4f6c590c28cdb49f55675f8d3b2f511aa31"
     },
     {
       "path": "reports/ui/ruins-runtime.json",
@@ -647,8 +656,8 @@
     },
     {
       "path": "scripts/play.gd",
-      "bytes": 44507,
-      "sha256": "6eff5cf0da83c19f46544fb60a22f1e29bc7cb74dcfca7ad40f036b23ae57ff3"
+      "bytes": 44839,
+      "sha256": "a5c245cfb735ddcb67d88bf8e58dfa091af858154a88acfc8f54d79ed13bdeb4"
     },
     {
       "path": "scripts/play.gd.uid",
@@ -737,8 +746,8 @@
     },
     {
       "path": "scripts/ui_icon.gd",
-      "bytes": 5509,
-      "sha256": "35b5c22d9bb6db88e728a2092eb50cdeed515af8279ad72451b909e26654d598"
+      "bytes": 5919,
+      "sha256": "6ce842b5fd26bf5a5d61c3340094dca724b056d6166b899173d17a230dccaf75"
     },
     {
       "path": "scripts/ui_icon.gd.uid",
@@ -774,6 +783,11 @@
       "path": "tests/capture_ant_meta_pages.gd.uid",
       "bytes": 19,
       "sha256": "9156a734655b2668210644343f244eb34a2d75a7dc3394d18d8e1c4830f4b154"
+    },
+    {
+      "path": "tests/capture_color_row.gd",
+      "bytes": 2172,
+      "sha256": "f28b5207570dcbb0dd5fb638eedc36565fbf25a2f01a67dbe0c9ea34e45d03ec"
     },
     {
       "path": "tests/capture_ruins_journey.gd",
@@ -839,6 +853,11 @@
       "path": "tests/test_ant_shop_view.gd.uid",
       "bytes": 20,
       "sha256": "c9a26da1f2a7ac310791e639bbfa8438b0cac0c1e623539077bd30dfeb17c69c"
+    },
+    {
+      "path": "tests/test_color_row_layout.gd",
+      "bytes": 11323,
+      "sha256": "82334da5b8570ee288b34a9492d41aaad1748ad441ff7448a9ccad0a9229bd4c"
     },
     {
       "path": "tests/test_ruins_rules.gd",

@@ -43,3 +43,9 @@ Current headless flow verification drives production handlers, not native mouse/
 ## Intrinsic texture-size guard
 
 Use `UiSkin.place_texture(source, bounds, parent, id, keep_aspect)` for standalone bitmap controls. It sets zero custom minimum and `EXPAND_IGNORE_SIZE` before assigning a texture, then applies bounds and attaches the node. `sprite`, adventure thumbnails, scene guardian/nest and result guardian/coins all use it. Do not assign large native textures first and then copy inline size-setting code: cached texture minimums can inflate the result panel. Keep aspect for portraits/coins; use explicit projection dimensions for ground objects. The affected-scene check inspects actual post-tree guardian and coin sizes plus all four preparation count bounds.
+
+## Color dispatch row
+
+Active colors share one equal-width, centered row. `Play.color_control_layout(count)` distributes the available width dynamically rather than wrapping at three; one to six colors keep the same 116-logical-pixel touch height. Icons and live remaining counts scale within each plate. Four-color play is not a 3+1 layout.
+
+An unreachable color uses a desaturated ant and a small road barrier, never an ownership lock. Its tooltip and rejected tap say “No reachable bead”; the click does not queue a task, reserve a target or consume a bead. Ownership padlocks remain valid only on real level/type unlocks. Busy, reserved and collected states keep their distinct feedback.

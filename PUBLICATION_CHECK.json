@@ -20,10 +20,10 @@
     "scene_test_exit_code": 0,
     "GL_startup_diagnostics": "Two X11 BadShmSeg diagnostics; completed all frames and natural victory",
     "known_scene_test_shutdown_diagnostic": "ObjectDB instances leaked; 7 resources still in use at exit",
-    "runtime_source_hashes_match": 12,
     "static_resources": "resolved; tests include deliberate missing fixtures",
     "candidate_only_secret_private_path_scan": "no findings",
-    "current_asset_dimensions": "match manifest"
+    "current_asset_dimensions": "match manifest",
+    "ruins_journey_source_hashes_match_frozen_pre_row_snapshot": 12
   },
   "limits": [
     "1x authored automated replay, not human interaction or balance acceptance",
@@ -31,5 +31,30 @@
     "old30 not rerun or included as new content",
     "further regions/levels, combo/mechanism and real ad SDK remain",
     "no merge/deployment"
-  ]
+  ],
+  "color_row_followup": {
+    "checked_at": "2026-10-21T17:51:08.483978+00:00",
+    "actual_control_checks": 221,
+    "real_GL_states": 2,
+    "real_GL_pixels": [
+      1440,
+      2560
+    ],
+    "current_sources_match_GL_capture": true,
+    "production_files_changed": [
+      "scripts/play.gd",
+      "scripts/ui_icon.gd"
+    ],
+    "rules_and_level_data_unchanged": true,
+    "four_color_logical_target": [
+      197,
+      116
+    ],
+    "headless_exit_code": 0,
+    "headless_shutdown_resources": 3,
+    "GL_shutdown_resources": 1,
+    "GL_audio": "ALSA unavailable; Dummy fallback",
+    "full_journey_repeated": false,
+    "video_boundary": "33.53-second ruins journey shows the pre-followup 3+1 row; two new screenshots verify the current single row."
+  }
 }

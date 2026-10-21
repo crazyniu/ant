@@ -218,34 +218,40 @@ func pull_team_view()->void:
 	fixture.stock=rules.inventory.duplicate()
 	slot_teams=[]
 
+static func color_control_layout(count:int)->Array[Rect2]:
+	var layout:Array[Rect2]=[]
+	if count<=0:return layout
+	var gap:=20.0
+	var width:=minf(234.0,(848.0-float(count-1)*gap)/float(count))
+	var start:=(940.0-float(count)*width-float(count-1)*gap)*.5
+	for index in count:layout.append(Rect2(start+float(index)*(width+gap),1282.0,width,116.0))
+	return layout
+
 func build_candidates()->void:
 	var layer:=group("CandidateQueues")
 	var active_colors:Array=[]
 	for color in COLORS:
 		if int(rules.initial_counts.get(color,0))>0:active_colors.append(color)
-	var columns:=mini(3,active_colors.size())
-	var width:=234.0;var gap:=28.0
+	var layout:=color_control_layout(active_colors.size())
 	for i in active_colors.size():
 		var color:String=active_colors[i]
-		var row:=i/3;var col:=i%3
-		var in_row:=mini(3,active_colors.size()-row*3)
-		var x:float=(940.0-in_row*width-(in_row-1)*gap)*.5+col*(width+gap)
-		var y:=1282.0+row*142.0
-		var bounds:=Rect2(x,y,width,116)
+		var bounds:Rect2=layout[i]
+		var x:=bounds.position.x;var y:=bounds.position.y;var width:=bounds.size.x
+		var ant_width:=minf(76.0,width*.39)
 		frame(bounds,"ColorPlate_"+color,layer,18)
-		var actor:=ground_ant(color,Vector2(x+79,y+85),"ColorAnt_"+color,layer,76)
-		CarrierMotion.prepare(actor,color,76.0)
-		CarrierMotion.apply(actor,{"time":0.0,"distance":0.0,"moving":false,"direction":Vector2.UP,"stage":"idle","pickup":0.0,"diameter":76.0,"phase":0.0})
-		text_label(str(fixture.remaining.get(color,0)),Rect2(x+143,y+27,73,65),40,"Remaining_"+color,layer,INK)
+		var actor:=ground_ant(color,Vector2(x+width*.32,y+85),"ColorAnt_"+color,layer,ant_width)
+		CarrierMotion.prepare(actor,color,ant_width)
+		CarrierMotion.apply(actor,{"time":0.0,"distance":0.0,"moving":false,"direction":Vector2.UP,"stage":"idle","pickup":0.0,"diameter":ant_width,"phase":0.0})
+		text_label(str(fixture.remaining.get(color,0)),Rect2(x+width*.56,y+27,width*.35,65),clampi(roundi(width*.19),28,40),"Remaining_"+color,layer,INK)
 		var button:=Button.new();button.name="ColorButton_"+color;button.position=bounds.position;button.size=bounds.size;button.flat=true;button.tooltip_text="Send one "+color+" ant";layer.add_child(button)
 		button.pressed.connect(func():select_color(color));color_buttons[color]=button
-		var state_icon:=icon("lock",Rect2(x+width-35,y+8,24,24),layer,INK);state_icon.name="ColorState_"+color;state_icon.hide()
+		var state_icon:=icon("barrier",Rect2(x+width-35,y+8,24,24),layer,INK);state_icon.name="ColorState_"+color;state_icon.hide()
 
 func select_color(color:String)->bool:
 	if is_instance_valid(pause_overlay) or not profile_state.get("ready",false):return false
 	var result:Dictionary=rules.click_color(color)
 	if not result.ok:
-		var messages:Dictionary={"carrier_limit":"ALL FOUR ANTS ARE BUSY","color_blocked":"REACH A DIFFERENT EDGE FIRST","color_all_reserved":"THESE BEADS ARE ALREADY CLAIMED","color_collected":"ALL COLLECTED","simulation_frozen":"PAUSED"}
+		var messages:Dictionary={"carrier_limit":"ALL FOUR ANTS ARE BUSY","color_blocked":"NO REACHABLE BEAD","color_all_reserved":"THESE BEADS ARE ALREADY CLAIMED","color_collected":"ALL COLLECTED","simulation_frozen":"PAUSED"}
 		show_click_feedback(str(messages.get(result.get("reason",""),"NOT AVAILABLE")))
 		return false
 	var notice:=get_node_or_null("RoundRestartNotice")
@@ -351,8 +357,8 @@ func sync_view()->void:
 		var state:String=str(view_snapshot.color_states[color].state)
 		get_node("CandidateQueues/ColorAnt_"+color).modulate=Color(.55,.55,.55,.72) if state in ["collected","blocked"] else Color.WHITE
 		var indicator:Control=get_node("CandidateQueues/ColorState_"+color)
-		indicator.visible=state!="ready";indicator.kind="check" if state=="collected" else ("clock" if state=="all_reserved" else "lock");indicator.queue_redraw()
-		color_buttons[color].tooltip_text="All four ants are busy" if view_snapshot.capacity_full else ({"ready":"Send one ant","blocked":"Matching beads are blocked","all_reserved":"Matching beads are already claimed","collected":"All beads collected"}.get(state,"Send one ant"))
+		indicator.visible=state!="ready";indicator.kind="check" if state=="collected" else ("clock" if state=="all_reserved" else "barrier");indicator.queue_redraw()
+		color_buttons[color].tooltip_text="All four ants are busy" if view_snapshot.capacity_full else ({"ready":"Send one ant","blocked":"No reachable bead","all_reserved":"Matching beads are already claimed","collected":"All beads collected"}.get(state,"Send one ant"))
 	get_node("WorkSlots/CarrierCount").text="%d / %d"%[int(view_snapshot.carrier_count),int(view_snapshot.carrier_limit)]
 	get_node("WorkSlots/CapacityState").text="BUSY" if view_snapshot.capacity_full else ""
 	for color in color_buttons:get_node("TransportScene/Stock/Count_"+color).text=str(rules.inventory.get(color,0))

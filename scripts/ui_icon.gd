@@ -83,6 +83,14 @@ func _draw() -> void:
 			for i in range(10):
 				var a:float=-PI/2+i*PI/5;points.append(c+Vector2(cos(a),sin(a))*r*(1.0 if i%2==0 else .45))
 			draw_colored_polygon(points,ink);points.append(points[0]);draw_polyline(points,Color("d48d20"),2,true)
+		"barrier":
+			# Physical route obstruction, deliberately not an ownership padlock.
+			draw_line(c+Vector2(-r*.62,-r*.05),c+Vector2(-r*.8,r),ink,3,true)
+			draw_line(c+Vector2(r*.62,-r*.05),c+Vector2(r*.8,r),ink,3,true)
+			var board:=Rect2(c+Vector2(-r,-r*.66),Vector2(r*2,r*.72))
+			draw_rect(board,ink)
+			for x in [-.6,.0,.6]:draw_line(c+Vector2(r*x,-r*.62),c+Vector2(r*(x-.27),0),Color("fff1cc"),2,true)
+
 		"lock":
 			draw_arc(c-Vector2(0,r*.25),r*.58,PI,TAU,16,ink,3,true)
 			var s:=StyleBoxFlat.new();s.bg_color=ink;s.set_corner_radius_all(2);draw_style_box(s,Rect2(c+Vector2(-r*.73,0),Vector2(r*1.46,r)))
