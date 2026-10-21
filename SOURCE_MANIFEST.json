@@ -1,19 +1,19 @@
 {
   "algorithm": "SHA-256",
   "scope": "all files except this manifest",
-  "base_commit": "cb9bd8bcd05c4dc8c6bb1743a06bc860612fc3de",
-  "file_count": 256,
-  "total_bytes": 54089598,
+  "base_commit": "af7d8b1b1024d0a25a970db29027eef8eccfd609",
+  "file_count": 265,
+  "total_bytes": 54413679,
   "files": [
     {
       "path": ".gitignore",
-      "bytes": 160,
-      "sha256": "9c6255fe10c58bc3f45e1ff9970e127c46f5d2403e462742db83dab87344a57d"
+      "bytes": 166,
+      "sha256": "5611e28291cbd08e35c43bbbc5c225b1ab841726365183e70ad3bb3626e5aac8"
     },
     {
       "path": "ASSETS.md",
-      "bytes": 21204,
-      "sha256": "29d94962082180f2a2d8b0a03accc8d9b5f6b35974cc851112ab9e3ae7af3e4f"
+      "bytes": 21770,
+      "sha256": "5918d56e61f3ebedef1af25816703e024fb85513073773564715ad126a1da020"
     },
     {
       "path": "DEPENDENCIES.md",
@@ -22,13 +22,13 @@
     },
     {
       "path": "PUBLICATION_CHECK.json",
-      "bytes": 1791,
-      "sha256": "112e416f0137a7ad3ab45732b2bda1d017dad19323b1e663839d1df48a73be06"
+      "bytes": 1792,
+      "sha256": "33e772509f20249c770ed63fdf1f564352bfc952f9ca2adde1baceb4d041436d"
     },
     {
       "path": "README.md",
-      "bytes": 16123,
-      "sha256": "f8030404cd7127019775961323e5b8354e2df81ef687b99c192bf50de3330756"
+      "bytes": 17628,
+      "sha256": "fb0540abfa7ec4c98e7f6f1a48703d25b06009a6cc69c17ed3a46183dc0f4fec"
     },
     {
       "path": "assets/ants-atlas.png",
@@ -456,6 +456,11 @@
       "sha256": "8437a4ffc8c18f419f5d9c1d3a4f17c072bea6592503aef49d01c5d49574aaf5"
     },
     {
+      "path": "data/serpent-levels/serpent-11.json",
+      "bytes": 4195,
+      "sha256": "74f5b9ec37e16ec284275a027ea7321cc1e91a4b593f8eb9f3d5c5de38a1509d"
+    },
+    {
       "path": "docs/BOARD_PLANE.md",
       "bytes": 4078,
       "sha256": "3952379c80354bd5839a5be24157574627a1000466c280b0d2ca3df8df5ddb02"
@@ -467,23 +472,23 @@
     },
     {
       "path": "docs/CURRENT_IMPLEMENTATION.md",
-      "bytes": 22687,
-      "sha256": "182aa28449be8f30e122d292f9a04b412eae9e9666868cb27462ea4e7ef2a4c7"
+      "bytes": 24121,
+      "sha256": "d97f2a1e73458ca85bfc879b4b09ccd6f035f458733c1b10199b612e353735bd"
     },
     {
       "path": "docs/PUBLIC_VERIFICATION.md",
-      "bytes": 25891,
-      "sha256": "8ea8e1c8a0e700d7a1d8a3898fc0f3101007c287acd5df87ee9a37b23dfc58ad"
+      "bytes": 29051,
+      "sha256": "b5f794d350d16159ed122055c5ccae5ab8825e74bbf8f1586af50d4f30c5cf15"
     },
     {
       "path": "docs/SCENE_LAYOUTS.md",
-      "bytes": 13002,
-      "sha256": "6b116b08b5462b6abfc38bb3b63dafd680042b7254e4b573d1765345fba84b54"
+      "bytes": 14020,
+      "sha256": "63d32c7a075e75c43788b0b226231db78dea1563e3cf8729bae8156810d314aa"
     },
     {
       "path": "docs/UI_COMPONENTS.md",
-      "bytes": 6652,
-      "sha256": "055a40243d937cd39a2015c1e48848e21f8c5ed290d2dcd96f8e4d1345d1ac78"
+      "bytes": 6723,
+      "sha256": "7f9062cdb72f705c5b200e172e2a17a923a42c1ced3977f4c3a392fd7967cfdb"
     },
     {
       "path": "docs/VERIFICATION.md",
@@ -586,6 +591,11 @@
       "sha256": "1c1bb0916613f9b04ff2ef7a2f66ddfef80332d8ae06ce8547b59cb92cedc6d1"
     },
     {
+      "path": "reports/authoring/woodgate-check.json",
+      "bytes": 1505,
+      "sha256": "5d570d3c3153c8ea804b7b3d3827900717c2fb9e786dae1dc6d50eeacec5ed52"
+    },
+    {
       "path": "reports/design/click-ant-current.md",
       "bytes": 1719,
       "sha256": "027bf38ac87c3a084781ad08af9830cb27ae3fb33316d1fad411ab7a3619fb98"
@@ -619,6 +629,11 @@
       "path": "reports/rules/ant-progression-tests.json",
       "bytes": 733,
       "sha256": "f8954bb3ae0c3b9e5223a9207ebb06683cce8eadbf43993d3432ed2979b70ab4"
+    },
+    {
+      "path": "reports/rules/forest-crossing-level11.json",
+      "bytes": 279207,
+      "sha256": "1ffd5db51e06494006974e48ca965b22b4b2dd3d8fdb69fb76a3e5150b4bfc63"
     },
     {
       "path": "reports/rules/forest-traveler-level08.json",
@@ -664,6 +679,11 @@
       "path": "reports/rules/serpent-10-alternate-inputs.json",
       "bytes": 1052,
       "sha256": "26e60ab2f98a7627a423e50522652f7d934be4b137ea031c25780fda3d258b0b"
+    },
+    {
+      "path": "reports/rules/serpent-11-alternate-inputs.json",
+      "bytes": 950,
+      "sha256": "e2e6052bfe6ffab093ee15473695c8ebd3d333e86d2a15835a32499bb43b695f"
     },
     {
       "path": "reports/rules/serpent-layout-timing.json",
@@ -759,6 +779,16 @@
       "path": "reports/ui/snowpass-scene.json",
       "bytes": 311,
       "sha256": "03cc38c311e90b841c223363743ffe16dbf27f69307dc1e3de93db1e06cbd875"
+    },
+    {
+      "path": "reports/ui/woodgate-runtime.json",
+      "bytes": 5258,
+      "sha256": "59cc1033e00f846bb8e64714981b241897f9093e6f51123f8125dae4c050b0a1"
+    },
+    {
+      "path": "reports/ui/woodgate-scene.json",
+      "bytes": 322,
+      "sha256": "91603cb23bce0c6700dbdb0255fc03d7b3039dcb5e4a12e1662d0f99613b10a2"
     },
     {
       "path": "scenes/main.tscn",
@@ -887,8 +917,8 @@
     },
     {
       "path": "scripts/level_catalog.gd",
-      "bytes": 1785,
-      "sha256": "4dfe32e61b3e34ad2ced7f25e5c662149f220739cce198316547eb4c231b1a96"
+      "bytes": 1799,
+      "sha256": "b30e31da51903ff13792d384701e70a6b74900c6ab11b0a9f5b16cf293370860"
     },
     {
       "path": "scripts/level_catalog.gd.uid",
@@ -1086,6 +1116,11 @@
       "sha256": "786982946d91eeb92068d7e73e8631863c8c8c297e3d42c038c7aca093cd7b30"
     },
     {
+      "path": "tests/capture_woodgate_journey.gd",
+      "bytes": 5678,
+      "sha256": "33f704193e06f0592290dbca457ac640d5b94bdc4c797c231d3fc85007fbd17f"
+    },
+    {
       "path": "tests/test_adventure_view.gd",
       "bytes": 8340,
       "sha256": "5d04fbc792d3d577ae9000bdbd26dfc6ff3cf8626cd0527511ca5ed32a436398"
@@ -1144,6 +1179,11 @@
       "path": "tests/test_color_row_layout.gd",
       "bytes": 11323,
       "sha256": "82334da5b8570ee288b34a9492d41aaad1748ad441ff7448a9ccad0a9229bd4c"
+    },
+    {
+      "path": "tests/test_forest_crossing_level11.gd",
+      "bytes": 12797,
+      "sha256": "a3f49c4b06be75919d4755b1f7614954b3d4f9a398318b5a1f0820268e1e5aac"
     },
     {
       "path": "tests/test_forest_traveler_level.gd",
@@ -1276,9 +1316,14 @@
       "sha256": "4286ecc6f763b0466f179935c80a3a952cad47df9451f03098e4b3e5aa03123f"
     },
     {
+      "path": "tests/test_woodgate_scene.gd",
+      "bytes": 5028,
+      "sha256": "a76b66a7ee99a500e4b9e904e990512e3201d644361c7f72833e50833561c08f"
+    },
+    {
       "path": "tools/README.md",
-      "bytes": 2829,
-      "sha256": "a660f86224b61caa345b9faf0b22ff939fe5a34452730c60a53ecd1896088206"
+      "bytes": 4195,
+      "sha256": "02b81431867f0315f121801d29e3d6e96ac04656d87d7d583cb184390a5e17b1"
     },
     {
       "path": "tools/validate_serpent_level.gd",

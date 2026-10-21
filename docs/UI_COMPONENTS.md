@@ -21,7 +21,7 @@ Gameplay layers are environment/finite route/target → independent serpent and 
 - Pickup removes one board bead; unloading grants one inventory bead. The UI cannot invent stock before delivery.
 - HP1 normal and HP2 armored segments retain stable identity; the first armored hit shows cracked armor. Actual final damage is the victory source, not an animation completion signal.
 - Remaining beads or inventory do not invalidate a victory. There are no 20/30 automatic teams, five working slots or old extra-slot tools in current play.
-- The existing fixed rescue target is still princess art. Different future targets/themes are not implemented merely because a config field or label exists.
+- Fixed target art is selected by scene data: current scenes include princess, supply cart, winter camp and woodland traveler. Targets do not move during combat. A config label alone is not evidence of a new illustrated target.
 
 ## Full-screen navigation
 

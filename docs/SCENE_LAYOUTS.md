@@ -84,3 +84,10 @@ The bounded scene report `reports/ui/ruins-three-gate-scene.json` checks 3,417 s
 `data/scenes/ice-snowpass.json` reuses all physical geometry and assets from `ice-camp.json`: entrance `[6,8]`, nest `[530,1010]`, gateway `[530,930]`, cannon `[445,1030,166,141]`, and fixed camp foot `[151,219]`. Only stock presentation changes to start `[220,1082]`, spacing 65, columns 3 and row spacing 66. Counts and beads stay left of the cannon and above the capacity HUD; stock has no gameplay cap. Six dynamic color inputs remain a single row.
 
 The connected 25-bead courtyard has distinct red/green opening routes and requires all three white beads for three white damage. Fourteen ordinary and two armored body segments require 18 hits. The unchanged current ice-crest art is a reusable boss appearance, not a newly invented ice mechanic. The scene test covers all 3,618 sampled route positions, at least 75 logical pixels from the enemy centerline, six touch targets, true preparation counts, matching FX/count anchors and exact previous-layout stock positions. Human visual readability, timing and device input remain separate acceptance.
+
+
+## Traveler’s Branching Crossing
+
+`serpent-11` reuses `data/scenes/forest-traveler.json` without changing its ground, actor anchors, center entrance `[5,8]`, finite outer road or fixed traveler. No new raster or scene layout is created merely to duplicate existing geometry. Its single connected 22-bead formation differs from level 8's two islands: central red opens three yellow branches, lower blue opens a blue pocket, and a later yellow pickup makes the right blue route six cells shorter. These route changes must arise from production occupied-grid pathfinding, never an invisible scripted gate.
+
+All four color controls use the existing equal-width single row. The 58-check integrated scene report samples 3,216 carrier-ground positions and measures minimum enemy-centerline separation 112.34 logical pixels. Existing board-plane mapping, foot/chain anchors, opacity and texture setup remain unchanged. This content-level measurement does not replace user visual, native mouse, audio or device acceptance.

@@ -1,42 +1,37 @@
 {
-  "status": "PASS_BOUNDED_SNOW_COURTYARD_WITH_RECORDED_DIAGNOSTICS",
-  "base_commit": "cb9bd8bcd05c4dc8c6bb1743a06bc860612fc3de",
-  "frozen_at": "2026-10-21T19:39:33.033152+00:00",
-  "current_validation_levels": 10,
-  "scope": "one six-color connected snow courtyard and inventory presentation; rules unchanged, no new combat or full30",
+  "status": "PASS_BOUNDED_WOODLAND_CROSSING_WITH_RECORDED_DIAGNOSTICS",
+  "base_commit": "af7d8b1b1024d0a25a970db29027eef8eccfd609",
+  "frozen_at": "2026-10-21T19:52:04.148126+00:00",
+  "current_validation_levels": 11,
+  "scope": "one four-color connected woodland crossing; rules and existing assets unchanged, no new combat or full30",
   "checks": {
-    "rules_assertions": 576,
-    "scene_checks": 134,
-    "authored_route_samples": 3618,
-    "minimum_enemy_centerline_separation": 75.0,
-    "new_level_terminal_time_us": 29400000,
-    "new_level_deadline_us": 64000000,
-    "new_level_remaining_beads": 7,
+    "rules_assertions": 323,
+    "scene_checks": 58,
+    "authored_route_samples": 3216,
+    "minimum_enemy_centerline_separation": 112.344261169434,
+    "new_level_terminal_time_us": 26600000,
+    "new_level_deadline_us": 62000000,
+    "new_level_remaining_beads": 6,
     "runtime_source_hashes_match": 26,
     "victory_saved": true,
     "reward_total": 150,
-    "rules_and_levels01_to09_unchanged": true,
+    "rules_and_levels01_to10_unchanged": true,
     "static_resources": "resolved; tests include deliberate invalid fixtures",
     "candidate_only_secret_private_path_scan": "no findings"
   },
   "diagnostics": {
     "scene_headless": "exit0, passing assertions, ObjectDB and2resources inuse at shutdown; not clean exit",
-    "GL": "natural exit; unavailable V-Sync and8.91GiB low-disk warnings; no script or resource-at-exit diagnostics"
+    "GL": "natural exit; unavailable V-Sync and7.95GiB low-disk warnings; no script or resource-at-exit diagnostics"
   },
+  "encoding_diagnostic": "OGV keyframe-marking warnings during transcode; full MP4 decode separately checked, duration retained",
   "retained_not_rerun": [
-    "ruins-three-gate1466/50/60",
-    "traveler834/63",
-    "ice-supply668/50/43",
-    "fork54/entry16",
-    "ice1469/83",
-    "ruins707/single-row221",
-    "meta18/growth133/progression1062",
+    "levels01_to10 and prior common service suites",
     "old30/33 obsolete for current single-ant mode"
   ],
   "limits": [
     "1x authored automatic replay, not human interaction or balance acceptance",
+    "native OGV compressed source, not lossless movie; key PNG/event/hash retained outside source",
     "Dummy cloud output; captured mix is not hardware sound or human listening",
-    "existing white material visibility reviewed in runtime frames, not final user art acceptance",
     "further levels, combo/mechanism and real ad SDK remain",
     "no merge/deployment"
   ]

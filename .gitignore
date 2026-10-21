@@ -12,6 +12,7 @@ generated_images/
 archive/
 *.zip
 *.avi
+*.ogv
 *.mp4
 *.wav.tmp
 *.log

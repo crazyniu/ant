@@ -2,7 +2,7 @@
 
 A portrait Godot **4.6.3** game: click a color to send one ant for one bead, deliver it to fire one matching projectile, and destroy a segmented serpent before its head reaches the fixed goal. Runtime UI is English and icon-first. Normal play is offline and needs no account, backend, external plugin or secret.
 
-Current source includes adventure/preparation/shop progression, independently authored ruins and Ice Valley levels, Traveler’s Twin Groves in the existing woodland scene, Threefold Supply Steps with the carapace serpent, and the six-color Snow Courtyard. Rules API remains **3.1.0**, with level schema **3**. There are **ten current validation levels**, not a completed or accepted new 30-level campaign. Source integration is not merge, deployment or final acceptance.
+Current source includes adventure/preparation/shop progression, independently authored ruins and Ice Valley levels, Traveler’s Twin Groves in the existing woodland scene, Threefold Supply Steps with the carapace serpent, the six-color Snow Courtyard, and Traveler’s Branching Crossing. Rules API remains **3.1.0**, with level schema **3**. There are **eleven current validation levels**, not a completed or accepted new 30-level campaign. Source integration is not merge, deployment or final acceptance.
 
 ## Run
 
@@ -28,11 +28,11 @@ The viewport is **1440 × 2560**, with a uniformly scaled **940 × 1672** logica
 - Each bead funds one matching projectile for one damage. Normal segments have **HP1**; armored segments have **HP2**, with a cracked state after the first hit. Stable segment IDs prevent retargeting errors.
 - The serpent follows a **finite, non-looping route**. Removing a segment shortens the body without moving its head backward. The head has no extra hidden health bar.
 - Actual damage removing the final live segment wins. Board clear, pickup, delivery or firing does not win; leftover beads and inventory are allowed. Earlier head contact loses. At exactly the same simulation microsecond, due damage resolves before contact.
-- The base worker can solve all ten current authored levels without upgrades, advertising, combos or mechanisms. No automatic 20/30-ant teams, five work slots, team quotas or board-equals-armor rule remain in current play.
+- The base worker can solve all eleven current authored levels without upgrades, advertising, combos or mechanisms. No automatic 20/30-ant teams, five work slots, team quotas or board-equals-armor rule remain in current play.
 
 ## Map, preparation, points and shop
 
-The full-screen map uses the real ten-level catalog and saved completion/unlock states. Preparation shows the selected level's scene preview, segment/HP information, fixed target and owned ant types. Map region, scroll and selected level are persisted for return navigation. The fourth level adds a ruins ground and stationary supply-cart objective; level five adds a snow valley, fixed winter camp and independently authored two-gate opening; level six returns to ruins with a smaller three-color, blue-armor supply fork; level seven reuses the snow scene for a two-stage supply ridge and the independent ice-crest serpent appearance; level eight returns to woodland with a fixed traveler, two resource islands and purple as a fifth color. Level nine adds a four-color, three-step opening in ruins with an independent carapace serpent. Level ten reuses the Ice Valley ground and crest serpent for a connected courtyard puzzle, with white as the sixth independently dispatchable color. Further themed regions and targets remain content work.
+The full-screen map uses the real eleven-level catalog and saved completion/unlock states. Preparation shows the selected level's scene preview, segment/HP information, fixed target and owned ant types. Map region, scroll and selected level are persisted for return navigation. The fourth level adds a ruins ground and stationary supply-cart objective; level five adds a snow valley, fixed winter camp and independently authored two-gate opening; level six returns to ruins with a smaller three-color, blue-armor supply fork; level seven reuses the snow scene for a two-stage supply ridge and the independent ice-crest serpent appearance; level eight returns to woodland with a fixed traveler, two resource islands and purple as a fifth color. Level nine adds a four-color, three-step opening in ruins with an independent carapace serpent. Level ten reuses the Ice Valley ground and crest serpent for a connected courtyard puzzle, with white as the sixth independently dispatchable color. Level eleven adds a connected woodland crossing with a central-opening versus early-blue-supply choice. Further themed regions and targets remain content work.
 
 - First clear: **100 + 0–50** time-bonus points. Replay clear: **20 + 0–10**. Failed or abandoned runs earn no new points and do not deduct existing points.
 - Reward time is effective simulation time from first legal dispatch to final damage, not recording length or wall-clock time. Each level supplies its own bonus thresholds.
@@ -55,7 +55,7 @@ Music and effects have independent controls; saved zero remains silent. Human li
 - `scripts/play.gd`, `rescue_rules.gd`: live scene adapter and authoritative microsecond rules.
 - `scripts/level_catalog.gd`, `save_service.gd`: current catalog identity, completion/settings saves.
 - `scripts/serpent_view.gd`, `serpent_path.gd`, `directional_carrier.gd`, `carrier_route.gd`: independent serpent and transport presentation.
-- `data/serpent-levels/`: only the nine current authored validation levels.
+- `data/serpent-levels/`: the eleven current authored validation levels.
 
 Start with [current implementation](docs/CURRENT_IMPLEMENTATION.md), [UI components](docs/UI_COMPONENTS.md), [asset placement](ASSETS.md) and [verification boundaries](docs/PUBLIC_VERIFICATION.md). Older documents with a historical-version notice are reference material, not current acceptance criteria.
 
@@ -109,3 +109,12 @@ Its 21 beads fund 15 HP across 11 normal and two armored segments, one purple an
 23 beads fund 17 damage (13 ordinary and two armored segments). Both authored base Worker Lv.1 solutions use 17 inputs at 1.4-second intervals and finish on final damage at 28.75 simulation seconds before the 62-second threat, leaving six beads. Red→yellow opens the required blue core at 3.00s; blue→yellow takes a different right-hand yellow first and opens the same blue core via an upper branch at 7.20s. Actual nearest-reachable targets differ; this is not a manual cell-selection claim. Sixteen routes are 3–5 cells and one is six cells, with longest no-dispatch interval 0.80s in these solutions. Human strategy, pacing and difficulty remain to be tested.
 
 Current bounded evidence is 1,466 level-rule assertions, 50 appearance checks, 60 integrated scene checks and production single-level CLI validation. These scopes are separate, not a whole-campaign rerun. Actual runtime evidence and diagnostics are recorded in [verification boundaries](docs/PUBLIC_VERIFICATION.md).
+
+
+## Level 11: Traveler’s Branching Crossing
+
+`serpent-11` reuses the woodland scene, fixed traveler, center-bottom entrance and default serpent appearance. Its connected crossing and two lower approaches are distinct from the earlier disconnected Twin Groves. Four-color supplies R4/B4/G8/Y6 total 22 beads; each color needs four damage across 12 normal and two armored segments. Blue and red have no surplus, so the enclosed blue cells must become reachable.
+
+Red-first opens three central yellow branches; blue-first opens a lower blue supply pocket and cracks blue armor 4.20 seconds earlier. A later yellow pickup shortens the right blue route from eleven to five cells using normal occupancy-based pathfinding, not a scripted shortcut. Both authored Worker Lv.1 solutions use sixteen independent inputs, finish on actual damage at 26.60s before the 62s threat, and leave six beads. Fifteen chosen routes are 3–5 cells and one is six cells. These are bounded scripted solvability results, not human pacing or strategy approval.
+
+Level-specific evidence is in `reports/rules/forest-crossing-level11.json`, `reports/ui/woodgate-scene.json`, `reports/authoring/woodgate-check.json` and the actual-GL report named in [verification boundaries](docs/PUBLIC_VERIFICATION.md). Rules and previous levels are unchanged; no new assets or mechanics are introduced.

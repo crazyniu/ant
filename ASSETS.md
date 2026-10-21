@@ -137,3 +137,8 @@ Eight head and eight tail yaw views retain fixed upper-left lighting. Tail manif
 ### Six-color Snow Courtyard reuse
 
 Level 10 uses the existing `assets/worlds/ice-valley.png`, `assets/worlds/winter-camp.png`, `assets/serpent/ice-serpent-atlas.{png,json}`, `assets/motion/ant-directions.{png,json}` and `assets/ui/fusion/beads.png`/`bead-regions.json`. No new raster assets, altered alpha cuts, licensing claims or native-resolution claims are introduced. White is an existing material/tint selected by real level data. `data/scenes/ice-snowpass.json` changes only stock anchors to two rows; existing target and actor physical anchors remain authoritative.
+
+
+### Woodland Branching Crossing reuse
+
+Level 11 uses the existing woodland ground `assets/serpent/environment.png`, fixed traveler `assets/worlds/forest-traveler.png`, default serpent and armor atlases, eight-direction carrier atlas and fused bead sheet. `data/scenes/forest-traveler.json` retains all measured foot, chain, board-plane and physical-scale anchors. No new generated artwork, alpha crops, texture normalization or rights claims are introduced. The level changes occupied cells, segment combinations and authored input routes, not bitmap composition.

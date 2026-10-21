@@ -1,0 +1,8 @@
+{
+	"checks": 58,
+	"failures": [],
+	"level_sha256": "74f5b9ec37e16ec284275a027ea7321cc1e91a4b593f8eb9f3d5c5de38a1509d",
+	"minimum_enemy_centerline_separation": 112.344261169434,
+	"path_samples": 3216,
+	"scope": "one integrated woodland branching-crossing ground/preview/four-color input contract, no prior campaign rerun"
+}

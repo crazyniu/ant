@@ -21,3 +21,12 @@ This does not claim ground-contact/obstacle-art correctness, visual clarity, rea
 To author a new level, copy one current JSON into a separate draft, change identity/content version, region/scene/guardian and actual board/opening/route/segment decisions, then author a timed base-worker solution. Run only that new file; inspect its event trace and bounded actual scene. Add it to the catalog only once it is independently playable. Do not generate thirty near-identical entries to meet a count.
 
 Current entry acceptance: `tests/test_level_check_entry.gd`, one valid level-5 replay plus deliberately invalid input/configuration variants. Previous 30/33 automatic-team suites are not current evidence.
+
+
+## Bounded visual capture
+
+For current Godot 4.6.3 GL review, the native `.ogv` MovieWriter supports Theora video and Vorbis audio at the actual 1440×2560 viewport. Use `--write-movie <outside-project>/capture.ogv --fixed-fps 30` with a bounded capture fixture. Keep 1× game speed; do not speed up clips or infer simulation time from recording length. Current defaults are video quality 0.75, OGV audio quality 0.5, encoding speed 4, keyframe interval 64 and 48kHz audio. No gameplay or production project setting needs to change for the container choice.
+
+OGV is a compressed source capture, not a lossless movie. Retain lossless key PNGs plus the exact level/code/art hashes and authoritative event times outside source control. Transcode a delivery MP4 without time scaling, retaining the original compressed source. Do not delete already referenced original evidence. An automatic authored replay, recorded audio waveform or a visible BGM player is not human gameplay, listening or hardware acceptance. Capture representative journeys where needed; other bounded content checks may use real GL key states with event/hash evidence, and must not be labelled a full-flow recording.
+
+Official engine references: https://docs.godotengine.org/en/4.6/classes/class_moviewriter.html and https://docs.godotengine.org/en/4.6/tutorials/animation/creating_movies.html .

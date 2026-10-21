@@ -14,7 +14,7 @@ Version: 2026-10-21 Snow Courtyard continuation; rules API 3.1.0, level schema 3
 | Points, purchase ledger, equipment, frozen run loadout, navigation state | `scripts/ant_progression.gd` |
 | Ordered catalog and level/settings completion save | `scripts/level_catalog.gd`, `scripts/save_service.gd` |
 | Economy parameters | `data/ant-progression.json` |
-| Available authored levels | `data/serpent-levels/serpent-01.json` through `serpent-10.json` |
+| Available authored levels | `data/serpent-levels/serpent-01.json` through `serpent-11.json` |
 
 The gameplay adapter, not animation callbacks, applies the authoritative result. Views consume detached state and emit requests. They must never fabricate balances, damage, unlocks, item ownership, completed levels or ad receipts.
 
@@ -68,7 +68,7 @@ Advertising is unavailable: status/request/claim APIs reject with `ad_sdk_unavai
 
 The broader design remains in `reports/design/current-product-spec.md` and `reports/design/click-ant-current.md`. It includes work not yet implemented. Current source and bounded reports, not a concept image or old checklist, establish implementation status.
 
-Only `serpent-01` through `serpent-10` are current. The reserved `--campaign-drafts` path points to a future serpent catalog with no authored files. Old `data/campaign-drafts/`, old validation levels, the legacy editor/generation chain and old campaign tests must not be substituted or advertised as available new-mode content.
+Only `serpent-01` through `serpent-11` are current. The reserved `--campaign-drafts` path points to a future serpent catalog with no authored files. Old `data/campaign-drafts/`, old validation levels, the legacy editor/generation chain and old campaign tests must not be substituted or advertised as available new-mode content.
 
 Remaining scope: the rest of the new 30 independent levels and a fuller authoring workflow beyond the explicit single-level CLI; further independently authored themed scenes and fixed targets; optional junction combos and hidden supplies; real rewarded ads; human difficulty/economy and natural-input testing; final visual, audio and target-device acceptance. The earlier five-page GL capture at 1440 × 2560 includes the map/preparation/shop fixes and has been visually inspected; it is separate from the level-8 runtime evidence and does not establish traveler user visual acceptance. The separate level-7 runtime report records automated GL evidence, not human approval. User approval and device/native-input acceptance remain separate. Exact retained test results and their limits are in `PUBLIC_VERIFICATION.md`.
 
@@ -139,3 +139,12 @@ The current rule report contains 1,466 assertions, the asset report 50 checks an
 Two 18-input solutions at 1.40s gaps exercise different real nearest-target routes. Red opens the courtyard; green opens only the right inner white route. At 1.40s the same white click selects the exterior white after red-first, but the right inner white after green-first. Exterior-white pickup also opens adjacent green, without opening either inner white. All openings occur on actual pickup, never reservation. Both authored sequences finish on final hit at 29.40s, leave seven beads, and have 16 single trips of 3–5 grid cells plus two trips of six cells. Maximum all-color no-dispatch window is 0.80s; this is automated timing evidence, not human pacing approval.
 
 `ice-snowpass.json` shares the existing snow ground, camp, board projection, finite enemy route and nest/cannon anchors. Its only new presentation option is a three-column/two-row inventory to keep six icon/count pairs clear of the cannon. `SceneLayout.stock_anchor()` is shared by counts and delivery FX. Omitted columns preserve prior scene positions exactly; no inventory capacity or combat rule changes. All six dispatch controls remain equal-width in one row. Existing white materials, eight-direction workers, ice-crest serpent and visible cracked armor are reused.
+
+
+## Level 11: connected woodland crossing
+
+The current catalog includes `serpent-11` using unchanged `forest-traveler.json` geometry and assets. The four-color connected formation contains 22 beads, with blue and red exactly covering their four HP each. Twelve HP1 plus blue/yellow HP2 segments require sixteen actual hits; six green/yellow surplus beads remain after both authored victories. The finite enemy goal budget is 62s.
+
+Red pickup at 1.20s opens three yellow neighbors. Blue-first instead opens the lower blue pocket at 1.20s and advances the first blue armor hit from 7.85s to 3.65s. Green-first is also a legal opening, not a forced gate. The authored central-yellow pickup at 12.80s shortens a still-present right blue exterior path from eleven cells to five; reservation alone cannot change it. Both sixteen-input Worker Lv.1 solutions win at 26.60s, with unchanged timing and at most four carriers. This demonstrates a different opening/access decision, not a new rule or a claim of human balance acceptance.
+
+The integrated rule fixture has 323 checks, the scene fixture 58 checks with 3,216 carrier-ground samples and minimum enemy-centerline separation 112.34 logical pixels, and the single-level authoring CLI passes. Previous levels and general rule suites are not rerun by this content increment. Same-source actual-runtime evidence and remaining acceptance boundaries are separate in `PUBLIC_VERIFICATION.md`.
