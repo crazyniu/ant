@@ -1,0 +1,17 @@
+.godot/
+.import/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.env.*
+!.env.example
+evidence/
+review-evidence/
+generated_images/
+archive/
+*.zip
+*.avi
+*.mp4
+*.wav.tmp
+*.log

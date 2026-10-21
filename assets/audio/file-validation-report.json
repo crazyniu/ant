@@ -1,0 +1,146 @@
+{
+  "pass": true,
+  "checks": 191,
+  "failures": [],
+  "files": [
+    {
+      "id": "bgm_castle_garden",
+      "format": "ogg",
+      "seconds": 40.0,
+      "peak_dbfs": -7.87,
+      "rms_dbfs": -20.34,
+      "dc": 1.4223e-05,
+      "seam_step": 0.002425872
+    },
+    {
+      "id": "ui_click",
+      "format": "wav",
+      "seconds": 0.22,
+      "peak_dbfs": -9.9,
+      "rms_dbfs": -23.36,
+      "dc": 5.184e-06,
+      "seam_step": 0.0
+    },
+    {
+      "id": "dispatch",
+      "format": "wav",
+      "seconds": 0.91,
+      "peak_dbfs": -7.33,
+      "rms_dbfs": -22.05,
+      "dc": 3.535e-06,
+      "seam_step": 0.0
+    },
+    {
+      "id": "pickup",
+      "format": "wav",
+      "seconds": 0.4,
+      "peak_dbfs": -11.37,
+      "rms_dbfs": -24.86,
+      "dc": 1.851e-06,
+      "seam_step": 0.0
+    },
+    {
+      "id": "return",
+      "format": "wav",
+      "seconds": 0.97,
+      "peak_dbfs": -9.37,
+      "rms_dbfs": -24.2,
+      "dc": 3.22e-07,
+      "seam_step": 0.0
+    },
+    {
+      "id": "cannon",
+      "format": "wav",
+      "seconds": 0.65,
+      "peak_dbfs": -6.75,
+      "rms_dbfs": -23.4,
+      "dc": 0.000104809,
+      "seam_step": 0.0
+    },
+    {
+      "id": "armor_hit",
+      "format": "wav",
+      "seconds": 0.7750113378684808,
+      "peak_dbfs": -8.64,
+      "rms_dbfs": -22.81,
+      "dc": 2.32e-07,
+      "seam_step": 0.0
+    },
+    {
+      "id": "warning",
+      "format": "wav",
+      "seconds": 1.5,
+      "peak_dbfs": -8.4,
+      "rms_dbfs": -15.96,
+      "dc": 8.8e-08,
+      "seam_step": 0.0
+    },
+    {
+      "id": "tool_plus",
+      "format": "wav",
+      "seconds": 1.5,
+      "peak_dbfs": -7.33,
+      "rms_dbfs": -22.44,
+      "dc": 2.228e-06,
+      "seam_step": 0.0
+    },
+    {
+      "id": "tool_shuffle",
+      "format": "wav",
+      "seconds": 1.3,
+      "peak_dbfs": -7.33,
+      "rms_dbfs": -22.0,
+      "dc": 1.22e-07,
+      "seam_step": 0.0
+    },
+    {
+      "id": "tool_recall",
+      "format": "wav",
+      "seconds": 1.47,
+      "peak_dbfs": -7.33,
+      "rms_dbfs": -20.83,
+      "dc": 2.5e-08,
+      "seam_step": 0.0
+    },
+    {
+      "id": "tool_hint",
+      "format": "wav",
+      "seconds": 1.96,
+      "peak_dbfs": -9.12,
+      "rms_dbfs": -24.18,
+      "dc": 4e-08,
+      "seam_step": 0.0
+    },
+    {
+      "id": "win",
+      "format": "wav",
+      "seconds": 2.25,
+      "peak_dbfs": -6.94,
+      "rms_dbfs": -21.33,
+      "dc": 2.2e-08,
+      "seam_step": 0.0
+    },
+    {
+      "id": "lose",
+      "format": "wav",
+      "seconds": 2.0,
+      "peak_dbfs": -8.87,
+      "rms_dbfs": -20.17,
+      "dc": 5.6e-08,
+      "seam_step": 0.0
+    },
+    {
+      "id": "error",
+      "format": "wav",
+      "seconds": 0.98,
+      "peak_dbfs": -9.9,
+      "rms_dbfs": -27.34,
+      "dc": 1.1259e-05,
+      "seam_step": 0.0
+    }
+  ],
+  "scope": "Independent file/hash/format/non-silence/float-decode clipping/headroom/DC/stereo/attack/release/loop-seam checks; Vorbis full duration and frame preservation.",
+  "human_listening": "NOT RUN",
+  "hardware_audio": "NOT RUN",
+  "gameplay_integration": "NOT CLAIMED"
+}

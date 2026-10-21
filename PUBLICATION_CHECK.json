@@ -1,0 +1,27 @@
+{
+  "snapshot": "2026-10-21-public-cloud-game2",
+  "publication_performed": false,
+  "source": "Tested frozen Godot 4.6.3 handoff",
+  "production_files_unchanged": 238,
+  "runtime_literal_reference_errors": [],
+  "changed_review_scripts_check_only": {
+    "count": 5,
+    "exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "privacy_secret_scan": {
+    "files_scanned": 362,
+    "findings": [],
+    "method": "Heuristic token/private-path/private-document-link scan plus independent text/binary/PNG metadata review; not a security warranty"
+  },
+  "private_delivery_documents_omitted": true,
+  "raw_test_logs_omitted": true,
+  "gameplay_suite_rerun": false,
+  "basis": "Runtime/art/audio/data/configuration hashes match existing measured snapshot. Only documentation, ignore rules and portable test output destinations changed.",
+  "license": "No project-wide license selected. Included third-party attribution retained. No legal clearance warranty for generated art."
+}

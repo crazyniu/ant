@@ -1,0 +1,413 @@
+{
+  "armors": [
+    {
+      "color": "yellow",
+      "demand": 25.0,
+      "id": "armor-01"
+    },
+    {
+      "color": "blue",
+      "demand": 47.0,
+      "id": "armor-02"
+    },
+    {
+      "color": "white",
+      "demand": 15.0,
+      "id": "armor-03"
+    }
+  ],
+  "author_notes": {
+    "armor_intent": "Alternate forward/reverse cycles of yellow,blue,white; 1 independently sized segment(s) per present color.",
+    "failure_boundary_cases": [
+      "Final hit and princess contact at exactly the same microsecond: victory.",
+      "Contact one microsecond before final hit: defeat; later hit cannot overturn.",
+      "Empty board and last delivery are not victory; final projectile must hit."
+    ],
+    "motif": "Little Sailboat",
+    "playtest_conclusion": "NOT_RUN: automated proof is not a human difficulty, motif-recognition or visual acceptance.",
+    "progression_band": "01–05 exposed foundations",
+    "queue_intent": "First-front color order blue,white,yellow. Introductory colors use dedicated lanes. Team quotas vary independently of armor slices.",
+    "teaching_goal": "Three exposed choices and a small last wave; quota zero is not victory.",
+    "time_budget_policy": "Predeclared budget = ceil(beads × dispatch + teams × 0.75 + armor segments × cooldown × 0.60 + twice width-plus-height / 14 + band grace). Measured final-hit tail and margin must be recorded after authoritative replay."
+  },
+  "campaign_draft_number": 4.0,
+  "columns": [
+    {
+      "id": "column-1",
+      "teams": [
+        {
+          "color": "blue",
+          "id": "blue-01",
+          "quota": 10.0
+        },
+        {
+          "color": "blue",
+          "id": "blue-02",
+          "quota": 8.0
+        },
+        {
+          "color": "blue",
+          "id": "blue-03",
+          "quota": 12.0
+        },
+        {
+          "color": "blue",
+          "id": "blue-04",
+          "quota": 10.0
+        },
+        {
+          "color": "blue",
+          "id": "blue-05",
+          "quota": 7.0
+        }
+      ]
+    },
+    {
+      "id": "column-2",
+      "teams": [
+        {
+          "color": "white",
+          "id": "white-01",
+          "quota": 8.0
+        },
+        {
+          "color": "white",
+          "id": "white-02",
+          "quota": 7.0
+        }
+      ]
+    },
+    {
+      "id": "column-3",
+      "teams": [
+        {
+          "color": "yellow",
+          "id": "yellow-01",
+          "quota": 12.0
+        },
+        {
+          "color": "yellow",
+          "id": "yellow-02",
+          "quota": 10.0
+        },
+        {
+          "color": "yellow",
+          "id": "yellow-03",
+          "quota": 3.0
+        }
+      ]
+    },
+    {
+      "id": "column-4",
+      "teams": []
+    },
+    {
+      "id": "column-5",
+      "teams": []
+    }
+  ],
+  "content_kind": "authoring_draft",
+  "content_version": "campaign-draft-1.0",
+  "dragon": {
+    "initial_position": 0.0,
+    "knockback_distance": 0.55,
+    "max_knockback_distance": 0.55,
+    "route_length": 44.0,
+    "speed_units_sec": 1.0
+  },
+  "grid": [
+    "................",
+    "........Y.......",
+    "........Y.......",
+    "........Y.......",
+    "......W.YY......",
+    ".....WW.YYY.....",
+    "....WWW.YYYY....",
+    "...WWWW.YYYYY...",
+    "..WWWWW.YYYYYY..",
+    "........Y.......",
+    "........Y.......",
+    ".BBBBBBBBBBBBBB.",
+    "..BBBBBBBBBBBB..",
+    "...BBBBBBBBBB...",
+    "................",
+    ".BBBBBB...BBBBB."
+  ],
+  "height": 16.0,
+  "initial_color_counts": {
+    "blue": 47.0,
+    "green": 0.0,
+    "purple": 0.0,
+    "red": 0.0,
+    "white": 15.0,
+    "yellow": 25.0
+  },
+  "level_id": "campaign-04",
+  "level_number": 4.0,
+  "objective": "Three exposed choices and a small last wave; quota zero is not victory.",
+  "palette": {
+    "B": "blue",
+    "G": "green",
+    "P": "purple",
+    "R": "red",
+    "W": "white",
+    "Y": "yellow"
+  },
+  "parameters": {
+    "cannon_cooldown_sec": 1.8,
+    "dispatch_interval_sec": 0.19,
+    "max_inflight_ants": 20.0,
+    "pickup_pause_sec": 0.16,
+    "projectile_flight_sec": 0.8,
+    "transport_min_leg_sec": 0.55,
+    "transport_speed_cells_sec": 14.0
+  },
+  "pattern_name": "Little Sailboat",
+  "production_level_number": null,
+  "schema_version": 1.0,
+  "seed": 2026102104.0,
+  "thumbnail": "campaign-04-thumbnail.png",
+  "tools": [
+    {
+      "id": "extra_slot",
+      "unlock_level": 3.0,
+      "uses_per_level": 1.0
+    },
+    {
+      "id": "shuffle",
+      "unlock_level": 6.0,
+      "uses_per_level": 1.0
+    },
+    {
+      "id": "recall",
+      "unlock_level": 9.0,
+      "uses_per_level": 1.0
+    },
+    {
+      "id": "scout",
+      "unlock_level": 16.0,
+      "uses_per_level": 1.0
+    }
+  ],
+  "validation": {
+    "boundary_replays": {
+      "exact_final_hit_tie": {
+        "status": "NOT_RUN",
+        "reason": "Transport timing changed; old full-level certificate invalidated. This batch runs focused timing/contact fixtures rather than a new whole-campaign boundary sweep."
+      },
+      "contact_1us_earlier": {
+        "status": "NOT_RUN",
+        "reason": "Transport timing changed; old full-level certificate invalidated. This batch runs focused timing/contact fixtures rather than a new whole-campaign boundary sweep."
+      }
+    },
+    "click_interval_us": 750000,
+    "color_conservation": [
+      {
+        "armor": 0,
+        "balanced": true,
+        "board": 0,
+        "color": "red",
+        "quota": 0
+      },
+      {
+        "armor": 47,
+        "balanced": true,
+        "board": 47,
+        "color": "blue",
+        "quota": 47
+      },
+      {
+        "armor": 25,
+        "balanced": true,
+        "board": 25,
+        "color": "yellow",
+        "quota": 25
+      },
+      {
+        "armor": 0,
+        "balanced": true,
+        "board": 0,
+        "color": "green",
+        "quota": 0
+      },
+      {
+        "armor": 0,
+        "balanced": true,
+        "board": 0,
+        "color": "purple",
+        "quota": 0
+      },
+      {
+        "armor": 15,
+        "balanced": true,
+        "board": 15,
+        "color": "white",
+        "quota": 15
+      }
+    ],
+    "conservation_errors": [],
+    "content_sha256": "a86e7a2700e0880f63addac8817847ca9f89dd90d88474433ee1872de9a25359",
+    "final_hit_margin_us": 21771428,
+    "human_playtest": "NOT_RUN",
+    "inputs": [
+      {
+        "column_id": "column-1",
+        "team_id": "blue-01",
+        "time_us": 0.0
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "blue-02",
+        "time_us": 750000.0
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "blue-03",
+        "time_us": 1500000.0
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "blue-04",
+        "time_us": 2250000.0
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "blue-05",
+        "time_us": 3000000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "white-01",
+        "time_us": 5250000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "white-02",
+        "time_us": 6000000.0
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "yellow-01",
+        "time_us": 9750000.0
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "yellow-02",
+        "time_us": 11250000.0
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "yellow-03",
+        "time_us": 12000000.0
+      }
+    ],
+    "kind": "complete_timed_victory_replay",
+    "no_tool_solution": [
+      {
+        "column_id": "column-1",
+        "team_id": "blue-01",
+        "time_us": 0.0
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "blue-02",
+        "time_us": 750000.0
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "blue-03",
+        "time_us": 1500000.0
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "blue-04",
+        "time_us": 2250000.0
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "blue-05",
+        "time_us": 3000000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "white-01",
+        "time_us": 5250000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "white-02",
+        "time_us": 6000000.0
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "yellow-01",
+        "time_us": 9750000.0
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "yellow-02",
+        "time_us": 11250000.0
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "yellow-03",
+        "time_us": 12000000.0
+      }
+    ],
+    "ok": true,
+    "production_eligible": false,
+    "rules_api_version": "1.2.0",
+    "search_steps": 282,
+    "status": "TIMED_REPLAY_VERIFIED",
+    "structural_errors": [],
+    "terminal_reason": "final_armor_hit",
+    "terminal_time_us": 23328572,
+    "timeline": {
+      "armor_hits": [
+        {
+          "armor_id": "armor-01",
+          "color": "yellow",
+          "demand": 25,
+          "knockback": 0.550000000000001,
+          "time_us": 19728572
+        },
+        {
+          "armor_id": "armor-02",
+          "color": "blue",
+          "demand": 47,
+          "knockback": 0.550000000000001,
+          "time_us": 21528572
+        },
+        {
+          "armor_id": "armor-03",
+          "color": "white",
+          "demand": 15,
+          "knockback": 0.550000000000001,
+          "time_us": 23328572
+        }
+      ],
+      "conservation_errors": [],
+      "delivery_to_final_hit_tail_us": 4400000,
+      "final_flight_us": 800000,
+      "final_hit_us": 23328572,
+      "first_delivery_us": 1260000,
+      "first_fire_us": 18928572,
+      "first_pickup_us": 550000,
+      "last_delivery_us": 18928572,
+      "last_fire_us": 22528572,
+      "last_pickup_us": 17554286,
+      "max_inflight_ants": 11,
+      "max_occupied_slots": 5,
+      "pickup_to_final_hit_tail_us": 5774286,
+      "status": "victory",
+      "terminal_reason": "final_armor_hit",
+      "tool_uses": 0,
+      "waiting_target_events": 0
+    },
+    "verified_at_utc": "2026-10-21T11:01:37Z",
+    "visual_acceptance": "NOT_RUN",
+    "verification_scope": "Bounded authoritative no-tool replay; original front-choice order preserved. Full-level boundary probes NOT_RUN after timing change.",
+    "schedule_retimed": false
+  },
+  "width": 16.0
+}

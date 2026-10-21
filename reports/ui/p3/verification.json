@@ -1,0 +1,28 @@
+{
+  "utc": "2026-10-21T09:27:31.437129+00:00",
+  "p3_flow_assertions": 192,
+  "p3_flow_pass": true,
+  "three_real_binding_replays_pass": true,
+  "actual_input_pass": true,
+  "separate_process_profiles": [
+    "seed",
+    "restart",
+    "auto-isolation",
+    "locked-level"
+  ],
+  "production_level_numbers_remain_null": true,
+  "validation_sha256": {
+    "validation-01.json": "8074d84963b218270ce3a0075fdf52e8f63c1df07a51f6f223ad1a3d4a5aa587",
+    "validation-02.json": "bfa8f325f81229b8f0312b438d78f38bb7b0134374573b483259f9ac6f90e28f",
+    "validation-03.json": "329c912a299a228d299bb79a6306404835e70b2667e0c55ce3d6c1b21001eae5"
+  },
+  "scope": "Historical P3 automated UI integration snapshot; later current scope and remaining acceptance are recorded in docs/PUBLIC_VERIFICATION.md.",
+  "final_play_sha256": "7161c8b74a8a03157fd0c8582f1b9a01b2724c8bee811efaf9bf192d916214a5",
+  "visual_corrections_verified": [
+    "final_hit_hides_dragon_even_on_save_failure",
+    "single_tutorial_action_close_skips",
+    "recall_real_teams_only_centered",
+    "five_or_six_quota_protection_with_visible_slot_fx",
+    "scout_overlay_survives_queue_rebuild"
+  ]
+}

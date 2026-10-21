@@ -1,0 +1,103 @@
+{
+  "version": "2026-10-21-readable-motion",
+  "scope": "Bounded motion pass only; not a new whole-project/30-scene acceptance",
+  "current_proof": {
+    "configs": 33,
+    "validation_levels": 3,
+    "candidate_levels": 30,
+    "original_exact_input_schedules_tested_once": 33,
+    "unchanged_schedules_passed": 21,
+    "repaired_schedules_tested": 12,
+    "repaired_ids": [
+      "campaign-06",
+      "campaign-10",
+      "campaign-12",
+      "campaign-13",
+      "campaign-14",
+      "campaign-17",
+      "campaign-19",
+      "campaign-20",
+      "campaign-21",
+      "campaign-27",
+      "campaign-28",
+      "validation-02"
+    ],
+    "repair_constraints": [
+      "preserved every original front-team choice order",
+      "at least 0.75 seconds between input selections",
+      "no threat/cannon/dispatch/quota/tool budget change"
+    ],
+    "coverage": [
+      "current configured exact-input execution",
+      "winning final authoritative hit",
+      "six-color conservation",
+      "current content and JSON hashes",
+      "generator reproduction of all30 candidate configurations"
+    ],
+    "not_covered": [
+      "fresh all30 Godot scene/selector/navigation sweep",
+      "per-level final-hit/contact +/-1 microsecond certificates",
+      "new all30 x2/full alternate-input sweeps",
+      "human difficulty",
+      "target device performance",
+      "human audio listening"
+    ],
+    "summary": "../ant-rescue-evidence/transport-retiming-20261021/final-33-proof-summary.json"
+  },
+  "current_scene_evidence": {
+    "three_validation_scenes": "reports/ui/motion-binding-report.json",
+    "assertions": 57,
+    "type": "actual Godot play-node replay at normal 1x simulation in headless mode; not three graphical movies",
+    "final_hit_us": [
+      42324286,
+      53158572,
+      76515716
+    ],
+    "graphical_movie": "../ant-rescue-evidence/motion-current/motion-recording.json",
+    "graphical_level": "validation-01",
+    "actual_final_hit_us": 42324286,
+    "movie_source_hashes": "../ant-rescue-evidence/motion-current/motion-recording.json",
+    "human_playtest": "NOT_RUN"
+  },
+  "superseded_evidence": [
+    {
+      "item": "Prior 30-level timed solution certificates and candidate event timelines",
+      "reason": "Minimum leg/pickup hold/transport speed changed",
+      "current_replacement": "Current 30 core replay proofs in reports/campaign and matching source hashes; 12 failed schedules repaired, others reverified"
+    },
+    {
+      "item": "Prior 3-validation-level timed solution certificates",
+      "reason": "Transport time changed",
+      "current_replacement": "Current rule timelines plus all3 actual node bindings"
+    },
+    {
+      "item": "60 campaign and 6 validation per-level final-hit/contact boundary certificates",
+      "reason": "Their derived contact budgets/end times belong to the old transport version",
+      "current_status": "NOT_RUN; focused timing API final-hit/contact priority tests are not substitutes for those per-level certificates"
+    },
+    {
+      "item": "Prior all30 full-scene flow/navigation report",
+      "reason": "Contains old schedule/completion timing",
+      "current_status": "reports/ui/campaign-flow-report.json explicitly NOT_RUN_CURRENT_TRANSPORT; original archived outside source"
+    },
+    {
+      "item": "Prior complete-journey/video screenshots",
+      "reason": "Old gait and 0.56-second fade; not current visual acceptance",
+      "current_replacement": "Two current 1x normal-speed GL excerpts and matching actual keyframes"
+    },
+    {
+      "item": "Prior structural UI and unaffected tool/save tests",
+      "reason": "Not rerun in this narrowly scoped pass",
+      "current_status": "Historical results may describe unchanged features, but must not be relabeled as a new current all-suite pass"
+    }
+  ],
+  "archive": "../ant-rescue-evidence/transport-retiming-20261021/before and old-scene-evidence",
+  "acceptance": {
+    "production_eligible": false,
+    "human_playtest": "NOT_RUN",
+    "human_listening": "NOT_RUN",
+    "target_device": "NOT_RUN",
+    "current_visual": "Actual 1x movies delivered for user confirmation; not approved by inference"
+  },
+  "no_further_automatic_expansion": "Do not trigger a new 30-scene/full test campaign from this handoff. Resume only the next authorized scope."
+}

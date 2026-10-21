@@ -1,0 +1,796 @@
+{
+  "armors": [
+    {
+      "color": "blue",
+      "demand": 8.0,
+      "id": "armor-01"
+    },
+    {
+      "color": "yellow",
+      "demand": 5.0,
+      "id": "armor-02"
+    },
+    {
+      "color": "purple",
+      "demand": 37.0,
+      "id": "armor-03"
+    },
+    {
+      "color": "red",
+      "demand": 11.0,
+      "id": "armor-04"
+    },
+    {
+      "color": "white",
+      "demand": 26.0,
+      "id": "armor-05"
+    },
+    {
+      "color": "green",
+      "demand": 8.0,
+      "id": "armor-06"
+    },
+    {
+      "color": "green",
+      "demand": 7.0,
+      "id": "armor-07"
+    },
+    {
+      "color": "white",
+      "demand": 26.0,
+      "id": "armor-08"
+    },
+    {
+      "color": "red",
+      "demand": 11.0,
+      "id": "armor-09"
+    },
+    {
+      "color": "purple",
+      "demand": 37.0,
+      "id": "armor-10"
+    },
+    {
+      "color": "yellow",
+      "demand": 4.0,
+      "id": "armor-11"
+    },
+    {
+      "color": "blue",
+      "demand": 8.0,
+      "id": "armor-12"
+    },
+    {
+      "color": "blue",
+      "demand": 8.0,
+      "id": "armor-13"
+    },
+    {
+      "color": "yellow",
+      "demand": 4.0,
+      "id": "armor-14"
+    },
+    {
+      "color": "purple",
+      "demand": 36.0,
+      "id": "armor-15"
+    },
+    {
+      "color": "red",
+      "demand": 10.0,
+      "id": "armor-16"
+    },
+    {
+      "color": "white",
+      "demand": 26.0,
+      "id": "armor-17"
+    },
+    {
+      "color": "green",
+      "demand": 7.0,
+      "id": "armor-18"
+    }
+  ],
+  "author_notes": {
+    "armor_intent": "Alternate forward/reverse cycles of blue,yellow,purple,red,white,green; 3 independently sized segment(s) per present color.",
+    "failure_boundary_cases": [
+      "Final hit and princess contact at exactly the same microsecond: victory.",
+      "Contact one microsecond before final hit: defeat; later hit cannot overturn.",
+      "Empty board and last delivery are not victory; final projectile must hit."
+    ],
+    "motif": "Clockwork Owl",
+    "playtest_conclusion": "NOT_RUN: automated proof is not a human difficulty, motif-recognition or visual acceptance.",
+    "progression_band": "21–30 combined planning",
+    "queue_intent": "First-front color order purple,white,blue,yellow,red,green. Later quota slices rotate between lanes; selecting a front reveals a different future color. A sixth initial color, if present, follows the fifth front in column 5. Team quotas vary independently of armor slices.",
+    "teaching_goal": "White eye rings enclose blue pupils while body unlocks the red breast.",
+    "time_budget_policy": "Predeclared budget = ceil(beads × dispatch + teams × 0.75 + armor segments × cooldown × 0.60 + twice width-plus-height / 14 + band grace). Measured final-hit tail and margin must be recorded after authoritative replay."
+  },
+  "campaign_draft_number": 22.0,
+  "columns": [
+    {
+      "id": "column-1",
+      "teams": [
+        {
+          "color": "purple",
+          "id": "purple-01",
+          "quota": 13.0
+        },
+        {
+          "color": "red",
+          "id": "red-02",
+          "quota": 15.0
+        },
+        {
+          "color": "white",
+          "id": "white-05",
+          "quota": 15.0
+        },
+        {
+          "color": "purple",
+          "id": "purple-06",
+          "quota": 15.0
+        }
+      ]
+    },
+    {
+      "id": "column-2",
+      "teams": [
+        {
+          "color": "white",
+          "id": "white-01",
+          "quota": 11.0
+        },
+        {
+          "color": "purple",
+          "id": "purple-02",
+          "quota": 11.0
+        },
+        {
+          "color": "green",
+          "id": "green-02",
+          "quota": 7.0
+        },
+        {
+          "color": "red",
+          "id": "red-03",
+          "quota": 6.0
+        },
+        {
+          "color": "white",
+          "id": "white-06",
+          "quota": 13.0
+        },
+        {
+          "color": "purple",
+          "id": "purple-07",
+          "quota": 13.0
+        }
+      ]
+    },
+    {
+      "id": "column-3",
+      "teams": [
+        {
+          "color": "blue",
+          "id": "blue-01",
+          "quota": 15.0
+        },
+        {
+          "color": "white",
+          "id": "white-02",
+          "quota": 15.0
+        },
+        {
+          "color": "purple",
+          "id": "purple-03",
+          "quota": 15.0
+        },
+        {
+          "color": "purple",
+          "id": "purple-08",
+          "quota": 11.0
+        }
+      ]
+    },
+    {
+      "id": "column-4",
+      "teams": [
+        {
+          "color": "yellow",
+          "id": "yellow-01",
+          "quota": 13.0
+        },
+        {
+          "color": "blue",
+          "id": "blue-02",
+          "quota": 9.0
+        },
+        {
+          "color": "white",
+          "id": "white-03",
+          "quota": 13.0
+        },
+        {
+          "color": "purple",
+          "id": "purple-04",
+          "quota": 13.0
+        },
+        {
+          "color": "purple",
+          "id": "purple-09",
+          "quota": 8.0
+        }
+      ]
+    },
+    {
+      "id": "column-5",
+      "teams": [
+        {
+          "color": "red",
+          "id": "red-01",
+          "quota": 11.0
+        },
+        {
+          "color": "green",
+          "id": "green-01",
+          "quota": 15.0
+        },
+        {
+          "color": "white",
+          "id": "white-04",
+          "quota": 11.0
+        },
+        {
+          "color": "purple",
+          "id": "purple-05",
+          "quota": 11.0
+        }
+      ]
+    }
+  ],
+  "content_kind": "authoring_draft",
+  "content_version": "campaign-draft-1.0",
+  "dragon": {
+    "initial_position": 0.0,
+    "knockback_distance": 0.4,
+    "max_knockback_distance": 0.4,
+    "route_length": 100.0,
+    "speed_units_sec": 1.0
+  },
+  "grid": [
+    "......................",
+    "...PP.............P...",
+    "...PPP...........PP...",
+    "...PPPP.........PPP...",
+    "...PPPPP.......PPPP...",
+    "...PPWWWWPPPPWWWWPP...",
+    "...PWWWWWWPPWWWWWWP...",
+    "...WWWBBWWWWWWBBWWW...",
+    "...WWBBBBWWWWBBBBWW...",
+    "...WWBBBBWWWWBBBBWW...",
+    "...WWWBBWWWWWWBBWWW...",
+    "...PWWWWWYYYYWWWWWP...",
+    "...PPWWWWPYYYWWWWPP...",
+    "...PPPPPPPYYPPPPPPP...",
+    "...PPPPPPRRRRPPPPPP...",
+    "..PPPPPRRRRRRRRPPPP...",
+    "...PPPPRRRRRRRRPPPP...",
+    "....PPPRRRRRRRRPPP....",
+    ".....PPPPRRRRPPPP.....",
+    "......PPPPPPPPPP......",
+    ".......YY....YY.......",
+    "GGGGGGGGGGGGGGGGGGGGGG"
+  ],
+  "height": 22.0,
+  "initial_color_counts": {
+    "blue": 24.0,
+    "green": 22.0,
+    "purple": 110.0,
+    "red": 32.0,
+    "white": 78.0,
+    "yellow": 13.0
+  },
+  "level_id": "campaign-22",
+  "level_number": 22.0,
+  "objective": "White eye rings enclose blue pupils while body unlocks the red breast.",
+  "palette": {
+    "B": "blue",
+    "G": "green",
+    "P": "purple",
+    "R": "red",
+    "W": "white",
+    "Y": "yellow"
+  },
+  "parameters": {
+    "cannon_cooldown_sec": 2.7,
+    "dispatch_interval_sec": 0.14,
+    "max_inflight_ants": 24.0,
+    "pickup_pause_sec": 0.16,
+    "projectile_flight_sec": 1.15,
+    "transport_min_leg_sec": 0.55,
+    "transport_speed_cells_sec": 14.0
+  },
+  "pattern_name": "Clockwork Owl",
+  "production_level_number": null,
+  "schema_version": 1.0,
+  "seed": 2026102122.0,
+  "thumbnail": "campaign-22-thumbnail.png",
+  "tools": [
+    {
+      "id": "extra_slot",
+      "unlock_level": 3.0,
+      "uses_per_level": 1.0
+    },
+    {
+      "id": "shuffle",
+      "unlock_level": 6.0,
+      "uses_per_level": 1.0
+    },
+    {
+      "id": "recall",
+      "unlock_level": 9.0,
+      "uses_per_level": 1.0
+    },
+    {
+      "id": "scout",
+      "unlock_level": 16.0,
+      "uses_per_level": 1.0
+    }
+  ],
+  "validation": {
+    "boundary_replays": {
+      "exact_final_hit_tie": {
+        "status": "NOT_RUN",
+        "reason": "Transport timing changed; old full-level certificate invalidated. This batch runs focused timing/contact fixtures rather than a new whole-campaign boundary sweep."
+      },
+      "contact_1us_earlier": {
+        "status": "NOT_RUN",
+        "reason": "Transport timing changed; old full-level certificate invalidated. This batch runs focused timing/contact fixtures rather than a new whole-campaign boundary sweep."
+      }
+    },
+    "click_interval_us": 750000,
+    "color_conservation": [
+      {
+        "armor": 32,
+        "balanced": true,
+        "board": 32,
+        "color": "red",
+        "quota": 32
+      },
+      {
+        "armor": 24,
+        "balanced": true,
+        "board": 24,
+        "color": "blue",
+        "quota": 24
+      },
+      {
+        "armor": 13,
+        "balanced": true,
+        "board": 13,
+        "color": "yellow",
+        "quota": 13
+      },
+      {
+        "armor": 22,
+        "balanced": true,
+        "board": 22,
+        "color": "green",
+        "quota": 22
+      },
+      {
+        "armor": 110,
+        "balanced": true,
+        "board": 110,
+        "color": "purple",
+        "quota": 110
+      },
+      {
+        "armor": 78,
+        "balanced": true,
+        "board": 78,
+        "color": "white",
+        "quota": 78
+      }
+    ],
+    "conservation_errors": [],
+    "content_sha256": "de7d542fffb0ab574a71f5ef7c94d876635056dea832587d96145cd3e360fe96",
+    "final_hit_margin_us": 36644284,
+    "human_playtest": "NOT_RUN",
+    "inputs": [
+      {
+        "column_id": "column-1",
+        "team_id": "purple-01",
+        "time_us": 0.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "white-01",
+        "time_us": 750000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "purple-02",
+        "time_us": 1500000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "green-02",
+        "time_us": 2250000.0
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "red-02",
+        "time_us": 3000000.0
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "white-05",
+        "time_us": 4500000.0
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "purple-06",
+        "time_us": 6750000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "red-03",
+        "time_us": 7500000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "white-06",
+        "time_us": 8250000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "purple-07",
+        "time_us": 12000000.0
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "blue-01",
+        "time_us": 13500000.0
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "white-02",
+        "time_us": 15000000.0
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "purple-03",
+        "time_us": 17250000.0
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "purple-08",
+        "time_us": 18000000.0
+      },
+      {
+        "column_id": "column-4",
+        "team_id": "yellow-01",
+        "time_us": 21000000.0
+      },
+      {
+        "column_id": "column-4",
+        "team_id": "blue-02",
+        "time_us": 23250000.0
+      },
+      {
+        "column_id": "column-4",
+        "team_id": "white-03",
+        "time_us": 24750000.0
+      },
+      {
+        "column_id": "column-4",
+        "team_id": "purple-04",
+        "time_us": 25500000.0
+      },
+      {
+        "column_id": "column-4",
+        "team_id": "purple-09",
+        "time_us": 27000000.0
+      },
+      {
+        "column_id": "column-5",
+        "team_id": "red-01",
+        "time_us": 30000000.0
+      },
+      {
+        "column_id": "column-5",
+        "team_id": "green-01",
+        "time_us": 30750000.0
+      },
+      {
+        "column_id": "column-5",
+        "team_id": "white-04",
+        "time_us": 32250000.0
+      },
+      {
+        "column_id": "column-5",
+        "team_id": "purple-05",
+        "time_us": 33750000.0
+      }
+    ],
+    "kind": "complete_timed_victory_replay",
+    "no_tool_solution": [
+      {
+        "column_id": "column-1",
+        "team_id": "purple-01",
+        "time_us": 0.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "white-01",
+        "time_us": 750000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "purple-02",
+        "time_us": 1500000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "green-02",
+        "time_us": 2250000.0
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "red-02",
+        "time_us": 3000000.0
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "white-05",
+        "time_us": 4500000.0
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "purple-06",
+        "time_us": 6750000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "red-03",
+        "time_us": 7500000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "white-06",
+        "time_us": 8250000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "purple-07",
+        "time_us": 12000000.0
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "blue-01",
+        "time_us": 13500000.0
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "white-02",
+        "time_us": 15000000.0
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "purple-03",
+        "time_us": 17250000.0
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "purple-08",
+        "time_us": 18000000.0
+      },
+      {
+        "column_id": "column-4",
+        "team_id": "yellow-01",
+        "time_us": 21000000.0
+      },
+      {
+        "column_id": "column-4",
+        "team_id": "blue-02",
+        "time_us": 23250000.0
+      },
+      {
+        "column_id": "column-4",
+        "team_id": "white-03",
+        "time_us": 24750000.0
+      },
+      {
+        "column_id": "column-4",
+        "team_id": "purple-04",
+        "time_us": 25500000.0
+      },
+      {
+        "column_id": "column-4",
+        "team_id": "purple-09",
+        "time_us": 27000000.0
+      },
+      {
+        "column_id": "column-5",
+        "team_id": "red-01",
+        "time_us": 30000000.0
+      },
+      {
+        "column_id": "column-5",
+        "team_id": "green-01",
+        "time_us": 30750000.0
+      },
+      {
+        "column_id": "column-5",
+        "team_id": "white-04",
+        "time_us": 32250000.0
+      },
+      {
+        "column_id": "column-5",
+        "team_id": "purple-05",
+        "time_us": 33750000.0
+      }
+    ],
+    "ok": true,
+    "production_eligible": false,
+    "rules_api_version": "1.2.0",
+    "search_steps": 870,
+    "status": "TIMED_REPLAY_VERIFIED",
+    "structural_errors": [],
+    "terminal_reason": "final_armor_hit",
+    "terminal_time_us": 70155716,
+    "timeline": {
+      "armor_hits": [
+        {
+          "armor_id": "armor-01",
+          "color": "blue",
+          "demand": 8,
+          "knockback": 0.399999999999999,
+          "time_us": 22221430
+        },
+        {
+          "armor_id": "armor-02",
+          "color": "yellow",
+          "demand": 5,
+          "knockback": 0.399999999999999,
+          "time_us": 26955716
+        },
+        {
+          "armor_id": "armor-03",
+          "color": "purple",
+          "demand": 37,
+          "knockback": 0.399999999999999,
+          "time_us": 29655716
+        },
+        {
+          "armor_id": "armor-04",
+          "color": "red",
+          "demand": 11,
+          "knockback": 0.399999999999999,
+          "time_us": 32355716
+        },
+        {
+          "armor_id": "armor-05",
+          "color": "white",
+          "demand": 26,
+          "knockback": 0.399999999999999,
+          "time_us": 35055716
+        },
+        {
+          "armor_id": "armor-06",
+          "color": "green",
+          "demand": 8,
+          "knockback": 0.399999999999999,
+          "time_us": 37755716
+        },
+        {
+          "armor_id": "armor-07",
+          "color": "green",
+          "demand": 7,
+          "knockback": 0.399999999999999,
+          "time_us": 40455716
+        },
+        {
+          "armor_id": "armor-08",
+          "color": "white",
+          "demand": 26,
+          "knockback": 0.399999999999999,
+          "time_us": 43155716
+        },
+        {
+          "armor_id": "armor-09",
+          "color": "red",
+          "demand": 11,
+          "knockback": 0.399999999999999,
+          "time_us": 45855716
+        },
+        {
+          "armor_id": "armor-10",
+          "color": "purple",
+          "demand": 37,
+          "knockback": 0.399999999999999,
+          "time_us": 48555716
+        },
+        {
+          "armor_id": "armor-11",
+          "color": "yellow",
+          "demand": 4,
+          "knockback": 0.399999999999999,
+          "time_us": 51255716
+        },
+        {
+          "armor_id": "armor-12",
+          "color": "blue",
+          "demand": 8,
+          "knockback": 0.399999999999999,
+          "time_us": 53955716
+        },
+        {
+          "armor_id": "armor-13",
+          "color": "blue",
+          "demand": 8,
+          "knockback": 0.399999999999999,
+          "time_us": 56655716
+        },
+        {
+          "armor_id": "armor-14",
+          "color": "yellow",
+          "demand": 4,
+          "knockback": 0.399999999999999,
+          "time_us": 59355716
+        },
+        {
+          "armor_id": "armor-15",
+          "color": "purple",
+          "demand": 36,
+          "knockback": 0.399999999999999,
+          "time_us": 62055716
+        },
+        {
+          "armor_id": "armor-16",
+          "color": "red",
+          "demand": 10,
+          "knockback": 0.399999999999999,
+          "time_us": 64755716
+        },
+        {
+          "armor_id": "armor-17",
+          "color": "white",
+          "demand": 26,
+          "knockback": 0.399999999999999,
+          "time_us": 67455716
+        },
+        {
+          "armor_id": "armor-18",
+          "color": "green",
+          "demand": 7,
+          "knockback": 0.399999999999999,
+          "time_us": 70155716
+        }
+      ],
+      "conservation_errors": [],
+      "delivery_to_final_hit_tail_us": 26647144,
+      "final_flight_us": 1150000,
+      "final_hit_us": 70155716,
+      "first_delivery_us": 3160000,
+      "first_fire_us": 21071430,
+      "first_pickup_us": 1500000,
+      "last_delivery_us": 43508572,
+      "last_fire_us": 69005716,
+      "last_pickup_us": 41134286,
+      "max_inflight_ants": 24,
+      "max_occupied_slots": 5,
+      "pickup_to_final_hit_tail_us": 29021430,
+      "status": "victory",
+      "terminal_reason": "final_armor_hit",
+      "tool_uses": 0,
+      "waiting_target_events": 2
+    },
+    "verified_at_utc": "2026-10-21T11:01:42Z",
+    "visual_acceptance": "NOT_RUN",
+    "verification_scope": "Bounded authoritative no-tool replay; original front-choice order preserved. Full-level boundary probes NOT_RUN after timing change.",
+    "schedule_retimed": false
+  },
+  "width": 22.0
+}

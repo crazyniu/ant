@@ -1,0 +1,383 @@
+{
+  "armors": [
+    {
+      "color": "yellow",
+      "demand": 57.0,
+      "id": "armor-01"
+    },
+    {
+      "color": "blue",
+      "demand": 23.0,
+      "id": "armor-02"
+    }
+  ],
+  "author_notes": {
+    "armor_intent": "Alternate forward/reverse cycles of yellow,blue; 1 independently sized segment(s) per present color.",
+    "failure_boundary_cases": [
+      "Final hit and princess contact at exactly the same microsecond: victory.",
+      "Contact one microsecond before final hit: defeat; later hit cannot overturn.",
+      "Empty board and last delivery are not victory; final projectile must hit."
+    ],
+    "motif": "Sunrise Ripples",
+    "playtest_conclusion": "NOT_RUN: automated proof is not a human difficulty, motif-recognition or visual acceptance.",
+    "progression_band": "01–05 exposed foundations",
+    "queue_intent": "First-front color order blue,yellow. Introductory colors use dedicated lanes. Team quotas vary independently of armor slices.",
+    "teaching_goal": "Two separated regions: future blue stock survives yellow armor.",
+    "time_budget_policy": "Predeclared budget = ceil(beads × dispatch + teams × 0.75 + armor segments × cooldown × 0.60 + twice width-plus-height / 14 + band grace). Measured final-hit tail and margin must be recorded after authoritative replay."
+  },
+  "campaign_draft_number": 2.0,
+  "columns": [
+    {
+      "id": "column-1",
+      "teams": [
+        {
+          "color": "blue",
+          "id": "blue-01",
+          "quota": 8.0
+        },
+        {
+          "color": "blue",
+          "id": "blue-02",
+          "quota": 12.0
+        },
+        {
+          "color": "blue",
+          "id": "blue-03",
+          "quota": 3.0
+        }
+      ]
+    },
+    {
+      "id": "column-2",
+      "teams": [
+        {
+          "color": "yellow",
+          "id": "yellow-01",
+          "quota": 12.0
+        },
+        {
+          "color": "yellow",
+          "id": "yellow-02",
+          "quota": 10.0
+        },
+        {
+          "color": "yellow",
+          "id": "yellow-03",
+          "quota": 8.0
+        },
+        {
+          "color": "yellow",
+          "id": "yellow-04",
+          "quota": 12.0
+        },
+        {
+          "color": "yellow",
+          "id": "yellow-05",
+          "quota": 10.0
+        },
+        {
+          "color": "yellow",
+          "id": "yellow-06",
+          "quota": 5.0
+        }
+      ]
+    },
+    {
+      "id": "column-3",
+      "teams": []
+    },
+    {
+      "id": "column-4",
+      "teams": []
+    },
+    {
+      "id": "column-5",
+      "teams": []
+    }
+  ],
+  "content_kind": "authoring_draft",
+  "content_version": "campaign-draft-1.0",
+  "dragon": {
+    "initial_position": 0.0,
+    "knockback_distance": 0.55,
+    "max_knockback_distance": 0.55,
+    "route_length": 41.0,
+    "speed_units_sec": 1.0
+  },
+  "grid": [
+    "......Y.......",
+    "..............",
+    ".Y...YYYY...Y.",
+    "....YYYYYY....",
+    "...YYYYYYYY...",
+    "...YYYYYYYY...",
+    "Y..YYYYYYYY..Y",
+    "...YYYYYYYY...",
+    "....YYYYYY....",
+    ".....YYYY.....",
+    "..BBBBBBBBBB..",
+    "..............",
+    "BBBBBBB.......",
+    "........BBBBBB"
+  ],
+  "height": 14.0,
+  "initial_color_counts": {
+    "blue": 23.0,
+    "green": 0.0,
+    "purple": 0.0,
+    "red": 0.0,
+    "white": 0.0,
+    "yellow": 57.0
+  },
+  "level_id": "campaign-02",
+  "level_number": 2.0,
+  "objective": "Two separated regions: future blue stock survives yellow armor.",
+  "palette": {
+    "B": "blue",
+    "G": "green",
+    "P": "purple",
+    "R": "red",
+    "W": "white",
+    "Y": "yellow"
+  },
+  "parameters": {
+    "cannon_cooldown_sec": 1.8,
+    "dispatch_interval_sec": 0.19,
+    "max_inflight_ants": 20.0,
+    "pickup_pause_sec": 0.16,
+    "projectile_flight_sec": 0.8,
+    "transport_min_leg_sec": 0.55,
+    "transport_speed_cells_sec": 14.0
+  },
+  "pattern_name": "Sunrise Ripples",
+  "production_level_number": null,
+  "schema_version": 1.0,
+  "seed": 2026102102.0,
+  "thumbnail": "campaign-02-thumbnail.png",
+  "tools": [
+    {
+      "id": "extra_slot",
+      "unlock_level": 3.0,
+      "uses_per_level": 1.0
+    },
+    {
+      "id": "shuffle",
+      "unlock_level": 6.0,
+      "uses_per_level": 1.0
+    },
+    {
+      "id": "recall",
+      "unlock_level": 9.0,
+      "uses_per_level": 1.0
+    },
+    {
+      "id": "scout",
+      "unlock_level": 16.0,
+      "uses_per_level": 1.0
+    }
+  ],
+  "validation": {
+    "boundary_replays": {
+      "exact_final_hit_tie": {
+        "status": "NOT_RUN",
+        "reason": "Transport timing changed; old full-level certificate invalidated. This batch runs focused timing/contact fixtures rather than a new whole-campaign boundary sweep."
+      },
+      "contact_1us_earlier": {
+        "status": "NOT_RUN",
+        "reason": "Transport timing changed; old full-level certificate invalidated. This batch runs focused timing/contact fixtures rather than a new whole-campaign boundary sweep."
+      }
+    },
+    "click_interval_us": 750000,
+    "color_conservation": [
+      {
+        "armor": 0,
+        "balanced": true,
+        "board": 0,
+        "color": "red",
+        "quota": 0
+      },
+      {
+        "armor": 23,
+        "balanced": true,
+        "board": 23,
+        "color": "blue",
+        "quota": 23
+      },
+      {
+        "armor": 57,
+        "balanced": true,
+        "board": 57,
+        "color": "yellow",
+        "quota": 57
+      },
+      {
+        "armor": 0,
+        "balanced": true,
+        "board": 0,
+        "color": "green",
+        "quota": 0
+      },
+      {
+        "armor": 0,
+        "balanced": true,
+        "board": 0,
+        "color": "purple",
+        "quota": 0
+      },
+      {
+        "armor": 0,
+        "balanced": true,
+        "board": 0,
+        "color": "white",
+        "quota": 0
+      }
+    ],
+    "conservation_errors": [],
+    "content_sha256": "a4dfba3f837b1b25ad793134954b74c59cdbf6f682c45076bfd1be3a30be6baf",
+    "final_hit_margin_us": 21208570,
+    "human_playtest": "NOT_RUN",
+    "inputs": [
+      {
+        "column_id": "column-1",
+        "team_id": "blue-01",
+        "time_us": 0.0
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "blue-02",
+        "time_us": 750000.0
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "blue-03",
+        "time_us": 1500000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "yellow-01",
+        "time_us": 2250000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "yellow-02",
+        "time_us": 3000000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "yellow-03",
+        "time_us": 3750000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "yellow-04",
+        "time_us": 4500000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "yellow-05",
+        "time_us": 9750000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "yellow-06",
+        "time_us": 10500000.0
+      }
+    ],
+    "kind": "complete_timed_victory_replay",
+    "no_tool_solution": [
+      {
+        "column_id": "column-1",
+        "team_id": "blue-01",
+        "time_us": 0.0
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "blue-02",
+        "time_us": 750000.0
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "blue-03",
+        "time_us": 1500000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "yellow-01",
+        "time_us": 2250000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "yellow-02",
+        "time_us": 3000000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "yellow-03",
+        "time_us": 3750000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "yellow-04",
+        "time_us": 4500000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "yellow-05",
+        "time_us": 9750000.0
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "yellow-06",
+        "time_us": 10500000.0
+      }
+    ],
+    "ok": true,
+    "production_eligible": false,
+    "rules_api_version": "1.2.0",
+    "search_steps": 258,
+    "status": "TIMED_REPLAY_VERIFIED",
+    "structural_errors": [],
+    "terminal_reason": "final_armor_hit",
+    "terminal_time_us": 20341430,
+    "timeline": {
+      "armor_hits": [
+        {
+          "armor_id": "armor-01",
+          "color": "yellow",
+          "demand": 57,
+          "knockback": 0.550000000000001,
+          "time_us": 18541430
+        },
+        {
+          "armor_id": "armor-02",
+          "color": "blue",
+          "demand": 23,
+          "knockback": 0.550000000000001,
+          "time_us": 20341430
+        }
+      ],
+      "conservation_errors": [],
+      "delivery_to_final_hit_tail_us": 2600000,
+      "final_flight_us": 800000,
+      "final_hit_us": 20341430,
+      "first_delivery_us": 1260000,
+      "first_fire_us": 17741430,
+      "first_pickup_us": 550000,
+      "last_delivery_us": 17741430,
+      "last_fire_us": 19541430,
+      "last_pickup_us": 16295715,
+      "max_inflight_ants": 11,
+      "max_occupied_slots": 5,
+      "pickup_to_final_hit_tail_us": 4045715,
+      "status": "victory",
+      "terminal_reason": "final_armor_hit",
+      "tool_uses": 0,
+      "waiting_target_events": 0
+    },
+    "verified_at_utc": "2026-10-21T11:01:37Z",
+    "visual_acceptance": "NOT_RUN",
+    "verification_scope": "Bounded authoritative no-tool replay; original front-choice order preserved. Full-level boundary probes NOT_RUN after timing change.",
+    "schedule_retimed": false
+  },
+  "width": 14.0
+}

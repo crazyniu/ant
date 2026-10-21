@@ -1,0 +1,26 @@
+; Game 2 validation build. Authoritative rules, local progression, tools, formal UI, audio and FX.
+config_version=5
+
+[application]
+config/name="Ant Rescue · Game 2"
+run/main_scene="res://scenes/startup.tscn"
+boot_splash/image="res://assets/startup/title.png"
+boot_splash/bg_color=Color(0.86,0.78,0.57,1)
+boot_splash/fullsize=false
+boot_splash/use_filter=true
+config/features=PackedStringArray("4.6", "GL Compatibility")
+
+[display]
+window/size/viewport_width=1440
+window/size/viewport_height=2560
+window/size/window_width_override=1440
+window/size/window_height_override=2560
+window/size/mode=2
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
+environment/defaults/default_clear_color=Color(0.49,0.72,0.82,1)

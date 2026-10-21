@@ -1,0 +1,7 @@
+{
+	"failures": [],
+	"front_target": "(223.9234, 2070.813)",
+	"pass": true,
+	"scope": "Actual Godot input dispatch at 2K coordinates, modal isolation, drag cancel, same-color20/30, rear rejection, rapid click guard; UI fixture only",
+	"viewport": "(1440, 2560)"
+}

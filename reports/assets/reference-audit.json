@@ -1,0 +1,3066 @@
+{
+  "schema_version": 2,
+  "audited_at_utc": "2026-10-21T10:18:34.476285+00:00",
+  "scope": "Current source path/hash verification after full-length Vorbis BGM conversion. Atlas geometry/alpha results retained only because the eight source PNG hashes remain unchanged.",
+  "status": "pass_with_nonblocking_warnings",
+  "checks": {
+    "all_direct_resources_exist": true,
+    "all_bounded_dynamic_resources_exist": true,
+    "all_asset_manifest_hashes_match": true,
+    "unused_runtime_image_files": [],
+    "all_region_bounds_valid": true,
+    "all_regions_nonempty": true,
+    "all_region_pairs_nonoverlapping": true,
+    "substantial_silhouette_clipping_found": false,
+    "new_silhouettes_have_exact_7px_margin": true,
+    "new_silhouette_borders_alpha_lt_4": true,
+    "existing_ui_title_borders_alpha_lt_8": true,
+    "foot_anchor_alignment_within_quarter_pixel_at_d39": true,
+    "readme_stale_evidence_reference": false
+  },
+  "counts": {
+    "runtime_raster_images": 8,
+    "atlas_regions": 57,
+    "existing_ui_title_regions": 36,
+    "new_ant_bead_audio_regions": 14,
+    "actor_regions": 7,
+    "static_resolved_paths": 47,
+    "expanded_dynamic_paths": 35,
+    "asset_manifest_entries_checked": 36
+  },
+  "runtime_references": [
+    {
+      "path": "scripts/editor_document.gd",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/campaign_build.gd",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "path": "scripts/rescue_rules.gd",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/campaign_build.gd",
+          "line": 4
+        }
+      ]
+    },
+    {
+      "path": "scripts/bead.gd",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/main.gd",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "path": "scripts/board_plane.gd",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/main.gd",
+          "line": 4
+        }
+      ]
+    },
+    {
+      "path": "scripts/contact_shadow.gd",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/main.gd",
+          "line": 5
+        }
+      ]
+    },
+    {
+      "path": "scripts/ui_icon.gd",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/main.gd",
+          "line": 6
+        }
+      ]
+    },
+    {
+      "path": "scripts/audio_service.gd",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/main.gd",
+          "line": 7
+        }
+      ]
+    },
+    {
+      "path": "scripts/ui_skin.gd",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/main.gd",
+          "line": 9
+        }
+      ]
+    },
+    {
+      "path": "assets/fonts/Title.ttf",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/main.gd",
+          "line": 35
+        }
+      ]
+    },
+    {
+      "path": "assets/characters-atlas.png",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/main.gd",
+          "line": 39
+        }
+      ]
+    },
+    {
+      "path": "assets/ants-atlas.png",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/main.gd",
+          "line": 40
+        }
+      ]
+    },
+    {
+      "path": "assets/environment.png",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/main.gd",
+          "line": 111
+        }
+      ]
+    },
+    {
+      "path": "data/ant-regions.json",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/main.gd",
+          "line": 194
+        }
+      ]
+    },
+    {
+      "path": "assets/ui/fusion/audio-icons.png",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/main.gd",
+          "line": 393
+        }
+      ]
+    },
+    {
+      "path": "assets/ui/fusion/audio-regions.json",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/main.gd",
+          "line": 394
+        }
+      ]
+    },
+    {
+      "path": "assets/audio/bgm_castle_garden.ogg",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/audio_service.gd",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "path": "assets/audio/ui_click.wav",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/audio_service.gd",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "path": "assets/audio/dispatch.wav",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/audio_service.gd",
+          "line": 14
+        }
+      ]
+    },
+    {
+      "path": "assets/audio/pickup.wav",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/audio_service.gd",
+          "line": 15
+        }
+      ]
+    },
+    {
+      "path": "assets/audio/return.wav",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/audio_service.gd",
+          "line": 16
+        }
+      ]
+    },
+    {
+      "path": "assets/audio/cannon.wav",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/audio_service.gd",
+          "line": 17
+        }
+      ]
+    },
+    {
+      "path": "assets/audio/armor_hit.wav",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/audio_service.gd",
+          "line": 18
+        }
+      ]
+    },
+    {
+      "path": "assets/audio/warning.wav",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/audio_service.gd",
+          "line": 19
+        }
+      ]
+    },
+    {
+      "path": "assets/audio/tool_plus.wav",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/audio_service.gd",
+          "line": 20
+        }
+      ]
+    },
+    {
+      "path": "assets/audio/tool_shuffle.wav",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/audio_service.gd",
+          "line": 21
+        }
+      ]
+    },
+    {
+      "path": "assets/audio/tool_recall.wav",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/audio_service.gd",
+          "line": 22
+        }
+      ]
+    },
+    {
+      "path": "assets/audio/tool_hint.wav",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/audio_service.gd",
+          "line": 23
+        }
+      ]
+    },
+    {
+      "path": "assets/audio/win.wav",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/audio_service.gd",
+          "line": 24
+        }
+      ]
+    },
+    {
+      "path": "assets/audio/lose.wav",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/audio_service.gd",
+          "line": 25
+        }
+      ]
+    },
+    {
+      "path": "assets/audio/error.wav",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/audio_service.gd",
+          "line": 26
+        }
+      ]
+    },
+    {
+      "path": "assets/ui/v03/regions.json",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/ui_skin.gd",
+          "line": 9
+        }
+      ]
+    },
+    {
+      "path": "assets/ui/v03/title-regions.json",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/ui_skin.gd",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "path": "assets/ui/v03/title-atlas.png",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/ui_skin.gd",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "path": "assets/ui/fusion/bead-regions.json",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/editor_grid.gd",
+          "line": 20
+        }
+      ]
+    },
+    {
+      "path": "assets/ui/fusion/beads.png",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/editor_grid.gd",
+          "line": 21
+        }
+      ]
+    },
+    {
+      "path": "scripts/rescue_tool_solver.gd",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/editor_verifier.gd",
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/main.gd",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/play.gd",
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/rescue_fx.gd",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/play.gd",
+          "line": 5
+        }
+      ]
+    },
+    {
+      "path": "scripts/save_service.gd",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/play.gd",
+          "line": 6
+        }
+      ]
+    },
+    {
+      "path": "scripts/level_catalog.gd",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/play.gd",
+          "line": 7
+        }
+      ]
+    },
+    {
+      "path": "scenes/play.tscn",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/play.gd",
+          "line": 767
+        }
+      ]
+    },
+    {
+      "path": "reports/ui/graphical-play-report.json",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/play.gd",
+          "line": 787
+        }
+      ]
+    },
+    {
+      "path": "scripts/editor_grid.gd",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/editor_studio.gd",
+          "line": 4
+        }
+      ]
+    },
+    {
+      "path": "data/levels/validation-01.json",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/editor_studio.gd",
+          "line": 50
+        }
+      ]
+    },
+    {
+      "path": "scripts/editor_verifier.gd",
+      "exists": true,
+      "references": [
+        {
+          "source": "scripts/editor_document.gd",
+          "line": 4
+        }
+      ]
+    },
+    {
+      "path": "scripts/editor_studio.gd",
+      "exists": true,
+      "references": [
+        {
+          "source": "scenes/editor.tscn",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "path": "scripts/play.gd",
+      "exists": true,
+      "references": [
+        {
+          "source": "scenes/play.tscn",
+          "line": 2
+        }
+      ]
+    }
+  ],
+  "dynamic_reference_expansions": [
+    {
+      "path": "assets/ui/v03/game-skin-atlas.png",
+      "exists": true,
+      "source": "scripts/ui_skin.gd"
+    },
+    {
+      "path": "assets/ui/v03/settings-skin-atlas.png",
+      "exists": true,
+      "source": "scripts/ui_skin.gd"
+    },
+    {
+      "path": "data/levels/validation-01.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/levels/validation-02.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/levels/validation-03.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-01.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-02.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-03.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-04.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-05.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-06.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-07.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-08.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-09.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-10.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-11.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-12.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-13.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-14.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-15.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-16.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-17.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-18.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-19.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-20.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-21.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-22.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-23.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-24.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-25.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-26.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-27.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-28.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-29.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    },
+    {
+      "path": "data/campaign-drafts/campaign-30.json",
+      "exists": true,
+      "source": "scripts/level_catalog.gd"
+    }
+  ],
+  "runtime_output_paths_not_dependencies": [
+    {
+      "source": "scripts/play.gd",
+      "line": 291,
+      "resource": "res://reports/ui/graphical-play-report.json"
+    }
+  ],
+  "missing_resources": [],
+  "images": [
+    {
+      "path": "assets/ants-atlas.png",
+      "bytes": 1796056,
+      "sha256": "5c33da8f1ad49d075e6d653b838cd4a0c5e5a18173f888a99524d5e1ac06f383",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "runtime_referenced": true,
+      "alpha_zero_fraction": 0.7197144826253256
+    },
+    {
+      "path": "assets/characters-atlas.png",
+      "bytes": 2137497,
+      "sha256": "623febc6b29a1d148ac72a1571ac9e4d7e98a790e689434221d66eff52443e6d",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "runtime_referenced": true,
+      "alpha_zero_fraction": 0.5120398203531901
+    },
+    {
+      "path": "assets/environment.png",
+      "bytes": 2611574,
+      "sha256": "29b8d8251cf7b6b516f6f6e14901dd5d2a512e05cfc2d6f148d559506d82381b",
+      "size": [
+        940,
+        1672
+      ],
+      "mode": "RGB",
+      "runtime_referenced": true,
+      "alpha_zero_fraction": null
+    },
+    {
+      "path": "assets/ui/fusion/audio-icons.png",
+      "bytes": 495631,
+      "sha256": "6cc80b566ff8fbc8c870f57783f0fee0af2f421a0ca5d73aae2ff355fe5d249b",
+      "size": [
+        1774,
+        887
+      ],
+      "mode": "RGBA",
+      "runtime_referenced": true,
+      "alpha_zero_fraction": 0.8056754905188181
+    },
+    {
+      "path": "assets/ui/fusion/beads.png",
+      "bytes": 1660476,
+      "sha256": "bcff13277e0bac7cf558f97c935bb9b9c2a286e35995f44d26c37b9430d3717d",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "runtime_referenced": true,
+      "alpha_zero_fraction": 0.5161616007486979
+    },
+    {
+      "path": "assets/ui/v03/game-skin-atlas.png",
+      "bytes": 1699847,
+      "sha256": "837deff16eded4908bb6c1801846cea395f8abba192eeeed6745adca712412af",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "runtime_referenced": true,
+      "alpha_zero_fraction": 0.28264640868518986
+    },
+    {
+      "path": "assets/ui/v03/settings-skin-atlas.png",
+      "bytes": 2025621,
+      "sha256": "f3caf49459a7919760779bb18311ff321f02d9c878cf1ec4204ed14f0a82dda4",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "runtime_referenced": true,
+      "alpha_zero_fraction": 0.26978294656461366
+    },
+    {
+      "path": "assets/ui/v03/title-atlas.png",
+      "bytes": 1620646,
+      "sha256": "188dfad260a9851b6020c1bd0a2fe21ebc295212fd03775bd9bf71335ba9bbee",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "runtime_referenced": true,
+      "alpha_zero_fraction": 0.4938455316193921
+    }
+  ],
+  "manifest_checks": [
+    {
+      "path": "assets/ants-atlas.png",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/README.md",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/armor_hit.wav",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/bgm_castle_garden.ogg",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/cannon.wav",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/dispatch.wav",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/error.wav",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/file-validation-report.json",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/generate_audio.py",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/godot-test-report.json",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/lose.wav",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/manifest.json",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/pickup.wav",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/return.wav",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/tool_hint.wav",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/tool_plus.wav",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/tool_recall.wav",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/tool_shuffle.wav",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/ui_click.wav",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/validate_audio.py",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/warning.wav",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/win.wav",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/characters-atlas.png",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/environment.png",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/fonts/Title.ttf",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/ui/fusion/audio-icons.png",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/ui/fusion/audio-regions.json",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/ui/fusion/bead-regions.json",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/ui/fusion/beads.png",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/ui/v03/game-skin-atlas.png",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/ui/v03/regions.json",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/ui/v03/settings-skin-atlas.png",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/ui/v03/title-atlas.png",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/ui/v03/title-regions.json",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "data/ant-regions.json",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    },
+    {
+      "path": "assets/audio/packaging-report.json",
+      "exists": true,
+      "hash_match": true,
+      "size_match": true
+    }
+  ],
+  "atlas_checks": [
+    {
+      "path": "assets/characters-atlas.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "regions": 7,
+      "overlapping_rects": []
+    },
+    {
+      "path": "assets/ui/v03/game-skin-atlas.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "regions": 8,
+      "overlapping_rects": []
+    },
+    {
+      "path": "assets/ui/v03/settings-skin-atlas.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "regions": 12,
+      "overlapping_rects": []
+    },
+    {
+      "path": "assets/ui/v03/title-atlas.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "regions": 16,
+      "overlapping_rects": []
+    },
+    {
+      "path": "assets/ants-atlas.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "regions": 6,
+      "overlapping_rects": []
+    },
+    {
+      "path": "assets/ui/fusion/beads.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "regions": 6,
+      "overlapping_rects": []
+    },
+    {
+      "path": "assets/ui/fusion/audio-icons.png",
+      "size": [
+        1774,
+        887
+      ],
+      "regions": 2,
+      "overlapping_rects": []
+    }
+  ],
+  "region_checks": [
+    {
+      "atlas": "assets/characters-atlas.png",
+      "name": "Dragon",
+      "rect": [
+        22,
+        145,
+        714,
+        480
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.399031279178338,
+      "alpha_bbox_local": [
+        1,
+        0,
+        714,
+        480
+      ],
+      "border_alpha_max": 3,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        3
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/characters-atlas.png",
+      "name": "PrincessTower",
+      "rect": [
+        740,
+        20,
+        324,
+        624
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.31967691516302627,
+      "alpha_bbox_local": [
+        0,
+        5,
+        324,
+        624
+      ],
+      "border_alpha_max": 40,
+      "border_pixels_alpha_ge_4": 25,
+      "border_pixels_alpha_ge_8": 20,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        1
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/characters-atlas.png",
+      "name": "Nest",
+      "rect": [
+        481,
+        678,
+        480,
+        307
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.3854098805646037,
+      "alpha_bbox_local": [
+        0,
+        0,
+        480,
+        307
+      ],
+      "border_alpha_max": 114,
+      "border_pixels_alpha_ge_4": 17,
+      "border_pixels_alpha_ge_8": 17,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        5,
+        9
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/characters-atlas.png",
+      "name": "Cannon",
+      "rect": [
+        48,
+        654,
+        412,
+        337
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.300870041197315,
+      "alpha_bbox_local": [
+        1,
+        0,
+        412,
+        337
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        4
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/characters-atlas.png",
+      "name": "CurrentArmorShield",
+      "rect": [
+        973,
+        741,
+        179,
+        202
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.24185519110570275,
+      "alpha_bbox_local": [
+        0,
+        0,
+        179,
+        201
+      ],
+      "border_alpha_max": 116,
+      "border_pixels_alpha_ge_4": 57,
+      "border_pixels_alpha_ge_8": 51,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        8
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/characters-atlas.png",
+      "name": "NextArmorBlue",
+      "rect": [
+        1168,
+        740,
+        159,
+        201
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.23386213586157265,
+      "alpha_bbox_local": [
+        0,
+        0,
+        159,
+        194
+      ],
+      "border_alpha_max": 211,
+      "border_pixels_alpha_ge_4": 169,
+      "border_pixels_alpha_ge_8": 89,
+      "border_pixels_alpha_ge_128": 78,
+      "substantial_components_alpha_ge_128": [
+        6
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/characters-atlas.png",
+      "name": "NextArmorYellow",
+      "rect": [
+        1337,
+        741,
+        167,
+        202
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.23276219837552617,
+      "alpha_bbox_local": [
+        0,
+        0,
+        167,
+        202
+      ],
+      "border_alpha_max": 18,
+      "border_pixels_alpha_ge_4": 86,
+      "border_pixels_alpha_ge_8": 58,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        7
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/game-skin-atlas.png",
+      "name": "panel",
+      "rect": [
+        16,
+        32,
+        650,
+        624
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.023678500986193295,
+      "alpha_bbox_local": [
+        0,
+        0,
+        646,
+        624
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        1
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/game-skin-atlas.png",
+      "name": "primary",
+      "rect": [
+        671,
+        122,
+        571,
+        218
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.0942174520798856,
+      "alpha_bbox_local": [
+        2,
+        3,
+        570,
+        218
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        2
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/game-skin-atlas.png",
+      "name": "secondary",
+      "rect": [
+        671,
+        416,
+        570,
+        215
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.07623011015911872,
+      "alpha_bbox_local": [
+        1,
+        0,
+        569,
+        213
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        3
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/game-skin-atlas.png",
+      "name": "plus",
+      "rect": [
+        30,
+        685,
+        293,
+        279
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.08687780591336686,
+      "alpha_bbox_local": [
+        0,
+        4,
+        293,
+        279
+      ],
+      "border_alpha_max": 2,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        4
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/game-skin-atlas.png",
+      "name": "shuffle",
+      "rect": [
+        331,
+        685,
+        292,
+        279
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.0881818628173025,
+      "alpha_bbox_local": [
+        0,
+        4,
+        292,
+        279
+      ],
+      "border_alpha_max": 2,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        5
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/game-skin-atlas.png",
+      "name": "recall",
+      "rect": [
+        632,
+        685,
+        292,
+        279
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.08463445770118329,
+      "alpha_bbox_local": [
+        0,
+        4,
+        292,
+        279
+      ],
+      "border_alpha_max": 3,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        6
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/game-skin-atlas.png",
+      "name": "hint",
+      "rect": [
+        933,
+        685,
+        291,
+        279
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.08768429220707238,
+      "alpha_bbox_local": [
+        0,
+        4,
+        291,
+        279
+      ],
+      "border_alpha_max": 3,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        7
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/game-skin-atlas.png",
+      "name": "row",
+      "rect": [
+        24,
+        1001,
+        684,
+        227
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.04987505474405544,
+      "alpha_bbox_local": [
+        3,
+        0,
+        684,
+        227
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        8
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/settings-skin-atlas.png",
+      "name": "panel",
+      "rect": [
+        17,
+        17,
+        664,
+        970
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.04997050055893678,
+      "alpha_bbox_local": [
+        0,
+        0,
+        664,
+        968
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        1
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/settings-skin-atlas.png",
+      "name": "title",
+      "rect": [
+        685,
+        49,
+        564,
+        192
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.20555370862884162,
+      "alpha_bbox_local": [
+        4,
+        0,
+        561,
+        192
+      ],
+      "border_alpha_max": 2,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        2
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/settings-skin-atlas.png",
+      "name": "music",
+      "rect": [
+        723,
+        288,
+        230,
+        227
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.08333652556981422,
+      "alpha_bbox_local": [
+        0,
+        0,
+        228,
+        227
+      ],
+      "border_alpha_max": 2,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        3
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/settings-skin-atlas.png",
+      "name": "sound",
+      "rect": [
+        977,
+        288,
+        229,
+        228
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.07979008657013713,
+      "alpha_bbox_local": [
+        0,
+        0,
+        229,
+        228
+      ],
+      "border_alpha_max": 2,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        4
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/settings-skin-atlas.png",
+      "name": "track",
+      "rect": [
+        686,
+        566,
+        552,
+        110
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.08455204216073782,
+      "alpha_bbox_local": [
+        1,
+        0,
+        552,
+        110
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        5
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/settings-skin-atlas.png",
+      "name": "fill",
+      "rect": [
+        706,
+        709,
+        395,
+        67
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.09797846211978084,
+      "alpha_bbox_local": [
+        0,
+        0,
+        391,
+        65
+      ],
+      "border_alpha_max": 4,
+      "border_pixels_alpha_ge_4": 4,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        7
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/settings-skin-atlas.png",
+      "name": "knob",
+      "rect": [
+        1115,
+        691,
+        107,
+        108
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.27890273451021114,
+      "alpha_bbox_local": [
+        0,
+        1,
+        107,
+        107
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        6
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/settings-skin-atlas.png",
+      "name": "off",
+      "rect": [
+        687,
+        819,
+        249,
+        131
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.1626352739201079,
+      "alpha_bbox_local": [
+        3,
+        0,
+        246,
+        131
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        8
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/settings-skin-atlas.png",
+      "name": "on",
+      "rect": [
+        975,
+        819,
+        262,
+        130
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.14107457428068115,
+      "alpha_bbox_local": [
+        4,
+        0,
+        262,
+        130
+      ],
+      "border_alpha_max": 2,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        9
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/settings-skin-atlas.png",
+      "name": "row",
+      "rect": [
+        21,
+        1007,
+        654,
+        214
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.047557803881219815,
+      "alpha_bbox_local": [
+        0,
+        3,
+        654,
+        214
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        10
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/settings-skin-atlas.png",
+      "name": "close",
+      "rect": [
+        681,
+        1029,
+        173,
+        172
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.2447909665277591,
+      "alpha_bbox_local": [
+        0,
+        0,
+        173,
+        169
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        11
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/settings-skin-atlas.png",
+      "name": "primary",
+      "rect": [
+        858,
+        1039,
+        376,
+        155
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.15200754975978037,
+      "alpha_bbox_local": [
+        0,
+        4,
+        374,
+        153
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        12
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/title-atlas.png",
+      "name": "PAUSED",
+      "rect": [
+        111,
+        45,
+        443,
+        119
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.1099834967847184,
+      "alpha_bbox_local": [
+        0,
+        0,
+        443,
+        119
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        1
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/title-atlas.png",
+      "name": "LEVELS",
+      "rect": [
+        123,
+        197,
+        426,
+        120
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.15506651017214398,
+      "alpha_bbox_local": [
+        0,
+        0,
+        425,
+        120
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        4
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/title-atlas.png",
+      "name": "TRY AGAIN",
+      "rect": [
+        65,
+        345,
+        530,
+        120
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.17330188679245284,
+      "alpha_bbox_local": [
+        0,
+        0,
+        530,
+        120
+      ],
+      "border_alpha_max": 2,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        5,
+        7
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/title-atlas.png",
+      "name": "LEAVE?",
+      "rect": [
+        124,
+        494,
+        412,
+        122
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.1291779404742957,
+      "alpha_bbox_local": [
+        0,
+        0,
+        411,
+        122
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        8
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/title-atlas.png",
+      "name": "NO MATCH",
+      "rect": [
+        62,
+        647,
+        528,
+        119
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.13728673287496818,
+      "alpha_bbox_local": [
+        0,
+        0,
+        528,
+        119
+      ],
+      "border_alpha_max": 2,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        10,
+        11
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/title-atlas.png",
+      "name": "SAVE ERROR",
+      "rect": [
+        38,
+        791,
+        582,
+        123
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.20582236750202554,
+      "alpha_bbox_local": [
+        0,
+        0,
+        582,
+        123
+      ],
+      "border_alpha_max": 2,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        14,
+        16
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/title-atlas.png",
+      "name": "EXTRA SLOT",
+      "rect": [
+        68,
+        945,
+        532,
+        118
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.17492353765770358,
+      "alpha_bbox_local": [
+        0,
+        0,
+        531,
+        118
+      ],
+      "border_alpha_max": 2,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        20,
+        21
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/title-atlas.png",
+      "name": "HINT",
+      "rect": [
+        181,
+        1092,
+        293,
+        122
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.12499300621048509,
+      "alpha_bbox_local": [
+        0,
+        0,
+        292,
+        122
+      ],
+      "border_alpha_max": 2,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        22
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/title-atlas.png",
+      "name": "SETTINGS",
+      "rect": [
+        693,
+        46,
+        489,
+        121
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.12342611840659805,
+      "alpha_bbox_local": [
+        0,
+        0,
+        489,
+        120
+      ],
+      "border_alpha_max": 2,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        2
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/title-atlas.png",
+      "name": "SAVED!",
+      "rect": [
+        728,
+        195,
+        420,
+        121
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.1635576544667454,
+      "alpha_bbox_local": [
+        0,
+        0,
+        420,
+        121
+      ],
+      "border_alpha_max": 2,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        3
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/title-atlas.png",
+      "name": "RESTART?",
+      "rect": [
+        688,
+        345,
+        504,
+        120
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.17199074074074075,
+      "alpha_bbox_local": [
+        0,
+        0,
+        503,
+        120
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        6
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/title-atlas.png",
+      "name": "RECALL",
+      "rect": [
+        731,
+        498,
+        422,
+        119
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.12137082321080091,
+      "alpha_bbox_local": [
+        0,
+        0,
+        422,
+        119
+      ],
+      "border_alpha_max": 2,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        9
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/title-atlas.png",
+      "name": "LOAD ERROR",
+      "rect": [
+        679,
+        653,
+        544,
+        114
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.16434468524251805,
+      "alpha_bbox_local": [
+        0,
+        3,
+        544,
+        114
+      ],
+      "border_alpha_max": 3,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        12,
+        13
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/title-atlas.png",
+      "name": "HOW TO PLAY",
+      "rect": [
+        664,
+        797,
+        563,
+        114
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.17526720887476238,
+      "alpha_bbox_local": [
+        0,
+        0,
+        562,
+        114
+      ],
+      "border_alpha_max": 2,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        15,
+        17,
+        18
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/title-atlas.png",
+      "name": "SHUFFLE",
+      "rect": [
+        711,
+        943,
+        459,
+        119
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.12789952582340125,
+      "alpha_bbox_local": [
+        0,
+        0,
+        459,
+        119
+      ],
+      "border_alpha_max": 3,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        19
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ui/v03/title-atlas.png",
+      "name": "CONTINUE",
+      "rect": [
+        669,
+        1095,
+        535,
+        119
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.14395664807979267,
+      "alpha_bbox_local": [
+        0,
+        0,
+        535,
+        119
+      ],
+      "border_alpha_max": 3,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        23
+      ],
+      "clipped_substantial_components": []
+    },
+    {
+      "atlas": "assets/ants-atlas.png",
+      "name": "red",
+      "rect": [
+        68,
+        107,
+        394,
+        347
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.47499963428370806,
+      "alpha_bbox_local": [
+        0,
+        0,
+        394,
+        347
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        1
+      ],
+      "clipped_substantial_components": [],
+      "alpha_ge_4_components": [
+        {
+          "id": 1,
+          "pixels": 58198,
+          "bbox": [
+            75,
+            114,
+            455,
+            447
+          ],
+          "gutter_ltrb": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "excluded_pixels": 0
+        }
+      ],
+      "silhouette_plus_exact_7px_margin": true
+    },
+    {
+      "atlas": "assets/ants-atlas.png",
+      "name": "blue",
+      "rect": [
+        580,
+        108,
+        395,
+        346
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.49750493890392916,
+      "alpha_bbox_local": [
+        1,
+        0,
+        394,
+        342
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        2
+      ],
+      "clipped_substantial_components": [],
+      "alpha_ge_4_components": [
+        {
+          "id": 2,
+          "pixels": 58574,
+          "bbox": [
+            587,
+            115,
+            968,
+            447
+          ],
+          "gutter_ltrb": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "excluded_pixels": 0
+        }
+      ],
+      "silhouette_plus_exact_7px_margin": true
+    },
+    {
+      "atlas": "assets/ants-atlas.png",
+      "name": "yellow",
+      "rect": [
+        1082,
+        108,
+        393,
+        347
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.4615644088552551,
+      "alpha_bbox_local": [
+        0,
+        0,
+        393,
+        347
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        3
+      ],
+      "clipped_substantial_components": [],
+      "alpha_ge_4_components": [
+        {
+          "id": 3,
+          "pixels": 57833,
+          "bbox": [
+            1089,
+            115,
+            1468,
+            448
+          ],
+          "gutter_ltrb": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "excluded_pixels": 0
+        }
+      ],
+      "silhouette_plus_exact_7px_margin": true
+    },
+    {
+      "atlas": "assets/ants-atlas.png",
+      "name": "green",
+      "rect": [
+        66,
+        592,
+        397,
+        346
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.48246967865930895,
+      "alpha_bbox_local": [
+        0,
+        0,
+        397,
+        346
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        4
+      ],
+      "clipped_substantial_components": [],
+      "alpha_ge_4_components": [
+        {
+          "id": 345,
+          "pixels": 58682,
+          "bbox": [
+            73,
+            599,
+            456,
+            931
+          ],
+          "gutter_ltrb": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "excluded_pixels": 0
+        }
+      ],
+      "silhouette_plus_exact_7px_margin": true
+    },
+    {
+      "atlas": "assets/ants-atlas.png",
+      "name": "purple",
+      "rect": [
+        577,
+        591,
+        402,
+        348
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.49678332475553266,
+      "alpha_bbox_local": [
+        4,
+        0,
+        398,
+        348
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        5
+      ],
+      "clipped_substantial_components": [],
+      "alpha_ge_4_components": [
+        {
+          "id": 343,
+          "pixels": 59285,
+          "bbox": [
+            584,
+            598,
+            972,
+            932
+          ],
+          "gutter_ltrb": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "excluded_pixels": 0
+        }
+      ],
+      "silhouette_plus_exact_7px_margin": true
+    },
+    {
+      "atlas": "assets/ants-atlas.png",
+      "name": "white",
+      "rect": [
+        1083,
+        592,
+        391,
+        345
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.48387264168427296,
+      "alpha_bbox_local": [
+        0,
+        0,
+        391,
+        345
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        6
+      ],
+      "clipped_substantial_components": [],
+      "alpha_ge_4_components": [
+        {
+          "id": 348,
+          "pixels": 57939,
+          "bbox": [
+            1090,
+            599,
+            1467,
+            930
+          ],
+          "gutter_ltrb": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "excluded_pixels": 0
+        }
+      ],
+      "silhouette_plus_exact_7px_margin": true
+    },
+    {
+      "atlas": "assets/ui/fusion/beads.png",
+      "name": "red",
+      "rect": [
+        93,
+        92,
+        375,
+        376
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.12024822695035461,
+      "alpha_bbox_local": [
+        0,
+        3,
+        375,
+        376
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        1
+      ],
+      "clipped_substantial_components": [],
+      "alpha_ge_4_components": [
+        {
+          "id": 1,
+          "pixels": 116931,
+          "bbox": [
+            100,
+            99,
+            461,
+            461
+          ],
+          "gutter_ltrb": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "excluded_pixels": 0
+        }
+      ],
+      "silhouette_plus_exact_7px_margin": true
+    },
+    {
+      "atlas": "assets/ui/fusion/beads.png",
+      "name": "blue",
+      "rect": [
+        584,
+        93,
+        375,
+        376
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.12231205673758866,
+      "alpha_bbox_local": [
+        0,
+        0,
+        375,
+        376
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        2
+      ],
+      "clipped_substantial_components": [],
+      "alpha_ge_4_components": [
+        {
+          "id": 4,
+          "pixels": 117190,
+          "bbox": [
+            591,
+            100,
+            952,
+            462
+          ],
+          "gutter_ltrb": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "excluded_pixels": 0
+        }
+      ],
+      "silhouette_plus_exact_7px_margin": true
+    },
+    {
+      "atlas": "assets/ui/fusion/beads.png",
+      "name": "yellow",
+      "rect": [
+        1072,
+        93,
+        378,
+        375
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.12086067019400352,
+      "alpha_bbox_local": [
+        0,
+        0,
+        378,
+        375
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        3
+      ],
+      "clipped_substantial_components": [],
+      "alpha_ge_4_components": [
+        {
+          "id": 5,
+          "pixels": 117065,
+          "bbox": [
+            1079,
+            100,
+            1443,
+            461
+          ],
+          "gutter_ltrb": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "excluded_pixels": 0
+        }
+      ],
+      "silhouette_plus_exact_7px_margin": true
+    },
+    {
+      "atlas": "assets/ui/fusion/beads.png",
+      "name": "green",
+      "rect": [
+        91,
+        566,
+        380,
+        375
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.11499649122807018,
+      "alpha_bbox_local": [
+        0,
+        0,
+        380,
+        375
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        4
+      ],
+      "clipped_substantial_components": [],
+      "alpha_ge_4_components": [
+        {
+          "id": 103,
+          "pixels": 118698,
+          "bbox": [
+            98,
+            573,
+            464,
+            934
+          ],
+          "gutter_ltrb": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "excluded_pixels": 0
+        }
+      ],
+      "silhouette_plus_exact_7px_margin": true
+    },
+    {
+      "atlas": "assets/ui/fusion/beads.png",
+      "name": "purple",
+      "rect": [
+        581,
+        566,
+        380,
+        378
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.1274018379281537,
+      "alpha_bbox_local": [
+        0,
+        2,
+        380,
+        378
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        5
+      ],
+      "clipped_substantial_components": [],
+      "alpha_ge_4_components": [
+        {
+          "id": 104,
+          "pixels": 118962,
+          "bbox": [
+            588,
+            573,
+            954,
+            937
+          ],
+          "gutter_ltrb": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "excluded_pixels": 0
+        }
+      ],
+      "silhouette_plus_exact_7px_margin": true
+    },
+    {
+      "atlas": "assets/ui/fusion/beads.png",
+      "name": "white",
+      "rect": [
+        1066,
+        565,
+        387,
+        380
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.12454780361757106,
+      "alpha_bbox_local": [
+        0,
+        0,
+        387,
+        380
+      ],
+      "border_alpha_max": 2,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        6
+      ],
+      "clipped_substantial_components": [],
+      "alpha_ge_4_components": [
+        {
+          "id": 101,
+          "pixels": 120950,
+          "bbox": [
+            1073,
+            572,
+            1446,
+            938
+          ],
+          "gutter_ltrb": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "excluded_pixels": 0
+        }
+      ],
+      "silhouette_plus_exact_7px_margin": true
+    },
+    {
+      "atlas": "assets/ui/fusion/audio-icons.png",
+      "name": "music",
+      "rect": [
+        215,
+        189,
+        468,
+        509
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.4110036438130741,
+      "alpha_bbox_local": [
+        5,
+        0,
+        464,
+        506
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        1
+      ],
+      "clipped_substantial_components": [],
+      "alpha_ge_4_components": [
+        {
+          "id": 3,
+          "pixels": 135551,
+          "bbox": [
+            222,
+            196,
+            676,
+            691
+          ],
+          "gutter_ltrb": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "excluded_pixels": 0
+        }
+      ],
+      "silhouette_plus_exact_7px_margin": true
+    },
+    {
+      "atlas": "assets/ui/fusion/audio-icons.png",
+      "name": "sound",
+      "rect": [
+        1071,
+        236,
+        530,
+        479
+      ],
+      "in_source_bounds": true,
+      "nonempty": true,
+      "alpha_zero_fraction": 0.34974593295781303,
+      "alpha_bbox_local": [
+        4,
+        1,
+        530,
+        474
+      ],
+      "border_alpha_max": 1,
+      "border_pixels_alpha_ge_4": 0,
+      "border_pixels_alpha_ge_8": 0,
+      "border_pixels_alpha_ge_128": 0,
+      "substantial_components_alpha_ge_128": [
+        2,
+        3,
+        4
+      ],
+      "clipped_substantial_components": [],
+      "alpha_ge_4_components": [
+        {
+          "id": 18,
+          "pixels": 159829,
+          "bbox": [
+            1078,
+            243,
+            1594,
+            708
+          ],
+          "gutter_ltrb": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "excluded_pixels": 0
+        }
+      ],
+      "silhouette_plus_exact_7px_margin": true
+    }
+  ],
+  "foot_anchor_measurements": [
+    {
+      "color": "red",
+      "sprite_rect_in_diameter_units": [
+        -0.5,
+        -0.84,
+        1,
+        0.86
+      ],
+      "painted_baseline_offset_per_diameter": 0.00017291066282432155,
+      "painted_baseline_offset_at_diameter_39": 0.00674351585014854
+    },
+    {
+      "color": "blue",
+      "sprite_rect_in_diameter_units": [
+        -0.5,
+        -0.84,
+        1,
+        0.86
+      ],
+      "painted_baseline_offset_per_diameter": 0.0026011560693641744,
+      "painted_baseline_offset_at_diameter_39": 0.1014450867052028
+    },
+    {
+      "color": "yellow",
+      "sprite_rect_in_diameter_units": [
+        -0.5,
+        -0.84,
+        1,
+        0.86
+      ],
+      "painted_baseline_offset_per_diameter": 0.00017291066282432155,
+      "painted_baseline_offset_at_diameter_39": 0.00674351585014854
+    },
+    {
+      "color": "green",
+      "sprite_rect_in_diameter_units": [
+        -0.5,
+        -0.84,
+        1,
+        0.86
+      ],
+      "painted_baseline_offset_per_diameter": 0.00011560693641621267,
+      "painted_baseline_offset_at_diameter_39": 0.004508670520232294
+    },
+    {
+      "color": "purple",
+      "sprite_rect_in_diameter_units": [
+        -0.5,
+        -0.84,
+        1,
+        0.86
+      ],
+      "painted_baseline_offset_per_diameter": -0.0022413793103447377,
+      "painted_baseline_offset_at_diameter_39": -0.08741379310344477
+    },
+    {
+      "color": "white",
+      "sprite_rect_in_diameter_units": [
+        -0.5,
+        -0.84,
+        1,
+        0.86
+      ],
+      "painted_baseline_offset_per_diameter": 5.7971014492785855e-05,
+      "painted_baseline_offset_at_diameter_39": 0.0022608695652186483
+    }
+  ],
+  "shared_ground_projection": {
+    "script": "scripts/board_plane.gd",
+    "top_left": [
+      175,
+      350
+    ],
+    "top_right": [
+      765,
+      350
+    ],
+    "bottom_left": [
+      130,
+      890
+    ],
+    "bottom_right": [
+      810,
+      890
+    ],
+    "cell_center": "project(Vector2(x + 0.5, y + 0.5))",
+    "consumers": [
+      "gallery bead placement",
+      "playable bead placement",
+      "carrier route positions",
+      "FX cell points"
+    ],
+    "logical_rules": "Rules retain integer logical cells; presentation uses the shared projected ground coordinates.",
+    "nest_endpoint": [
+      467,
+      1074
+    ]
+  },
+  "unused_regions_in_required_atlases": [
+    "game/primary",
+    "game/secondary",
+    "settings/music",
+    "settings/sound",
+    "settings/off",
+    "settings/on",
+    "settings/row",
+    "titles/CONTINUE"
+  ],
+  "unused_embedded_art": [
+    "characters-atlas empty tower",
+    "game-skin-atlas bottom slider and knob without region entries"
+  ],
+  "data_thumbnail_dependencies": {
+    "paths": [
+      "reports/rules/validation-01.svg",
+      "reports/rules/validation-02.svg",
+      "reports/rules/validation-03.svg"
+    ],
+    "note": "Referenced by the three level JSON thumbnail fields; preserve them even though current play UI does not render them."
+  },
+  "package": {
+    "policy": "Current complete source only; standard ZIP without .godot, movies, screenshots, old concepts or archives. Package hashes are external to avoid self-reference."
+  },
+  "warnings": [
+    {
+      "kind": "tight_alpha_gutter",
+      "atlas": "assets/characters-atlas.png",
+      "region": "NextArmorBlue",
+      "detail": "Some alpha>=128 pixels touch this crop boundary, although the substantial silhouette is fully retained. Keep filter_clip enabled and visually inspect smallest display sizes."
+    }
+  ],
+  "methodology": [
+    "Resource literals inspected across scripts, scenes, project settings and level JSON; bounded game/settings atlas and validation-01..03 expressions expanded.",
+    "Every original RGBA crop is measured. Substantial silhouettes are connected alpha>=128 regions larger than 100 pixels; no such intersecting component is clipped. Source rectangles do not overlap.",
+    "The 14 current ant/bead/audio slices each contain one alpha>=4 connected silhouette larger than 100 pixels, with exactly seven source pixels on each side. Boundary alpha is below 4. This is not an equal-grid crop.",
+    "Foot-anchor measurement applies actual KEEP_ASPECT_CENTERED sizing to the current ground_ant source rectangle and measures the bottom alpha>=128 baseline relative to the group origin; contact shadow is local (0,0).",
+    "Main and playable bead placement, carrier route coordinates and FX cell points use BoardPlane. Rules retain integer logical coordinates.",
+    "Runtime AtlasTexture constructors enable filter_clip. Imports disable mipmaps and enable fix_alpha_border.",
+    "No full rendered-scene visual acceptance, gameplay/input regression test, or device performance approval is claimed by a source audit."
+  ],
+  "source_sha256": {
+    "assets/ui/fusion/audio-regions.json": "174b9ffccbf1a2bf3bb265428145e80c58fa0499caf0442b463274fe3e78e55f",
+    "assets/ui/fusion/bead-regions.json": "fb476fc6138d28481924ba0f88f063efa478e219606a5d655ef3429f2471342e",
+    "assets/ui/v03/regions.json": "b588017706070e317fe4174e518e9a8617fa05fd1e2df3a68dcadd7861e2a29f",
+    "assets/ui/v03/title-regions.json": "62a40610fcca9d9db8c0928b70c1552a20ab117cf89c4dc543f22e2a560bf43f",
+    "data/ant-regions.json": "954b0440eb5d7649108aacd0708fcaa91ac92da96ef3f470e2607cbfd6eb22c5",
+    "data/levels/validation-01.json": "0fcd4fc813ca3fe892c81dedc6acdc82c5148393c918cf394451477d5111f468",
+    "data/levels/validation-02.json": "60b42ff91fbae670b1b4c7787a48e6223be5f28b738f2b11ead5a5aeca034150",
+    "data/levels/validation-03.json": "c1e26cb904242f6b9acf4966504cfbc2eebf57272aad3c098718624a41aed8ae",
+    "project.godot": "662a3302d4157c8c08bd3a646b81149a6f26a855ebbbc7e637bf3298996e7181",
+    "scenes/main.tscn": "aed543637953610900b07ad0aa175951ead3516497fb8a697b00a0ac0a3bdbf0",
+    "scenes/play.tscn": "d5ee48dd019b25dc940ae58b97f5e6e04b4cbff6e7d9ff2025b912f19e5ec74b",
+    "scripts/audio_service.gd": "076ed3235193a033d378901a5c6f52fb8337d1af2d31d52edb84037706a9d499",
+    "scripts/bead.gd": "b40dad729ced5842e01f0fbe7d7a0f87f433d5110dcf141084a66ce4d5429fa0",
+    "scripts/board_plane.gd": "c2966afed8e99a2bd03b539d67e68f11e5a280675fb9a9771d87a99936d2a048",
+    "scripts/contact_shadow.gd": "ef384880665827ec7bddc9954bce972f13106c74aee14b367489c48df2cbfd0c",
+    "scripts/main.gd": "138d101c8a3e07ae597a5ab48b9625d290572981baa4d5ad6bb110af75c2fb4c",
+    "scripts/play.gd": "5e5e25b4d78a107972057ef400c2de015bf01342f4a2e63287b38f8cc1735d72",
+    "scripts/rescue_fx.gd": "58c0047b5d9bb6c2eeaaacba25bc26cbadccc453e6d9780fed04a0aa0a330eb0",
+    "scripts/rescue_rules.gd": "563e514589491806e734d05ff316ce8971d72734c2c09298e30807e63545e468",
+    "scripts/rescue_tool_solver.gd": "d5065dd4776c0c59ef51a29948de8b5b2e451d8c20d0f3beaefd2f0b2db8c185",
+    "scripts/save_service.gd": "72b3146214e8e7be59e659b5e639cf46015394d9ec4808e716ce4eb06447d111",
+    "scripts/ui_icon.gd": "23fffeabea7a96458a643282817fcc016382a41e1ab73e267fc4d6d7577abf39",
+    "scripts/ui_skin.gd": "113355d496a8aed1fc90961a38969bf830995c4342be1292bb537151b562a7aa"
+  }
+}

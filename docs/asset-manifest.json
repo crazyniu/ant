@@ -1,0 +1,657 @@
+{
+  "schema_version": 2,
+  "viewport": [
+    1440,
+    2560
+  ],
+  "logical_canvas": [
+    940,
+    1672
+  ],
+  "asset_batch": "current cohesive fusion candidate; final visual acceptance pending",
+  "shared_ground_projection": {
+    "script": "scripts/board_plane.gd",
+    "top_left": [
+      175,
+      350
+    ],
+    "top_right": [
+      765,
+      350
+    ],
+    "bottom_left": [
+      130,
+      890
+    ],
+    "bottom_right": [
+      810,
+      890
+    ],
+    "cell_center": "project(Vector2(x + 0.5, y + 0.5))",
+    "consumers": [
+      "gallery bead placement",
+      "playable bead placement",
+      "carrier route positions",
+      "FX cell points"
+    ],
+    "logical_rules": "Rules retain integer logical cells; presentation uses the shared projected ground coordinates.",
+    "nest_endpoint": [
+      467,
+      1074
+    ]
+  },
+  "assets": [
+    {
+      "path": "assets/ants-atlas.png",
+      "bytes": 1796056,
+      "sha256": "5c33da8f1ad49d075e6d653b838cd4a0c5e5a18173f888a99524d5e1ac06f383",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "source": {
+        "kind": "built_in_image_generation",
+        "output_file": "exec-8ea19348-0b71-4a05-9207-5ca81df92a47.png",
+        "date": "2026-10-21",
+        "purpose": "Six color-matched low-angle ground ants."
+      },
+      "anchor": {
+        "kind": "ground_contact_group_origin",
+        "implementation": "scripts/main.gd:ground_ant",
+        "group_origin": "The ground-ant group is positioned at the projected ground point; its FootShadow is at local (0,0). Sprite offset is a presentation transform, not the navigation point.",
+        "sprite_rect_in_diameter_units": [
+          -0.5,
+          -0.84,
+          1.0,
+          0.86
+        ],
+        "stretch_mode": "KEEP_ASPECT_CENTERED",
+        "contact_alignment": "Painted-foot baseline is aligned to group/shadow origin to within 0.13 logical pixels at diameter 39 in the current alpha>=128 measurement.",
+        "ground_projection": "scripts/board_plane.gd",
+        "ui_usage": "Queue, slot, tutorial and modal ant sprites use explicit UI rectangles, not the ground-contact group."
+      },
+      "alpha_zero_fraction": 0.7197144826253256,
+      "alpha_bbox": [
+        0,
+        17,
+        1535,
+        1024
+      ],
+      "region_manifest": "data/ant-regions.json",
+      "slice_method": {
+        "kind": "connected_silhouette_bounds",
+        "alpha_threshold": 4,
+        "margin_pixels": 7,
+        "equal_grid": false
+      }
+    },
+    {
+      "path": "assets/audio/README.md",
+      "bytes": 12087,
+      "sha256": "a5fe6bebed25daac740efe19b78c0df1286c1cfc0bce00e1f9e34bbd3ff96e8f"
+    },
+    {
+      "path": "assets/audio/armor_hit.wav",
+      "bytes": 136756,
+      "sha256": "b7e7898073dc0f006b0599387e7fd3b813478739d7a9484363c7d3307e5a45e9",
+      "source": {
+        "kind": "locally_synthesized_original",
+        "generator": "assets/audio/generate_audio.py",
+        "manifest": "assets/audio/manifest.json"
+      }
+    },
+    {
+      "path": "assets/audio/bgm_castle_garden.ogg",
+      "bytes": 297498,
+      "sha256": "b6c3ccc34cf32da60fac535e531012f061b698386002433c0e99a24ec68da7f4",
+      "source": {
+        "kind": "locally_synthesized_original",
+        "generator": "assets/audio/generate_audio.py",
+        "manifest": "assets/audio/manifest.json"
+      },
+      "encoding": {
+        "codec": "Ogg Vorbis",
+        "duration_seconds": 40.0,
+        "sample_rate_hz": 44100,
+        "channels": 2,
+        "nominal_bitrate_bps": 160000,
+        "master_sha256": "c9e8f3e0fb389eda152a13b4cf493b7993f48f95272c71e651e1af878b9d338e"
+      }
+    },
+    {
+      "path": "assets/audio/cannon.wav",
+      "bytes": 114704,
+      "sha256": "d2f5a8463c7f008badd75527f6ddc14972b016fb2c285f1ba57ac9c2407ca842",
+      "source": {
+        "kind": "locally_synthesized_original",
+        "generator": "assets/audio/generate_audio.py",
+        "manifest": "assets/audio/manifest.json"
+      }
+    },
+    {
+      "path": "assets/audio/dispatch.wav",
+      "bytes": 160568,
+      "sha256": "73ffc8aa645202d886d645b291d98cae8011b38027d8c12e04ddb5d05451c5ce",
+      "source": {
+        "kind": "locally_synthesized_original",
+        "generator": "assets/audio/generate_audio.py",
+        "manifest": "assets/audio/manifest.json"
+      }
+    },
+    {
+      "path": "assets/audio/error.wav",
+      "bytes": 172916,
+      "sha256": "e45dec287388668c1a46a77402638cdf1d68a7170cd60be64601f116894109cf",
+      "source": {
+        "kind": "locally_synthesized_original",
+        "generator": "assets/audio/generate_audio.py",
+        "manifest": "assets/audio/manifest.json"
+      }
+    },
+    {
+      "path": "assets/audio/file-validation-report.json",
+      "bytes": 3065,
+      "sha256": "c5e51a6acc554f9b4019ec39b43e80cf11f1e665b1efeba3b9fe09c97c21f407"
+    },
+    {
+      "path": "assets/audio/generate_audio.py",
+      "bytes": 10034,
+      "sha256": "c5a91091f5868fc08add211d4151b413d525a14ed6b45e4475befbfe3e338a05"
+    },
+    {
+      "path": "assets/audio/godot-test-report.json",
+      "bytes": 451,
+      "sha256": "67a9aa03733303add1b8a46c92c0bdcf49d2cf98e37f6569e75fd4a1454092c9"
+    },
+    {
+      "path": "assets/audio/lose.wav",
+      "bytes": 352844,
+      "sha256": "cbf2c92b2796c489c0851be71773b6dce9a72c86fa64a567572bcc4ed063772a",
+      "source": {
+        "kind": "locally_synthesized_original",
+        "generator": "assets/audio/generate_audio.py",
+        "manifest": "assets/audio/manifest.json"
+      }
+    },
+    {
+      "path": "assets/audio/manifest.json",
+      "bytes": 12007,
+      "sha256": "3dbe3d4c93dacc9743e43d41431bb9087244b6329ddc4e79df7da31a13ee8bec"
+    },
+    {
+      "path": "assets/audio/pickup.wav",
+      "bytes": 70604,
+      "sha256": "851d6624e8f9e618d1d7a43f9c1d2089ad75751af874d8fa445a790f8fafb244",
+      "source": {
+        "kind": "locally_synthesized_original",
+        "generator": "assets/audio/generate_audio.py",
+        "manifest": "assets/audio/manifest.json"
+      }
+    },
+    {
+      "path": "assets/audio/return.wav",
+      "bytes": 171152,
+      "sha256": "fd0fa9f5cf4e92c77376bcc4f70d5e37f3d42c5686f9d0240e516e9590124294",
+      "source": {
+        "kind": "locally_synthesized_original",
+        "generator": "assets/audio/generate_audio.py",
+        "manifest": "assets/audio/manifest.json"
+      }
+    },
+    {
+      "path": "assets/audio/tool_hint.wav",
+      "bytes": 345788,
+      "sha256": "a8608fd784ea94c8ce48ec566a0fc378f235d5e4f7e2aec42e531df0790d2768",
+      "source": {
+        "kind": "locally_synthesized_original",
+        "generator": "assets/audio/generate_audio.py",
+        "manifest": "assets/audio/manifest.json"
+      }
+    },
+    {
+      "path": "assets/audio/tool_plus.wav",
+      "bytes": 264644,
+      "sha256": "53cf0a8b0fceeaca64fb67d800e2a3d8b0c35be9c7d95d6231f058d1f1183e74",
+      "source": {
+        "kind": "locally_synthesized_original",
+        "generator": "assets/audio/generate_audio.py",
+        "manifest": "assets/audio/manifest.json"
+      }
+    },
+    {
+      "path": "assets/audio/tool_recall.wav",
+      "bytes": 259352,
+      "sha256": "972b03e69d22f5bb1eb3213a4079bb69789f22fb05e1ea7b47b13dca615d0f16",
+      "source": {
+        "kind": "locally_synthesized_original",
+        "generator": "assets/audio/generate_audio.py",
+        "manifest": "assets/audio/manifest.json"
+      }
+    },
+    {
+      "path": "assets/audio/tool_shuffle.wav",
+      "bytes": 229364,
+      "sha256": "6cb9541fbf2ac4a086d7861255e66989b5d19d49b2d2870b494ef9b7bc1f138e",
+      "source": {
+        "kind": "locally_synthesized_original",
+        "generator": "assets/audio/generate_audio.py",
+        "manifest": "assets/audio/manifest.json"
+      }
+    },
+    {
+      "path": "assets/audio/ui_click.wav",
+      "bytes": 38852,
+      "sha256": "c8475b6e8d54f4d3cdd5faceaaf860ab47fc55830e8011f8f1444b1a6b59acce",
+      "source": {
+        "kind": "locally_synthesized_original",
+        "generator": "assets/audio/generate_audio.py",
+        "manifest": "assets/audio/manifest.json"
+      }
+    },
+    {
+      "path": "assets/audio/validate_audio.py",
+      "bytes": 4853,
+      "sha256": "57295b555d1e0ab15f339639a23fe6d3dc2492f5071187b28abc1f41bb032da8"
+    },
+    {
+      "path": "assets/audio/warning.wav",
+      "bytes": 264644,
+      "sha256": "5ccb892fe963bf61fbf29a2f1239d7e306129cdd1d0bbdf03084d9885a752313",
+      "source": {
+        "kind": "locally_synthesized_original",
+        "generator": "assets/audio/generate_audio.py",
+        "manifest": "assets/audio/manifest.json"
+      }
+    },
+    {
+      "path": "assets/audio/win.wav",
+      "bytes": 396944,
+      "sha256": "4ecb4abc03579409be573aefae04844e44cf4364c431f9b844e4b6db621b7821",
+      "source": {
+        "kind": "locally_synthesized_original",
+        "generator": "assets/audio/generate_audio.py",
+        "manifest": "assets/audio/manifest.json"
+      }
+    },
+    {
+      "path": "assets/characters-atlas.png",
+      "bytes": 2137497,
+      "sha256": "623febc6b29a1d148ac72a1571ac9e4d7e98a790e689434221d66eff52443e6d",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "source": {
+        "kind": "built_in_image_generation",
+        "output_file": "exec-4a5f0290-36f9-43d7-8a1d-48701d181e0a.png",
+        "date": "2026-10-21",
+        "purpose": "Dragon, princess/tower, cannon, nest, shields; unchanged shared actor atlas."
+      },
+      "anchor": {
+        "kind": "explicit_source_and_target_rectangles",
+        "implementation": "scripts/main.gd:art; build_threat/build_transport/build_hud; scripts/play.gd",
+        "filter_clip": true
+      },
+      "alpha_zero_fraction": 0.5120398203531901,
+      "alpha_bbox": [
+        0,
+        0,
+        1518,
+        1024
+      ]
+    },
+    {
+      "path": "assets/environment.png",
+      "bytes": 2611574,
+      "sha256": "29b8d8251cf7b6b516f6f6e14901dd5d2a512e05cfc2d6f148d559506d82381b",
+      "size": [
+        940,
+        1672
+      ],
+      "mode": "RGB",
+      "source": {
+        "kind": "built_in_image_generation",
+        "output_file": "exec-5634055f-4288-4140-bc62-3b3982342f36.png",
+        "date": "2026-10-21",
+        "purpose": "Cohesive near-orthographic stone-bordered garden ground, without baked gameplay objects."
+      },
+      "anchor": {
+        "kind": "canvas_top_left",
+        "logical_origin": [
+          0,
+          0
+        ],
+        "logical_size": [
+          940,
+          1672
+        ],
+        "viewport_size": [
+          1440,
+          2560
+        ]
+      }
+    },
+    {
+      "path": "assets/fonts/Title.ttf",
+      "bytes": 667844,
+      "sha256": "21f02ebcea75529d3ed9d26e089cd1b9c59a4b784119ba3a96e9bc83cf755ec7",
+      "source": {
+        "kind": "installed_font_package",
+        "name": "DejaVu Sans Condensed Bold",
+        "license": "licenses/DejaVu.txt"
+      }
+    },
+    {
+      "path": "assets/ui/fusion/audio-icons.png",
+      "bytes": 495631,
+      "sha256": "6cc80b566ff8fbc8c870f57783f0fee0af2f421a0ca5d73aae2ff355fe5d249b",
+      "size": [
+        1774,
+        887
+      ],
+      "mode": "RGBA",
+      "source": {
+        "kind": "built_in_image_generation",
+        "output_file": "exec-c382e307-3ead-4b39-ab24-b714f1768136.png",
+        "date": "2026-10-21",
+        "purpose": "Standalone music-note and speaker emblems without outer tile frames."
+      },
+      "anchor": {
+        "kind": "aspect_centered_ui_rect",
+        "implementation": "scripts/main.gd:show_settings",
+        "rect_origin_x": 225,
+        "rect_size": [
+          82,
+          82
+        ],
+        "vertical_placement": "y - 12, where y = 714 + row * 133",
+        "stretch_mode": "KEEP_ASPECT_CENTERED"
+      },
+      "alpha_zero_fraction": 0.8056754905188181,
+      "alpha_bbox": [
+        27,
+        23,
+        1673,
+        845
+      ],
+      "region_manifest": "assets/ui/fusion/audio-regions.json",
+      "slice_method": {
+        "kind": "connected_silhouette_bounds",
+        "alpha_threshold": 4,
+        "margin_pixels": 7,
+        "equal_grid": false
+      }
+    },
+    {
+      "path": "assets/ui/fusion/audio-regions.json",
+      "bytes": 109,
+      "sha256": "174b9ffccbf1a2bf3bb265428145e80c58fa0499caf0442b463274fe3e78e55f"
+    },
+    {
+      "path": "assets/ui/fusion/bead-regions.json",
+      "bytes": 316,
+      "sha256": "fb476fc6138d28481924ba0f88f063efa478e219606a5d655ef3429f2471342e"
+    },
+    {
+      "path": "assets/ui/fusion/beads.png",
+      "bytes": 1660476,
+      "sha256": "bcff13277e0bac7cf558f97c935bb9b9c2a286e35995f44d26c37b9430d3717d",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "source": {
+        "kind": "built_in_image_generation",
+        "output_file": "exec-663aa429-b489-40aa-ad2d-ed32f2306f4d.png",
+        "date": "2026-10-21",
+        "purpose": "Six rounded-square physical bead materials, independently drawn by live bead nodes."
+      },
+      "anchor": {
+        "kind": "shared_projected_cell_center",
+        "implementation": "scripts/main.gd:place_board_bead",
+        "projection": "scripts/board_plane.gd",
+        "span": "BoardPlane.footprint(x,y) * 0.98",
+        "position": "BoardPlane.center(x,y) - Vector2(span.x * 0.5, span.y * 0.57)",
+        "draw_size": "Vector2(span.x, span.y * 1.07)",
+        "other_usage": "Stock and carried beads use explicitly sized local rectangles with the same color material."
+      },
+      "alpha_zero_fraction": 0.5161616007486979,
+      "alpha_bbox": [
+        37,
+        9,
+        1518,
+        1024
+      ],
+      "region_manifest": "assets/ui/fusion/bead-regions.json",
+      "slice_method": {
+        "kind": "connected_silhouette_bounds",
+        "alpha_threshold": 4,
+        "margin_pixels": 7,
+        "equal_grid": false
+      }
+    },
+    {
+      "path": "assets/ui/v03/game-skin-atlas.png",
+      "bytes": 1699847,
+      "sha256": "837deff16eded4908bb6c1801846cea395f8abba192eeeed6745adca712412af",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "source": {
+        "kind": "built_in_image_generation",
+        "output_file": "exec-c01d3f5f-3b82-4658-b582-d36206c99f47.png",
+        "date": "2026-10-21",
+        "purpose": "Current shared stone/ivory panels and four enamel tools."
+      },
+      "anchor": {
+        "kind": "nine_slice_or_ui_rect",
+        "source_patch_margin": 64,
+        "implementation": "scripts/ui_skin.gd"
+      },
+      "alpha_zero_fraction": 0.28264640868518986,
+      "alpha_bbox": [
+        0,
+        4,
+        1241,
+        1228
+      ],
+      "region_manifest": "assets/ui/v03/regions.json"
+    },
+    {
+      "path": "assets/ui/v03/regions.json",
+      "bytes": 673,
+      "sha256": "b588017706070e317fe4174e518e9a8617fa05fd1e2df3a68dcadd7861e2a29f"
+    },
+    {
+      "path": "assets/ui/v03/settings-skin-atlas.png",
+      "bytes": 2025621,
+      "sha256": "f3caf49459a7919760779bb18311ff321f02d9c878cf1ec4204ed14f0a82dda4",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "source": {
+        "kind": "built_in_image_generation",
+        "output_file": "exec-1a8975cd-4f75-4b03-8d31-e7a53f89175b.png",
+        "date": "2026-10-21",
+        "purpose": "Current shared modal panel, wood plaque, slider components, close and action pieces."
+      },
+      "anchor": {
+        "kind": "nine_slice_or_ui_rect",
+        "panel_source_patch_margin": 100,
+        "other_source_patch_margin": 64,
+        "implementation": "scripts/ui_skin.gd"
+      },
+      "alpha_zero_fraction": 0.26978294656461366,
+      "alpha_bbox": [
+        0,
+        0,
+        1246,
+        1254
+      ],
+      "region_manifest": "assets/ui/v03/regions.json"
+    },
+    {
+      "path": "assets/ui/v03/title-atlas.png",
+      "bytes": 1620646,
+      "sha256": "188dfad260a9851b6020c1bd0a2fe21ebc295212fd03775bd9bf71335ba9bbee",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "source": {
+        "kind": "built_in_image_generation",
+        "output_file": "exec-59a7cd41-490a-4d87-a502-7c505882fdaf.png",
+        "date": "2026-10-21",
+        "purpose": "Sixteen English sculpted ivory art titles."
+      },
+      "anchor": {
+        "kind": "aspect_centered_on_separate_wood_plaque",
+        "implementation": "scripts/main.gd:title_art",
+        "stretch_mode": "KEEP_ASPECT_CENTERED"
+      },
+      "alpha_zero_fraction": 0.4938455316193921,
+      "alpha_bbox": [
+        0,
+        19,
+        1240,
+        1254
+      ],
+      "region_manifest": "assets/ui/v03/title-regions.json"
+    },
+    {
+      "path": "assets/ui/v03/title-regions.json",
+      "bytes": 889,
+      "sha256": "62a40610fcca9d9db8c0928b70c1552a20ab117cf89c4dc543f22e2a560bf43f"
+    },
+    {
+      "path": "data/ant-regions.json",
+      "bytes": 319,
+      "sha256": "954b0440eb5d7649108aacd0708fcaa91ac92da96ef3f470e2607cbfd6eb22c5"
+    },
+    {
+      "path": "assets/audio/packaging-report.json",
+      "bytes": 2437,
+      "sha256": "557cc196b8b9026fffdb4555e118e587645332e93b2f8e3c955d866383ccee82"
+    }
+  ],
+  "motion_components": {
+    "carrier": {
+      "controller": "scripts/carrier_motion.gd",
+      "shader": "scripts/carrier_motion.gdshader",
+      "texture": "assets/ants-atlas.png",
+      "regions": "data/ant-regions.json",
+      "logical_width": 48,
+      "carried_bead_edge": 24,
+      "gait_hz": {
+        "outbound": 2.15,
+        "returning": 1.65
+      },
+      "ground_anchor": "FootShadow at local origin; caller owns path/depth",
+      "new_bitmap_or_license": false
+    },
+    "dragon": {
+      "controller": "scripts/rescue_fx.gd",
+      "texture": "assets/characters-atlas.png",
+      "duration_seconds": 1.6,
+      "landing_seconds": 0.92,
+      "fade_start_seconds": 1.3,
+      "foot_pivot": [
+        220,
+        193
+      ],
+      "authority": "Final hit saves immediately; cosmetic completion gates result only",
+      "shader": "scripts/combat_tint.gdshader",
+      "local_deformation": "Flat 32x24 2D lattice, 825 vertices; forward local head, torso and wing droop, planted paw band; no new bitmap/3D model",
+      "max_outer_tilt_radians": 0.045
+    },
+    "projectile": {
+      "controller": "scripts/rescue_fx.gd",
+      "source": "Original procedural 2D drawing, no new external bitmap or license",
+      "logical_diameter": 36,
+      "display_diameter_at_2k_approx": 55,
+      "trail_max_logical_length": 96,
+      "trail_layers": 4,
+      "trail_segments": 16,
+      "authority": "Rules fire_us/hit_us; no presentation delay or extra shot"
+    },
+    "interaction": {
+      "controller": "scripts/ui_motion.gd",
+      "gameplay_adapter": "scripts/play.gd",
+      "button_press_seconds": 0.065,
+      "button_release_seconds": 0.15,
+      "modal_reveal_seconds": 0.22,
+      "modal_close_seconds": 0.12,
+      "team_transfer_seconds": 0.24,
+      "queue_refill_seconds": 0.16,
+      "inventory_accent_seconds": 0.26,
+      "gameplay_clock": "Simulation time; pause and x2 follow rules",
+      "menu_clock": "Scene presentation time; logical pause/input shield immediate",
+      "input_geometry": "Unchanged; cosmetic art only"
+    }
+  },
+  "startup": {
+    "entry": "scenes/startup.tscn",
+    "controller": "scripts/startup.gd",
+    "loader": "scripts/startup_loader.gd",
+    "brand": {
+      "path": "assets/startup/title.png",
+      "size": [
+        1774,
+        887
+      ],
+      "alpha_bbox": [
+        0,
+        0,
+        1761,
+        873
+      ],
+      "region": [
+        0,
+        0,
+        1774,
+        887
+      ],
+      "nine_slice": false,
+      "usage": "Native splash, Loading, Home; aspect-preserving fit",
+      "logical_home_rect": [
+        100,
+        125,
+        740,
+        370
+      ],
+      "logical_loading_rect": [
+        100,
+        400,
+        740,
+        370
+      ],
+      "source": "OpenAI image generation, 2026-10-21, exec-110efb3f-8f2b-4c1d-aaa9-8b5fe8319da8",
+      "license": "Original generated asset for this user project; not a copied reference-game asset",
+      "sha256": "8ba1fd598b57b529a56ed4c39302a0fee77e2f7eaaa1de1a1a1b60aa5fa2e110"
+    },
+    "home_art": "Existing environment, character/ant atlases and independent bead nodes, same light/projection. No flattened scene image.",
+    "icons": "scripts/ui_icon.gd: play, levels, home; independent art and click bounds",
+    "progress": "Actual ResourceLoader threaded status; no fixed wait or fake percentage",
+    "profile": "Existing validation vs campaign-drafts separation; resume restores entrance, never mid-round state"
+  },
+  "audio_runtime": {
+    "component": "scripts/audio_service.gd",
+    "assets_manifest": "assets/audio/manifest.json",
+    "usage": "Original 40-second looping OGG plus 14 WAV cues; files unchanged",
+    "settings": "Music and SFX independent zero-to-mute sliders; saved settings applied before audio scene enters tree",
+    "music_gain_db": 3,
+    "modal_duck_db": -4,
+    "music_limiter_ceiling_db": -9,
+    "sfx_limiter_ceiling_db": -5,
+    "lifecycle": "One service per active scene, background and SceneTree suspension pause transport, new service inherits current window focus",
+    "hardware_listening": "Separate user/target-device acceptance; digital PCM proof does not imply speakers are audible"
+  }
+}

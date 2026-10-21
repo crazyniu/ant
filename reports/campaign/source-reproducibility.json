@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "verified_at_utc": "2026-10-21T11:04:59.124792+00:00",
+  "configs_reproduced": 30,
+  "comparison": "All deterministic source fields except validation and thumbnail metadata exactly match exported drafts. Timing defaults include minimum leg 0.55s, pickup hold 0.16s and transport speed 14 cells/s.",
+  "human_playtest": "NOT_RUN",
+  "visual_acceptance": "NOT_RUN"
+}

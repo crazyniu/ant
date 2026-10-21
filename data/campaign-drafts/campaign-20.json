@@ -1,0 +1,782 @@
+{
+  "armors": [
+    {
+      "color": "red",
+      "demand": 3.0,
+      "id": "armor-01"
+    },
+    {
+      "color": "white",
+      "demand": 1.0,
+      "id": "armor-02"
+    },
+    {
+      "color": "purple",
+      "demand": 34.0,
+      "id": "armor-03"
+    },
+    {
+      "color": "blue",
+      "demand": 23.0,
+      "id": "armor-04"
+    },
+    {
+      "color": "green",
+      "demand": 19.0,
+      "id": "armor-05"
+    },
+    {
+      "color": "yellow",
+      "demand": 18.0,
+      "id": "armor-06"
+    },
+    {
+      "color": "yellow",
+      "demand": 18.0,
+      "id": "armor-07"
+    },
+    {
+      "color": "green",
+      "demand": 18.0,
+      "id": "armor-08"
+    },
+    {
+      "color": "blue",
+      "demand": 23.0,
+      "id": "armor-09"
+    },
+    {
+      "color": "purple",
+      "demand": 34.0,
+      "id": "armor-10"
+    },
+    {
+      "color": "white",
+      "demand": 1.0,
+      "id": "armor-11"
+    },
+    {
+      "color": "red",
+      "demand": 3.0,
+      "id": "armor-12"
+    },
+    {
+      "color": "red",
+      "demand": 3.0,
+      "id": "armor-13"
+    },
+    {
+      "color": "purple",
+      "demand": 33.0,
+      "id": "armor-14"
+    },
+    {
+      "color": "blue",
+      "demand": 23.0,
+      "id": "armor-15"
+    },
+    {
+      "color": "green",
+      "demand": 18.0,
+      "id": "armor-16"
+    },
+    {
+      "color": "yellow",
+      "demand": 18.0,
+      "id": "armor-17"
+    }
+  ],
+  "author_notes": {
+    "armor_intent": "Alternate forward/reverse cycles of red,white,purple,blue,green,yellow; 3 independently sized segment(s) per present color.",
+    "failure_boundary_cases": [
+      "Final hit and princess contact at exactly the same microsecond: victory.",
+      "Contact one microsecond before final hit: defeat; later hit cannot overturn.",
+      "Empty board and last delivery are not victory; final projectile must hit."
+    ],
+    "motif": "Rainbow Spiral Shell",
+    "playtest_conclusion": "NOT_RUN: automated proof is not a human difficulty, motif-recognition or visual acceptance.",
+    "progression_band": "11–20 layers and split quotas",
+    "queue_intent": "First-front color order purple,blue,green,yellow,red,white. Later quota slices rotate between lanes; selecting a front reveals a different future color. A sixth initial color, if present, follows the fifth front in column 5. Team quotas vary independently of armor slices.",
+    "teaching_goal": "Six nested colored bands with a diagonal opening; repeated demands store surplus.",
+    "time_budget_policy": "Predeclared budget = ceil(beads × dispatch + teams × 0.75 + armor segments × cooldown × 0.60 + twice width-plus-height / 14 + band grace). Measured final-hit tail and margin must be recorded after authoritative replay."
+  },
+  "campaign_draft_number": 20.0,
+  "columns": [
+    {
+      "id": "column-1",
+      "teams": [
+        {
+          "color": "purple",
+          "id": "purple-01",
+          "quota": 12.0
+        },
+        {
+          "color": "yellow",
+          "id": "yellow-03",
+          "quota": 14.0
+        },
+        {
+          "color": "green",
+          "id": "green-04",
+          "quota": 13.0
+        },
+        {
+          "color": "blue",
+          "id": "blue-05",
+          "quota": 11.0
+        },
+        {
+          "color": "purple",
+          "id": "purple-06",
+          "quota": 14.0
+        }
+      ]
+    },
+    {
+      "id": "column-2",
+      "teams": [
+        {
+          "color": "blue",
+          "id": "blue-01",
+          "quota": 16.0
+        },
+        {
+          "color": "purple",
+          "id": "purple-02",
+          "quota": 16.0
+        },
+        {
+          "color": "yellow",
+          "id": "yellow-04",
+          "quota": 12.0
+        },
+        {
+          "color": "purple",
+          "id": "purple-07",
+          "quota": 12.0
+        }
+      ]
+    },
+    {
+      "id": "column-3",
+      "teams": [
+        {
+          "color": "green",
+          "id": "green-01",
+          "quota": 14.0
+        },
+        {
+          "color": "blue",
+          "id": "blue-02",
+          "quota": 14.0
+        },
+        {
+          "color": "purple",
+          "id": "purple-03",
+          "quota": 14.0
+        },
+        {
+          "color": "purple",
+          "id": "purple-08",
+          "quota": 5.0
+        }
+      ]
+    },
+    {
+      "id": "column-4",
+      "teams": [
+        {
+          "color": "yellow",
+          "id": "yellow-01",
+          "quota": 12.0
+        },
+        {
+          "color": "green",
+          "id": "green-02",
+          "quota": 12.0
+        },
+        {
+          "color": "blue",
+          "id": "blue-03",
+          "quota": 12.0
+        },
+        {
+          "color": "purple",
+          "id": "purple-04",
+          "quota": 12.0
+        }
+      ]
+    },
+    {
+      "id": "column-5",
+      "teams": [
+        {
+          "color": "red",
+          "id": "red-01",
+          "quota": 9.0
+        },
+        {
+          "color": "white",
+          "id": "white-01",
+          "quota": 2.0
+        },
+        {
+          "color": "yellow",
+          "id": "yellow-02",
+          "quota": 16.0
+        },
+        {
+          "color": "green",
+          "id": "green-03",
+          "quota": 16.0
+        },
+        {
+          "color": "blue",
+          "id": "blue-04",
+          "quota": 16.0
+        },
+        {
+          "color": "purple",
+          "id": "purple-05",
+          "quota": 16.0
+        }
+      ]
+    }
+  ],
+  "content_kind": "authoring_draft",
+  "content_version": "campaign-draft-1.0",
+  "dragon": {
+    "initial_position": 0.0,
+    "knockback_distance": 0.4,
+    "max_knockback_distance": 0.4,
+    "route_length": 100.0,
+    "speed_units_sec": 1.0
+  },
+  "grid": [
+    "......................",
+    "........PPPPPP........",
+    ".....PPPPPPPPPPPP.....",
+    "....PPPPBBBBBBPPPP....",
+    "...PPPBBBBBBBBBBPP....",
+    "..PPPBBBBGGGGBBBBP....",
+    "..PPBBBGGGGGGGGBBB....",
+    ".PPPBBGGGYYYYGGGBBPPP.",
+    ".PPBBGGGYYRRYYGGGBBPP.",
+    ".PPBBGGYYRRRRYYGGBBPP.",
+    ".PPBBGGYYRWWRYYGGBBPP.",
+    ".PPBBGGYYYYRYYYGGBBPP.",
+    ".PPPBGGGYYYYYYGGGBPPP.",
+    "..PPBBGGGYYYYYYGBBPP..",
+    "..PPPBBGGGGGYYYYBPPP..",
+    "...PPPBBBGGGGBYYYYP...",
+    "....PPPPBBBBBBPYYYYY..",
+    "......PPPPPPPPPPPYYYY.",
+    "........PPPPPP.....YY.",
+    "......................"
+  ],
+  "height": 20.0,
+  "initial_color_counts": {
+    "blue": 69.0,
+    "green": 55.0,
+    "purple": 101.0,
+    "red": 9.0,
+    "white": 2.0,
+    "yellow": 54.0
+  },
+  "level_id": "campaign-20",
+  "level_number": 20.0,
+  "objective": "Six nested colored bands with a diagonal opening; repeated demands store surplus.",
+  "palette": {
+    "B": "blue",
+    "G": "green",
+    "P": "purple",
+    "R": "red",
+    "W": "white",
+    "Y": "yellow"
+  },
+  "parameters": {
+    "cannon_cooldown_sec": 2.4,
+    "dispatch_interval_sec": 0.15,
+    "max_inflight_ants": 24.0,
+    "pickup_pause_sec": 0.16,
+    "projectile_flight_sec": 1.05,
+    "transport_min_leg_sec": 0.55,
+    "transport_speed_cells_sec": 14.0
+  },
+  "pattern_name": "Rainbow Spiral Shell",
+  "production_level_number": null,
+  "schema_version": 1.0,
+  "seed": 2026102120.0,
+  "thumbnail": "campaign-20-thumbnail.png",
+  "tools": [
+    {
+      "id": "extra_slot",
+      "unlock_level": 3.0,
+      "uses_per_level": 1.0
+    },
+    {
+      "id": "shuffle",
+      "unlock_level": 6.0,
+      "uses_per_level": 1.0
+    },
+    {
+      "id": "recall",
+      "unlock_level": 9.0,
+      "uses_per_level": 1.0
+    },
+    {
+      "id": "scout",
+      "unlock_level": 16.0,
+      "uses_per_level": 1.0
+    }
+  ],
+  "validation": {
+    "boundary_replays": {
+      "exact_final_hit_tie": {
+        "status": "NOT_RUN",
+        "reason": "Transport timing changed; old full-level certificate invalidated. This batch runs focused timing/contact fixtures rather than a new whole-campaign boundary sweep."
+      },
+      "contact_1us_earlier": {
+        "status": "NOT_RUN",
+        "reason": "Transport timing changed; old full-level certificate invalidated. This batch runs focused timing/contact fixtures rather than a new whole-campaign boundary sweep."
+      }
+    },
+    "click_interval_us": 750000,
+    "color_conservation": [
+      {
+        "armor": 9,
+        "balanced": true,
+        "board": 9,
+        "color": "red",
+        "quota": 9
+      },
+      {
+        "armor": 69,
+        "balanced": true,
+        "board": 69,
+        "color": "blue",
+        "quota": 69
+      },
+      {
+        "armor": 54,
+        "balanced": true,
+        "board": 54,
+        "color": "yellow",
+        "quota": 54
+      },
+      {
+        "armor": 55,
+        "balanced": true,
+        "board": 55,
+        "color": "green",
+        "quota": 55
+      },
+      {
+        "armor": 101,
+        "balanced": true,
+        "board": 101,
+        "color": "purple",
+        "quota": 101
+      },
+      {
+        "armor": 2,
+        "balanced": true,
+        "board": 2,
+        "color": "white",
+        "quota": 2
+      }
+    ],
+    "conservation_errors": [],
+    "content_sha256": "57e24dab8430a978c95a6696d2d4fef274745ee3600b3bf46468ee10dbe222ec",
+    "final_hit_margin_us": 32975714,
+    "human_playtest": "NOT_RUN",
+    "inputs": [
+      {
+        "column_id": "column-1",
+        "team_id": "purple-01",
+        "time_us": 0
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "yellow-03",
+        "time_us": 750000
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "blue-01",
+        "time_us": 1500000
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "green-04",
+        "time_us": 2250000
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "blue-05",
+        "time_us": 3000000
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "purple-06",
+        "time_us": 3750000
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "purple-02",
+        "time_us": 9000000
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "yellow-04",
+        "time_us": 10500000
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "purple-07",
+        "time_us": 12750000
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "green-01",
+        "time_us": 13500000
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "blue-02",
+        "time_us": 14250000
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "purple-03",
+        "time_us": 19500000
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "purple-08",
+        "time_us": 21000000
+      },
+      {
+        "column_id": "column-4",
+        "team_id": "yellow-01",
+        "time_us": 21750000
+      },
+      {
+        "column_id": "column-4",
+        "team_id": "green-02",
+        "time_us": 23550000
+      },
+      {
+        "column_id": "column-4",
+        "team_id": "blue-03",
+        "time_us": 24750000
+      },
+      {
+        "column_id": "column-4",
+        "team_id": "purple-04",
+        "time_us": 25500000
+      },
+      {
+        "column_id": "column-5",
+        "team_id": "red-01",
+        "time_us": 30000000
+      },
+      {
+        "column_id": "column-5",
+        "team_id": "white-01",
+        "time_us": 30750000
+      },
+      {
+        "column_id": "column-5",
+        "team_id": "yellow-02",
+        "time_us": 32250000
+      },
+      {
+        "column_id": "column-5",
+        "team_id": "green-03",
+        "time_us": 33000000
+      },
+      {
+        "column_id": "column-5",
+        "team_id": "blue-04",
+        "time_us": 33750000
+      },
+      {
+        "column_id": "column-5",
+        "team_id": "purple-05",
+        "time_us": 34500000
+      }
+    ],
+    "kind": "complete_timed_victory_replay",
+    "no_tool_solution": [
+      {
+        "column_id": "column-1",
+        "team_id": "purple-01",
+        "time_us": 0
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "yellow-03",
+        "time_us": 750000
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "blue-01",
+        "time_us": 1500000
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "green-04",
+        "time_us": 2250000
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "blue-05",
+        "time_us": 3000000
+      },
+      {
+        "column_id": "column-1",
+        "team_id": "purple-06",
+        "time_us": 3750000
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "purple-02",
+        "time_us": 9000000
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "yellow-04",
+        "time_us": 10500000
+      },
+      {
+        "column_id": "column-2",
+        "team_id": "purple-07",
+        "time_us": 12750000
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "green-01",
+        "time_us": 13500000
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "blue-02",
+        "time_us": 14250000
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "purple-03",
+        "time_us": 19500000
+      },
+      {
+        "column_id": "column-3",
+        "team_id": "purple-08",
+        "time_us": 21000000
+      },
+      {
+        "column_id": "column-4",
+        "team_id": "yellow-01",
+        "time_us": 21750000
+      },
+      {
+        "column_id": "column-4",
+        "team_id": "green-02",
+        "time_us": 23550000
+      },
+      {
+        "column_id": "column-4",
+        "team_id": "blue-03",
+        "time_us": 24750000
+      },
+      {
+        "column_id": "column-4",
+        "team_id": "purple-04",
+        "time_us": 25500000
+      },
+      {
+        "column_id": "column-5",
+        "team_id": "red-01",
+        "time_us": 30000000
+      },
+      {
+        "column_id": "column-5",
+        "team_id": "white-01",
+        "time_us": 30750000
+      },
+      {
+        "column_id": "column-5",
+        "team_id": "yellow-02",
+        "time_us": 32250000
+      },
+      {
+        "column_id": "column-5",
+        "team_id": "green-03",
+        "time_us": 33000000
+      },
+      {
+        "column_id": "column-5",
+        "team_id": "blue-04",
+        "time_us": 33750000
+      },
+      {
+        "column_id": "column-5",
+        "team_id": "purple-05",
+        "time_us": 34500000
+      }
+    ],
+    "ok": true,
+    "production_eligible": false,
+    "rules_api_version": "1.2.0",
+    "search_steps": 915,
+    "status": "TIMED_REPLAY_VERIFIED",
+    "structural_errors": [],
+    "terminal_reason": "final_armor_hit",
+    "terminal_time_us": 73424286,
+    "timeline": {
+      "armor_hits": [
+        {
+          "armor_id": "armor-01",
+          "color": "red",
+          "demand": 3,
+          "knockback": 0.399999999999999,
+          "time_us": 35024286
+        },
+        {
+          "armor_id": "armor-02",
+          "color": "white",
+          "demand": 1,
+          "knockback": 0.399999999999999,
+          "time_us": 37424286
+        },
+        {
+          "armor_id": "armor-03",
+          "color": "purple",
+          "demand": 34,
+          "knockback": 0.399999999999999,
+          "time_us": 39824286
+        },
+        {
+          "armor_id": "armor-04",
+          "color": "blue",
+          "demand": 23,
+          "knockback": 0.399999999999999,
+          "time_us": 42224286
+        },
+        {
+          "armor_id": "armor-05",
+          "color": "green",
+          "demand": 19,
+          "knockback": 0.399999999999999,
+          "time_us": 44624286
+        },
+        {
+          "armor_id": "armor-06",
+          "color": "yellow",
+          "demand": 18,
+          "knockback": 0.399999999999999,
+          "time_us": 47024286
+        },
+        {
+          "armor_id": "armor-07",
+          "color": "yellow",
+          "demand": 18,
+          "knockback": 0.399999999999999,
+          "time_us": 49424286
+        },
+        {
+          "armor_id": "armor-08",
+          "color": "green",
+          "demand": 18,
+          "knockback": 0.399999999999999,
+          "time_us": 51824286
+        },
+        {
+          "armor_id": "armor-09",
+          "color": "blue",
+          "demand": 23,
+          "knockback": 0.399999999999999,
+          "time_us": 54224286
+        },
+        {
+          "armor_id": "armor-10",
+          "color": "purple",
+          "demand": 34,
+          "knockback": 0.399999999999999,
+          "time_us": 56624286
+        },
+        {
+          "armor_id": "armor-11",
+          "color": "white",
+          "demand": 1,
+          "knockback": 0.399999999999999,
+          "time_us": 59024286
+        },
+        {
+          "armor_id": "armor-12",
+          "color": "red",
+          "demand": 3,
+          "knockback": 0.399999999999999,
+          "time_us": 61424286
+        },
+        {
+          "armor_id": "armor-13",
+          "color": "red",
+          "demand": 3,
+          "knockback": 0.399999999999999,
+          "time_us": 63824286
+        },
+        {
+          "armor_id": "armor-14",
+          "color": "purple",
+          "demand": 33,
+          "knockback": 0.399999999999999,
+          "time_us": 66224286
+        },
+        {
+          "armor_id": "armor-15",
+          "color": "blue",
+          "demand": 23,
+          "knockback": 0.399999999999999,
+          "time_us": 68624286
+        },
+        {
+          "armor_id": "armor-16",
+          "color": "green",
+          "demand": 18,
+          "knockback": 0.400000000000006,
+          "time_us": 71024286
+        },
+        {
+          "armor_id": "armor-17",
+          "color": "yellow",
+          "demand": 18,
+          "knockback": 0.400000000000006,
+          "time_us": 73424286
+        }
+      ],
+      "conservation_errors": [],
+      "delivery_to_final_hit_tail_us": 26314286,
+      "final_flight_us": 1050000,
+      "final_hit_us": 73424286,
+      "first_delivery_us": 1260000,
+      "first_fire_us": 33974286,
+      "first_pickup_us": 550000,
+      "last_delivery_us": 47110000,
+      "last_fire_us": 72374286,
+      "last_pickup_us": 45450000,
+      "max_inflight_ants": 22,
+      "max_occupied_slots": 5,
+      "pickup_to_final_hit_tail_us": 27974286,
+      "status": "victory",
+      "terminal_reason": "final_armor_hit",
+      "tool_uses": 0,
+      "waiting_target_events": 18
+    },
+    "verified_at_utc": "2026-10-21T11:02:35Z",
+    "visual_acceptance": "NOT_RUN",
+    "verification_scope": "Bounded authoritative no-tool replay; original front-choice order preserved. Full-level boundary probes NOT_RUN after timing change.",
+    "schedule_retimed": true
+  },
+  "width": 22.0
+}

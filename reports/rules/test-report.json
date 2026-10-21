@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "generated_at_utc": "2026-10-21T11:04:59.124792+00:00",
+  "scope": "Current transport-retiming proof: one original-input pass across all 33 configs; only the 12 rejected schedules repaired and retested. Original front-choice order retained; >=0.75s cadence. No threat or combat parameter adjustment. Not the full historical campaign suite.",
+  "original_inputs_passed": 21,
+  "original_inputs_rejected": 12,
+  "repaired_schedules_passed": 12,
+  "current_winning_proofs": 33,
+  "focused_transport_assertions": 63,
+  "focused_transport_failures": [],
+  "full_level_boundary_probes": "NOT_RUN after timing change",
+  "human_playtest": "NOT_RUN",
+  "visual_acceptance": "NOT_RUN",
+  "production_eligible": false,
+  "levels": [
+    {
+      "level_id": "validation-01",
+      "status": "PASS",
+      "terminal_time_us": 42324286,
+      "final_hit_margin_us": 15875714,
+      "content_sha256": "231a74821a769f8acd5016be70abad3bd472384721e5d733648444a94f021aa1",
+      "schedule_retimed": false,
+      "front_choice_order_preserved": true,
+      "replay_inputs": 14,
+      "human_playtest": "NOT_RUN",
+      "visual_acceptance": "NOT_RUN",
+      "production_eligible": false,
+      "full_level_boundaries": "NOT_RUN"
+    },
+    {
+      "level_id": "validation-02",
+      "status": "PASS",
+      "terminal_time_us": 53158572,
+      "final_hit_margin_us": 12841428,
+      "content_sha256": "3320957ea9feb139c24ad832cf73459221c554e910beeac034cb01590bb77751",
+      "schedule_retimed": true,
+      "front_choice_order_preserved": true,
+      "replay_inputs": 17,
+      "human_playtest": "NOT_RUN",
+      "visual_acceptance": "NOT_RUN",
+      "production_eligible": false,
+      "full_level_boundaries": "NOT_RUN"
+    },
+    {
+      "level_id": "validation-03",
+      "status": "PASS",
+      "terminal_time_us": 76515716,
+      "final_hit_margin_us": 434284,
+      "content_sha256": "d547795668e89791554adb424414869a65be9164c34536ea59df16820cd880e9",
+      "schedule_retimed": false,
+      "front_choice_order_preserved": true,
+      "replay_inputs": 12,
+      "human_playtest": "NOT_RUN",
+      "visual_acceptance": "NOT_RUN",
+      "production_eligible": false,
+      "full_level_boundaries": "NOT_RUN"
+    }
+  ],
+  "api_version": "1.2.0"
+}
