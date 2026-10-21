@@ -3,9 +3,20 @@ extends "res://scripts/main.gd"
 const Loader = preload("res://scripts/startup_loader.gd")
 const Saves = preload("res://scripts/save_service.gd")
 const Catalog = preload("res://scripts/level_catalog.gd")
+const Progression = preload("res://scripts/ant_progression.gd")
+const Adventure = preload("res://scripts/adventure_view.gd")
+const Shop = preload("res://scripts/ant_shop_view.gd")
 const TITLE = preload("res://assets/startup/title.png")
 const HOME_RESOURCES: Array[String] = [
-	"res://assets/environment.png", "res://assets/characters-atlas.png",
+	"res://assets/worlds/ruins-courtyard.png", "res://assets/worlds/supply-cart.png",
+	"res://assets/worlds/ice-valley.png", "res://assets/worlds/winter-camp.png",
+	"res://assets/worlds/forest-traveler.png",
+	"res://assets/meta-ui/shop-workshop-background.png", "res://assets/meta-ui/adventure.png", "res://assets/meta-ui/ready.png", "res://assets/meta-ui/ant-shop.png",
+	"res://assets/meta-ui/worker.png", "res://assets/meta-ui/swift.png", "res://assets/meta-ui/training.png", "res://assets/meta-ui/swift-wing.png", "res://assets/meta-ui/ant-coin.png",
+	"res://assets/serpent/environment.png", "res://assets/characters-atlas.png",
+	"res://assets/serpent/ice-serpent-atlas.png", "res://assets/serpent/carapace-serpent-atlas.png",
+	"res://assets/serpent/nest-entry.png", "res://assets/serpent/serpent-atlas.png", "res://assets/serpent/serpent-armor-atlas.png",
+	"res://assets/motion/ant-directions.png",
 	"res://assets/ants-atlas.png", "res://assets/fonts/Title.ttf",
 	"res://assets/ui/fusion/beads.png", "res://assets/ui/fusion/audio-icons.png",
 	"res://assets/ui/v03/title-atlas.png", "res://assets/ui/v03/game-skin-atlas.png",
@@ -34,6 +45,12 @@ var home_ready := false
 var launch_pending := false
 var boot_events: Array[Dictionary] = []
 var retained_resources: Array[Resource] = []
+var progression:RefCounted
+var economy_state:Dictionary={}
+var adventure:Control
+var shop:Control
+var shop_return_screen:="map"
+var meta_settings_dirty:=false
 
 func _ready() -> void:
 	if DisplayServer.get_name()!="headless":get_window().mode=Window.MODE_MAXIMIZED
@@ -54,6 +71,8 @@ func _ready() -> void:
 			if arg.begins_with("--level="):level_index=clampi(int(arg.trim_prefix("--level=")),1,Catalog.level_ids(campaign_drafts).size())
 	saves=Saves.new(profile_directory,Catalog.level_ids(campaign_drafts),30)
 	var result:Dictionary=saves.load_save();profile_state=result.state
+	progression=Progression.new(profile_directory)
+	economy_state=progression.load_save().state
 	if profile_state.ready and not qa_fixture_mode:
 		level_index=Catalog.level_ids(campaign_drafts).find(profile_state.resume_level_id)+1
 		for arg in args:
@@ -117,24 +136,31 @@ func build_home() -> void:
 	audio_service=AudioService.new();audio_service.name="AudioService";audio_service.apply_settings_state(audio_visual_state);add_child(audio_service)
 	get_tree().node_added.connect(bind_new_button)
 	home_art=group("HomeArtwork")
-	var bg:=TextureRect.new();bg.name="Garden";bg.texture=loader.get_resource("res://assets/environment.png");bg.size=size;bg.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;home_art.add_child(bg)
+	var bg:=TextureRect.new();bg.name="Garden";bg.texture=loader.get_resource("res://assets/serpent/environment.png");bg.size=size;bg.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;home_art.add_child(bg)
 	var title:=TextureRect.new();title.name="BrandTitle";title.texture=TITLE;title.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;title.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;title.position=Vector2(100,125);title.size=Vector2(740,370);home_art.add_child(title)
-	var dragon_shadow:=ContactShadow.new();dragon_shadow.position=Vector2(360,900);dragon_shadow.radius=Vector2(230,42);home_art.add_child(dragon_shadow)
-	art(Rect2(22,145,714,480),Rect2(115,570,530,357),"HomeDragon",home_art)
-	art(Rect2(740,20,324,624),Rect2(660,485,173,334),"HomePrincess",home_art)
-	art(Rect2(48,654,412,337),Rect2(416,824,174,142),"HomeCannon",home_art)
-	for i in 6:
-		var x:=220+i*99;var y:=1020+sin(float(i)*.7)*8
-		var actor:=ground_ant(COLORS[i],Vector2(x,y),"HomeAnt%d"%i,home_art,79)
-		bead(COLORS[i],Vector2(-14,-76),29,actor)
-	home_button("PlayButton","play",Rect2(290,1240,360,136),func():launch_game(""),true)
-	home_button("LevelsButton","levels",Rect2(397,1415,146,112),func():launch_game("levels"),false)
+	var view=load("res://scripts/serpent_view.gd").new();home_art.add_child(view)
+	view.configure({"head_start_s":85.0,"goal_s":100.0,"pitch":6.0},[
+		{"position":Vector2(240,1030),"out":Vector2(90,0)},
+		{"position":Vector2(690,930),"in":Vector2(-60,110),"out":Vector2(0,-90)},
+		{"position":Vector2(430,675),"in":Vector2(130,0)}])
+	var segments:Array=[];var ids:Array=[];var positions:Dictionary={}
+	for i in range(8):
+		var id:="home-%d"%i;ids.append(id);positions[id]=85.0-(i+1)*6.0
+		segments.append({"id":id,"color":COLORS[i%6],"hp":1,"kind":"normal"})
+	view.sync_snapshot({"paused":true,"speed_multiplier":1,"status":"ready","head_s":85.0,"alive_segment_ids":ids,"segments":segments,"segment_s":positions})
+	view.add_princess(home_art,Vector2(145,168))
+	art(Rect2(48,654,412,337),Rect2(390,1008,174,142),"HomeCannon",home_art)
+	home_button("PlayButton","play",Rect2(290,1240,360,136),func():open_adventure("preparation",level_index),true)
+	home_button("LevelsButton","levels",Rect2(397,1415,146,112),func():open_adventure("map"),false)
 	var level_button:Button=home_art.get_node("LevelsButton");level_button.disabled=not profile_state.ready
 	if profile_state.ready:
 		text_label("LEVEL %d"%(Catalog.level_ids(campaign_drafts).find(profile_state.resume_level_id)+1),Rect2(270,1371,400,37),22,"SavedEntrance",home_art,INK,true)
 		if profile_state.tutorial_completed:text_label("FRESH ROUND · SAVED PROGRESS KEPT",Rect2(185,1530,570,36),17,"ResumeMeaning",home_art,INK,true)
 	if campaign_drafts:text_label("CAMPAIGN PREVIEW",Rect2(200,82,540,38),21,"CatalogIdentity",home_art,INK,true)
 	home_ready=true;phase="home";loading_layer.hide();home_art.move_to_front();record_event("home_ready")
+	if start_mode in ["map","preparation","shop"]:
+		open_adventure("preparation" if start_mode=="preparation" else "map",level_index)
+		if start_mode=="shop":open_shop()
 
 func home_button(id:String,kind:String,bounds:Rect2,callback:Callable,primary:bool) -> void:
 	frame(bounds,id+"Art",home_art,32,"54d35b" if primary else "fff3db")
@@ -184,4 +210,117 @@ func reset_presentation() -> void:
 	pass
 
 func _unhandled_key_input(event:InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):get_viewport().set_input_as_handled()
+	if event.is_action_pressed("ui_cancel"):
+		if is_instance_valid(pause_overlay):close_current_modal()
+		elif phase=="shop":close_shop()
+		elif phase=="preparation":open_adventure("map")
+		elif phase=="map":show_home_again()
+		get_viewport().set_input_as_handled()
+
+
+func meta_levels()->Array:
+	var result:Array=[]
+	for number in range(1,Catalog.level_ids(campaign_drafts).size()+1):
+		var path:=Catalog.level_path(number,campaign_drafts)
+		if not FileAccess.file_exists(path):continue
+		var config=JSON.parse_string(FileAccess.get_file_as_string(path))
+		if config is Dictionary and Catalog.check_identity(config,number,campaign_drafts).ok:result.append({"number":number,"config":config})
+	return result
+
+func save_navigation()->void:
+	if not is_instance_valid(adventure) or not economy_state.get("ready",false):return
+	var state:Dictionary=adventure.get_navigation_state()
+	var result:Dictionary=progression.set_navigation({"region_id":str(state.region_id),"scroll_y":maxf(0.,float(state.scroll_y)),"selected_level":int(state.selected_level)})
+	if result.ok:economy_state=result.state
+	else:show_meta_failure(result.reason)
+
+func open_adventure(screen:String="map",number:int=-1)->void:
+	if launch_pending:return
+	if not profile_state.get("ready",false) or not economy_state.get("ready",false):show_meta_failure(str(economy_state.get("reason","profile_unavailable")));return
+	home_art.hide()
+	if is_instance_valid(shop):shop.hide()
+	if not is_instance_valid(adventure):
+		adventure=Adventure.new();adventure.font=font;adventure.skin=skin
+		adventure.title_textures={"ADVENTURE":load("res://assets/meta-ui/adventure.png"),"READY":load("res://assets/meta-ui/ready.png")}
+		adventure.set_data(meta_levels(),profile_state,economy_state)
+		add_child(adventure)
+		adventure.restore_navigation_state(economy_state.get("navigation",{}))
+		adventure.choose_level.connect(func(n):phase="preparation";adventure.show_preparation(n);save_navigation())
+		adventure.begin_level.connect(begin_prepared_level)
+		adventure.shop_requested.connect(open_shop)
+		adventure.settings_requested.connect(show_settings)
+		adventure.back_requested.connect(func():
+			if phase=="preparation":open_adventure("map")
+			else:show_home_again())
+	else:adventure.set_data(meta_levels(),profile_state,economy_state)
+	phase=screen
+	if screen=="preparation":adventure.show_preparation(number if number>0 else level_index)
+	else:adventure.show_map()
+	adventure.show();adventure.move_to_front();record_event("adventure_"+screen)
+
+func begin_prepared_level(number:int,type_id:String)->void:
+	if launch_pending:return
+	var equipped:Dictionary=progression.equip(type_id)
+	if not equipped.ok:adventure.release_begin_lock();show_meta_failure(equipped.reason);return
+	economy_state=equipped.state
+	var entered:Dictionary=saves.set_current_entrance(Catalog.level_ids(campaign_drafts)[number-1])
+	if not entered.ok:adventure.release_begin_lock();show_meta_failure(entered.reason);return
+	profile_state=entered.state;level_index=number;save_navigation();launch_game("")
+
+func open_shop()->void:
+	if not economy_state.get("ready",false):show_meta_failure(str(economy_state.get("reason","profile_unavailable")));return
+	shop_return_screen=phase if phase in ["map","preparation"] else "map"
+	save_navigation()
+	if is_instance_valid(adventure):adventure.hide()
+	home_art.hide()
+	if not is_instance_valid(shop):
+		shop=Shop.new();shop.set_data(economy_state,JSON.parse_string(FileAccess.get_file_as_string("res://data/ant-progression.json")));add_child(shop)
+		shop.back_requested.connect(close_shop)
+		shop.equip_requested.connect(func(type):
+			var result:Dictionary=progression.equip(type);economy_state=result.state;shop.set_data(economy_state,JSON.parse_string(FileAccess.get_file_as_string("res://data/ant-progression.json")))
+			if not result.ok:shop.show_feedback(result.reason))
+		shop.purchase_requested.connect(func(product):
+			var result:Dictionary=progression.purchase(Progression.generate_run_id(),product);economy_state=result.state;shop.set_data(economy_state,JSON.parse_string(FileAccess.get_file_as_string("res://data/ant-progression.json")))
+			if not result.ok:shop.show_feedback(result.reason)
+			else:audio_service.play_event("tool_plus"))
+	else:shop.set_data(economy_state,JSON.parse_string(FileAccess.get_file_as_string("res://data/ant-progression.json")))
+	shop.show();shop.move_to_front();phase="shop";record_event("shop_ready")
+
+func close_shop()->void:
+	if is_instance_valid(shop):shop.hide()
+	var number:int=int(economy_state.get("navigation",{}).get("selected_level",level_index))
+	open_adventure(shop_return_screen,number)
+
+func show_home_again()->void:
+	save_navigation()
+	if is_instance_valid(adventure):adventure.hide()
+	if is_instance_valid(shop):shop.hide()
+	home_art.show();home_art.move_to_front();phase="home"
+
+func show_settings()->void:
+	super.show_settings()
+	for id in ["MusicVolume","SoundVolume"]:
+		var slider:HSlider=pause_overlay.get_node(id)
+		slider.value_changed.connect(func(_value):meta_settings_dirty=true)
+		slider.drag_ended.connect(func(_changed):save_meta_settings())
+
+func save_meta_settings()->bool:
+	if not meta_settings_dirty:return true
+	var result:Dictionary=saves.set_volumes(audio_visual_state.music,audio_visual_state.sound);profile_state=result.state
+	if not result.ok:show_meta_failure(result.reason);return false
+	meta_settings_dirty=false;return true
+
+func close_current_modal()->void:
+	if modal_title=="SETTINGS" and not save_meta_settings():return
+	if is_instance_valid(pause_overlay):ui_motion.discard_modal(pause_overlay)
+	pause_overlay=null;modal_title="";audio_service.set_music_preview(false);audio_service.set_game_paused(false)
+
+func show_meta_failure(reason:String)->void:
+	var m:=modal("COULDN'T SAVE",Rect2(149,500,642,620))
+	text_label("YOUR SAVED PROGRESS IS KEPT",Rect2(185,685,570,50),22,"SafeSave",m)
+	text_label(reason.replace("_"," ").to_upper(),Rect2(185,758,570,80),19,"SaveReason",m)
+	action(m,"TRY AGAIN",945,func():
+		var state:Dictionary=progression.load_save();economy_state=state.state
+		var loaded:Dictionary=saves.load_save();profile_state=loaded.state
+		if state.ok and loaded.ok:close_current_modal();open_adventure("map")
+		else:show_meta_failure(state.reason),true)

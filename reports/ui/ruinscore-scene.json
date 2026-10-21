@@ -1,0 +1,8 @@
+{
+	"checks": 64,
+	"failures": [],
+	"level_sha256": "e294a4345a093a8a1f7fa1bf6d14c167e3fb0d89254229858844cc52af4e02d6",
+	"minimum_enemy_centerline_separation": 70.0001373291016,
+	"path_samples": 3417,
+	"scope": "one integrated ruins branching-crossing ground/preview/five-color input contract, no prior campaign rerun"
+}

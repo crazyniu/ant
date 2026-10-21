@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "id": "ice_camp",
+  "region_id": "ice_valley",
+  "region_label": "ICE VALLEY",
+  "background": "res://assets/worlds/ice-valley.png",
+  "board_plane": {
+    "top_left": [
+      210,
+      365
+    ],
+    "top_right": [
+      700,
+      365
+    ],
+    "bottom_left": [
+      200,
+      850
+    ],
+    "bottom_right": [
+      715,
+      850
+    ],
+    "cell_width_basis": 505,
+    "depth_ratio": 0.93
+  },
+  "nest": {
+    "position": [
+      530,
+      1010
+    ],
+    "gateway": [
+      530,
+      930
+    ],
+    "width": 110
+  },
+  "cannon": {
+    "rect": [
+      445,
+      1030,
+      166,
+      141
+    ],
+    "muzzle": [
+      544,
+      1060
+    ],
+    "center": [
+      528,
+      1110
+    ],
+    "pivot": [
+      83,
+      107
+    ]
+  },
+  "stock": {
+    "start": [
+      220,
+      1125
+    ],
+    "spacing": 60
+  },
+  "route": [
+    {
+      "position": [
+        605,
+        991
+      ],
+      "out": [
+        110,
+        -40
+      ]
+    },
+    {
+      "position": [
+        819,
+        880
+      ],
+      "in": [
+        -70,
+        45
+      ],
+      "out": [
+        35,
+        -80
+      ]
+    },
+    {
+      "position": [
+        842,
+        560
+      ],
+      "in": [
+        0,
+        105
+      ],
+      "out": [
+        0,
+        -120
+      ]
+    },
+    {
+      "position": [
+        824,
+        324
+      ],
+      "in": [
+        20,
+        65
+      ],
+      "out": [
+        -20,
+        -75
+      ]
+    },
+    {
+      "position": [
+        670,
+        194
+      ],
+      "in": [
+        65,
+        35
+      ],
+      "out": [
+        -70,
+        -35
+      ]
+    },
+    {
+      "position": [
+        455,
+        150
+      ],
+      "in": [
+        75,
+        0
+      ],
+      "out": [
+        -85,
+        0
+      ]
+    },
+    {
+      "position": [
+        228,
+        190
+      ],
+      "in": [
+        80,
+        -20
+      ]
+    }
+  ],
+  "defense_target": {
+    "id": "winter_camp",
+    "display_name": "Winter Camp",
+    "texture": "res://assets/worlds/winter-camp.png",
+    "foot": [
+      151,
+      219
+    ],
+    "width": 170,
+    "fixed": true,
+    "anchor": [
+      687,
+      875
+    ],
+    "physical_width": 1373
+  },
+  "walkable_polygon": [
+    [
+      180,
+      290
+    ],
+    [
+      750,
+      290
+    ],
+    [
+      750,
+      885
+    ],
+    [
+      590,
+      930
+    ],
+    [
+      590,
+      1170
+    ],
+    [
+      450,
+      1170
+    ],
+    [
+      450,
+      920
+    ],
+    [
+      170,
+      885
+    ]
+  ],
+  "art_notes": "Snow is a visual theme only: no freezing, slowdown, sliding or alternate damage. Finite enemy road occupies right/top; the interior ant approach remains open. Same near-orthographic projection and upper-left light."
+}

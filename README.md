@@ -1,77 +1,138 @@
-# Ant Rescue · Game 2
+# Ant Rescue: single-ant rescue and growth
 
-A portrait 2D Godot project combining color-matched ant collection with automatic cannon attacks against a dragon's colored armor.
+A portrait Godot **4.6.3** game: click a color to send one ant for one bead, deliver it to fire one matching projectile, and destroy a segmented serpent before its head reaches the fixed goal. Runtime UI is English and icon-first. Normal play is offline and needs no account, backend, external plugin or secret.
 
-This repository contains the Godot **4.6.3** cloud-developed snapshot from 2026-10-21. Runtime UI is English and icon-first. No account, backend, network service, external plugin or secret is needed to play.
+Current source includes adventure/preparation/shop progression, independently authored ruins and Ice Valley levels, Traveler’s Twin Groves in the existing woodland scene, Threefold Supply Steps with the carapace serpent, the six-color Snow Courtyard, Traveler’s Branching Crossing, and Caravan’s Split Seal. Rules API remains **3.1.0**, with level schema **3**. There are **twelve current validation levels**, not a completed or accepted new 30-level campaign. Source integration is not merge, deployment or final acceptance.
 
 ## Run
 
-Install the official standard Godot 4.6.3 editor, import `project.godot`, let the editor rebuild its import cache, then press **F5**.
+Open `project.godot` in the official standard Godot 4.6.3 editor, allow the first resource import, then press **F5**.
 
 ```sh
-# First import; the .godot cache is intentionally not committed.
+# Rebuild the uncommitted import cache.
 godot --headless --editor --path . --import
-# Default: startup -> real Loading -> Home -> three validation levels.
+# Current production entry.
 godot --path . --rendering-method gl_compatibility
-# Optional: 30 candidate levels with a separate progress profile.
-godot --path . --rendering-method gl_compatibility -- --campaign-drafts
-# Standalone level-authoring workspace, not the game entry.
-godot --path . scenes/editor.tscn
 ```
 
-Main scene: `scenes/startup.tscn`. `scenes/main.tscn` is a visual specimen gallery, not the playable entry. Loading reads actual threaded resource status without a fixed delay or fabricated progress. A failed batch exposes Retry.
+`scenes/startup.tscn` is the entry: actual resource Loading → Home → full-screen adventure map or saved-level preparation → actual game-scene Loading → Play. Map nodes open full preparation; the map and result provide access to the independent shop. Loading uses threaded resource status, not a fabricated percentage or minimum wait, and failed loading exposes Retry.
 
-The rendered viewport is **1440×2560**. The internal 940×1672 layout scales uniformly. Physical window size depends on the display/window manager; preserve aspect ratio and check pointer mapping on the target computer. Source bitmap resolutions are listed in `ASSETS.md`; a 2K viewport does not make every bitmap native 2K.
+The viewport is **1440 × 2560**, with a uniformly scaled **940 × 1672** logical canvas. Bitmap native sizes are listed in [ASSETS.md](ASSETS.md); a 2K-class viewport does not make a 941 × 1672 background native 2K.
 
-## Gameplay contract
+**Do not use `--campaign-drafts` for this build.** Its reserved new-serpent catalog has no authored bundled campaign. Old automatic-team data, editor tools and reports may remain in this development tree, but cannot be used as current gameplay or new-mode acceptance. `scenes/main.tscn` is a legacy component gallery, not the playable entry.
 
-- Only a queue column's front team can enter one of five work slots. Distinct teams remain separately clickable, including teams of the same color.
-- The first accepted team starts the threat. Dispatch reserves a reachable matching bead and debits team quota; pickup opens the cell; delivery alone credits the matching inventory.
-- For every color: initial board count = total team quota = total armor demand. Reservations, carried beads, stored inventory and spent ammunition are separate conserved states.
-- Matching sufficient stock plus finished cooldown automatically fires. Cooldown starts at fire; an armor segment cannot receive duplicate in-flight shots. Remaining stock stays valid after the armor changes.
-- The only victory is the actual final hit breaking the final armor. Board clear, last delivery and projectile launch are not victory. Dragon contact first loses; at the exact same simulation timestamp, hit is processed before contact.
-- Final hit locks/saves victory immediately. The finite death presentation precedes the result panel without changing authoritative rules or saving twice.
-- Four conserving tools unlock at levels 3/6/9/16. Candidate content is not silently substituted into the three-level default catalog.
+## Current gameplay
 
-## Save and audio behavior
+- One legal color click reserves one reachable matching bead and creates one worker task. At most **four** workers are transporting, including pickup and unloading. Full capacity rejects the click without a hidden queue.
+- The number on each color entry is the **uncollected bead count**, including reserved beads. Pickup removes the bead; completed unloading alone grants inventory and releases the worker.
+- Each bead funds one matching projectile for one damage. Normal segments have **HP1**; armored segments have **HP2**, with a cracked state after the first hit. Stable segment IDs prevent retargeting errors.
+- The serpent follows a **finite, non-looping route**. Removing a segment shortens the body without moving its head backward. The head has no extra hidden health bar.
+- Actual damage removing the final live segment wins. Board clear, pickup, delivery or firing does not win; leftover beads and inventory are allowed. Earlier head contact loses. At exactly the same simulation microsecond, due damage resolves before contact.
+- The base worker can solve all twelve current authored levels without upgrades, advertising, combos or mechanisms. No automatic 20/30-ant teams, five work slots, team quotas or board-equals-armor rule remain in current play.
 
-Validation progress uses `user://ant-rescue/`; candidate progress uses its `campaign-drafts/` child. `ANT_RESCUE_PROFILE_DIR` overrides the root, not the catalog separation. Relaunch restores the saved entrance as a fresh round, not a mid-round board. `--auto-replay` uses an isolated temporary profile and never advances ordinary player progress.
+## Map, preparation, points and shop
 
-Music and effects have separate icon-and-slider controls; zero means silence. Saved zero is never reset to make a demonstration audible. Music continues softly through tutorial/pause/result panels, returns to normal gain in Settings, and suspends in the background. The snapshot includes the actual BGM lifecycle/gain fix and enlarged icon-only result actions.
+The full-screen map uses the real twelve-level catalog and saved completion/unlock states. Preparation shows the selected level's scene preview, segment/HP information, fixed target and owned ant types. Map region, scroll and selected level are persisted for return navigation. The fourth level adds a ruins ground and stationary supply-cart objective; level five adds a snow valley, fixed winter camp and independently authored two-gate opening; level six returns to ruins with a smaller three-color, blue-armor supply fork; level seven reuses the snow scene for a two-stage supply ridge and the independent ice-crest serpent appearance; level eight returns to woodland with a fixed traveler, two resource islands and purple as a fifth color. Level nine adds a four-color, three-step opening in ruins with an independent carapace serpent. Level ten reuses the Ice Valley ground and crest serpent for a connected courtyard puzzle, with white as the sixth independently dispatchable color. Level eleven adds a connected woodland crossing with a central-opening versus early-blue-supply choice. Level twelve returns to the left-biased ruins entrance with a sealed purple vault and separate offset supply terrace. Further themed regions and targets remain content work.
 
-## Code and art map
+- First clear: **100 + 0–50** time-bonus points. Replay clear: **20 + 0–10**. Failed or abandoned runs earn no new points and do not deduct existing points.
+- Reward time is effective simulation time from first legal dispatch to final damage, not recording length or wall-clock time. Each level supplies its own bonus thresholds.
+- The worker starts owned at ×1.00. Swift costs **500 points** and moves at **×1.20**. Both still carry one bead and share the same four-worker limit.
+- Shared carry levels 2/3/4 cost **100/150/250** points and apply **×1.05/×1.10/×1.15**. Type × current-level multiplier gives Swift Lv.4 **×1.38**; bonuses are not cumulatively multiplied across previous levels.
+- Each run freezes its equipped loadout before play. The shop displays real points, prices, ownership, equipment and training state. Purchase debit and unlock/upgrade share one atomic commit; `run_id` settlement is idempotent across retries and restart.
+- The ad SDK is **not integrated**. No fake advertisement, simulated success or button grants an extra reward. Optional ad-doubling remains a future integration, not an accepted feature.
 
-- `scripts/startup.gd`, `startup_loader.gd`: startup, Home, local asynchronous loading and retry.
-- `scripts/play.gd`: real input, presentation, navigation and persistence adapter.
-- `scripts/rescue_rules.gd`: authoritative microsecond event simulation.
-- `scripts/level_catalog.gd`, `save_service.gd`: catalog identity and isolated atomic local saves.
-- `scripts/board_plane.gd`, `bead.gd`, `carrier_motion.gd`: shared ground projection and independent movable pieces.
-- `scripts/rescue_fx.gd`, `audio_service.gd`, `ui_motion.gd`: bounded rule-event effects and UI motion.
-- `assets/`, `data/`: current textures/atlases, audio, font, regions and all playable/candidate configurations.
-- `docs/`, `reports/rules/API.md`: implementation contracts and explicit verification limits.
+These are configurable first-pass economy values, not validated human difficulty or economy balance.
 
-Start with `docs/UI_COMPONENTS.md`, `docs/BOARD_PLANE.md`, `ASSETS.md`, `docs/asset-manifest.json` and `DEPENDENCIES.md`. Keep measured alpha regions, contact anchors, aspect-preserving titles and uniformly scaled nine-slice corners. Do not bake movable game objects into one background image.
+## Saves, audio and source map
 
-## Verification and remaining acceptance
+Default level/settings saves use `user://ant-rescue/serpent-click-v1/`; the integrated economy ledger is in its `ant-single-v1/` child. `ANT_RESCUE_PROFILE_DIR` overrides the root before those suffixes. Game-one and legacy automatic-team progress are not migrated. Relaunch restores an entrance as a fresh round, not a mid-round board. `--auto-replay` uses a separate temporary profile.
 
-See `docs/PUBLIC_VERIFICATION.md`. Production code, current assets and level data are byte-identical to the tested frozen snapshot; public preparation only removes private handoff material, cleans documentation and makes five review-output paths portable.
+Music and effects have independent controls; saved zero remains silent. Human listening, native macOS and target-device performance are separate acceptance steps.
 
-The snapshot has a same-version normal-speed natural first-level run through startup, Home, Loading, play, victory and Next, and isolated imported startup checks for both catalogs. BGM was measured in the actual movie audio. These are automated checks, not human listening, device performance, final visual approval or human completion of all 30 candidate levels. The old all-30 scene sweep and per-level boundary certificates predate transport retiming and must not be treated as current full acceptance.
+- `scripts/startup.gd`, `startup_loader.gd`: resource loading, Home and meta-screen navigation.
+- `scripts/adventure_view.gd`, `ant_shop_view.gd`: full-screen map/preparation and shop views.
+- `scripts/ant_progression.gd`, `data/ant-progression.json`: local rewards, purchases, equipment, frozen loadouts and navigation persistence.
+- `scripts/play.gd`, `rescue_rules.gd`: live scene adapter and authoritative microsecond rules.
+- `scripts/level_catalog.gd`, `save_service.gd`: current catalog identity, completion/settings saves.
+- `scripts/serpent_view.gd`, `serpent_path.gd`, `directional_carrier.gd`, `carrier_route.gd`: independent serpent and transport presentation.
+- `data/serpent-levels/`: the twelve current authored validation levels.
 
-Reference ant-motion matching is still pending usable video footage; unavailable reference playback was not treated as an observation. A known process-exit static bead texture-cache diagnostic remains documented. Gameplay and loading checks passed despite that shutdown diagnostic.
+Start with [current implementation](docs/CURRENT_IMPLEMENTATION.md), [UI components](docs/UI_COMPONENTS.md), [asset placement](ASSETS.md) and [verification boundaries](docs/PUBLIC_VERIFICATION.md). Older documents with a historical-version notice are reference material, not current acceptance criteria.
 
-Useful bounded checks:
+## Verification and unfinished scope
 
-```sh
-godot --headless --path . --script tests/test_handoff_smoke.gd
-godot --headless --path . --script tests/test_handoff_smoke.gd -- --campaign-drafts
-godot --headless --path . --script tests/test_startup_loader.gd
-godot --headless --path . --script tests/test_startup_flow.gd
-godot --headless --path . --script tests/test_audio_scene_flow.gd
-```
+Retained reports record **18** headless production-flow checks, **133** three-level same-input growth checks and **1,062** local progression-service assertions without reported failures. The growth report measures earlier delivery and final hits for Swift Lv.4 while keeping enemy speed unchanged. These reports have different scopes and are not one whole-project pass. See [PUBLIC_VERIFICATION.md](docs/PUBLIC_VERIFICATION.md) for exact sources and timings.
 
-Use an isolated `ANT_RESCUE_PROFILE_DIR` for manual test runs. Some tests intentionally exercise invalid resources. Capture outputs and generated caches/videos are not repository source; regenerate them locally rather than committing old versions.
+Earlier **1440 × 2560 GL captures** cover Home, adventure map, preparation, shop and settings using a fresh profile with zero points. The final capture includes the revised map path/node proportions, reduced preparation copy and disabled unaffordable shop actions; these pages were visually inspected. Do not label the meta UI user-approved or reuse the old core recording as evidence of these new screens. Headless signal-driven checks are not native mouse input or natural human play. The capture reports 14 loaded cues and BGM playing on a **Dummy** audio driver, not human sound-quality approval. No runtime script error was reported, but a one-resource-in-use diagnostic remains at shutdown.
 
-## Rights and provenance
+Level 7 retains **668** bounded rule assertions, **50** appearance checks and **43** integrated scene checks. Its separate `reports/ui/ice-supply-runtime.json` records an automated GL victory, not human visual or difficulty approval. The current level-8 data passes **834** bounded rule checks in `reports/rules/forest-traveler-level08.json`, production single-level CLI validation and **63** integrated scene checks. These are separate scopes, not a rerun of the earlier levels or a full campaign pass. Its separate same-version `reports/ui/forest-traveler-runtime.json` records automated GL victory at 25.05 simulation seconds and a saved 150-point receipt; see [verification boundaries](docs/PUBLIC_VERIFICATION.md) for diagnostics and acceptance limits.
 
-No project-wide open-source license has been selected. Public hosting alone is not a new license grant. The included DejaVu font retains `licenses/DejaVu.txt`. Image provenance and original synthesized audio are recorded in `ASSETS.md` and `assets/audio/README.md`; no reference-game artwork or borrowed recordings are bundled. AI-generation provenance is not a legal clearance warranty.
+Still pending: the remaining new 30-level content and a fuller authoring workflow beyond the explicit single-level CLI; further themed scenes and fixed defense targets; optional junction combos and hidden supplies; real ad SDK; human difficulty/economy testing, final visual approval, hardware audio and device acceptance. No automatic merge or deployment is implied.
+
+## Rights
+
+No project-wide open-source license has been selected. Public hosting alone is not a license grant. DejaVu retains [its bundled license](licenses/DejaVu.txt). Generated-image and original synthesized-audio provenance is recorded in [ASSETS.md](ASSETS.md) and the source manifests; it is not a legal-clearance warranty. No competitor artwork or borrowed recording is bundled. A shop design reference is not evidence of user approval.
+
+## Ruins continuation
+
+Current catalog also includes `serpent-04`: an independently generated ruins courtyard, fixed supply cart, left-side finite serpent road, asymmetric ant entrance and four-color enclosed-core puzzle. Scene geometry is shared by preparation and live play. Use the adventure map after completing level 3; `--auto-replay --level=4` is an isolated automated review, not an unlock bypass for normal profiles. See `docs/SCENE_LAYOUTS.md` for the minimal content contract and `tests/test_ruins_rules.gd` / `tests/test_ruins_scene.gd` for bounded checks.
+
+## Ice Valley continuation
+
+`serpent-05` adds an independently generated snow valley and transparent fixed winter camp. The finite serpent road approaches from the right and ends at the upper-left camp; ants use a separate inner snowfield and right-biased entrance. Six beads per RGBY color fund four HP per color; sixteen independent base-worker inputs win at 26.90 simulation seconds and leave eight beads. A nearby red gate opens two yellow targets; a farther green gate opens one, giving different opening choices. Snow is visual only: no slipping, freezing or new damage rules. Level 4 and the authoritative rules remain unchanged. See `docs/SCENE_LAYOUTS.md` and the bounded `test_ice_rules.gd` / `test_ice_scene.gd` checks.
+
+## Author one level
+
+`tools/validate_serpent_level.gd` checks one explicit current-schema JSON and its exact authored Worker Lv.1 solution, using production rules without touching player saves. It exports per-color supply/HP, real event timing, transport paths and optional step trace. See [tools/README.md](tools/README.md). This small CLI entry is not a completed visual editor or thirty-level authoring pipeline.
+
+## Ruins Supply Fork
+
+`serpent-06` reuses the current ruins region's ground/cart resources, with a new central transport approach and a distinct 18-bead fork layout. Ten segments need 12 damage: blue 5 (two HP2 armored segments), red 4 and green 3. The four exterior blue beads are insufficient by themselves: at least one enclosed core bead must be opened and carried. Red opens the nearer core entrance, green the farther one, while exterior blue starts cracking armor without opening either. The authored twelve-click Worker Lv.1 solution wins at 20.85 simulation seconds, leaving six beads. This is a new level configuration, not a newly illustrated region, new enemy species, or human difficulty approval.
+
+## Ice Supply Ridge
+
+`serpent-07`, “Break the Supply Ridge,” reuses the level-5 snow ground, winter camp, finite road and entrance `[6,8]`. Its 21 beads (R4/B6/G8/Y3) fund 17 damage (R3/B6/G5/Y3) across nine normal and four armored segments. Actual red pickup opens a yellow bridge; that yellow pickup exposes two inner blue cells. A green-first route opens a separate yellow wing. These are occupancy-based choices, not scripted gates or new ice rules.
+
+The authored 17-input Worker Lv.1 solution finishes on actual damage at 27.85 simulation seconds before the 62-second threat, leaving four beads. `serpent.art_profile="ice_crest"` selects a separate white-horned broad head, faceted body and eight-yaw head/tail atlas without changing HP, armor or timing. Existing levels 1–6 retain their data and default appearance. See [scene layout](docs/SCENE_LAYOUTS.md) and [art usage](ASSETS.md); human balance, final visual and target-device acceptance remain pending.
+
+## Traveler’s Twin Groves
+
+`serpent-08` uses `data/scenes/forest-traveler.json`: the existing woodland ground and finite right/top road, a separate stationary traveler sprite, center-bottom entrance `[5,8]` and default serpent appearance. Two independently authored, offset resource islands introduce purple alongside red, blue, green and yellow. Actual green pickup opens the left purple core; blue pickup opens the right. The traveler does not move and there is no escort or new combat mechanic. Levels 1–7 and the authoritative rules remain unchanged.
+
+Its 21 beads fund 15 HP across 11 normal and two armored segments, one purple and one blue. Both green-first and purple-first Worker Lv.1 solutions use 15 inputs without upgrades, tools, ads or bonuses. First delivery is 3.20s or 4.10s respectively; both win on final damage at 25.05s before the 60s threat, leaving six beads. Preparation fits five required-color counts in three columns and two rows; live dispatch remains five equal-width buttons in one row. See [scene layout](docs/SCENE_LAYOUTS.md) and [traveler asset placement](ASSETS.md). Human pacing, visual, audio and target-device acceptance remain outstanding.
+
+
+## Level 9: Threefold Supply Steps
+
+`serpent-09` reuses the central-entrance ruins ground and fixed parked supply cart from `data/scenes/ruins-fork.json`, but independently authors a three-lobed, stepped resource pattern. The carapace serpent uses distinct blunt-horn and broad-shell artwork through `serpent.art_profile="ruins_carapace"`; ordinary HP1 and visibly armored HP2 semantics stay unchanged. There is no new attack, escort or resource rule.
+
+23 beads fund 17 damage (13 ordinary and two armored segments). Both authored base Worker Lv.1 solutions use 17 inputs at 1.4-second intervals and finish on final damage at 28.75 simulation seconds before the 62-second threat, leaving six beads. Red→yellow opens the required blue core at 3.00s; blue→yellow takes a different right-hand yellow first and opens the same blue core via an upper branch at 7.20s. Actual nearest-reachable targets differ; this is not a manual cell-selection claim. Sixteen routes are 3–5 cells and one is six cells, with longest no-dispatch interval 0.80s in these solutions. Human strategy, pacing and difficulty remain to be tested.
+
+Current bounded evidence is 1,466 level-rule assertions, 50 appearance checks, 60 integrated scene checks and production single-level CLI validation. These scopes are separate, not a whole-campaign rerun. Actual runtime evidence and diagnostics are recorded in [verification boundaries](docs/PUBLIC_VERIFICATION.md).
+
+
+## Level 11: Traveler’s Branching Crossing
+
+`serpent-11` reuses the woodland scene, fixed traveler, center-bottom entrance and default serpent appearance. Its connected crossing and two lower approaches are distinct from the earlier disconnected Twin Groves. Four-color supplies R4/B4/G8/Y6 total 22 beads; each color needs four damage across 12 normal and two armored segments. Blue and red have no surplus, so the enclosed blue cells must become reachable.
+
+Red-first opens three central yellow branches; blue-first opens a lower blue supply pocket and cracks blue armor 4.20 seconds earlier. A later yellow pickup shortens the right blue route from eleven to five cells using normal occupancy-based pathfinding, not a scripted shortcut. Both authored Worker Lv.1 solutions use sixteen independent inputs, finish on actual damage at 26.60s before the 62s threat, and leave six beads. Fifteen chosen routes are 3–5 cells and one is six cells. These are bounded scripted solvability results, not human pacing or strategy approval.
+
+Level-specific evidence is in `reports/rules/forest-crossing-level11.json`, `reports/ui/woodgate-scene.json`, `reports/authoring/woodgate-check.json` and the actual-GL report named in [verification boundaries](docs/PUBLIC_VERIFICATION.md). Rules and previous levels are unchanged; no new assets or mechanics are introduced.
+
+
+## Level 12: Caravan’s Split Seal
+
+`serpent-12` reuses `ruins-cart.json`, the parked supply cart and carapace serpent. Its left-biased `[3,8]` entrance serves two independently authored formations: a sealed purple vault and an offset supply terrace. Five colors supply 23 beads for 17 HP (13 normal plus two armored segments). All four purple beads start blocked and all are required.
+
+Blue-first and red-first select different first purple beads. A yellow pickup shortens real upper red/green routes from 17/16 cells to 5/4, while the right blue opening supports another supply route. Two explicit seventeen-click Worker Lv.1 sequences at 1.6-second gaps both reach final damage at 31.05s before the 64s threat, leaving six beads. The solutions differ in first supply, first armor hit and armor removal order; equal completion times do not imply human balance approval.
+
+Current bounded checks are 47 rules assertions, 64 integrated scene checks and the production single-level CLI. The real GL review captures map entry, preparation, loading, transport, firing and saved-result key states with event/source hashes, not a continuous movie or human playtest. Rules, earlier levels and existing assets remain unchanged. See [verification boundaries](docs/PUBLIC_VERIFICATION.md).
+
+
+## Level 13: Ice Supply Channels
+
+This bounded five-color winter-camp level reuses the snowpass scene and ice-crown appearance. Twenty-five beads supply 17 damage (13 ordinary and two armored segments). The central yellow-to-blue opening and outer red-to-inner-red route expose different required white beads through actual pickup-based pathfinding. Two explicit Worker Lv.1 solutions use 17 independent inputs and finish on actual last damage at 31.95 simulated seconds, leaving eight beads. Reward thresholds 33/47 seconds remain provisional, not human balance approval.
+
+The retained current-level reports contain 78 rule checks, 89 scene checks with 3,417 route samples and 75 logical-pixel minimum enemy-centerline separation, plus the single-level CLI. Actual GL map/preparation/loading/play/result key states and 26 matching production hashes establish a saved 100+50=150 reward, no conservation error and at most four carriers. This is automatic authored input, not natural human play, a continuous movie, or a fresh audio recording.
+
+The GL log includes unsupported VSync and ALSA output failure followed by Dummy fallback; no script exception is recorded. Human sound, difficulty and target-device acceptance remain unverified. Earlier content/rules and art bytes are unchanged; old suites were not rerun. No merge or deployment.

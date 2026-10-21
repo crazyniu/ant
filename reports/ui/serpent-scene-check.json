@@ -1,0 +1,8 @@
+{
+	"checks": 9,
+	"failures": [],
+	"mode": "headless actual scene adapter, not visual acceptance",
+	"remaining_board": 6,
+	"status": "victory",
+	"time_us": 19950000
+}

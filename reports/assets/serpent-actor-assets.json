@@ -1,0 +1,909 @@
+{
+  "created_utc": "2026-10-21",
+  "built_in_imagegen_only": true,
+  "reference_sha256": "76bd67c847a902e3eb3a3a34b1698b504e68cf55dd18f7c38b0964a5bf348f4d",
+  "sources": {
+    "head-turnaround-source.png": {
+      "sha256": "59a2f24739568525bed21929bef7e0f1f936d84a6f05e6f106fe105cc9e93f5a",
+      "bytes": 1547601
+    },
+    "tail-body-turnaround-source.png": {
+      "sha256": "bcd5caaefb1abdcc1e02e05147a783d182dcb613fca265161363c36a4c6187c3",
+      "bytes": 972893
+    }
+  },
+  "source_alpha_audit": {
+    "heads": {
+      "dimensions": [
+        1774,
+        887
+      ],
+      "mode": "RGBA",
+      "alpha_zero_pixels": 845864,
+      "alpha_1_to_8_pixels": 83344,
+      "alpha_9_to_127_pixels": 14853,
+      "alpha_128_to_254_pixels": 629135,
+      "alpha_255_pixels": 342
+    },
+    "tails_body": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_zero_pixels": 1100047,
+      "alpha_1_to_8_pixels": 117709,
+      "alpha_9_to_127_pixels": 7619,
+      "alpha_128_to_254_pixels": 346083,
+      "alpha_255_pixels": 1058
+    }
+  },
+  "atlas": {
+    "path": "assets/serpent/serpent-atlas.png",
+    "sha256": "caf1130462c58cf121e529e60810218b2ae3d7dc3939670ebdefeb1788f9a360",
+    "bytes": 2377771,
+    "dimensions": [
+      1303,
+      1774
+    ],
+    "mode": "RGBA",
+    "regions": 17
+  },
+  "crop_method": "Select the 8/9 largest connected components of true nonzero source alpha; use each measured component bounding box, retain a 4-pixel source margin, then add an 8-pixel fully transparent outer gutter. No equal-grid crop. Source RGBA is preserved exactly in every crop. No resampling, alpha thresholding or painting.",
+  "notes": [
+    "Eight genuine head yaw views retain upright horns and fixed upper-left lighting. E and SE are different front/side projections; N is a true rear skull view.",
+    "All horns, ear fins and tail tips remain inside measured crops. No neighboring visible silhouette enters a crop.",
+    "Source alpha contains faint generated non-object speckles, mostly alpha <=8/255. These remain inside the chosen source rectangles; code did not repaint alpha. The added outer eight-pixel gutter is fully transparent.",
+    "The red body sphere has a circular silhouette, no directional protrusions and fixed upper-left highlight. Keep rotation zero. Scale rows are artist-authored surface detail, not a perfectly rotationally invariant texture.",
+    "No floor shadow, scenery, text, quota or UI appears in the actor atlas.",
+    "Original AI source provenance is not a license statement or legal warranty."
+  ],
+  "provenance": {
+    "tool": "image_gen__imagegen (built-in)",
+    "generated_at_utc": "2026-10-21",
+    "sources": [
+      {
+        "role": "approved identity reference",
+        "file": "exec-bf6fa14a-9438-4ec8-9a55-2ed6c5a75caf.png"
+      },
+      {
+        "role": "eight head yaw views",
+        "file": "exec-26d46812-9160-47cc-bcc6-c6e79d379b58.png"
+      },
+      {
+        "role": "eight tail yaw views and one body bead",
+        "file": "exec-466a99ad-52d2-4c18-a1ea-638001d647df.png"
+      }
+    ],
+    "rights_note": "Original AI-generated source provenance is recorded. This record does not assert a new license or provide a legal warranty.",
+    "operations": "Alpha-bound crop extraction and transparent atlas packing only. No scene crop used as an actor. No color replacement, alpha thresholding, painting, silhouette rotation, resampling, or background removal by code."
+  },
+  "regions": [
+    {
+      "name": "E",
+      "family": "heads",
+      "source_file": "head-turnaround-source.png",
+      "source_principal_component_bounds": [
+        20,
+        47,
+        455,
+        408
+      ],
+      "source_crop_bounds": [
+        16,
+        43,
+        459,
+        412
+      ],
+      "principal_alpha_component_pixels": 95405,
+      "anchor": [
+        117,
+        240
+      ],
+      "source_anchor": [
+        125,
+        275
+      ],
+      "physical_width": 420,
+      "significant_alpha_bounds": [
+        19,
+        16,
+        439,
+        367
+      ],
+      "minimum_significant_alpha_gutter_px": 16,
+      "raw_alpha_bounds": [
+        11,
+        8,
+        450,
+        377
+      ],
+      "alpha_1_to_8_pixels": 10060,
+      "isolated_neighbors_at_alpha_over_8": 0,
+      "atlas_region": [
+        417,
+        443,
+        459,
+        385
+      ]
+    },
+    {
+      "name": "SE",
+      "family": "heads",
+      "source_file": "head-turnaround-source.png",
+      "source_principal_component_bounds": [
+        466,
+        31,
+        873,
+        430
+      ],
+      "source_crop_bounds": [
+        462,
+        27,
+        877,
+        434
+      ],
+      "principal_alpha_component_pixels": 91137,
+      "anchor": [
+        106,
+        216
+      ],
+      "source_anchor": [
+        560,
+        235
+      ],
+      "physical_width": 420,
+      "significant_alpha_bounds": [
+        20,
+        22,
+        411,
+        406
+      ],
+      "minimum_significant_alpha_gutter_px": 17,
+      "raw_alpha_bounds": [
+        8,
+        8,
+        419,
+        415
+      ],
+      "alpha_1_to_8_pixels": 11196,
+      "isolated_neighbors_at_alpha_over_8": 0,
+      "atlas_region": [
+        785,
+        0,
+        431,
+        423
+      ]
+    },
+    {
+      "name": "S",
+      "family": "heads",
+      "source_file": "head-turnaround-source.png",
+      "source_principal_component_bounds": [
+        946,
+        21,
+        1277,
+        440
+      ],
+      "source_crop_bounds": [
+        942,
+        17,
+        1281,
+        444
+      ],
+      "principal_alpha_component_pixels": 84674,
+      "anchor": [
+        173,
+        151
+      ],
+      "source_anchor": [
+        1107,
+        160
+      ],
+      "physical_width": 420,
+      "significant_alpha_bounds": [
+        17,
+        23,
+        328,
+        419
+      ],
+      "minimum_significant_alpha_gutter_px": 17,
+      "raw_alpha_bounds": [
+        8,
+        8,
+        346,
+        432
+      ],
+      "alpha_1_to_8_pixels": 8503,
+      "isolated_neighbors_at_alpha_over_8": 0,
+      "atlas_region": [
+        0,
+        0,
+        355,
+        443
+      ]
+    },
+    {
+      "name": "SW",
+      "family": "heads",
+      "source_file": "head-turnaround-source.png",
+      "source_principal_component_bounds": [
+        1350,
+        31,
+        1756,
+        434
+      ],
+      "source_crop_bounds": [
+        1346,
+        27,
+        1760,
+        438
+      ],
+      "principal_alpha_component_pixels": 94294,
+      "anchor": [
+        282,
+        216
+      ],
+      "source_anchor": [
+        1620,
+        235
+      ],
+      "physical_width": 420,
+      "significant_alpha_bounds": [
+        15,
+        22,
+        410,
+        406
+      ],
+      "minimum_significant_alpha_gutter_px": 15,
+      "raw_alpha_bounds": [
+        10,
+        8,
+        420,
+        419
+      ],
+      "alpha_1_to_8_pixels": 12114,
+      "isolated_neighbors_at_alpha_over_8": 0,
+      "atlas_region": [
+        355,
+        0,
+        430,
+        427
+      ]
+    },
+    {
+      "name": "W",
+      "family": "heads",
+      "source_file": "head-turnaround-source.png",
+      "source_principal_component_bounds": [
+        16,
+        481,
+        455,
+        825
+      ],
+      "source_crop_bounds": [
+        12,
+        477,
+        459,
+        829
+      ],
+      "principal_alpha_component_pixels": 95883,
+      "anchor": [
+        341,
+        236
+      ],
+      "source_anchor": [
+        345,
+        705
+      ],
+      "physical_width": 420,
+      "significant_alpha_bounds": [
+        19,
+        18,
+        439,
+        352
+      ],
+      "minimum_significant_alpha_gutter_px": 16,
+      "raw_alpha_bounds": [
+        12,
+        8,
+        455,
+        358
+      ],
+      "alpha_1_to_8_pixels": 10866,
+      "isolated_neighbors_at_alpha_over_8": 0,
+      "atlas_region": [
+        557,
+        833,
+        463,
+        368
+      ]
+    },
+    {
+      "name": "NW",
+      "family": "heads",
+      "source_file": "head-turnaround-source.png",
+      "source_principal_component_bounds": [
+        484,
+        480,
+        887,
+        841
+      ],
+      "source_crop_bounds": [
+        480,
+        476,
+        891,
+        845
+      ],
+      "principal_alpha_component_pixels": 88837,
+      "anchor": [
+        287,
+        306
+      ],
+      "source_anchor": [
+        759,
+        774
+      ],
+      "physical_width": 420,
+      "significant_alpha_bounds": [
+        26,
+        25,
+        406,
+        366
+      ],
+      "minimum_significant_alpha_gutter_px": 19,
+      "raw_alpha_bounds": [
+        9,
+        8,
+        419,
+        377
+      ],
+      "alpha_1_to_8_pixels": 10789,
+      "isolated_neighbors_at_alpha_over_8": 0,
+      "atlas_region": [
+        876,
+        443,
+        427,
+        385
+      ]
+    },
+    {
+      "name": "N",
+      "family": "heads",
+      "source_file": "head-turnaround-source.png",
+      "source_principal_component_bounds": [
+        946,
+        499,
+        1274,
+        844
+      ],
+      "source_crop_bounds": [
+        942,
+        495,
+        1278,
+        848
+      ],
+      "principal_alpha_component_pixels": 77268,
+      "anchor": [
+        175,
+        323
+      ],
+      "source_anchor": [
+        1109,
+        810
+      ],
+      "physical_width": 420,
+      "significant_alpha_bounds": [
+        18,
+        24,
+        332,
+        355
+      ],
+      "minimum_significant_alpha_gutter_px": 14,
+      "raw_alpha_bounds": [
+        8,
+        8,
+        344,
+        360
+      ],
+      "alpha_1_to_8_pixels": 7414,
+      "isolated_neighbors_at_alpha_over_8": 0,
+      "atlas_region": [
+        205,
+        833,
+        352,
+        369
+      ]
+    },
+    {
+      "name": "NE",
+      "family": "heads",
+      "source_file": "head-turnaround-source.png",
+      "source_principal_component_bounds": [
+        1333,
+        475,
+        1726,
+        841
+      ],
+      "source_crop_bounds": [
+        1329,
+        471,
+        1730,
+        845
+      ],
+      "principal_alpha_component_pixels": 87733,
+      "anchor": [
+        114,
+        303
+      ],
+      "source_anchor": [
+        1435,
+        766
+      ],
+      "physical_width": 420,
+      "significant_alpha_bounds": [
+        20,
+        30,
+        402,
+        370
+      ],
+      "minimum_significant_alpha_gutter_px": 15,
+      "raw_alpha_bounds": [
+        8,
+        8,
+        409,
+        378
+      ],
+      "alpha_1_to_8_pixels": 9035,
+      "isolated_neighbors_at_alpha_over_8": 0,
+      "atlas_region": [
+        0,
+        443,
+        417,
+        390
+      ]
+    },
+    {
+      "name": "E",
+      "family": "tails",
+      "source_file": "tail-body-turnaround-source.png",
+      "source_principal_component_bounds": [
+        45,
+        152,
+        420,
+        324
+      ],
+      "source_crop_bounds": [
+        41,
+        148,
+        424,
+        328
+      ],
+      "principal_alpha_component_pixels": 46598,
+      "anchor": [
+        356,
+        102
+      ],
+      "source_anchor": [
+        389,
+        242
+      ],
+      "physical_width": 360,
+      "significant_alpha_bounds": [
+        21,
+        19,
+        383,
+        180
+      ],
+      "minimum_significant_alpha_gutter_px": 16,
+      "raw_alpha_bounds": [
+        8,
+        8,
+        387,
+        184
+      ],
+      "alpha_1_to_8_pixels": 5055,
+      "isolated_neighbors_at_alpha_over_8": 0,
+      "atlas_region": [
+        249,
+        1530,
+        399,
+        196
+      ]
+    },
+    {
+      "name": "SE",
+      "family": "tails",
+      "source_file": "tail-body-turnaround-source.png",
+      "source_principal_component_bounds": [
+        507,
+        79,
+        804,
+        372
+      ],
+      "source_crop_bounds": [
+        503,
+        75,
+        808,
+        376
+      ],
+      "principal_alpha_component_pixels": 46617,
+      "anchor": [
+        249,
+        250
+      ],
+      "source_anchor": [
+        744,
+        317
+      ],
+      "physical_width": 360,
+      "significant_alpha_bounds": [
+        19,
+        16,
+        305,
+        298
+      ],
+      "minimum_significant_alpha_gutter_px": 16,
+      "raw_alpha_bounds": [
+        8,
+        8,
+        313,
+        307
+      ],
+      "alpha_1_to_8_pixels": 7234,
+      "isolated_neighbors_at_alpha_over_8": 0,
+      "atlas_region": [
+        272,
+        1211,
+        321,
+        317
+      ]
+    },
+    {
+      "name": "S",
+      "family": "tails",
+      "source_file": "tail-body-turnaround-source.png",
+      "source_principal_component_bounds": [
+        963,
+        50,
+        1142,
+        388
+      ],
+      "source_crop_bounds": [
+        959,
+        46,
+        1146,
+        392
+      ],
+      "principal_alpha_component_pixels": 41181,
+      "anchor": [
+        106,
+        307
+      ],
+      "source_anchor": [
+        1057,
+        345
+      ],
+      "physical_width": 360,
+      "significant_alpha_bounds": [
+        19,
+        16,
+        188,
+        345
+      ],
+      "minimum_significant_alpha_gutter_px": 15,
+      "raw_alpha_bounds": [
+        9,
+        9,
+        193,
+        350
+      ],
+      "alpha_1_to_8_pixels": 3697,
+      "isolated_neighbors_at_alpha_over_8": 0,
+      "atlas_region": [
+        1020,
+        833,
+        203,
+        362
+      ]
+    },
+    {
+      "name": "SW",
+      "family": "tails",
+      "source_file": "tail-body-turnaround-source.png",
+      "source_principal_component_bounds": [
+        77,
+        475,
+        362,
+        761
+      ],
+      "source_crop_bounds": [
+        73,
+        471,
+        366,
+        765
+      ],
+      "principal_alpha_component_pixels": 44329,
+      "anchor": [
+        63,
+        236
+      ],
+      "source_anchor": [
+        128,
+        699
+      ],
+      "physical_width": 360,
+      "significant_alpha_bounds": [
+        18,
+        16,
+        291,
+        291
+      ],
+      "minimum_significant_alpha_gutter_px": 16,
+      "raw_alpha_bounds": [
+        8,
+        8,
+        301,
+        302
+      ],
+      "alpha_1_to_8_pixels": 6744,
+      "isolated_neighbors_at_alpha_over_8": 0,
+      "atlas_region": [
+        880,
+        1211,
+        309,
+        310
+      ]
+    },
+    {
+      "name": "W",
+      "family": "tails",
+      "source_file": "tail-body-turnaround-source.png",
+      "source_principal_component_bounds": [
+        461,
+        546,
+        830,
+        713
+      ],
+      "source_crop_bounds": [
+        457,
+        542,
+        834,
+        717
+      ],
+      "principal_alpha_component_pixels": 45489,
+      "anchor": [
+        46,
+        94
+      ],
+      "source_anchor": [
+        495,
+        628
+      ],
+      "physical_width": 360,
+      "significant_alpha_bounds": [
+        21,
+        15,
+        377,
+        176
+      ],
+      "minimum_significant_alpha_gutter_px": 15,
+      "raw_alpha_bounds": [
+        8,
+        8,
+        385,
+        183
+      ],
+      "alpha_1_to_8_pixels": 4547,
+      "isolated_neighbors_at_alpha_over_8": 0,
+      "atlas_region": [
+        648,
+        1530,
+        393,
+        191
+      ]
+    },
+    {
+      "name": "NW",
+      "family": "tails",
+      "source_file": "tail-body-turnaround-source.png",
+      "source_principal_component_bounds": [
+        913,
+        479,
+        1176,
+        772
+      ],
+      "source_crop_bounds": [
+        909,
+        475,
+        1180,
+        776
+      ],
+      "principal_alpha_component_pixels": 42290,
+      "anchor": [
+        68,
+        58
+      ],
+      "source_anchor": [
+        969,
+        525
+      ],
+      "physical_width": 360,
+      "significant_alpha_bounds": [
+        19,
+        17,
+        271,
+        299
+      ],
+      "minimum_significant_alpha_gutter_px": 16,
+      "raw_alpha_bounds": [
+        8,
+        8,
+        275,
+        309
+      ],
+      "alpha_1_to_8_pixels": 5213,
+      "isolated_neighbors_at_alpha_over_8": 0,
+      "atlas_region": [
+        593,
+        1211,
+        287,
+        317
+      ]
+    },
+    {
+      "name": "N",
+      "family": "tails",
+      "source_file": "tail-body-turnaround-source.png",
+      "source_principal_component_bounds": [
+        144,
+        837,
+        325,
+        1191
+      ],
+      "source_crop_bounds": [
+        140,
+        833,
+        329,
+        1195
+      ],
+      "principal_alpha_component_pixels": 43560,
+      "anchor": [
+        103,
+        55
+      ],
+      "source_anchor": [
+        235,
+        880
+      ],
+      "physical_width": 360,
+      "significant_alpha_bounds": [
+        16,
+        20,
+        190,
+        358
+      ],
+      "minimum_significant_alpha_gutter_px": 15,
+      "raw_alpha_bounds": [
+        8,
+        8,
+        197,
+        370
+      ],
+      "alpha_1_to_8_pixels": 4898,
+      "isolated_neighbors_at_alpha_over_8": 0,
+      "atlas_region": [
+        0,
+        833,
+        205,
+        378
+      ]
+    },
+    {
+      "name": "NE",
+      "family": "tails",
+      "source_file": "tail-body-turnaround-source.png",
+      "source_principal_component_bounds": [
+        527,
+        869,
+        775,
+        1164
+      ],
+      "source_crop_bounds": [
+        523,
+        865,
+        779,
+        1168
+      ],
+      "principal_alpha_component_pixels": 42212,
+      "anchor": [
+        215,
+        62
+      ],
+      "source_anchor": [
+        730,
+        919
+      ],
+      "physical_width": 360,
+      "significant_alpha_bounds": [
+        19,
+        18,
+        257,
+        303
+      ],
+      "minimum_significant_alpha_gutter_px": 15,
+      "raw_alpha_bounds": [
+        8,
+        8,
+        260,
+        311
+      ],
+      "alpha_1_to_8_pixels": 5159,
+      "isolated_neighbors_at_alpha_over_8": 0,
+      "atlas_region": [
+        0,
+        1211,
+        272,
+        319
+      ]
+    },
+    {
+      "name": "body",
+      "family": "body",
+      "source_file": "tail-body-turnaround-source.png",
+      "source_principal_component_bounds": [
+        933,
+        909,
+        1158,
+        1129
+      ],
+      "source_crop_bounds": [
+        929,
+        905,
+        1162,
+        1133
+      ],
+      "principal_alpha_component_pixels": 37746,
+      "anchor": [
+        127,
+        123
+      ],
+      "source_anchor": [
+        1048,
+        1020
+      ],
+      "physical_width": 213,
+      "significant_alpha_bounds": [
+        20,
+        16,
+        233,
+        230
+      ],
+      "minimum_significant_alpha_gutter_px": 14,
+      "raw_alpha_bounds": [
+        12,
+        10,
+        241,
+        232
+      ],
+      "alpha_1_to_8_pixels": 2093,
+      "isolated_neighbors_at_alpha_over_8": 0,
+      "atlas_region": [
+        0,
+        1530,
+        249,
+        244
+      ]
+    }
+  ],
+  "checks": {
+    "eight_head_directions": true,
+    "eight_tail_directions": true,
+    "crop_rgba_byte_exact": true,
+    "no_atlas_region_overlap": true,
+    "anchors_inside_regions": true,
+    "every_region_has_eight_pixel_zero_alpha_outer_gutter": true,
+    "common_head_physical_width": true,
+    "no_negative_or_clipped_source_crops": true
+  }
+}

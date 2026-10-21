@@ -1,0 +1,371 @@
+{
+  "checks": 221,
+  "engine_version": "4.6.3-stable (official)",
+  "failures": [],
+  "levels": [
+    {
+      "blocked_clicks": {
+        "feedback": "NO REACHABLE BEAD",
+        "remaining_yellow_after": "6",
+        "remaining_yellow_before": "6",
+        "repeated_presses": 3,
+        "reservations_after": 0,
+        "tasks_after": 0
+      },
+      "controls": [
+        {
+          "button": {
+            "height": 116.0,
+            "width": 197.0,
+            "x": 46.0,
+            "y": 1282.0
+          },
+          "color": "red",
+          "count": "6",
+          "indicator": "barrier",
+          "indicator_visible": false,
+          "state": "ready",
+          "target_points_at_375_width": {
+            "height": 46.2765960693359,
+            "width": 78.5904235839844
+          },
+          "tooltip": "Send one ant"
+        },
+        {
+          "button": {
+            "height": 116.0,
+            "width": 197.0,
+            "x": 263.0,
+            "y": 1282.0
+          },
+          "color": "blue",
+          "count": "6",
+          "indicator": "barrier",
+          "indicator_visible": false,
+          "state": "ready",
+          "target_points_at_375_width": {
+            "height": 46.2765960693359,
+            "width": 78.5904235839844
+          },
+          "tooltip": "Send one ant"
+        },
+        {
+          "button": {
+            "height": 116.0,
+            "width": 197.0,
+            "x": 480.0,
+            "y": 1282.0
+          },
+          "color": "yellow",
+          "count": "6",
+          "indicator": "barrier",
+          "indicator_visible": true,
+          "state": "blocked",
+          "target_points_at_375_width": {
+            "height": 46.2765960693359,
+            "width": 78.5904235839844
+          },
+          "tooltip": "No reachable bead"
+        },
+        {
+          "button": {
+            "height": 116.0,
+            "width": 197.0,
+            "x": 697.0,
+            "y": 1282.0
+          },
+          "color": "green",
+          "count": "6",
+          "indicator": "barrier",
+          "indicator_visible": false,
+          "state": "ready",
+          "target_points_at_375_width": {
+            "height": 46.2765960693359,
+            "width": 78.5904235839844
+          },
+          "tooltip": "Send one ant"
+        }
+      ],
+      "gap": 20.0,
+      "level": 4,
+      "level_id": "serpent-04",
+      "row_bounds": {
+        "height": 116.0,
+        "width": 848.0,
+        "x": 46.0,
+        "y": 1282.0
+      }
+    },
+    {
+      "controls": [
+        {
+          "button": {
+            "height": 116.0,
+            "width": 234.0,
+            "x": 99.0,
+            "y": 1282.0
+          },
+          "color": "red",
+          "count": "6",
+          "indicator": "barrier",
+          "indicator_visible": false,
+          "state": "ready",
+          "target_points_at_375_width": {
+            "height": 46.2765960693359,
+            "width": 93.3510665893555
+          },
+          "tooltip": "Send one ant"
+        },
+        {
+          "button": {
+            "height": 116.0,
+            "width": 234.0,
+            "x": 353.0,
+            "y": 1282.0
+          },
+          "color": "blue",
+          "count": "6",
+          "indicator": "barrier",
+          "indicator_visible": false,
+          "state": "ready",
+          "target_points_at_375_width": {
+            "height": 46.2765960693359,
+            "width": 93.3510665893555
+          },
+          "tooltip": "Send one ant"
+        },
+        {
+          "button": {
+            "height": 116.0,
+            "width": 234.0,
+            "x": 607.0,
+            "y": 1282.0
+          },
+          "color": "green",
+          "count": "6",
+          "indicator": "barrier",
+          "indicator_visible": false,
+          "state": "ready",
+          "target_points_at_375_width": {
+            "height": 46.2765960693359,
+            "width": 93.3510665893555
+          },
+          "tooltip": "Send one ant"
+        }
+      ],
+      "gap": 20.0,
+      "level": 1,
+      "level_id": "serpent-01",
+      "row_bounds": {
+        "height": 116.0,
+        "width": 742.0,
+        "x": 99.0,
+        "y": 1282.0
+      }
+    }
+  ],
+  "scope": "Bounded headless actual production Controls at authored levels 4 and 1: single-row geometry, 44-point-equivalent targets, blocked barrier/tooltip, repeated rejection, one-click dispatch and modal guard. Pure layout-helper geometry for 1..6 colors, not synthetic levels. No full campaign replay, native pointer input, rendering acceptance or human playtest.",
+  "static_layout_geometry": [
+    {
+      "color_count": 1,
+      "rectangles": [
+        {
+          "height": 116.0,
+          "width": 234.0,
+          "x": 353.0,
+          "y": 1282.0
+        }
+      ]
+    },
+    {
+      "color_count": 2,
+      "rectangles": [
+        {
+          "height": 116.0,
+          "width": 234.0,
+          "x": 226.0,
+          "y": 1282.0
+        },
+        {
+          "height": 116.0,
+          "width": 234.0,
+          "x": 480.0,
+          "y": 1282.0
+        }
+      ]
+    },
+    {
+      "color_count": 3,
+      "rectangles": [
+        {
+          "height": 116.0,
+          "width": 234.0,
+          "x": 99.0,
+          "y": 1282.0
+        },
+        {
+          "height": 116.0,
+          "width": 234.0,
+          "x": 353.0,
+          "y": 1282.0
+        },
+        {
+          "height": 116.0,
+          "width": 234.0,
+          "x": 607.0,
+          "y": 1282.0
+        }
+      ]
+    },
+    {
+      "color_count": 4,
+      "rectangles": [
+        {
+          "height": 116.0,
+          "width": 197.0,
+          "x": 46.0,
+          "y": 1282.0
+        },
+        {
+          "height": 116.0,
+          "width": 197.0,
+          "x": 263.0,
+          "y": 1282.0
+        },
+        {
+          "height": 116.0,
+          "width": 197.0,
+          "x": 480.0,
+          "y": 1282.0
+        },
+        {
+          "height": 116.0,
+          "width": 197.0,
+          "x": 697.0,
+          "y": 1282.0
+        }
+      ]
+    },
+    {
+      "color_count": 5,
+      "rectangles": [
+        {
+          "height": 116.0,
+          "width": 153.600006103516,
+          "x": 46.0,
+          "y": 1282.0
+        },
+        {
+          "height": 116.0,
+          "width": 153.600006103516,
+          "x": 219.600006103516,
+          "y": 1282.0
+        },
+        {
+          "height": 116.0,
+          "width": 153.600006103516,
+          "x": 393.200012207031,
+          "y": 1282.0
+        },
+        {
+          "height": 116.0,
+          "width": 153.600006103516,
+          "x": 566.799987792969,
+          "y": 1282.0
+        },
+        {
+          "height": 116.0,
+          "width": 153.600006103516,
+          "x": 740.400024414062,
+          "y": 1282.0
+        }
+      ]
+    },
+    {
+      "color_count": 6,
+      "rectangles": [
+        {
+          "height": 116.0,
+          "width": 124.666664123535,
+          "x": 46.0,
+          "y": 1282.0
+        },
+        {
+          "height": 116.0,
+          "width": 124.666664123535,
+          "x": 190.66667175293,
+          "y": 1282.0
+        },
+        {
+          "height": 116.0,
+          "width": 124.666664123535,
+          "x": 335.333343505859,
+          "y": 1282.0
+        },
+        {
+          "height": 116.0,
+          "width": 124.666664123535,
+          "x": 480.0,
+          "y": 1282.0
+        },
+        {
+          "height": 116.0,
+          "width": 124.666664123535,
+          "x": 624.666687011719,
+          "y": 1282.0
+        },
+        {
+          "height": 116.0,
+          "width": 124.666664123535,
+          "x": 769.333312988281,
+          "y": 1282.0
+        }
+      ]
+    }
+  ],
+  "source_sha256": {
+    "scripts/play.gd": "a5c245cfb735ddcb67d88bf8e58dfa091af858154a88acfc8f54d79ed13bdeb4",
+    "scripts/ui_icon.gd": "6ce842b5fd26bf5a5d61c3340094dca724b056d6166b899173d17a230dccaf75",
+    "tests/test_color_row_layout.gd": "82334da5b8570ee288b34a9492d41aaad1748ad441ff7448a9ccad0a9229bd4c"
+  },
+  "source_hash_note": "SHA-256 identifies the bounded checked production and test scripts.",
+  "verification_boundaries": {
+    "actual_production_scenes": [
+      "serpent-04",
+      "serpent-01"
+    ],
+    "actual_input_method": "Production Button.pressed signals; not OS mouse/touch events.",
+    "layout_helper_only_color_counts": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "no_synthetic_levels": true,
+    "normal_profile_accessed": false,
+    "simulation_processing": "auto_replay enabled only during production isolated-profile initialization, then processing and replay disabled before the first frame.",
+    "not_run": [
+      "707-assertion suite",
+      "full authored solution replay",
+      "new five/six-color gameplay",
+      "native mouse/touch input",
+      "visual acceptance",
+      "human playtest",
+      "desktop checks",
+      "whole-project test suite"
+    ]
+  },
+  "execution": {
+    "primary_exit_code": 0,
+    "bounded_assertion_count": 221,
+    "assertion_failures": [],
+    "primary_shutdown_diagnostics": [
+      "ObjectDB instances leaked at exit",
+      "3 resources still in use at exit"
+    ],
+    "diagnostic_note": "A verbose second run also passed 221 checks and returned 0 without reproducing the shutdown messages. This does not establish that the underlying diagnostic is fixed.",
+    "primary_log_sha256": "2cf03d9c8ef3670d1a2ee7eb1be1c7a3274ffc2d087d0673948d51b6f7b94708"
+  }
+}

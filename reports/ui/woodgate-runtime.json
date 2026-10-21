@@ -1,0 +1,124 @@
+{
+  "mode": "actual GL production preparation/loading/woodgate gameplay; automatic authored clicks, not human playtest",
+  "prerequisite_unlocks": "isolated fixture for first10, no points granted",
+  "speed": 1,
+  "status": "victory",
+  "terminal_time_us": 26600000,
+  "remaining_beads": 6,
+  "maximum_carriers": 4,
+  "conservation_errors": [],
+  "output_pixels": [
+    1440,
+    2560
+  ],
+  "victory_saved": true,
+  "guardian": "traveler",
+  "shots": {
+    "last-hit": {
+      "alive_segments": 0,
+      "carriers": 0,
+      "simulation_us": 26600000
+    },
+    "opened-core": {
+      "alive_segments": 13,
+      "carriers": 2,
+      "simulation_us": 6033273
+    },
+    "projectile": {
+      "alive_segments": 14,
+      "carriers": 2,
+      "simulation_us": 3399966
+    },
+    "result": {
+      "alive_segments": 0,
+      "carriers": 0,
+      "simulation_us": 26600000
+    },
+    "shortened-snake": {
+      "alive_segments": 6,
+      "carriers": 4,
+      "simulation_us": 18999810
+    },
+    "walking": {
+      "alive_segments": 14,
+      "carriers": 2,
+      "simulation_us": 2799972
+    }
+  },
+  "reward": {
+    "base": 100,
+    "elapsed_sim_seconds": 26.6,
+    "first_clear": true,
+    "time_bonus": 50,
+    "total": 150
+  },
+  "source_hashes": {
+    "assets/motion/ant-directions.png": "84f9fae1f64cbf9003580e1ee54800078f82b8e87829ebbf9f6ae57e20e7432e",
+    "assets/serpent/environment.png": "64549070c131b085178e4c6995f2964b9a04195262b73655636ed5f1423e9f9a",
+    "assets/serpent/serpent-armor-atlas.png": "c8595e610a0b5b17c22ac1d1fa908454b8c3ce9de8560720fb08ed9a23651d2d",
+    "assets/serpent/serpent-atlas.json": "e1c9b6d370cd3509aa2ab9f601ca0f72243b22c22cddaa747ec051ec435a3d69",
+    "assets/serpent/serpent-atlas.png": "caf1130462c58cf121e529e60810218b2ae3d7dc3939670ebdefeb1788f9a360",
+    "assets/ui/fusion/bead-regions.json": "fb476fc6138d28481924ba0f88f063efa478e219606a5d655ef3429f2471342e",
+    "assets/ui/fusion/beads.png": "bcff13277e0bac7cf558f97c935bb9b9c2a286e35995f44d26c37b9430d3717d",
+    "assets/worlds/forest-traveler.png": "b99df1675cd2dddfac63f888358278d43ac1e85d5db9acc6b1beba450cddc564",
+    "data/scenes/forest-traveler.json": "55b5f3d9ccd58e61e7750139ffbf7ef26b3f6f1dbd14e353b64dc87acac36b27",
+    "data/serpent-levels/serpent-11.json": "74f5b9ec37e16ec284275a027ea7321cc1e91a4b593f8eb9f3d5c5de38a1509d",
+    "scripts/adventure_view.gd": "321b45b42a8a851f795426ee84a04754e29ff8c1e835b261d84f5e550f4c3f85",
+    "scripts/bead.gd": "b40dad729ced5842e01f0fbe7d7a0f87f433d5110dcf141084a66ce4d5429fa0",
+    "scripts/board_plane.gd": "89d21ef17ec8e258513c90d30a40eb9b8284d0e3d246bf4059c57d4b5f829bfa",
+    "scripts/carrier_route.gd": "e42ecd8e8d54d8189c1258eb488d81bdeba1b5d0f26331941311a260c116ed6c",
+    "scripts/combat_tint.gdshader": "51d8640c68faee38fc3072f95053ed12f5d40e369fc4ba1d52428e5bde93d393",
+    "scripts/contact_shadow.gd": "ef384880665827ec7bddc9954bce972f13106c74aee14b367489c48df2cbfd0c",
+    "scripts/directional_carrier.gd": "d6f6e3c4a82978205dfb62e483839949c37b05dbd5e88ce3f87a9f755a23f16c",
+    "scripts/level_catalog.gd": "b30e31da51903ff13792d384701e70a6b74900c6ab11b0a9f5b16cf293370860",
+    "scripts/play.gd": "7d0a6c1edb53411b701690b0f731e856390cbed4447bd43a18dee8b9afc52df9",
+    "scripts/rescue_fx.gd": "baecb8688b4a9992edb84860ec2dbee4d4406e9a2e5c9e3433d236b69e77f89f",
+    "scripts/rescue_rules.gd": "14a5b20efdf237fbf271ea8749b35580d012485aee8a529a30e53487852c7c23",
+    "scripts/scene_layout.gd": "e0f544557962f97636690498c3e5df24a7d1475c29a3a19edc9cff2b7ee0024a",
+    "scripts/serpent_view.gd": "6bf8f148984bfd80f2e7c7988dfa00a45c1549e7277e0b6d4f97bf833630323a",
+    "scripts/startup.gd": "90c95be393f559cfddc211fc4e14776fda8b5a6c91100d04f81946f289c212fb",
+    "scripts/ui_icon.gd": "6ce842b5fd26bf5a5d61c3340094dca724b056d6166b899173d17a230dccaf75",
+    "scripts/ui_skin.gd": "7e4c3ec533912b39a8745c82d52e57f630c464a45194aa4dba574e580d7dc319"
+  },
+  "audio": {
+    "accepted": 81,
+    "active_sfx": 1,
+    "audio_driver": "Dummy",
+    "backgrounded": false,
+    "dropped": {},
+    "game_paused": true,
+    "load_errors": [],
+    "loaded_cues": 14,
+    "master_muted": false,
+    "master_volume_db": 0.0,
+    "max_sfx": 12,
+    "music_bus": "AntMusic",
+    "music_bus_muted": false,
+    "music_bus_volume_db": -3.09803915023804,
+    "music_ducked": true,
+    "music_muted": false,
+    "music_paused": false,
+    "music_player_gain_db": -1.0,
+    "music_playing": true,
+    "music_position": 29.271656036377,
+    "music_preview": false,
+    "music_volume": 0.7,
+    "output_device": "Default",
+    "sfx_bus": "AntSFX",
+    "sfx_bus_muted": false,
+    "sfx_bus_volume_db": -3.09803915023804,
+    "sfx_muted": false,
+    "sfx_volume": 0.7
+  },
+  "recording": {
+    "frames": 989,
+    "fps": "30/1",
+    "duration_seconds": 32.966667,
+    "unsped": true,
+    "uncut": true,
+    "source_format": "native OGV Theora/Vorbis, compressed not lossless; key PNGs retained separately",
+    "transcode": "CFR30 preserves timestamps; holds final decoded frame through original source duration, no speed scaling",
+    "source_sha256": "ce9563bbd15d7102ccbc5753d35f56a8078b101f7ee53fbecd0c13d63aaab7be",
+    "audio_boundary": "actual captured mix; cloud Dummy output, not human listening or device validation"
+  }
+}

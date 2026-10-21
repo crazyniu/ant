@@ -1,0 +1,289 @@
+{
+  "version": 1,
+  "path": "res://assets/serpent/serpent-atlas.png",
+  "texture_size": [
+    1303,
+    1774
+  ],
+  "heads": {
+    "E": {
+      "region": [
+        417,
+        443,
+        459,
+        385
+      ],
+      "anchor": [
+        117,
+        240
+      ],
+      "physical_width": 420
+    },
+    "SE": {
+      "region": [
+        785,
+        0,
+        431,
+        423
+      ],
+      "anchor": [
+        106,
+        216
+      ],
+      "physical_width": 420
+    },
+    "S": {
+      "region": [
+        0,
+        0,
+        355,
+        443
+      ],
+      "anchor": [
+        173,
+        151
+      ],
+      "physical_width": 420
+    },
+    "SW": {
+      "region": [
+        355,
+        0,
+        430,
+        427
+      ],
+      "anchor": [
+        282,
+        216
+      ],
+      "physical_width": 420
+    },
+    "W": {
+      "region": [
+        557,
+        833,
+        463,
+        368
+      ],
+      "anchor": [
+        341,
+        236
+      ],
+      "physical_width": 420
+    },
+    "NW": {
+      "region": [
+        876,
+        443,
+        427,
+        385
+      ],
+      "anchor": [
+        287,
+        306
+      ],
+      "physical_width": 420
+    },
+    "N": {
+      "region": [
+        205,
+        833,
+        352,
+        369
+      ],
+      "anchor": [
+        175,
+        323
+      ],
+      "physical_width": 420
+    },
+    "NE": {
+      "region": [
+        0,
+        443,
+        417,
+        390
+      ],
+      "anchor": [
+        114,
+        303
+      ],
+      "physical_width": 420
+    }
+  },
+  "body": {
+    "region": [
+      0,
+      1530,
+      249,
+      244
+    ],
+    "anchor": [
+      127,
+      123
+    ],
+    "physical_width": 213
+  },
+  "tails": {
+    "E": {
+      "region": [
+        249,
+        1530,
+        399,
+        196
+      ],
+      "anchor": [
+        356,
+        102
+      ],
+      "physical_width": 360
+    },
+    "SE": {
+      "region": [
+        272,
+        1211,
+        321,
+        317
+      ],
+      "anchor": [
+        249,
+        250
+      ],
+      "physical_width": 360
+    },
+    "S": {
+      "region": [
+        1020,
+        833,
+        203,
+        362
+      ],
+      "anchor": [
+        106,
+        307
+      ],
+      "physical_width": 360
+    },
+    "SW": {
+      "region": [
+        880,
+        1211,
+        309,
+        310
+      ],
+      "anchor": [
+        63,
+        236
+      ],
+      "physical_width": 360
+    },
+    "W": {
+      "region": [
+        648,
+        1530,
+        393,
+        191
+      ],
+      "anchor": [
+        46,
+        94
+      ],
+      "physical_width": 360
+    },
+    "NW": {
+      "region": [
+        593,
+        1211,
+        287,
+        317
+      ],
+      "anchor": [
+        68,
+        58
+      ],
+      "physical_width": 360
+    },
+    "N": {
+      "region": [
+        0,
+        833,
+        205,
+        378
+      ],
+      "anchor": [
+        103,
+        55
+      ],
+      "physical_width": 360
+    },
+    "NE": {
+      "region": [
+        0,
+        1211,
+        272,
+        319
+      ],
+      "anchor": [
+        215,
+        62
+      ],
+      "physical_width": 360
+    }
+  },
+  "directions": [
+    "E",
+    "SE",
+    "S",
+    "SW",
+    "W",
+    "NW",
+    "N",
+    "NE"
+  ],
+  "usage": {
+    "render": "Choose a real object-yaw region; never rotate the entire head or tail texture. Draw origin = route attachment point - anchor * uniform scale. Uniform scale = target physical width / physical_width.",
+    "head_anchor": "Rear neck-axis joint at the body-chain attachment.",
+    "body_anchor": "Sphere center. Keep sprite rotation at zero so the light remains fixed; red material is intended for shader recoloring.",
+    "tail_anchor": "Gold collar joint nearest the last body bead. Tail direction names the movement / base direction; its tip points opposite the direction key.",
+    "recommended_target_pixels": {
+      "head_physical_width": 76,
+      "body_diameter": 40,
+      "tail_physical_width": 64
+    },
+    "common_head_physical_width_source_pixels": 420,
+    "common_tail_physical_width_source_pixels": 360,
+    "bead_physical_diameter_source_pixels": 213,
+    "armor": "Draw intact/cracked overlay centered at the exact body center with target physical width equal to the body diameter. Both states have the same frame and anchor. Preserve gold material: recolor only the underlying red bead."
+  },
+  "provenance_report": "res://reports/assets/serpent-actor-assets.json",
+  "armor": {
+    "intact": {
+      "path": "res://assets/serpent/serpent-armor-atlas.png",
+      "region": [
+        0,
+        0,
+        768,
+        748
+      ],
+      "anchor": [
+        384,
+        374
+      ],
+      "physical_width": 734
+    },
+    "cracked": {
+      "path": "res://assets/serpent/serpent-armor-atlas.png",
+      "region": [
+        768,
+        0,
+        768,
+        748
+      ],
+      "anchor": [
+        384,
+        374
+      ],
+      "physical_width": 734
+    }
+  }
+}

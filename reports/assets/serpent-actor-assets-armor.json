@@ -1,0 +1,91 @@
+{
+  "tool": "built-in imagegen",
+  "provenance": {
+    "tool": "image_gen__imagegen (built-in)",
+    "purpose": "Independent two-state armor overlay, preserving base body color through transparent center.",
+    "source": "exec-a74ba468-4cac-4e04-91ba-0d3c147e9ec9.png",
+    "rights_note": "AI-generated source provenance only. No new license claim or legal warranty."
+  },
+  "source_sha256": "0f9ba0bbdb0f73f73949635bbda514828bf489b53287d11d326131527363a986",
+  "atlas_sha256": "c8595e610a0b5b17c22ac1d1fa908454b8c3ce9de8560720fb08ed9a23651d2d",
+  "atlas_bytes": 984752,
+  "atlas_dimensions": [
+    1536,
+    748
+  ],
+  "regions": {
+    "intact": {
+      "path": "res://assets/serpent/serpent-armor-atlas.png",
+      "region": [
+        0,
+        0,
+        768,
+        748
+      ],
+      "anchor": [
+        384,
+        374
+      ],
+      "physical_width": 734
+    },
+    "cracked": {
+      "path": "res://assets/serpent/serpent-armor-atlas.png",
+      "region": [
+        768,
+        0,
+        768,
+        748
+      ],
+      "anchor": [
+        384,
+        374
+      ],
+      "physical_width": 734
+    }
+  },
+  "audit": [
+    {
+      "state": "intact",
+      "source_crop_bounds": [
+        69,
+        69,
+        821,
+        801
+      ],
+      "source_anchor": [
+        445,
+        435
+      ],
+      "same_frame_size": [
+        768,
+        748
+      ],
+      "source_rgba_exact": true,
+      "inner_hole_alpha_over_8_pixels": 0,
+      "inner_hole_max_alpha": 1,
+      "inner_hole_zero_alpha_fraction": 0.9681283530575553
+    },
+    {
+      "state": "cracked",
+      "source_crop_bounds": [
+        951,
+        69,
+        1703,
+        801
+      ],
+      "source_anchor": [
+        1327,
+        435
+      ],
+      "same_frame_size": [
+        768,
+        748
+      ],
+      "source_rgba_exact": true,
+      "inner_hole_alpha_over_8_pixels": 0,
+      "inner_hole_max_alpha": 1,
+      "inner_hole_zero_alpha_fraction": 0.9910536994649549
+    }
+  ],
+  "note": "Original source pixels were cropped and packed only. Very faint generated alpha speckles inside transparent holes are preserved; no code-painted cleanup. Both centers have alpha zero and no colored base sphere is baked in."
+}

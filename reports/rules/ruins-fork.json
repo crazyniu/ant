@@ -1,0 +1,56 @@
+{
+	"checks": 54,
+	"failures": [],
+	"level_sha256": "41313488c04d299f2dacea24c11cfaf61b224796b372a8e007bc7bc09bfbce03",
+	"minimum_enemy_centerline_separation": 129.793869018555,
+	"openings": [
+		{
+			"color": "red",
+			"core_opened": 45,
+			"path_cells": 3,
+			"pickup_us": 1200000,
+			"target": 55
+		},
+		{
+			"color": "green",
+			"core_opened": 46,
+			"path_cells": 4,
+			"pickup_us": 1600000,
+			"target": 56
+		},
+		{
+			"color": "blue",
+			"core_opened": -1,
+			"path_cells": 3,
+			"pickup_us": 1200000,
+			"target": 73
+		}
+	],
+	"path_samples": 2412,
+	"rule_sha256": "14a5b20efdf237fbf271ea8749b35580d012485aee8a529a30e53487852c7c23",
+	"summary": {
+		"contact_time_us": 60000000,
+		"hit_counts": {
+			"blue": 5,
+			"green": 3,
+			"red": 4
+		},
+		"longest_no_dispatch_opportunity_us": 0,
+		"path_cells": [
+			3,
+			3,
+			4,
+			4,
+			4,
+			4,
+			4,
+			4,
+			4,
+			5,
+			5,
+			5
+		],
+		"remaining_beads": 6,
+		"terminal_time_us": 20850000
+	}
+}

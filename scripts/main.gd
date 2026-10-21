@@ -356,8 +356,8 @@ func modal(title: String, rect: Rect2 = Rect2(170,520,600,620)) -> Control:
 	var title_width:=minf(rect.size.x-70,530)
 	skin.sprite("settings/title",Rect2(470-title_width/2,rect.position.y-47,title_width,145),pause_overlay,"WoodTitlePlaque")
 	title_art(title,Rect2(470-title_width/2+44,rect.position.y-5,title_width-88,65),pause_overlay)
-	skin.sprite("settings/close",Rect2(rect.end.x-48,rect.position.y-21,63,63),pause_overlay,"PaintedClose")
-	var close:=Button.new();close.name="CloseButton";close.flat=true;close.position=Vector2(rect.end.x-48,rect.position.y-21);close.size=Vector2(63,63);pause_overlay.add_child(close);close.pressed.connect(close_current_modal)
+	skin.sprite("settings/close",Rect2(rect.end.x-57,rect.position.y-29,80,80),pause_overlay,"PaintedClose")
+	var close:=Button.new();close.name="CloseButton";close.flat=true;close.position=Vector2(rect.end.x-73,rect.position.y-45);close.size=Vector2(112,112);close.tooltip_text="Close";pause_overlay.add_child(close);close.pressed.connect(close_current_modal)
 	return pause_overlay
 
 func close_button(parent: Control, title: String, at_y: float) -> void:

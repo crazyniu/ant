@@ -1,0 +1,72 @@
+{
+	"inputs": [
+		{
+			"at_sec": 0.0,
+			"color": "blue"
+		},
+		{
+			"at_sec": 1.4,
+			"color": "blue"
+		},
+		{
+			"at_sec": 2.8,
+			"color": "green"
+		},
+		{
+			"at_sec": 4.2,
+			"color": "yellow"
+		},
+		{
+			"at_sec": 5.6,
+			"color": "red"
+		},
+		{
+			"at_sec": 7.0,
+			"color": "blue"
+		},
+		{
+			"at_sec": 8.4,
+			"color": "green"
+		},
+		{
+			"at_sec": 9.8,
+			"color": "yellow"
+		},
+		{
+			"at_sec": 11.2,
+			"color": "red"
+		},
+		{
+			"at_sec": 12.6,
+			"color": "green"
+		},
+		{
+			"at_sec": 14.0,
+			"color": "yellow"
+		},
+		{
+			"at_sec": 15.4,
+			"color": "red"
+		},
+		{
+			"at_sec": 16.8,
+			"color": "green"
+		},
+		{
+			"at_sec": 18.2,
+			"color": "yellow"
+		},
+		{
+			"at_sec": 19.6,
+			"color": "red"
+		},
+		{
+			"at_sec": 21.0,
+			"color": "blue"
+		}
+	],
+	"label": "blue_side_supply_first",
+	"level_id": "serpent-11",
+	"level_sha256": "74f5b9ec37e16ec284275a027ea7321cc1e91a4b593f8eb9f3d5c5de38a1509d",
+	"minimum_input_gap_sec": 1.4
+}

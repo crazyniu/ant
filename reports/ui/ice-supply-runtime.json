@@ -1,0 +1,113 @@
+{
+  "mode": "actual GL production preparation/loading/ice supply-ridge gameplay; automatic authored clicks, not human playtest",
+  "prerequisite_unlocks": "isolated fixture for first6, no points granted",
+  "speed": 1,
+  "status": "victory",
+  "terminal_time_us": 27850000,
+  "remaining_beads": 4,
+  "maximum_carriers": 4,
+  "conservation_errors": [],
+  "output_pixels": [
+    1440,
+    2560
+  ],
+  "victory_saved": true,
+  "guardian": "winter_camp",
+  "shots": {
+    "last-hit": {
+      "alive_segments": 0,
+      "carriers": 0,
+      "simulation_us": 27850000
+    },
+    "opened-core": {
+      "alive_segments": 11,
+      "carriers": 2,
+      "simulation_us": 6033273
+    },
+    "projectile": {
+      "alive_segments": 13,
+      "carriers": 2,
+      "simulation_us": 3399966
+    },
+    "result": {
+      "alive_segments": 0,
+      "carriers": 0,
+      "simulation_us": 27850000
+    },
+    "shortened-snake": {
+      "alive_segments": 7,
+      "carriers": 3,
+      "simulation_us": 17999820
+    },
+    "walking": {
+      "alive_segments": 13,
+      "carriers": 2,
+      "simulation_us": 2799972
+    }
+  },
+  "reward": {
+    "base": 100,
+    "elapsed_sim_seconds": 27.85,
+    "first_clear": true,
+    "time_bonus": 50,
+    "total": 150
+  },
+  "source_hashes": {
+    "assets/serpent/ice-serpent-atlas.json": "0154941cee3dbfed2b966b4359d8a936c56b3a222a7ea07d0bd0852e12ce1d8f",
+    "assets/serpent/ice-serpent-atlas.png": "6fce37ff2481c0aefd6101390240d0297cd382b3d2ad5b989802bb7ba6a3d20c",
+    "assets/worlds/ice-valley.png": "d3db37aee85483b32aa5912570a6abcaa6bea4c8d68567c134bd08a1f33ee7a6",
+    "assets/worlds/winter-camp.png": "af0f6be47c0728e03c1240ed6d96efb10fe1d686b2a7bb0d5e39f592f52def9b",
+    "data/scenes/ice-camp.json": "9e04213815f256c1eef33c8280a55f683287b8db75e0fd356dd043e7c09fc102",
+    "data/serpent-levels/serpent-07.json": "5f355ba14e8af36a0b9ed77f46313d703a82ab43630549dc0235e45cc65d1c60",
+    "scripts/adventure_view.gd": "63046cc8f35938f95dbf9ea8ddd322dde31d74f2b2323adc391ad61f10469900",
+    "scripts/board_plane.gd": "89d21ef17ec8e258513c90d30a40eb9b8284d0e3d246bf4059c57d4b5f829bfa",
+    "scripts/carrier_route.gd": "e42ecd8e8d54d8189c1258eb488d81bdeba1b5d0f26331941311a260c116ed6c",
+    "scripts/combat_tint.gdshader": "51d8640c68faee38fc3072f95053ed12f5d40e369fc4ba1d52428e5bde93d393",
+    "scripts/level_catalog.gd": "2a10da25256561e625d292a3ace174e31dbfa883e6e6ad59cdc97ff2e2bb6878",
+    "scripts/play.gd": "725f32d773d31134ee5a7972edb1aa1b6b4302d962fc0d9d91aa2ead804ac55a",
+    "scripts/rescue_rules.gd": "14a5b20efdf237fbf271ea8749b35580d012485aee8a529a30e53487852c7c23",
+    "scripts/scene_layout.gd": "5a1f7573fa16f67c63a10530846749863934197916539af42fd52618837da5e4",
+    "scripts/serpent_view.gd": "1da68a9763b1653a8743a51fd9a09fc3fa6905499db2d1b2ddc425bfe70ea948",
+    "scripts/startup.gd": "9bed7e9cfb6e14354d745949433411f3f01b39d6230521f3e4e835398b787cd3",
+    "scripts/ui_icon.gd": "6ce842b5fd26bf5a5d61c3340094dca724b056d6166b899173d17a230dccaf75",
+    "scripts/ui_skin.gd": "7e4c3ec533912b39a8745c82d52e57f630c464a45194aa4dba574e580d7dc319"
+  },
+  "audio": {
+    "accepted": 86,
+    "active_sfx": 1,
+    "audio_driver": "Dummy",
+    "backgrounded": false,
+    "dropped": {},
+    "game_paused": true,
+    "load_errors": [],
+    "loaded_cues": 14,
+    "master_muted": false,
+    "master_volume_db": 0.0,
+    "max_sfx": 12,
+    "music_bus": "AntMusic",
+    "music_bus_muted": false,
+    "music_bus_volume_db": -3.09803915023804,
+    "music_ducked": true,
+    "music_muted": false,
+    "music_paused": false,
+    "music_player_gain_db": -1.0,
+    "music_playing": true,
+    "music_position": 30.4965076446533,
+    "music_preview": false,
+    "music_volume": 0.7,
+    "output_device": "Default",
+    "sfx_bus": "AntSFX",
+    "sfx_bus_muted": false,
+    "sfx_bus_volume_db": -3.09803915023804,
+    "sfx_muted": false,
+    "sfx_volume": 0.7
+  },
+  "recording": {
+    "frames": 1024,
+    "fps": "30/1",
+    "duration_seconds": 34.133333,
+    "unsped": true,
+    "uncut": true,
+    "audio_boundary": "actual captured mix; cloud Dummy output, not human listening or device validation"
+  }
+}

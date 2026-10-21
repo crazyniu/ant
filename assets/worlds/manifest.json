@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "source": "Original generated game artwork, built-in image generation; no third-party copied art. No independent legal clearance warranty.",
+  "lighting": "upper left",
+  "projection": "gentle overhead near-orthographic, same ground convention as forest",
+  "assets": [
+    {
+      "path": "assets/worlds/ruins-courtyard.png",
+      "native_size": [
+        941,
+        1672
+      ],
+      "role": "static empty ruins ground; route/nest/cannon/guardian remain independent nodes",
+      "display_size": [
+        940,
+        1672
+      ],
+      "layout": "data/scenes/ruins-cart.json",
+      "generation_source": "exec-df183732-93ba-4f81-9273-a4096b8e1186.png"
+    },
+    {
+      "path": "assets/worlds/supply-cart.png",
+      "native_size": [
+        1247,
+        942
+      ],
+      "source_size": [
+        1433,
+        1098
+      ],
+      "alpha_crop_xyxy": [
+        155,
+        57,
+        1402,
+        999
+      ],
+      "anchor": [
+        525,
+        873
+      ],
+      "role": "fixed defended supply cart; wheel contact anchor",
+      "display_width": 168,
+      "generation_source": "exec-b9ba08b6-7bd4-43a4-b089-4a8e8017a188.png",
+      "alpha_crop_note": "Bounding box alpha >1 excludes isolated 1/255 generator noise; all retained pixels keep original alpha."
+    },
+    {
+      "path": "assets/worlds/ice-valley.png",
+      "native_size": [
+        940,
+        1672
+      ],
+      "role": "empty snow valley ground, finite right-to-top enemy road; all gameplay nodes independent",
+      "display_size": [
+        940,
+        1672
+      ],
+      "layout": "data/scenes/ice-camp.json",
+      "generation_source": "exec-fe3fed13-e60d-4485-ac28-e5cc7c10e1c4.png"
+    },
+    {
+      "path": "assets/worlds/winter-camp.png",
+      "native_size": [
+        1373,
+        981
+      ],
+      "source_size": [
+        1536,
+        1024
+      ],
+      "alpha_crop_xyxy": [
+        93,
+        23,
+        1466,
+        1004
+      ],
+      "anchor": [
+        687,
+        875
+      ],
+      "physical_width": 1373,
+      "role": "fixed winter camp guardian with ground contact; no moving escort",
+      "display_width": 170,
+      "generation_source": "exec-c1800f88-ab07-4b19-bb5a-e1f9ce10356a.png",
+      "alpha_crop_note": "Bounding box alpha >1 excludes tiny alpha noise. Original pixel alpha is preserved inside the cut."
+    }
+  ]
+}

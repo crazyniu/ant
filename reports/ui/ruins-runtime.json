@@ -1,0 +1,99 @@
+{
+  "mode": "actual GL production preparation/loading/ruins gameplay; automatic authored clicks, not human playtest",
+  "prerequisite_unlocks": "isolated fixture for first3, no points granted",
+  "speed": 1,
+  "status": "victory",
+  "terminal_time_us": 27350000,
+  "remaining_beads": 8,
+  "maximum_carriers": 4,
+  "conservation_errors": [],
+  "output_pixels": [
+    1440,
+    2560
+  ],
+  "victory_saved": true,
+  "guardian": "supply_cart",
+  "shots": {
+    "last-hit": {
+      "alive_segments": 0,
+      "carriers": 0,
+      "simulation_us": 27350000
+    },
+    "opened-core": {
+      "alive_segments": 10,
+      "carriers": 3,
+      "simulation_us": 8033253
+    },
+    "projectile": {
+      "alive_segments": 12,
+      "carriers": 2,
+      "simulation_us": 3399966
+    },
+    "result": {
+      "alive_segments": 0,
+      "carriers": 0,
+      "simulation_us": 27350000
+    },
+    "shortened-snake": {
+      "alive_segments": 6,
+      "carriers": 3,
+      "simulation_us": 17999820
+    },
+    "walking": {
+      "alive_segments": 12,
+      "carriers": 2,
+      "simulation_us": 2799972
+    }
+  },
+  "reward": {
+    "base": 100,
+    "elapsed_sim_seconds": 27.35,
+    "first_clear": true,
+    "time_bonus": 50,
+    "total": 150
+  },
+  "source_hashes": {
+    "assets/worlds/ruins-courtyard.png": "041d6e6122a8b6f5069d7f19c7001ec4368f14d76a42af8f77d5f0d4dbc2493c",
+    "assets/worlds/supply-cart.png": "98fe14627851032bbb22d0e44c059e464fb0ba44054b11c53b815fa0c58db731",
+    "data/scenes/ruins-cart.json": "e729226303ae60c5a3424975872bd7bcf0624105f75b51b1f9b2e96266bf45f4",
+    "data/serpent-levels/serpent-04.json": "3c3359aff7a523e878c84d2df535eb2a1e058f01806ca29f14e4126cb63dad07",
+    "scripts/adventure_view.gd": "63046cc8f35938f95dbf9ea8ddd322dde31d74f2b2323adc391ad61f10469900",
+    "scripts/board_plane.gd": "89d21ef17ec8e258513c90d30a40eb9b8284d0e3d246bf4059c57d4b5f829bfa",
+    "scripts/carrier_route.gd": "e42ecd8e8d54d8189c1258eb488d81bdeba1b5d0f26331941311a260c116ed6c",
+    "scripts/play.gd": "6eff5cf0da83c19f46544fb60a22f1e29bc7cb74dcfca7ad40f036b23ae57ff3",
+    "scripts/rescue_rules.gd": "14a5b20efdf237fbf271ea8749b35580d012485aee8a529a30e53487852c7c23",
+    "scripts/scene_layout.gd": "a9c5f8154b90434126e32421d4e6554443bc94ce8bafae8e92d0770b066fc624",
+    "scripts/startup.gd": "96461f232c8275b39e9d6097984f6fc979504f80130be362e2448df4ad698895",
+    "scripts/ui_skin.gd": "7e4c3ec533912b39a8745c82d52e57f630c464a45194aa4dba574e580d7dc319"
+  },
+  "audio": {
+    "accepted": 81,
+    "active_sfx": 1,
+    "audio_driver": "Dummy",
+    "backgrounded": false,
+    "dropped": {},
+    "game_paused": true,
+    "load_errors": [],
+    "loaded_cues": 14,
+    "master_muted": false,
+    "master_volume_db": 0.0,
+    "max_sfx": 12,
+    "music_bus": "AntMusic",
+    "music_bus_muted": false,
+    "music_bus_volume_db": -3.09803915023804,
+    "music_ducked": true,
+    "music_muted": false,
+    "music_paused": false,
+    "music_player_gain_db": -1.0,
+    "music_playing": true,
+    "music_position": 30.0059871673584,
+    "music_preview": false,
+    "music_volume": 0.7,
+    "output_device": "Default",
+    "sfx_bus": "AntSFX",
+    "sfx_bus_muted": false,
+    "sfx_bus_volume_db": -3.09803915023804,
+    "sfx_muted": false,
+    "sfx_volume": 0.7
+  }
+}

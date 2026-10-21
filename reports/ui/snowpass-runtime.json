@@ -1,0 +1,121 @@
+{
+  "mode": "actual GL production preparation/loading/snowpass gameplay; automatic authored clicks, not human playtest",
+  "prerequisite_unlocks": "isolated fixture for first9, no points granted",
+  "speed": 1,
+  "status": "victory",
+  "terminal_time_us": 29400000,
+  "remaining_beads": 7,
+  "maximum_carriers": 4,
+  "conservation_errors": [],
+  "output_pixels": [
+    1440,
+    2560
+  ],
+  "victory_saved": true,
+  "guardian": "winter_camp",
+  "shots": {
+    "last-hit": {
+      "alive_segments": 0,
+      "carriers": 0,
+      "simulation_us": 29400000
+    },
+    "opened-core": {
+      "alive_segments": 15,
+      "carriers": 2,
+      "simulation_us": 6033273
+    },
+    "projectile": {
+      "alive_segments": 16,
+      "carriers": 3,
+      "simulation_us": 4299957
+    },
+    "result": {
+      "alive_segments": 0,
+      "carriers": 0,
+      "simulation_us": 29400000
+    },
+    "shortened-snake": {
+      "alive_segments": 7,
+      "carriers": 3,
+      "simulation_us": 18999810
+    },
+    "walking": {
+      "alive_segments": 16,
+      "carriers": 2,
+      "simulation_us": 2799972
+    }
+  },
+  "reward": {
+    "base": 100,
+    "elapsed_sim_seconds": 29.4,
+    "first_clear": true,
+    "time_bonus": 50,
+    "total": 150
+  },
+  "source_hashes": {
+    "assets/motion/ant-directions.png": "84f9fae1f64cbf9003580e1ee54800078f82b8e87829ebbf9f6ae57e20e7432e",
+    "assets/serpent/ice-serpent-atlas.json": "0154941cee3dbfed2b966b4359d8a936c56b3a222a7ea07d0bd0852e12ce1d8f",
+    "assets/serpent/ice-serpent-atlas.png": "6fce37ff2481c0aefd6101390240d0297cd382b3d2ad5b989802bb7ba6a3d20c",
+    "assets/serpent/serpent-armor-atlas.png": "c8595e610a0b5b17c22ac1d1fa908454b8c3ce9de8560720fb08ed9a23651d2d",
+    "assets/ui/fusion/bead-regions.json": "fb476fc6138d28481924ba0f88f063efa478e219606a5d655ef3429f2471342e",
+    "assets/ui/fusion/beads.png": "bcff13277e0bac7cf558f97c935bb9b9c2a286e35995f44d26c37b9430d3717d",
+    "assets/worlds/ice-valley.png": "d3db37aee85483b32aa5912570a6abcaa6bea4c8d68567c134bd08a1f33ee7a6",
+    "assets/worlds/winter-camp.png": "af0f6be47c0728e03c1240ed6d96efb10fe1d686b2a7bb0d5e39f592f52def9b",
+    "data/scenes/ice-snowpass.json": "1b5ee43ae6dd2d712d4a8e8e4a01cebd6d6511dc1b87cceda46622116a0056c6",
+    "data/serpent-levels/serpent-10.json": "8437a4ffc8c18f419f5d9c1d3a4f17c072bea6592503aef49d01c5d49574aaf5",
+    "scripts/adventure_view.gd": "321b45b42a8a851f795426ee84a04754e29ff8c1e835b261d84f5e550f4c3f85",
+    "scripts/bead.gd": "b40dad729ced5842e01f0fbe7d7a0f87f433d5110dcf141084a66ce4d5429fa0",
+    "scripts/board_plane.gd": "89d21ef17ec8e258513c90d30a40eb9b8284d0e3d246bf4059c57d4b5f829bfa",
+    "scripts/carrier_route.gd": "e42ecd8e8d54d8189c1258eb488d81bdeba1b5d0f26331941311a260c116ed6c",
+    "scripts/combat_tint.gdshader": "51d8640c68faee38fc3072f95053ed12f5d40e369fc4ba1d52428e5bde93d393",
+    "scripts/contact_shadow.gd": "ef384880665827ec7bddc9954bce972f13106c74aee14b367489c48df2cbfd0c",
+    "scripts/directional_carrier.gd": "d6f6e3c4a82978205dfb62e483839949c37b05dbd5e88ce3f87a9f755a23f16c",
+    "scripts/level_catalog.gd": "4dfe32e61b3e34ad2ced7f25e5c662149f220739cce198316547eb4c231b1a96",
+    "scripts/play.gd": "7d0a6c1edb53411b701690b0f731e856390cbed4447bd43a18dee8b9afc52df9",
+    "scripts/rescue_fx.gd": "baecb8688b4a9992edb84860ec2dbee4d4406e9a2e5c9e3433d236b69e77f89f",
+    "scripts/rescue_rules.gd": "14a5b20efdf237fbf271ea8749b35580d012485aee8a529a30e53487852c7c23",
+    "scripts/scene_layout.gd": "e0f544557962f97636690498c3e5df24a7d1475c29a3a19edc9cff2b7ee0024a",
+    "scripts/serpent_view.gd": "6bf8f148984bfd80f2e7c7988dfa00a45c1549e7277e0b6d4f97bf833630323a",
+    "scripts/startup.gd": "90c95be393f559cfddc211fc4e14776fda8b5a6c91100d04f81946f289c212fb",
+    "scripts/ui_icon.gd": "6ce842b5fd26bf5a5d61c3340094dca724b056d6166b899173d17a230dccaf75",
+    "scripts/ui_skin.gd": "7e4c3ec533912b39a8745c82d52e57f630c464a45194aa4dba574e580d7dc319"
+  },
+  "audio": {
+    "accepted": 91,
+    "active_sfx": 1,
+    "audio_driver": "Dummy",
+    "backgrounded": false,
+    "dropped": {},
+    "game_paused": true,
+    "load_errors": [],
+    "loaded_cues": 14,
+    "master_muted": false,
+    "master_volume_db": 0.0,
+    "max_sfx": 12,
+    "music_bus": "AntMusic",
+    "music_bus_muted": false,
+    "music_bus_volume_db": -3.09803915023804,
+    "music_ducked": true,
+    "music_muted": false,
+    "music_paused": false,
+    "music_player_gain_db": -1.0,
+    "music_playing": true,
+    "music_position": 32.0667572021484,
+    "music_preview": false,
+    "music_volume": 0.7,
+    "output_device": "Default",
+    "sfx_bus": "AntSFX",
+    "sfx_bus_muted": false,
+    "sfx_bus_volume_db": -3.09803915023804,
+    "sfx_muted": false,
+    "sfx_volume": 0.7
+  },
+  "recording": {
+    "frames": 1073,
+    "fps": "30/1",
+    "duration_seconds": 35.766667,
+    "unsped": true,
+    "uncut": true,
+    "audio_boundary": "actual captured mix; cloud Dummy output, not human listening or device validation"
+  }
+}

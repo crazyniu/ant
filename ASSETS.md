@@ -1,71 +1,149 @@
-# Current asset manifest and placement contract
+# Current assets and placement contract
 
-All paths are relative to this Godot project. Runtime resources use local `res://` paths, never generation-workspace paths or private download URLs. `docs/asset-manifest.json` records current SHA-256, file sizes, actual bitmap dimensions, source provenance, alpha measurements, region manifests and placement anchors.
+Scope: current single-ant serpent gameplay plus adventure/preparation/shop UI, 2026-10-21. Paths below are project-relative. Production resources use local `res://` paths, not generation-workspace paths or private download URLs. Native dimensions below were read from the actual PNG files; display size and viewport resolution are separate facts.
 
-## Current image inventory
+## Source records and rights
 
-| Runtime image | Generation source / purpose | Actual pixels and transparency | Slice / anchor |
-|---|---|---|---|
-| assets/environment.png | exec-5634055f-4288-4140-bc62-3b3982342f36.png. Cohesive stone-bordered garden ground; no baked gameplay objects. | 940 × 1672 RGB, opaque. | Full logical canvas, origin (0,0), display 940 × 1672. The 1440 × 2560 viewport does not make this a native 2K source. |
-| assets/ants-atlas.png | exec-8ea19348-0b71-4a05-9207-5ca81df92a47.png. Six ground-facing color-matched ants. | 1536 × 1024 RGBA; 71.97% alpha=0. | data/ant-regions.json. Actual alpha >=4 connected silhouettes plus 7 px on every side. Ground carriers use a foot/contact anchor, not image top-left. |
-| assets/ui/fusion/beads.png | exec-663aa429-b489-40aa-ad2d-ed32f2306f4d.png. Six rounded-square physical bead materials. | 1536 × 1024 RGBA; 51.62% alpha=0. | bead-regions.json in the same folder; connected silhouettes +7 px. Independent live bead nodes use the common ground projection. |
-| assets/ui/fusion/audio-icons.png | exec-c382e307-3ead-4b39-ab24-b714f1768136.png. Standalone music-note and speaker emblems without tile frames. | 1774 × 887 RGBA; 80.57% alpha=0. | audio-regions.json in the same folder; connected silhouettes +7 px. Aspect-centered in separate 82 × 82 logical UI rectangles. |
-| assets/characters-atlas.png | exec-4a5f0290-36f9-43d7-8a1d-48701d181e0a.png. Existing dragon, princess/tower, cannon, nest and shields. | 1536 × 1024 RGBA; 51.20% alpha=0. | Seven distinct source rectangles in main.gd; explicit target rectangles. No equal-cell cuts. |
-| assets/ui/v03/game-skin-atlas.png | exec-c01d3f5f-3b82-4658-b582-d36206c99f47.png. Shared stone/ivory panels and four enamel tools. | 1254 × 1254 RGBA; 28.26% alpha=0. | regions.json game entries; panel patch margins are 64 source px. |
-| assets/ui/v03/settings-skin-atlas.png | exec-1a8975cd-4f75-4b03-8d31-e7a53f89175b.png. Shared modal panel, wood plaque, slider pieces, close and action. | 1254 × 1254 RGBA; 26.98% alpha=0. | regions.json settings entries; modal panel margins are 100 source px. Track, fill and knob are separate layers. Old music/sound tile and toggle slices are unused. |
-| assets/ui/v03/title-atlas.png | exec-59a7cd41-490a-4d87-a502-7c505882fdaf.png. Sixteen English sculpted ivory art titles. | 1254 × 1254 RGBA; 49.38% alpha=0. | title-regions.json. Alpha-derived word bounds with gutters, aspect-centered over a separate wood plaque. |
+- `assets/meta-ui/manifest.json` is the source record for the new meta UI: exact source filenames, SHA-256, native sizes, source regions, centered anchors and measured alpha evidence. `generation-prompts.json` retains generation provenance; `validation-report.json` describes asset-level checks.
+- `assets/serpent/serpent-atlas.json`, `nest-entry.json` and `reports/assets/serpent-actor-assets*.json` describe the default serpent/head/tail/armor/nest source regions, anchors, dimensions and provenance.
+- `assets/serpent/ice-serpent-atlas.json` and `reports/assets/ice-serpent-assets.json` record the independent `ice_crest` appearance, source/packed hashes, measured alpha regions, physical widths and chain-joint anchors.
+- `reports/assets/forest-traveler-assets.json` records the stationary traveler’s generated provenance, source/runtime hashes, measured alpha crop, ground anchor and physical/display widths; `data/scenes/forest-traveler.json` owns scene placement.
+- `assets/motion/ant-directions.json`, `data/ant-regions.json`, `assets/ui/fusion/*-regions.json`, and `assets/ui/v03/*regions.json` define current per-resource regions.
+- `docs/asset-manifest.json` is an older shared-art inventory. Its old board projection, total file count and automatic-team placement descriptions are **not** the current whole-build contract. Use the resource-specific manifests above and current renderer code for new serpent/meta assets. A package `SOURCE_MANIFEST.json` only establishes the exact snapshot for which it was generated; it must be refreshed for a new publication.
 
-These generation sources are from 2026-10-21. The current environment, ants, beads and audio emblems supersede the preceding loose image versions; old versions are archived outside this project. Existing shared actor and v03 UI atlases remain active current resources, not duplicate historical files.
+The PNG artwork was generated using the built-in image-generation service for this project. The shop design preview is a **reference only; user approval is not implied**. Generated provenance does not grant a new project license or constitute a legal-clearance warranty. No competitor image or complete concept screenshot is used as a runtime UI overlay. No project-wide open-source license has been selected. The bundled DejaVu font retains `licenses/DejaVu.txt`; public repository access alone is not a separate license grant.
 
-## Common ground and contact anchors
+## Current serpent, transport and shared UI images
 
-`scripts/board_plane.gd` defines one near-orthographic ground projection: top edge (175,350) to (765,350), bottom edge (130,890) to (810,890). Its column/row counts come from the logical board. A cell center is project(x+0.5,y+0.5). Gallery and playable beads, live carrier route points and FX cell positions consume this same projection; rules retain integer logical cells.
+| Project path | Actual native pixels | Mode | Current role / placement source |
+|---|---:|---|---|
+| `assets/serpent/environment.png` | 941 × 1672 | RGB | Current warm arena background for Home, map, preparation preview and play, including level 8. Scene actors are independent. |
+| `assets/worlds/forest-traveler.png` | 936 × 1204 | RGBA | Separate fixed level-8 guardian; measured crop/anchor in `reports/assets/forest-traveler-assets.json`, placement in `data/scenes/forest-traveler.json`. |
+| `assets/serpent/serpent-atlas.png` | 1303 × 1774 | RGBA | Eight yaw heads, one body bead, eight yaw tails; `serpent-atlas.json` owns regions and chain-joint anchors. |
+| `assets/serpent/ice-serpent-source.png` | 1122 × 1402 | RGBA | Preserved generated source for the ice-crest head, body and tail; provenance in `reports/assets/ice-serpent-assets.json`. |
+| `assets/serpent/ice-serpent-atlas.png` | 1280 × 1600 | RGBA | Packed eight-yaw heads, faceted body and eight-yaw tails for level 7; `ice-serpent-atlas.json` owns regions, physical scale and chain anchors. |
+| `assets/serpent/serpent-armor-atlas.png` | 1536 × 748 | RGBA | Separate intact/cracked armor layers; per-entry paths and anchors in the serpent manifest. |
+| `assets/serpent/nest-entry.png` | 905 × 529 | RGBA | Low ground entrance, not a raised doorway; `nest-entry.json` owns the foot anchor. |
+| `assets/motion/ant-directions.png` | 1774 × 887 | RGBA | Eight-yaw worker identity used by directional carriers and current ant previews; sibling JSON owns physical scale and anchors. |
+| `assets/ants-atlas.png` | 1536 × 1024 | RGBA | Shared static ant identity/portrait atlas; `data/ant-regions.json`. Its presence does not imply automatic teams. |
+| `assets/characters-atlas.png` | 1536 × 1024 | RGBA | Shared cannon and existing princess/tower art. Old single-dragon/shield slices remain in the atlas but are not the current segmented enemy. |
+| `assets/ui/fusion/beads.png` | 1536 × 1024 | RGBA | Independent board, carried and inventory bead materials; `bead-regions.json`. |
+| `assets/ui/fusion/audio-icons.png` | 1774 × 887 | RGBA | Independent music and speaker emblems; `audio-regions.json`. |
+| `assets/ui/v03/game-skin-atlas.png` | 1254 × 1254 | RGBA | Shared nine-slice panels and icons; `regions.json`. Old tool art is not evidence that old tools are playable. |
+| `assets/ui/v03/settings-skin-atlas.png` | 1254 × 1254 | RGBA | Panel, plaque and separate track/fill/knob pieces; `regions.json`. |
+| `assets/ui/v03/title-atlas.png` | 1254 × 1254 | RGBA | Existing sculpted English titles, independently measured crops; `title-regions.json`. |
+| `assets/startup/title.png` | 1774 × 887 | RGBA | ANT RESCUE brand element; one aspect-fitted image, not a screen or nine-slice. |
 
-A ground-ant group's origin is its ground/contact point. `ground_ant` positions that group at the projected location, creates `FootShadow` at local (0,0), and places the aspect-centered ant sprite at (-0.5d,-0.84d) with size (d,0.86d), where d is the diameter. Current source-alpha measurement puts the painted foot baseline within 0.102 logical px of group/shadow origin at d=39. Scale and route interpolation act on the whole group. Queue, slot and modal ant portraits still use explicit UI rectangles; they are not ground actors.
+`assets/environment.png` is the older **940 × 1672 RGB** ground plate retained for legacy/gallery references. Do not confuse it with the current `assets/serpent/environment.png`. The old gallery and its whole-dragon effects are not the current gameplay composition or acceptance target.
 
-A board bead uses span=BoardPlane.footprint(x,y)×0.98, position=center−(span.x×0.5,span.y×0.57), and draw size (span.x,span.y×1.07). Stock and carried beads use the same generated color materials at explicit local sizes. Beads are independent live nodes, not a baked board image. Soft contact shadows are drawn by `contact_shadow.gd`; the ant atlas is not positioned by its visual center. The nest route endpoint is explicitly (467,1074), outside the regular board cells.
+## New meta UI inventory
 
-## Other runtime assets and provenance
+All following paths are under `assets/meta-ui/`. The three generated sources and eight independent crops are retained as production source assets, not historical alternatives.
 
-- assets/fonts/Title.ttf is DejaVu Sans Condensed Bold from the installed font package. License: licenses/DejaVu.txt. Dynamic counts and necessary functional copy remain real text.
-- assets/audio/ contains 15 locally synthesized originals: the full 40-second BGM loop as native Ogg Vorbis and 14 unchanged PCM WAV cues. The lossless BGM master is archived outside the runtime source, with its hash and reproducible encoding recorded in the audio README. Source, reproducible hashes and validation are in assets/audio/generate_audio.py, manifest.json and README.md. There are no external samples or borrowed melodies.
-- Small directional/lock glyphs and contact shadows are original Godot drawing code. Bead appearance now uses the current generated material atlas rather than the preceding procedural rounded-square drawing.
-- No complete concept screenshot or competitor artwork is a runtime overlay. AI image provenance is not a separate legal warranty; applicable service terms still apply. The font license is included.
+| File | Actual native pixels | Mode | Layer / role |
+|---|---:|---|---|
+| `shop-workshop-background.png` | 941 × 1672 | RGB | Opaque workshop plate behind independently composed product/training UI. No numbers, prices, cards, buttons or characters are baked into it. |
+| `titles-atlas.png` | 1024 × 1536 | RGBA | Source atlas for exactly ADVENTURE, READY, ANT SHOP, WORKER, SWIFT and TRAINING. |
+| `adventure.png` | 964 × 221 | RGBA | Separate adventure page title. |
+| `ready.png` | 607 × 208 | RGBA | Separate preparation page title. |
+| `ant-shop.png` | 908 × 227 | RGBA | Separate shop title. |
+| `worker.png` | 774 × 214 | RGBA | Separate worker name art. |
+| `swift.png` | 544 × 198 | RGBA | Separate Swift name art. |
+| `training.png` | 845 × 209 | RGBA | Separate shared-training title. |
+| `icons-atlas.png` | 2172 × 724 | RGBA | Source atlas for the wing ornament and coin. Its width exceeds 2048; do not describe the entire asset pack as ≤2048 per axis. |
+| `swift-wing.png` | 607 × 610 | RGBA | Separate gold wing/speed badge, no ant baked in. It does not imply flight gameplay. |
+| `ant-coin.png` | 582 × 584 | RGBA | Independent ant-emblem coin, no amount baked in. |
 
-## Current validation
+Meta crops are measured from alpha > 4 content with an 8-native-pixel margin, not equal rows/columns. The original source RGBA is retained unchanged in each crop; low-alpha generator noise is not used to define the visible bounds. The manifest records source `[x,y,width,height]` and default centered anchors. Crop borders have recorded maximum alpha 0 or 1. Transparent RGB is not a visible background.
 
-`reports/assets/reference-audit.json` and REPORT.md record the pre-startup eight-PNG fusion slice audit. Its slice results apply to those unchanged atlases; its file count/hash snapshot is not the newer startup snapshot. The current package inventory is SOURCE_MANIFEST.json; docs/asset-manifest.json has refreshed current hashes and the additional original brand image. Original slice-audit findings:
+The background is **not native 2K** and no upscale is claimed. A 1440 × 2560 viewport may scale a 941 × 1672 plate; it cannot add generated detail. Titles and icons preserve aspect ratio and should ordinarily be displayed at or below native resolution.
 
-- That audit covered eight runtime PNGs and 36 manifest entries. The startup title is a ninth runtime PNG, fitted whole with preserved aspect ratio, not a newly sliced atlas.
-- All 57 slices are nonempty, within source bounds and pairwise nonoverlapping: 36 existing UI/title slices, 14 current ant/bead/audio slices and seven actor slices.
-- All 14 current silhouettes use actual alpha >=4 connected bounds plus exactly seven source pixels per side, not equal-grid slicing. Boundary alpha is at most 2; no neighboring substantial silhouette or clipped substantial component was found.
-- The 36 existing UI/title crops have alpha <8 on their boundaries. Keep AtlasTexture.filter_clip enabled; imports disable mipmaps and enable alpha-border correction.
-- The existing blue shield is still a tight crop at its left alpha edge. Its substantial silhouette is retained, but smallest-display visual review remains appropriate. No claim is made that every faint low-alpha shadow pixel outside a crop is preserved.
+## Composition and interaction layers
 
-Unused named slices within required atlases are game/primary, game/secondary, settings/music, settings/sound, settings/off, settings/on, settings/row and titles/CONTINUE. Removing these names would not shrink the source PNGs. Validation SVGs in reports/rules/ remain referenced by the three level thumbnail fields.
+Keep scene/background, paths, targets, ant/serpent actors, panels, ornaments, title sprites, dynamic text and input hit targets independent. Do not slice a complete concept screen into a fake fullscreen UI.
 
-Source validation is not final GL visual approval, natural manual playtesting or target-device performance acceptance. The coherent direction is approved; the current fusion batch still has its own render-review gate.
+- Adventure: current arena background, independently drawn route/nodes, live completion/unlock state, live points and separate page title. Node panels must not stretch their corner treatment, and the route must remain visible behind nodes.
+- Preparation: a level-derived preview and real HP/supply/target information, separate type cards/previews, current ownership/selection and a real start action. Five-color required-hit counts use three columns and two rows within the panel, not an overflowing fifth column. This informational layout does not change the five equal-width live dispatch buttons in one row. Preparation is a full page, not a decorative modal substitute.
+- Shop: workshop background → nine-slice panels → existing ant actor → separate Swift wing badge → title sprites → live balances/prices/levels/effects → button hit targets. The coin has no baked price. Product card layout is not user approval of the concept.
+- Result: the actual persisted receipt owns base points, time bonus and credited total. A coin/title image never owns economic state.
+- Settings: music/sound emblems, slider track, fill and knob are distinct. Numeric/function state stays in real controls. Decorative artwork must ignore mouse input.
 
-## Source-package boundary
+Preserve `AtlasTexture.filter_clip`, measured per-resource bounds, alpha-border handling and aspect-fitted word art. Nine-slice panels use uniform corner scale; never stretch lettering or a complete panel bitmap to simulate a new layout. Do not infer source crops from equal atlas cells.
 
-Keep current assets, source, fonts/licenses, levels and thumbnail dependencies, tests and compact reports. Exclude `.godot`, screenshots/evidence, design/history/archive folders, generation working folders, temp files, nested ZIPs and movie captures. Godot can regenerate `.godot` locally without making it part of the source package.
+## Ground and actor anchors
 
-The current source ZIP is a tested snapshot, not the live edit directory. Its external package-manifest.json records contents and SHA-256. Rebuild only after the batch render/behavior check; archive the preceding ZIP outside this project. In-progress campaign drafts remain outside the tested P3 snapshot until their own validation.
+`board_plane.gd` is the current presentation source. It uses a 505-pixel top edge inside the 530-pixel bottom edge, bottom y=850, and a grid-dependent fitted height to keep the current sparse 10 × 8 boards near-square. See `docs/BOARD_PLANE.md`. Earlier (175,350) / (130,890) coordinates are superseded. Rules remain integer cells; presentation cannot alter reachability or delivery time.
 
-Current screenshots live separately from project source. Capture output uses `ANT_RESCUE_EVIDENCE_DIR` when set, otherwise Godot's `user://evidence`. Current evidence locations are described in README.md.
+The nest manifest places the center of the open hole at foot anchor `(454,264)` in its 905 × 529 image. The current recommended world foot is `(467,1008)` and physical width is 869 source pixels. Scale uniformly from that physical width and draw behind ants. Do not align by the image's lower border or use the old `(467,1074)` endpoint.
 
-## Carrier and dragon motion resources
+Directional ant views use measured foot/limb anchors and common physical scale, rather than rotating an entire card or normalizing every view to equal projected width. The shader recolors body material while retaining dark bands and eyes. Carried beads are separate nodes. Runtime routes, heading changes, pickup and unloading presentation follow the authoritative task's fixed timing.
 
-The original six ant regions remain the only carrier bitmap source. `scripts/carrier_motion.gdshader` locally articulates measured near/far leg regions, thorax and antennae without sampling adjacent atlas cells; `scripts/carrier_motion.gd` applies independent per-actor uniforms. Runtime carriers are 48 logical pixels wide, with a 24-pixel carried bead. The grounded shadow and group translation/depth scale stay owned by `play.gd` and `BoardPlane`. A finite pickup crouch/turn uses the authoritative hold interval; loaded stride is 1.65 Hz versus 2.15 Hz outbound. Supplied simulation time freezes gait during pause. No new image, crop or license is introduced.
+Serpent head/tail views use chain-joint anchors and yaw selection, not whole-card rotation. Body beads remain independently positioned along the finite route. Intact/cracked armor is an overlay, not a recolored body or another damage event. Rendering a gap close cannot move authoritative head progress. See `reports/assets/serpent-actor-assets.md` for the bounded crop/anchor audit.
 
-The existing dragon region uses its foot pivot (220,193). `rescue_fx.gd` presents a 1.60-second fatal-hit stop, stagger, fall, landing dust and settle; only its final 0.30 seconds fade. The actual rule final hit saves victory immediately. Presentation completion gates only the result overlay and cannot change win/loss or repeat a save.
+## Font, sound and procedural components
 
-The dragon uses a bounded flat 32×24 2D mesh (825 vertices) over the unchanged atlas region. `combat_tint.gdshader` forward-deforms head, torso and wing regions by different amounts while retaining the planted paw band. The outer tilt is limited to 0.045 radians and settling to 0.035; it is not a whole-card flip. No texture inverse-warp or new 3D model is used.
+- `assets/fonts/Title.ttf`: DejaVu Sans Condensed Bold; bundled license `licenses/DejaVu.txt`. Balances, prices, levels, HP and remaining counts are real text, never image placeholders.
+- `assets/audio/`: original locally synthesized 40-second Ogg Vorbis BGM and 14 PCM WAV cues. Source generation, hashes and encoding details are in its README, manifest and generator. No borrowed samples or recordings are bundled. Retained old tool cues do not prove those tools are available.
+- Small control glyphs, map paths, contact shadows and bounded local effects are original Godot drawing/shader components. They are separate from generated image provenance.
 
-## Reusable interaction and combat presentation
+## Validation and publication boundaries
 
-`scripts/ui_motion.gd` owns cancellable button art, modal and hint tracks. `scripts/play.gd` binds simulation-clock team transfer, queue refill, finite pickup lift and stock accents. Existing textures/regions/anchors remain unchanged. `scripts/rescue_fx.gd` draws a 36-logical-pixel shaded projectile, continuous four-layer tapered trail and bounded local impact. These are original procedural components, not new externally licensed assets. Contracts and current evidence scope: `docs/INTERACTION_MOTION.md`.
+Asset-level reports establish only their recorded files, measured dimensions/regions and source relationships. The old eight-PNG fusion audit and `docs/asset-manifest.json` are not a current total-file inventory. Current meta-asset checks are not a final assembled GL, native input, human listening or device-performance pass.
 
-## Startup brand
+The earlier meta-UI GL capture contains five 1440 × 2560 pages after the map/preparation/shop fixes. Developer inspection confirmed visible map paths, correctly proportioned nodes, reduced preparation copy, disabled unaffordable shop buttons and an independent fixed-corner Swift badge. No user visual approval is claimed, and these captures do not validate later ice-crest or traveler scenes. Source, test, asset, rendered-scene and human-acceptance evidence remain separate; see `docs/PUBLIC_VERIFICATION.md`.
 
-`assets/startup/title.png` is the current original AI-generated ANT RESCUE title (1774×887 RGBA, actual alpha bounds 0,0–1761,873). It is kept as one transparent brand element, not a complete screenshot. Use aspect-preserving fit, no nine-slice; Home display is 740×370 logical units and native/shell startup uses the same source. Existing environment, dragon/tower/cannon, ants and beads remain independent nodes. Generation provenance and SHA-256 are in `docs/asset-manifest.json`. The generated intermediate source stays outside the project.
+Publish source/resources, runtime manifests, font license and appropriately scoped tests/reports. Exclude generated import caches, temporary profiles, captures/videos, archived concepts and generation workspaces. Refresh package inventory after code/assets change. Old campaign files that remain in a development tree must not be described as the new single-ant campaign.
+
+## Ruins ground and fixed supply cart
+
+`assets/worlds/ruins-courtyard.png` is the original generated empty ground layer, native 941×1672. `assets/worlds/supply-cart.png` is a separate transparent cart crop, native 1247×942, derived from a 1433×1098 generated source. Crop bounds use alpha >1 to exclude isolated 1/255 noise; retained pixels preserve generated alpha. Width 168 logical pixels and measured wheel/contact anchor are configured in `data/scenes/ruins-cart.json` and `assets/worlds/manifest.json`. No character, bead or cannon is baked into the ground. Native bitmap detail is not claimed to be 2K merely because the viewport is 1440×2560.
+
+Generated using the built-in image tool: background prompt used the existing woodland asset only for style and a new spatial guide for a left-to-top open route, clear courtyard and bottom gateway; cart prompt requested one independent stationary wooden supply cart, upper-left light, same gentle overhead view, true alpha and no text/people/scene. No borrowed competitor artwork. These provenance records do not constitute a legal-clearance warranty.
+
+## Ice Valley ground and fixed winter camp
+
+`assets/worlds/ice-valley.png` is a native 940×1672 RGB empty snow-ground layer. Its finite cobblestone route runs on the right toward an upper-left camp platform; the nest gateway, cannon, bead grid, ants and serpent remain independently composed nodes. `assets/worlds/winter-camp.png` is a 1373×981 RGBA crop from a 1536×1024 generated source, measured alpha >1 bounds `[93,23,1466,1004]`. Retained alpha is unchanged. The contact anchor `[687,875]`, physical width 1373 and displayed width 170 are recorded in `assets/worlds/manifest.json` and `data/scenes/ice-camp.json`.
+
+Both were generated for this project using the built-in image service: the ground prompt specified existing gentle overhead/upper-left-light style, a distinct snow/pine/crystal border, empty central play area and a finite right-to-top road; the camp prompt specified one independent warm tent/lantern/bedroll grouping with real transparency and no people/text/UI. Source filenames are provenance identifiers, not runtime dependencies. No external artwork or legal-clearance guarantee is introduced. The two production files are sufficient current source resources; the rejected/temporary guide and raw generation workspace are not packaged.
+
+## Ice-crest serpent appearance
+
+Level 7 selects `serpent.art_profile="ice_crest"`; omission retains the default atlas and tint behavior used by levels 1–6 and 8. This is a separate white-horned broad-head/faceted-body silhouette, not a recolored default head. Preparation and play consume the same manifest. Snow/ice art introduces no freezing, slowing, extra health or alternate damage rule.
+
+The original 1122×1402 RGBA source is preserved. Seventeen components were measured at alpha >8, with a three-pixel contour margin and nearest-component fringe retained within two pixels; they were packed into 1280×1600 without resizing. Source rectangles are not equal atlas cells. Use the manifest's per-part regions and chain anchors, head physical width 292, tail physical width 240 and body physical width 226. Heads display at 84 logical pixels; body diameter retains the route-derived 35–62 range and tail width is body diameter ×0.84. Select the eight real yaw poses under fixed lighting, never rotate the whole head/tail card.
+
+The neutral body uses full-region luminance tint so RGBY gameplay colors remain distinct. Intact/cracked armor still uses `serpent-armor-atlas.png`; ordinary HP1 and armored HP2 semantics are unchanged. The 50 checks in `reports/assets/ice-serpent-test.json` cover profile selection, regions/anchors, yaw poses, default tint preservation and unchanged rule snapshots, not assembled GL appearance or final visual approval. Generated provenance and file hashes are recorded in `reports/assets/ice-serpent-assets.json`; they are not a legal-clearance warranty.
+
+## Fixed woodland traveler
+
+Level 8 reuses `assets/serpent/environment.png`; it does not introduce a replacement ground image. The traveler is an independent transparent sprite used by preparation, play and the guardian result. It remains fixed on the upper-left platform, separate from the finite enemy road, bead grid, cannon and carriers. Purple uses the existing supported color rendering, not a new damage or armor rule.
+
+`reports/assets/forest-traveler-assets.json` records a 1145×1374 RGBA generated source and a 936×1204 runtime image. Crop bounds `[132,91,1068,1295]` are `[left,top,right,bottom]`, measured from the largest actual alpha >8 contour, with original edge alpha retained within two pixels and a four-pixel transparent margin. This is not an equal-cell crop, semantic repaint or background removal based on color.
+
+Use local ground anchor `[498,1186]`, physical width 928 source pixels and display width 88 logical pixels. `data/scenes/forest-traveler.json` places that anchor at world foot `[155,182]`; scale the whole sprite uniformly by `88/928`, not by its transparent canvas width. Its optional `contact_shadow=[24,7]` is a separate ground-contact ellipse centered at the same foot, not baked into the sprite. Boots and staff-tip contact follow the measured anchor.
+
+The artwork was generated from project-owned woodland/environment and tent references using the built-in image service, not competitor artwork. Generated provenance is not legal clearance or a project-wide license grant. Actual level-8 GL review, human visual approval, native input and device/audio acceptance are not established by the asset manifest or headless scene checks.
+
+
+## Ruins carapace serpent appearance
+
+Level 9 selects `serpent.art_profile="ruins_carapace"`. Its broad blunt nose, short central horn, plated cheeks and rounded heavy shell silhouette are independent artwork, not a color change to the default or ice-crest head. Preparation and gameplay read the same whitelist-selected manifest; unsupported profile IDs fail validation. The carapace look is presentation, not extra HP or a new enemy skill. Only explicitly armored segments use the existing intact/cracked HP2 overlay; ordinary body segments still have HP1.
+
+`assets/serpent/carapace-serpent-source.png` preserves the generated 1122×1402 RGBA source; `carapace-serpent-atlas.png` packs 17 measured opaque components into 1280×1600. Alpha >8 identifies actual contours, original fringes are kept within two pixels of their nearest component, and three transparent pixels pad each crop. Regions are measured, not obtained by uniform source-cell division. Each head/tail has its own chain-joint anchor. The shared physical widths are 310 for heads, 273 for tails and 252 for the neutral body. Heads display at 84 logical pixels, bodies use the established route-dependent 35–62 diameter and tails use body diameter ×0.84.
+
+Eight head and eight tail yaw views retain fixed upper-left lighting. Tail manifest direction denotes movement direction, so the visible tip points opposite it. Do not rotate flat sprites to fake yaw, normalize each projected view to the same width, or place at transparent canvas centers. The body uses the existing luminance-color shader; color and armor remain distinct rule information. Source provenance, crop/anchor records and hashes are in `reports/assets/carapace-serpent-assets.json`; the bounded 50-check asset report does not establish assembled GL or human visual acceptance. The built-in image service used the project's existing ice-crest sheet only as style/camera/layout reference. No competitor asset, legal-clearance warranty or project-wide license grant is introduced.
+
+
+### Six-color Snow Courtyard reuse
+
+Level 10 uses the existing `assets/worlds/ice-valley.png`, `assets/worlds/winter-camp.png`, `assets/serpent/ice-serpent-atlas.{png,json}`, `assets/motion/ant-directions.{png,json}` and `assets/ui/fusion/beads.png`/`bead-regions.json`. No new raster assets, altered alpha cuts, licensing claims or native-resolution claims are introduced. White is an existing material/tint selected by real level data. `data/scenes/ice-snowpass.json` changes only stock anchors to two rows; existing target and actor physical anchors remain authoritative.
+
+
+### Woodland Branching Crossing reuse
+
+Level 11 uses the existing woodland ground `assets/serpent/environment.png`, fixed traveler `assets/worlds/forest-traveler.png`, default serpent and armor atlases, eight-direction carrier atlas and fused bead sheet. `data/scenes/forest-traveler.json` retains all measured foot, chain, board-plane and physical-scale anchors. No new generated artwork, alpha crops, texture normalization or rights claims are introduced. The level changes occupied cells, segment combinations and authored input routes, not bitmap composition.
+
+
+### Split Seal reuse
+
+Level 12 selects unchanged `assets/worlds/ruins-courtyard.png`, `assets/worlds/supply-cart.png`, `assets/serpent/carapace-serpent-atlas.{png,json}`, the existing armor overlay, eight-direction ants and fused bead sheet. It uses `ruins-cart.json` anchors, not the center-entrance fork geometry. The five-color UI, including blocked purple, is generated from actual data. No new source images, cuts, resolution promises or rights claims are added.

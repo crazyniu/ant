@@ -1,0 +1,208 @@
+{
+  "schema_version": 3,
+  "level_id": "serpent-08",
+  "level_number": 8,
+  "title": "Traveler\u2019s Twin Groves",
+  "width": 10,
+  "height": 8,
+  "palette": {
+    "R": "red",
+    "B": "blue",
+    "G": "green",
+    "Y": "yellow",
+    "P": "purple"
+  },
+  "grid": [
+    "..........",
+    "..........",
+    "..........",
+    "..........",
+    "...YG.RGY.",
+    "..RBY.YPB.",
+    "..BPG.GBR.",
+    "..PYR...P."
+  ],
+  "segments": [
+    {
+      "id": "serpent-08-s01",
+      "color": "purple",
+      "kind": "armored",
+      "hp": 2
+    },
+    {
+      "id": "serpent-08-s02",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-08-s03",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-08-s04",
+      "color": "blue",
+      "kind": "armored",
+      "hp": 2
+    },
+    {
+      "id": "serpent-08-s05",
+      "color": "yellow",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-08-s06",
+      "color": "purple",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-08-s07",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-08-s08",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-08-s09",
+      "color": "blue",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-08-s10",
+      "color": "yellow",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-08-s11",
+      "color": "purple",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-08-s12",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-08-s13",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    }
+  ],
+  "serpent": {
+    "head_start_s": 56.0,
+    "goal_s": 130.0,
+    "speed_units_sec": 1.2333333333333334,
+    "pitch": 4.0
+  },
+  "parameters": {
+    "max_inflight_ants": 4,
+    "projectile_flight_sec": 0.45,
+    "cannon_cooldown_sec": 0.65
+  },
+  "transport": {
+    "carrier_type": "worker",
+    "outbound_speed_cells_sec": 2.5,
+    "returning_speed_cells_sec": 2.0,
+    "pickup_pause_sec": 0.3,
+    "unload_pause_sec": 0.2,
+    "entrance_cell": [
+      5,
+      8
+    ]
+  },
+  "tools": [],
+  "solution": {
+    "kind": "timed_single_click_no_tool_twin_groves",
+    "minimum_input_gap_sec": 1.4,
+    "inputs": [
+      {
+        "at_sec": 0.0,
+        "color": "green"
+      },
+      {
+        "at_sec": 1.4,
+        "color": "purple"
+      },
+      {
+        "at_sec": 2.8,
+        "color": "blue"
+      },
+      {
+        "at_sec": 4.2,
+        "color": "purple"
+      },
+      {
+        "at_sec": 5.6,
+        "color": "red"
+      },
+      {
+        "at_sec": 7.0,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 8.4,
+        "color": "green"
+      },
+      {
+        "at_sec": 9.8,
+        "color": "purple"
+      },
+      {
+        "at_sec": 11.2,
+        "color": "blue"
+      },
+      {
+        "at_sec": 12.6,
+        "color": "red"
+      },
+      {
+        "at_sec": 14.0,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 15.4,
+        "color": "green"
+      },
+      {
+        "at_sec": 16.8,
+        "color": "blue"
+      },
+      {
+        "at_sec": 18.2,
+        "color": "red"
+      },
+      {
+        "at_sec": 19.6,
+        "color": "purple"
+      }
+    ]
+  },
+  "validation_scope": "Independent woodland traveler candidate: Worker Lv.1, no upgrades, bonuses, ads, tools or new mechanisms. Offset two-island purple-color lesson. Rule, composed-scene and runtime evidence have separate scopes; human balance and device acceptance are not implied.",
+  "content_version": "forest-traveler-20261021.2",
+  "rewards": {
+    "fast_seconds": 27,
+    "normal_seconds": 40
+  },
+  "region_id": "forest",
+  "boss_profile": "armored_serpent",
+  "defense_target": {
+    "id": "traveler",
+    "display_name": "Traveler",
+    "fixed": true
+  },
+  "scene_layout": "res://data/scenes/forest-traveler.json"
+}

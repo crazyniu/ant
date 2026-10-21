@@ -1,30 +1,190 @@
-# Public snapshot verification
+# Current verification boundary
 
-Snapshot: 2026-10-21, Godot 4.6.3 cloud-developed Game 2.
+Updated 2026-10-21 for the bounded Caravan Split Seal continuation. Current immediate published baseline: `f7c09c59f9c729cb3cb568e37b7e557890c1c283` (eleven current single-ant levels and the single-level authoring entry). Published core baseline: [`125646450cd1bf5e90d6d7cbc833ca34ff47bd75`](https://github.com/crazyniu/ant/commit/125646450cd1bf5e90d6d7cbc833ca34ff47bd75). Current development source adds API 3.1.0 growth integration; do not claim it is byte-identical to the frozen API 3.0.0 recording.
 
-## What is unchanged
+## Existing bounded reports
 
-All 238 production script/shader, scene, resource/import, level-data and project-configuration files match the tested frozen handoff byte for byte. This includes startup/Home/threaded Loading, enlarged icon-only outcome actions, and the BGM lifecycle/gain/focus fix. Gameplay rules and timing were not changed for publication.
+The following records were read for this documentation update. They are retained test evidence, not tests newly rerun by editing this document. Later changes to covered code require revalidation.
 
-The public preparation removes private delivery instructions, private specification URLs and old output logs. Five review/capture helpers now write to portable `user://review-evidence/` paths rather than a particular machine's directory; one preview creates its output directory. Documentation and ignore rules are public-facing. The five changed test scripts passed Godot check-only parsing. This is not a new gameplay or visual test pass.
+| Source | Recorded result | What it establishes |
+|---|---|---|
+| `tests/test_ant_meta_flow.gd` → `reports/ui/ant-meta-flow.json` | 18 checks, no failures | Headless production startup/Home → map → preparation → loading/play → final-hit reward → shop purchase → map → unlocked next-level entry; real 150-point first receipt, duplicate-credit/debit protection, insufficient balance, preparation/shop return-state preservation and actual ×1.05 rules loadout. |
+| `tests/test_ant_growth_integration.gd` → `reports/rules/ant-growth-integration.json` | 133 checks, no failures | Same authored input sequences on three current levels, baseline worker versus Swift Lv.4; earlier delivery and final hit, conserved resources, ≤4 transport tasks, frozen loadout and unchanged enemy speed. |
+| `tests/test_ant_progression.gd` → `reports/rules/ant-progression-tests.json` | 1,062 assertions, passed, no failures | Local progression service: costs/rewards, persistence/restart, duplicates, atomic purchase rollback/retry, frozen loadouts, navigation, injected storage failures, corrupt/future records and rejection of fake ad rewards. |
 
-## Existing evidence applicable to this runtime
+The flow test invokes production signals/methods and automatically replays authored inputs. It is not native mouse or touchscreen acceptance and does not establish that a human played the game. The service suite does not itself test composed UI, sound, the live ad SDK or economy balance. Do not add these different scopes into a “whole-game checks passed” claim.
 
-The frozen pair of source/resource archives was independently extracted to an empty directory, all 370 inventory entries matched their hashes, and Godot 4.6.3 imported successfully with exit 0 and no parse/script errors. Its configured startup -> Home -> real Loading -> ready play smoke passed in both catalogs: 3 validation entries with 216 live initial beads, and 30 candidate entries with 62 live initial beads. Checks used isolated profiles.
+## Measured growth result
 
-A same-version 57.5-second uncut normal-1x Godot run traversed fresh startup, Loading, Home, picker, tutorial, play, pause/Home, Settings, actual authored selections, natural final hit and Next. Output was 1440×2560 at 24fps. Final hit was 42.324286 simulated seconds; victory persisted and the conservation error list was empty. Result actions measured 560×118 logical units, scale 1, opacity 1.
+All times below are authoritative simulation seconds from the three-level growth report, not video duration. Both loadouts use the same authored inputs and unchanged enemy speed.
 
-The actual movie's no-input Home interval had BGM-only RMS -21.80 dBFS, peak -12.09 dBFS and zero clipped samples. Correlation with the original OGG was 0.9941. Result BGM continued with modal duck. The source OGG and all audio resources are unchanged; no replacement soundtrack was added to that evidence.
+| Current level | Worker Lv.1 final hit | Swift Lv.4 final hit | Beads remaining in both solves |
+|---|---:|---:|---:|
+| serpent-01 | 19.950000 | 18.958697 | 6 |
+| serpent-02 | 26.450000 | 25.210871 | 4 |
+| serpent-03 | 27.350000 | 25.863045 | 6 |
 
-Bounded existing assertions: loader 64; startup normal 211; startup CLI isolation 26; audio service 157; actual audio scene lifecycle 77; focus initialization 11. Their scope is described in the corresponding tests and audio documentation. The publication preparation reuses that runtime evidence because hashes match; it does not label every test in the repository as freshly run.
+First delivery is 3.200000 seconds for worker and 2.456523 for Swift Lv.4 in all three cases. These are measurable gains on the current slices, not a claim that 500-point Swift pricing or repeated progression is balanced for players.
 
-## Explicit limits
+## Visual and source status
 
-- Cloud audio output used Dummy. Digital PCM is not speaker/headphone or human sound-quality approval.
-- The prior all-30 scene sweep and per-level final-hit/contact certificates predate transport retiming. The current 33 core solutions and three scene bindings have their own scope in `reports/ui/motion-scope-handoff.json`; do not combine old results into a new full-suite claim.
-- Human difficulty testing, final visual acceptance, actual target-device performance and mobile exports remain unverified.
-- Reference ant-motion matching awaits decodable footage. An unavailable reference player did not establish observed movement or timing.
-- Process exit can emit resource-in-use/ObjectDB/static bead Texture RID diagnostics. Bounded startup teardown identified the static bead cache; the minimal smoke is not a new comprehensive leak audit.
-- Generated images, movies, caches and raw output logs are deliberately not committed. Relative evidence locations in historical scope reports describe generated outputs, not a dependency on private storage or proof that those files are included here.
+The actual production `tests/capture_ant_meta_pages.gd` capture produced **five 1440 × 2560 pages: Home, adventure map, preparation, shop and settings**. The separate `meta-pages.json` capture report records a fresh isolated profile, zero points, ready economy state and no fabricated balance. This is real scene rendering, not a concept screenshot. Capture artifacts are kept outside source.
 
-`SOURCE_MANIFEST.json` identifies this public candidate's exact files and SHA-256 values. `PUBLICATION_CHECK.json` records the bounded sanitization and dependency checks; neither is a claim that GitHub publication has already happened.
+The final capture completed after the map/preparation/shop revisions and was visually inspected on 2026-10-21. The observed fixes are a visible map path with non-stretched nodes; preparation without duplicate slogans, long descriptions or redundant carry/speed copy; boss/segment/target and per-color requirements presented with icons and real counts; neutral locked/disabled 500-point Swift and 100-point training actions at zero balance; and the Swift badge fixed separately in the card corner.
+
+No runtime script error was reported during this capture. A one-resource-still-in-use diagnostic remains on process exit, so this is not a completely clean shutdown claim. Capture/inspection is not user approval, native-input acceptance or a claim that the result screen was included. The published core's normal-speed level-2 recording establishes only its recorded source version; it cannot validate new meta screens, reward presentation or newer navigation changes.
+
+The capture reports 14 loaded sound cues, no load errors and BGM playing, with `audio_driver: Dummy`. These flags establish resource/lifecycle state, not audible speaker/headphone output, a recorded mixed soundtrack or human listening approval.
+
+A read-only source check for this documentation update matched all 11 meta PNGs to their manifest dimensions and SHA-256, and all eight independent crops to the exact corresponding source-atlas pixel regions. No asset was changed. `assets/meta-ui/validation-report.json` records the earlier asset-level checks. It does not replace a composed running-scene inspection, native input test or user approval. Its native dimensions, transparency and source-crop relationships can be verified independently of gameplay. A shop concept reference is not an approved final UI.
+
+Older `docs/`, `reports/campaign/`, automatic-team rule/UI reports and pre-serpent screenshots belong to superseded versions. In particular, historical 33-level runs, 20/30-ant teams, five-slot flows and old campaign candidate entry checks are not evidence for the current single-ant build. This document supersedes the prior automatic-team `PUBLIC_VERIFICATION.md`.
+
+## Reproduce bounded checks
+
+Import first with Godot 4.6.3. Use isolated writable HOME/XDG and `ANT_RESCUE_PROFILE_DIR` locations, not a player's profile. These scripts may refresh their corresponding report JSON files.
+
+```sh
+godot --headless --editor --path . --import
+godot --headless --path . --script tests/test_ant_progression.gd
+godot --headless --path . --script tests/test_ant_growth_integration.gd
+godot --headless --path . --script tests/test_ant_meta_flow.gd
+```
+
+The commands describe reproduction, not an assertion that they were all rerun after every code change. Keep the exact checked source revision with any new report or capture. Capture videos, generated `.godot` caches and temporary profiles are not source assets.
+
+## Still outside acceptance
+
+- Remaining content for the new 30-level single-ant campaign and fuller authoring workflow beyond the explicit single-level CLI.
+- Further distinct themed scenes and fixed targets beyond the current woodland, ruins and Ice Valley slices.
+- Optional junction combos, hidden supplies and real advertising SDK.
+- Natural human input, difficulty and economy tuning, full multi-level playthroughs.
+- Final visual approval, hardware sound listening, macOS-native execution and target-device performance.
+- A fresh whole-project regression for the final integrated source revision.
+
+No report in this batch authorizes or implies merge, release or deployment.
+
+## Ruins-scene continuation, baseline 8901b34
+
+This continuation adds exactly one region/guardian slice, not a new 30-level batch. `test_ruins_rules.gd` passes 707 bounded assertions: all 16 level-4 inputs accepted, 27.35-second final hit before the 66-second deadline, four-carrier maximum, eight remaining beads, per-color accounting, blocked yellow opening, and unchanged original three replay terminal times. `test_ruins_scene.gd` passes 83 checks with 3216 authored-route samples, a minimum 70 logical-pixel separation from the enemy route centerline, shared scene/guardian projection and bounded result/control sizes. The inspected ground hull is limited to this art/layout and solution, not every hypothetical future path.
+
+The final affected-scene headless run exits 0 with passing checks, but reports ObjectDB leaks and seven resources still in use at shutdown. The count varies between runs; assertions passing is not zero-error execution or proof that the earlier shutdown issue was fixed. Retained meta/growth/progression reports are not rerun as full suites by this scene batch.
+
+The final same-version real GL capture is 1440×2560 at 30 FPS, 33.53 seconds unsped and uncut: preparation → real Loading → level 4 → last hit → saved-cart result. Production timers reach victory at 27.35 simulation seconds. Developer image inspection confirms four-color preparation counts fit, the fourth color button is unobscured, the cart stays on its goal platform, and result guardian/coins remain inside their allotted bounds. Cloud X11 reported two `BadShmSeg` startup diagnostics; the capture continued to completion. This is recorded as an environment diagnostic, not hidden as a clean run. Human play, listening and device acceptance are not claimed.
+
+## Color-row presentation follow-up
+
+After that full journey, a presentation-only follow-up replaced the four-color 3+1 layout with a dynamically sized single row and replaced unreachable-color padlocks with a road-barrier symbol, desaturated ant and “No reachable bead” feedback. The current two-state GL capture is 1440×2560 and matches the updated `play.gd`/`ui_icon.gd` hashes. The previous 33.53-second journey retains the earlier button arrangement and is not represented as a new full replay of this UI follow-up.
+
+`test_color_row_layout.gd` passes 221 bounded checks: actual level-4 and level-1 Controls, equal non-overlapping targets, 44-point-equivalent minimum dimensions, rejected blocked clicks without reservations/count changes, valid single dispatch, modal guard, and pure geometry for 1–6 colors. It does not create new six-color content. The headless fixture reports three resources at shutdown; the two-state GL run reports one, plus unavailable ALSA output falling back to Dummy. These remain diagnostics, not hidden by passing assertions.
+
+`rescue_rules.gd` and all level configurations are byte-identical to the validated ruins journey. The 707-rule suite and the whole journey were not repeated for this button-only change. The screenshots are developer inspected, not final user/device acceptance.
+
+## Ice Valley continuation, baseline 2a5b0d1
+
+This batch adds one actual level, not an inherited 30-level validation. `tests/test_ice_rules.gd` → `reports/rules/ice-rules.json` passes 1469 bounded checks across the new level's exact-event and 100ms-step authored replays. Both use Worker Lv.1 and 16 inputs, win at 26.90 simulation seconds, keep four-carrier capacity, consume exactly four damage per color and leave eight beads. Red and green opening routes differ; gate cells remain occupied until pickup. The unchanged rules/level-4 hashes are checked; the old 707 and 30-level suites were not repeated.
+
+`tests/test_ice_scene.gd` → `reports/ui/ice-scene.json` passes 83 new-scene checks and samples 3216 points on the actual authored carrier routes. Minimum separation from the outer enemy route centerline is 75 logical pixels. The checks cover clear-ground bounds, shared preparation preview, fixed camp identity, real natural terminal state and bounded camp/coin result sizes. Headless exit is 0 but ObjectDB and two-resources-in-use shutdown diagnostics remain; no generalized leak fix is claimed.
+
+The same-version real GL 1× capture is 995 frames at 30 FPS, 1440×2560, 33.1667 seconds including preparation, actual game loading and result. Its gameplay final hit is at 26.90 simulation seconds. The production adapter successfully records completion and a first-clear receipt of 100+50=150 points. Prerequisite levels 1–4 are unlocked only in a labelled isolated capture fixture, with no points granted; normal profiles still need their saved unlocks. The result is an actual winter-camp result, not a princess replacement image over the old logic.
+
+Developer image inspection covers the initial snowfield, walking/pickup opening, projectile, shortened serpent and result: ants approach on the inner snowfield rather than the outside road; the camp sits on its top-left platform; nest/cannon remain independently anchored; four entrances stay in a single row; result content fits. Background native detail is 940×1672, not claimed native 2K. The actual recording reports no script error or resource-at-exit error; a cloud-driver V-Sync warning remains. Its final audio state is Dummy output, BGM playing and 14 cues loaded without load errors. Recorded mix and numerical audio checks are not human listening or hardware-output acceptance.
+
+All 14 recorded production code/config/art hashes must match the frozen candidate. Frozen source excludes captures, raw movies, temporary profiles and old generated variants. Natural user input, listening, difficulty/economy tuning, final visual approval and Mac/device acceptance remain separate.
+
+## Reusable single-level entry and ruins fork
+
+`tools/validate_serpent_level.gd` adds one explicit level-path check over the existing production rules. `tests/test_level_check_entry.gd` passes 16 checks using valid level 5 and deliberately invalid variants; the actual CLI call also exits 0 at the independently established 26.90-second final hit. This is not a solver, framework, automatic catalog sweep or visual editor. It never changes player progress.
+
+`tests/test_ruins_fork.gd` passes 54 bounded checks for level 6: 18-bead/12-HP budget, twelve authored Worker inputs, actual near red/far green/outer blue choices, pickup-only core access, one-point armor cracking, conservation, and 2412 sampled carrier points with minimum 129.79 logical-pixel enemy-centerline separation. The recorded rule final hit is 20.85 seconds against the 60-second contact time, leaving six beads. The reused rules and existing levels are unchanged. No earlier full historical suite was repeated.
+
+The same-version real GL capture completes in 812 frames at 30 FPS, 1440×2560, 27.0667 seconds without speed-up or cuts. Its production base-worker final hit is 20.85 simulation seconds, maximum observed transport occupancy is 3/4, six beads remain, the fixed cart is saved, and the real first-clear 150-point receipt and completion are persisted. Only prerequisite levels 1–5 are marked complete in an isolated fixture; no points are granted for those prerequisites.
+
+The first capture fixture omitted prerequisite 5 and was correctly blocked by the existing unlock guard. That incomplete recording was discarded from deliverables; the fixture now checks prerequisite/entrance success and exits quickly on failure. No gameplay unlock rule was weakened. Developer inspection of the corrected preparation, initial state, walking, projectile and result verifies shared scene projection, inner ant versus outer serpent route separation, the three-entry single row and bounded cart/coin/button dimensions. This is automated authored input, not natural human play or final visual acceptance.
+
+This actual GL recording reports only unavailable V-Sync control; no script or resource-at-exit errors were emitted. Its captured soundtrack includes the production mix while runtime output is Dummy; BGM playing, loaded cues and numerical levels do not establish hardware audio or human listening approval. All fourteen recorded production code/config/art hashes must match the frozen candidate. Older suites were retained, not rerun as whole-project validation.
+
+
+## Ice Supply Ridge and ice-crested appearance
+
+This independent level-7 continuation uses the existing ice ground/camp and unchanged authoritative rules. `tests/test_ice_supply_rules.gd` records 668 assertions: 21-bead / 17-HP per-color budget, red→yellow→blue pickup-only opening, the distinct green-side route, exterior blue supply, exact-event versus 100ms updates for both complete authored solutions, capacity rejection without hidden queue, conservation, four armor cracks, thirteen removals and finite-goal defeat. Both base Worker solutions finish at 27.85 simulation seconds before the 62-second contact time; four beads remain. Only this level was replayed, not the old campaign suites.
+
+`tests/test_ice_serpent_skin.gd` records 50 checks of explicit appearance selection, eight real yaw images rather than whole-head rotation, measured atlas region/anchor bounds, unchanged old default tinting, and identical rule snapshots for an appearance-only change. `tests/test_ice_supply_scene.gd` records 43 checks of the integrated level, shared preparation/camp/skin presentation and 3417 actual-path samples with minimum 75 logical-pixel separation from the outside enemy centerline. These three headless runs exit 0 without script or resource-at-exit diagnostics. The new source sheet was split by alpha components, not equal cells; packed pixel dimensions are not a claim of native 2K source art.
+
+The actual GL capture is 1024 frames at 30 FPS, 1440×2560, **34.1333 seconds** unsped and uncut, including preparation, real Loading and result. The production game wins at **27.85 simulation seconds**, observes at most four carriers, saves the winter camp and commits completion plus a genuine 100+50=150 first-clear receipt. Only prerequisite levels 1–6 are marked complete in a labelled isolated fixture; no prerequisite points or Swift upgrades are supplied. The result shows four unused beads, not a forced board clear.
+
+Developer inspection of preparation, initial, opened-core, shortened-snake/projectile and result images confirms independent head/body/tail assembly, visible color/armor distinctions, turning head pose, inner snowfield carrier paths, fixed camp support, four aligned entrances and bounded result art/buttons. This is not natural human input, final user art approval or hardware audio acceptance. The recorded runtime uses Dummy output with production BGM playing and 14 loaded cues; the captured soundtrack does not establish speaker/headphone listening quality.
+
+The real GL run has only the cloud-driver V-Sync warning, with no script or resource-at-exit diagnostic. Eighteen recorded production code/config/art hashes must match the frozen candidate. Existing levels 1–6 and `rescue_rules.gd` stay byte-identical to the published baseline. New skin loading, whitelist validation and tint support are presentation changes; there is no ice damage, freezing, slipping or movement-speed rule. No old 30/33-level report is current-mode evidence, and no merge/deployment is implied.
+
+
+## Level 8: Traveler’s Twin Groves
+
+This increment is based on published commit `f5b23489c404a778b0f5f1a0f5e899cba46deb79`. It adds one independently authored two-island woodland puzzle, a fixed traveler target and purple as the fifth existing resource color. The authoritative rules and levels 1–7 remain byte-identical; prior tests are retained, not represented as a new full-campaign pass.
+
+The current integrated level passes **834** bounded rule checks, production single-level CLI validation and **63** scene checks. The latter sample 3,015 carrier-ground positions, with minimum outer-road centerline separation 112.34 logical pixels, test actual five-color controls, and check the traveler’s opaque pixels do not intersect the speed control. The scene fixture exits 0 but emits ObjectDB and two-resource-in-use shutdown diagnostics; this is not described as a clean exit.
+
+The actual same-version GL capture is **941 frames at 30 FPS**, **1440×2560**, **31.3667 seconds** unsped and uncut. Production gameplay wins on final damage at **25.05 simulation seconds**; 15 authored single-ant inputs use the base Worker Lv.1, maximum occupancy is four carriers, six beads remain, and the saved traveler result commits a genuine 100+50=150 first-clear receipt. Only prerequisite levels 1–7 are unlocked in the labelled isolated fixture, without points or upgrades. This is automatic production input replay, not human play.
+
+The final ground-scale traveler uses its measured foot anchor and leaves the ×1 control clear. Preparation fits five real color requirements without cropping; gameplay uses five independent equal-width color buttons in one row. Developer inspection covered preparation, natural gameplay and the saved result. No user visual acceptance is implied. The GL log contains only unavailable V-Sync control, with no script or resource-at-exit diagnostic. Nineteen recorded production code/config/art hashes match the frozen candidate.
+
+The captured soundtrack is the production mix; runtime audio output is Dummy. Fourteen cues load and BGM is playing, but numerical sound levels or an encoded track do not establish hardware output or human listening quality. Human pacing, natural input, economy, final art and target-device checks remain separate. No new escort, bonus, combat mechanism, full30 completion, merge or deployment is claimed.
+
+
+## Level 9: Threefold Supply Steps
+
+The current increment is based on `9d3a2842dfdbb16fed12b9d80967541961208479`. It adds one four-color, three-lobed staged-opening puzzle on the existing central-entrance ruins scene, plus the independent eight-yaw carapace serpent appearance. The authoritative rules, prior appearances and levels 1–8 remain unchanged.
+
+The integrated candidate passes **1,466** bounded level-rule assertions, **50** appearance checks, **60** scene checks and production single-level CLI validation. Both 17-input Worker Lv.1 sequences finish at 28.75s, but they select different nearest yellow targets: the central blue core opens at 3.00s in the red-first route versus 7.20s in the blue-first route. Sixteen task paths are 3–5 cells and one is six cells; longest recorded all-color no-dispatch window is 0.80s. The scene check samples 3,417 carrier-ground positions with minimum enemy-centerline separation 129.79 logical pixels. These bounded measurements are not human strategy or balance approval.
+
+The same-version actual GL journey is **1,053 frames at 30 FPS**, **1440×2560**, **35.10 seconds** unsped and uncut, including preparation, actual Loading, production play and the result. The final damage occurs at **28.75 simulation seconds**, observes at most four carriers, leaves six beads, and saves the cart plus a genuine 100+50=150-point first-clear receipt. Only prerequisites 1–8 are completed in the isolated recording fixture, without points or upgrades. Twenty recorded production code/config/art hashes must match the frozen candidate.
+
+Developer inspection covered the new head/tail contact and turning posture, colored shell body and distinct intact/cracked HP2 overlay, cart footing, natural ground transport, four equal-width inputs and real preparation requirements. It does not establish user visual acceptance. The GL log contains the unavailable-V-Sync warning and a low-disk-space warning at 9.93GiB available; recording completed naturally, with no script or resource-at-exit diagnostic. The scene headless fixture exits 0 with passing assertions but reports ObjectDB and two resources still in use at shutdown; it is not called a clean exit.
+
+The soundtrack contains the real production mix while cloud runtime output remains Dummy. A playing BGM player and encoded mix do not establish human listening or hardware acceptance. No old30/33-suite result is reused as evidence for this model, and no full campaign rerun, new combat mechanic, final economy balance, merge or deployment is claimed.
+
+
+## Snow Courtyard, level 10 bounded continuation
+
+The current level-10 file is `8437a4ffc8c18f419f5d9c1d3a4f17c072bea6592503aef49d01c5d49574aaf5`. Rules remain API 3.1.0 with unchanged SHA-256 `14a5b20efdf237fbf271ea8749b35580d012485aee8a529a30e53487852c7c23`; previous levels 1–9 are unchanged and were not rerun. `reports/rules/ice-courtyard-level10.json` has 576 passing assertions for two real 18-input base-worker solutions, pickup-only openings, actual target differences, white 3/3 supply/damage, four-task capacity, final-hit semantics and accounting. Both reach final damage at 29.40s before the 64s goal, leaving seven beads.
+
+`reports/ui/snowpass-scene.json` has 134 passing checks, 3,618 carrier-ground samples and 75 logical pixels minimum enemy-centerline separation. It checks six equal-width input targets, six real preparation values and two-row inventory/FX positions that avoid the cannon and capacity HUD. Previous layouts retain exact stock positions when `columns` is omitted. Headless scene exit is 0 but retains ObjectDB/two-resources-in-use shutdown diagnostics; do not call that a clean shutdown. Single-level production CLI validation also passes.
+
+The same-source actual GL journey uses only isolated prerequisite unlocks for levels 1–9, no granted points or upgrades. It opens preparation, performs real loading, follows the authored 1× clicks, saves the final-hit victory and earns a real 100+50=150-point receipt. The uncut, unsped capture is 1,073 frames at 30fps, 35.766667 seconds, with a 1440×2560 viewport. This duration includes entry and settlement; it is not the 29.40s rule time. All 26 recorded production-source hashes match this build.
+
+Initial, walking, shortened-body and result frames were inspected: white beads remain warm ivory against blue snow, the white carrier retains darker contours, six entrances fit without overlap, the fixed camp sits on its platform, and the inner carrier ground remains separate from the enemy road. This is developer composition review, not final user visual or human pacing acceptance. The physical cloud window is letterboxed; a portrait hardware-window/input test is not claimed.
+
+GL exits naturally without script or resource-at-exit errors; unavailable V-Sync and an 8.91GiB free-space warning are recorded. Fourteen sound cues load, BGM plays and a mixed audio track is captured, but cloud output is Dummy. Waveform levels do not prove speaker output, musical quality or human listening. The existing 30-level target, further authored content, progressed mechanics, real ad SDK, native input, hardware, human difficulty and economy validation remain separate work. No merge or deployment is implied.
+
+
+## Level 11: Woodland Branching Crossing
+
+The current increment is based on `af7d8b1b1024d0a25a970db29027eef8eccfd609`. Level data SHA-256 is `74f5b9ec37e16ec284275a027ea7321cc1e91a4b593f8eb9f3d5c5de38a1509d`; rules, levels 1–10, scene geometry and artwork are unchanged. The 323-assertion rule report checks two sixteen-input Worker Lv.1 solutions, three real first-pickup branches, the right-side route shortening from eleven to five cells, accounting, HP2 cracking, four-carrier rejection and final-hit/finite-goal boundaries. Both solutions finish at 26.60s before the 62s threat, with six beads remaining. The first blue armor hit differs by 4.20s between openings. This is authored solution evidence, not human difficulty approval.
+
+`reports/ui/woodgate-scene.json` has 58 passing checks, 3,216 ground-route samples and 112.34 logical pixels minimum enemy-centerline separation. It checks actual traveler identity/placement, preparation values and four equal-width input targets. Headless scene exit is 0 but ObjectDB and two-resource-at-exit diagnostics remain; this is not a clean shutdown. Production one-level CLI also passes. Previous content suites were not rerun.
+
+`reports/ui/woodgate-runtime.json` records same-source actual GL startup, preparation, real Loading, authored 1× play and final-hit settlement. Only prerequisites 1–10 are unlocked in the labelled isolated fixture, without granted points or upgrades. Final damage at 26.60 simulation seconds wins with at most four carriers, six remaining beads and a saved 100+50=150 first-clear receipt. All 26 recorded production code/config/art hashes match. Preparation, initial ground, carrying and saved-result frames were directly inspected for contact, inner/outer route separation and legible independent inputs. They are not final user visual or native-input acceptance.
+
+The native source capture is OGV/Theora/Vorbis at 1440×2560, 30fps and 1× game speed, with 989 MovieWriter frames / 32.966667 seconds including entry and settlement. This is compressed source footage, not a lossless movie. Independent lossless key PNGs and exact event/hash records remain outside the repository. The delivery MP4 preserves the timeline at 30fps: repeated/dropped-frame timestamps are expanded into held frames, and the final decoded frame is held for the remaining 0.37s of the original container duration. This does not accelerate gameplay or lengthen the source recording. The OGV-to-MP4 decoder reports keyframe-marking warnings; the completed MP4 is separately decoded and checked, with the warning retained rather than silently labelled a clean capture chain. No old raw evidence is deleted.
+
+GL ends naturally without script or resource-at-exit errors; unavailable V-Sync and a 7.95GiB free-space warning are retained. Fourteen production cues load, BGM is playing and the mix is recorded, but cloud output is Dummy. Audio measurements cannot establish speaker output or human listening. Physical window/input, human pacing/economy, final art, additional content, optional mechanics and a real ad SDK remain separate. No full30 completion, merge or deployment is claimed.
+
+
+## Level 12: Caravan’s Split Seal
+
+Level JSON SHA-256 is `e294a4345a093a8a1f7fa1bf6d14c167e3fb0d89254229858844cc52af4e02d6`. The authoritative rules, existing levels 1–11, scene geometry and assets are unchanged. `reports/rules/ruins-split-seal-level12.json` records 47 bounded checks for two explicit seventeen-input Worker Lv.1 sequences at 1.6s gaps. The sealed purple vault requires all four initially unreachable purple beads. Blue/red first choices select different purple cells; yellow pickup opens a real side shortcut, reducing upper red/green routes 17/16→5/4 cells. First-hit and armor-removal timings differ between solutions. Both finish at 31.05s before 64s contact with six beads remaining, max four carriers, and longest all-color no-dispatch window 0.20s. These are authored solvability results, not human strategy or difficulty acceptance.
+
+The integrated scene report has 64 checks and 3,417 carrier-ground samples, with 70.00 logical pixels minimum enemy-centerline separation. It covers actual fixed cart identity/anchor, five-color preparation values and five equal-width controls. The scene headless test exits 0 without an error diagnostic in this run; it does not invalidate retained diagnostics from different fixtures. The production one-level CLI also passes; old suites are not rerun.
+
+`reports/ui/ruinscore-runtime.json` records actual GL key states rather than a continuous movie. The isolated fixture unlocks prerequisites 1–11 without granting points/upgrades, and restores navigation selection 12 to expose the new production map button. That button is visible and enabled, invokes the real preparation transition, and proceeds through actual resource Loading. Automated authored inputs then reach final damage at 31.05s, preserve accounting, leave six beads and save a genuine 100+50=150 receipt. All 26 recorded production code/config/art hashes match. Map, preparation, initial board, carrying and saved-result PNGs were inspected for the purple blocked indicator, separate five inputs, cart contact and inner/outer route separation. No natural mouse interaction, whole-video evidence or user visual acceptance is claimed.
+
+The GL fixture exits naturally after settlement but reports ObjectDB and one resource still in use at shutdown, plus unavailable V-Sync; it is not labelled clean. Fourteen production cues load and the BGM player runs on Dummy output. This key-state check does not record a new audio mix or establish human listening, hardware output, physical-window/input or performance acceptance. Reward thresholds 33/46s remain candidate values. Additional content, optional advanced mechanisms, real advertising and human/device acceptance remain outstanding; no merge or deployment is implied.
+
+
+## Level 13: Ice Supply Channels
+
+This bounded five-color winter-camp level reuses the snowpass scene and ice-crown appearance. Twenty-five beads supply 17 damage (13 ordinary and two armored segments). The central yellow-to-blue opening and outer red-to-inner-red route expose different required white beads through actual pickup-based pathfinding. Two explicit Worker Lv.1 solutions use 17 independent inputs and finish on actual last damage at 31.95 simulated seconds, leaving eight beads. Reward thresholds 33/47 seconds remain provisional, not human balance approval.
+
+The retained current-level reports contain 78 rule checks, 89 scene checks with 3,417 route samples and 75 logical-pixel minimum enemy-centerline separation, plus the single-level CLI. Actual GL map/preparation/loading/play/result key states and 26 matching production hashes establish a saved 100+50=150 reward, no conservation error and at most four carriers. This is automatic authored input, not natural human play, a continuous movie, or a fresh audio recording.
+
+The GL log includes unsupported VSync and ALSA output failure followed by Dummy fallback; no script exception is recorded. Human sound, difficulty and target-device acceptance remain unverified. Earlier content/rules and art bytes are unchanged; old suites were not rerun. No merge or deployment.

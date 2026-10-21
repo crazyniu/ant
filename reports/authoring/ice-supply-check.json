@@ -1,0 +1,77 @@
+{
+  "accepted_inputs": 17,
+  "contact_time_us": 62000000,
+  "errors": [],
+  "event_count": 152,
+  "event_sequence_sha256": "148a694dbad48a685f9d86d44a739fe5d92e0087617d05cc5a57042b86ea06e9",
+  "guardian_id": "winter_camp",
+  "hit_counts": {
+    "blue": 6,
+    "green": 5,
+    "red": 3,
+    "yellow": 3
+  },
+  "level_id": "serpent-07",
+  "loadout": {
+    "ant_type": "worker",
+    "level": 1,
+    "speed_multiplier": 1.0
+  },
+  "longest_no_dispatch_opportunity_us": 800000,
+  "maximum_carriers": 4,
+  "no_dispatch_windows": [
+    {
+      "duration_us": 800000,
+      "end_us": 17600000,
+      "start_us": 16800000
+    },
+    {
+      "duration_us": 800000,
+      "end_us": 19000000,
+      "start_us": 18200000
+    },
+    {
+      "duration_us": 800000,
+      "end_us": 23200000,
+      "start_us": 22400000
+    }
+  ],
+  "ok": true,
+  "path_cells": [
+    3,
+    4,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    3,
+    5,
+    5,
+    4,
+    4,
+    5,
+    6,
+    5,
+    5
+  ],
+  "remaining_beads": 4,
+  "required_damage_by_color": {
+    "blue": 6,
+    "green": 5,
+    "red": 3,
+    "yellow": 3
+  },
+  "rules_api": "3.1.0",
+  "scene_id": "ice_camp",
+  "scope": "One authored level and timed solution. Not a solver, editor, GL/ground-support check, human balance or device acceptance.",
+  "status": "victory",
+  "supply_by_color": {
+    "blue": 6,
+    "green": 8,
+    "red": 4,
+    "yellow": 3
+  },
+  "terminal_time_us": 27850000
+}

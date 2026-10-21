@@ -1,0 +1,59 @@
+{
+	"checks": 133,
+	"failures": [],
+	"results": [
+		{
+			"baseline": {
+				"capacity": 3,
+				"first_delivery_us": 3200000,
+				"head_speed": 1.16666666666667,
+				"remaining_beads": 6,
+				"time_us": 19950000
+			},
+			"level": 1,
+			"swift_level4": {
+				"capacity": 3,
+				"first_delivery_us": 2456523,
+				"head_speed": 1.16666666666667,
+				"remaining_beads": 6,
+				"time_us": 18958697
+			}
+		},
+		{
+			"baseline": {
+				"capacity": 4,
+				"first_delivery_us": 3200000,
+				"head_speed": 1.16666666666667,
+				"remaining_beads": 4,
+				"time_us": 26450000
+			},
+			"level": 2,
+			"swift_level4": {
+				"capacity": 3,
+				"first_delivery_us": 2456523,
+				"head_speed": 1.16666666666667,
+				"remaining_beads": 4,
+				"time_us": 25210871
+			}
+		},
+		{
+			"baseline": {
+				"capacity": 4,
+				"first_delivery_us": 3200000,
+				"head_speed": 1.23333333333333,
+				"remaining_beads": 6,
+				"time_us": 27350000
+			},
+			"level": 3,
+			"swift_level4": {
+				"capacity": 3,
+				"first_delivery_us": 2456523,
+				"head_speed": 1.23333333333333,
+				"remaining_beads": 6,
+				"time_us": 25863045
+			}
+		}
+	],
+	"same_authored_inputs": true,
+	"scope": "three current slices only; not human/economy balance or old 30 campaign acceptance"
+}

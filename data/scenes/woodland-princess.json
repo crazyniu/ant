@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "id": "woodland_princess",
+  "region_id": "forest",
+  "region_label": "WOODLAND TRAIL",
+  "background": "res://assets/serpent/environment.png",
+  "board_plane": {},
+  "nest": {
+    "position": [
+      467,
+      1008
+    ],
+    "gateway": [
+      467,
+      940
+    ],
+    "width": 110
+  },
+  "cannon": {
+    "rect": [
+      388,
+      1030,
+      166,
+      141
+    ],
+    "muzzle": [
+      487,
+      1060
+    ],
+    "center": [
+      471,
+      1110
+    ],
+    "pivot": [
+      83,
+      107
+    ]
+  },
+  "stock": {
+    "start": [
+      591,
+      1125
+    ],
+    "spacing": 60
+  },
+  "route": [
+    {
+      "position": [
+        583,
+        956
+      ],
+      "out": [
+        90,
+        24
+      ]
+    },
+    {
+      "position": [
+        850,
+        867
+      ],
+      "in": [
+        -38,
+        85
+      ],
+      "out": [
+        17,
+        -85
+      ]
+    },
+    {
+      "position": [
+        867,
+        395
+      ],
+      "in": [
+        8,
+        100
+      ],
+      "out": [
+        -7,
+        -115
+      ]
+    },
+    {
+      "position": [
+        750,
+        228
+      ],
+      "in": [
+        60,
+        35
+      ],
+      "out": [
+        -72,
+        -41
+      ]
+    },
+    {
+      "position": [
+        505,
+        144
+      ],
+      "in": [
+        80,
+        4
+      ],
+      "out": [
+        -80,
+        -4
+      ]
+    },
+    {
+      "position": [
+        230,
+        162
+      ],
+      "in": [
+        60,
+        -18
+      ]
+    }
+  ],
+  "defense_target": {
+    "id": "princess",
+    "display_name": "Princess",
+    "fixed": true,
+    "texture": "res://assets/characters-atlas.png",
+    "region": [
+      740,
+      20,
+      324,
+      624
+    ],
+    "foot": [
+      145,
+      168
+    ],
+    "width": 81,
+    "anchor": [
+      162,
+      624
+    ],
+    "physical_width": 324
+  }
+}

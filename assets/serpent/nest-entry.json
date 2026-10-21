@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "path": "res://assets/serpent/nest-entry.png",
+  "region": [
+    0,
+    0,
+    905,
+    529
+  ],
+  "anchor": [
+    454,
+    264
+  ],
+  "foot_anchor": [
+    454,
+    264
+  ],
+  "physical_width": 869,
+  "physical_height": 495,
+  "anchor_semantic": "Center of the open ground hole, not bottom of outer image. Place this at the ant spawn foot point.",
+  "recommended_world_foot": [
+    467,
+    1008
+  ],
+  "recommended_target_physical_width": 110,
+  "uniform_scale": 0.12658227848101267,
+  "recommended_target_visible_height": 62.65822784810127,
+  "render_note": "Draw behind ants and below foreground actors. Origin = world_foot - foot_anchor * (target_width / physical_width). Keep rotation zero. Ants may cross its low upper rim toward the board; no house or roof is present."
+}

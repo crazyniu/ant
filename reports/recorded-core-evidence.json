@@ -1,0 +1,31 @@
+{
+  "mode": "Godot actual production scene with authored automatic clicks, not human playtest",
+  "movie_seconds": 28.9500000000003,
+  "speed": 1,
+  "output_pixels": [
+    1440,
+    2560
+  ],
+  "status": "victory",
+  "final_hit_us": 26450000,
+  "maximum_carriers": 4,
+  "remaining_beads": 4,
+  "conservation_errors": [],
+  "victory_saved": true,
+  "source_hashes": {
+    "assets/serpent/environment.png": "64549070c131b085178e4c6995f2964b9a04195262b73655636ed5f1423e9f9a",
+    "assets/serpent/nest-entry.json": "b8a5b11f27c5884044142f4b89604cec0bfaf6e9f621122f42591632bed1da83",
+    "assets/serpent/nest-entry.png": "2bf120d083b40251e6b48a2080a286464a322c9f0a67cb57babdd1f99f919e69",
+    "assets/serpent/serpent-armor-atlas.png": "c8595e610a0b5b17c22ac1d1fa908454b8c3ce9de8560720fb08ed9a23651d2d",
+    "assets/serpent/serpent-atlas.json": "e1c9b6d370cd3509aa2ab9f601ca0f72243b22c22cddaa747ec051ec435a3d69",
+    "assets/serpent/serpent-atlas.png": "caf1130462c58cf121e529e60810218b2ae3d7dc3939670ebdefeb1788f9a360",
+    "data/serpent-levels/serpent-02.json": "953bef8e1646b2ddaf90c5fb240bf51cdb3fb80837404db3951a7a84c84d96ff",
+    "scripts/board_plane.gd": "7ee43e47531706afb6e0be939dfbf19b49ef76106149838283c2af0da0c6fd5a",
+    "scripts/carrier_route.gd": "f063fc8c2a66b522292772244ac2a94e75325eb5ac514938d66f5e24bcdd928f",
+    "scripts/play.gd": "d095ab4f91db9f939ce78a3f95ecc9494459505cafc24093453dc674fc880f9a",
+    "scripts/rescue_fx.gd": "baecb8688b4a9992edb84860ec2dbee4d4406e9a2e5c9e3433d236b69e77f89f",
+    "scripts/rescue_rules.gd": "2c38fff55215c177ebaf3b403c3d8d0173dd6933eeac51ab00e6849edd35cc31",
+    "scripts/serpent_path.gd": "09784d7fa0a7a223b89102becd789c08002a6637160195a45c1978a542c83170",
+    "scripts/serpent_view.gd": "646ba07aca3b91ab13002da17dc71bea80f3fc48491658334b84f925a8955ce9"
+  }
+}

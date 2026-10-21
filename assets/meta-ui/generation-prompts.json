@@ -1,0 +1,43 @@
+[
+  {
+    "output": "shop-workshop-background.png",
+    "tool": "image_gen.imagegen",
+    "transparent_background": false,
+    "reference_roles": {
+      "1": "shop design preview style only",
+      "2": "existing serpent world style only"
+    },
+    "referenced_image_paths": [
+      "external-design-reference/ant-shop-preview.png",
+      "assets/serpent/environment.png"
+    ],
+    "prompt": "Use case: stylized-concept. Asset type: production mobile-game background plate, portrait 9:16, for an ant workshop shop UI. Input 1 is STYLE REFERENCE ONLY: match its warm forest miniature workshop, honey-gold sunlight, rich wood, polished friendly 3D game rendering; input 2 is STYLE REFERENCE ONLY: same world of green foliage, rounded gray stones and golden sandy earth. Generate a NEW clean empty workshop environment, not a screenshot or a UI. Rustic hollow-tree workshop viewed nearly front-on, modest wood shelves and tiny tools/baskets limited to the FAR left/right edges and upper corners, soft leafy forest light. Reserve the whole middle ~80% width from 20% to 88% height as uncluttered softly lit golden-brown neutral workspace so actual UI can overlay two side-by-side products and a bottom training area. Background should have subtle continuous empty floor/worktable planes, not card-shaped product alcoves. Keep a little leafy natural edging and calm dark upper region for separate title. NO text, NO letters, NO numbers, NO icons, NO signboards, NO UI, NO buttons, NO outlined frames, NO cards, NO coins, NO ants, NO characters, NO creatures. Do not include any interface from the reference. Coherent empty environmental background only, high quality game production art, edge-to-edge portrait composition. Target 2K portrait if supported, preserve genuine native detail; no artificial upscale.",
+    "reference_note": "Design reference only; no final user acceptance or legal clearance is implied."
+  },
+  {
+    "output": "titles-atlas.png",
+    "tool": "image_gen.imagegen",
+    "transparent_background": true,
+    "reference_roles": {
+      "1": "shop design preview typography style only"
+    },
+    "referenced_image_paths": [
+      "external-design-reference/ant-shop-preview.png"
+    ],
+    "prompt": "Use case: stylized-concept. Asset type: production typography texture atlas with REAL TRANSPARENT background. Reference image is STYLE ONLY, especially its title's thick honey-gold lettering with dark warm wood-brown bevel/outline. Generate exactly SIX separate floating artistic word groups, arranged in ONE VERTICAL COLUMN, generous transparent gap between rows. Exact text and row order: 1 ADVENTURE, 2 READY, 3 ANT SHOP, 4 WORKER, 5 SWIFT, 6 TRAINING. Spell all correctly. Each word group is one single straight horizontal line, uppercase, same polished chunky friendly bold game-display letter style, light cream-gold top to orange-gold bottom, fine bevel and thick dark chestnut-brown extrusion outline, crisp readable forms. Gold and wood color letter artwork ONLY, no physical boards. Each word group horizontally centered; different word lengths retain natural widths and matching letter scale. Every row separate with at least 40 transparent pixels gap. No added words, no numerals, no subtitle, no characters, no icon, no decorative leaves, no frames, no banners, no wood sign panel, no surrounding shadow rectangle, no scenery, no background. Truly transparent alpha outside only the letters and their tight outline/drop shadow. Atlas is a collection of usable independent text textures, NOT a screen mockup. 1024 wide by 1536 tall minimum if supported; prioritize legible correct text, useful native detail.",
+    "reference_note": "Design reference only; no final user acceptance or legal clearance is implied."
+  },
+  {
+    "output": "icons-atlas.png",
+    "tool": "image_gen.imagegen",
+    "transparent_background": true,
+    "reference_roles": {
+      "1": "shop design preview icon materials and coin motif only"
+    },
+    "referenced_image_paths": [
+      "external-design-reference/ant-shop-preview.png"
+    ],
+    "prompt": "Use case: stylized-concept. Asset type: TWO independent production game item icons on REAL TRANSPARENT background. Reference is STYLE ONLY: polished honey-gold glossy chunky friendly 3D game elements with warm brown edge outlines. Generate a very clean TWO-ICON atlas on transparent canvas, two widely separated icons horizontally with large empty transparent gap. LEFT ICON: single small golden wing ornament, a speed badge suitable for attaching to the side of an ant's pack. Three elegant swept-back feather lobes extending upper-left from a curled rounded attachment disk at lower-right, compact polished gold, no ant and no character, no blue gem and no pack. RIGHT ICON: one front-facing circular shiny gold coin with thick beveled rim and clearly recognizable embossed dark-gold simple ant silhouette at its center (ant head, thorax, abdomen, two antennae, six legs). Match the coin motif of reference. Both independent standalone objects, fully visible with generous transparent margin, no connected shadows. Consistent lighting from upper left. NO text, NO letters, NO numbers, NO prices, NO frames, NO scene, NO background, NO card, NO sign, NO label. Real transparent alpha outside tight object edge/shadow. Target high native resolution; source pixels for both icons should be large enough for clean mobile UI.",
+    "reference_note": "Design reference only; no final user acceptance or legal clearance is implied."
+  }
+]

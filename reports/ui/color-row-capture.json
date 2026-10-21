@@ -1,0 +1,24 @@
+{
+  "beads_unchanged": true,
+  "blocked_kind": "barrier",
+  "color_rects": {
+    "blue": "[P: (263.0, 1282.0), S: (197.0, 116.0)]",
+    "green": "[P: (697.0, 1282.0), S: (197.0, 116.0)]",
+    "red": "[P: (46.0, 1282.0), S: (197.0, 116.0)]",
+    "yellow": "[P: (480.0, 1282.0), S: (197.0, 116.0)]"
+  },
+  "pixels": [
+    1440,
+    2560
+  ],
+  "scope": "Actual GL four-color layout and rejected blocked-color handler only; no gameplay timing change",
+  "source_hashes": {
+    "data/serpent-levels/serpent-04.json": "3c3359aff7a523e878c84d2df535eb2a1e058f01806ca29f14e4126cb63dad07",
+    "scripts/play.gd": "a5c245cfb735ddcb67d88bf8e58dfa091af858154a88acfc8f54d79ed13bdeb4",
+    "scripts/rescue_rules.gd": "14a5b20efdf237fbf271ea8749b35580d012485aee8a529a30e53487852c7c23",
+    "scripts/ui_icon.gd": "6ce842b5fd26bf5a5d61c3340094dca724b056d6166b899173d17a230dccaf75"
+  },
+  "tap_feedback": "NO REACHABLE BEAD",
+  "tasks_unchanged": true,
+  "tooltip": "No reachable bead"
+}

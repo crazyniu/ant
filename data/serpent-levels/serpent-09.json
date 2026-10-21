@@ -1,0 +1,228 @@
+{
+  "schema_version": 3,
+  "level_id": "serpent-09",
+  "level_number": 9,
+  "title": "Threefold Supply Steps",
+  "width": 10,
+  "height": 8,
+  "palette": {
+    "R": "red",
+    "B": "blue",
+    "G": "green",
+    "Y": "yellow"
+  },
+  "grid": [
+    "..........",
+    "..........",
+    "..........",
+    "...YR.....",
+    "...GBYRB..",
+    "..GGYGYGR.",
+    "..GYR.BYR.",
+    "..RB....G."
+  ],
+  "segments": [
+    {
+      "id": "serpent-09-s01",
+      "color": "blue",
+      "kind": "armored",
+      "hp": 2
+    },
+    {
+      "id": "serpent-09-s02",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-09-s03",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-09-s04",
+      "color": "yellow",
+      "kind": "armored",
+      "hp": 2
+    },
+    {
+      "id": "serpent-09-s05",
+      "color": "blue",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-09-s06",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-09-s07",
+      "color": "yellow",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-09-s08",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-09-s09",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-09-s10",
+      "color": "blue",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-09-s11",
+      "color": "yellow",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-09-s12",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-09-s13",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-09-s14",
+      "color": "yellow",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "serpent-09-s15",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    }
+  ],
+  "serpent": {
+    "head_start_s": 62.0,
+    "goal_s": 140.0,
+    "speed_units_sec": 1.2580645161290323,
+    "pitch": 4.0,
+    "art_profile": "ruins_carapace"
+  },
+  "parameters": {
+    "max_inflight_ants": 4,
+    "projectile_flight_sec": 0.45,
+    "cannon_cooldown_sec": 0.65
+  },
+  "transport": {
+    "carrier_type": "worker",
+    "outbound_speed_cells_sec": 2.5,
+    "returning_speed_cells_sec": 2.0,
+    "pickup_pause_sec": 0.3,
+    "unload_pause_sec": 0.2,
+    "entrance_cell": [
+      5,
+      8
+    ]
+  },
+  "tools": [],
+  "solution": {
+    "kind": "timed_single_click_no_tool_petal_steps",
+    "minimum_input_gap_sec": 1.4,
+    "inputs": [
+      {
+        "at_sec": 0.0,
+        "color": "red"
+      },
+      {
+        "at_sec": 1.4,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 2.8,
+        "color": "blue"
+      },
+      {
+        "at_sec": 4.2,
+        "color": "green"
+      },
+      {
+        "at_sec": 5.6,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 7.0,
+        "color": "blue"
+      },
+      {
+        "at_sec": 8.4,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 9.8,
+        "color": "red"
+      },
+      {
+        "at_sec": 11.2,
+        "color": "green"
+      },
+      {
+        "at_sec": 12.6,
+        "color": "blue"
+      },
+      {
+        "at_sec": 14.0,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 15.4,
+        "color": "red"
+      },
+      {
+        "at_sec": 16.8,
+        "color": "green"
+      },
+      {
+        "at_sec": 18.2,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 19.6,
+        "color": "red"
+      },
+      {
+        "at_sec": 21.0,
+        "color": "green"
+      },
+      {
+        "at_sec": 22.4,
+        "color": "blue"
+      }
+    ]
+  },
+  "validation_scope": "Independent ruins/cart candidate, unchanged rules API 3.1.0. Seventeen authored Worker Lv.1 clicks, no upgrades, tools, ads, bonuses or new mechanisms. Rule solvability does not imply human difficulty, economy, visual, audio or device acceptance.",
+  "content_version": "ruins-petal-steps-20261021.2",
+  "rewards": {
+    "fast_seconds": 30.0,
+    "normal_seconds": 44.0
+  },
+  "region_id": "ruins",
+  "boss_profile": "armored_serpent",
+  "defense_target": {
+    "id": "supply_cart",
+    "display_name": "Supply Cart",
+    "fixed": true
+  },
+  "scene_layout": "res://data/scenes/ruins-fork.json"
+}

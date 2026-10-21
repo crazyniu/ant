@@ -1,0 +1,174 @@
+{
+  "schema_version": 3,
+  "level_id": "serpent-06",
+  "level_number": 6,
+  "title": "Supply Fork",
+  "width": 10,
+  "height": 8,
+  "palette": {
+    "R": "red",
+    "B": "blue",
+    "G": "green"
+  },
+  "grid": [
+    "..........",
+    "..........",
+    "..........",
+    ".....GR...",
+    "....GBBGG.",
+    "....RRGR..",
+    "..BR...BR.",
+    "..GB....B."
+  ],
+  "segments": [
+    {
+      "id": "s01",
+      "color": "blue",
+      "kind": "armored",
+      "hp": 2
+    },
+    {
+      "id": "s02",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "s03",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "s04",
+      "color": "blue",
+      "kind": "armored",
+      "hp": 2
+    },
+    {
+      "id": "s05",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "s06",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "s07",
+      "color": "blue",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "s08",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "s09",
+      "color": "green",
+      "kind": "normal",
+      "hp": 1
+    },
+    {
+      "id": "s10",
+      "color": "red",
+      "kind": "normal",
+      "hp": 1
+    }
+  ],
+  "serpent": {
+    "head_start_s": 42.0,
+    "goal_s": 140.0,
+    "speed_units_sec": 1.6333333333333333,
+    "pitch": 4.0
+  },
+  "parameters": {
+    "max_inflight_ants": 4,
+    "projectile_flight_sec": 0.45,
+    "cannon_cooldown_sec": 0.65
+  },
+  "transport": {
+    "carrier_type": "worker",
+    "outbound_speed_cells_sec": 2.5,
+    "returning_speed_cells_sec": 2.0,
+    "pickup_pause_sec": 0.3,
+    "unload_pause_sec": 0.2,
+    "entrance_cell": [
+      5,
+      8
+    ]
+  },
+  "tools": [],
+  "solution": {
+    "inputs": [
+      {
+        "at_sec": 0.0,
+        "color": "red"
+      },
+      {
+        "at_sec": 1.4,
+        "color": "blue"
+      },
+      {
+        "at_sec": 2.8,
+        "color": "green"
+      },
+      {
+        "at_sec": 4.2,
+        "color": "blue"
+      },
+      {
+        "at_sec": 5.6,
+        "color": "red"
+      },
+      {
+        "at_sec": 7.0,
+        "color": "blue"
+      },
+      {
+        "at_sec": 8.4,
+        "color": "green"
+      },
+      {
+        "at_sec": 9.8,
+        "color": "red"
+      },
+      {
+        "at_sec": 11.2,
+        "color": "blue"
+      },
+      {
+        "at_sec": 12.6,
+        "color": "green"
+      },
+      {
+        "at_sec": 14.0,
+        "color": "red"
+      },
+      {
+        "at_sec": 15.4,
+        "color": "blue"
+      }
+    ]
+  },
+  "validation_scope": "One new ruins fork candidate. Base worker no tools/bonus/ads/growth. Short outer blue supply versus red/green gate opening of mandatory blue core; authored inputs are not human balance approval.",
+  "content_version": "ruins-supply-fork-20261021.1",
+  "rewards": {
+    "fast_seconds": 22.0,
+    "normal_seconds": 35.0
+  },
+  "region_id": "ruins",
+  "boss_profile": "armored_serpent",
+  "defense_target": {
+    "id": "supply_cart",
+    "display_name": "Supply Cart",
+    "fixed": true
+  },
+  "scene_layout": "res://data/scenes/ruins-fork.json"
+}

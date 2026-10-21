@@ -1,0 +1,148 @@
+{
+	"api_version": "3.0.0",
+	"authored_levels": [
+		{
+			"complete_trip_us_histogram": {
+				"3200000": 5,
+				"4100000": 7
+			},
+			"conservation_errors": [],
+			"contact_deadline_us": 60000000,
+			"initial_four_simultaneous": {
+				"colors": [
+					"red",
+					"blue",
+					"green",
+					"red"
+				],
+				"delivery_times_us": [
+					3200000,
+					3200000,
+					3200000,
+					4100000
+				],
+				"first_release_wait_us": 3200000
+			},
+			"input_gap_sec": 1.4,
+			"input_rejections": [],
+			"level_id": "serpent-01",
+			"max_carriers": 3,
+			"necessary_clicks": 12,
+			"one_way_path_cells_histogram": {
+				"3": 5,
+				"4": 7
+			},
+			"remaining_by_color": {
+				"blue": 2,
+				"green": 2,
+				"red": 2
+			},
+			"result": "victory",
+			"retries": 0,
+			"surplus_board_beads": 6,
+			"terminal_time_us": 19950000,
+			"time_margin_us": 40050000
+		},
+		{
+			"complete_trip_us_histogram": {
+				"3200000": 5,
+				"4100000": 7,
+				"5000000": 4
+			},
+			"conservation_errors": [],
+			"contact_deadline_us": 60000000,
+			"initial_four_simultaneous": {
+				"colors": [
+					"red",
+					"blue",
+					"green",
+					"red"
+				],
+				"delivery_times_us": [
+					3200000,
+					3200000,
+					3200000,
+					4100000
+				],
+				"first_release_wait_us": 3200000
+			},
+			"input_gap_sec": 1.4,
+			"input_rejections": [],
+			"level_id": "serpent-02",
+			"max_carriers": 4,
+			"necessary_clicks": 16,
+			"one_way_path_cells_histogram": {
+				"3": 5,
+				"4": 7,
+				"5": 4
+			},
+			"remaining_by_color": {
+				"blue": 1,
+				"green": 2,
+				"red": 1
+			},
+			"result": "victory",
+			"retries": 0,
+			"surplus_board_beads": 4,
+			"terminal_time_us": 26450000,
+			"time_margin_us": 33550000
+		},
+		{
+			"complete_trip_us_histogram": {
+				"3200000": 5,
+				"4100000": 7,
+				"5000000": 3,
+				"5900000": 1
+			},
+			"conservation_errors": [],
+			"contact_deadline_us": 60000000,
+			"initial_four_simultaneous": {
+				"colors": [
+					"red",
+					"blue",
+					"green",
+					"red"
+				],
+				"delivery_times_us": [
+					3200000,
+					3200000,
+					3200000,
+					4100000
+				],
+				"first_release_wait_us": 3200000
+			},
+			"input_gap_sec": 1.4,
+			"input_rejections": [],
+			"level_id": "serpent-03",
+			"max_carriers": 4,
+			"necessary_clicks": 16,
+			"one_way_path_cells_histogram": {
+				"3": 5,
+				"4": 7,
+				"5": 3,
+				"6": 1
+			},
+			"remaining_by_color": {
+				"blue": 2,
+				"green": 2,
+				"red": 2
+			},
+			"result": "victory",
+			"retries": 0,
+			"surplus_board_beads": 6,
+			"terminal_time_us": 27350000,
+			"time_margin_us": 32650000
+		}
+	],
+	"engine": "4.6.3-stable (official)",
+	"failures": [],
+	"not_verified": [
+		"rendered geometry",
+		"human acceptance",
+		"device performance"
+	],
+	"passed": true,
+	"previous_layout_evidence": "serpent-core-pre-layout-tests.json retains 32.35/42.05/42.05 second replays.",
+	"scope": "Layout/timed-input refinement only. Three authored whole-level replays and resource/capacity checks; 189-assertion suite not rerun or expanded.",
+	"unchanged": "Core code, 2.5/2.0 transport speeds, HP/types, 4 capacity, 60s threat, 12/16/16 demand."
+}

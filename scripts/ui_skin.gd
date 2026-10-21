@@ -19,7 +19,17 @@ func texture(key: String) -> AtlasTexture:
 	return textures[key]
 
 func sprite(key: String, bounds: Rect2, parent: Node, id: String) -> TextureRect:
-	var t:=TextureRect.new();t.name=id;t.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;t.texture=texture(key);t.position=bounds.position;t.size=bounds.size;t.mouse_filter=Control.MOUSE_FILTER_IGNORE;parent.add_child(t);return t
+	return place_texture(texture(key),bounds,parent,id)
+
+static func place_texture(source:Texture2D,bounds:Rect2,parent:Node,id:String,keep_aspect:bool=false)->TextureRect:
+	# Native texture dimensions must never become a control's minimum size.
+	# Keep this order: ignore intrinsic size, assign texture, set bounds, attach.
+	var node:=TextureRect.new();node.name=id
+	node.custom_minimum_size=Vector2.ZERO;node.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+	node.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED if keep_aspect else TextureRect.STRETCH_SCALE
+	node.texture=source;node.position=bounds.position;node.size=bounds.size
+	node.mouse_filter=Control.MOUSE_FILTER_IGNORE;parent.add_child(node)
+	return node
 
 func panel(key: String, bounds: Rect2, parent: Node, id: String, corner: float = 22.0) -> Panel:
 	var p:=Panel.new();p.name=id;p.position=bounds.position;p.size=bounds.size;p.mouse_filter=Control.MOUSE_FILTER_IGNORE;p.add_theme_stylebox_override("panel",StyleBoxEmpty.new());parent.add_child(p)

@@ -1,0 +1,7 @@
+{
+	"atlas_sha256": "6fce37ff2481c0aefd6101390240d0297cd382b3d2ad5b989802bb7ba6a3d20c",
+	"checks": 50,
+	"failures": [],
+	"manifest_sha256": "0154941cee3dbfed2b966b4359d8a936c56b3a222a7ea07d0bd0852e12ce1d8f",
+	"scope": "appearance selection, eight real yaw poses, measured regions/anchors, old default tint flag, unchanged rule snapshots; not final GL art approval"
+}

@@ -1,0 +1,95 @@
+{
+  "accepted_inputs": 18,
+  "contact_time_us": 64000000,
+  "errors": [],
+  "event_count": 163,
+  "event_sequence_sha256": "fe27470d3381a682241cf04209ecc152a4f0f40f99b21264d36052a32439ed2a",
+  "guardian_id": "winter_camp",
+  "hit_counts": {
+    "blue": 3,
+    "green": 3,
+    "purple": 3,
+    "red": 3,
+    "white": 3,
+    "yellow": 3
+  },
+  "level_id": "serpent-10",
+  "level_sha256": "8437a4ffc8c18f419f5d9c1d3a4f17c072bea6592503aef49d01c5d49574aaf5",
+  "loadout": {
+    "ant_type": "worker",
+    "level": 1,
+    "speed_multiplier": 1.0
+  },
+  "longest_no_dispatch_opportunity_us": 800000,
+  "maximum_carriers": 4,
+  "no_dispatch_windows": [
+    {
+      "duration_us": 400000,
+      "end_us": 14400000,
+      "start_us": 14000000
+    },
+    {
+      "duration_us": 800000,
+      "end_us": 20400000,
+      "start_us": 19600000
+    },
+    {
+      "duration_us": 800000,
+      "end_us": 21800000,
+      "start_us": 21000000
+    },
+    {
+      "duration_us": 800000,
+      "end_us": 23200000,
+      "start_us": 22400000
+    },
+    {
+      "duration_us": 800000,
+      "end_us": 24600000,
+      "start_us": 23800000
+    }
+  ],
+  "ok": true,
+  "path_cells": [
+    4,
+    4,
+    3,
+    4,
+    3,
+    4,
+    3,
+    5,
+    3,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    5
+  ],
+  "remaining_beads": 7,
+  "required_damage_by_color": {
+    "blue": 3,
+    "green": 3,
+    "purple": 3,
+    "red": 3,
+    "white": 3,
+    "yellow": 3
+  },
+  "rules_api": "3.1.0",
+  "scene_id": "ice_snowpass",
+  "scope": "One authored level and timed solution. Not a solver, editor, GL/ground-support check, human balance or device acceptance.",
+  "status": "victory",
+  "supply_by_color": {
+    "blue": 5,
+    "green": 4,
+    "purple": 4,
+    "red": 4,
+    "white": 3,
+    "yellow": 5
+  },
+  "terminal_time_us": 29400000
+}

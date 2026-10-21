@@ -1,0 +1,336 @@
+{
+  "status": "PASS",
+  "reviewed": [
+    "Blank background contains no text, prices, UI cards, buttons or characters.",
+    "All six exact words are visually verified: ADVENTURE, READY, ANT SHOP, WORKER, SWIFT, TRAINING.",
+    "Gold wing and front-facing ant coin are separate RGBA sprites with no numerals.",
+    "Native atlases retained and independent sprites were cropped from measured alpha content, not equal divisions.",
+    "Crop alpha bytes are unchanged from atlas regions.",
+    "No native-resolution upscale.",
+    "No code, Git operations, Mac changes or Notion changes."
+  ],
+  "files": [
+    {
+      "file": "adventure.png",
+      "native_size": [
+        964,
+        221
+      ],
+      "bytes": 274346,
+      "sha256": "b9043b388f2d66b976cd618c6d52015b572c43f298133cb62e88888a1e85b741",
+      "alpha": {
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 254,
+        "fully_transparent_pixels": 48402,
+        "fully_transparent_percent": 22.7193,
+        "effective_visible_alpha_threshold": 4,
+        "effective_visible_bbox_xyxy": [
+          8,
+          8,
+          956,
+          214
+        ],
+        "effective_visible_pixels": 158907,
+        "border_max_alpha": 0,
+        "nonzero_alpha_bbox_xyxy": [
+          4,
+          6,
+          961,
+          219
+        ]
+      }
+    },
+    {
+      "file": "ant-coin.png",
+      "native_size": [
+        582,
+        584
+      ],
+      "bytes": 407581,
+      "sha256": "68a34b6320c09ab8b4fe34d26af2cf34e8f81246fbd3b6e2c645ff1740ba7adc",
+      "alpha": {
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "fully_transparent_pixels": 85358,
+        "fully_transparent_percent": 25.1136,
+        "effective_visible_alpha_threshold": 4,
+        "effective_visible_bbox_xyxy": [
+          8,
+          8,
+          574,
+          576
+        ],
+        "effective_visible_pixels": 252105,
+        "border_max_alpha": 0,
+        "nonzero_alpha_bbox_xyxy": [
+          5,
+          5,
+          576,
+          579
+        ]
+      }
+    },
+    {
+      "file": "ant-shop.png",
+      "native_size": [
+        908,
+        227
+      ],
+      "bytes": 265617,
+      "sha256": "afb41258813b41580dd30567092d34aa2386c30bf9364d141ee68af1caef847c",
+      "alpha": {
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 254,
+        "fully_transparent_pixels": 54057,
+        "fully_transparent_percent": 26.2265,
+        "effective_visible_alpha_threshold": 4,
+        "effective_visible_bbox_xyxy": [
+          8,
+          8,
+          900,
+          219
+        ],
+        "effective_visible_pixels": 145456,
+        "border_max_alpha": 0,
+        "nonzero_alpha_bbox_xyxy": [
+          4,
+          5,
+          903,
+          224
+        ]
+      }
+    },
+    {
+      "file": "icons-atlas.png",
+      "native_size": [
+        2172,
+        724
+      ],
+      "bytes": 797253,
+      "sha256": "d52995231c203099a6cd961395688d0dbc974146518a14710f5d157dbedc7530",
+      "alpha": {
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "fully_transparent_pixels": 1116683,
+        "fully_transparent_percent": 71.012,
+        "effective_visible_alpha_threshold": 4,
+        "effective_visible_bbox_xyxy": [
+          262,
+          55,
+          1979,
+          673
+        ],
+        "effective_visible_pixels": 450803,
+        "border_max_alpha": 0,
+        "nonzero_alpha_bbox_xyxy": [
+          260,
+          54,
+          2158,
+          705
+        ]
+      }
+    },
+    {
+      "file": "ready.png",
+      "native_size": [
+        607,
+        208
+      ],
+      "bytes": 165561,
+      "sha256": "03d83cfce4727c7acf95b08e604cf4c099dd940d98cb326fe1c56ec45a3a2d63",
+      "alpha": {
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 254,
+        "fully_transparent_pixels": 21825,
+        "fully_transparent_percent": 17.2863,
+        "effective_visible_alpha_threshold": 4,
+        "effective_visible_bbox_xyxy": [
+          8,
+          8,
+          599,
+          201
+        ],
+        "effective_visible_pixels": 99937,
+        "border_max_alpha": 0,
+        "nonzero_alpha_bbox_xyxy": [
+          5,
+          6,
+          602,
+          204
+        ]
+      }
+    },
+    {
+      "file": "shop-workshop-background.png",
+      "native_size": [
+        941,
+        1672
+      ],
+      "bytes": 2350627,
+      "sha256": "b3fc9980982e744901020b0193cc341917307a18b9647bd8b704ca53bf8d880b",
+      "alpha": {
+        "alpha": "opaque by design"
+      }
+    },
+    {
+      "file": "swift-wing.png",
+      "native_size": [
+        607,
+        610
+      ],
+      "bytes": 314996,
+      "sha256": "68aba534c2ed376e1b6623a1ccbc0fa09a8971c89a5b75f54373ffc4b1a99d42",
+      "alpha": {
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "fully_transparent_pixels": 169125,
+        "fully_transparent_percent": 45.6761,
+        "effective_visible_alpha_threshold": 4,
+        "effective_visible_bbox_xyxy": [
+          8,
+          8,
+          599,
+          602
+        ],
+        "effective_visible_pixels": 198698,
+        "border_max_alpha": 1,
+        "nonzero_alpha_bbox_xyxy": [
+          6,
+          7,
+          607,
+          603
+        ]
+      }
+    },
+    {
+      "file": "swift.png",
+      "native_size": [
+        544,
+        198
+      ],
+      "bytes": 137467,
+      "sha256": "2c708ae1276c179f2375917c67f1af91a8b9e13bca0bde0ec394841c5aeee448",
+      "alpha": {
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 254,
+        "fully_transparent_pixels": 20584,
+        "fully_transparent_percent": 19.1102,
+        "effective_visible_alpha_threshold": 4,
+        "effective_visible_bbox_xyxy": [
+          8,
+          8,
+          536,
+          192
+        ],
+        "effective_visible_pixels": 82165,
+        "border_max_alpha": 0,
+        "nonzero_alpha_bbox_xyxy": [
+          3,
+          4,
+          542,
+          197
+        ]
+      }
+    },
+    {
+      "file": "titles-atlas.png",
+      "native_size": [
+        1024,
+        1536
+      ],
+      "bytes": 1803347,
+      "sha256": "3b839fc1ccbba4612c27e34e386cb7e6c1ce6a1e48febedfbdf22077170846c6",
+      "alpha": {
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 254,
+        "fully_transparent_pixels": 789208,
+        "fully_transparent_percent": 50.1765,
+        "effective_visible_alpha_threshold": 4,
+        "effective_visible_bbox_xyxy": [
+          39,
+          77,
+          987,
+          1507
+        ],
+        "effective_visible_pixels": 751003,
+        "border_max_alpha": 1,
+        "nonzero_alpha_bbox_xyxy": [
+          0,
+          47,
+          1006,
+          1536
+        ]
+      }
+    },
+    {
+      "file": "training.png",
+      "native_size": [
+        845,
+        209
+      ],
+      "bytes": 229096,
+      "sha256": "5dd329cc0262f931cdbded1ec7267cdb845aaf4a14c1bbd7913c51e7074c818e",
+      "alpha": {
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 254,
+        "fully_transparent_pixels": 34536,
+        "fully_transparent_percent": 19.5555,
+        "effective_visible_alpha_threshold": 4,
+        "effective_visible_bbox_xyxy": [
+          8,
+          8,
+          837,
+          201
+        ],
+        "effective_visible_pixels": 136265,
+        "border_max_alpha": 0,
+        "nonzero_alpha_bbox_xyxy": [
+          6,
+          5,
+          839,
+          206
+        ]
+      }
+    },
+    {
+      "file": "worker.png",
+      "native_size": [
+        774,
+        214
+      ],
+      "bytes": 220247,
+      "sha256": "bbce5e5d2ead54a55979fd0faadaf2624b12d1c95f21d853b385910196d53e4e",
+      "alpha": {
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 254,
+        "fully_transparent_pixels": 32780,
+        "fully_transparent_percent": 19.7904,
+        "effective_visible_alpha_threshold": 4,
+        "effective_visible_bbox_xyxy": [
+          8,
+          8,
+          766,
+          207
+        ],
+        "effective_visible_pixels": 128273,
+        "border_max_alpha": 1,
+        "nonzero_alpha_bbox_xyxy": [
+          3,
+          0,
+          769,
+          213
+        ]
+      }
+    }
+  ]
+}
