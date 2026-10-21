@@ -1,6 +1,6 @@
 # Current verification boundary
 
-Updated 2026-10-21 through the bounded Ice Supply Ridge continuation. Current immediate published baseline: `e67a1cc07cbe8d8ef2f8b558ab052101f7b0c9d1` (including the ruins fork and single-level authoring entry). Published core baseline: [`125646450cd1bf5e90d6d7cbc833ca34ff47bd75`](https://github.com/crazyniu/ant/commit/125646450cd1bf5e90d6d7cbc833ca34ff47bd75). Current development source adds API 3.1.0 growth integration; do not claim it is byte-identical to the frozen API 3.0.0 recording.
+Updated 2026-10-21 for the bounded Threefold Supply Steps continuation. Current immediate published baseline: `9d3a2842dfdbb16fed12b9d80967541961208479` (eight current single-ant levels and the single-level authoring entry). Published core baseline: [`125646450cd1bf5e90d6d7cbc833ca34ff47bd75`](https://github.com/crazyniu/ant/commit/125646450cd1bf5e90d6d7cbc833ca34ff47bd75). Current development source adds API 3.1.0 growth integration; do not claim it is byte-identical to the frozen API 3.0.0 recording.
 
 ## Existing bounded reports
 
@@ -129,3 +129,16 @@ The actual same-version GL capture is **941 frames at 30 FPS**, **1440×2560**, 
 The final ground-scale traveler uses its measured foot anchor and leaves the ×1 control clear. Preparation fits five real color requirements without cropping; gameplay uses five independent equal-width color buttons in one row. Developer inspection covered preparation, natural gameplay and the saved result. No user visual acceptance is implied. The GL log contains only unavailable V-Sync control, with no script or resource-at-exit diagnostic. Nineteen recorded production code/config/art hashes match the frozen candidate.
 
 The captured soundtrack is the production mix; runtime audio output is Dummy. Fourteen cues load and BGM is playing, but numerical sound levels or an encoded track do not establish hardware output or human listening quality. Human pacing, natural input, economy, final art and target-device checks remain separate. No new escort, bonus, combat mechanism, full30 completion, merge or deployment is claimed.
+
+
+## Level 9: Threefold Supply Steps
+
+The current increment is based on `9d3a2842dfdbb16fed12b9d80967541961208479`. It adds one four-color, three-lobed staged-opening puzzle on the existing central-entrance ruins scene, plus the independent eight-yaw carapace serpent appearance. The authoritative rules, prior appearances and levels 1–8 remain unchanged.
+
+The integrated candidate passes **1,466** bounded level-rule assertions, **50** appearance checks, **60** scene checks and production single-level CLI validation. Both 17-input Worker Lv.1 sequences finish at 28.75s, but they select different nearest yellow targets: the central blue core opens at 3.00s in the red-first route versus 7.20s in the blue-first route. Sixteen task paths are 3–5 cells and one is six cells; longest recorded all-color no-dispatch window is 0.80s. The scene check samples 3,417 carrier-ground positions with minimum enemy-centerline separation 129.79 logical pixels. These bounded measurements are not human strategy or balance approval.
+
+The same-version actual GL journey is **1,053 frames at 30 FPS**, **1440×2560**, **35.10 seconds** unsped and uncut, including preparation, actual Loading, production play and the result. The final damage occurs at **28.75 simulation seconds**, observes at most four carriers, leaves six beads, and saves the cart plus a genuine 100+50=150-point first-clear receipt. Only prerequisites 1–8 are completed in the isolated recording fixture, without points or upgrades. Twenty recorded production code/config/art hashes must match the frozen candidate.
+
+Developer inspection covered the new head/tail contact and turning posture, colored shell body and distinct intact/cracked HP2 overlay, cart footing, natural ground transport, four equal-width inputs and real preparation requirements. It does not establish user visual acceptance. The GL log contains the unavailable-V-Sync warning and a low-disk-space warning at 9.93GiB available; recording completed naturally, with no script or resource-at-exit diagnostic. The scene headless fixture exits 0 with passing assertions but reports ObjectDB and two resources still in use at shutdown; it is not called a clean exit.
+
+The soundtrack contains the real production mix while cloud runtime output remains Dummy. A playing BGM player and encoded mix do not establish human listening or hardware acceptance. No old30/33-suite result is reused as evidence for this model, and no full campaign rerun, new combat mechanic, final economy balance, merge or deployment is claimed.

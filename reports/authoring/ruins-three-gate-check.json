@@ -1,0 +1,78 @@
+{
+  "accepted_inputs": 17,
+  "contact_time_us": 62000000,
+  "errors": [],
+  "event_count": 154,
+  "event_sequence_sha256": "eb26ea85d5cce00153538bb466bad48893367bac30d3d49093c1642d7e0985ff",
+  "guardian_id": "supply_cart",
+  "hit_counts": {
+    "blue": 4,
+    "green": 4,
+    "red": 4,
+    "yellow": 5
+  },
+  "level_id": "serpent-09",
+  "level_sha256": "7dc8acdcaf2acf775ed6a20e1ad8bf06c730e61c5ec5ea17f8eb60702c2b5065",
+  "loadout": {
+    "ant_type": "worker",
+    "level": 1,
+    "speed_multiplier": 1.0
+  },
+  "longest_no_dispatch_opportunity_us": 800000,
+  "maximum_carriers": 4,
+  "no_dispatch_windows": [
+    {
+      "duration_us": 800000,
+      "end_us": 17600000,
+      "start_us": 16800000
+    },
+    {
+      "duration_us": 800000,
+      "end_us": 20400000,
+      "start_us": 19600000
+    },
+    {
+      "duration_us": 800000,
+      "end_us": 21800000,
+      "start_us": 21000000
+    }
+  ],
+  "ok": true,
+  "path_cells": [
+    3,
+    4,
+    3,
+    3,
+    4,
+    3,
+    4,
+    4,
+    4,
+    5,
+    4,
+    5,
+    5,
+    4,
+    5,
+    5,
+    6
+  ],
+  "remaining_beads": 6,
+  "required_damage_by_color": {
+    "blue": 4,
+    "green": 4,
+    "red": 4,
+    "yellow": 5
+  },
+  "rules_api": "3.1.0",
+  "scene_id": "ruins_fork",
+  "scope": "One authored level and timed solution. Not a solver, editor, GL/ground-support check, human balance or device acceptance.",
+  "status": "victory",
+  "supply_by_color": {
+    "blue": 4,
+    "green": 7,
+    "red": 6,
+    "yellow": 6
+  },
+  "terminal_time_us": 28750000
+}

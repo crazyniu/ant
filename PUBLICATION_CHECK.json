@@ -1,29 +1,31 @@
 {
-  "status": "PASS_BOUNDED_FOREST_TRAVELER_WITH_RECORDED_DIAGNOSTICS",
-  "base_commit": "f5b23489c404a778b0f5f1a0f5e899cba46deb79",
-  "frozen_at": "2026-10-21T19:08:36.785143+00:00",
-  "current_validation_levels": 8,
-  "scope": "one two-island woodland traveler level, fifth existing color and independent stationary guardian; rules unchanged, no escort or full30",
+  "status": "PASS_BOUNDED_RUINS_THREE_GATE_WITH_RECORDED_DIAGNOSTICS",
+  "base_commit": "9d3a2842dfdbb16fed12b9d80967541961208479",
+  "frozen_at": "2026-10-21T19:25:06.707655+00:00",
+  "current_validation_levels": 9,
+  "scope": "one three-lobed staged-opening ruins level and independent carapace appearance; rules unchanged, no new combat or full30",
   "checks": {
-    "rules_assertions": 834,
-    "scene_checks": 63,
-    "authored_route_samples": 3015,
-    "minimum_enemy_centerline_separation": 112.344261169434,
-    "new_level_terminal_time_us": 25050000,
-    "new_level_deadline_us": 60000000,
+    "rules_assertions": 1466,
+    "appearance_checks": 50,
+    "scene_checks": 60,
+    "authored_route_samples": 3417,
+    "minimum_enemy_centerline_separation": 129.793869018555,
+    "new_level_terminal_time_us": 28750000,
+    "new_level_deadline_us": 62000000,
     "new_level_remaining_beads": 6,
-    "runtime_source_hashes_match": 19,
+    "runtime_source_hashes_match": 20,
     "victory_saved": true,
     "reward_total": 150,
-    "rules_and_levels01_to07_unchanged": true,
+    "rules_and_levels01_to08_unchanged": true,
     "static_resources": "resolved; tests include deliberate invalid fixtures",
     "candidate_only_secret_private_path_scan": "no findings"
   },
   "diagnostics": {
     "scene_headless": "exit0, passing assertions, ObjectDB and2resources inuse at shutdown; not clean exit",
-    "GL": "natural exit; only unavailable V-Sync warning, no script or resource-at-exit diagnostics"
+    "GL": "natural exit; unavailable V-Sync and 9.93GiB low-disk warnings; no script or resource-at-exit diagnostics"
   },
   "retained_not_rerun": [
+    "traveler834/63",
     "ice-supply668/50/43",
     "fork54/entry16",
     "ice1469/83",
@@ -34,7 +36,7 @@
   "limits": [
     "1x authored automatic replay, not human interaction or balance acceptance",
     "Dummy cloud output; captured mix is not hardware sound or human listening",
-    "traveler generated/cut/engine-composed, not final user art approval",
+    "carapace source/cuts/engine composition are not final user art approval",
     "further levels, combo/mechanism and real ad SDK remain",
     "no merge/deployment"
   ]

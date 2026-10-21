@@ -68,3 +68,12 @@ The green-first and purple-first Worker Lv.1 sequences each use 15 inputs, with 
 The independent `assets/worlds/forest-traveler.png` is a measured-alpha 936×1204 RGBA crop, not a complete scene image. Its local anchor `[498,1186]` maps to world foot `[155,182]`; physical width 928 scales uniformly to 88 logical pixels. Optional contact-shadow radii `[24,7]` share that foot. Use `reports/assets/forest-traveler-assets.json` and [asset placement](../ASSETS.md), not equal-cell crops or the transparent canvas center.
 
 The current same-version 834-check rule report and 63-check integrated scene report pass with distinct scopes. Scene checks cover the shared target, five-color preparation/input layout and 3,015 carrier-ground samples, with minimum enemy-centerline separation about 112.34 logical pixels. Production single-level CLI validation passes. The separate `reports/ui/forest-traveler-runtime.json` records the same-version actual automated GL journey and final hit at 25.05s. These checks and the recording do not establish human visual, native-input, audio or device acceptance; see `PUBLIC_VERIFICATION.md` for the current verification boundary.
+
+
+## Threefold Supply Steps, level 9
+
+Level 9 reuses `data/scenes/ruins-fork.json` without modifying it: central rule entrance `[5,8]`, nest `[480,1010]`, gateway `[480,930]`, fixed cart foot `[808,192]`, and the finite outer left-to-upper-right road. The new three-lobed mosaic and initial body budget are level data, not baked into ground art. Red/yellow middle opening and blue/yellow right opening give different legal nearest-bead paths; no occupied bead cell becomes walkable before actual pickup.
+
+`serpent.art_profile="ruins_carapace"` selects the new broad-shell silhouette, while body color tint, visible HP2 overlays, chain-joint yaw anchors and spacing retain the existing renderer contract. The four color entrances remain equal-width in one row. Preparation shows the real 13 ordinary/two armored counts and four color requirements, not artwork example values.
+
+The bounded scene report `reports/ui/ruins-three-gate-scene.json` checks 3,417 sampled route points remain on inner clear ground and at least 129.79 logical pixels from the enemy centerline, plus the actual profile/guardian/input controls. Rendering and human acceptance remain separate from these checks. See `ASSETS.md` for alpha cutting and joint anchors and `PUBLIC_VERIFICATION.md` for the current real-GL boundary.

@@ -1,0 +1,76 @@
+{
+	"inputs": [
+		{
+			"at_sec": 0.0,
+			"color": "blue"
+		},
+		{
+			"at_sec": 1.4,
+			"color": "yellow"
+		},
+		{
+			"at_sec": 2.8,
+			"color": "green"
+		},
+		{
+			"at_sec": 4.2,
+			"color": "red"
+		},
+		{
+			"at_sec": 5.6,
+			"color": "yellow"
+		},
+		{
+			"at_sec": 7.0,
+			"color": "blue"
+		},
+		{
+			"at_sec": 8.4,
+			"color": "yellow"
+		},
+		{
+			"at_sec": 9.8,
+			"color": "red"
+		},
+		{
+			"at_sec": 11.2,
+			"color": "green"
+		},
+		{
+			"at_sec": 12.6,
+			"color": "blue"
+		},
+		{
+			"at_sec": 14.0,
+			"color": "yellow"
+		},
+		{
+			"at_sec": 15.4,
+			"color": "red"
+		},
+		{
+			"at_sec": 16.8,
+			"color": "green"
+		},
+		{
+			"at_sec": 18.2,
+			"color": "yellow"
+		},
+		{
+			"at_sec": 19.6,
+			"color": "red"
+		},
+		{
+			"at_sec": 21.0,
+			"color": "green"
+		},
+		{
+			"at_sec": 22.4,
+			"color": "blue"
+		}
+	],
+	"label": "right_blue_then_yellow",
+	"level_id": "serpent-09",
+	"level_sha256": "7dc8acdcaf2acf775ed6a20e1ad8bf06c730e61c5ec5ea17f8eb60702c2b5065",
+	"minimum_input_gap_sec": 1.4
+}

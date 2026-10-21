@@ -1,0 +1,286 @@
+{
+  "version": 1,
+  "path": "res://assets/serpent/carapace-serpent-atlas.png",
+  "texture_size": [
+    1280,
+    1600
+  ],
+  "heads": {
+    "E": {
+      "region": [
+        8,
+        8,
+        303,
+        247
+      ],
+      "anchor": [
+        55,
+        163
+      ],
+      "physical_width": 310
+    },
+    "SE": {
+      "region": [
+        328,
+        8,
+        256,
+        257
+      ],
+      "anchor": [
+        63,
+        136
+      ],
+      "physical_width": 310
+    },
+    "S": {
+      "region": [
+        648,
+        8,
+        223,
+        262
+      ],
+      "anchor": [
+        111,
+        68
+      ],
+      "physical_width": 310
+    },
+    "SW": {
+      "region": [
+        968,
+        8,
+        267,
+        257
+      ],
+      "anchor": [
+        199,
+        133
+      ],
+      "physical_width": 310
+    },
+    "W": {
+      "region": [
+        8,
+        328,
+        318,
+        247
+      ],
+      "anchor": [
+        258,
+        164
+      ],
+      "physical_width": 310
+    },
+    "NW": {
+      "region": [
+        328,
+        328,
+        231,
+        261
+      ],
+      "anchor": [
+        177,
+        205
+      ],
+      "physical_width": 310
+    },
+    "N": {
+      "region": [
+        648,
+        328,
+        226,
+        248
+      ],
+      "anchor": [
+        113,
+        207
+      ],
+      "physical_width": 310
+    },
+    "NE": {
+      "region": [
+        968,
+        328,
+        259,
+        262
+      ],
+      "anchor": [
+        60,
+        201
+      ],
+      "physical_width": 310
+    }
+  },
+  "tails": {
+    "W": {
+      "region": [
+        8,
+        648,
+        279,
+        155
+      ],
+      "anchor": [
+        44,
+        78
+      ],
+      "physical_width": 273
+    },
+    "NW": {
+      "region": [
+        328,
+        648,
+        222,
+        201
+      ],
+      "anchor": [
+        55,
+        43
+      ],
+      "physical_width": 273
+    },
+    "N": {
+      "region": [
+        648,
+        648,
+        147,
+        211
+      ],
+      "anchor": [
+        73,
+        36
+      ],
+      "physical_width": 273
+    },
+    "NE": {
+      "region": [
+        968,
+        648,
+        222,
+        200
+      ],
+      "anchor": [
+        180,
+        43
+      ],
+      "physical_width": 273
+    },
+    "E": {
+      "region": [
+        8,
+        968,
+        275,
+        154
+      ],
+      "anchor": [
+        231,
+        78
+      ],
+      "physical_width": 273
+    },
+    "SE": {
+      "region": [
+        328,
+        968,
+        216,
+        205
+      ],
+      "anchor": [
+        169,
+        163
+      ],
+      "physical_width": 273
+    },
+    "S": {
+      "region": [
+        648,
+        968,
+        153,
+        225
+      ],
+      "anchor": [
+        75,
+        183
+      ],
+      "physical_width": 273
+    },
+    "SW": {
+      "region": [
+        968,
+        968,
+        216,
+        207
+      ],
+      "anchor": [
+        48,
+        165
+      ],
+      "physical_width": 273
+    }
+  },
+  "directions": [
+    "E",
+    "SE",
+    "S",
+    "SW",
+    "W",
+    "NW",
+    "N",
+    "NE"
+  ],
+  "body_tint_all": true,
+  "skin_id": "ruins_carapace",
+  "armor": {
+    "intact": {
+      "path": "res://assets/serpent/serpent-armor-atlas.png",
+      "region": [
+        0,
+        0,
+        768,
+        748
+      ],
+      "anchor": [
+        384,
+        374
+      ],
+      "physical_width": 734
+    },
+    "cracked": {
+      "path": "res://assets/serpent/serpent-armor-atlas.png",
+      "region": [
+        768,
+        0,
+        768,
+        748
+      ],
+      "anchor": [
+        384,
+        374
+      ],
+      "physical_width": 734
+    }
+  },
+  "body": {
+    "region": [
+      8,
+      1288,
+      258,
+      262
+    ],
+    "anchor": [
+      129,
+      138
+    ],
+    "physical_width": 252
+  },
+  "usage": {
+    "render": "Real eight yaw poses, fixed light; no whole-head/tail rotation. Heads attach at rear neck, tail key is movement direction with tip opposite. Body uses neutral full-region luminance tint to keep every gameplay color clear.",
+    "alpha": "17 measured alpha>8 components, nearest-component fringe retained within 2 pixels, 3px contour margin; source atlas preserved. No uniform-grid crop assumptions.",
+    "target_logical_size": {
+      "head_width": 84,
+      "body_diameter": "same route-derived 35..62 as current serpent",
+      "tail_width": "body_diameter*0.84"
+    },
+    "skin_only": "Short nose horn, broad plated cheeks and rounded carapace silhouette; no new damage/slowdown/extra health. Ordinary HP1 and visible armored HP2 unchanged."
+  },
+  "provenance_report": "res://reports/assets/carapace-serpent-assets.json"
+}

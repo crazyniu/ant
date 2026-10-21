@@ -32,7 +32,7 @@ There are no current automatic 20/30-ant teams, queue quotas, five work slots, f
 ## Current entry and meta screens
 
 - Startup performs real resource loading before Home. Home's primary action opens preparation for the saved entrance; its map action opens the full-screen adventure map.
-- Map nodes come from the actual loaded catalog and completion/unlock state. They open full preparation, not a modal level grid. Eight current level definitions are available, including ruins/parked-cart, ice/winter-camp and woodland/traveler slices.
+- Map nodes come from the actual loaded catalog and completion/unlock state. They open full preparation, not a modal level grid. Nine current level definitions are available, including ruins/parked-cart, ice/winter-camp and woodland/traveler slices.
 - Preparation derives segment counts, total HP, supply and fixed-goal preview from the selected configuration. Owned worker/Swift selection is committed before launching the actual game scene.
 - The independent shop is reachable from map and results. Balance, item prices, owned/equipped state and next shared level reflect service state. Product views use separate panels, title sprites, ant actors, ornaments and real text.
 - Navigation persists region, scroll and selected level. Returning from the shop/preparation uses that state, rather than inventing a new selection. Persistence is not evidence that all target devices have passed scrollbar/mouse testing.
@@ -119,3 +119,14 @@ Both authored Worker Lv.1 routes use 15 independent inputs at 1.40-second gaps. 
 Preparation and play share the traveler texture, measured ground anchor and uniform physical scale recorded in `reports/assets/forest-traveler-assets.json`; the optional contact shadow is presentation only. Preparation’s five required-color values fit three columns/two rows, while live play retains five equal-width single-row dispatch buttons.
 
 `reports/rules/forest-traveler-level08.json` records 834 passing bounded rule checks against the current integrated level data and unchanged rules, with exact hashes. `reports/ui/forest-traveler-scene.json` records 63 passing integrated scene checks against that same level version. Production single-level CLI validation also passes. These do not constitute a rerun of prior levels or a whole-project pass. The same-version `reports/ui/forest-traveler-runtime.json` records actual automated GL victory at 25.05 simulation seconds, six unused beads, and saved completion plus 150 points. Runtime diagnostics and evidence limits are in `PUBLIC_VERIFICATION.md`. Human difficulty/economy, visual, native-input, audio and target-device acceptance remain outstanding.
+
+
+## Level 9: staged ruins supply and carapace appearance
+
+Level 9 uses `data/serpent-levels/serpent-09.json` and the unchanged `data/scenes/ruins-fork.json` central approach. It guards the same fixed supply cart without moving escort logic. Its 23-bead, four-color stepped pattern requires opening a fourth blue bead: three initially exterior blues cannot fund four blue damage. Supplies are red6/blue4/green7/yellow6; damage needs are red4/blue4/green4/yellow5. Thirteen HP1 and two HP2 segments require 17 hits without upgrades, ads, tools or rewards.
+
+Two real nearest-target sequences demonstrate different openings. Red then yellow opens the central blue core at 3.00s. Blue then yellow supplies the early blue armor and collects the right yellow at 3.00s, then opens the blue core via green/upper-yellow at 7.20s. Both 17-input sequences finish at 28.75s under a 62s finite threat. Current reward thresholds are 30s fast and 44s normal, still candidate tuning rather than human economy acceptance.
+
+The `ruins_carapace` atlas adds 17 independently anchored pieces and eight true yaw views to the existing appearance whitelist. It does not alter authoritative rules, HP, movement speed, target selection, input or events. Ordinary shell art is separate from the HP2 gold intact/cracked overlay. Production preparation and play share the same profile and fixed guardian. Rules and level files 1–8 remain unchanged.
+
+The current rule report contains 1,466 assertions, the asset report 50 checks and the composed scene report 60 checks/3,417 sampled carrier-ground positions, minimum enemy-centerline separation 129.79 logical pixels. Their scopes do not replace actual GL, native-input, human visual or hardware/audio acceptance. See `PUBLIC_VERIFICATION.md` for current runtime evidence and diagnostics.

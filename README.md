@@ -2,7 +2,7 @@
 
 A portrait Godot **4.6.3** game: click a color to send one ant for one bead, deliver it to fire one matching projectile, and destroy a segmented serpent before its head reaches the fixed goal. Runtime UI is English and icon-first. Normal play is offline and needs no account, backend, external plugin or secret.
 
-Current source includes adventure/preparation/shop progression, independently authored ruins and Ice Valley levels, and Traveler’s Twin Groves in the existing woodland scene. Rules API remains **3.1.0**, with level schema **3**. There are **eight current validation levels**, not a completed or accepted new 30-level campaign. Source integration is not merge, deployment or final acceptance.
+Current source includes adventure/preparation/shop progression, independently authored ruins and Ice Valley levels, Traveler’s Twin Groves in the existing woodland scene, and Threefold Supply Steps with the carapace serpent. Rules API remains **3.1.0**, with level schema **3**. There are **nine current validation levels**, not a completed or accepted new 30-level campaign. Source integration is not merge, deployment or final acceptance.
 
 ## Run
 
@@ -28,11 +28,11 @@ The viewport is **1440 × 2560**, with a uniformly scaled **940 × 1672** logica
 - Each bead funds one matching projectile for one damage. Normal segments have **HP1**; armored segments have **HP2**, with a cracked state after the first hit. Stable segment IDs prevent retargeting errors.
 - The serpent follows a **finite, non-looping route**. Removing a segment shortens the body without moving its head backward. The head has no extra hidden health bar.
 - Actual damage removing the final live segment wins. Board clear, pickup, delivery or firing does not win; leftover beads and inventory are allowed. Earlier head contact loses. At exactly the same simulation microsecond, due damage resolves before contact.
-- The base worker can solve all eight current authored levels without upgrades, advertising, combos or mechanisms. No automatic 20/30-ant teams, five work slots, team quotas or board-equals-armor rule remain in current play.
+- The base worker can solve all nine current authored levels without upgrades, advertising, combos or mechanisms. No automatic 20/30-ant teams, five work slots, team quotas or board-equals-armor rule remain in current play.
 
 ## Map, preparation, points and shop
 
-The full-screen map uses the real eight-level catalog and saved completion/unlock states. Preparation shows the selected level's scene preview, segment/HP information, fixed target and owned ant types. Map region, scroll and selected level are persisted for return navigation. The fourth level adds a ruins ground and stationary supply-cart objective; level five adds a snow valley, fixed winter camp and independently authored two-gate opening; level six returns to ruins with a smaller three-color, blue-armor supply fork; level seven reuses the snow scene for a two-stage supply ridge and the independent ice-crest serpent appearance; level eight returns to woodland with a fixed traveler, two resource islands and purple as a fifth color. Further themed regions and targets remain content work.
+The full-screen map uses the real nine-level catalog and saved completion/unlock states. Preparation shows the selected level's scene preview, segment/HP information, fixed target and owned ant types. Map region, scroll and selected level are persisted for return navigation. The fourth level adds a ruins ground and stationary supply-cart objective; level five adds a snow valley, fixed winter camp and independently authored two-gate opening; level six returns to ruins with a smaller three-color, blue-armor supply fork; level seven reuses the snow scene for a two-stage supply ridge and the independent ice-crest serpent appearance; level eight returns to woodland with a fixed traveler, two resource islands and purple as a fifth color. Level nine adds a four-color, three-step opening in ruins with an independent carapace serpent. Further themed regions and targets remain content work.
 
 - First clear: **100 + 0–50** time-bonus points. Replay clear: **20 + 0–10**. Failed or abandoned runs earn no new points and do not deduct existing points.
 - Reward time is effective simulation time from first legal dispatch to final damage, not recording length or wall-clock time. Each level supplies its own bonus thresholds.
@@ -55,7 +55,7 @@ Music and effects have independent controls; saved zero remains silent. Human li
 - `scripts/play.gd`, `rescue_rules.gd`: live scene adapter and authoritative microsecond rules.
 - `scripts/level_catalog.gd`, `save_service.gd`: current catalog identity, completion/settings saves.
 - `scripts/serpent_view.gd`, `serpent_path.gd`, `directional_carrier.gd`, `carrier_route.gd`: independent serpent and transport presentation.
-- `data/serpent-levels/`: only the eight current authored validation levels.
+- `data/serpent-levels/`: only the nine current authored validation levels.
 
 Start with [current implementation](docs/CURRENT_IMPLEMENTATION.md), [UI components](docs/UI_COMPONENTS.md), [asset placement](ASSETS.md) and [verification boundaries](docs/PUBLIC_VERIFICATION.md). Older documents with a historical-version notice are reference material, not current acceptance criteria.
 
@@ -100,3 +100,12 @@ The authored 17-input Worker Lv.1 solution finishes on actual damage at 27.85 si
 `serpent-08` uses `data/scenes/forest-traveler.json`: the existing woodland ground and finite right/top road, a separate stationary traveler sprite, center-bottom entrance `[5,8]` and default serpent appearance. Two independently authored, offset resource islands introduce purple alongside red, blue, green and yellow. Actual green pickup opens the left purple core; blue pickup opens the right. The traveler does not move and there is no escort or new combat mechanic. Levels 1–7 and the authoritative rules remain unchanged.
 
 Its 21 beads fund 15 HP across 11 normal and two armored segments, one purple and one blue. Both green-first and purple-first Worker Lv.1 solutions use 15 inputs without upgrades, tools, ads or bonuses. First delivery is 3.20s or 4.10s respectively; both win on final damage at 25.05s before the 60s threat, leaving six beads. Preparation fits five required-color counts in three columns and two rows; live dispatch remains five equal-width buttons in one row. See [scene layout](docs/SCENE_LAYOUTS.md) and [traveler asset placement](ASSETS.md). Human pacing, visual, audio and target-device acceptance remain outstanding.
+
+
+## Level 9: Threefold Supply Steps
+
+`serpent-09` reuses the central-entrance ruins ground and fixed parked supply cart from `data/scenes/ruins-fork.json`, but independently authors a three-lobed, stepped resource pattern. The carapace serpent uses distinct blunt-horn and broad-shell artwork through `serpent.art_profile="ruins_carapace"`; ordinary HP1 and visibly armored HP2 semantics stay unchanged. There is no new attack, escort or resource rule.
+
+23 beads fund 17 damage (13 ordinary and two armored segments). Both authored base Worker Lv.1 solutions use 17 inputs at 1.4-second intervals and finish on final damage at 28.75 simulation seconds before the 62-second threat, leaving six beads. Red→yellow opens the required blue core at 3.00s; blue→yellow takes a different right-hand yellow first and opens the same blue core via an upper branch at 7.20s. Actual nearest-reachable targets differ; this is not a manual cell-selection claim. Sixteen routes are 3–5 cells and one is six cells, with longest no-dispatch interval 0.80s in these solutions. Human strategy, pacing and difficulty remain to be tested.
+
+Current bounded evidence is 1,466 level-rule assertions, 50 appearance checks, 60 integrated scene checks and production single-level CLI validation. These scopes are separate, not a whole-campaign rerun. Actual runtime evidence and diagnostics are recorded in [verification boundaries](docs/PUBLIC_VERIFICATION.md).

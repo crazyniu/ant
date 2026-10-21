@@ -3,7 +3,7 @@ extends Control
 const Route = preload("res://scripts/serpent_path.gd")
 const Shadow = preload("res://scripts/contact_shadow.gd")
 const PALETTE={"red":Color("ed4137"),"blue":Color("329cfa"),"yellow":Color("fbc52c"),"green":Color("68d849"),"purple":Color("a25fe6"),"white":Color("f7efdb")}
-const ART_PROFILES={"default":"res://assets/serpent/serpent-atlas.json","ice_crest":"res://assets/serpent/ice-serpent-atlas.json"}
+const ART_PROFILES={"default":"res://assets/serpent/serpent-atlas.json","ice_crest":"res://assets/serpent/ice-serpent-atlas.json","ruins_carapace":"res://assets/serpent/carapace-serpent-atlas.json"}
 const DIRECTIONS=["E","SE","S","SW","W","NW","N","NE"]
 var route:RefCounted=Route.new()
 var atlas:Texture2D

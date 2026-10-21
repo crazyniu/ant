@@ -1,0 +1,481 @@
+{
+  "asset": "ruins_carapace serpent appearance",
+  "source": "AI generated with built-in image generation from project-generated ice-serpent camera/style reference; new blunt-horn plated carapace identity; not competitor art",
+  "generation_date": "2026-10-21",
+  "generation_source_filename": "exec-bda2ee2b-5226-4dd6-9b56-74972dc7a73f.png",
+  "license_boundary": "Generated provenance, not legal clearance; no project-wide open-source license selected.",
+  "native_source_size": [
+    1122,
+    1402
+  ],
+  "source_path": "assets/serpent/carapace-serpent-source.png",
+  "source_sha256": "25d0d1d067fb151d7dbc86c5b13e8b5bdeb82de2168c97c2c55725eb0ec1648b",
+  "packed_path": "assets/serpent/carapace-serpent-atlas.png",
+  "packed_sha256": "dc3b9531bb4f8fabefd686f497b7941d3f4ac75051df4aaebf0794d14d8fb0d2",
+  "packed_size": [
+    1280,
+    1600
+  ],
+  "parts": [
+    {
+      "part": "head_E",
+      "source_bbox_alpha_gt8": [
+        14,
+        66,
+        311,
+        307
+      ],
+      "source_crop": [
+        11,
+        63,
+        314,
+        310
+      ],
+      "contour_pixels": 50636,
+      "region": [
+        8,
+        8,
+        303,
+        247
+      ],
+      "anchor": [
+        55,
+        163
+      ],
+      "physical_width": 310
+    },
+    {
+      "part": "head_SE",
+      "source_bbox_alpha_gt8": [
+        313,
+        66,
+        563,
+        317
+      ],
+      "source_crop": [
+        310,
+        63,
+        566,
+        320
+      ],
+      "contour_pixels": 43933,
+      "region": [
+        328,
+        8,
+        256,
+        257
+      ],
+      "anchor": [
+        63,
+        136
+      ],
+      "physical_width": 310
+    },
+    {
+      "part": "head_S",
+      "source_bbox_alpha_gt8": [
+        588,
+        62,
+        805,
+        318
+      ],
+      "source_crop": [
+        585,
+        59,
+        808,
+        321
+      ],
+      "contour_pixels": 39124,
+      "region": [
+        648,
+        8,
+        223,
+        262
+      ],
+      "anchor": [
+        111,
+        68
+      ],
+      "physical_width": 310
+    },
+    {
+      "part": "head_SW",
+      "source_bbox_alpha_gt8": [
+        845,
+        65,
+        1106,
+        316
+      ],
+      "source_crop": [
+        842,
+        62,
+        1109,
+        319
+      ],
+      "contour_pixels": 46444,
+      "region": [
+        968,
+        8,
+        267,
+        257
+      ],
+      "anchor": [
+        199,
+        133
+      ],
+      "physical_width": 310
+    },
+    {
+      "part": "head_W",
+      "source_bbox_alpha_gt8": [
+        22,
+        380,
+        334,
+        621
+      ],
+      "source_crop": [
+        19,
+        377,
+        337,
+        624
+      ],
+      "contour_pixels": 51273,
+      "region": [
+        8,
+        328,
+        318,
+        247
+      ],
+      "anchor": [
+        258,
+        164
+      ],
+      "physical_width": 310
+    },
+    {
+      "part": "head_NW",
+      "source_bbox_alpha_gt8": [
+        347,
+        365,
+        572,
+        620
+      ],
+      "source_crop": [
+        344,
+        362,
+        575,
+        623
+      ],
+      "contour_pixels": 41143,
+      "region": [
+        328,
+        328,
+        231,
+        261
+      ],
+      "anchor": [
+        177,
+        205
+      ],
+      "physical_width": 310
+    },
+    {
+      "part": "head_N",
+      "source_bbox_alpha_gt8": [
+        588,
+        380,
+        808,
+        622
+      ],
+      "source_crop": [
+        585,
+        377,
+        811,
+        625
+      ],
+      "contour_pixels": 37330,
+      "region": [
+        648,
+        328,
+        226,
+        248
+      ],
+      "anchor": [
+        113,
+        207
+      ],
+      "physical_width": 310
+    },
+    {
+      "part": "head_NE",
+      "source_bbox_alpha_gt8": [
+        834,
+        364,
+        1087,
+        620
+      ],
+      "source_crop": [
+        831,
+        361,
+        1090,
+        623
+      ],
+      "contour_pixels": 45689,
+      "region": [
+        968,
+        328,
+        259,
+        262
+      ],
+      "anchor": [
+        60,
+        201
+      ],
+      "physical_width": 310
+    },
+    {
+      "part": "tail_W",
+      "source_bbox_alpha_gt8": [
+        36,
+        677,
+        309,
+        826
+      ],
+      "source_crop": [
+        33,
+        674,
+        312,
+        829
+      ],
+      "contour_pixels": 28542,
+      "region": [
+        8,
+        648,
+        279,
+        155
+      ],
+      "anchor": [
+        44,
+        78
+      ],
+      "physical_width": 273
+    },
+    {
+      "part": "tail_NW",
+      "source_bbox_alpha_gt8": [
+        354,
+        662,
+        570,
+        857
+      ],
+      "source_crop": [
+        351,
+        659,
+        573,
+        860
+      ],
+      "contour_pixels": 24620,
+      "region": [
+        328,
+        648,
+        222,
+        201
+      ],
+      "anchor": [
+        55,
+        43
+      ],
+      "physical_width": 273
+    },
+    {
+      "part": "tail_N",
+      "source_bbox_alpha_gt8": [
+        633,
+        651,
+        774,
+        856
+      ],
+      "source_crop": [
+        630,
+        648,
+        777,
+        859
+      ],
+      "contour_pixels": 21113,
+      "region": [
+        648,
+        648,
+        147,
+        211
+      ],
+      "anchor": [
+        73,
+        36
+      ],
+      "physical_width": 273
+    },
+    {
+      "part": "tail_NE",
+      "source_bbox_alpha_gt8": [
+        863,
+        662,
+        1079,
+        856
+      ],
+      "source_crop": [
+        860,
+        659,
+        1082,
+        859
+      ],
+      "contour_pixels": 24493,
+      "region": [
+        968,
+        648,
+        222,
+        200
+      ],
+      "anchor": [
+        180,
+        43
+      ],
+      "physical_width": 273
+    },
+    {
+      "part": "tail_E",
+      "source_bbox_alpha_gt8": [
+        25,
+        913,
+        294,
+        1061
+      ],
+      "source_crop": [
+        22,
+        910,
+        297,
+        1064
+      ],
+      "contour_pixels": 28059,
+      "region": [
+        8,
+        968,
+        275,
+        154
+      ],
+      "anchor": [
+        231,
+        78
+      ],
+      "physical_width": 273
+    },
+    {
+      "part": "tail_SE",
+      "source_bbox_alpha_gt8": [
+        366,
+        898,
+        576,
+        1097
+      ],
+      "source_crop": [
+        363,
+        895,
+        579,
+        1100
+      ],
+      "contour_pixels": 24258,
+      "region": [
+        328,
+        968,
+        216,
+        205
+      ],
+      "anchor": [
+        169,
+        163
+      ],
+      "physical_width": 273
+    },
+    {
+      "part": "tail_S",
+      "source_bbox_alpha_gt8": [
+        627,
+        876,
+        774,
+        1095
+      ],
+      "source_crop": [
+        624,
+        873,
+        777,
+        1098
+      ],
+      "contour_pixels": 23737,
+      "region": [
+        648,
+        968,
+        153,
+        225
+      ],
+      "anchor": [
+        75,
+        183
+      ],
+      "physical_width": 273
+    },
+    {
+      "part": "tail_SW",
+      "source_bbox_alpha_gt8": [
+        868,
+        895,
+        1078,
+        1096
+      ],
+      "source_crop": [
+        865,
+        892,
+        1081,
+        1099
+      ],
+      "contour_pixels": 24440,
+      "region": [
+        968,
+        968,
+        216,
+        207
+      ],
+      "anchor": [
+        48,
+        165
+      ],
+      "physical_width": 273
+    },
+    {
+      "part": "body_body",
+      "source_bbox_alpha_gt8": [
+        33,
+        1098,
+        285,
+        1354
+      ],
+      "source_crop": [
+        30,
+        1095,
+        288,
+        1357
+      ],
+      "contour_pixels": 49547,
+      "region": [
+        8,
+        1288,
+        258,
+        262
+      ],
+      "anchor": [
+        129,
+        138
+      ],
+      "physical_width": 252
+    }
+  ],
+  "cutting": "Measured connected components alpha>8; retain original fringe within 2px nearest component, preserve original RGBA, pack without resizing. Noise-only background removed as part of requested transparent slicing. All independent objects and runtime anchors remain separate."
+}

@@ -1,0 +1,115 @@
+{
+  "mode": "actual GL production preparation/loading/ruins-three-gate gameplay; automatic authored clicks, not human playtest",
+  "prerequisite_unlocks": "isolated fixture for first8, no points granted",
+  "speed": 1,
+  "status": "victory",
+  "terminal_time_us": 28750000,
+  "remaining_beads": 6,
+  "maximum_carriers": 4,
+  "conservation_errors": [],
+  "output_pixels": [
+    1440,
+    2560
+  ],
+  "victory_saved": true,
+  "guardian": "supply_cart",
+  "shots": {
+    "last-hit": {
+      "alive_segments": 0,
+      "carriers": 0,
+      "simulation_us": 28750000
+    },
+    "opened-core": {
+      "alive_segments": 14,
+      "carriers": 2,
+      "simulation_us": 4033293
+    },
+    "projectile": {
+      "alive_segments": 15,
+      "carriers": 2,
+      "simulation_us": 3399966
+    },
+    "result": {
+      "alive_segments": 0,
+      "carriers": 0,
+      "simulation_us": 28750000
+    },
+    "shortened-snake": {
+      "alive_segments": 6,
+      "carriers": 3,
+      "simulation_us": 18999810
+    },
+    "walking": {
+      "alive_segments": 15,
+      "carriers": 2,
+      "simulation_us": 2799972
+    }
+  },
+  "reward": {
+    "base": 100,
+    "elapsed_sim_seconds": 28.75,
+    "first_clear": true,
+    "time_bonus": 50,
+    "total": 150
+  },
+  "source_hashes": {
+    "assets/serpent/carapace-serpent-atlas.json": "952c846d010389c8d38cac044afa0d33fe7cd2b5ae75055fdcb84af9076fae61",
+    "assets/serpent/carapace-serpent-atlas.png": "dc3b9531bb4f8fabefd686f497b7941d3f4ac75051df4aaebf0794d14d8fb0d2",
+    "assets/serpent/serpent-armor-atlas.png": "c8595e610a0b5b17c22ac1d1fa908454b8c3ce9de8560720fb08ed9a23651d2d",
+    "assets/worlds/ruins-courtyard.png": "041d6e6122a8b6f5069d7f19c7001ec4368f14d76a42af8f77d5f0d4dbc2493c",
+    "assets/worlds/supply-cart.png": "98fe14627851032bbb22d0e44c059e464fb0ba44054b11c53b815fa0c58db731",
+    "data/scenes/ruins-fork.json": "4310ca55c3d977c004e4a9fe44c555c1c5ea9b6df994554b8754f40222c36de9",
+    "data/serpent-levels/serpent-09.json": "7dc8acdcaf2acf775ed6a20e1ad8bf06c730e61c5ec5ea17f8eb60702c2b5065",
+    "scripts/adventure_view.gd": "321b45b42a8a851f795426ee84a04754e29ff8c1e835b261d84f5e550f4c3f85",
+    "scripts/board_plane.gd": "89d21ef17ec8e258513c90d30a40eb9b8284d0e3d246bf4059c57d4b5f829bfa",
+    "scripts/carrier_route.gd": "e42ecd8e8d54d8189c1258eb488d81bdeba1b5d0f26331941311a260c116ed6c",
+    "scripts/combat_tint.gdshader": "51d8640c68faee38fc3072f95053ed12f5d40e369fc4ba1d52428e5bde93d393",
+    "scripts/contact_shadow.gd": "ef384880665827ec7bddc9954bce972f13106c74aee14b367489c48df2cbfd0c",
+    "scripts/level_catalog.gd": "1813df34abdefffe9c851a08feb25fe114c38551ae03fae92f8cc1753938a36d",
+    "scripts/play.gd": "df9000fba36fe69a3c1eabb8abc7d91a29978fa1ce066471076a7e0f2e071b10",
+    "scripts/rescue_rules.gd": "14a5b20efdf237fbf271ea8749b35580d012485aee8a529a30e53487852c7c23",
+    "scripts/scene_layout.gd": "64dd04eaa2a75f7055b9907c176d45718c45600a5ce2c5c61ce9d63d3a588a32",
+    "scripts/serpent_view.gd": "6bf8f148984bfd80f2e7c7988dfa00a45c1549e7277e0b6d4f97bf833630323a",
+    "scripts/startup.gd": "90c95be393f559cfddc211fc4e14776fda8b5a6c91100d04f81946f289c212fb",
+    "scripts/ui_icon.gd": "6ce842b5fd26bf5a5d61c3340094dca724b056d6166b899173d17a230dccaf75",
+    "scripts/ui_skin.gd": "7e4c3ec533912b39a8745c82d52e57f630c464a45194aa4dba574e580d7dc319"
+  },
+  "audio": {
+    "accepted": 86,
+    "active_sfx": 1,
+    "audio_driver": "Dummy",
+    "backgrounded": false,
+    "dropped": {},
+    "game_paused": true,
+    "load_errors": [],
+    "loaded_cues": 14,
+    "master_muted": false,
+    "master_volume_db": 0.0,
+    "max_sfx": 12,
+    "music_bus": "AntMusic",
+    "music_bus_muted": false,
+    "music_bus_volume_db": -3.09803915023804,
+    "music_ducked": true,
+    "music_muted": false,
+    "music_paused": false,
+    "music_player_gain_db": -1.0,
+    "music_playing": true,
+    "music_position": 31.4049892425537,
+    "music_preview": false,
+    "music_volume": 0.7,
+    "output_device": "Default",
+    "sfx_bus": "AntSFX",
+    "sfx_bus_muted": false,
+    "sfx_bus_volume_db": -3.09803915023804,
+    "sfx_muted": false,
+    "sfx_volume": 0.7
+  },
+  "recording": {
+    "frames": 1053,
+    "fps": "30/1",
+    "duration_seconds": 35.1,
+    "unsped": true,
+    "uncut": true,
+    "audio_boundary": "actual captured mix; cloud Dummy output, not human listening or device validation"
+  }
+}

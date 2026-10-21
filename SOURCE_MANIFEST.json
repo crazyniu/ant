@@ -1,9 +1,9 @@
 {
   "algorithm": "SHA-256",
   "scope": "all files except this manifest",
-  "base_commit": "f5b23489c404a778b0f5f1a0f5e899cba46deb79",
-  "file_count": 231,
-  "total_bytes": 50359395,
+  "base_commit": "9d3a2842dfdbb16fed12b9d80967541961208479",
+  "file_count": 246,
+  "total_bytes": 53766798,
   "files": [
     {
       "path": ".gitignore",
@@ -12,8 +12,8 @@
     },
     {
       "path": "ASSETS.md",
-      "bytes": 18609,
-      "sha256": "5aa3993ef69fd1466e5adb4b8abad7023e4e9d972cee21c859f74d1f8ebab4dc"
+      "bytes": 20627,
+      "sha256": "a328e81abd1a5c6844a06aa74ae34cc284e3ab1adce0edbff3298b8db2e4975e"
     },
     {
       "path": "DEPENDENCIES.md",
@@ -22,13 +22,13 @@
     },
     {
       "path": "PUBLICATION_CHECK.json",
-      "bytes": 1732,
-      "sha256": "8d80e2a5ac44f25692b25998a5b0fd49da71d25206d9a85e6e584c06261e9f65"
+      "bytes": 1792,
+      "sha256": "dd428d2acad93a0f2c367797f419e023d7c76240220b9192d054abe123f80037"
     },
     {
       "path": "README.md",
-      "bytes": 14363,
-      "sha256": "7f7bd2d7697569109f4cb9c25066af6a67488e2c8b540a7981e42637d8a280b0"
+      "bytes": 15947,
+      "sha256": "8dc9a6766afea0bd72026235c843b31537080f090721a97899f43fb7899ef157"
     },
     {
       "path": "assets/ants-atlas.png",
@@ -224,6 +224,21 @@
       "path": "assets/motion/ant-directions.png",
       "bytes": 1391152,
       "sha256": "84f9fae1f64cbf9003580e1ee54800078f82b8e87829ebbf9f6ae57e20e7432e"
+    },
+    {
+      "path": "assets/serpent/carapace-serpent-atlas.json",
+      "bytes": 4612,
+      "sha256": "952c846d010389c8d38cac044afa0d33fe7cd2b5ae75055fdcb84af9076fae61"
+    },
+    {
+      "path": "assets/serpent/carapace-serpent-atlas.png",
+      "bytes": 1495663,
+      "sha256": "dc3b9531bb4f8fabefd686f497b7941d3f4ac75051df4aaebf0794d14d8fb0d2"
+    },
+    {
+      "path": "assets/serpent/carapace-serpent-source.png",
+      "bytes": 1611669,
+      "sha256": "25d0d1d067fb151d7dbc86c5b13e8b5bdeb82de2168c97c2c55725eb0ec1648b"
     },
     {
       "path": "assets/serpent/environment.png",
@@ -426,6 +441,11 @@
       "sha256": "670a37e251c42905fbc6102bd135f32deba69d609ced992ee9859a4e5f42aaba"
     },
     {
+      "path": "data/serpent-levels/serpent-09.json",
+      "bytes": 4365,
+      "sha256": "7dc8acdcaf2acf775ed6a20e1ad8bf06c730e61c5ec5ea17f8eb60702c2b5065"
+    },
+    {
       "path": "docs/BOARD_PLANE.md",
       "bytes": 4078,
       "sha256": "3952379c80354bd5839a5be24157574627a1000466c280b0d2ca3df8df5ddb02"
@@ -437,18 +457,18 @@
     },
     {
       "path": "docs/CURRENT_IMPLEMENTATION.md",
-      "bytes": 19143,
-      "sha256": "eff4fdf5c680c68c5ea518f9e442a705b64e3c7729a3a9f6597c58a6eb73ae03"
+      "bytes": 20953,
+      "sha256": "388985d46ff3f5cf87a9ef40157ce897a98527880586d0346fd7be94077581a7"
     },
     {
       "path": "docs/PUBLIC_VERIFICATION.md",
-      "bytes": 20644,
-      "sha256": "d77877b392d2c3b867103422d5f823f32a937e4d2090de24633cd4a614c1f07e"
+      "bytes": 23207,
+      "sha256": "df84a635fccda174ca5435bf2e7795876c313f5de6bcddc9caef24260b2ef356"
     },
     {
       "path": "docs/SCENE_LAYOUTS.md",
-      "bytes": 10385,
-      "sha256": "6daec283e725710f62fe034e9c55305ae5a985403b8484d9d74ef85f9a1f5640"
+      "bytes": 11682,
+      "sha256": "7feaff5f9f84777ebbf44908e0208c1a478dcd4fdff15c6a966e16b76651e76e"
     },
     {
       "path": "docs/UI_COMPONENTS.md",
@@ -474,6 +494,16 @@
       "path": "project.godot",
       "bytes": 887,
       "sha256": "dacfbfc62b6caf0b2cfc1c2e2b79f1655129a247bbcbdc3a044af64d32ff829d"
+    },
+    {
+      "path": "reports/assets/carapace-serpent-assets.json",
+      "bytes": 7972,
+      "sha256": "7e156556944ccb0ea202e84ece0d8ca676e6971e8731cff7ce35c4a49b790561"
+    },
+    {
+      "path": "reports/assets/carapace-serpent-test.json",
+      "bytes": 365,
+      "sha256": "1509be11e7a4959250d2bf06b0ff85558b0087aaf72c6dc411a1a00e126b4b53"
     },
     {
       "path": "reports/assets/forest-traveler-assets.json",
@@ -536,6 +566,11 @@
       "sha256": "046a81eee381916a5919f189511632a9ea993165b5870b99c285cdc83fc0908d"
     },
     {
+      "path": "reports/authoring/ruins-three-gate-check.json",
+      "bytes": 1510,
+      "sha256": "b7dbfb064e7b333b4476653015f9f7183cb039fe43939f7b7bf3c5d98f696ed8"
+    },
+    {
       "path": "reports/design/click-ant-current.md",
       "bytes": 1719,
       "sha256": "027bf38ac87c3a084781ad08af9830cb27ae3fb33316d1fad411ab7a3619fb98"
@@ -591,9 +626,19 @@
       "sha256": "2f07e4cc369d5fc54a4ab6755f0d4c42b344aa0a18c1ca3a8f31182362f27dcf"
     },
     {
+      "path": "reports/rules/ruins-petal-level09.json",
+      "bytes": 236258,
+      "sha256": "d203982ebc5cb35a76e6f383d10195af39ff3785e9fc513eb364f9fd17f3d7a6"
+    },
+    {
       "path": "reports/rules/ruins-rules.json",
       "bytes": 999,
       "sha256": "d9fed691926d0928dfc9f372bacb85fe93eac024bca09ad43c5c9cb0231cb52f"
+    },
+    {
+      "path": "reports/rules/serpent-09-alternate-inputs.json",
+      "bytes": 999,
+      "sha256": "ee9352b5147051d2bb21d0dae16f0bc3a1425c67ac3cfaf6061dc36a3c0f791d"
     },
     {
       "path": "reports/rules/serpent-layout-timing.json",
@@ -659,6 +704,16 @@
       "path": "reports/ui/ruins-scene.json",
       "bytes": 246,
       "sha256": "c193de4ba53581eb433deebae61ed6d460b8f6055c8c260d33302afd85b16162"
+    },
+    {
+      "path": "reports/ui/ruins-three-gate-runtime.json",
+      "bytes": 4347,
+      "sha256": "2e50eacf2be53eaff78daa3e1ffbb558a82179c73babc89618c62e0960ab8005"
+    },
+    {
+      "path": "reports/ui/ruins-three-gate-scene.json",
+      "bytes": 305,
+      "sha256": "9ddfebfbf8342a3cc2806ed9b08f56a116b743459ac99eca950ee07c5664111f"
     },
     {
       "path": "reports/ui/serpent-color-controls.json",
@@ -797,8 +852,8 @@
     },
     {
       "path": "scripts/level_catalog.gd",
-      "bytes": 1757,
-      "sha256": "e47650cae066beb7f13de2065158ccde50818428919b3f6c6f6e5597b96f3b54"
+      "bytes": 1771,
+      "sha256": "1813df34abdefffe9c851a08feb25fe114c38551ae03fae92f8cc1753938a36d"
     },
     {
       "path": "scripts/level_catalog.gd.uid",
@@ -817,8 +872,8 @@
     },
     {
       "path": "scripts/play.gd",
-      "bytes": 44895,
-      "sha256": "e3d1cbd9e152053f3f8454b4c27db56a0b8ab8b4cb70c7a7ed63c443530613a8"
+      "bytes": 44909,
+      "sha256": "df9000fba36fe69a3c1eabb8abc7d91a29978fa1ce066471076a7e0f2e071b10"
     },
     {
       "path": "scripts/play.gd.uid",
@@ -877,8 +932,8 @@
     },
     {
       "path": "scripts/serpent_view.gd",
-      "bytes": 9417,
-      "sha256": "1da68a9763b1653a8743a51fd9a09fc3fa6905499db2d1b2ddc425bfe70ea948"
+      "bytes": 9485,
+      "sha256": "6bf8f148984bfd80f2e7c7988dfa00a45c1549e7277e0b6d4f97bf833630323a"
     },
     {
       "path": "scripts/serpent_view.gd.uid",
@@ -887,8 +942,8 @@
     },
     {
       "path": "scripts/startup.gd",
-      "bytes": 19958,
-      "sha256": "d8792bd628db5c9e749ffc8987915938cc9466e7fe23b2613e8ce1ac5762f072"
+      "bytes": 20009,
+      "sha256": "90c95be393f559cfddc211fc4e14776fda8b5a6c91100d04f81946f289c212fb"
     },
     {
       "path": "scripts/startup.gd.uid",
@@ -976,6 +1031,11 @@
       "sha256": "ae9b8d6c0653ec3e021e7e4d9a42c77db61e87cc3f6755b1b7065d53f46ec465"
     },
     {
+      "path": "tests/capture_ruins_three_gate_journey.gd",
+      "bytes": 5542,
+      "sha256": "aa6e7835f10260fa56d4d2217de29e7552d8cd7fe97fe6b687b4150842725230"
+    },
+    {
       "path": "tests/capture_serpent_journey.gd",
       "bytes": 4382,
       "sha256": "bb49fdae0b90530d5e8f3036b9d834d422f8a806e790f31881a3959728d01e65"
@@ -1036,6 +1096,11 @@
       "sha256": "c9a26da1f2a7ac310791e639bbfa8438b0cac0c1e623539077bd30dfeb17c69c"
     },
     {
+      "path": "tests/test_carapace_serpent_skin.gd",
+      "bytes": 3679,
+      "sha256": "0f08cb10e2089bfeb63a0d56c784504f11fab5a9781f4d5604c2ac600cae970b"
+    },
+    {
       "path": "tests/test_color_row_layout.gd",
       "bytes": 11323,
       "sha256": "82334da5b8570ee288b34a9492d41aaad1748ad441ff7448a9ccad0a9229bd4c"
@@ -1086,6 +1151,11 @@
       "sha256": "a5e6ff81f75a2103397da9d4ccc0491649552e00122d6b8dbf8689635f06dc99"
     },
     {
+      "path": "tests/test_ruins_petal_level09.gd",
+      "bytes": 15621,
+      "sha256": "d880c949884d62c4612f4120afcac4c60807534f8d8db380b86276be39bf7995"
+    },
+    {
       "path": "tests/test_ruins_rules.gd",
       "bytes": 13014,
       "sha256": "ce73f0aded53c3f4987065cec36747a02fa8d5c3bdad3ea7cb0131f266994984"
@@ -1099,6 +1169,11 @@
       "path": "tests/test_ruins_scene.gd",
       "bytes": 6651,
       "sha256": "22e2e1751057402604c4d3e997721bf09b9461e4609882abfa82d99b911b062d"
+    },
+    {
+      "path": "tests/test_ruins_three_gate_scene.gd",
+      "bytes": 5017,
+      "sha256": "c9864b0324e38d98b8568efbed10a5306b4c4057f5299a609746cfe17b20da7b"
     },
     {
       "path": "tests/test_serpent_color_controls.gd",

@@ -1,0 +1,8 @@
+{
+	"checks": 60,
+	"failures": [],
+	"level_sha256": "7dc8acdcaf2acf775ed6a20e1ad8bf06c730e61c5ec5ea17f8eb60702c2b5065",
+	"minimum_enemy_centerline_separation": 129.793869018555,
+	"path_samples": 3417,
+	"scope": "one integrated ruins cart ground/preview/four-color input contract, no prior campaign rerun"
+}

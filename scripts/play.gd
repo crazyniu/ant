@@ -11,7 +11,7 @@ const Saves = preload("res://scripts/save_service.gd")
 const Catalog = preload("res://scripts/level_catalog.gd")
 const Progression = preload("res://scripts/ant_progression.gd")
 # Retained as the default catalog contract; opt-in entries use level_ids below.
-const LEVEL_IDS = ["serpent-01", "serpent-02", "serpent-03", "serpent-04", "serpent-05", "serpent-06", "serpent-07", "serpent-08"]
+const LEVEL_IDS = ["serpent-01", "serpent-02", "serpent-03", "serpent-04", "serpent-05", "serpent-06", "serpent-07", "serpent-08", "serpent-09"]
 var level_ids: Array[String] = Catalog.level_ids(false)
 var campaign_drafts := false
 var use_command_line_catalog := true
