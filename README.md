@@ -2,7 +2,7 @@
 
 A portrait Godot **4.6.3** game: click a color to send one ant for one bead, deliver it to fire one matching projectile, and destroy a segmented serpent before its head reaches the fixed goal. Runtime UI is English and icon-first. Normal play is offline and needs no account, backend, external plugin or secret.
 
-This development continuation adds the adventure map, preparation screen and local points/shop progression to the published single-click core at [`125646450cd1bf5e90d6d7cbc833ca34ff47bd75`](https://github.com/crazyniu/ant/commit/125646450cd1bf5e90d6d7cbc833ca34ff47bd75). Rules API is now **3.1.0**, with level schema **3**. There are **four current validation levels**, not a playable or accepted new 30-level campaign. The [draft PR](https://github.com/crazyniu/ant/pull/1) is not a merge, deployment or final acceptance.
+This development continuation includes adventure/preparation/shop progression plus independently authored ruins and Ice Valley slices. Its immediate published baseline is `2a5b0d18c40b1277abd3cb4728576f154ab77c38`; it builds on the single-click core at [`125646450cd1bf5e90d6d7cbc833ca34ff47bd75`](https://github.com/crazyniu/ant/commit/125646450cd1bf5e90d6d7cbc833ca34ff47bd75). Rules API is now **3.1.0**, with level schema **3**. There are **five current validation levels**, not a playable or accepted new 30-level campaign. The [draft PR](https://github.com/crazyniu/ant/pull/1) is not a merge, deployment or final acceptance.
 
 ## Run
 
@@ -28,11 +28,11 @@ The viewport is **1440 × 2560**, with a uniformly scaled **940 × 1672** logica
 - Each bead funds one matching projectile for one damage. Normal segments have **HP1**; armored segments have **HP2**, with a cracked state after the first hit. Stable segment IDs prevent retargeting errors.
 - The serpent follows a **finite, non-looping route**. Removing a segment shortens the body without moving its head backward. The head has no extra hidden health bar.
 - Actual damage removing the final live segment wins. Board clear, pickup, delivery or firing does not win; leftover beads and inventory are allowed. Earlier head contact loses. At exactly the same simulation microsecond, due damage resolves before contact.
-- The base worker can solve all four current authored levels without upgrades, advertising, combos or mechanisms. No automatic 20/30-ant teams, five work slots, team quotas or board-equals-armor rule remain in current play.
+- The base worker can solve all five current authored levels without upgrades, advertising, combos or mechanisms. No automatic 20/30-ant teams, five work slots, team quotas or board-equals-armor rule remain in current play.
 
 ## Map, preparation, points and shop
 
-The full-screen map uses the real four-level catalog and saved completion/unlock states. Preparation shows the selected level's scene preview, segment/HP information, fixed target and owned ant types. Map region, scroll and selected level are persisted for return navigation. The fourth level adds one ruins ground and stationary supply-cart objective; further themed regions and targets remain content work.
+The full-screen map uses the real five-level catalog and saved completion/unlock states. Preparation shows the selected level's scene preview, segment/HP information, fixed target and owned ant types. Map region, scroll and selected level are persisted for return navigation. The fourth level adds a ruins ground and stationary supply-cart objective; level five adds a snow valley, fixed winter camp and independently authored two-gate opening. Further themed regions and targets remain content work.
 
 - First clear: **100 + 0–50** time-bonus points. Replay clear: **20 + 0–10**. Failed or abandoned runs earn no new points and do not deduct existing points.
 - Reward time is effective simulation time from first legal dispatch to final damage, not recording length or wall-clock time. Each level supplies its own bonus thresholds.
@@ -55,7 +55,7 @@ Music and effects have independent controls; saved zero remains silent. Human li
 - `scripts/play.gd`, `rescue_rules.gd`: live scene adapter and authoritative microsecond rules.
 - `scripts/level_catalog.gd`, `save_service.gd`: current catalog identity, completion/settings saves.
 - `scripts/serpent_view.gd`, `serpent_path.gd`, `directional_carrier.gd`, `carrier_route.gd`: independent serpent and transport presentation.
-- `data/serpent-levels/`: only the four current authored validation levels.
+- `data/serpent-levels/`: only the five current authored validation levels.
 
 Start with [current implementation](docs/CURRENT_IMPLEMENTATION.md), [UI components](docs/UI_COMPONENTS.md), [asset placement](ASSETS.md) and [verification boundaries](docs/PUBLIC_VERIFICATION.md). Older documents with a historical-version notice are reference material, not current acceptance criteria.
 
@@ -74,3 +74,7 @@ No project-wide open-source license has been selected. Public hosting alone is n
 ## Ruins continuation
 
 Current catalog also includes `serpent-04`: an independently generated ruins courtyard, fixed supply cart, left-side finite serpent road, asymmetric ant entrance and four-color enclosed-core puzzle. Scene geometry is shared by preparation and live play. Use the adventure map after completing level 3; `--auto-replay --level=4` is an isolated automated review, not an unlock bypass for normal profiles. See `docs/SCENE_LAYOUTS.md` for the minimal content contract and `tests/test_ruins_rules.gd` / `tests/test_ruins_scene.gd` for bounded checks.
+
+## Ice Valley continuation
+
+`serpent-05` adds an independently generated snow valley and transparent fixed winter camp. The finite serpent road approaches from the right and ends at the upper-left camp; ants use a separate inner snowfield and right-biased entrance. Six beads per RGBY color fund four HP per color; sixteen independent base-worker inputs win at 26.90 simulation seconds and leave eight beads. A nearby red gate opens two yellow targets; a farther green gate opens one, giving different opening choices. Snow is visual only: no slipping, freezing or new damage rules. Level 4 and the authoritative rules remain unchanged. See `docs/SCENE_LAYOUTS.md` and the bounded `test_ice_rules.gd` / `test_ice_scene.gd` checks.

@@ -1,8 +1,9 @@
 {
   "algorithm": "SHA-256",
-  "scope": "All files in this snapshot except SOURCE_MANIFEST.json itself",
-  "file_count": 184,
-  "total_bytes": 40095078,
+  "scope": "all files except this manifest",
+  "base_commit": "2a5b0d18c40b1277abd3cb4728576f154ab77c38",
+  "file_count": 194,
+  "total_bytes": 44963999,
   "files": [
     {
       "path": ".gitignore",
@@ -11,8 +12,8 @@
     },
     {
       "path": "ASSETS.md",
-      "bytes": 12665,
-      "sha256": "b3c30fdeb91d9023dc1916bcf70cffe9788dfd411dc5ea052b1c6b83c361bd84"
+      "bytes": 13931,
+      "sha256": "aca9b2066f2efe3c5db701b5b5ab7366dbd46fe9d011724a001f28e1ce424c4b"
     },
     {
       "path": "DEPENDENCIES.md",
@@ -21,13 +22,13 @@
     },
     {
       "path": "PUBLICATION_CHECK.json",
-      "bytes": 2360,
-      "sha256": "aa97e121462d29ea44810f9ded5eaea3df151a57d958177197eca048163c9405"
+      "bytes": 1671,
+      "sha256": "4929935cbd9f2f5602124ff45d9c1ad67fe3f4e94a617cee30639dfac0acf3ae"
     },
     {
       "path": "README.md",
-      "bytes": 9284,
-      "sha256": "822b445b8a95aa02ed793d2730a166c51d92557d78042d5e0673b9a3857176af"
+      "bytes": 10216,
+      "sha256": "00b3b7c06b1aa10695317074a0a7ab069e704b7985724748d9dbd639eb4b6640"
     },
     {
       "path": "assets/ants-atlas.png",
@@ -305,9 +306,14 @@
       "sha256": "62a40610fcca9d9db8c0928b70c1552a20ab117cf89c4dc543f22e2a560bf43f"
     },
     {
+      "path": "assets/worlds/ice-valley.png",
+      "bytes": 2819266,
+      "sha256": "d3db37aee85483b32aa5912570a6abcaa6bea4c8d68567c134bd08a1f33ee7a6"
+    },
+    {
       "path": "assets/worlds/manifest.json",
-      "bytes": 1318,
-      "sha256": "69c47d16c5ce49eaad79985a6e6f3d56acf8c88423a6f516181be53bd0f84ba1"
+      "bytes": 2378,
+      "sha256": "dd7493ff6f38c8fbcf441f2e665f94b0df533db946d7ce51fbe4f0340124bbd7"
     },
     {
       "path": "assets/worlds/ruins-courtyard.png",
@@ -320,6 +326,11 @@
       "sha256": "98fe14627851032bbb22d0e44c059e464fb0ba44054b11c53b815fa0c58db731"
     },
     {
+      "path": "assets/worlds/winter-camp.png",
+      "bytes": 1985382,
+      "sha256": "af0f6be47c0728e03c1240ed6d96efb10fe1d686b2a7bb0d5e39f592f52def9b"
+    },
+    {
       "path": "data/ant-progression.json",
       "bytes": 618,
       "sha256": "0db6f00b5d1e8ebe1456090bc242885e81ea18bb8628ab9933804bec22dee0ac"
@@ -328,6 +339,11 @@
       "path": "data/ant-regions.json",
       "bytes": 319,
       "sha256": "954b0440eb5d7649108aacd0708fcaa91ac92da96ef3f470e2607cbfd6eb22c5"
+    },
+    {
+      "path": "data/scenes/ice-camp.json",
+      "bytes": 2723,
+      "sha256": "9e04213815f256c1eef33c8280a55f683287b8db75e0fd356dd043e7c09fc102"
     },
     {
       "path": "data/scenes/ruins-cart.json",
@@ -360,6 +376,11 @@
       "sha256": "3c3359aff7a523e878c84d2df535eb2a1e058f01806ca29f14e4126cb63dad07"
     },
     {
+      "path": "data/serpent-levels/serpent-05.json",
+      "bytes": 4067,
+      "sha256": "da1a393599091fc7082fa73a89b31b812999b4d676b147ed44cb505aa42e107c"
+    },
+    {
       "path": "docs/BOARD_PLANE.md",
       "bytes": 4078,
       "sha256": "3952379c80354bd5839a5be24157574627a1000466c280b0d2ca3df8df5ddb02"
@@ -371,18 +392,18 @@
     },
     {
       "path": "docs/CURRENT_IMPLEMENTATION.md",
-      "bytes": 10492,
-      "sha256": "5b4b4c247aca94736d3a03ecf663c6adb85023673c921bea6e02c8d193a4cbf6"
+      "bytes": 11756,
+      "sha256": "0cfc413babd0bd71d365c8c3baddb98c57d7bb41c43484bbe562e3b335f7a6b7"
     },
     {
       "path": "docs/PUBLIC_VERIFICATION.md",
-      "bytes": 9841,
-      "sha256": "54c5f4ddb541508e0880cebb215510de46c218e931f830933089725543b6e052"
+      "bytes": 12634,
+      "sha256": "b59d10ee03705918b09b86b27fb6ff9bcb6b2d7eaf5f904906883071139d2f63"
     },
     {
       "path": "docs/SCENE_LAYOUTS.md",
-      "bytes": 3781,
-      "sha256": "356b0ad3a077b554808172e0ea4a42cc5b2511050aea30e20ef5788ffb30671f"
+      "bytes": 5200,
+      "sha256": "ac2de1cfa746d5c0a4c9004e55a4c8cffdf6155912da170b1dbb2ec646857ddd"
     },
     {
       "path": "docs/UI_COMPONENTS.md",
@@ -465,6 +486,11 @@
       "sha256": "f8954bb3ae0c3b9e5223a9207ebb06683cce8eadbf43993d3432ed2979b70ab4"
     },
     {
+      "path": "reports/rules/ice-rules.json",
+      "bytes": 15024,
+      "sha256": "922e07964f0a8c4bc553423f396e1359cebe1eac25e51bbaccbb3c9043ed70f7"
+    },
+    {
       "path": "reports/rules/ruins-rules.json",
       "bytes": 999,
       "sha256": "d9fed691926d0928dfc9f372bacb85fe93eac024bca09ad43c5c9cb0231cb52f"
@@ -488,6 +514,16 @@
       "path": "reports/ui/color-row-layout.json",
       "bytes": 9417,
       "sha256": "c114bf43f193d2af48411dcf0116b4f6c590c28cdb49f55675f8d3b2f511aa31"
+    },
+    {
+      "path": "reports/ui/ice-runtime.json",
+      "bytes": 3721,
+      "sha256": "fbfa398a9038b008b16f52305d8dd926acc9aac89d1da58fc20380e45f6b228f"
+    },
+    {
+      "path": "reports/ui/ice-scene.json",
+      "bytes": 232,
+      "sha256": "b7cf48387d9f439f275eca4110cfcf5ceb31310dd36f24fd49016c18eb3d9012"
     },
     {
       "path": "reports/ui/ruins-runtime.json",
@@ -636,8 +672,8 @@
     },
     {
       "path": "scripts/level_catalog.gd",
-      "bytes": 1701,
-      "sha256": "a3cc9e7411cf87dea2df1656e702f5ed4fd8867dc8552cada23b11bce8e3f057"
+      "bytes": 1715,
+      "sha256": "5718d13d72efa35dd6f6073a9a0b39269d6902f0f600dc853564b6f7ffd1d212"
     },
     {
       "path": "scripts/level_catalog.gd.uid",
@@ -656,8 +692,8 @@
     },
     {
       "path": "scripts/play.gd",
-      "bytes": 44839,
-      "sha256": "a5c245cfb735ddcb67d88bf8e58dfa091af858154a88acfc8f54d79ed13bdeb4"
+      "bytes": 44853,
+      "sha256": "77a379de6ad9f683fb10bd76536d63a3b8b07796a9b9f48b5b5cd10a9259a3a6"
     },
     {
       "path": "scripts/play.gd.uid",
@@ -726,8 +762,8 @@
     },
     {
       "path": "scripts/startup.gd",
-      "bytes": 19789,
-      "sha256": "96461f232c8275b39e9d6097984f6fc979504f80130be362e2448df4ad698895"
+      "bytes": 19867,
+      "sha256": "5bcfe669692493d76c8c01055c8275aec152caedf39e534834b7186795392fd7"
     },
     {
       "path": "scripts/startup.gd.uid",
@@ -788,6 +824,11 @@
       "path": "tests/capture_color_row.gd",
       "bytes": 2172,
       "sha256": "f28b5207570dcbb0dd5fb638eedc36565fbf25a2f01a67dbe0c9ea34e45d03ec"
+    },
+    {
+      "path": "tests/capture_ice_journey.gd",
+      "bytes": 4679,
+      "sha256": "804df9df810f51b109c1adaffa15eda7d92e8a1eed538e0a9f61abfb36b74407"
     },
     {
       "path": "tests/capture_ruins_journey.gd",
@@ -858,6 +899,16 @@
       "path": "tests/test_color_row_layout.gd",
       "bytes": 11323,
       "sha256": "82334da5b8570ee288b34a9492d41aaad1748ad441ff7448a9ccad0a9229bd4c"
+    },
+    {
+      "path": "tests/test_ice_rules.gd",
+      "bytes": 19019,
+      "sha256": "9b416fde4cec05b49cbdd20bce9c7d5dae1f7d47df9a7151dba0ac0a23af4618"
+    },
+    {
+      "path": "tests/test_ice_scene.gd",
+      "bytes": 6657,
+      "sha256": "e6ed2ad75d5605df1fd292942630c95c222fcfc11405f4513ae0348c7d3e4dac"
     },
     {
       "path": "tests/test_ruins_rules.gd",

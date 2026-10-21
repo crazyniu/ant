@@ -1,0 +1,7 @@
+{
+	"carrier_path_samples": 3216,
+	"checks": 83,
+	"failures": [],
+	"minimum_enemy_centerline_separation": 75.0,
+	"scope": "One new ice level scene/ground/preview-source contract and production victory; automated, not human review."
+}

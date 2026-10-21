@@ -1,0 +1,930 @@
+{
+	"acceptance_limit": "Automated configuration, reachability, accounting, transport, and true-event solution evidence only. Not human playability, visual, audio, performance, or economy-balance acceptance.",
+	"accepted_clicks": 16,
+	"assertions": 1469,
+	"budget": {
+		"armored_segments": 4,
+		"beads_per_color": 6,
+		"normal_segments": 8,
+		"required_damage_per_color": 4,
+		"surplus_per_color": 2,
+		"total_damage": 16
+	},
+	"deadline_us": 66000000,
+	"engine": "4.6.3-stable (official)",
+	"entrance_cell": [
+		6.0,
+		8.0
+	],
+	"failures": [],
+	"full_capacity_span_including_instant_handoff_us": 2200000,
+	"full_capacity_span_note": "18.2 to 20.4 seconds, with one available slot and a legal new dispatch exactly at 19.9; reported separately from the longest wait to an opportunity.",
+	"grid": [
+		"..........",
+		"..........",
+		".....RB...",
+		"....GYYR..",
+		".....GYYB.",
+		"......RYYB",
+		"..BRB..RGG",
+		"..GBR....G"
+	],
+	"hit_counts": {
+		"blue": 4,
+		"green": 4,
+		"red": 4,
+		"yellow": 4
+	},
+	"last_authored_input_to_victory_us": 5600000,
+	"level_id": "serpent-05",
+	"level_sha256": "da1a393599091fc7082fa73a89b31b812999b4d676b147ed44cb505aa42e107c",
+	"longest_no_dispatch_opportunity_us": 1700000,
+	"max_carriers": 4,
+	"minimum_input_gap_sec": 1.4,
+	"no_dispatch_windows": [
+		{
+			"duration_us": 800000,
+			"end_us": 14800000,
+			"start_us": 14000000
+		},
+		{
+			"duration_us": 1700000,
+			"end_us": 19900000,
+			"start_us": 18200000
+		},
+		{
+			"duration_us": 500000,
+			"end_us": 20400000,
+			"start_us": 19900000
+		},
+		{
+			"duration_us": 500000,
+			"end_us": 21800000,
+			"start_us": 21300000
+		}
+	],
+	"opening_choices": [
+		{
+			"cell_id": 56,
+			"color": "red",
+			"distance": 3,
+			"pickup_us": 1200000,
+			"role": "near central fork: opens two core cells",
+			"yellow_distance": 4,
+			"yellow_ids": [
+				46,
+				57
+			]
+		},
+		{
+			"cell_id": 68,
+			"color": "green",
+			"distance": 4,
+			"pickup_us": 1600000,
+			"role": "far right mouth: opens one core cell",
+			"yellow_distance": 5,
+			"yellow_ids": [
+				58
+			]
+		},
+		{
+			"cell_id": 64,
+			"color": "blue",
+			"distance": 4,
+			"pickup_us": 1600000,
+			"role": "outer supply: provides ammo without opening the core",
+			"yellow_distance": -1,
+			"yellow_ids": []
+		}
+	],
+	"ordinary_3_to_5_cell_trips": 14,
+	"passed": true,
+	"path_cells": [
+		3,
+		4,
+		4,
+		4,
+		4,
+		3,
+		4,
+		5,
+		4,
+		3,
+		6,
+		5,
+		5,
+		5,
+		6,
+		5
+	],
+	"preserved_files": {
+		"rescue_rules.gd": "14a5b20efdf237fbf271ea8749b35580d012485aee8a529a30e53487852c7c23",
+		"serpent-04.json": "3c3359aff7a523e878c84d2df535eb2a1e058f01806ca29f14e4126cb63dad07"
+	},
+	"reward_thresholds": {
+		"basis": "26.90-second actual base-worker replay; provisional fast threshold adds 1.10 seconds, normal threshold adds 15.10 seconds. Rewards are not applied or required.",
+		"fast_seconds": 28.0,
+		"normal_seconds": 42.0
+	},
+	"safety_margin_us": 39100000,
+	"scope": "serpent-05 only; base worker level 1, no tools, rewards, growth, ads, chain elimination, mechanism supplies, or external hits. No generator, 707-case batch, 30-level batch, or old-level replay.",
+	"six_cell_trips": 2,
+	"suite": "one_ice_level_bounded_acceptance",
+	"surplus_beads": 8,
+	"terminal_events": [
+		{
+			"amount": 1,
+			"color": "green",
+			"fire_us": 26450000,
+			"flight_us": 450000,
+			"former_rank": 0,
+			"head_s": 85.7909090909091,
+			"hit_us": 26900000,
+			"hp": 0,
+			"id": 16,
+			"kind": "normal",
+			"max_hp": 1,
+			"projectile_id": 16,
+			"run_id": 1,
+			"segment_id": "serpent-05-s09",
+			"sequence": 141,
+			"source": "projectile",
+			"target_s": 81.7909090909091,
+			"target_segment_id": "serpent-05-s09",
+			"time_sec": 26.9,
+			"time_us": 26900000,
+			"type": "segment_hit"
+		},
+		{
+			"alive_count": 0,
+			"alive_segment_ids": [],
+			"amount": 1,
+			"color": "green",
+			"fire_us": 26450000,
+			"flight_us": 450000,
+			"former_rank": 0,
+			"head_s": 85.7909090909091,
+			"hit_us": 26900000,
+			"hp": 0,
+			"id": 16,
+			"kind": "normal",
+			"max_hp": 1,
+			"projectile_id": 16,
+			"run_id": 1,
+			"segment_id": "serpent-05-s09",
+			"sequence": 142,
+			"source": "projectile",
+			"target_s": 81.7909090909091,
+			"target_segment_id": "serpent-05-s09",
+			"time_sec": 26.9,
+			"time_us": 26900000,
+			"type": "segment_removed"
+		},
+		{
+			"alive_count": 0,
+			"alive_segment_ids": [],
+			"dragon_position": 85.7909090909091,
+			"head_s": 85.7909090909091,
+			"reason": "final_segment_hit",
+			"run_id": 1,
+			"sequence": 143,
+			"time_sec": 26.9,
+			"time_us": 26900000,
+			"type": "victory"
+		}
+	],
+	"terminal_time_us": 26900000,
+	"timed_inputs": [
+		{
+			"at_sec": 0.0,
+			"color": "red"
+		},
+		{
+			"at_sec": 1.4,
+			"color": "yellow"
+		},
+		{
+			"at_sec": 2.8,
+			"color": "green"
+		},
+		{
+			"at_sec": 4.2,
+			"color": "yellow"
+		},
+		{
+			"at_sec": 5.6,
+			"color": "blue"
+		},
+		{
+			"at_sec": 7.0,
+			"color": "red"
+		},
+		{
+			"at_sec": 8.4,
+			"color": "blue"
+		},
+		{
+			"at_sec": 9.8,
+			"color": "yellow"
+		},
+		{
+			"at_sec": 11.2,
+			"color": "green"
+		},
+		{
+			"at_sec": 12.6,
+			"color": "red"
+		},
+		{
+			"at_sec": 14.0,
+			"color": "blue"
+		},
+		{
+			"at_sec": 15.4,
+			"color": "green"
+		},
+		{
+			"at_sec": 16.8,
+			"color": "yellow"
+		},
+		{
+			"at_sec": 18.2,
+			"color": "red"
+		},
+		{
+			"at_sec": 19.9,
+			"color": "blue"
+		},
+		{
+			"at_sec": 21.3,
+			"color": "green"
+		}
+	],
+	"transport_tasks": [
+		{
+			"carrier_type": "worker",
+			"cell_id": 56,
+			"color": "red",
+			"delivery_us": 3200000,
+			"depart_us": 0,
+			"distance_cells": 3,
+			"id": 1,
+			"leg_duration_us": 1200000,
+			"outbound_duration_us": 1200000,
+			"path": [
+				[
+					6,
+					8
+				],
+				[
+					6,
+					7
+				],
+				[
+					6,
+					6
+				],
+				[
+					6,
+					5
+				]
+			],
+			"pickup_us": 1200000,
+			"return_depart_us": 1500000,
+			"return_duration_us": 1500000,
+			"run_id": 1,
+			"speed_multiplier": 1.0,
+			"stage": "outbound",
+			"unload_us": 3000000
+		},
+		{
+			"carrier_type": "worker",
+			"cell_id": 46,
+			"color": "yellow",
+			"delivery_us": 5500000,
+			"depart_us": 1400000,
+			"distance_cells": 4,
+			"id": 2,
+			"leg_duration_us": 1600000,
+			"outbound_duration_us": 1600000,
+			"path": [
+				[
+					6,
+					8
+				],
+				[
+					6,
+					7
+				],
+				[
+					6,
+					6
+				],
+				[
+					6,
+					5
+				],
+				[
+					6,
+					4
+				]
+			],
+			"pickup_us": 3000000,
+			"return_depart_us": 3300000,
+			"return_duration_us": 2000000,
+			"run_id": 1,
+			"speed_multiplier": 1.0,
+			"stage": "outbound",
+			"unload_us": 5300000
+		},
+		{
+			"carrier_type": "worker",
+			"cell_id": 68,
+			"color": "green",
+			"delivery_us": 6900000,
+			"depart_us": 2800000,
+			"distance_cells": 4,
+			"id": 3,
+			"leg_duration_us": 1600000,
+			"outbound_duration_us": 1600000,
+			"path": [
+				[
+					6,
+					8
+				],
+				[
+					6,
+					7
+				],
+				[
+					7,
+					7
+				],
+				[
+					8,
+					7
+				],
+				[
+					8,
+					6
+				]
+			],
+			"pickup_us": 4400000,
+			"return_depart_us": 4700000,
+			"return_duration_us": 2000000,
+			"run_id": 1,
+			"speed_multiplier": 1.0,
+			"stage": "outbound",
+			"unload_us": 6700000
+		},
+		{
+			"carrier_type": "worker",
+			"cell_id": 57,
+			"color": "yellow",
+			"delivery_us": 8300000,
+			"depart_us": 4200000,
+			"distance_cells": 4,
+			"id": 4,
+			"leg_duration_us": 1600000,
+			"outbound_duration_us": 1600000,
+			"path": [
+				[
+					6,
+					8
+				],
+				[
+					6,
+					7
+				],
+				[
+					6,
+					6
+				],
+				[
+					6,
+					5
+				],
+				[
+					7,
+					5
+				]
+			],
+			"pickup_us": 5800000,
+			"return_depart_us": 6100000,
+			"return_duration_us": 2000000,
+			"run_id": 1,
+			"speed_multiplier": 1.0,
+			"stage": "outbound",
+			"unload_us": 8100000
+		},
+		{
+			"carrier_type": "worker",
+			"cell_id": 64,
+			"color": "blue",
+			"delivery_us": 9700000,
+			"depart_us": 5600000,
+			"distance_cells": 4,
+			"id": 5,
+			"leg_duration_us": 1600000,
+			"outbound_duration_us": 1600000,
+			"path": [
+				[
+					6,
+					8
+				],
+				[
+					6,
+					7
+				],
+				[
+					6,
+					6
+				],
+				[
+					5,
+					6
+				],
+				[
+					4,
+					6
+				]
+			],
+			"pickup_us": 7200000,
+			"return_depart_us": 7500000,
+			"return_duration_us": 2000000,
+			"run_id": 1,
+			"speed_multiplier": 1.0,
+			"stage": "outbound",
+			"unload_us": 9500000
+		},
+		{
+			"carrier_type": "worker",
+			"cell_id": 67,
+			"color": "red",
+			"delivery_us": 10200000,
+			"depart_us": 7000000,
+			"distance_cells": 3,
+			"id": 6,
+			"leg_duration_us": 1200000,
+			"outbound_duration_us": 1200000,
+			"path": [
+				[
+					6,
+					8
+				],
+				[
+					6,
+					7
+				],
+				[
+					6,
+					6
+				],
+				[
+					7,
+					6
+				]
+			],
+			"pickup_us": 8200000,
+			"return_depart_us": 8500000,
+			"return_duration_us": 1500000,
+			"run_id": 1,
+			"speed_multiplier": 1.0,
+			"stage": "outbound",
+			"unload_us": 10000000
+		},
+		{
+			"carrier_type": "worker",
+			"cell_id": 73,
+			"color": "blue",
+			"delivery_us": 12500000,
+			"depart_us": 8400000,
+			"distance_cells": 4,
+			"id": 7,
+			"leg_duration_us": 1600000,
+			"outbound_duration_us": 1600000,
+			"path": [
+				[
+					6,
+					8
+				],
+				[
+					5,
+					8
+				],
+				[
+					4,
+					8
+				],
+				[
+					3,
+					8
+				],
+				[
+					3,
+					7
+				]
+			],
+			"pickup_us": 10000000,
+			"return_depart_us": 10300000,
+			"return_duration_us": 2000000,
+			"run_id": 1,
+			"speed_multiplier": 1.0,
+			"stage": "outbound",
+			"unload_us": 12300000
+		},
+		{
+			"carrier_type": "worker",
+			"cell_id": 36,
+			"color": "yellow",
+			"delivery_us": 14800000,
+			"depart_us": 9800000,
+			"distance_cells": 5,
+			"id": 8,
+			"leg_duration_us": 2000000,
+			"outbound_duration_us": 2000000,
+			"path": [
+				[
+					6,
+					8
+				],
+				[
+					6,
+					7
+				],
+				[
+					6,
+					6
+				],
+				[
+					6,
+					5
+				],
+				[
+					6,
+					4
+				],
+				[
+					6,
+					3
+				]
+			],
+			"pickup_us": 11800000,
+			"return_depart_us": 12100000,
+			"return_duration_us": 2500000,
+			"run_id": 1,
+			"speed_multiplier": 1.0,
+			"stage": "outbound",
+			"unload_us": 14600000
+		},
+		{
+			"carrier_type": "worker",
+			"cell_id": 79,
+			"color": "green",
+			"delivery_us": 15300000,
+			"depart_us": 11200000,
+			"distance_cells": 4,
+			"id": 9,
+			"leg_duration_us": 1600000,
+			"outbound_duration_us": 1600000,
+			"path": [
+				[
+					6,
+					8
+				],
+				[
+					6,
+					7
+				],
+				[
+					7,
+					7
+				],
+				[
+					8,
+					7
+				],
+				[
+					9,
+					7
+				]
+			],
+			"pickup_us": 12800000,
+			"return_depart_us": 13100000,
+			"return_duration_us": 2000000,
+			"run_id": 1,
+			"speed_multiplier": 1.0,
+			"stage": "outbound",
+			"unload_us": 15100000
+		},
+		{
+			"carrier_type": "worker",
+			"cell_id": 74,
+			"color": "red",
+			"delivery_us": 15800000,
+			"depart_us": 12600000,
+			"distance_cells": 3,
+			"id": 10,
+			"leg_duration_us": 1200000,
+			"outbound_duration_us": 1200000,
+			"path": [
+				[
+					6,
+					8
+				],
+				[
+					6,
+					7
+				],
+				[
+					5,
+					7
+				],
+				[
+					4,
+					7
+				]
+			],
+			"pickup_us": 13800000,
+			"return_depart_us": 14100000,
+			"return_duration_us": 1500000,
+			"run_id": 1,
+			"speed_multiplier": 1.0,
+			"stage": "outbound",
+			"unload_us": 15600000
+		},
+		{
+			"carrier_type": "worker",
+			"cell_id": 26,
+			"color": "blue",
+			"delivery_us": 19900000,
+			"depart_us": 14000000,
+			"distance_cells": 6,
+			"id": 11,
+			"leg_duration_us": 2400000,
+			"outbound_duration_us": 2400000,
+			"path": [
+				[
+					6,
+					8
+				],
+				[
+					6,
+					7
+				],
+				[
+					6,
+					6
+				],
+				[
+					6,
+					5
+				],
+				[
+					6,
+					4
+				],
+				[
+					6,
+					3
+				],
+				[
+					6,
+					2
+				]
+			],
+			"pickup_us": 16400000,
+			"return_depart_us": 16700000,
+			"return_duration_us": 3000000,
+			"run_id": 1,
+			"speed_multiplier": 1.0,
+			"stage": "outbound",
+			"unload_us": 19700000
+		},
+		{
+			"carrier_type": "worker",
+			"cell_id": 45,
+			"color": "green",
+			"delivery_us": 20400000,
+			"depart_us": 15400000,
+			"distance_cells": 5,
+			"id": 12,
+			"leg_duration_us": 2000000,
+			"outbound_duration_us": 2000000,
+			"path": [
+				[
+					6,
+					8
+				],
+				[
+					6,
+					7
+				],
+				[
+					6,
+					6
+				],
+				[
+					6,
+					5
+				],
+				[
+					6,
+					4
+				],
+				[
+					5,
+					4
+				]
+			],
+			"pickup_us": 17400000,
+			"return_depart_us": 17700000,
+			"return_duration_us": 2500000,
+			"run_id": 1,
+			"speed_multiplier": 1.0,
+			"stage": "outbound",
+			"unload_us": 20200000
+		},
+		{
+			"carrier_type": "worker",
+			"cell_id": 47,
+			"color": "yellow",
+			"delivery_us": 21800000,
+			"depart_us": 16800000,
+			"distance_cells": 5,
+			"id": 13,
+			"leg_duration_us": 2000000,
+			"outbound_duration_us": 2000000,
+			"path": [
+				[
+					6,
+					8
+				],
+				[
+					6,
+					7
+				],
+				[
+					6,
+					6
+				],
+				[
+					6,
+					5
+				],
+				[
+					6,
+					4
+				],
+				[
+					7,
+					4
+				]
+			],
+			"pickup_us": 18800000,
+			"return_depart_us": 19100000,
+			"return_duration_us": 2500000,
+			"run_id": 1,
+			"speed_multiplier": 1.0,
+			"stage": "outbound",
+			"unload_us": 21600000
+		},
+		{
+			"carrier_type": "worker",
+			"cell_id": 63,
+			"color": "red",
+			"delivery_us": 23200000,
+			"depart_us": 18200000,
+			"distance_cells": 5,
+			"id": 14,
+			"leg_duration_us": 2000000,
+			"outbound_duration_us": 2000000,
+			"path": [
+				[
+					6,
+					8
+				],
+				[
+					6,
+					7
+				],
+				[
+					6,
+					6
+				],
+				[
+					5,
+					6
+				],
+				[
+					4,
+					6
+				],
+				[
+					3,
+					6
+				]
+			],
+			"pickup_us": 20200000,
+			"return_depart_us": 20500000,
+			"return_duration_us": 2500000,
+			"run_id": 1,
+			"speed_multiplier": 1.0,
+			"stage": "outbound",
+			"unload_us": 23000000
+		},
+		{
+			"carrier_type": "worker",
+			"cell_id": 48,
+			"color": "blue",
+			"delivery_us": 25800000,
+			"depart_us": 19900000,
+			"distance_cells": 6,
+			"id": 15,
+			"leg_duration_us": 2400000,
+			"outbound_duration_us": 2400000,
+			"path": [
+				[
+					6,
+					8
+				],
+				[
+					6,
+					7
+				],
+				[
+					6,
+					6
+				],
+				[
+					6,
+					5
+				],
+				[
+					6,
+					4
+				],
+				[
+					7,
+					4
+				],
+				[
+					8,
+					4
+				]
+			],
+			"pickup_us": 22300000,
+			"return_depart_us": 22600000,
+			"return_duration_us": 3000000,
+			"run_id": 1,
+			"speed_multiplier": 1.0,
+			"stage": "outbound",
+			"unload_us": 25600000
+		},
+		{
+			"carrier_type": "worker",
+			"cell_id": 69,
+			"color": "green",
+			"delivery_us": 26300000,
+			"depart_us": 21300000,
+			"distance_cells": 5,
+			"id": 16,
+			"leg_duration_us": 2000000,
+			"outbound_duration_us": 2000000,
+			"path": [
+				[
+					6,
+					8
+				],
+				[
+					6,
+					7
+				],
+				[
+					6,
+					6
+				],
+				[
+					7,
+					6
+				],
+				[
+					8,
+					6
+				],
+				[
+					9,
+					6
+				]
+			],
+			"pickup_us": 23300000,
+			"return_depart_us": 23600000,
+			"return_duration_us": 2500000,
+			"run_id": 1,
+			"speed_multiplier": 1.0,
+			"stage": "outbound",
+			"unload_us": 26100000
+		}
+	],
+	"wait_definition": "All color buttons unable to accept a new dispatch in the authored replay. Windows end when a legal opportunity opens, including an immediate accepted input at 19.9 seconds. Voluntary thinking gaps and final delivery/shot latency are not mislabeled as forced inactivity."
+}

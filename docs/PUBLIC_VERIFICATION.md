@@ -1,6 +1,6 @@
 # Current verification boundary
 
-Updated 2026-10-21 for the map/preparation/shop/progression continuation. Published core baseline: [`125646450cd1bf5e90d6d7cbc833ca34ff47bd75`](https://github.com/crazyniu/ant/commit/125646450cd1bf5e90d6d7cbc833ca34ff47bd75). Current development source adds API 3.1.0 growth integration; do not claim it is byte-identical to the frozen API 3.0.0 recording.
+Updated 2026-10-21 through the bounded Ice Valley continuation. Current immediate published baseline: `2a5b0d18c40b1277abd3cb4728576f154ab77c38` (ruins plus single-row color controls). Published core baseline: [`125646450cd1bf5e90d6d7cbc833ca34ff47bd75`](https://github.com/crazyniu/ant/commit/125646450cd1bf5e90d6d7cbc833ca34ff47bd75). Current development source adds API 3.1.0 growth integration; do not claim it is byte-identical to the frozen API 3.0.0 recording.
 
 ## Existing bounded reports
 
@@ -56,7 +56,7 @@ The commands describe reproduction, not an assertion that they were all rerun af
 ## Still outside acceptance
 
 - New 30-level single-ant campaign and compatible authoring/validation tools.
-- Multiple distinct themed scenes, varied fixed rescue targets and their actual art.
+- Further distinct themed scenes and fixed targets beyond the current woodland, ruins and Ice Valley slices.
 - Optional junction combos, hidden supplies and real advertising SDK.
 - Natural human input, difficulty and economy tuning, full multi-level playthroughs.
 - Final visual approval, hardware sound listening, macOS-native execution and target-device performance.
@@ -79,3 +79,15 @@ After that full journey, a presentation-only follow-up replaced the four-color 3
 `test_color_row_layout.gd` passes 221 bounded checks: actual level-4 and level-1 Controls, equal non-overlapping targets, 44-point-equivalent minimum dimensions, rejected blocked clicks without reservations/count changes, valid single dispatch, modal guard, and pure geometry for 1–6 colors. It does not create new six-color content. The headless fixture reports three resources at shutdown; the two-state GL run reports one, plus unavailable ALSA output falling back to Dummy. These remain diagnostics, not hidden by passing assertions.
 
 `rescue_rules.gd` and all level configurations are byte-identical to the validated ruins journey. The 707-rule suite and the whole journey were not repeated for this button-only change. The screenshots are developer inspected, not final user/device acceptance.
+
+## Ice Valley continuation, baseline 2a5b0d1
+
+This batch adds one actual level, not an inherited 30-level validation. `tests/test_ice_rules.gd` → `reports/rules/ice-rules.json` passes 1469 bounded checks across the new level's exact-event and 100ms-step authored replays. Both use Worker Lv.1 and 16 inputs, win at 26.90 simulation seconds, keep four-carrier capacity, consume exactly four damage per color and leave eight beads. Red and green opening routes differ; gate cells remain occupied until pickup. The unchanged rules/level-4 hashes are checked; the old 707 and 30-level suites were not repeated.
+
+`tests/test_ice_scene.gd` → `reports/ui/ice-scene.json` passes 83 new-scene checks and samples 3216 points on the actual authored carrier routes. Minimum separation from the outer enemy route centerline is 75 logical pixels. The checks cover clear-ground bounds, shared preparation preview, fixed camp identity, real natural terminal state and bounded camp/coin result sizes. Headless exit is 0 but ObjectDB and two-resources-in-use shutdown diagnostics remain; no generalized leak fix is claimed.
+
+The same-version real GL 1× capture is 995 frames at 30 FPS, 1440×2560, 33.1667 seconds including preparation, actual game loading and result. Its gameplay final hit is at 26.90 simulation seconds. The production adapter successfully records completion and a first-clear receipt of 100+50=150 points. Prerequisite levels 1–4 are unlocked only in a labelled isolated capture fixture, with no points granted; normal profiles still need their saved unlocks. The result is an actual winter-camp result, not a princess replacement image over the old logic.
+
+Developer image inspection covers the initial snowfield, walking/pickup opening, projectile, shortened serpent and result: ants approach on the inner snowfield rather than the outside road; the camp sits on its top-left platform; nest/cannon remain independently anchored; four entrances stay in a single row; result content fits. Background native detail is 940×1672, not claimed native 2K. The actual recording reports no script error or resource-at-exit error; a cloud-driver V-Sync warning remains. Its final audio state is Dummy output, BGM playing and 14 cues loaded without load errors. Recorded mix and numerical audio checks are not human listening or hardware-output acceptance.
+
+All 14 recorded production code/config/art hashes must match the frozen candidate. Frozen source excludes captures, raw movies, temporary profiles and old generated variants. Natural user input, listening, difficulty/economy tuning, final visual approval and Mac/device acceptance remain separate.

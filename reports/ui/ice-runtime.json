@@ -1,0 +1,111 @@
+{
+  "mode": "actual GL production preparation/loading/ice gameplay; automatic authored clicks, not human playtest",
+  "prerequisite_unlocks": "isolated fixture for first4, no points granted",
+  "speed": 1,
+  "status": "victory",
+  "terminal_time_us": 26900000,
+  "remaining_beads": 8,
+  "maximum_carriers": 4,
+  "conservation_errors": [],
+  "output_pixels": [
+    1440,
+    2560
+  ],
+  "victory_saved": true,
+  "guardian": "winter_camp",
+  "shots": {
+    "last-hit": {
+      "alive_segments": 0,
+      "carriers": 0,
+      "simulation_us": 26900000
+    },
+    "opened-core": {
+      "alive_segments": 10,
+      "carriers": 3,
+      "simulation_us": 8033253
+    },
+    "projectile": {
+      "alive_segments": 12,
+      "carriers": 2,
+      "simulation_us": 3399966
+    },
+    "result": {
+      "alive_segments": 0,
+      "carriers": 0,
+      "simulation_us": 26900000
+    },
+    "shortened-snake": {
+      "alive_segments": 6,
+      "carriers": 3,
+      "simulation_us": 17999820
+    },
+    "walking": {
+      "alive_segments": 12,
+      "carriers": 2,
+      "simulation_us": 2799972
+    }
+  },
+  "reward": {
+    "base": 100,
+    "elapsed_sim_seconds": 26.9,
+    "first_clear": true,
+    "time_bonus": 50,
+    "total": 150
+  },
+  "source_hashes": {
+    "assets/worlds/ice-valley.png": "d3db37aee85483b32aa5912570a6abcaa6bea4c8d68567c134bd08a1f33ee7a6",
+    "assets/worlds/winter-camp.png": "af0f6be47c0728e03c1240ed6d96efb10fe1d686b2a7bb0d5e39f592f52def9b",
+    "data/scenes/ice-camp.json": "9e04213815f256c1eef33c8280a55f683287b8db75e0fd356dd043e7c09fc102",
+    "data/serpent-levels/serpent-05.json": "da1a393599091fc7082fa73a89b31b812999b4d676b147ed44cb505aa42e107c",
+    "scripts/adventure_view.gd": "63046cc8f35938f95dbf9ea8ddd322dde31d74f2b2323adc391ad61f10469900",
+    "scripts/board_plane.gd": "89d21ef17ec8e258513c90d30a40eb9b8284d0e3d246bf4059c57d4b5f829bfa",
+    "scripts/carrier_route.gd": "e42ecd8e8d54d8189c1258eb488d81bdeba1b5d0f26331941311a260c116ed6c",
+    "scripts/level_catalog.gd": "5718d13d72efa35dd6f6073a9a0b39269d6902f0f600dc853564b6f7ffd1d212",
+    "scripts/play.gd": "77a379de6ad9f683fb10bd76536d63a3b8b07796a9b9f48b5b5cd10a9259a3a6",
+    "scripts/rescue_rules.gd": "14a5b20efdf237fbf271ea8749b35580d012485aee8a529a30e53487852c7c23",
+    "scripts/scene_layout.gd": "a9c5f8154b90434126e32421d4e6554443bc94ce8bafae8e92d0770b066fc624",
+    "scripts/startup.gd": "5bcfe669692493d76c8c01055c8275aec152caedf39e534834b7186795392fd7",
+    "scripts/ui_icon.gd": "6ce842b5fd26bf5a5d61c3340094dca724b056d6166b899173d17a230dccaf75",
+    "scripts/ui_skin.gd": "7e4c3ec533912b39a8745c82d52e57f630c464a45194aa4dba574e580d7dc319"
+  },
+  "audio": {
+    "accepted": 80,
+    "active_sfx": 1,
+    "audio_driver": "Dummy",
+    "backgrounded": false,
+    "dropped": {
+      "carrier_group_cooldown": 1
+    },
+    "game_paused": true,
+    "load_errors": [],
+    "loaded_cues": 14,
+    "master_muted": false,
+    "master_volume_db": 0.0,
+    "max_sfx": 12,
+    "music_bus": "AntMusic",
+    "music_bus_muted": false,
+    "music_bus_volume_db": -3.09803915023804,
+    "music_ducked": true,
+    "music_muted": false,
+    "music_paused": false,
+    "music_player_gain_db": -1.0,
+    "music_playing": true,
+    "music_position": 29.5590019226074,
+    "music_preview": false,
+    "music_volume": 0.7,
+    "output_device": "Default",
+    "sfx_bus": "AntSFX",
+    "sfx_bus_muted": false,
+    "sfx_bus_volume_db": -3.09803915023804,
+    "sfx_muted": false,
+    "sfx_volume": 0.7
+  },
+  "recording": {
+    "frames": 995,
+    "fps": 30,
+    "duration_seconds": 33.166666666666664,
+    "unsped": true,
+    "uncut": true,
+    "audio_boundary": "actual captured mix; cloud Dummy output, not human listening or device validation"
+  }
+}

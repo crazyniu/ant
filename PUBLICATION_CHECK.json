@@ -1,60 +1,39 @@
 {
-  "status": "PASS_BOUNDED_SCENE_CHECKS_WITH_KNOWN_HEADLESS_EXIT_DIAGNOSTIC",
-  "base_commit": "8901b3429796e7acd452e3f08c96ce442761ff7a",
-  "frozen_at": "2026-10-21T17:43:25.032158+00:00",
-  "current_validation_levels": 4,
-  "scope": "one ruins/supply-cart authored level plus shared scene anchors and texture-size helper; not30-level completion",
+  "status": "PASS_BOUNDED_ICE_SCENE_CHECKS_WITH_KNOWN_HEADLESS_EXIT_DIAGNOSTIC",
+  "base_commit": "2a5b0d18c40b1277abd3cb4728576f154ab77c38",
+  "frozen_at": "2026-10-21T18:07:51.120897+00:00",
+  "current_validation_levels": 5,
+  "scope": "one ice/winter-camp authored level; no new mechanics or full30",
   "checks": {
-    "ruins_rules_assertions": 707,
-    "ruins_scene_checks": 83,
-    "retained_woodland_adventure_checks_rerun": 41,
+    "ice_rules_assertions": 1469,
+    "ice_scene_checks": 83,
     "authored_route_samples": 3216,
-    "minimum_route_centerline_separation": 70.0000076293945,
-    "original_three_terminal_times_us": [
-      19950000,
-      26450000,
-      27350000
-    ],
-    "new_level_terminal_time_us": 27350000,
+    "minimum_enemy_centerline_separation": 75.0,
+    "new_level_terminal_time_us": 26900000,
     "new_level_deadline_us": 66000000,
+    "new_level_remaining_beads": 8,
     "scene_test_exit_code": 0,
-    "GL_startup_diagnostics": "Two X11 BadShmSeg diagnostics; completed all frames and natural victory",
-    "known_scene_test_shutdown_diagnostic": "ObjectDB instances leaked; 7 resources still in use at exit",
+    "known_scene_test_shutdown_diagnostic": "ObjectDB instances leaked; 2 resources still in use at exit",
+    "GL_diagnostics": "V-Sync mode unsupported warning; no script/resource-at-exit errors reported in this recording",
+    "runtime_source_hashes_match": 14,
+    "victory_saved": true,
+    "reward_total": 150,
+    "rules_and_levels01_to04_unchanged": true,
     "static_resources": "resolved; tests include deliberate missing fixtures",
     "candidate_only_secret_private_path_scan": "no findings",
-    "current_asset_dimensions": "match manifest",
-    "ruins_journey_source_hashes_match_frozen_pre_row_snapshot": 12
+    "current_asset_dimensions": "match manifest"
   },
-  "limits": [
-    "1x authored automated replay, not human interaction or balance acceptance",
-    "Dummy cloud audio output; real mix captured but not human listening approval",
-    "old30 not rerun or included as new content",
-    "further regions/levels, combo/mechanism and real ad SDK remain",
-    "no merge/deployment"
+  "retained_not_rerun": [
+    "previous ruins707",
+    "single-row221",
+    "meta18/growth133/progression1062",
+    "old30/33 are obsolete, not current new-mode evidence"
   ],
-  "color_row_followup": {
-    "checked_at": "2026-10-21T17:51:08.483978+00:00",
-    "actual_control_checks": 221,
-    "real_GL_states": 2,
-    "real_GL_pixels": [
-      1440,
-      2560
-    ],
-    "current_sources_match_GL_capture": true,
-    "production_files_changed": [
-      "scripts/play.gd",
-      "scripts/ui_icon.gd"
-    ],
-    "rules_and_level_data_unchanged": true,
-    "four_color_logical_target": [
-      197,
-      116
-    ],
-    "headless_exit_code": 0,
-    "headless_shutdown_resources": 3,
-    "GL_shutdown_resources": 1,
-    "GL_audio": "ALSA unavailable; Dummy fallback",
-    "full_journey_repeated": false,
-    "video_boundary": "33.53-second ruins journey shows the pre-followup 3+1 row; two new screenshots verify the current single row."
-  }
+  "limits": [
+    "1x authored automatic replay, not human interaction or balance acceptance",
+    "Dummy cloud output; captured mix is not hardware sound or human listening",
+    "raster ground940x1672 is not native2K art",
+    "further levels, combo/mechanism and real ad SDK remain",
+    "no merge/deployment"
+  ]
 }
