@@ -3,11 +3,13 @@ extends "res://scripts/main.gd"
 ## Presentation consumes events and never settles gameplay from animation.
 const Rules = preload("res://scripts/rescue_rules.gd")
 const FX = preload("res://scripts/rescue_fx.gd")
-const CarrierMotion = preload("res://scripts/carrier_motion.gd")
+const CarrierMotion = preload("res://scripts/directional_carrier.gd")
+const CarrierRoute = preload("res://scripts/carrier_route.gd")
+const SerpentView = preload("res://scripts/serpent_view.gd")
 const Saves = preload("res://scripts/save_service.gd")
 const Catalog = preload("res://scripts/level_catalog.gd")
 # Retained as the default catalog contract; opt-in entries use level_ids below.
-const LEVEL_IDS = ["validation-01", "validation-02", "validation-03"]
+const LEVEL_IDS = ["serpent-01", "serpent-02", "serpent-03"]
 var level_ids: Array[String] = Catalog.level_ids(false)
 var campaign_drafts := false
 var use_command_line_catalog := true
@@ -16,8 +18,8 @@ var level_selector_page := -1
 var entry_screen := ""
 var from_startup := false
 var chooser_from_home := false
-const TOOL_IDS = ["extra_slot", "shuffle", "recall", "scout"]
-const TOOL_KINDS = ["plus", "shuffle", "recall", "hint"]
+const TOOL_IDS = []
+const TOOL_KINDS = []
 var profile_directory := ""
 # Explicit isolated test fixtures only. Normal entry never uses this override.
 var qa_fixture_mode := false
@@ -28,7 +30,6 @@ var victory_saved := false
 var pending_save_kind := ""
 var pending_entrance := 0
 var last_save_reason := ""
-var recall_selection: Dictionary = {}
 var settings_dirty := false
 var recovery_reset_confirm := false
 var scout_result: Dictionary = {}
@@ -43,6 +44,10 @@ var rules:RefCounted
 var fx:Control
 var level_config:Dictionary
 var cells:Dictionary={}
+var color_buttons:Dictionary={}
+var serpent:Control
+var serpent_elapsed:=0.0
+var view_snapshot:Dictionary={}
 var carriers:Dictionary={}
 var board_plane:RefCounted
 var grid_origin:=Vector2.ZERO
@@ -128,9 +133,12 @@ func _ready()->void:
 	shield_shader=preload("res://scripts/combat_tint.gdshader")
 	super._ready()
 	fx=FX.new();fx.name="RescueFX";add_child(fx)
-	fx.set_layout({"board_origin":grid_origin+Vector2.ONE*cell_edge*.5,"cell_size":Vector2.ONE*cell_edge,"route_units_to_pixels":287.0/float(level_config.dragon.route_length),"cannon_muzzle":Vector2(487,918),"cannon_center":Vector2(471,970)})
+	fx.set_layout({"board_origin":grid_origin+Vector2.ONE*cell_edge*.5,"cell_size":Vector2.ONE*cell_edge,"cannon_muzzle":Vector2(487,1060),"cannon_center":Vector2(471,1110),"rescue_center":Vector2(145,145),"nest":Vector2(467,1008),"segment_mode":true})
 	var stock_points:Dictionary={}
-	for i in range(6):stock_points[COLORS[i]]=Vector2(575.5+i*57,965.5)
+	var stock_colors:Array=[]
+	for color in COLORS:
+		if int(rules.initial_counts.get(color,0))>0:stock_colors.append(color)
+	for i in stock_colors.size():stock_points[stock_colors[i]]=Vector2(615+i*60,1125)
 	var cell_points:Dictionary={}
 	for cell in rules.board.values():cell_points["%d,%d"%[cell.x,cell.y]]=board_plane.center(cell.x,cell.y)
 	fx.set_layout({"stock_points":stock_points,"cell_points":cell_points})
@@ -181,251 +189,125 @@ func build_mosaic()->void:
 		b.name="Bead%d"%cell.id;cells[cell.id]=b;bead_nodes.append(b);counts[cell.color]+=1
 
 func create_fixture()->void:
-	fixture={"visual_only":false,"stock":rules.inventory.duplicate(),"queues":[],"active":{},"board":counts,"initial":rules.initial_counts,"armor_total":rules.initial_counts}
+	fixture={"visual_only":false,"stock":rules.inventory.duplicate(),"active":{},"board":counts,"initial":rules.initial_counts}
 	pull_team_view()
 
 func pull_team_view()->void:
-	fixture.queues=[];fixture.active={}
-	for color in COLORS:fixture.active[color]=0
-	for col in rules.columns:
-		var q:Array=[]
-		for team in col.teams:q.append({"color":team.color,"quota":team.remaining,"id":team.id})
-		fixture.queues.append(q)
-	slot_teams=[]
-	for team in rules.slots:
-		if team==null:slot_teams.append(null)
-		else:
-			slot_teams.append({"color":team.color,"quota":team.remaining,"id":team.id,"work_state":team.work_state})
-			fixture.active[team.color]+=team.remaining
+	view_snapshot=rules.snapshot()
+	fixture.remaining=view_snapshot.get("available_counts",{}).duplicate()
 	fixture.stock=rules.inventory.duplicate()
+	slot_teams=[]
+
+func build_candidates()->void:
+	var layer:=group("CandidateQueues")
+	var active_colors:Array=[]
+	for color in COLORS:
+		if int(rules.initial_counts.get(color,0))>0:active_colors.append(color)
+	var columns:=mini(3,active_colors.size())
+	var width:=234.0;var gap:=28.0
+	for i in active_colors.size():
+		var color:String=active_colors[i]
+		var row:=i/3;var col:=i%3
+		var in_row:=mini(3,active_colors.size()-row*3)
+		var x:float=(940.0-in_row*width-(in_row-1)*gap)*.5+col*(width+gap)
+		var y:=1282.0+row*142.0
+		var bounds:=Rect2(x,y,width,116)
+		frame(bounds,"ColorPlate_"+color,layer,18)
+		var actor:=ground_ant(color,Vector2(x+79,y+85),"ColorAnt_"+color,layer,76)
+		CarrierMotion.prepare(actor,color,76.0)
+		CarrierMotion.apply(actor,{"time":0.0,"distance":0.0,"moving":false,"direction":Vector2.UP,"stage":"idle","pickup":0.0,"diameter":76.0,"phase":0.0})
+		text_label(str(fixture.remaining.get(color,0)),Rect2(x+143,y+27,73,65),40,"Remaining_"+color,layer,INK)
+		var button:=Button.new();button.name="ColorButton_"+color;button.position=bounds.position;button.size=bounds.size;button.flat=true;button.tooltip_text="Send one "+color+" ant";layer.add_child(button)
+		button.pressed.connect(func():select_color(color));color_buttons[color]=button
+		var state_icon:=icon("lock",Rect2(x+width-35,y+8,24,24),layer,INK);state_icon.name="ColorState_"+color;state_icon.hide()
+
+func select_color(color:String)->bool:
+	if is_instance_valid(pause_overlay) or not profile_state.get("ready",false):return false
+	var result:Dictionary=rules.click_color(color)
+	if not result.ok:
+		var messages:Dictionary={"carrier_limit":"ALL FOUR ANTS ARE BUSY","color_blocked":"REACH A DIFFERENT EDGE FIRST","color_all_reserved":"THESE BEADS ARE ALREADY CLAIMED","color_collected":"ALL COLLECTED","simulation_frozen":"PAUSED"}
+		show_click_feedback(str(messages.get(result.get("reason",""),"NOT AVAILABLE")))
+		return false
+	var notice:=get_node_or_null("RoundRestartNotice")
+	if notice:remove_child(notice);notice.queue_free()
+	sync_view();consume_rule_events();return true
+
+func show_click_feedback(message:String)->void:
+	var old:=get_node_or_null("ClickFeedback")
+	if old:remove_child(old);old.queue_free()
+	var label:=text_label(message,Rect2(130,1530,680,42),22,"ClickFeedback",self,Color("fff3d7"))
+	label.add_theme_color_override("font_outline_color",Color("513316"));label.add_theme_constant_override("outline_size",4)
+	ensure_ui_motion();ui_motion.reveal_hint(label);audio_service.play_event("error")
+	feedback_serial+=1;var serial:=feedback_serial
+	get_tree().create_timer(1.7).timeout.connect(func():
+		if is_inside_tree() and feedback_serial==serial and is_instance_valid(label):label.queue_free())
 
 func tint_red(target:CanvasItem,color:String)->void:
 	var material:ShaderMaterial
 	if target.material is ShaderMaterial:material=target.material
 	else:material=ShaderMaterial.new();material.shader=shield_shader;target.material=material
 	material.set_shader_parameter("tint",COLOR_VALUES[color])
-	if target.name=="Dragon":
-		material.set_shader_parameter("tint_region",Vector4(370.0/1536.0,330.0/1024.0,562.0/1536.0,533.0/1024.0))
-		material.set_shader_parameter("is_dragon",true)
-		ensure_dragon_mesh(target as TextureRect,material)
-	elif target.name=="Cannon":material.set_shader_parameter("tint_region",Vector4(180.0/1536.0,654.0/1024.0,395.0/1536.0,851.0/1024.0))
+	if target.name=="Cannon":material.set_shader_parameter("tint_region",Vector4(180.0/1536.0,654.0/1024.0,395.0/1536.0,851.0/1024.0))
 
-func ensure_dragon_mesh(target:TextureRect,material:ShaderMaterial)->void:
-	if target.has_node("ArticulatedDragon"):return
-	# A bounded flat 2D lattice reuses the exact atlas. It keeps painted parts
-	# connected under forward local deformation, with no 3D model or new bitmap.
-	var mesh:=ArrayMesh.new();var vertices:=PackedVector3Array();var uvs:=PackedVector2Array();var indices:=PackedInt32Array()
-	var cols:=32;var rows:=24;var source:=Rect2(22,145,714,480)
-	for y in range(rows+1):
-		for x in range(cols+1):
-			var uv:=Vector2(float(x)/cols,float(y)/rows)
-			vertices.append(Vector3(uv.x*target.size.x,uv.y*target.size.y,0))
-			uvs.append((source.position+uv*source.size)/atlas.get_size())
-	for y in range(rows):
-		for x in range(cols):
-			var a:=y*(cols+1)+x;var b:=a+1;var c:=a+cols+1;var d:=c+1
-			indices.append_array(PackedInt32Array([a,b,c,b,d,c]))
-	var arrays:=[];arrays.resize(Mesh.ARRAY_MAX);arrays[Mesh.ARRAY_VERTEX]=vertices;arrays[Mesh.ARRAY_TEX_UV]=uvs;arrays[Mesh.ARRAY_INDEX]=indices
-	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES,arrays)
-	var visual:=MeshInstance2D.new();visual.name="ArticulatedDragon";visual.mesh=mesh;visual.texture=atlas;visual.material=material
-	target.add_child(visual);target.self_modulate=Color(1,1,1,0)
+func build_environment()->void:
+	var bg:=TextureRect.new();bg.name="Environment";bg.texture=load("res://assets/serpent/environment.png")
+	bg.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;bg.size=Vector2(940,1672);bg.mouse_filter=Control.MOUSE_FILTER_IGNORE;add_child(bg)
+
+func build_threat()->void:
+	var route:=group("DragonRoute")
+	serpent=SerpentView.new();route.add_child(serpent)
+	var knots:Array=[
+		{"position":Vector2(583,956),"out":Vector2(90,24)},
+		{"position":Vector2(850,867),"in":Vector2(-38,85),"out":Vector2(17,-85)},
+		{"position":Vector2(867,395),"in":Vector2(8,100),"out":Vector2(-7,-115)},
+		{"position":Vector2(750,228),"in":Vector2(60,35),"out":Vector2(-72,-41)},
+		{"position":Vector2(505,144),"in":Vector2(80,4),"out":Vector2(-80,-4)},
+		{"position":Vector2(230,162),"in":Vector2(60,-18)}]
+	if not serpent.configure(level_config.serpent,knots):push_error("Serpent production atlas is missing")
+	# The platform belongs to the environment; the princess remains independent.
+	serpent.add_princess(route,Vector2(145,168))
 
 func build_transport()->void:
 	var layer:=group("TransportScene")
-	art(Rect2(481,678,480,307),Rect2(350,1000,231,149),"Nest",layer)
-	var cannon:=art(Rect2(48,654,412,337),Rect2(385,876,173,148),"Cannon",layer);cannon.pivot_offset=Vector2(86.5,112)
-	frame(Rect2(405,985,130,48),"CurrentAmmo",layer,12)
-	text_label("0 / 0",Rect2(409,988,122,40),26,"AmmoCount",layer,Color("a52b1c"))
+	var nest:=TextureRect.new();nest.name="Nest";nest.texture=load("res://assets/serpent/nest-entry.png");nest.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;nest.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	var nest_info:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/serpent/nest-entry.json"))
+	var factor:=110.0/float(nest_info.physical_width);var anchor:Array=nest_info.anchor
+	nest.size=nest.texture.get_size()*factor;nest.position=Vector2(467,1008)-Vector2(anchor[0],anchor[1])*factor;layer.add_child(nest)
+	var cannon:=art(Rect2(48,654,412,337),Rect2(388,1030,166,141),"Cannon",layer);cannon.pivot_offset=Vector2(83,107)
 	var stock:=group("Stock",layer)
-	for j in range(6):
-		var x:=550+j*57
-		bead(COLORS[j],Vector2(x+12,952),27,stock)
-		var count:=text_label("0",Rect2(x,985,52,34),23,"Count_"+COLORS[j],stock,Color("fff7d9"));count.add_theme_color_override("font_outline_color",Color("573719"));count.add_theme_constant_override("outline_size",5)
-	var live:=group("LiveCarriers",layer);layer.move_child(live,0)
+	var stock_colors:Array=[]
+	for color in COLORS:
+		if int(rules.initial_counts.get(color,0))>0:stock_colors.append(color)
+	for j in stock_colors.size():
+		var color:String=stock_colors[j];var x:float=591+j*60
+		bead(color,Vector2(x+12,1107),25,stock)
+		var label:=text_label("0",Rect2(x,1138,53,34),23,"Count_"+color,stock,Color("fff7d9"));label.add_theme_color_override("font_outline_color",Color("573719"));label.add_theme_constant_override("outline_size",5)
+	var live:=group("LiveCarriers",layer);layer.move_child(live,1)
 
 func build_hud()->void:
-	super.build_hud()
-	get_node("TopHUD/LevelNumber").text="%02d"%level_index
-	# Use the same red shield source with material recoloring for all six actual colors.
-	for name in ["CurrentArmorShield","NextArmorBlue","NextArmorYellow"]:
-		var target:TextureRect=get_node("TopHUD/"+name)
-		var tex:=AtlasTexture.new();tex.atlas=atlas;tex.region=Rect2(973,741,179,202);tex.filter_clip=true;target.texture=tex
-	var speed:=Button.new();speed.name="SpeedButton";speed.position=Vector2(255,21);speed.size=Vector2(64,47);speed.flat=true;speed.tooltip_text="Simulation speed";get_node("TopHUD").add_child(speed)
-	text_label("×1",Rect2(255,21,64,47),26,"SpeedLabel",get_node("TopHUD"),INK,true)
+	var hud:=group("TopHUD")
+	frame(Rect2(405,24,130,65),"Level",hud,8)
+	text_label("%02d"%level_index,Rect2(410,27,120,54),32,"LevelNumber",hud)
+	icon("pause",Rect2(839,26,61,61),hud,Color("fff3d9"))
+	var pause_button:=Button.new();pause_button.name="PauseButton";pause_button.position=Vector2(824,13);pause_button.size=Vector2(88,88);pause_button.flat=true;pause_button.tooltip_text="Pause";hud.add_child(pause_button);pause_button.pressed.connect(show_pause)
+	var speed:=Button.new();speed.name="SpeedButton";speed.position=Vector2(30,20);speed.size=Vector2(88,65);speed.flat=true;speed.tooltip_text="Simulation speed";hud.add_child(speed)
+	text_label("×1",Rect2(30,20,88,65),28,"SpeedLabel",hud,Color("fff5df"),true)
 	speed.pressed.connect(func():rules.set_speed(2 if rules.speed_multiplier==1 else 1))
 
-func slot_bounds(index:int)->Rect2:
-	var six:bool=slot_teams.size()==6
-	return Rect2((60 if six else 67)+index*(137 if six else 162),1173,133 if six else 154,126)
-
-func slot_effect_point(index:int)->Vector2:
-	return Vector2(slot_bounds(index).get_center().x,1210)
-
 func build_slots()->void:
-	var work:=group("WorkSlots")
-	var centers:Array=[]
-	var protected:Array=[Rect2(16,10,800,89),Rect2(417,987,115,46),Rect2(548,984,365,36)]
-	for i in slot_teams.size():
-		var bounds:=slot_bounds(i);var x:float=bounds.position.x;var w:float=bounds.size.x
-		var p:=frame(bounds,"Slot%d"%(i+1),work,16,"fffaf1","f1e1c9","caa777");slots.append(p)
-		centers.append(slot_effect_point(i));protected.append(Rect2(x+8,1250,w-16,43))
-		if slot_teams[i]!=null:
-			var team:Dictionary=slot_teams[i]
-			ant(team.color,Rect2(x+(w-100)*.5,1179,100,73),"Worker%d"%i,work)
-			text_label(str(team.quota),Rect2(x+8,1250,w-16,43),34,"Quota%d"%i,work,Color("b9251f") if team.color=="red" else Color("174184") if team.color=="blue" else INK,true)
-			if team.get("work_state","")=="waiting_target":icon("pause",Rect2(x+w-31,1180,25,25),work,Color("b28a50"))
-	for i in range(4):protected.append(Rect2(233+i*179,1603,33,33))
-	if is_instance_valid(fx):fx.set_layout({"slot_points":centers,"protected_rects":protected})
+	var layer:=group("WorkSlots")
+	ant("yellow",Rect2(405,1222,54,44),"CarrierCapacity",layer)
+	text_label("0 / 4",Rect2(465,1222,100,46),25,"CarrierCount",layer,Color("fff1d2"),true)
+	text_label("",Rect2(567,1224,90,42),18,"CapacityState",layer,Color("fff1d2"),true)
 
 func build_tools()->void:
-	var tools:=group("ToolTray")
-	for i in TOOL_IDS.size():
-		var x:=139+i*179
-		var painted:=skin.sprite("game/"+TOOL_KINDS[i],Rect2(x,1507,125,125),tools,"PaintedTool%d"%i)
-		painted.pivot_offset=painted.size*.5
-		frame(Rect2(x+94,1604,33,31),"UseBadge%d"%i,tools,9)
-		text_label("1",Rect2(x+94,1603,33,28),19,"Uses%d"%i,tools)
-		var lock:=icon("lock",Rect2(x+96,1606,28,27),tools,INK);lock.name="ToolLock%d"%i
-		var button:=Button.new();button.name="ToolButton%d"%i;button.flat=true;button.position=Vector2(x,1507);button.size=Vector2(132,132);button.mouse_default_cursor_shape=Control.CURSOR_POINTING_HAND;tools.add_child(button)
-		button.pressed.connect(func():activate_tool(TOOL_IDS[i]))
-	sync_tool_controls()
+	pass
 
 func sync_tool_controls()->void:
-	if not has_node("ToolTray"):return
-	var states:Dictionary={}
-	for state in rules.tool_states():states[state.id]=state
-	for i in TOOL_IDS.size():
-		var state:Dictionary=states.get(TOOL_IDS[i],{})
-		var unlocked:bool=state.get("unlocked",false)
-		var remaining:int=int(state.get("remaining",0))
-		var button:Button=get_node("ToolTray/ToolButton%d"%i)
-		button.disabled=not unlocked or remaining==0 or not profile_state.get("ready",false) or rules.paused or rules.status not in ["ready","running"]
-		button.tooltip_text=(TOOL_IDS[i].replace("_"," ").to_upper()+" · "+("LEVEL %d"%int(state.get("unlock_level",1)) if not unlocked else "%d LEFT"%remaining))
-		get_node("ToolTray/PaintedTool%d"%i).modulate=Color(.62,.62,.62,.8) if not unlocked or remaining==0 else Color.WHITE
-		get_node("ToolTray/Uses%d"%i).text=str(remaining)
-		get_node("ToolTray/Uses%d"%i).visible=unlocked
-		get_node("ToolTray/ToolLock%d"%i).visible=not unlocked
-
-func activate_tool(tool_id:String,payload:Dictionary={})->Dictionary:
-	if is_instance_valid(pause_overlay) or not profile_state.get("ready",false):return {"ok":false,"consumed":false,"reason":"simulation_frozen"}
-	if tool_id=="recall":
-		show_recall_selection()
-		return {"ok":not recall_selection.is_empty(),"consumed":false}
-	var result:Dictionary=rules.request_tool(tool_id,payload)
-	if not result.ok:tool_feedback(str(result.get("reason","unavailable")))
-	sync_view();consume_rule_events()
-	return result
-
-func tool_feedback(reason:String)->void:
-	var messages:Dictionary={"search_budget_exhausted":"NO VERIFIED SHUFFLE · USE KEPT","no_verified_winning_replay":"NO VERIFIED SHUFFLE · USE KEPT","no_changed_arrangement":"NO NEW SHUFFLE · USE KEPT","slots_full":"ALL SLOTS FULL · USE KEPT","no_exposed_front_target":"NO REACHABLE FRONT · USE KEPT","no_active_team":"NO ACTIVE TEAM · USE KEPT","invalid_slot":"CHOOSE AN ACTIVE TEAM","stale_team_selection":"TEAM CHANGED · USE KEPT","tool_locked":"THIS TOOL IS STILL LOCKED","tool_already_used":"ALREADY USED THIS ROUND"}
-	var existing:=get_node_or_null("ToolFeedback")
-	if existing:remove_child(existing);existing.queue_free()
-	var label:=text_label(messages.get(reason,"NOT AVAILABLE · USE KEPT"),Rect2(149,1471,642,32),18,"ToolFeedback",self,INK,true)
-	ensure_ui_motion();ui_motion.reveal_hint(label)
-	feedback_serial+=1;var serial:=feedback_serial
-	get_tree().create_timer(2.8).timeout.connect(func():
-		if is_inside_tree() and serial==feedback_serial and is_instance_valid(label):label.queue_free())
-	audio_service.play_event("error")
-
-func show_recall_selection()->void:
-	var available:=false
-	for state in rules.tool_states():
-		if state.id=="recall":available=state.unlocked and int(state.remaining)>0
-	if not available or rules.status not in ["ready","running"]:tool_feedback("tool_locked");return
-	if rules.slots.all(func(team:Variant)->bool:return team==null or int(team.get("remaining",0))<=0):
-		tool_feedback("no_active_team");return
-	var m:=modal("RECALL A TEAM",Rect2(149,520,642,650))
-	recall_selection=rules.begin_tool_selection("recall")
-	if not recall_selection.ok:
-		recall_selection.clear();dismiss_modal();tool_feedback("simulation_frozen");return
-	text_label("ONLY UNSENT QUOTA RETURNS",Rect2(202,631,536,44),23,"RecallContract",m)
-	var active_slots:Array[int]=[]
-	for i in rules.slots.size():
-		if rules.slots[i]!=null and int(rules.slots[i].remaining)>0:active_slots.append(i)
-	for card_index in active_slots.size():
-		var i:int=active_slots[card_index]
-		var row:int=card_index/3;var column:int=card_index%3
-		var row_count:int=mini(3,active_slots.size()-row*3)
-		var x:float=(940.0-(row_count*143+(row_count-1)*28))*.5+column*171
-		var y:int=704+row*153
-		frame(Rect2(x,y,143,137),"RecallTeam%d"%i,m,22)
-		var team:Dictionary=rules.slots[i]
-		ant(team.color,Rect2(x+22,y+5,100,72),"RecallAnt%d"%i,m)
-		text_label(str(team.remaining),Rect2(x+8,y+78,127,44),30,"RecallQuota%d"%i,m)
-		var button:=Button.new();button.name="RecallChoice%d"%i;button.flat=true;button.position=Vector2(x,y);button.size=Vector2(143,137);m.add_child(button)
-		var team_id:String=team.id
-		button.pressed.connect(func():confirm_recall(i,team_id))
-	text_label("CARRIERS ALREADY OUT KEEP GOING",Rect2(190,1011,560,42),20,"CarrierNotice",m)
-	action(m,"CANCEL",1071,dismiss_modal)
-
-func confirm_recall(index:int,team_id:String)->Dictionary:
-	if recall_selection.is_empty():return {"ok":false,"consumed":false,"reason":"selection_expired"}
-	var result:Dictionary=rules.request_tool("recall",{"slot":index,"expected_team_id":team_id,"selection_token":recall_selection.token})
-	if result.ok:
-		recall_selection.clear()
-		# Resume before consuming the committed release cue, never on opening.
-		dismiss_modal();sync_view();consume_rule_events()
-	else:tool_feedback(str(result.get("reason","invalid_slot")))
-	return result
+	pass
 
 func clear_scout()->void:
-	scout_result.clear();scout_seconds=0
-	var hints:=get_node_or_null("ScoutHints")
-	if hints:remove_child(hints);hints.queue_free()
-
-func sync_scout()->void:
-	if scout_result.is_empty():return
-	var column_index:=-1
-	for i in rules.columns.size():
-		if rules.columns[i].id==scout_result.column_id and not rules.columns[i].teams.is_empty() and rules.columns[i].teams[0].id==scout_result.team_id:column_index=i
-	if column_index<0 or rules.run_id!=int(scout_result.run_id) or rules.status not in ["ready","running"]:
-		clear_scout();return
-	var layer:=get_node_or_null("ScoutHints") as Control
-	if not layer:
-		layer=group("ScoutHints");ensure_ui_motion();ui_motion.reveal_hint(layer)
-	for id in scout_result.exposed_cell_ids:
-		var name:String="Cell%d"%id
-		var outline:=layer.get_node_or_null(name)
-		if not rules.board.has(id) or rules.reservations.has(id):
-			if outline:outline.hide()
-			continue
-		if not outline:
-			var cell:Dictionary=rules.board[id];var span:Vector2=board_plane.footprint(cell.x,cell.y)
-			add_scout_outline(Rect2(board_plane.center(cell.x,cell.y)-span*.53,span*1.06),layer,name)
-	var front:=get_node_or_null("CandidateQueues/Column%d/FrontButton"%(column_index+1)) as Control
-	if front and not layer.has_node("FrontTeam"):add_scout_outline(Rect2(front.position,front.size),layer,"FrontTeam")
-	if not layer.has_node("CurrentArmor"):add_scout_outline(Rect2(438,7,93,93),layer,"CurrentArmor")
-	var context:=layer.get_node_or_null("AmmoContext") as Label
-	if not context:context=text_label("",Rect2(149,1460,642,34),18,"AmmoContext",layer,INK,true)
-	context.text=scout_ammo_context()
-	context.visible=not has_node("ToolFeedback")
-	# Purely advisory highlight. It neither clicks a front nor freezes simulation.
-
-func scout_ammo_context()->String:
-	# Live data, not the snapshot captured at tool use: delivery, firing and armor
-	# changes may happen during the short highlight. A shot has already spent ammo.
-	if rules.armor_index>=rules.armors.size():return ""
-	if not rules.projectile.is_empty():return "SHOT ON THE WAY · AMMO ALREADY SPENT"
-	var armor:Dictionary=rules.armors[rules.armor_index]
-	var missing:=maxi(0,int(armor.demand)-int(rules.inventory.get(armor.color,0)))
-	if missing>0:
-		return "%d MORE %s AMMO · OTHER COLORS STAY STORED"%[missing,str(armor.color).to_upper()]
-	if rules.cooldown_until_us>rules.time_us:return "AMMO READY · CANNON COOLING"
-	return "AMMO READY FOR THIS ARMOR"
-
-func add_scout_outline(bounds:Rect2,parent:Control,id:String)->void:
-	var outline:=Panel.new();outline.name=id;outline.position=bounds.position;outline.size=bounds.size;outline.mouse_filter=Control.MOUSE_FILTER_IGNORE
-	var style:=StyleBoxFlat.new();style.bg_color=Color(1,.83,.27,.12);style.border_color=Color(1,.95,.53,.95);style.set_border_width_all(3);style.set_corner_radius_all(8);outline.add_theme_stylebox_override("panel",style);parent.add_child(outline)
-
-func preview_select_front(column:int,expected_id:String)->bool:
-	if queue_transition_busy or is_instance_valid(pause_overlay) or not profile_state.get("ready",false):return false
-	var result:Dictionary=rules.select_front(column,expected_id)
-	if not result.ok:audio_service.play_event("error");return false
-	var notice:=get_node_or_null("RoundRestartNotice")
-	if notice:remove_child(notice);notice.queue_free()
-	queue_transition_busy=true
-	get_tree().create_timer(.18).timeout.connect(func():queue_transition_busy=false)
-	sync_view();consume_rule_events();return true
+	pass
 
 func _process(delta:float)->void:
 	if not ready_to_simulate:return
@@ -434,124 +316,63 @@ func _process(delta:float)->void:
 		if scout_seconds<=0:clear_scout()
 	if auto_replay and not rules.paused:advance_replay(delta)
 	else:rules.update(delta)
-	sync_view();consume_rule_events();fx.advance(delta)
+	sync_view();consume_rule_events();fx.advance(delta);serpent.advance(delta)
 	apply_gameplay_interaction_motion()
 	apply_actor_poses()
 	present_pending_outcome()
 
 func advance_replay(delta:float)->void:
 	var left:=roundi(delta*1000000)
-	var solution:Array=level_config.validation.no_tool_solution
+	var solution:Array=level_config.get("solution",{}).get("inputs",[])
 	while left>0 and rules.status in ["ready","running"]:
-		while replay_index<solution.size() and int(solution[replay_index].time_us)<=rules.time_us:
-			var entry:Dictionary=solution[replay_index];rules.select_front(entry.column_id,entry.team_id);replay_index+=1
+		while replay_index<solution.size() and roundi(float(solution[replay_index].at_sec)*1000000.0)<=rules.time_us:
+			var entry:Dictionary=solution[replay_index];rules.click_color(entry.color);replay_index+=1
 		var step:=left
-		if replay_index<solution.size():step=mini(step,maxi(1,int(solution[replay_index].time_us)-rules.time_us))
+		if replay_index<solution.size():step=mini(step,maxi(1,roundi(float(solution[replay_index].at_sec)*1000000.0)-rules.time_us))
 		rules.update_us(step);left-=step
 
 func sync_view()->void:
 	if not ready_to_simulate:return
 	for id in cells:
 		if is_instance_valid(cells[id]):cells[id].visible=rules.board.has(id)
-	var old_queues:Array=fixture.get("queues",[]).duplicate(true)
 	pull_team_view()
-	var qsig:=JSON.stringify(fixture.queues);var ssig:=JSON.stringify(slot_teams)
-	if qsig!=previous_queue_signature:
-		var old:=get_node("CandidateQueues");remove_child(old);old.queue_free();candidate_columns.clear();build_candidates();previous_queue_signature=qsig
-		begin_queue_refill(old_queues)
-	if ssig!=previous_slot_signature:
-		var old:=get_node("WorkSlots");remove_child(old);old.queue_free();slots.clear();build_slots();previous_slot_signature=ssig
-	sync_tool_controls();sync_scout()
-	var restart_notice:=get_node_or_null("RoundRestartNotice")
-	if restart_notice:restart_notice.visible=rules.status=="ready" and scout_result.is_empty() and not has_node("ToolFeedback")
-	# Noninteractive effects must remain above rebuilt artwork, with current quota
-	# labels protected, while the modal always stays above effects and input.
-	if is_instance_valid(fx):move_child(fx,-1)
-	var hints:=get_node_or_null("ScoutHints")
-	if hints:move_child(hints,-1)
-	if is_instance_valid(pause_overlay):move_child(pause_overlay,-1)
-	for color in COLORS:get_node("TransportScene/Stock/Count_"+color).text=str(rules.inventory.get(color,0))
-	var index:int=rules.armor_index
-	for j in range(3):
-		var node:TextureRect=get_node("TopHUD/"+["CurrentArmorShield","NextArmorBlue","NextArmorYellow"][j]);node.visible=index+j<rules.armors.size()
-		if node.visible:tint_red(node,rules.armors[index+j].color)
-	# Only connect armor icons that actually exist. No floating end-of-chain arrows.
-	get_node("TopHUD/ArmorLink1").visible=index+1<rules.armors.size()
-	get_node("TopHUD/ArmorLink2").visible=index+2<rules.armors.size()
-	get_node("DragonRoute/RouteMarkers").visible=rules.status!="victory"
-	get_node("TransportScene/CurrentAmmo").visible=index<rules.armors.size()
-	get_node("TransportScene/AmmoCount").visible=index<rules.armors.size()
-	if index<rules.armors.size():
-		var armor:Dictionary=rules.armors[index];current_armor_color=armor.color
-		get_node("TransportScene/AmmoCount").text="%d / %d"%[rules.inventory[armor.color],armor.demand]
-		tint_red(get_node("TransportScene/Cannon"),armor.color);tint_red(get_node("DragonRoute/Dragon"),armor.color)
-	else:get_node("TransportScene/AmmoCount").text="0 / 0"
+	for color in color_buttons:
+		get_node("CandidateQueues/Remaining_"+color).text=str(fixture.remaining.get(color,0))
+		color_buttons[color].disabled=rules.paused or rules.status not in ["ready","running"]
+		var state:String=str(view_snapshot.color_states[color].state)
+		get_node("CandidateQueues/ColorAnt_"+color).modulate=Color(.55,.55,.55,.72) if state in ["collected","blocked"] else Color.WHITE
+		var indicator:Control=get_node("CandidateQueues/ColorState_"+color)
+		indicator.visible=state!="ready";indicator.kind="check" if state=="collected" else ("clock" if state=="all_reserved" else "lock");indicator.queue_redraw()
+		color_buttons[color].tooltip_text="All four ants are busy" if view_snapshot.capacity_full else ({"ready":"Send one ant","blocked":"Matching beads are blocked","all_reserved":"Matching beads are already claimed","collected":"All beads collected"}.get(state,"Send one ant"))
+	get_node("WorkSlots/CarrierCount").text="%d / %d"%[int(view_snapshot.carrier_count),int(view_snapshot.carrier_limit)]
+	get_node("WorkSlots/CapacityState").text="BUSY" if view_snapshot.capacity_full else ""
+	for color in color_buttons:get_node("TransportScene/Stock/Count_"+color).text=str(rules.inventory.get(color,0))
 	get_node("TopHUD/SpeedLabel").text="×%d"%rules.speed_multiplier
+	serpent.sync_snapshot(view_snapshot)
+	var projectile:Dictionary=rules.projectile
+	if not projectile.is_empty():
+		fx.set_layout({"dragon_hit":serpent.target_point(str(projectile.target_segment_id),rules.head_s())})
+		tint_red(get_node("TransportScene/Cannon"),str(projectile.color))
+	else:
+		var next_target:Dictionary=rules.next_fire_target()
+		if not next_target.is_empty():tint_red(get_node("TransportScene/Cannon"),str(next_target.color))
+	fx.sync_snapshot(view_snapshot)
 	sync_carriers()
-	fx.set_layout({"dragon_hit":Vector2(363+287.0*rules.dragon_position()/float(level_config.dragon.route_length),210),"dragon_foot":Vector2(323+287.0*rules.dragon_position()/float(level_config.dragon.route_length),272)})
-	fx.sync_snapshot(rules.snapshot())
+	if is_instance_valid(fx):move_child(fx,-1)
+	if is_instance_valid(pause_overlay):move_child(pause_overlay,-1)
 	apply_gameplay_interaction_motion()
-
-func begin_queue_refill(previous:Array)->void:
-	queue_refills.clear()
-	for column in mini(previous.size(),fixture.queues.size()):
-		var old_ids:Array=[]
-		for team in previous[column]:old_ids.append(team.id)
-		for row in mini(3,fixture.queues[column].size()):
-			var old_row:int=old_ids.find(fixture.queues[column][row].id)
-			if old_row<=row:continue
-			for prefix in ["Ant","Quota"]:
-				var target:=get_node_or_null("CandidateQueues/Column%d/%s%d"%[column+1,prefix,row]) as Control
-				if target:
-					# Cache button-art rest before applying cosmetic displacement.
-					ensure_ui_motion();ui_motion._rest(target)
-					queue_refills.append({"target":target,"rest":target.position,"start_us":rules.time_us,"offset":minf(114.0,(old_row-row)*57.0)})
-
-func begin_team_arrival(event:Dictionary)->void:
-	var column:=-1
-	for i in rules.columns.size():
-		if rules.columns[i].id==event.column_id:column=i
-	if column<0:return
-	var layer:=get_node_or_null("TeamArrivalVisuals") as Control
-	if not layer:layer=group("TeamArrivalVisuals")
-	var start:=Rect2(84+column*164,1327,66,47)
-	var bounds:=slot_bounds(int(event.slot))
-	var finish:=Rect2(bounds.position.x+(bounds.size.x-100)*.5,1179,100,73)
-	var visual:=ant(event.color,start,"Arrival_%s"%event.team_id,layer)
-	team_arrivals.append({"node":visual,"team_id":event.team_id,"slot":event.slot,"start":start,"finish":finish,"start_us":event.time_us})
 
 func apply_gameplay_interaction_motion()->void:
 	if not ready_to_simulate:return
-	for i in range(queue_refills.size()-1,-1,-1):
-		var entry:Dictionary=queue_refills[i];var target:Control=entry.target
-		if not is_instance_valid(target):queue_refills.remove_at(i);continue
-		var t:=clampf(float(rules.time_us-entry.start_us)/160000.0,0,1)
-		target.position=entry.rest+Vector2(0,float(entry.offset)*pow(1.0-t,3))
-		if t>=1:queue_refills.remove_at(i)
-	# Quota is always the live rules value. Only the ant artwork travels.
-	for i in range(team_arrivals.size()-1,-1,-1):
-		var entry:Dictionary=team_arrivals[i];var visual:Control=entry.node
-		if not is_instance_valid(visual):team_arrivals.remove_at(i);continue
-		var t:=clampf(float(rules.time_us-entry.start_us)/240000.0,0,1)
-		var ease:=1.0-pow(1.0-t,3)
-		var from:Rect2=entry.start;var to:Rect2=entry.finish
-		visual.position=from.position.lerp(to.position,ease)+Vector2(0,-sin(t*PI)*10)
-		visual.size=from.size.lerp(to.size,ease)
-		var slot:int=entry.slot
-		var worker:=get_node_or_null("WorkSlots/Worker%d"%slot) as Control
-		var same_team:bool=slot<rules.slots.size() and rules.slots[slot]!=null and rules.slots[slot].id==entry.team_id
-		if same_team and worker:worker.visible=t>=1
-		if t>=1 or not same_team:visual.queue_free();team_arrivals.remove_at(i)
 	for color in stock_arrivals.keys():
 		var label:=get_node_or_null("TransportScene/Stock/Count_"+color) as Control
 		var t:=clampf(float(rules.time_us-int(stock_arrivals[color]))/260000.0,0,1)
 		if label:
-			label.pivot_offset=label.size*.5
-			label.scale=Vector2.ONE*(1.0+sin(t*PI)*.13*(1.0-t))
+			label.pivot_offset=label.size*.5;label.scale=Vector2.ONE*(1.0+sin(t*PI)*.13*(1.0-t))
 		if t>=1:stock_arrivals.erase(color)
 
 func map_path_point(point:Variant)->Vector2:
-	if int(point[0])==int(level_config.width)/2 and int(point[1])==int(level_config.height):return Vector2(467,1074)
+	if int(point[0])==int(level_config.width)/2 and int(point[1])==int(level_config.height):return Vector2(467,1008)
 	return board_plane.center(float(point[0]),float(point[1]))
 
 func sync_carriers()->void:
@@ -563,6 +384,8 @@ func sync_carriers()->void:
 		if not carriers.has(id):
 			var actor:=ground_ant(task.color,Vector2.ZERO,"Carrier%d"%id,container,48)
 			var carried:=bead(task.color,Vector2(-12,-48),24,actor);carried.name="CarriedBead"
+			CarrierMotion.prepare(actor,task.color,48.0)
+			actor.set_meta("carrier_route",CarrierRoute.build(task.path,board_plane,Vector2(467,1008)))
 			carriers[id]=actor
 		var return_depart:int=task.get("return_depart_us",task.pickup_us)
 		var holding:bool=task.stage=="returning" and rules.time_us<return_depart
@@ -570,14 +393,15 @@ func sync_carriers()->void:
 		var t:float
 		if task.stage=="outbound":t=clampf(float(rules.time_us-task.depart_us)/maxf(1,float(task.pickup_us-task.depart_us)),0,1)
 		elif holding:t=1.0
-		else:t=1.0-clampf(float(rules.time_us-return_depart)/maxf(1,float(task.delivery_us-return_depart)),0,1)
-		var pose:Dictionary=sample_carrier_path(task.path,t)
+		elif task.stage=="unloading":t=0.0
+		else:t=1.0-clampf(float(rules.time_us-return_depart)/maxf(1,float(task.get("unload_us",task.delivery_us)-return_depart)),0,1)
 		var actor:Control=carriers[id]
+		var pose:Dictionary=CarrierRoute.sample(actor.get_meta("carrier_route"),t)
 		actor.position=pose.position
 		actor.scale=Vector2.ONE*board_plane.depth_scale(pose.depth_y)
-		actor.get_node("CarriedBead").visible=task.stage=="returning"
+		actor.get_node("CarriedBead").visible=task.stage in ["returning","unloading"]
 		var direction:Vector2=pose.tangent
-		if task.stage=="returning" and not holding:direction=-direction
+		if task.stage in ["returning","unloading"] and not holding:direction=-direction
 		var elapsed:=float(rules.time_us-task.depart_us)/1000000.0
 		var leg_sec:=float(task.pickup_us-task.depart_us)/1000000.0
 		# Continue the stride rather than snapping phase when the load is acquired.
@@ -585,73 +409,41 @@ func sync_carriers()->void:
 		if task.stage=="returning":stride_time+=maxf(0.0,float(rules.time_us-return_depart)/1000000.0)*CarrierMotion.LOADED_CADENCE
 		CarrierMotion.apply(actor,{"time":float(rules.time_us)/1000000.0,
 			"distance":pose.travelled if task.stage=="outbound" else pose.total_length*2.0-pose.travelled,
-			"moving":not holding,"direction":direction,"stage":"pickup" if holding else task.stage,
+			"moving":not holding and task.stage!="unloading","direction":direction,"stage":"pickup" if holding else ("returning" if task.stage=="unloading" else task.stage),
 			"pickup":hold_fraction if holding else 0.0,"diameter":48.0,"phase":stride_time*TAU+float(id)*1.7})
 		var carried:=actor.get_node("CarriedBead") as Control
 		carried.scale=Vector2.ONE*lerpf(.65,1.0,smoothstep(0,1,hold_fraction)) if holding else Vector2.ONE
 		if holding:carried.position.y+=(1.0-smoothstep(0,1,hold_fraction))*6.0
 
 func sample_carrier_path(path:Array,t:float)->Dictionary:
-	# Arc length is visual only. Pickup and delivery happen at authoritative
-	# Rules times; the finite hold never credits inventory or completes a trip.
-	var points:Array[Vector2]=[];var lengths:Array[float]=[];var total:=0.0
-	for point in path:points.append(map_path_point(point))
-	for i in range(points.size()-1):
-		var length:=points[i].distance_to(points[i+1]);lengths.append(length);total+=length
-	var travelled:=clampf(t,0,1)*total
-	var distance:=travelled
-	for i in lengths.size():
-		if distance<=lengths[i] or i==lengths.size()-1:
-			var weight:=clampf(distance/maxf(.001,lengths[i]),0,1)
-			return {"position":points[i].lerp(points[i+1],weight),"depth_y":lerpf(float(path[i][1]),float(path[i+1][1]),weight),
-				"tangent":points[i].direction_to(points[i+1]),"travelled":travelled,"total_length":total}
-		distance-=lengths[i]
-	return {"position":points[0] if not points.is_empty() else Vector2.ZERO,"depth_y":0.0,
-		"tangent":Vector2.UP,"travelled":0.0,"total_length":0.0}
+	# Direct diagnostics only; live carriers cache this immutable route once.
+	return CarrierRoute.sample(CarrierRoute.build(path,board_plane),t)
 
 func consume_rule_events()->void:
 	var events:Array=rules.drain_events()
-	fx.consume_events(events)
-	var sound_map:Dictionary={"ant_dispatched":"dispatch","bead_picked_up":"pickup","bead_delivered":"return","cannon_fired":"cannon","armor_broken":"armor_hit","victory":"win","defeat":"lose","load_error":"error","recoverable_error":"error"}
+	var sound_map:Dictionary={"ant_dispatched":"dispatch","bead_picked_up":"pickup","bead_delivered":"return","cannon_fired":"cannon","segment_hit":"armor_hit","load_error":"error","recoverable_error":"error"}
 	for event in events:
-		if event.type=="team_selected":begin_team_arrival(event)
+		if event.type in ["cannon_fired","segment_hit","segment_removed"]:
+			fx.set_layout({"dragon_hit":serpent.target_point(str(event.get("target_segment_id",event.get("segment_id",""))),float(event.get("target_s",rules.head_s())))})
+		fx.consume_event(event);serpent.consume_event(event)
 		if event.type=="bead_delivered":stock_arrivals[event.color]=event.time_us
-		if sound_map.has(event.type) and event.type not in ["victory","defeat"]:audio_service.play_event(sound_map[event.type])
-		if event.type=="tool_used":
-			var tool_id:String=event.tool_id
-			var result:Dictionary=event.result
-			var target:=Vector2(470,1380)
-			if tool_id in ["extra_slot","recall"]:target=slot_effect_point(int(result.slot))
-			if tool_id=="scout":
-				scout_result=result.duplicate(true);scout_seconds=2.8;sync_scout()
-				if not result.exposed_cell_ids.is_empty():
-					var cell:Dictionary=rules.board.get(result.exposed_cell_ids[0],{})
-					if not cell.is_empty():target=board_plane.center(cell.x,cell.y)
-			fx.play_tool(tool_id,true,target)
-			audio_service.play_tool("hint" if tool_id=="scout" else tool_id)
+		if sound_map.has(event.type):audio_service.play_event(sound_map[event.type])
 		if event.type in ["victory","defeat"] and last_outcome.is_empty():
 			last_outcome=event.type
-			clear_scout()
 			if event.type=="victory":
-				# Final hit settles victory and saves immediately. FX only presents the
-				# finite collapse; it never controls success, timing or persistence.
-				persist_victory()
-				pending_victory_presentation_run=rules.run_id
-				get_node("TopHUD/PauseButton").disabled=true
+				persist_victory();pending_victory_presentation_run=rules.run_id;get_node("TopHUD/PauseButton").disabled=true
 			else:
 				var completed_run:int=rules.run_id
 				get_tree().create_timer(.65).timeout.connect(func():
-					if is_inside_tree() and rules.run_id==completed_run:
-						show_outcome(false);audio_service.play_event("lose"))
+					if is_inside_tree() and rules.run_id==completed_run:show_outcome(false);audio_service.play_event("lose"))
 		if capture_play and event.type=="cannon_fired" and not captured_first_fire:
 			captured_first_fire=true;call_deferred("save_capture","play-first-fire")
-		if capture_play and event.type=="armor_broken" and not captured_first_hit:
+		if capture_play and event.type=="segment_hit" and not captured_first_hit:
 			captured_first_hit=true;call_deferred("save_capture","play-first-hit")
 		if capture_play and event.type in ["victory","defeat"]:call_deferred("capture_play_end")
 		if event.type=="recoverable_error":show_error()
-	if not warning_played and rules.status=="running" and rules.dragon_position()>float(level_config.dragon.route_length)*.8:
+	if not warning_played and rules.status=="running" and rules.head_s()>float(level_config.serpent.goal_s)*.8:
 		warning_played=true;audio_service.play_event("warning")
-	apply_gameplay_interaction_motion()
 
 func present_pending_outcome()->void:
 	if pending_victory_presentation_run<0:return
@@ -664,18 +456,9 @@ func present_pending_outcome()->void:
 
 func apply_actor_poses()->void:
 	var cp:Dictionary=fx.cannon_pose();var cannon:Control=get_node("TransportScene/Cannon")
-	cannon.position=Vector2(385,876)+cp.offset;cannon.rotation=cp.rotation;cannon.scale=cp.scale
-	var dp:Dictionary=fx.dragon_pose();var dragon:Control=get_node("DragonRoute/Dragon")
-	dragon.position=Vector2(103+287.0*rules.dragon_position()/float(level_config.dragon.route_length),79)+dp.offset;dragon.rotation=dp.rotation;dragon.scale=dp.scale;dragon.modulate=dp.modulate;dragon.visible=bool(dp.get("visible",true))
-	if dragon.material is ShaderMaterial:
-		var age:float=dp.get("defeat_age",-1.0)
-		var collapse:=smoothstep(.10,.92,age) if age>=0 and not fx.reduced_motion else 0.0
-		dragon.material.set_shader_parameter("collapse",collapse)
+	cannon.position=Vector2(388,1030)+cp.offset;cannon.rotation=cp.rotation;cannon.scale=cp.scale
 
 func modal(title:String,rect:Rect2=Rect2(170,520,600,620))->Control:
-	# Leaving recall by any route invalidates its selection, without spending it.
-	if not recall_selection.is_empty():
-		rules.cancel_tool_selection(str(recall_selection.get("token","")));recall_selection.clear()
 	if is_instance_valid(pause_overlay):
 		ensure_ui_motion();ui_motion.discard_modal(pause_overlay);pause_overlay=null
 	var freeze:bool=rules.status in ["ready","running"]
@@ -687,8 +470,6 @@ func dismiss_modal()->void:
 	if not profile_state.get("ready",false):show_load_recovery();return
 	if modal_title=="YOUR FIRST RESCUE":finish_tutorial();return
 	if modal_title=="SETTINGS" and not commit_settings():return
-	if not recall_selection.is_empty():
-		rules.cancel_tool_selection(str(recall_selection.get("token","")));recall_selection.clear()
 	modal_title=""
 	dismiss_modal_visual()
 	if rules.status in ["ready","running"]:rules.set_paused(false)
@@ -758,11 +539,11 @@ func commit_settings()->bool:
 func show_tutorial()->void:
 	var m:=modal("YOUR FIRST RESCUE",Rect2(149,423,642,800))
 	ant("red",Rect2(400,552,140,106),"TutorialAnt",m)
-	var steps:Array[String]=["CHOOSE A FRONT-ROW TEAM","5 SLOTS · NO TARGET? TEAMS WAIT","ANTS TAKE REACHABLE MATCHING BEADS","DELIVERED BEADS BECOME AMMO","THE CANNON FIRES AUTOMATICALLY","THE LAST HIT RESCUES HER"]
+	var steps:Array[String]=["ONE TAP SENDS ONE ANT","UP TO FOUR ANTS CARRY AT ONCE","EACH ANT TAKES ONE MATCHING BEAD","DELIVERED BEADS BECOME AMMO","ARMORED SEGMENTS TAKE TWO HITS","REMOVE EVERY SEGMENT TO RESCUE HER"]
 	for i in steps.size():
 		icon("arrow",Rect2(211,674+i*58,26,30),m,Color("d09536"))
 		text_label(steps[i],Rect2(251,667+i*58,487,46),18,"StepText%d"%i,m)
-	text_label("THE DRAGON WAITS FOR YOUR FIRST TEAM",Rect2(190,1037,560,48),20,"ObservationNotice",m)
+	text_label("THE DRAGON WAITS FOR YOUR FIRST ANT",Rect2(190,1037,560,48),20,"ObservationNotice",m)
 	action(m,"LET'S GO",1115,finish_tutorial,true)
 
 func finish_tutorial()->void:
@@ -855,9 +636,9 @@ func show_outcome(won:bool)->void:
 	if won and rules.status=="victory" and not victory_saved:show_save_error();return
 	var m:=modal("PRINCESS SAVED!" if won else "TRY AGAIN",Rect2(98,335,744,1040))
 	if won:
-		get_node("DragonRoute/Dragon").hide()
+		serpent.hide()
 		art(Rect2(740,20,324,624),Rect2(387,550,166,320),"RescuedPrincess",m)
-	else:art(Rect2(22,145,714,480),Rect2(237,570,466,313),"ThreatDragon",m)
+	else:serpent.add_head_portrait(m,Rect2(290,570,360,300))
 	var next_id:String=profile_state.get("next_level_id","") if victory_saved else ""
 	if won and not next_id.is_empty():result_action(m,"NEXT LEVEL",934,func():replace_level(level_ids.find(next_id)+1),true)
 	result_action(m,"PLAY AGAIN" if won else "RETRY",1076,func():replace_level(level_index),not won or next_id.is_empty())
@@ -956,7 +737,6 @@ func transition_to_startup(mode:String)->void:
 	if replacement_pending:return
 	if pending_save_kind=="victory":show_save_error();return
 	replacement_pending=true;ready_to_simulate=false
-	if not recall_selection.is_empty():rules.cancel_tool_selection(str(recall_selection.get("token","")))
 	# The lightweight boot shell contains no play-scene dependency. All game assets
 	# and the destination PackedScene are acquired through its threaded loader.
 	var next=load("res://scenes/startup.tscn").instantiate()

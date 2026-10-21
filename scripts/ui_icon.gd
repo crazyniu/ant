@@ -38,6 +38,11 @@ func _draw() -> void:
 			var pts:=PackedVector2Array([c+Vector2(-r,r),c+Vector2(-r,-r*.15),c+Vector2(0,-r),c+Vector2(r,-r*.15),c+Vector2(r,r)])
 			draw_colored_polygon(pts,ink);pts.append(pts[0]);draw_polyline(pts,Color("fff2c7"),3,true)
 			draw_rect(Rect2(c+Vector2(-r*.25,r*.2),Vector2(r*.5,r*.8)),Color("8b572b"))
+		"clock":
+			draw_arc(c,r,0,TAU,24,ink,3,true)
+			draw_line(c,c+Vector2(0,-r*.62),ink,3,true);draw_line(c,c+Vector2(r*.48,r*.18),ink,3,true)
+		"check":
+			draw_polyline(PackedVector2Array([c+Vector2(-r*.8,0),c+Vector2(-r*.2,r*.6),c+Vector2(r*.85,-r*.65)]),ink,4,true)
 		"pause":
 			for x in [-0.35,0.35]:
 				var s:=StyleBoxFlat.new();s.bg_color=ink;s.set_corner_radius_all(4)

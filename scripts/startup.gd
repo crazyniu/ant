@@ -5,7 +5,9 @@ const Saves = preload("res://scripts/save_service.gd")
 const Catalog = preload("res://scripts/level_catalog.gd")
 const TITLE = preload("res://assets/startup/title.png")
 const HOME_RESOURCES: Array[String] = [
-	"res://assets/environment.png", "res://assets/characters-atlas.png",
+	"res://assets/serpent/environment.png", "res://assets/characters-atlas.png",
+	"res://assets/serpent/nest-entry.png", "res://assets/serpent/serpent-atlas.png", "res://assets/serpent/serpent-armor-atlas.png",
+	"res://assets/motion/ant-directions.png",
 	"res://assets/ants-atlas.png", "res://assets/fonts/Title.ttf",
 	"res://assets/ui/fusion/beads.png", "res://assets/ui/fusion/audio-icons.png",
 	"res://assets/ui/v03/title-atlas.png", "res://assets/ui/v03/game-skin-atlas.png",
@@ -117,16 +119,20 @@ func build_home() -> void:
 	audio_service=AudioService.new();audio_service.name="AudioService";audio_service.apply_settings_state(audio_visual_state);add_child(audio_service)
 	get_tree().node_added.connect(bind_new_button)
 	home_art=group("HomeArtwork")
-	var bg:=TextureRect.new();bg.name="Garden";bg.texture=loader.get_resource("res://assets/environment.png");bg.size=size;bg.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;home_art.add_child(bg)
+	var bg:=TextureRect.new();bg.name="Garden";bg.texture=loader.get_resource("res://assets/serpent/environment.png");bg.size=size;bg.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;home_art.add_child(bg)
 	var title:=TextureRect.new();title.name="BrandTitle";title.texture=TITLE;title.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;title.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;title.position=Vector2(100,125);title.size=Vector2(740,370);home_art.add_child(title)
-	var dragon_shadow:=ContactShadow.new();dragon_shadow.position=Vector2(360,900);dragon_shadow.radius=Vector2(230,42);home_art.add_child(dragon_shadow)
-	art(Rect2(22,145,714,480),Rect2(115,570,530,357),"HomeDragon",home_art)
-	art(Rect2(740,20,324,624),Rect2(660,485,173,334),"HomePrincess",home_art)
-	art(Rect2(48,654,412,337),Rect2(416,824,174,142),"HomeCannon",home_art)
-	for i in 6:
-		var x:=220+i*99;var y:=1020+sin(float(i)*.7)*8
-		var actor:=ground_ant(COLORS[i],Vector2(x,y),"HomeAnt%d"%i,home_art,79)
-		bead(COLORS[i],Vector2(-14,-76),29,actor)
+	var view=load("res://scripts/serpent_view.gd").new();home_art.add_child(view)
+	view.configure({"head_start_s":85.0,"goal_s":100.0,"pitch":6.0},[
+		{"position":Vector2(240,1030),"out":Vector2(90,0)},
+		{"position":Vector2(690,930),"in":Vector2(-60,110),"out":Vector2(0,-90)},
+		{"position":Vector2(430,675),"in":Vector2(130,0)}])
+	var segments:Array=[];var ids:Array=[];var positions:Dictionary={}
+	for i in range(8):
+		var id:="home-%d"%i;ids.append(id);positions[id]=85.0-(i+1)*6.0
+		segments.append({"id":id,"color":COLORS[i%6],"hp":1,"kind":"normal"})
+	view.sync_snapshot({"paused":true,"speed_multiplier":1,"status":"ready","head_s":85.0,"alive_segment_ids":ids,"segments":segments,"segment_s":positions})
+	view.add_princess(home_art,Vector2(145,168))
+	art(Rect2(48,654,412,337),Rect2(390,1008,174,142),"HomeCannon",home_art)
 	home_button("PlayButton","play",Rect2(290,1240,360,136),func():launch_game(""),true)
 	home_button("LevelsButton","levels",Rect2(397,1415,146,112),func():launch_game("levels"),false)
 	var level_button:Button=home_art.get_node("LevelsButton");level_button.disabled=not profile_state.ready

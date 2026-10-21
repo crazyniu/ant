@@ -1,0 +1,84 @@
+{
+  "provenance": {
+    "tool": "image_gen__imagegen (built-in)",
+    "reference": "assets/serpent/environment.png",
+    "selected_source": "exec-cf6b1311-4c30-4b7d-a129-eb502902007e.png",
+    "rejected_aspect_source": "exec-907dfbd0-d4e4-430e-9ab7-2df3aba306a0.png",
+    "purpose": "One isolated low ground burrow entrance replaces a tall doorway mound, without changing other actor art or code.",
+    "rights_note": "Original AI-source provenance, not a new license claim or legal warranty."
+  },
+  "source_sha256": "503d192b7f09b4b87ad8148ea9a043ab70672c28013902398e22ca18adda21e4",
+  "reference_sha256": "64549070c131b085178e4c6995f2964b9a04195262b73655636ed5f1423e9f9a",
+  "atlas_sha256": "2bf120d083b40251e6b48a2080a286464a322c9f0a67cb57babdd1f99f919e69",
+  "bytes": 551459,
+  "dimensions": [
+    905,
+    529
+  ],
+  "source_principal_alpha_bounds": [
+    353,
+    253,
+    1234,
+    758
+  ],
+  "source_crop_bounds": [
+    349,
+    249,
+    1238,
+    762
+  ],
+  "significant_alpha_bounds": [
+    18,
+    15,
+    887,
+    510
+  ],
+  "source_foot_anchor": [
+    795,
+    505
+  ],
+  "entry": {
+    "version": 1,
+    "path": "res://assets/serpent/nest-entry.png",
+    "region": [
+      0,
+      0,
+      905,
+      529
+    ],
+    "anchor": [
+      454,
+      264
+    ],
+    "foot_anchor": [
+      454,
+      264
+    ],
+    "physical_width": 869,
+    "physical_height": 495,
+    "anchor_semantic": "Center of the open ground hole, not bottom of outer image. Place this at the ant spawn foot point.",
+    "recommended_world_foot": [
+      467,
+      1008
+    ],
+    "recommended_target_physical_width": 110,
+    "uniform_scale": 0.12658227848101267,
+    "recommended_target_visible_height": 62.65822784810127,
+    "render_note": "Draw behind ants and below foreground actors. Origin = world_foot - foot_anchor * (target_width / physical_width). Keep rotation zero. Ants may cross its low upper rim toward the board; no house or roof is present."
+  },
+  "checks": {
+    "principal_component_crop_measured_not_equal_grid": true,
+    "rgba_crop_byte_exact": true,
+    "eight_pixel_outer_gutter_zero_alpha": true,
+    "anchor_inside_region": true,
+    "source_margin_retains_rim": true
+  },
+  "visual_qa": [
+    "Warm sand material and upper-left light match the approved environment reference.",
+    "Only a horizontal dark ground hole, low sandy lip and near-rim pebbles are present. No roof, raised house or vertical doorway blocks upward departure.",
+    "Observed visible outer aspect ratio is 869/495 = 1.756, giving about 110 x 62.7 logical pixels with uniform scale.",
+    "No floor shadow or background rectangle is baked outside the local rim. Source contains faint alpha speckles which remain unchanged.",
+    "Crop and packing only; no code-painted art, recoloring, resampling or alpha cleanup."
+  ],
+  "scope": "Nest-entry production sprite, source provenance, alpha bounds and contact anchor only; gameplay acceptance is separate."
+}

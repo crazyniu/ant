@@ -1,5 +1,6 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
+  "scope": "single-click serpent core snapshot; provenance is not legal clearance",
   "viewport": [
     1440,
     2560
@@ -8,38 +9,6 @@
     940,
     1672
   ],
-  "asset_batch": "current cohesive fusion candidate; final visual acceptance pending",
-  "shared_ground_projection": {
-    "script": "scripts/board_plane.gd",
-    "top_left": [
-      175,
-      350
-    ],
-    "top_right": [
-      765,
-      350
-    ],
-    "bottom_left": [
-      130,
-      890
-    ],
-    "bottom_right": [
-      810,
-      890
-    ],
-    "cell_center": "project(Vector2(x + 0.5, y + 0.5))",
-    "consumers": [
-      "gallery bead placement",
-      "playable bead placement",
-      "carrier route positions",
-      "FX cell points"
-    ],
-    "logical_rules": "Rules retain integer logical cells; presentation uses the shared projected ground coordinates.",
-    "nest_endpoint": [
-      467,
-      1074
-    ]
-  },
   "assets": [
     {
       "path": "assets/ants-atlas.png",
@@ -88,8 +57,8 @@
     },
     {
       "path": "assets/audio/README.md",
-      "bytes": 12087,
-      "sha256": "a5fe6bebed25daac740efe19b78c0df1286c1cfc0bce00e1f9e34bbd3ff96e8f"
+      "bytes": 1285,
+      "sha256": "7e5d53ba9f6950671807c7120b6a722ea5bda0728f2add6fc29f1080b5591155"
     },
     {
       "path": "assets/audio/armor_hit.wav",
@@ -150,19 +119,9 @@
       }
     },
     {
-      "path": "assets/audio/file-validation-report.json",
-      "bytes": 3065,
-      "sha256": "c5e51a6acc554f9b4019ec39b43e80cf11f1e665b1efeba3b9fe09c97c21f407"
-    },
-    {
       "path": "assets/audio/generate_audio.py",
       "bytes": 10034,
       "sha256": "c5a91091f5868fc08add211d4151b413d525a14ed6b45e4475befbfe3e338a05"
-    },
-    {
-      "path": "assets/audio/godot-test-report.json",
-      "bytes": 451,
-      "sha256": "67a9aa03733303add1b8a46c92c0bdcf49d2cf98e37f6569e75fd4a1454092c9"
     },
     {
       "path": "assets/audio/lose.wav",
@@ -176,8 +135,8 @@
     },
     {
       "path": "assets/audio/manifest.json",
-      "bytes": 12007,
-      "sha256": "3dbe3d4c93dacc9743e43d41431bb9087244b6329ddc4e79df7da31a13ee8bec"
+      "bytes": 11977,
+      "sha256": "a5a08030badd81261fcf791cf79cbadc11b55be70bfcb4aa5acb531ade111927"
     },
     {
       "path": "assets/audio/pickup.wav",
@@ -248,11 +207,6 @@
         "generator": "assets/audio/generate_audio.py",
         "manifest": "assets/audio/manifest.json"
       }
-    },
-    {
-      "path": "assets/audio/validate_audio.py",
-      "bytes": 4853,
-      "sha256": "57295b555d1e0ab15f339639a23fe6d3dc2492f5071187b28abc1f41bb032da8"
     },
     {
       "path": "assets/audio/warning.wav",
@@ -342,6 +296,111 @@
         "name": "DejaVu Sans Condensed Bold",
         "license": "licenses/DejaVu.txt"
       }
+    },
+    {
+      "path": "assets/motion/ant-directions.json",
+      "bytes": 4747,
+      "sha256": "55f60f1e9f251c80f219c4aacc680aeca6f83820794110b16a7943e1fae46fa9"
+    },
+    {
+      "path": "assets/motion/ant-directions.png",
+      "bytes": 1391152,
+      "sha256": "84f9fae1f64cbf9003580e1ee54800078f82b8e87829ebbf9f6ae57e20e7432e",
+      "size": [
+        1774,
+        887
+      ],
+      "mode": "RGBA",
+      "alpha_zero_fraction": 0.6112334,
+      "region_manifest": "assets/motion/ant-directions.json",
+      "slice_method": {
+        "kind": "actual_nonoverlapping_silhouette_bounds",
+        "margin_pixels": 14,
+        "equal_grid": false
+      },
+      "source": {
+        "kind": "built_in_image_generation",
+        "date": "2026-10-21",
+        "purpose": "Original same-identity eight upright yaw directions for carrier motion, no copied reference pixels"
+      },
+      "physical_source_width": 420,
+      "anchor": "Per-view ground foot center; actor/shadow at route ground point; no actor rotation"
+    },
+    {
+      "path": "assets/serpent/environment.png",
+      "bytes": 2518935,
+      "sha256": "64549070c131b085178e4c6995f2964b9a04195262b73655636ed5f1423e9f9a",
+      "size": [
+        941,
+        1672
+      ],
+      "mode": "RGB",
+      "source": {
+        "kind": "original_ai_generated_project_art",
+        "provenance": "Generated warm-sand serpent arena for this project."
+      }
+    },
+    {
+      "path": "assets/serpent/nest-entry.json",
+      "bytes": 799,
+      "sha256": "b8a5b11f27c5884044142f4b89604cec0bfaf6e9f621122f42591632bed1da83"
+    },
+    {
+      "path": "assets/serpent/nest-entry.png",
+      "bytes": 551459,
+      "sha256": "2bf120d083b40251e6b48a2080a286464a322c9f0a67cb57babdd1f99f919e69",
+      "size": [
+        905,
+        529
+      ],
+      "mode": "RGBA",
+      "source": {
+        "kind": "original_ai_generated_project_art",
+        "provenance": "reports/assets/serpent-actor-assets-nest.json"
+      }
+    },
+    {
+      "path": "assets/serpent/serpent-armor-atlas.png",
+      "bytes": 984752,
+      "sha256": "c8595e610a0b5b17c22ac1d1fa908454b8c3ce9de8560720fb08ed9a23651d2d",
+      "size": [
+        1536,
+        748
+      ],
+      "mode": "RGBA",
+      "source": {
+        "kind": "original_ai_generated_project_art",
+        "provenance": "reports/assets/serpent-actor-assets-armor.json"
+      }
+    },
+    {
+      "path": "assets/serpent/serpent-atlas.json",
+      "bytes": 4918,
+      "sha256": "e1c9b6d370cd3509aa2ab9f601ca0f72243b22c22cddaa747ec051ec435a3d69"
+    },
+    {
+      "path": "assets/serpent/serpent-atlas.png",
+      "bytes": 2377771,
+      "sha256": "caf1130462c58cf121e529e60810218b2ae3d7dc3939670ebdefeb1788f9a360",
+      "size": [
+        1303,
+        1774
+      ],
+      "mode": "RGBA",
+      "source": {
+        "kind": "original_ai_generated_project_art",
+        "provenance": "reports/assets/serpent-actor-assets.json"
+      }
+    },
+    {
+      "path": "assets/startup/title.png",
+      "bytes": 2169049,
+      "sha256": "8ba1fd598b57b529a56ed4c39302a0fee77e2f7eaaa1de1a1a1b60aa5fa2e110",
+      "size": [
+        1774,
+        887
+      ],
+      "mode": "RGBA"
     },
     {
       "path": "assets/ui/fusion/audio-icons.png",
@@ -530,128 +589,6 @@
       "path": "assets/ui/v03/title-regions.json",
       "bytes": 889,
       "sha256": "62a40610fcca9d9db8c0928b70c1552a20ab117cf89c4dc543f22e2a560bf43f"
-    },
-    {
-      "path": "data/ant-regions.json",
-      "bytes": 319,
-      "sha256": "954b0440eb5d7649108aacd0708fcaa91ac92da96ef3f470e2607cbfd6eb22c5"
-    },
-    {
-      "path": "assets/audio/packaging-report.json",
-      "bytes": 2437,
-      "sha256": "557cc196b8b9026fffdb4555e118e587645332e93b2f8e3c955d866383ccee82"
     }
-  ],
-  "motion_components": {
-    "carrier": {
-      "controller": "scripts/carrier_motion.gd",
-      "shader": "scripts/carrier_motion.gdshader",
-      "texture": "assets/ants-atlas.png",
-      "regions": "data/ant-regions.json",
-      "logical_width": 48,
-      "carried_bead_edge": 24,
-      "gait_hz": {
-        "outbound": 2.15,
-        "returning": 1.65
-      },
-      "ground_anchor": "FootShadow at local origin; caller owns path/depth",
-      "new_bitmap_or_license": false
-    },
-    "dragon": {
-      "controller": "scripts/rescue_fx.gd",
-      "texture": "assets/characters-atlas.png",
-      "duration_seconds": 1.6,
-      "landing_seconds": 0.92,
-      "fade_start_seconds": 1.3,
-      "foot_pivot": [
-        220,
-        193
-      ],
-      "authority": "Final hit saves immediately; cosmetic completion gates result only",
-      "shader": "scripts/combat_tint.gdshader",
-      "local_deformation": "Flat 32x24 2D lattice, 825 vertices; forward local head, torso and wing droop, planted paw band; no new bitmap/3D model",
-      "max_outer_tilt_radians": 0.045
-    },
-    "projectile": {
-      "controller": "scripts/rescue_fx.gd",
-      "source": "Original procedural 2D drawing, no new external bitmap or license",
-      "logical_diameter": 36,
-      "display_diameter_at_2k_approx": 55,
-      "trail_max_logical_length": 96,
-      "trail_layers": 4,
-      "trail_segments": 16,
-      "authority": "Rules fire_us/hit_us; no presentation delay or extra shot"
-    },
-    "interaction": {
-      "controller": "scripts/ui_motion.gd",
-      "gameplay_adapter": "scripts/play.gd",
-      "button_press_seconds": 0.065,
-      "button_release_seconds": 0.15,
-      "modal_reveal_seconds": 0.22,
-      "modal_close_seconds": 0.12,
-      "team_transfer_seconds": 0.24,
-      "queue_refill_seconds": 0.16,
-      "inventory_accent_seconds": 0.26,
-      "gameplay_clock": "Simulation time; pause and x2 follow rules",
-      "menu_clock": "Scene presentation time; logical pause/input shield immediate",
-      "input_geometry": "Unchanged; cosmetic art only"
-    }
-  },
-  "startup": {
-    "entry": "scenes/startup.tscn",
-    "controller": "scripts/startup.gd",
-    "loader": "scripts/startup_loader.gd",
-    "brand": {
-      "path": "assets/startup/title.png",
-      "size": [
-        1774,
-        887
-      ],
-      "alpha_bbox": [
-        0,
-        0,
-        1761,
-        873
-      ],
-      "region": [
-        0,
-        0,
-        1774,
-        887
-      ],
-      "nine_slice": false,
-      "usage": "Native splash, Loading, Home; aspect-preserving fit",
-      "logical_home_rect": [
-        100,
-        125,
-        740,
-        370
-      ],
-      "logical_loading_rect": [
-        100,
-        400,
-        740,
-        370
-      ],
-      "source": "OpenAI image generation, 2026-10-21, exec-110efb3f-8f2b-4c1d-aaa9-8b5fe8319da8",
-      "license": "Original generated asset for this user project; not a copied reference-game asset",
-      "sha256": "8ba1fd598b57b529a56ed4c39302a0fee77e2f7eaaa1de1a1a1b60aa5fa2e110"
-    },
-    "home_art": "Existing environment, character/ant atlases and independent bead nodes, same light/projection. No flattened scene image.",
-    "icons": "scripts/ui_icon.gd: play, levels, home; independent art and click bounds",
-    "progress": "Actual ResourceLoader threaded status; no fixed wait or fake percentage",
-    "profile": "Existing validation vs campaign-drafts separation; resume restores entrance, never mid-round state"
-  },
-  "audio_runtime": {
-    "component": "scripts/audio_service.gd",
-    "assets_manifest": "assets/audio/manifest.json",
-    "usage": "Original 40-second looping OGG plus 14 WAV cues; files unchanged",
-    "settings": "Music and SFX independent zero-to-mute sliders; saved settings applied before audio scene enters tree",
-    "music_gain_db": 3,
-    "modal_duck_db": -4,
-    "music_limiter_ceiling_db": -9,
-    "sfx_limiter_ceiling_db": -5,
-    "lifecycle": "One service per active scene, background and SceneTree suspension pause transport, new service inherits current window focus",
-    "hardware_listening": "Separate user/target-device acceptance; digital PCM proof does not imply speakers are audible"
-  }
+  ]
 }

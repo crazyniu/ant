@@ -49,7 +49,7 @@ var _charge_color := GOLD
 var _accepted := 0
 var _dropped := 0
 var _layout := {
-	"cannon_muzzle": Vector2(466, 909), "cannon_center": Vector2(472, 950),
+	"segment_mode": false, "cannon_muzzle": Vector2(466, 909), "cannon_center": Vector2(472, 950),
 	"dragon_hit": Vector2(300, 184), "dragon_foot": null, "nest": Vector2(467, 1074),
 	"cell_points": {}, "board_origin": Vector2(147.25, 324.25), "cell_size": Vector2(19.1, 18.5),
 	"rescue_center": Vector2(829, 163), "route_direction": Vector2.RIGHT,
@@ -146,12 +146,11 @@ func sync_snapshot(snapshot: Dictionary) -> void:
 	if _terminal:
 		_charge = 0.0
 	else:
-		var armors: Array = snapshot.get("armors", [])
-		var index: int = int(snapshot.get("armor_index", 0))
-		var stock: Dictionary = snapshot.get("inventory", {})
-		if index >= 0 and index < armors.size():
-			var armor: Dictionary = armors[index]
-			set_cannon_charge(float(stock.get(armor.get("color", ""), 0)) / maxf(1.0, float(armor.get("demand", 1))), str(armor.get("color", "yellow")))
+		var stock:Dictionary=snapshot.get("inventory",{})
+		_charge=0.0
+		for segment in snapshot.get("segments",[]):
+			if int(segment.get("hp",0))>0 and int(stock.get(segment.color,0))>0:
+				set_cannon_charge(1.0,str(segment.color));break
 	queue_redraw()
 
 func set_cannon_charge(ratio: float, color_id: String) -> void:
@@ -202,8 +201,9 @@ func consume_event(event: Dictionary, context: Dictionary = {}) -> bool:
 		"ant_dispatched":
 			_burst(_layout.nest, color, 3, "dust", seed_value, 28.0, 0.32)
 		"bead_picked_up":
-			_ring(origin, color, 12.0, 0.26)
-			_burst(origin, color, 5, "spark", seed_value, 46.0, 0.4)
+			# One local contact puff on the authoritative pickup, not a new hit
+			# mechanic. No persistent ring or overlapping multicolor explosion.
+			_burst(origin, IVORY, 3, "contact", seed_value, 14.0, 0.20)
 		"bead_delivered":
 			var stocks: Dictionary = _layout.stock_points
 			var stock: Vector2 = stocks.get(str(event.get("color", "")), _layout.cannon_center)
@@ -211,6 +211,16 @@ func consume_event(event: Dictionary, context: Dictionary = {}) -> bool:
 			_ring(stock, color, 16.0, 0.38)
 		"cannon_fired":
 			_fire(event, color, seed_value)
+		"segment_hit":
+			_remove_projectile(int(event.get("projectile_id",event.get("id",-1))))
+			_hit_age=0.0
+			_add_effect({"kind":"impact","pos":_layout.dragon_hit,"color":color,"radius":35.0,"life":.24})
+			_burst(_layout.dragon_hit,GOLD,5,"spark",seed_value,90.0,.35)
+		"segment_removed":
+			_burst(_layout.dragon_hit,color,10,"shard",seed_value,105.0,.55)
+			_burst(_layout.dragon_hit,IVORY,3,"contact",seed_value+1,20.0,.24)
+		"projectile_refunded":
+			_remove_projectile(int(event.get("projectile_id",event.get("id",-1))))
 		"armor_broken":
 			_remove_projectile(int(event.get("id", -1)))
 			_hit_age = 0.0
@@ -236,7 +246,7 @@ func consume_event(event: Dictionary, context: Dictionary = {}) -> bool:
 			# Only presentation follows this clock. Victory/save processing never waits.
 			if _dragon_defeat_age < 0.0:
 				_dragon_defeat_age = 0.0
-				_dragon_landing_dust(seed_value + 3)
+				if not _layout.segment_mode:_dragon_landing_dust(seed_value + 3)
 				_ring(_layout.rescue_center, GOLD, 58.0, 0.75)
 				_burst(_layout.rescue_center, GOLD, 46, "confetti", seed_value, 150.0, 2.4)
 		"defeat", "load_error":
@@ -247,7 +257,7 @@ func consume_event(event: Dictionary, context: Dictionary = {}) -> bool:
 		"recoverable_error":
 			set_paused(true)
 			_projectiles.clear()
-		"target_reserved", "slot_released", "dragon_started", "team_work_state":
+		"target_reserved", "slot_released", "dragon_started", "team_work_state", "color_clicked", "bead_unloading":
 			pass # Avoid duplicated debit/pickup cues and per-ant visual noise.
 		_:
 			return false
@@ -500,7 +510,7 @@ func _add_effect(effect: Dictionary) -> void:
 
 func _burst(point: Vector2, color: Color, count: int, kind: String, seed_value: int, speed: float, life: float) -> void:
 	if reduced_motion:
-		if kind in ["dust", "smoke"]:
+		if kind in ["dust", "smoke", "contact"]:
 			return
 		count = mini(count, 4)
 		kind = "spark"
@@ -534,6 +544,10 @@ func _burst(point: Vector2, color: Color, count: int, kind: String, seed_value: 
 			radius = rng.randf_range(6.0, 12.0)
 		elif kind == "dust":
 			velocity.y = -absf(velocity.y)
+		elif kind == "contact":
+			velocity.y = -absf(velocity.y) - 4.0
+			radius = rng.randf_range(2.5, 4.0)
+			spawn *= 0.35
 		if reduced_motion:
 			spawn *= 2.0
 		particles.append({"offset": spawn, "velocity": velocity, "gravity": acceleration,
@@ -573,6 +587,7 @@ func _draw() -> void:
 	_draw_defeat_stars()
 
 func _draw_defeat_stars() -> void:
+	if _layout.segment_mode:return
 	# A brief local defeated cue, not another health indicator or a screen flash.
 	if _dragon_defeat_age < .25 or _dragon_defeat_age >= DRAGON_DEFEAT_DURATION:return
 	var opacity:=smoothstep(.25,.42,_dragon_defeat_age)*(1.0-smoothstep(1.30,1.60,_dragon_defeat_age))
@@ -692,6 +707,10 @@ func _draw_particle(particle: Dictionary, origin: Vector2, kind: String, age: fl
 			draw_circle(point - Vector2(expansion * 0.2, expansion * 0.25), expansion * 0.65, _alpha(IVORY, fade * 0.24))
 		"dust":
 			draw_circle(point, radius * (1.0 - p * 0.5), _alpha(tint, 0.28))
+		"contact":
+			var expansion := radius * (0.65 + p * 0.8)
+			draw_circle(point, expansion * 1.35, _alpha(IVORY, fade * 0.18))
+			draw_circle(point, expansion, _alpha(IVORY, fade * 0.72))
 		"landing_dust":
 			var expansion := radius * (0.7 + p * 0.8)
 			draw_circle(point, expansion, _alpha(tint, 0.34))
@@ -735,6 +754,7 @@ func _draw_impact(point: Vector2, tint: Color, p: float) -> void:
 	if not _can_draw(point, 58.0):
 		return
 	var fade := pow(1.0 - p, 1.6)
+	if fade < .02:return # Avoid degenerate subpixel triangles at the effect tail.
 	if reduced_motion:
 		_draw_star(point, 11.0, _alpha(tint.lerp(IVORY, 0.4), fade * 0.7), PI * 0.25)
 		return
@@ -791,6 +811,11 @@ func _draw_projectile_trail(shot: Dictionary, fraction: float) -> void:
 	var span := _shot_trail_fraction(shot, fraction)
 	if span <= 0.00001:
 		return
+	# A shot can become due a few microseconds before the render sample. Its
+	# first ribbon would then be a wide, subpixel sliver that cannot triangulate.
+	# Keep the shell visible; only reveal a trail once it has physical length.
+	if _shot_position(shot, fraction).distance_squared_to(_shot_position(shot, fraction - span)) < 4.0:
+		return
 	var tint: Color = shot.color
 	# Four feathered ribbons replace disconnected bead/dot afterimages. Vertex
 	# alpha/width taper continuously to zero, so the tail has no hard square end.
@@ -805,6 +830,8 @@ func _draw_projectile_trail(shot: Dictionary, fraction: float) -> void:
 			var f1 := fraction - span * (1.0 - u1)
 			var a := _shot_position(shot, f0)
 			var b := _shot_position(shot, f1)
+			if a.distance_squared_to(b) < 0.0625:
+				continue
 			var width0: float = float(widths[layer]) * pow(u0, 0.75)
 			var width1: float = float(widths[layer]) * pow(u1, 0.75)
 			if not _can_draw_segment(a, b, width1):

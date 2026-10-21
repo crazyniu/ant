@@ -11,7 +11,7 @@
   "source_sha256": "c5a91091f5868fc08add211d4151b413d525a14ed6b45e4475befbfe3e338a05",
   "reproduce": "Synthesize the original 15 WAV masters with generate_audio.py in a separate directory; its generated master manifest is not the runtime manifest. Encode BGM with the exact ffmpeg command in README.md. The runnable project contains one OGG BGM and 14 unchanged WAV SFX.",
   "human_listening_status": "NOT RUN",
-  "gameplay_event_integration": "Actual P3/play adapter wiring is verified separately in reports/ui/play-binding-report.json and p3-flow-report.json; this audio suite verifies transport/service, not human listening.",
+  "gameplay_event_integration": "Current single-click serpent scene evidence is summarized in docs/VERIFICATION.md. Historical automatic-team checks do not establish current acceptance.",
   "files": [
     {
       "id": "bgm_castle_garden",
