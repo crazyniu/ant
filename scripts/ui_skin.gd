@@ -21,6 +21,22 @@ func texture(key: String) -> AtlasTexture:
 func sprite(key: String, bounds: Rect2, parent: Node, id: String) -> TextureRect:
 	return place_texture(texture(key),bounds,parent,id)
 
+func medallion(bounds:Rect2,parent:Node,id:String)->TextureRect:
+	# Navigation icons retain the approved round family; hit bounds are separate.
+	var key:="approved/navigation-medallion"
+	if not textures.has(key):
+		var disc:=AtlasTexture.new();disc.atlas=load("res://assets/first-level/deck-controls.png")
+		disc.region=Rect2(1279,91,590,581);disc.filter_clip=true;textures[key]=disc
+	return place_texture(textures[key],bounds,parent,id,true)
+
+static func focus_paint(button:Button,paint_rect:Rect2,corner:float=28.0)->void:
+	# Keyboard focus follows the visible face, not its larger transparent target.
+	var focus:=StyleBoxFlat.new();focus.draw_center=false;focus.border_color=Color("fff4b5")
+	focus.set_border_width_all(3);focus.set_corner_radius_all(roundi(corner))
+	focus.expand_margin_left=-paint_rect.position.x;focus.expand_margin_top=-paint_rect.position.y
+	focus.expand_margin_right=paint_rect.end.x-button.size.x;focus.expand_margin_bottom=paint_rect.end.y-button.size.y
+	button.add_theme_stylebox_override("focus",focus);button.set_meta(&"visible_button_rect",paint_rect)
+
 static func place_texture(source:Texture2D,bounds:Rect2,parent:Node,id:String,keep_aspect:bool=false)->TextureRect:
 	# Native texture dimensions must never become a control's minimum size.
 	# Keep this order: ignore intrinsic size, assign texture, set bounds, attach.

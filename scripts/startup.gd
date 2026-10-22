@@ -245,9 +245,12 @@ func finish_profile_recovery()->void:
 	record_event("profile_recovered")
 
 func home_button(id:String,kind:String,bounds:Rect2,callback:Callable,primary:bool) -> void:
-	frame(bounds,id+"Art",home_art,32,"54d35b" if primary else "fff3db")
-	icon(kind,Rect2(bounds.get_center()-Vector2(45,45),Vector2(90,90)),home_art,Color("fff9e8") if primary else INK)
+	if primary:skin.panel("game/primary",Rect2(bounds.get_center()-Vector2(200,48),Vector2(400,96)),home_art,id+"Art",28)
+	else:skin.medallion(Rect2(bounds.get_center()-Vector2(50,49.25),Vector2(100,98.5)),home_art,id+"Art")
+	var icon_size:=72. if primary else 64.
+	icon(kind,Rect2(bounds.get_center()-Vector2.ONE*icon_size*.5,Vector2.ONE*icon_size),home_art,Color("fff9e8"))
 	var button:=Button.new();button.name=id;button.position=bounds.position;button.size=bounds.size;button.flat=true;button.tooltip_text="Start the first level" if primary else "Choose a level";home_art.add_child(button);button.pressed.connect(callback)
+	UiSkin.focus_paint(button,Rect2(0,20,400,96) if primary else Rect2(bounds.size*.5-Vector2(50,49.25),Vector2(100,98.5)),28 if primary else 49)
 
 func launch_game(screen:String="") -> void:
 	if launch_pending or not home_ready:return
@@ -292,18 +295,21 @@ func reset_loading_controls() -> void:
 	progress_bar.show();progress_bar.value=0
 
 func loading_button(id:String,title:String,y:float,callback:Callable) -> void:
-	var button:=Button.new();button.name=id;button.text=title;button.position=Vector2(190,y);button.size=Vector2(560,136)
-	button.add_theme_font_override("font",BOOT_FONT);button.add_theme_font_size_override("font_size",38);button.add_theme_color_override("font_color",INK)
-	for state in ["font_hover_color","font_pressed_color","font_hover_pressed_color","font_focus_color","font_disabled_color"]:button.add_theme_color_override(state,INK)
+	var button:=Button.new();button.name=id;button.position=Vector2(190,y);button.size=Vector2(560,136)
+	button.set_meta(&"action_caption",title);button.flat=true
+	for state in ["normal","hover","pressed","hover_pressed","disabled","focus"]:button.add_theme_stylebox_override(state,StyleBoxEmpty.new())
+	UiSkin.focus_paint(button,Rect2(0,18,560,100))
 	var data:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/ui/v03/regions.json"))
 	var r:Array=data.game.secondary
 	var texture:=AtlasTexture.new();texture.atlas=BOOT_BUTTON_ATLAS;texture.region=Rect2(r[0],r[1],r[2],r[3]);texture.filter_clip=true
-	for state in ["normal","hover","pressed","hover_pressed","disabled"]:
-		var painted:=StyleBoxTexture.new();painted.texture=texture
-		for side in [SIDE_LEFT,SIDE_TOP,SIDE_RIGHT,SIDE_BOTTOM]:painted.set_texture_margin(side,48);painted.set_content_margin(side,32 if side in [SIDE_LEFT,SIDE_RIGHT] else 8)
-		if state in ["pressed","hover_pressed"]:painted.modulate_color=Color(.82,.76,.65)
-		elif state=="disabled":painted.modulate_color=Color(.65,.65,.65,.8)
-		button.add_theme_stylebox_override(state,painted)
+	# Bootstrap uses only its existing atlas/font, without waiting on its loader.
+	var paint:=NinePatchRect.new();paint.name="Paint";paint.show_behind_parent=true;paint.texture=texture;paint.position=Vector2(0,18)
+	paint.patch_margin_left=64;paint.patch_margin_right=64;paint.patch_margin_top=64;paint.patch_margin_bottom=64
+	paint.size=Vector2(560,100)/(28./64.);paint.scale=Vector2.ONE*(28./64.);paint.mouse_filter=Control.MOUSE_FILTER_IGNORE;button.add_child(paint)
+	var caption:=Label.new();caption.name="Caption";caption.show_behind_parent=true;caption.text=title;caption.position=Vector2(20,40);caption.size=Vector2(520,56)
+	caption.add_theme_font_override("font",BOOT_FONT);caption.add_theme_font_size_override("font_size",38);caption.add_theme_color_override("font_color",INK)
+	caption.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;caption.vertical_alignment=VERTICAL_ALIGNMENT_CENTER;caption.mouse_filter=Control.MOUSE_FILTER_IGNORE;button.add_child(caption)
+	button.draw.connect(func():paint.modulate=Color(.65,.65,.65,.8) if button.disabled else (Color(.82,.76,.65) if button.is_pressed() else Color.WHITE))
 	loading_layer.add_child(button);button.pressed.connect(callback)
 
 func show_loading_back() -> void:

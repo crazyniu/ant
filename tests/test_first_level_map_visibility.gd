@@ -33,7 +33,8 @@ func inspect_map(home:Node,source:String)->void:
 	check(preview.get_node("ActualLevelScene/PreviewSerpent").bodies.size()==20 and preview.has_node("ActualLevelScene/PreviewCannon"),source+" actual first-level boss/cannon")
 	var heading:Label=sign.get_node("SceneTitle")
 	var font=heading.get_theme_font("font");var size:=heading.get_theme_font_size("font_size")
-	check(size==38 and font.get_multiline_string_size(heading.text,HORIZONTAL_ALIGNMENT_CENTER,heading.size.x,size).y<=heading.size.y,source+" title wraps at mobile body size")
+	check(size==38 and heading.autowrap_mode==TextServer.AUTOWRAP_WORD_SMART and heading.get_rect()==Rect2(46,20,408,110),source+" actual Label enables bounded wrapping, not just a font estimate")
+	check(heading.get_line_count()==2 and font.get_height(size)*heading.get_line_count()<=heading.size.y,source+" complete title fits two rendered-layout lines at mobile body size")
 	check(sign.get_node("LevelState").get_theme_font_size("font_size")==38 and canvas.get_node("CompletionProgress").get_theme_font_size("font_size")==38,source+" real state text readable")
 	for button in [node.get_node("ChooseLevel1"),sign.get_node("ChooseLevelPreview1"),page.get_node("BackButton"),page.get_node("SettingsButton"),page.get_node("ShopButton")]:
 		check(button.size.x>=116 and button.size.y>=116,source+" actual touch dimensions "+str(button.name))

@@ -15,6 +15,9 @@ func press(parent:Node,path:String)->void:
 	var button=parent.get_node_or_null(path)
 	check(button is Button,"Button exists: "+path)
 	if button is Button:button.pressed.emit()
+func declared_focus_rect(button:Button)->Rect2:
+	var f:StyleBoxFlat=button.get_theme_stylebox("focus")
+	return Rect2(Vector2.ZERO,button.size).grow_individual(f.expand_margin_left,f.expand_margin_top,f.expand_margin_right,f.expand_margin_bottom)
 func rest_rect(control:Control)->Rect2:
 	return Rect2(control.get_meta(&"ui_motion_rest",{"position":control.position}).position,control.size)
 func inspect_layout(scene:Control,context:String)->void:
@@ -33,15 +36,19 @@ func inspect_layout(scene:Control,context:String)->void:
 				check(panel.encloses(rest_rect(child)),context+": action lies inside panel")
 				var title:String=str(child.name).trim_prefix("Button_")
 				var art:Control=m.get_node("Action_"+title)
-				check(rest_rect(art).is_equal_approx(rest_rect(child)),context+": art and action hit bounds match")
+				var face_aligned:=rest_rect(child).encloses(rest_rect(art)) and art.size.is_equal_approx(Vector2(560,100)) and rest_rect(art).get_center().is_equal_approx(rest_rect(child).get_center())
+				if not face_aligned:print("FACE_LAYOUT_DEBUG ",context," ",child.name," hit=",rest_rect(child)," paint=",rest_rect(art)," meta=",art.get_meta(&"ui_motion_rest",{}))
+				check(face_aligned,context+": slim face is centered inside unchanged hit area")
+				check(declared_focus_rect(child).is_equal_approx(Rect2(0,9,560,100)),context+": focus follows visible proportions")
 				var texture:AtlasTexture=art.get_node("PaintedNineSlice").texture
 				check(texture.region in [scene.skin.texture("game/primary").region,scene.skin.texture("game/secondary").region],context+": official primary/secondary skin, never row skin")
 				var text:Label=m.get_node("Text_"+title)
 				check(text.get_theme_font_size("font_size")==38,context+": action type is 38 logical px")
 				var primary:bool=texture.region==scene.skin.texture("game/primary").region
 				check(text.get_theme_color("font_color")== (Color.WHITE if primary else scene.INK),context+": primary/secondary text uses the shared readable color")
-				check(text.get_theme_font("font").get_string_size(text.text,HORIZONTAL_ALIGNMENT_LEFT,-1,38).x<=text.size.x,context+": complete action label fits horizontally")
-				check(rest_rect(child).encloses(rest_rect(text)),context+": action label stays inside button")
+				check(text.get_theme_font("font").get_string_size(text.text,HORIZONTAL_ALIGNMENT_LEFT,-1,38).x+2*text.get_theme_constant("outline_size")<=text.size.x,context+": complete action label and outline fit horizontally")
+				if primary:check(text.get_theme_color("font_outline_color")==Color("184b21") and text.get_theme_constant("outline_size")==4,context+": bright green primary keeps a dark outline behind white type")
+				check(rest_rect(art).encloses(rest_rect(text)),context+": action label stays inside visible face")
 			if str(child.name)=="CloseButton":check(child.size==Vector2(120,120),context+": Close hit area is 120×120")
 			snapshot.buttons.append({"name":str(child.name),"rect":str(rest_rect(child))})
 		if child is Label:
@@ -61,6 +68,29 @@ func inspect_layout(scene:Control,context:String)->void:
 	for i in labels.size():
 		for j in range(i+1,labels.size()):check(not rest_rect(labels[i]).intersects(rest_rect(labels[j])),context+": label groups never overlap")
 	layouts.append(snapshot)
+func inspect_outcome_fixture(scene:Control,won:bool)->void:
+	# Presentation only: do not claim this fixture completed or awarded a real run.
+	scene.reward_receipt={"total":138,"base":100,"time_bonus":38}
+	scene.show_outcome(won);await create_timer(.28).timeout
+	var m:Control=scene.pause_overlay
+	var action:="PLAY AGAIN" if won else "RETRY"
+	var button:Button=m.get_node("Button_"+action)
+	var art:Control=m.get_node("Action_"+action)
+	check(button.size==Vector2(560,118) and art.size==Vector2(560,100),"Outcome fixture preserves hit and slim painted action")
+	check(rest_rect(button).encloses(rest_rect(art)) and declared_focus_rect(button)==Rect2(0,9,560,100),"Outcome fixture aligned action/focus")
+	for id in ["Map","Shop"]:
+		var target:Button=m.get_node(id+"Button");var face:Control=m.get_node(id+"Action")
+		check(target.size==Vector2(260,118) and face.size.is_equal_approx(Vector2(104,102.4)),"Outcome "+id+" fixture uses round icon face without shrinking hit")
+		check(rest_rect(target).encloses(rest_rect(face)),"Outcome "+id+" fixture paint lies inside original target")
+	check(not m.has_node("Button_NEXT LEVEL"),"Outcome fixture never enables unapproved later levels")
+	if won:
+		check(m.get_node("RewardedAdUnavailable").disabled,"Unavailable ad remains honestly disabled")
+		for id in ["RewardBreakdown","AdStatus","AdExplanation"]:
+			var label:Label=m.get_node(id);var font=label.get_theme_font("font");var px:int=label.get_theme_font_size("font_size")
+			check(px>=32 and font.get_height(px)*label.get_line_count()+label.get_theme_constant("line_spacing")*maxi(0,label.get_line_count()-1)<=label.size.y,"Outcome fixture mobile-size complete "+id)
+			for line in label.text.split("\n"):check(font.get_string_size(line,HORIZONTAL_ALIGNMENT_LEFT,-1,px).x<=label.size.x,"Outcome fixture no horizontal clipping "+id)
+		check(rest_rect(m.get_node("RewardBreakdown")).end.y+16<=rest_rect(m.get_node("AdUnavailablePanel")).position.y,"Outcome fixture receipt and unavailable ad do not overlap")
+		check(rest_rect(m.get_node("AdUnavailablePanel")).end.y+24<=rest_rect(button).position.y,"Outcome fixture action clears ad state")
 func check_settings(scene:Control,context:String)->void:
 	await create_timer(.28).timeout
 	var m:Control=scene.pause_overlay
@@ -188,6 +218,8 @@ func run()->void:
 	game.confirm_progress_reset();await inspect_layout(game,"play/reset-confirmation")
 	press(game.pause_overlay,"Button_CANCEL")
 	check(not game.recovery_reset_confirm and game.modal_title=="COULDN'T LOAD","Cancel reset returns to recovery without resetting progress")
+	for won in [false,true]:await inspect_outcome_fixture(game,won)
+	check(game.progression._record.runs.size()==runs_before and game.economy_state.points==0,"Outcome presentation fixtures never settle or award a run")
 	await dispose(game)
 	var home=load("res://scenes/startup.tscn").instantiate()
 	home.profile_directory=profile.path_join("startup");home.use_command_line_catalog=false

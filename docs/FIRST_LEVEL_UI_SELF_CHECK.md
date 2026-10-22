@@ -15,8 +15,13 @@ reporting cadence; this checklist does not create another scheduled task.
 
 - Alignment, baselines, spacing, safe areas, silhouette/scale, and visual hierarchy.
 - Font size/weight, text color and contrast, wrapping, clipping, and full labels.
-- Icon/button proportions and usable touch areas at phone proportions; no webpage
-  card/form layout or long explanatory blocks replacing actual game presentation.
+- Use-specific visible button width/height, glyph/text occupancy, padding and phone
+  touch areas. Long actions must not become squat slabs just to enlarge targets;
+  round navigation icons and color cards keep their intended silhouettes. Visible
+  faces and transparent targets are measured separately, centered and nonoverlapping.
+  Nine-slice corners and text/icons must not stretch. Focus, pressed and disabled
+  appearances must remain coherent with the visible face. No webpage card/form
+  layout or long explanatory blocks replacing actual game presentation.
 - Normal, pressed and disabled states; return paths, modal exclusion, continuous
   input, and animations. Do not add redundant controls to fill the approved art.
 - Real quantities, prices, availability and functions agree with the requirements.

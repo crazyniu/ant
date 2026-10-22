@@ -25,16 +25,28 @@ func inspect_mobile_label(label:Label,minimum_phone_px:float,note:String)->void:
 	for line in label.text.split("\n"):
 		check(source.get_string_size(line,HORIZONTAL_ALIGNMENT_LEFT,-1,px).x<=label.size.x,note+" line width")
 	check(source.get_multiline_string_size(label.text,HORIZONTAL_ALIGNMENT_LEFT,-1,px).y<=label.size.y,note+" text height")
+func declared_focus_rect(button:Button)->Rect2:
+	var f:StyleBoxFlat=button.get_theme_stylebox("focus")
+	return Rect2(Vector2.ZERO,button.size).grow_individual(f.expand_margin_left,f.expand_margin_top,f.expand_margin_right,f.expand_margin_bottom)
+func inspect_button_face(button:Button,art:Control,face_size:Vector2,note:String)->void:
+	var painted:=Rect2(art.position,art.size*art.scale)
+	check(painted.size.is_equal_approx(face_size),note+" visible use-specific proportions")
+	check(button.get_rect().encloses(painted) and painted.get_center().is_equal_approx(button.get_rect().get_center()),note+" original larger hit stays centered around paint")
+	check(declared_focus_rect(button).is_equal_approx(Rect2(painted.position-button.position,painted.size)),note+" declared focus follows painted face")
 func inspect_loading_button(button:Button,label:String)->void:
-	check(button.size==Vector2(560,136) and button.get_theme_font_size("font_size")==38,label+" mobile text/touch bounds")
-	for state in ["normal","hover","pressed","hover_pressed","disabled"]:
-		var paint:=button.get_theme_stylebox(state)
-		check(paint is StyleBoxTexture and paint.texture is AtlasTexture and paint.texture.atlas.resource_path=="res://assets/ui/v03/game-skin-atlas.png",label+" existing painted atlas in "+state)
-	for state in ["font_color","font_hover_color","font_pressed_color","font_hover_pressed_color","font_focus_color","font_disabled_color"]:
-		check(button.get_theme_color(state)==Color("682b0c"),label+" preserves dark readable ink in "+state)
-	check(button.get_theme_stylebox("normal").texture.region==Rect2(671,416,570,215),label+" authoritative secondary region")
-	var text_width:=button.get_theme_font("font").get_string_size(button.text,HORIZONTAL_ALIGNMENT_LEFT,-1,38).x
-	check(text_width<=button.size.x-64,label+" text fits its actual skin content area")
+	check(button.size==Vector2(560,136),label+" preserves mobile touch bounds")
+	var paint:NinePatchRect=button.get_node("Paint")
+	var painted:=Rect2(paint.position,paint.size*paint.scale)
+	check(painted.is_equal_approx(Rect2(0,18,560,100)),label+" separate centered visible long-button face")
+	check(paint.texture is AtlasTexture and paint.texture.atlas.resource_path=="res://assets/ui/v03/game-skin-atlas.png" and paint.texture.region==Rect2(671,416,570,215),label+" existing bootstrap secondary atlas")
+	check(is_equal_approx(paint.patch_margin_top*paint.scale.y,28),label+" uncrushed nine-slice corners")
+	for state in ["normal","hover","pressed","hover_pressed","disabled"]:check(button.get_theme_stylebox(state) is StyleBoxEmpty,label+" transparent event layer "+state)
+	check(declared_focus_rect(button).is_equal_approx(painted),label+" focus tracks visible face, not the expanded target")
+	var caption:Label=button.get_node("Caption")
+	check(paint.show_behind_parent and caption.show_behind_parent,label+" decorations remain behind the real focus layer")
+	inspect_mobile_label(caption,14,label+" caption")
+	check(caption.text==button.get_meta("action_caption") and caption.get_theme_color("font_color")==Color("682b0c"),label+" real complete caption and readable ink")
+	check(painted.encloses(caption.get_rect()),label+" caption stays inside painted face")
 func inspect_preview(view:Control,label:String)->void:
 	check(view.get_meta("read_only_first_level",false),label+" is the read-only shared scene")
 	var scene:=view.get_node("ActualLevelScene")
@@ -82,6 +94,8 @@ func run()->void:
 		var control:Control=home.home_art.get_node(id)
 		check(Rect2(20,20,900,1632).encloses(control.get_rect()) and not title.get_rect().intersects(control.get_rect()),"Home footer clearance: "+id)
 	check(home.home_art.get_node("LevelsButton").size.y>=128,"Map entrance retains phone-size touch bounds")
+	inspect_button_face(home.home_art.get_node("PlayButton"),home.home_art.get_node("PlayButtonArt"),Vector2(400,96),"Home Play")
+	inspect_button_face(home.home_art.get_node("LevelsButton"),home.home_art.get_node("LevelsButtonArt"),Vector2(100,98.5),"Home Map")
 	var progress_before:=FileAccess.get_file_as_bytes(profile.path_join("save.json"))
 	var economy_before:=FileAccess.get_file_as_bytes(home.progression.base_path.path_join("progression.json"))
 	home.open_adventure("preparation",1)
@@ -89,12 +103,15 @@ func run()->void:
 	check(not home.adventure.get_node("AdventurePage/BossDetails").tooltip_text.to_upper().contains("ARMORED"),"No disabled armor teaching in first-level Prep")
 	check(home.adventure.get_node("AdventurePage").get_meta("level_summary").armored==0,"Zero armor remains an actual rule fact")
 	var page:Control=home.adventure.get_node("AdventurePage")
+	inspect_button_face(page.get_node("BeginLevel"),page.get_node("BeginLevelArt"),Vector2(560,100),"Prep Begin")
+	for id in ["BackButton","SettingsButton"]:inspect_button_face(page.get_node(id),page.get_node(id+"Art"),Vector2(100,98.5),"Prep "+id)
 	check(page.find_children("Need_*","Label",false,false).is_empty(),"No five tiny redundant per-color counts")
 	check(page.get_node("NormalCount").text=="20","Prominent true normal-segment total remains")
 	for name in ["LevelHeading","NormalCount","LoadoutSummary"]:inspect_mobile_label(page.get_node(name),14,"Prep "+name)
 	inspect_mobile_label(page.get_node("PointBalance"),12,"Prep points")
 	for kind in ["worker","swift"]:
 		var card:Control=page.get_node("AntChoice_"+kind)
+		inspect_button_face(card.get_node("Equip_"+kind),card.get_node("Equip_"+kind+"Art"),Vector2(351,96),kind+" selection")
 		var capacity:Label=card.get_node("Capacity");var speed:Label=card.get_node("MovementSpeed")
 		inspect_mobile_label(capacity,14,kind+" capacity");inspect_mobile_label(speed,14,kind+" speed")
 		check(capacity.get_rect().get_center().x==speed.get_rect().get_center().x,kind+" numeric states share an axis")
@@ -129,6 +146,23 @@ func run()->void:
 		var touch:Button=game.get_node("TopHUD/"+id)
 		check(touch.size==Vector2(116,116) and Rect2(0,0,940,1672).encloses(touch.get_rect()),id+" approved art keeps enlarged in-bounds touch target")
 	check(game.get_node("TopHUD/SpeedLabel").get_theme_font_size("font_size")==38,"Current speed is readable without changing its real state")
+	var capacity:Label=game.get_node("WorkSlots/CarrierCount");var busy:Label=game.get_node("WorkSlots/CapacityState")
+	inspect_mobile_label(capacity,14,"Battle transport count");inspect_mobile_label(busy,12,"Battle capacity state")
+	for label in [capacity,busy]:
+		check(label.get_theme_color("font_outline_color")==Color("301a08") and label.get_theme_constant("outline_size")==3,"Light deck state has a dark outline, not a white halo")
+		check(Rect2(744,1220,170,120).encloses(label.get_rect()),"Existing capacity readout uses the open deck margin")
+		for index in 4:check(not label.get_rect().intersects(game.get_node("WorkSlots/TransportPedestal%d"%index).get_rect()),"Capacity readout clears all four real pedestals")
+		check(label.get_rect().end.y<1342,"Capacity readout clears the five color cards")
+	check(not capacity.get_rect().intersects(busy.get_rect()),"Capacity count and full-state label do not overlap")
+	check(busy.get_theme_font("font").get_string_size("BUSY",HORIZONTAL_ALIGNMENT_LEFT,-1,32).x+6<=busy.size.x,"Full-capacity state fits without shrinking")
+	for message in ["ALL FOUR ANTS ARE BUSY","NO REACHABLE BALL","THESE BALLS ARE ALREADY CLAIMED"]:
+		game.show_click_feedback(message);await process_frame
+		var hint:Label=game.get_node("ClickFeedback");var hint_font=hint.get_theme_font("font")
+		check(hint.get_theme_font_size("font_size")==32,"Actual refusal feedback keeps a mobile secondary type size")
+		var line_height:float=hint_font.get_height(32)*hint.get_line_count()+hint.get_theme_constant("line_spacing")*maxi(0,hint.get_line_count()-1)+8
+		check(line_height<=hint.size.y,"Complete refusal feedback and outline fit existing hint area: "+message)
+		var hint_rect:=Rect2(hint.get_meta(&"ui_motion_rest").position,hint.size)
+		check(not hint_rect.intersects(game.get_node("TopHUD/SpeedButton").get_rect()),"Refusal feedback does not cover speed target")
 	var modal:Control=game.pause_overlay
 	var steps:=modal.find_children("StepText*","Label",false,false)
 	check(steps.size()==4,"Four short illustrated instructions")

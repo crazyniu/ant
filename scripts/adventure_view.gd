@@ -254,7 +254,7 @@ func _render_page() -> void:
 
 func _build_header() -> void:
 	_button("BackButton", Rect2(24, 20, 116, 120), "", func(): back_requested.emit(), false, _page)
-	var back := _icon("arrow", Rect2(53, 51, 58, 58), _page, INK)
+	var back := _icon("arrow", Rect2(53, 51, 58, 58), _page, CREAM)
 	back.pivot_offset = Vector2(29, 29); back.rotation = PI
 	var title_key := "ADVENTURE" if screen == "map" else "READY"
 	if title_textures.get(title_key) is Texture2D:
@@ -265,7 +265,7 @@ func _build_header() -> void:
 	_emblem("coin", Rect2(659, 49, 65, 65), _page)
 	_label(str(int(economy.get("points", economy.get("balance", 0)))), Rect2(722, 47, 145, 66), 32, "PointBalance", _page)
 	_button("SettingsButton", Rect2(790, 132, 116, 116), "", func(): settings_requested.emit(), false, _page)
-	_emblem("settings", Rect2(821.5, 164.5, 53, 51), _page, INK)
+	_emblem("settings", Rect2(821.5, 164.5, 53, 51), _page, CREAM)
 
 func _build_map() -> void:
 	_label("ADVENTURE TRAIL", Rect2(180, 139, 580, 56), 38, "RegionTitle", _page, CREAM, true)
@@ -306,7 +306,7 @@ func _build_map() -> void:
 	if level_definitions.is_empty(): _label("No levels available", Rect2(170, 510, 560, 80), 36, "EmptyCatalog", canvas)
 	_button("ShopButton", Rect2(350, 1480, 240, 120), "", func():
 		_capture_scroll(); shop_requested.emit(), true, _page)
-	_emblem("shop", Rect2(425, 1495, 90, 90), _page)
+	_emblem("shop", Rect2(438, 1508, 64, 64), _page)
 	call_deferred("_restore_scroll", _scroll, _page_revision)
 
 func _has_only_first_level() -> bool:
@@ -353,7 +353,8 @@ func _map_node(config: Dictionary, center: Vector2, parent: Control, compact_fir
 	if compact_first:
 		sign.position=Vector2(310,128);sign.size=Vector2(500,1016)
 		_panel("game/panel",Rect2(Vector2.ZERO,sign.size),"CarvedSign",sign,40)
-		_label(str(config.get("title","Level 1")),Rect2(24,20,452,110),38,"SceneTitle",sign)
+		var title:=_label(str(config.get("title","Level 1")),Rect2(46,20,408,110),38,"SceneTitle",sign)
+		title.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;title.size=Vector2(408,110)
 		FirstPreview.build(config,Rect2(26,142,448,797),sign,"ScenePreview")
 		_label("CLEARED" if completed else "READY",Rect2(28,944,444,48),38,"LevelState",sign,Color("347b28"))
 		var preview_hit:=_hit("ChooseLevelPreview%d"%number,Rect2(Vector2.ZERO,sign.size),sign)
@@ -427,7 +428,7 @@ func _build_preparation() -> void:
 	_emblem("speed",Rect2(316,1385,36,36),_page,CREAM)
 	_label("Lv.%d   +%d%%" % [carry_level,roundi((_multiplier(selected_type)-1.)*100.)], Rect2(366, 1377, 292, 56), 38, "LoadoutSummary", _page, CREAM, true)
 	_button("BeginLevel", Rect2(190, 1444, 560, 127), "", _request_begin, true, _page)
-	_icon("play", Rect2(428, 1465, 85, 85), _page)
+	_icon("play", Rect2(434, 1471.5, 72, 72), _page)
 
 func _build_scene_preview(config: Dictionary, bounds: Rect2, parent: Control) -> bool:
 	if config.get("level_id","")=="serpent-01":
@@ -526,9 +527,19 @@ func _panel(key: String, bounds: Rect2, id: String, parent: Node, corner: float)
 	return skin.panel(key, bounds, parent, id, corner)
 
 func _button(id: String, bounds: Rect2, caption: String, callback: Callable, primary: bool, parent: Node, px: int = 32) -> Button:
-	_panel("game/primary" if primary else "game/secondary", bounds, id + "Art", parent, minf(bounds.size.y * .40, 46.0))
-	if not caption.is_empty(): _label(caption, Rect2(bounds.position + Vector2(48, 0), bounds.size - Vector2(64, 0)), px, id + "Label", parent, CREAM if primary else INK, primary)
-	var button := _hit(id, bounds, parent); button.pressed.connect(callback); return button
+	var painted:Rect2
+	var round_icon:=id in ["BackButton","SettingsButton","ShopButton"]
+	if round_icon:
+		painted=Rect2(bounds.get_center()-Vector2(50,49.25),Vector2(100,98.5))
+		skin.medallion(painted,parent,id+"Art")
+	else:
+		var height:=96. if id.begins_with("Equip_") else 100.
+		painted=Rect2(bounds.position+Vector2(0,(bounds.size.y-height)*.5),Vector2(bounds.size.x,height))
+		_panel("game/primary" if primary else "game/secondary",painted,id+"Art",parent,28)
+	if not caption.is_empty(): _label(caption,Rect2(bounds.position+Vector2(32,(bounds.size.y-56)*.5),Vector2(bounds.size.x-64,56)),px,id+"Label",parent,CREAM if primary else INK,primary)
+	var button := _hit(id, bounds, parent)
+	UiSkin.focus_paint(button,Rect2(painted.position-bounds.position,painted.size),49 if round_icon else 28)
+	button.pressed.connect(callback); return button
 
 func _hit(id: String, bounds: Rect2, parent: Node) -> Button:
 	var button := Button.new(); button.name = id; button.position = bounds.position; button.size = bounds.size; button.flat = true

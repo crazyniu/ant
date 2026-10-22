@@ -367,12 +367,14 @@ func close_button(parent: Control, title: String, at_y: float) -> void:
 	b.pressed.connect(dismiss_modal)
 
 func action(parent: Control, title: String, at_y: float, callback: Callable, primary: bool = false) -> void:
-	# 118 logical units remain 45pt high on a 360pt-wide portrait phone.
-	# Use the authored enamel/gold buttons, not the narrow list-row treatment.
+	# Phone target and visible long-button proportions are independent.
 	var bounds:=Rect2(190,at_y,560,118)
-	skin.panel("game/primary" if primary else "game/secondary",bounds,parent,"Action_"+title,44)
-	text_label(title,Rect2(210,at_y+8,520,102),38,"Text_"+title,parent,Color.WHITE if primary else INK)
+	skin.panel("game/primary" if primary else "game/secondary",Rect2(190,at_y+9,560,100),parent,"Action_"+title,28)
+	var caption:=text_label(title,Rect2(210,at_y+31,520,56),38,"Text_"+title,parent,Color.WHITE if primary else INK)
+	if primary:
+		caption.add_theme_color_override("font_outline_color",Color("184b21"));caption.add_theme_constant_override("outline_size",4)
 	var b:=Button.new();b.name="Button_"+title;b.flat=true;b.position=bounds.position;b.size=bounds.size;b.tooltip_text=title;parent.add_child(b);b.pressed.connect(callback)
+	UiSkin.focus_paint(b,Rect2(0,9,560,100))
 
 func modal_copy(value:String,rect:Rect2,px:int,id:String,parent:Control)->Label:
 	# Finish layout before attachment: modal motion caches the initial position.

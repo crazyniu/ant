@@ -10,6 +10,9 @@ var purchase_signals:=0
 var profile:="/tmp/ant-rescue-shop-mobile-%d"%Time.get_ticks_usec()
 var home:Node
 func _initialize()->void:call_deferred("run")
+func declared_focus_rect(button:Button)->Rect2:
+	var f:StyleBoxFlat=button.get_theme_stylebox("focus")
+	return Rect2(Vector2.ZERO,button.size).grow_individual(f.expand_margin_left,f.expand_margin_top,f.expand_margin_right,f.expand_margin_bottom)
 func check(ok:bool,label:String)->void:
 	checks+=1
 	if not ok:failures.append(label);push_error(label)
@@ -142,6 +145,7 @@ func check_button_style(b:Button,label:String)->void:
 		check(b.get_theme_stylebox(state) is StyleBoxEmpty,label+": "+b.name+" "+state+" event layer cannot cover painted skin")
 	var focus:StyleBox=b.get_theme_stylebox("focus")
 	check(focus is StyleBoxFlat and not focus.draw_center and focus.border_width_left>0 and focus.border_color.a>0,label+": "+b.name+" has visible border-only keyboard focus")
+	check(declared_focus_rect(b).is_equal_approx(b.get_meta(&"visible_button_rect")),label+": "+b.name+" focus follows painted face, not expanded hit")
 func run()->void:
 	home=load("res://scenes/startup.tscn").instantiate();home.profile_directory=profile;home.use_command_line_catalog=false
 	root.add_child(home);current_scene=home

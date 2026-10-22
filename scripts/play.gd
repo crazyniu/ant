@@ -318,7 +318,7 @@ func show_click_feedback(message:String)->void:
 	var old:=get_node_or_null("ClickFeedback")
 	if old:remove_child(old);old.queue_free()
 	var bounds:=Rect2(52,1534,340,94) if is_approved_first_level() else Rect2(130,1530,680,42)
-	var label:=text_label(message,bounds,22,"ClickFeedback",self,Color("fff3d7"))
+	var label:=text_label(message,bounds,32 if is_approved_first_level() else 22,"ClickFeedback",self,Color("fff3d7"))
 	label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	label.add_theme_color_override("font_outline_color",Color("513316"));label.add_theme_constant_override("outline_size",4)
 	ensure_ui_motion();ui_motion.reveal_hint(label);audio_service.play_event("error")
@@ -414,8 +414,11 @@ func build_slots()->void:
 			var actor:=ground_ant("blue",Vector2(x+11,1287),"TransportPreview%d"%index,layer,73)
 			carrier_motion.prepare(actor,"blue",73);carrier_motion.apply(actor,{"time":0.0,"moving":false,"direction":Vector2.RIGHT,"stage":"idle","diameter":73})
 			actor.hide()
-		text_label("0 / 4",Rect2(388,1309,164,35),23,"CarrierCount",layer,Color("fff1d2"),true)
-		text_label("",Rect2(570,1309,120,35),18,"CapacityState",layer,Color("fff1d2"),true)
+		# Reuse the open right-hand deck margin; do not cover the four pedestals
+		# or add another HUD. Counts/status stay readable at phone width.
+		var count:=text_label("0 / 4",Rect2(748,1229,160,58),38,"CarrierCount",layer,Color("fff1d2"))
+		var state:=text_label("",Rect2(748,1293,160,44),32,"CapacityState",layer,Color("fff1d2"))
+		for label in [count,state]:label.add_theme_color_override("font_outline_color",Color("301a08"));label.add_theme_constant_override("outline_size",3)
 		return
 	ant("yellow",Rect2(405,1222,54,44),"CarrierCapacity",layer)
 	text_label("0 / 4",Rect2(465,1222,100,46),25,"CarrierCount",layer,Color("fff1d2"),true)
@@ -865,12 +868,13 @@ func persist_victory()->bool:
 
 func result_action(parent:Control,title:String,y:float,callback:Callable,primary:bool=false)->void:
 	# At 375pt portrait width this 118-unit target remains 47pt tall.
-	# Artwork and hit rectangle share one bound; nine-slice corners stay uniform.
+	# Keep the large touch target while the visible long action stays slimmer.
 	var bounds:=Rect2(190,y,560,118)
-	frame(bounds,"Action_"+title,parent,30,"54d35b" if primary else "fff4de")
+	skin.panel("game/primary" if primary else "game/secondary",Rect2(190,y+9,560,100),parent,"Action_"+title,28)
 	var glyph := "arrow" if title=="NEXT LEVEL" else ("levels" if title=="LEVEL SELECT" else "recall")
-	icon(glyph,Rect2(426,y+15,88,88),parent,Color.WHITE if primary else INK).name="Icon_"+title
+	icon(glyph,Rect2(434,y+23,72,72),parent,Color.WHITE if primary else INK).name="Icon_"+title
 	var button:=Button.new();button.name="Button_"+title;button.tooltip_text=title;button.flat=true;button.position=bounds.position;button.size=bounds.size;parent.add_child(button);button.pressed.connect(callback)
+	UiSkin.focus_paint(button,Rect2(0,9,560,100))
 
 func show_outcome(won:bool)->void:
 	if won and rules.status=="victory" and not victory_saved:show_save_error();return
@@ -880,16 +884,15 @@ func show_outcome(won:bool)->void:
 		UiSkin.place_texture(SceneLayout.target_texture(scene_layout),Rect2(310,535,320,270),m,"SavedDefenseTarget",true)
 		UiSkin.place_texture(load("res://assets/meta-ui/ant-coin.png"),Rect2(357,829,62,62),m,"RewardCoin",true)
 		text_label("+%d"%int(reward_receipt.get("total",0)),Rect2(427,825,205,67),40,"PointsEarned",m,INK,true)
-		text_label("%d BASE + %d TIME  ·  %.1fs"%[int(reward_receipt.get("base",0)),int(reward_receipt.get("time_bonus",0)),elapsed_round_seconds()],Rect2(230,891,480,34),19,"RewardBreakdown",m)
+		text_label("%d BASE + %d TIME\n%.1f SEC"%[int(reward_receipt.get("base",0)),int(reward_receipt.get("time_bonus",0)),elapsed_round_seconds()],Rect2(230,900,480,82),32,"RewardBreakdown",m)
 
 		# No SDK is connected. Expose the unavailable optional bonus honestly,
 		# without a mock ad, reward callback, or a gate on normal progression.
 		var ad:=Button.new();ad.name="RewardedAdUnavailable";ad.disabled=true
-		ad.position=Vector2(190,934);ad.size=Vector2(560,80)
-		ad.tooltip_text="Rewarded ads are not connected. Your points are already saved."
-		frame(Rect2(ad.position,ad.size),"AdUnavailablePanel",m,24,"e6dfc9")
-		text_label("BONUS ADS UNAVAILABLE",Rect2(210,941,520,32),21,"AdStatus",m,INK,true)
-		text_label("YOUR POINTS ARE SAVED · CONTINUE ANY TIME",Rect2(210,977,520,27),16,"AdExplanation",m)
+		ad.position=Vector2(190,1000);ad.size=Vector2(560,132)
+		skin.panel("game/secondary",Rect2(ad.position,ad.size),m,"AdUnavailablePanel",28)
+		text_label("BONUS ADS UNAVAILABLE",Rect2(210,1016,520,46),32,"AdStatus",m,INK,true)
+		text_label("YOUR POINTS ARE SAVED",Rect2(210,1068,520,46),32,"AdExplanation",m)
 		m.add_child(ad)
 	else:serpent.add_head_portrait(m,Rect2(290,570,360,300))
 	var next_id:String=profile_state.get("next_level_id","") if victory_saved else ""
@@ -898,12 +901,15 @@ func show_outcome(won:bool)->void:
 	result_action(m,"PLAY AGAIN" if won else "RETRY",1176 if won else 1076,func():replace_level(level_index),not won or next_id.is_empty())
 	var footer_y:=1318. if won else 1218.
 	var map_bounds:=Rect2(190,footer_y,260,118)
-	frame(map_bounds,"MapAction",m,30);icon("levels",Rect2(280,footer_y+19,80,80),m,INK)
+	skin.medallion(Rect2(map_bounds.get_center()-Vector2(52,51.2),Vector2(104,102.4)),m,"MapAction")
+	icon("levels",Rect2(map_bounds.get_center()-Vector2(32,32),Vector2(64,64)),m,Color("ffe4a1"))
 	var map_button:=Button.new();map_button.name="MapButton";map_button.flat=true;map_button.position=map_bounds.position;map_button.size=map_bounds.size;map_button.tooltip_text="Adventure map";m.add_child(map_button);map_button.pressed.connect(show_levels)
+	UiSkin.focus_paint(map_button,Rect2((map_bounds.size-Vector2(104,102.4))*.5,Vector2(104,102.4)),51)
 	var shop_bounds:=Rect2(490,footer_y,260,118)
-	frame(shop_bounds,"ShopAction",m,30)
-	UiSkin.place_texture(load("res://assets/meta-ui/ant-coin.png"),Rect2(580,footer_y+19,80,80),m,"ShopCoin",true)
+	skin.medallion(Rect2(shop_bounds.get_center()-Vector2(52,51.2),Vector2(104,102.4)),m,"ShopAction")
+	UiSkin.place_texture(load("res://assets/meta-ui/ant-coin.png"),Rect2(shop_bounds.get_center()-Vector2(32,32),Vector2(64,64)),m,"ShopCoin",true)
 	var shop_button:=Button.new();shop_button.name="ShopButton";shop_button.flat=true;shop_button.position=shop_bounds.position;shop_button.size=shop_bounds.size;shop_button.tooltip_text="Ant shop";m.add_child(shop_button);shop_button.pressed.connect(func():transition_to_startup("shop"))
+	UiSkin.focus_paint(shop_button,Rect2((shop_bounds.size-Vector2(104,102.4))*.5,Vector2(104,102.4)),51)
 
 func show_save_error()->void:
 	var m:=modal("COULDN'T SAVE",Rect2(130,400,680,960))

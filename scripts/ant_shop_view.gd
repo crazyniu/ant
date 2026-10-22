@@ -128,3 +128,5 @@ func icon_action(kind:String,bounds:Rect2,call:Callable,tip:String)->void:
 
 func button(id:String,bounds:Rect2,call:Callable,disabled:bool,tip:String)->void:
 	var b:=Button.new();b.name=id;b.position=bounds.position;b.size=bounds.size;b.flat=true;b.disabled=disabled;b.tooltip_text=tip;content.add_child(b);b.pressed.connect(call)
+	var face_size:=Vector2(100,100.0*581.0/590.0) if id=="BackButton" else Vector2(bounds.size.x,88 if id=="TrainingButton" else 90)
+	UiSkin.focus_paint(b,Rect2((bounds.size-face_size)*.5,face_size),49 if id=="BackButton" else 28)

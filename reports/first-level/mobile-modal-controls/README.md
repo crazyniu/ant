@@ -1,7 +1,7 @@
 # First-level mobile modal controls
 
 2026-10-22. Current regression includes the Settings pause-contract correction
-after `c70a52b`. The original 1399-check candidate wrongly expected Gear close
+after `c70a52b` plus the proportional-face follow-up after `a017b56`. The original 1399-check candidate wrongly expected Gear close
 to resume battle; that expectation was rejected against PRD §10, not approved. This report covers only
 shared modals reachable from the approved first level. It is not visual acceptance,
 a new level, merge, deployment, or approval to close the tracking Issue.
@@ -9,15 +9,15 @@ a new level, merge, deployment, or approval to close the tracking Issue.
 ## Changes
 
 - Shared text actions use the existing `game/primary` / `game/secondary` painted
-  enamel-and-gold skins, not the thin list-row frame. Bounds are **560 × 118** logical
-  units; text is **38 px**. At 360-wide scale, the hit height is **45.2 px**.
+  enamel-and-gold skins, not the thin list-row frame. Paint bounds are **560 × 100** inside the preserved **560 × 118** logical
+  hit bounds; text is **38 px**, with a dark outline on bright primary faces. At 360-wide scale, the hit height is **45.2 px**.
 - Pause's four actions start at y=724, 864, 1004, 1144. The panel is
   (130, 480, 680, 830). The single Home target is now 120 × 120 and remains above
   Continue with a 24-unit gap. No extra controls or skills were added.
 - Restart, Leave, running-round Map/Home confirmation, save/load recovery, reset
   confirmation, and startup recovery were reflowed as groups. Warnings are 38 px;
-  subordinate recovery details are 32 px and wrap within measured bounds. No
-  Home/Prep/tutorial/Loading typography or result/shop artwork was reworked here.
+  subordinate recovery details are 32 px and wrap within measured bounds. The companion `button-proportions.md` records the other page faces and
+  capacity/status typography. None is thereby visually accepted.
 - Shared Close hit area is 120 × 120 around the unchanged 80 × 80 painted icon.
   All new static layout positions are assigned before scene attachment so modal
   motion caches the intended final coordinates.
@@ -51,8 +51,9 @@ rechecked when combining this shared base Close change with the parallel tutoria
 
 ## Verification
 
-- `test_first_level_mobile_modals.gd`: **1423 / 1423 passed**. The JSON includes
-  measured panel, button and label rectangles for every adjusted group, actual font
+- `test_first_level_mobile_modals.gd`: **1510 / 1510 passed**. The JSON includes
+  measured panel, button and label rectangles for shared groups, dedicated result
+  presentation checks, actual font
   metrics/line counts, original skin regions and color checks. Also covers pause
   Continue/confirmation Cancel, Settings origins × X/Back × save success/failure,
   repeated retry, independent disk reload, and unchanged run count/points.
@@ -61,8 +62,10 @@ rechecked when combining this shared base Close change with the parallel tutoria
 - `test_ant_settings_recovery.gd`: **20 / 20 passed**.
 - `test_ant_navigation_save_boundary.gd`: **20 / 20 passed**.
 - `git diff --check`: passed. Godot **4.6.3**, headless. Temporary isolated profiles only.
-  An intermittent ObjectDB shutdown leak warning appeared in settings recovery;
-  it did not produce an assertion or runtime script failure in the final run.
+  Settings recovery emitted an ObjectDB/resource-in-use shutdown warning in this
+  run; its 20 assertions passed and no runtime script exception occurred. This
+  warning is not described as a clean resource shutdown. Navigation also emitted
+  an ObjectDB shutdown warning.
 
 Reproduce from this checkout with a writable temporary Godot user/cache directory:
 
