@@ -18,15 +18,22 @@ func _initialize()->void:call_deferred("run")
 func check(ok:bool,note:String)->void:
 	checks+=1
 	if not ok:failures.append(note);push_error(note)
+func inspect_mobile_label(label:Label,minimum_phone_px:float,note:String)->void:
+	var px:=label.get_theme_font_size("font_size")
+	var source:=label.get_theme_font("font")
+	check(px*360.0/940.0>=minimum_phone_px,note+" phone-size role minimum")
+	for line in label.text.split("\n"):
+		check(source.get_string_size(line,HORIZONTAL_ALIGNMENT_LEFT,-1,px).x<=label.size.x,note+" line width")
+	check(source.get_multiline_string_size(label.text,HORIZONTAL_ALIGNMENT_LEFT,-1,px).y<=label.size.y,note+" text height")
 func inspect_loading_button(button:Button,label:String)->void:
-	check(button.size==Vector2(560,136) and button.get_theme_font_size("font_size")==36,label+" mobile text/touch bounds")
+	check(button.size==Vector2(560,136) and button.get_theme_font_size("font_size")==38,label+" mobile text/touch bounds")
 	for state in ["normal","hover","pressed","hover_pressed","disabled"]:
 		var paint:=button.get_theme_stylebox(state)
 		check(paint is StyleBoxTexture and paint.texture is AtlasTexture and paint.texture.atlas.resource_path=="res://assets/ui/v03/game-skin-atlas.png",label+" existing painted atlas in "+state)
 	for state in ["font_color","font_hover_color","font_pressed_color","font_hover_pressed_color","font_focus_color","font_disabled_color"]:
 		check(button.get_theme_color(state)==Color("682b0c"),label+" preserves dark readable ink in "+state)
 	check(button.get_theme_stylebox("normal").texture.region==Rect2(671,416,570,215),label+" authoritative secondary region")
-	var text_width:=button.get_theme_font("font").get_string_size(button.text,HORIZONTAL_ALIGNMENT_LEFT,-1,36).x
+	var text_width:=button.get_theme_font("font").get_string_size(button.text,HORIZONTAL_ALIGNMENT_LEFT,-1,38).x
 	check(text_width<=button.size.x-64,label+" text fits its actual skin content area")
 func inspect_preview(view:Control,label:String)->void:
 	check(view.get_meta("read_only_first_level",false),label+" is the read-only shared scene")
@@ -61,6 +68,9 @@ func run()->void:
 	var deadline:=Time.get_ticks_msec()+10000
 	while home.phase!="home" and Time.get_ticks_msec()<deadline:await process_frame
 	check(home.phase=="home","Normal startup reaches Home")
+	var entrance:Label=home.home_art.get_node("SavedEntrance")
+	inspect_mobile_label(entrance,14,"Home current level")
+	check(entrance.get_theme_color("font_color")==Color("fff9e8") and entrance.get_theme_color("font_outline_color")==Color("682b0c"),"Home wood uses light text with dark outline")
 	inspect_preview(home.home_art.get_node("HomeLevelPreview"),"Home")
 	check(not home.home_art.has_node("HomeCannon"),"Legacy red cannon removed")
 	var preview:Control=home.home_art.get_node("HomeLevelPreview")
@@ -81,6 +91,18 @@ func run()->void:
 	var page:Control=home.adventure.get_node("AdventurePage")
 	check(page.find_children("Need_*","Label",false,false).is_empty(),"No five tiny redundant per-color counts")
 	check(page.get_node("NormalCount").text=="20","Prominent true normal-segment total remains")
+	for name in ["LevelHeading","NormalCount","LoadoutSummary"]:inspect_mobile_label(page.get_node(name),14,"Prep "+name)
+	inspect_mobile_label(page.get_node("PointBalance"),12,"Prep points")
+	for kind in ["worker","swift"]:
+		var card:Control=page.get_node("AntChoice_"+kind)
+		var capacity:Label=card.get_node("Capacity");var speed:Label=card.get_node("MovementSpeed")
+		inspect_mobile_label(capacity,14,kind+" capacity");inspect_mobile_label(speed,14,kind+" speed")
+		check(capacity.get_rect().get_center().x==speed.get_rect().get_center().x,kind+" numeric states share an axis")
+		check(speed.get_rect().end.y+12<=card.get_node("Equip_"+kind).position.y,kind+" speed does not collide with selection button")
+		check(speed.get_theme_font("font").get_string_size("+38%",HORIZONTAL_ALIGNMENT_LEFT,-1,38).x+12<=speed.size.x,kind+" max upgrade text has side clearance")
+	var summary:Label=page.get_node("LoadoutSummary")
+	check(summary.get_theme_font("font").get_string_size("Lv.4   +38%",HORIZONTAL_ALIGNMENT_LEFT,-1,38).x+20<=summary.size.x,"Maximum real loadout text fits without shrinking")
+	check(summary.get_rect().end.y+10<=page.get_node("BeginLevel").position.y,"Loadout text clears Begin control")
 	var color_icons:=page.find_children("RequiredColor_*","Control",false,false)
 	check(color_icons.size()==5,"Actual five-color palette remains")
 	for ball in color_icons:check(ball.size==Vector2(34,34) and config.palette.values().has(ball.color_id),"Palette icon is an actual first-level color")
@@ -90,6 +112,8 @@ func run()->void:
 	check(home.progression._record.runs.size()==before_runs and FileAccess.get_file_as_bytes(profile.path_join("save.json"))==progress_before and FileAccess.get_file_as_bytes(home.progression.base_path.path_join("progression.json"))==economy_before,"Read-only previews do not create runs or alter saves/economy")
 	home.launch_game()
 	check(home.phase=="loading" and home.launch_pending,"Normal launch exposes real loading state")
+	inspect_mobile_label(home.loading_label,14,"Loading status")
+	check(home.loading_label.get_theme_font("font").resource_path=="res://assets/fonts/Title.ttf","Loading uses the official font")
 	inspect_loading_button(home.loading_layer.get_node("BackButton"),"Loading Back")
 	var generation:int=home.load_generation
 	home.loading_layer.get_node("BackButton").pressed.emit()
@@ -106,10 +130,12 @@ func run()->void:
 	for step in steps:
 		check(not step.text.contains("ARMORED") and not step.text.contains("TWO HITS"),"No inactive armor mechanic")
 		var px:int=step.get_theme_font_size("font_size");min_font=mini(min_font,px)
-		check(px>=36,"Primary body at least 36 logical pixels")
+		check(px>=38,"Primary body at least 38 logical pixels")
+		inspect_mobile_label(step,14,"Tutorial "+str(step.name))
 		for line in step.text.split("\n"):
 			var measured:float=step.get_theme_font("font").get_string_size(line,HORIZONTAL_ALIGNMENT_LEFT,-1,px).x
-			check(measured<=480 and step.size.x<=480,"Tutorial text fits declared line: "+line)
+			check(measured+10<=490 and step.size.x==490,"Tutorial text has horizontal clearance: "+line)
+	inspect_mobile_label(modal.get_node("ObservationNotice"),12,"Tutorial timing notice")
 	check(modal.has_node("TutorialIllustration2/TutorialCannon") and modal.has_node("TutorialIllustration2/TutorialBall") and modal.has_node("TutorialIllustration3/TutorialPrincess"),"Actual independent game illustrations belong to their teaching rows")
 	check(not modal.has_node("ThreatDragon"),"No top-level tutorial dragon escapes the fourth row")
 	for sample in 6:
@@ -138,6 +164,8 @@ func run()->void:
 	deadline=Time.get_ticks_msec()+10000
 	while failed.phase not in ["home","error"] and Time.get_ticks_msec()<deadline:await process_frame
 	check(failed.phase=="error" and not is_instance_valid(failed.home_art) and not is_instance_valid(failed.audio_service),"Preview failure reaches real loader error before Home/audio creation")
+	inspect_mobile_label(failed.loading_label,14,"Loading actual failure message")
+	check(failed.loading_label.get_rect().end.y+30<=failed.loading_layer.get_node("RetryButton").position.y,"Error text clears retry target")
 	inspect_loading_button(failed.loading_layer.get_node("RetryButton"),"Bootstrap error Retry")
 	failed.fail_preview=false;failed.retry_loading();deadline=Time.get_ticks_msec()+10000
 	while failed.phase!="home" and Time.get_ticks_msec()<deadline:await process_frame

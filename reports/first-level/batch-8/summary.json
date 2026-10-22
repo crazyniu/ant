@@ -1,0 +1,36 @@
+{
+  "base_commit": "b9907d9ceccc4b40cfec9410f6df218647320ef1",
+  "scope": "First-level Home/Preparation/HowTo/Loading typography only",
+  "status": "Bounded headless verified; new real GL/type/interaction inspection pending",
+  "source_issue": "https://github.com/crazyniu/ant/issues/9#issuecomment-6333500921",
+  "node_test": {
+    "checks": 1640,
+    "failures": [],
+    "phone_metrics": {
+      "body_px_at_360_width": 14.5531914893617,
+      "close_height_at_360_width": 49.0212765957447,
+      "continue_height_at_360_width": 53.6170212765957,
+      "scope": "Layout/node metrics only, not phone GL, touch, or user acceptance."
+    },
+    "scope": "Only approved first-level normal Home/Prep/HowTo read-only nodes and actual tutorial-save handler. No other level, real GL, touch, audio or natural play."
+  },
+  "minimal_controller_test": {
+    "checks": 48,
+    "failures": [],
+    "scope": "First-level-only headless controller/entry, historical metadata recovery, hopper selector, distance gait and non-overlapping feedback. Later level numbers are rejected inputs only; no later config or scene was exercised. No GL/native input/sound/visual acceptance."
+  },
+  "source_sha256": {
+    "scripts/startup.gd": "5119754917b7ff677b6baf5544899eb33c6604302356df1a52b8ed6dde96a866",
+    "scripts/adventure_view.gd": "3b321b9c5d056eee4bf924c7bc84b842791f92c5459f04b3d6f501a60efb67d7",
+    "scripts/play.gd": "5dd9f0a22950d5e386b51f23fa1632c080d13874f9185d59c1642d11e20088ec",
+    "tests/test_first_level_previews.gd": "0ec15abf019f0fd73533fd07cac43faba6d32af1547b3ecabedb1e3a7da3c9ae",
+    "data/serpent-levels/serpent-01.json": "e5adc544bfbb8c82d883252f70a7c36fa19695693cad9f7804a9058a6044bfea"
+  },
+  "boundaries": [
+    "No production ScreenTouch code or settings change",
+    "No world assets, 240 centers, ball size, gameplay or later-level change",
+    "Shared modal/buttons/slider/caller-return repairs are separate and not claimed here",
+    "Preview exit emitted known ObjectDB warning; no clean-shutdown claim",
+    "No new GL screenshots or phone/user acceptance for this revision yet"
+  ]
+}

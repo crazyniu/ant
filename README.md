@@ -1,6 +1,6 @@
 # First-level review candidate (2026-10-22)
 
-Only the user-approved first level is accessible in this candidate. Later level content remains archived for compatibility, not enabled or newly tested. Do not merge or deploy this review branch. Visuals are **not user accepted**. Native 1440×2560 GL has locally verified a1ee1d8 full-ant cards/five colors and b4a6d7d side-HUD removal/basic blue supply chain. The new loading candidate and overall1:1 remain unaccepted.
+Only the user-approved first level is accessible in this candidate. Later level content remains archived for compatibility, not enabled or newly tested. Do not merge or deploy this review branch. Visuals are **not user accepted**. Native 1440×2560 GL has locally verified a1ee1d8 full-ant cards/five colors and b4a6d7d side-HUD removal/basic blue supply chain. Overall 1:1 and whole-flow acceptance remain open.
 
 See [current full-ant/card-color correction](reports/first-level/batch-3/README.md) and its exact unaccepted differences. The rejected c763ed1 bust is replaced by a complete ant candidate; native GPU five-color verification is recorded in batch3; overall visual acceptance remains open. Superseded images/raw snapshots are kept in history and local evidence, not accumulated in the current tree. [Batch 2](reports/first-level/batch-2/README.md) and `FIRST_LEVEL_PUBLICATION.json` describe the immutable initial `0491e05` publication, not the latest changed-file hashes. The current delta is in batch-3/summary.json. Earlier `SOURCE_MANIFEST.json` / `PUBLICATION_CHECK.json` and the implementation history below describe the already-published base, not current first-level acceptance.
 
@@ -8,7 +8,7 @@ Latest small delta: [remove the rejected cannon-side inventory HUD](reports/firs
 
 Current animation candidate: [same-ball loading and real event clock](reports/first-level/batch-5/README.md). First-level unload is now .8s after limited real x1/x2 checks (.2 is historical); the same34-color/minimum2s schedule is retimed for real capacity, not zero-think input. Production headless replay reaches114.75s, saves138 points, peaks at4 carriers. Limited native x1 single-ball and x2 three-ball checks are recorded in batch5; overall animation/current-screen self-check remains open. Earlier batch reports remain exact historical versions.
 
-Current Home/Prep/tutorial/Loading repair: [four defects found in actual screenshots](reports/first-level/batch-7/README.md). The earlier batch6/d953 UI failed actual review (nested Home map, tiny Prep counts, escaped tutorial dragon, unstyled Loading Back). The new small repair has 1,576 node/functional checks plus 48 controller checks; its new real GL recheck and user acceptance are still pending. The mobile-game UI/self-check gate is in `docs/FIRST_LEVEL_UI_SELF_CHECK.md`.
+Current Home/Prep/tutorial/Loading repair: [four defects found in actual screenshots](reports/first-level/batch-7/README.md). Real b990 review confirmed the single Home scene, Prep 20+five-color and fourth-row tutorial dragon locally, but found small/low-contrast text and shared-modal mobile UI defects. [The next bounded typography refinement](reports/first-level/batch-8/README.md) has 1,640 node/functional checks plus 48 controller checks; its own real GL recheck is pending. Shared Pause/Settings repair remains separate. The mobile-game UI/self-check gate is in [FIRST_LEVEL_UI_SELF_CHECK.md](docs/FIRST_LEVEL_UI_SELF_CHECK.md).
 
 ---
 
@@ -37,12 +37,12 @@ The viewport is **1440 × 2560**, with a uniformly scaled **940 × 1672** logica
 
 ## Current gameplay
 
-- One legal color click reserves one reachable matching bead and creates one worker task. At most **four** workers are transporting, including pickup and unloading. Full capacity rejects the click without a hidden queue.
-- The number on each color entry is the **uncollected bead count**, including reserved beads. Pickup removes the bead; completed unloading alone grants inventory and releases the worker.
-- Each bead funds one matching projectile for one damage. Normal segments have **HP1**; armored segments have **HP2**, with a cracked state after the first hit. Stable segment IDs prevent retargeting errors.
+- One legal color click reserves one reachable matching round cannonball and creates one worker task. At most **four** workers are transporting, including pickup and unloading. Full capacity rejects the click without a hidden queue.
+- The number on each color entry is the **uncollected ball count**, including reserved balls. Pickup removes the ball; completed unloading alone grants inventory and releases the worker.
+- Each ball funds one matching projectile for one damage. The current first level has 20 ordinary **HP1** segments; armor is not active in this level. Archived armor logic is not a current first-level mechanic. Stable segment IDs prevent retargeting errors.
 - The serpent follows a **finite, non-looping route**. Removing a segment shortens the body without moving its head backward. The head has no extra hidden health bar.
-- Actual damage removing the final live segment wins. Board clear, pickup, delivery or firing does not win; leftover beads and inventory are allowed. Earlier head contact loses. At exactly the same simulation microsecond, due damage resolves before contact.
-- The base worker can solve all twelve current authored levels without upgrades, advertising, combos or mechanisms. No automatic 20/30-ant teams, five work slots, team quotas or board-equals-armor rule remain in current play.
+- Actual damage removing the final live segment wins. Board clear, pickup, delivery or firing does not win; leftover balls and internal inventory are allowed. Earlier head contact loses. At exactly the same simulation microsecond, due damage resolves before contact.
+- The current first-level base-worker replay uses no upgrades, advertising, combos or mechanisms; real natural-play acceptance remains open. Historical multi-level results do not authorize access to later levels. No automatic 20/30-ant teams, five work slots, team quotas or board-equals-armor rule remain in current play.
 
 ## Map, preparation, points and shop
 

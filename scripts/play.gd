@@ -771,9 +771,9 @@ func show_tutorial()->void:
 	UiSkin.place_texture(target,Rect2(175,50,51,88),rows[3],"TutorialPrincess",true)
 	var steps:Array[String]=["TAP A COLOR\nSEND ONE ANT","UP TO FOUR ANTS\nCARRY AT ONCE","MATCHING BALLS\nLOAD THE CANNON","CLEAR THE DRAGON\nBEFORE IT REACHES HER"]
 	for index in steps.size():
-		var line:=text_label(steps[index],Rect2(350,470+index*180,480,125),36,"StepText%d"%index,m)
+		var line:=text_label(steps[index],Rect2(350,470+index*180,490,125),38,"StepText%d"%index,m)
 		line.horizontal_alignment=HORIZONTAL_ALIGNMENT_LEFT
-	text_label("DRAGON MOVES AFTER YOUR FIRST ANT",Rect2(110,1188,720,50),30,"ObservationNotice",m)
+	text_label("DRAGON MOVES AFTER YOUR FIRST ANT",Rect2(110,1188,720,50),32,"ObservationNotice",m)
 	var bounds:=Rect2(190,1275,560,140)
 	frame(bounds,"TutorialContinueArt",m,30,"54d35b")
 	text_label("LET'S GO",Rect2(210,1304,520,76),42,"TutorialContinueLabel",m,Color.WHITE,true)

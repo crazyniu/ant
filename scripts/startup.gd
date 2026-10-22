@@ -131,7 +131,9 @@ func build_boot_shell() -> void:
 	var back:=StyleBoxFlat.new();back.bg_color=Color("725731");back.set_corner_radius_all(9);back.set_border_width_all(2);back.border_color=Color("f7df96")
 	var fill_style:=StyleBoxFlat.new();fill_style.bg_color=Color("fff0b2");fill_style.set_corner_radius_all(7)
 	progress_bar.add_theme_stylebox_override("background",back);progress_bar.add_theme_stylebox_override("fill",fill_style)
-	loading_label=Label.new();loading_label.name="LoadingStatus";loading_label.text="LOADING";loading_label.position=Vector2(240,1095);loading_label.size=Vector2(460,45);loading_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;loading_label.add_theme_font_size_override("font_size",22);loading_label.add_theme_color_override("font_color",INK);loading_layer.add_child(loading_label)
+	# At 360px portrait width, 38 logical pixels remains readable body text.
+	# Leave room for the actual two-line load error, not just "LOADING".
+	loading_label=Label.new();loading_label.name="LoadingStatus";loading_label.text="LOADING";loading_label.position=Vector2(95,1095);loading_label.size=Vector2(750,52);loading_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;loading_label.vertical_alignment=VERTICAL_ALIGNMENT_CENTER;loading_label.add_theme_font_override("font",BOOT_FONT);loading_label.add_theme_font_size_override("font_size",38);loading_label.add_theme_color_override("font_color",INK);loading_layer.add_child(loading_label)
 
 func begin_home_load() -> void:
 	load_generation+=1
@@ -195,7 +197,9 @@ func refresh_home_profile_controls()->void:
 		if old!=null:home_art.remove_child(old);old.queue_free()
 	if profile_state.ready:
 		var entrance_text:="LEVEL 1 · FRESH ROUND" if profile_state.tutorial_completed else "LEVEL 1"
-		text_label(entrance_text,Rect2(170,1433,600,42),36,"SavedEntrance",home_art,INK,true)
+		var entrance:=text_label(entrance_text,Rect2(170,1431,600,50),38,"SavedEntrance",home_art,Color("fff9e8"),true)
+		entrance.add_theme_color_override("font_outline_color",INK)
+		entrance.add_theme_constant_override("outline_size",5)
 
 func show_profile_recovery(last_error:String="")->void:
 	var m:=modal("COULDN'T LOAD",Rect2(149,500,642,730))
@@ -284,12 +288,12 @@ func clear_loading_actions() -> void:
 		if button!=null:loading_layer.remove_child(button);button.queue_free()
 
 func reset_loading_controls() -> void:
-	clear_loading_actions();loading_label.text="LOADING";loading_label.size.y=45
+	clear_loading_actions();loading_label.text="LOADING";loading_label.size.y=52
 	progress_bar.show();progress_bar.value=0
 
 func loading_button(id:String,title:String,y:float,callback:Callable) -> void:
 	var button:=Button.new();button.name=id;button.text=title;button.position=Vector2(190,y);button.size=Vector2(560,136)
-	button.add_theme_font_override("font",BOOT_FONT);button.add_theme_font_size_override("font_size",36);button.add_theme_color_override("font_color",INK)
+	button.add_theme_font_override("font",BOOT_FONT);button.add_theme_font_size_override("font_size",38);button.add_theme_color_override("font_color",INK)
 	for state in ["font_hover_color","font_pressed_color","font_hover_pressed_color","font_focus_color","font_disabled_color"]:button.add_theme_color_override(state,INK)
 	var data:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/ui/v03/regions.json"))
 	var r:Array=data.game.secondary
@@ -345,7 +349,7 @@ func on_load_failed(error:Dictionary,owner_id:int=-1) -> void:
 	if phase!="loading" or (error.has("request_id") and int(error.request_id)!=active_request_id):return
 	phase="error";record_event("resource_load_failed")
 	loading_label.text="COULDN'T LOAD\nCHECK GAME FILES AND TRY AGAIN"
-	loading_label.size.y=95;progress_bar.hide();clear_loading_actions()
+	loading_label.size.y=100;progress_bar.hide();clear_loading_actions()
 	loading_button("RetryButton","TRY AGAIN",1230,retry_loading)
 	show_loading_back()
 	push_warning("Startup resource unavailable: "+str(error.get("path","scene"))+" · "+str(error.get("reason",error.get("message","load_failed"))))

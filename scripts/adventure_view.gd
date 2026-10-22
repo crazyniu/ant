@@ -263,7 +263,7 @@ func _build_header() -> void:
 	else: _label("ADVENTURE" if screen == "map" else "PREPARE", Rect2(150, 29, 470, 80), 43, "PageTitle", _page, CREAM, true)
 	_panel("game/row", Rect2(650, 43, 244, 78), "PointBalanceFrame", _page, 24)
 	_emblem("coin", Rect2(659, 49, 65, 65), _page)
-	_label(str(int(economy.get("points", economy.get("balance", 0)))), Rect2(722, 47, 145, 66), 31, "PointBalance", _page)
+	_label(str(int(economy.get("points", economy.get("balance", 0)))), Rect2(722, 47, 145, 66), 32, "PointBalance", _page)
 	_button("SettingsButton", Rect2(811, 136, 83, 78), "", func(): settings_requested.emit(), false, _page)
 	_emblem("settings", Rect2(826, 149, 53, 51), _page, INK)
 
@@ -355,7 +355,7 @@ func _build_preparation() -> void:
 		_label("SCENE UNAVAILABLE",Rect2(150,650,640,90),34,"SceneUnavailable",_page,CREAM,true)
 		return
 	var summary := level_summary(selected_level)
-	_label("LEVEL %02d" % selected_level, Rect2(210, 154, 520, 48), 31, "LevelHeading", _page, CREAM, true)
+	_label("LEVEL %02d" % selected_level, Rect2(210, 151, 520, 58), 38, "LevelHeading", _page, CREAM, true)
 	_panel("game/panel", Rect2(42, 280, 856, 700), "PreviewStoneFrame", _page, 40)
 	if not _build_scene_preview(config, Rect2(65, 305, 503, 642), _page):
 		_label("SCENE UNAVAILABLE",Rect2(130,500,680,90),34,"SceneUnavailable",_page,CREAM,true);return
@@ -400,8 +400,8 @@ func _build_preparation() -> void:
 	_ant_choice("worker", Rect2(50, 1070, 407, 297))
 	_ant_choice("swift", Rect2(483, 1070, 407, 297))
 	var carry_level := int(economy.get("carry_level", 1))
-	_emblem("speed",Rect2(345,1381,36,36),_page,CREAM)
-	_label("Lv.%d   +%d%%" % [carry_level,roundi((_multiplier(selected_type)-1.)*100.)], Rect2(391, 1381, 230, 38), 25, "LoadoutSummary", _page, CREAM, true)
+	_emblem("speed",Rect2(316,1385,36,36),_page,CREAM)
+	_label("Lv.%d   +%d%%" % [carry_level,roundi((_multiplier(selected_type)-1.)*100.)], Rect2(366, 1377, 292, 56), 38, "LoadoutSummary", _page, CREAM, true)
 	_button("BeginLevel", Rect2(190, 1444, 560, 127), "", _request_begin, true, _page)
 	_icon("play", Rect2(428, 1465, 85, 85), _page)
 
@@ -468,10 +468,10 @@ func _ant_choice(carrier_type: String, bounds: Rect2) -> void:
 	var name_art:=_texture(load("res://assets/meta-ui/"+carrier_type+".png"),Rect2(60,10,287,65),"TypeName",card);name_art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	_carrier(Vector2(101, 192), 123, "blue", "AntPortrait", card)
 	if carrier_type == "swift": _emblem("speed", Rect2(337, 79, 46, 49), card)
-	_bead("blue",Vector2(213,114),28,card)
-	_label("1", Rect2(260,103,88,48), 31, "Capacity", card)
+	_bead("blue",Vector2(213,111),34,card)
+	_label("1", Rect2(252,103,127,52), 38, "Capacity", card)
 	_emblem("speed",Rect2(213,164,31,35),card,Color("b77c24"))
-	_label("+%d%%" % roundi((_multiplier(carrier_type)-1.)*100.), Rect2(252,160,127,44), 28, "MovementSpeed", card)
+	_label("+%d%%" % roundi((_multiplier(carrier_type)-1.)*100.), Rect2(252,156,127,52), 38, "MovementSpeed", card)
 	card.set_meta("owned",owned)
 	var caption := ""
 	_button("Equip_" + carrier_type, Rect2(28, 222, 351, 58), caption, func():
