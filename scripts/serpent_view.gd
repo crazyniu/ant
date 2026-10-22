@@ -155,8 +155,12 @@ func add_princess(parent:Node,foot:Vector2)->Control:
 
 func add_head_portrait(parent:Node,bounds:Rect2)->Control:
 	var art:=TextureRect.new();art.name="ThreatDragon";art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;art.mouse_filter=Control.MOUSE_FILTER_IGNORE
-	parent.add_child(art)
 	if ready_art:
 		_apply_region(art,manifest.heads.SE,bounds.size.x*.86)
+		art.size*=minf(1.0,minf(bounds.size.x/art.size.x,bounds.size.y/art.size.y))
 		art.position=bounds.get_center()-art.size*.5
+	# A modal observes child_entered_tree and captures the resting transform.
+	# Assign the final local bounds BEFORE attaching, otherwise its reveal tween
+	# later restores the portrait to (0,0), outside the teaching row.
+	parent.add_child(art)
 	return art

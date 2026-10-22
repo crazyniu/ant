@@ -378,6 +378,12 @@ func _build_preparation() -> void:
 	_icon("shield",Rect2(735,772,53,58),_page,Color("ffe3a0"))
 	var index := 0
 	for color in summary.needs:
+		if config.get("level_id","")=="serpent-01":
+			# Twenty ordinary segments is already the prominent true total. Keep
+			# the actual five-color palette, not five tiny repeated "4" labels.
+			var color_icon:=_bead(str(color),Vector2(617+index*46,900),34,_page)
+			color_icon.name="RequiredColor_%s"%color
+			index+=1;continue
 		var x := 601 + index * 84
 		var y := 918
 		if summary.needs.size()>4:
@@ -388,7 +394,7 @@ func _build_preparation() -> void:
 		_label(str(int(summary.needs[color])), Rect2(x + 27, y-4, 46, 31), 22, "Need_%s" % color, _page)
 		index += 1
 	var detail:=Control.new();detail.name="BossDetails";detail.position=Vector2(584,315);detail.size=Vector2(287,625)
-	detail.tooltip_text="%d normal segments (1 hit each).\nProtect %s. Matching ball counts show required hits."%[summary.normal,summary.target]
+	detail.tooltip_text="%d normal segments (1 hit each).\nProtect %s."%[summary.normal,summary.target]
 	if summary.armored>0:detail.tooltip_text+="\n%d armored segments (2 hits each)."%summary.armored
 	detail.mouse_filter=Control.MOUSE_FILTER_STOP;_page.add_child(detail)
 	_ant_choice("worker", Rect2(50, 1070, 407, 297))

@@ -757,14 +757,18 @@ func show_tutorial()->void:
 	var m:=modal("YOUR FIRST RESCUE",Rect2(70,330,800,1125))
 	# Game illustrations and four short rules, sized for a 360-wide phone view.
 	# HUD illustrations reuse actual art; they are not live transport tasks.
-	tutorial_ant(m,Vector2(226,576),116,"TutorialAnt")
-	for index in 4:tutorial_ant(m,Vector2(153+index*48,745),48,"CapacityAnt%d"%index)
-	var ball:=ApprovedBead.new();ball.name="TutorialBall";ball.color_id="blue";ball.edge=60;ball.footprint_height=60;ball.size=Vector2(60,60);ball.position=Vector2(143,865);m.add_child(ball)
-	icon("arrow",Rect2(205,878,28,28),m,INK)
-	approved_texture(str(scene_layout.cannon.texture),SceneLayout.rect(scene_layout.cannon.region),Rect2(239,831,91,125),m,"TutorialCannon")
-	serpent.add_head_portrait(m,Rect2(123,1009,155,153))
+	var rows:Array[Control]=[]
+	for index in 4:
+		var row:=Control.new();row.name="TutorialIllustration%d"%index;row.position=Vector2(110,450+index*180);row.size=Vector2(226,180 if index==3 else 160)
+		row.clip_contents=true;row.mouse_filter=Control.MOUSE_FILTER_IGNORE;m.add_child(row);rows.append(row)
+	tutorial_ant(rows[0],Vector2(116,126),116,"TutorialAnt")
+	for index in 4:tutorial_ant(rows[1],Vector2(43+index*48,115),48,"CapacityAnt%d"%index)
+	var ball:=ApprovedBead.new();ball.name="TutorialBall";ball.color_id="blue";ball.edge=60;ball.footprint_height=60;ball.size=Vector2(60,60);ball.position=Vector2(33,55);rows[2].add_child(ball)
+	icon("arrow",Rect2(95,68,28,28),rows[2],INK)
+	approved_texture(str(scene_layout.cannon.texture),SceneLayout.rect(scene_layout.cannon.region),Rect2(129,21,91,125),rows[2],"TutorialCannon")
+	serpent.add_head_portrait(rows[3],Rect2(13,19,155,153))
 	var target:=SceneLayout.target_texture(scene_layout)
-	UiSkin.place_texture(target,Rect2(285,1040,51,88),m,"TutorialPrincess",true)
+	UiSkin.place_texture(target,Rect2(175,50,51,88),rows[3],"TutorialPrincess",true)
 	var steps:Array[String]=["TAP A COLOR\nSEND ONE ANT","UP TO FOUR ANTS\nCARRY AT ONCE","MATCHING BALLS\nLOAD THE CANNON","CLEAR THE DRAGON\nBEFORE IT REACHES HER"]
 	for index in steps.size():
 		var line:=text_label(steps[index],Rect2(350,470+index*180,480,125),36,"StepText%d"%index,m)

@@ -18,6 +18,16 @@ func _initialize()->void:call_deferred("run")
 func check(ok:bool,note:String)->void:
 	checks+=1
 	if not ok:failures.append(note);push_error(note)
+func inspect_loading_button(button:Button,label:String)->void:
+	check(button.size==Vector2(560,136) and button.get_theme_font_size("font_size")==36,label+" mobile text/touch bounds")
+	for state in ["normal","hover","pressed","hover_pressed","disabled"]:
+		var paint:=button.get_theme_stylebox(state)
+		check(paint is StyleBoxTexture and paint.texture is AtlasTexture and paint.texture.atlas.resource_path=="res://assets/ui/v03/game-skin-atlas.png",label+" existing painted atlas in "+state)
+	for state in ["font_color","font_hover_color","font_pressed_color","font_hover_pressed_color","font_focus_color","font_disabled_color"]:
+		check(button.get_theme_color(state)==Color("682b0c"),label+" preserves dark readable ink in "+state)
+	check(button.get_theme_stylebox("normal").texture.region==Rect2(671,416,570,215),label+" authoritative secondary region")
+	var text_width:=button.get_theme_font("font").get_string_size(button.text,HORIZONTAL_ALIGNMENT_LEFT,-1,36).x
+	check(text_width<=button.size.x-64,label+" text fits its actual skin content area")
 func inspect_preview(view:Control,label:String)->void:
 	check(view.get_meta("read_only_first_level",false),label+" is the read-only shared scene")
 	var scene:=view.get_node("ActualLevelScene")
@@ -53,18 +63,38 @@ func run()->void:
 	check(home.phase=="home","Normal startup reaches Home")
 	inspect_preview(home.home_art.get_node("HomeLevelPreview"),"Home")
 	check(not home.home_art.has_node("HomeCannon"),"Legacy red cannon removed")
-	var preview_rect:Rect2=home.home_art.get_node("HomeLevelPreview").get_rect()
-	check(not preview_rect.intersects(home.home_art.get_node("BrandTitle").get_rect()) and not preview_rect.intersects(home.home_art.get_node("PlayButton").get_rect()),"Home preview cannot cover title or Play")
+	var preview:Control=home.home_art.get_node("HomeLevelPreview")
+	check(preview.get_rect()==Rect2(0,0,940,1672) and preview.get_node("ActualLevelScene").scale==Vector2.ONE,"Home is one full, unscaled scene, not an inset rectangle")
+	check(not home.home_art.has_node("Garden") and home.home_art.find_children("Forest","TextureRect",true,false).size()==1,"Exactly one forest background, no duplicate outer map")
+	var title:Control=home.home_art.get_node("BrandTitle")
+	check(title.get_index()>preview.get_index() and title.position.y>=Layout.rect(layout.cannon.rect).end.y,"Home branding layered above the single scene on the wooden footer below the cannon")
+	for id in ["SavedEntrance","PlayButton","LevelsButton"]:
+		var control:Control=home.home_art.get_node(id)
+		check(Rect2(20,20,900,1632).encloses(control.get_rect()) and not title.get_rect().intersects(control.get_rect()),"Home footer clearance: "+id)
+	check(home.home_art.get_node("LevelsButton").size.y>=128,"Map entrance retains phone-size touch bounds")
 	var progress_before:=FileAccess.get_file_as_bytes(profile.path_join("save.json"))
 	var economy_before:=FileAccess.get_file_as_bytes(home.progression.base_path.path_join("progression.json"))
 	home.open_adventure("preparation",1)
 	inspect_preview(home.adventure.get_node("AdventurePage/ScenePreview"),"Prep")
 	check(not home.adventure.get_node("AdventurePage/BossDetails").tooltip_text.to_upper().contains("ARMORED"),"No disabled armor teaching in first-level Prep")
 	check(home.adventure.get_node("AdventurePage").get_meta("level_summary").armored==0,"Zero armor remains an actual rule fact")
+	var page:Control=home.adventure.get_node("AdventurePage")
+	check(page.find_children("Need_*","Label",false,false).is_empty(),"No five tiny redundant per-color counts")
+	check(page.get_node("NormalCount").text=="20","Prominent true normal-segment total remains")
+	var color_icons:=page.find_children("RequiredColor_*","Control",false,false)
+	check(color_icons.size()==5,"Actual five-color palette remains")
+	for ball in color_icons:check(ball.size==Vector2(34,34) and config.palette.values().has(ball.color_id),"Palette icon is an actual first-level color")
 	var before_runs:int=home.progression._record.runs.size()
 	home.adventure.show_map();home.adventure.show_preparation(1)
 	check(home.adventure.get_node("AdventurePage").find_children("ScenePreview","Control",false,false).size()==1,"Repeated navigation has one preview")
 	check(home.progression._record.runs.size()==before_runs and FileAccess.get_file_as_bytes(profile.path_join("save.json"))==progress_before and FileAccess.get_file_as_bytes(home.progression.base_path.path_join("progression.json"))==economy_before,"Read-only previews do not create runs or alter saves/economy")
+	home.launch_game()
+	check(home.phase=="loading" and home.launch_pending,"Normal launch exposes real loading state")
+	inspect_loading_button(home.loading_layer.get_node("BackButton"),"Loading Back")
+	var generation:int=home.load_generation
+	home.loading_layer.get_node("BackButton").pressed.emit()
+	await process_frame;await process_frame
+	check(home.phase=="preparation" and not home.launch_pending and home.load_generation>generation and current_scene==home,"Painted Back still cancels the pending owner and returns to Preparation; deferred handover remains invalidated")
 	await dispose(home)
 	var game=load("res://scenes/play.tscn").instantiate();game.profile_directory=profile;game.profile_directory_resolved=true;game.use_command_line_catalog=false;game.use_command_line_level=false
 	root.add_child(game);current_scene=game;game.set_process(false)
@@ -80,7 +110,19 @@ func run()->void:
 		for line in step.text.split("\n"):
 			var measured:float=step.get_theme_font("font").get_string_size(line,HORIZONTAL_ALIGNMENT_LEFT,-1,px).x
 			check(measured<=480 and step.size.x<=480,"Tutorial text fits declared line: "+line)
-	check(modal.has_node("TutorialCannon") and modal.has_node("TutorialBall") and modal.has_node("TutorialPrincess"),"Actual independent game illustrations are present")
+	check(modal.has_node("TutorialIllustration2/TutorialCannon") and modal.has_node("TutorialIllustration2/TutorialBall") and modal.has_node("TutorialIllustration3/TutorialPrincess"),"Actual independent game illustrations belong to their teaching rows")
+	check(not modal.has_node("ThreatDragon"),"No top-level tutorial dragon escapes the fourth row")
+	for sample in 6:
+		await create_timer(.06).timeout
+		for index in 4:
+			var row:Control=modal.get_node("TutorialIllustration%d"%index)
+			check(row.clip_contents and row.mouse_filter==Control.MOUSE_FILTER_IGNORE,"Each illustrated row is clipped and ignores input during reveal")
+		var row:Control=modal.get_node("TutorialIllustration3")
+		for id in ["ThreatDragon","TutorialPrincess"]:
+			var illustration:Control=row.get_node(id)
+			check(Rect2(Vector2.ZERO,row.size).encloses(illustration.get_rect()),"Fourth-row portrait stays within local bounds during/after reveal: "+id)
+	check(modal.get_node("TutorialIllustration3").position==Vector2(110,990),"Tween restores the correct fourth-row resting position, not origin")
+	check(modal.get_node("TutorialIllustration3/ThreatDragon").get_global_rect().position.y>=990,"Settled dragon is beside the princess, not at screen origin")
 	var button:Button=modal.get_node("TutorialContinue")
 	check(button.size.y>=140 and modal.get_node("CloseButton").size.y>=128,"Primary and close touch bounds scale to phone proportions")
 	check(game.rules.tasks.is_empty() and game.rules.inventory.values().all(func(value):return value==0),"Illustrations do not create tasks or ammo")
@@ -96,6 +138,7 @@ func run()->void:
 	deadline=Time.get_ticks_msec()+10000
 	while failed.phase not in ["home","error"] and Time.get_ticks_msec()<deadline:await process_frame
 	check(failed.phase=="error" and not is_instance_valid(failed.home_art) and not is_instance_valid(failed.audio_service),"Preview failure reaches real loader error before Home/audio creation")
+	inspect_loading_button(failed.loading_layer.get_node("RetryButton"),"Bootstrap error Retry")
 	failed.fail_preview=false;failed.retry_loading();deadline=Time.get_ticks_msec()+10000
 	while failed.phase!="home" and Time.get_ticks_msec()<deadline:await process_frame
 	check(failed.phase=="home" and failed.find_children("HomeArtwork","Control",false,false).size()==1,"Real retry builds one valid Home after preview failure")

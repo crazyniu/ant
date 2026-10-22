@@ -1,0 +1,42 @@
+{
+  "base_commit": "d95384c04d0dddde74222a7172fb2b8247bedad8",
+  "status": "four actual-screen defects repaired locally; new GL recheck and user acceptance pending",
+  "issue": "https://github.com/crazyniu/ant/issues/9#issuecomment-6333097669",
+  "scope": [
+    "One full first-level scene on Home; branding/actions occupy the wooden footer",
+    "Preparation keeps real 20-segment total and five-color palette; removes tiny redundant per-color counts",
+    "Tutorial local clipped illustration rows; portrait transform set before modal attachment",
+    "Loading Back/Retry use existing painted gold atlas and explicit dark text in every state; loading ownership unchanged"
+  ],
+  "bounded_node_test": {
+    "checks": 1576,
+    "failures": [],
+    "phone_metrics": {
+      "body_px_at_360_width": 13.7872340425532,
+      "close_height_at_360_width": 49.0212765957447,
+      "continue_height_at_360_width": 53.6170212765957,
+      "scope": "Layout/node metrics only, not phone GL, touch, or user acceptance."
+    },
+    "scope": "Only approved first-level normal Home/Prep/HowTo read-only nodes and actual tutorial-save handler. No other level, real GL, touch, audio or natural play."
+  },
+  "minimal_controller_test": {
+    "checks": 48,
+    "failures": [],
+    "scope": "First-level-only headless controller/entry, historical metadata recovery, hopper selector, distance gait and non-overlapping feedback. Later level numbers are rejected inputs only; no later config or scene was exercised. No GL/native input/sound/visual acceptance."
+  },
+  "source_sha256": {
+    "scripts/startup.gd": "9b9d2e3f651d7ece94644730180000d51d35b764ea626a0828c827045739b6bb",
+    "scripts/adventure_view.gd": "17b16b90420dd06f55b7552b5696c611387b90764beca5716df14680fb6a754b",
+    "scripts/play.gd": "5ce019785aa4b9c1d6b0fd5873a60b5a76027ba98275123935c58a1ab8976343",
+    "scripts/serpent_view.gd": "67f4af5d8f577d9da228ae227fc3f1df6689a9ff50644a89b987a2fca3b2cefb",
+    "tests/test_first_level_previews.gd": "c7d548c2ab4bb1331e09b742f6c7191c68f5c474dc18b8fb48260efe1d8f865f",
+    "data/serpent-levels/serpent-01.json": "e5adc544bfbb8c82d883252f70a7c36fa19695693cad9f7804a9058a6044bfea"
+  },
+  "boundaries": [
+    "No new assets or world-ball material accepted; no gameplay/config/price/upgrades/later-level changes",
+    "No real GL screenshots for this changed revision yet",
+    "Old 1493 checks did not catch the d953 actual UI defects; retained as versioned historical evidence",
+    "An independent immediate-disposal diagnostic saw a deferred scroll empty-tree error/resource-exit hint; not established as a new regression, not silently treated as clean logs",
+    "Bootstrap atlas/font are required core resources; this is not a claim that every damaged resource can reach Retry"
+  ]
+}

@@ -1,5 +1,8 @@
 # First-level Home / Prep / tutorial candidate
 
+**Later actual review:** d95384c failed four UI checks. The old numbers below remain
+historical, not visual acceptance. See [defects and the small repair](../batch-7/README.md).
+
 The prior runtime self-check found obsolete square-ball/red-cannon previews and
 an inactive armor instruction. At a 456-wide runtime window the old 18-logical-pixel
 tutorial text was only about 8.7 pixels and its 76-pixel action was too short for a

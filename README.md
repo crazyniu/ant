@@ -8,7 +8,7 @@ Latest small delta: [remove the rejected cannon-side inventory HUD](reports/firs
 
 Current animation candidate: [same-ball loading and real event clock](reports/first-level/batch-5/README.md). First-level unload is now .8s after limited real x1/x2 checks (.2 is historical); the same34-color/minimum2s schedule is retimed for real capacity, not zero-think input. Production headless replay reaches114.75s, saves138 points, peaks at4 carriers. Limited native x1 single-ball and x2 three-ball checks are recorded in batch5; overall animation/current-screen self-check remains open. Earlier batch reports remain exact historical versions.
 
-Current Home/Prep/tutorial consistency candidate: [read-only actual scene and phone-scaled illustrated rules](reports/first-level/batch-6/README.md). This fixes old preview assets and inactive armor teaching; current real GL and user acceptance are still pending. The required mobile-game UI/self-check gate is in `docs/FIRST_LEVEL_UI_SELF_CHECK.md`.
+Current Home/Prep/tutorial/Loading repair: [four defects found in actual screenshots](reports/first-level/batch-7/README.md). The earlier batch6/d953 UI failed actual review (nested Home map, tiny Prep counts, escaped tutorial dragon, unstyled Loading Back). The new small repair has 1,576 node/functional checks plus 48 controller checks; its new real GL recheck and user acceptance are still pending. The mobile-game UI/self-check gate is in `docs/FIRST_LEVEL_UI_SELF_CHECK.md`.
 
 ---
 

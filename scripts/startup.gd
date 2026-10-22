@@ -10,6 +10,10 @@ const Rules = preload("res://scripts/rescue_rules.gd")
 const SceneLayout = preload("res://scripts/scene_layout.gd")
 const FirstPreview = preload("res://scripts/first_level_preview.gd")
 const TITLE = preload("res://assets/startup/title.png")
+# These existing paint/font resources belong to the bootstrap shell, not its
+# asynchronous game batch. Error/Back controls never wait on their own loader.
+const BOOT_BUTTON_ATLAS = preload("res://assets/ui/v03/game-skin-atlas.png")
+const BOOT_FONT = preload("res://assets/fonts/Title.ttf")
 const HOME_RESOURCES: Array[String] = [
 	"res://assets/first-level/round-beads.png", "res://assets/first-level/bronze-cannon.png",
 	"res://assets/first-level/princess.png", "res://assets/first-level/slender-ants.png", "res://assets/first-level/cannon-loader.png",
@@ -166,13 +170,13 @@ func build_home() -> void:
 	audio_service=AudioService.new();audio_service.name="AudioService";audio_service.apply_settings_state(audio_visual_state);add_child(audio_service)
 	get_tree().node_added.connect(bind_new_button)
 	home_art=group("HomeArtwork")
-	var bg:=TextureRect.new();bg.name="Garden";bg.texture=loader.get_resource("res://assets/serpent/environment.png");bg.size=size;bg.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;home_art.add_child(bg)
-	var title:=TextureRect.new();title.name="BrandTitle";title.texture=TITLE;title.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;title.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;title.position=Vector2(100,125);title.size=Vector2(740,370);home_art.add_child(title)
-	# Same read-only first-level actors as Prep, not a legacy decorative battle.
+	# One full, coherent scene. Do not place a smaller opaque map over another
+	# copy of the same map. Branding/actions occupy the existing wooden footer.
 	var first_config:Dictionary=preview_source.config
-	FirstPreview.build(first_config,Rect2(192,510,556,714),home_art,"HomeLevelPreview")
-	home_button("PlayButton","play",Rect2(290,1240,360,136),func():open_adventure("preparation",level_index),true)
-	home_button("LevelsButton","levels",Rect2(397,1415,146,112),func():open_adventure("map"),false)
+	FirstPreview.build(first_config,Rect2(Vector2.ZERO,size),home_art,"HomeLevelPreview")
+	var title:=TextureRect.new();title.name="BrandTitle";title.texture=TITLE;title.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;title.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;title.position=Vector2(250,1208);title.size=Vector2(440,220);title.mouse_filter=Control.MOUSE_FILTER_IGNORE;home_art.add_child(title)
+	home_button("PlayButton","play",Rect2(270,1485,400,136),func():open_adventure("preparation",level_index),true)
+	home_button("LevelsButton","levels",Rect2(744,1489,128,128),func():open_adventure("map"),false)
 	refresh_home_profile_controls()
 	if campaign_drafts:text_label("CAMPAIGN PREVIEW",Rect2(200,82,540,38),21,"CatalogIdentity",home_art,INK,true)
 	home_ready=true;phase="home";loading_layer.hide();home_art.move_to_front();record_event("home_ready")
@@ -190,8 +194,8 @@ func refresh_home_profile_controls()->void:
 		var old:=home_art.get_node_or_null(id)
 		if old!=null:home_art.remove_child(old);old.queue_free()
 	if profile_state.ready:
-		text_label("LEVEL 1",Rect2(270,1371,400,37),22,"SavedEntrance",home_art,INK,true)
-		if profile_state.tutorial_completed:text_label("FRESH ROUND · SAVED PROGRESS KEPT",Rect2(185,1530,570,36),17,"ResumeMeaning",home_art,INK,true)
+		var entrance_text:="LEVEL 1 · FRESH ROUND" if profile_state.tutorial_completed else "LEVEL 1"
+		text_label(entrance_text,Rect2(170,1433,600,42),36,"SavedEntrance",home_art,INK,true)
 
 func show_profile_recovery(last_error:String="")->void:
 	var m:=modal("COULDN'T LOAD",Rect2(149,500,642,730))
@@ -239,7 +243,7 @@ func finish_profile_recovery()->void:
 func home_button(id:String,kind:String,bounds:Rect2,callback:Callable,primary:bool) -> void:
 	frame(bounds,id+"Art",home_art,32,"54d35b" if primary else "fff3db")
 	icon(kind,Rect2(bounds.get_center()-Vector2(45,45),Vector2(90,90)),home_art,Color("fff9e8") if primary else INK)
-	var button:=Button.new();button.name=id;button.position=bounds.position;button.size=bounds.size;button.flat=true;button.tooltip_text="Play saved level" if primary else "Choose a level";home_art.add_child(button);button.pressed.connect(callback)
+	var button:=Button.new();button.name=id;button.position=bounds.position;button.size=bounds.size;button.flat=true;button.tooltip_text="Start the first level" if primary else "Choose a level";home_art.add_child(button);button.pressed.connect(callback)
 
 func launch_game(screen:String="") -> void:
 	if launch_pending or not home_ready:return
@@ -284,10 +288,18 @@ func reset_loading_controls() -> void:
 	progress_bar.show();progress_bar.value=0
 
 func loading_button(id:String,title:String,y:float,callback:Callable) -> void:
-	var button:=Button.new();button.name=id;button.text=title;button.position=Vector2(300,y);button.size=Vector2(340,118)
-	button.add_theme_font_size_override("font_size",28);button.add_theme_color_override("font_color",INK)
-	var outline:=StyleBoxFlat.new();outline.bg_color=Color("edd0a1");outline.set_border_width_all(3);outline.border_color=Color("9a6229");outline.set_corner_radius_all(22)
-	for state in ["normal","hover","pressed"]:button.add_theme_stylebox_override(state,outline)
+	var button:=Button.new();button.name=id;button.text=title;button.position=Vector2(190,y);button.size=Vector2(560,136)
+	button.add_theme_font_override("font",BOOT_FONT);button.add_theme_font_size_override("font_size",36);button.add_theme_color_override("font_color",INK)
+	for state in ["font_hover_color","font_pressed_color","font_hover_pressed_color","font_focus_color","font_disabled_color"]:button.add_theme_color_override(state,INK)
+	var data:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/ui/v03/regions.json"))
+	var r:Array=data.game.secondary
+	var texture:=AtlasTexture.new();texture.atlas=BOOT_BUTTON_ATLAS;texture.region=Rect2(r[0],r[1],r[2],r[3]);texture.filter_clip=true
+	for state in ["normal","hover","pressed","hover_pressed","disabled"]:
+		var painted:=StyleBoxTexture.new();painted.texture=texture
+		for side in [SIDE_LEFT,SIDE_TOP,SIDE_RIGHT,SIDE_BOTTOM]:painted.set_texture_margin(side,48);painted.set_content_margin(side,32 if side in [SIDE_LEFT,SIDE_RIGHT] else 8)
+		if state in ["pressed","hover_pressed"]:painted.modulate_color=Color(.82,.76,.65)
+		elif state=="disabled":painted.modulate_color=Color(.65,.65,.65,.8)
+		button.add_theme_stylebox_override(state,painted)
 	loading_layer.add_child(button);button.pressed.connect(callback)
 
 func show_loading_back() -> void:
