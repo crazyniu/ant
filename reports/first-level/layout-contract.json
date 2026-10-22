@@ -1,7 +1,7 @@
 {
   "document_kind": "Current candidate coordinate snapshot, not runtime or user acceptance",
-  "version": "first-level-layout-doc-20261022.3",
-  "recorded_at_utc": "2026-10-22T02:14:06.039877+00:00",
+  "version": "first-level-layout-doc-20261022.4",
+  "recorded_at_utc": "2026-10-22T07:40:32.924592+00:00",
   "level_content_version": "first-level-approved-flower-candidate-20261022.1",
   "logical_canvas": [
     940,
@@ -22,7 +22,7 @@
   ],
   "ball_world_size": [
     33.5,
-    33.5
+    35.75
   ],
   "world_ant_physical_width": 62,
   "ui_preview_ant_widths": {
@@ -458,7 +458,7 @@
       0.88,
       1.0
     ],
-    "meaning": "62 is the authored model width before existing ground-depth projection; carried balls counter-scale to world diameter33.5."
+    "meaning": "62 is the authored model width before existing ground-depth projection; carried balls counter-scale to world footprint 33.5 wide × 35.75 high."
   },
   "carrier_back_contacts": "assets/first-level/slender-ants.json"
 }

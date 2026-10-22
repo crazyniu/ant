@@ -222,10 +222,15 @@ func bead(id:String,pos:Vector2,edge:float,parent:Node=self)->Control:
 	if not is_approved_first_level():return super.bead(id,pos,edge,parent)
 	var b:=ApprovedBead.new();b.color_id=id;b.edge=edge;b.position=pos;b.size=Vector2(edge,edge);b.footprint_height=edge;parent.add_child(b);return b
 
+func approved_world_ball(color_id:String,pos:Vector2,parent:Node)->Control:
+	# World ammo keeps both axes from the shared contract. UI icons deliberately
+	# remain sized by bead(); a square icon must never silently size live ammo.
+	var b:=ApprovedBead.new();b.color_id=color_id;b.edge=APPROVED_BALL_SIZE.x;b.footprint_height=APPROVED_BALL_SIZE.y
+	b.position=pos;b.size=APPROVED_BALL_SIZE;b.set_meta("world_size",APPROVED_BALL_SIZE);parent.add_child(b);return b
+
 func place_board_bead(color_id:String,x:int,y:int,plane:RefCounted,parent:Node)->Control:
 	if not is_approved_first_level():return super.place_board_bead(color_id,x,y,plane,parent)
-	var span:Vector2=APPROVED_BALL_SIZE;var center:Vector2=plane.center(x,y)
-	var b:=ApprovedBead.new();b.color_id=color_id;b.edge=span.x;b.footprint_height=span.y;b.position=center-span*.5;b.size=span;parent.add_child(b);return b
+	return approved_world_ball(color_id,plane.center(x,y)-APPROVED_BALL_SIZE*.5,parent)
 
 func approved_texture(path:String,region:Rect2,bounds:Rect2,parent:Node,id:String)->TextureRect:
 	var texture:=AtlasTexture.new();texture.atlas=load(path);texture.region=region;texture.filter_clip=true
@@ -360,7 +365,7 @@ func build_transport()->void:
 	else:cannon=art(Rect2(48,654,412,337),SceneLayout.rect(scene_layout.cannon.rect),"Cannon",layer)
 	cannon.pivot_offset=SceneLayout.point(scene_layout.cannon.pivot)
 	if is_approved_first_level():
-		var hopper:=bead("blue",SceneLayout.point(scene_layout.cannon.hopper)-cannon.position-APPROVED_BALL_SIZE*.5,APPROVED_BALL_SIZE.x,cannon);hopper.name="HopperAmmo";hopper.hide()
+		var hopper:=approved_world_ball("blue",SceneLayout.point(scene_layout.cannon.hopper)-cannon.position-APPROVED_BALL_SIZE*.5,cannon);hopper.name="HopperAmmo";hopper.hide()
 		ApprovedLoading.prepare_ball(hopper,cannon,SceneLayout.point(scene_layout.cannon.hopper)-cannon.position)
 		ApprovedLoading.build_gunner(cannon)
 	var live:=group("LiveCarriers",layer);layer.move_child(live,1)
@@ -543,8 +548,7 @@ func sync_carriers()->void:
 			var actor:=ground_ant(task.color,Vector2.ZERO,"Carrier%d"%id,container,carrier_diameter)
 			var target_cell:Array=task.path[-1]
 			var cargo_size:Vector2=APPROVED_BALL_SIZE if is_approved_first_level() else Vector2(24,27)
-			var carried:=bead(task.color,Vector2(-cargo_size.x*.5,-48),cargo_size.x,actor);carried.name="CarriedBead"
-			if is_approved_first_level():carried.footprint_height=cargo_size.y;carried.size=cargo_size;carried.set_meta("world_size",cargo_size)
+			var carried:=approved_world_ball(task.color,Vector2(-cargo_size.x*.5,-48),actor) if is_approved_first_level() else bead(task.color,Vector2(-cargo_size.x*.5,-48),cargo_size.x,actor);carried.name="CarriedBead"
 			carrier_motion.prepare(actor,task.color,carrier_diameter)
 			actor.set_meta("carrier_route",CarrierRoute.build(task.path,board_plane,SceneLayout.point(scene_layout.nest.position)))
 			carriers[id]=actor
@@ -587,7 +591,7 @@ func sync_carriers()->void:
 					var layer:Control=get_node("TransportScene")
 					loading_sources[id]=layer.get_global_transform().affine_inverse()*(carried.get_global_transform()*(carried.size*.5))
 				if not loading_balls.has(id):
-					var incoming:=bead(task.color,Vector2.ZERO,APPROVED_BALL_SIZE.x,get_node("TransportScene/Cannon"))
+					var incoming:=approved_world_ball(task.color,Vector2.ZERO,get_node("TransportScene/Cannon"))
 					incoming.name="LoadingBall%d"%id;incoming.set_meta("transport_task_id",id)
 					incoming.set_meta("delivery_us",int(task.delivery_us))
 					ApprovedLoading.prepare_ball(incoming,get_node("TransportScene/Cannon"),SceneLayout.point(scene_layout.cannon.hopper)-SceneLayout.rect(scene_layout.cannon.rect).position)

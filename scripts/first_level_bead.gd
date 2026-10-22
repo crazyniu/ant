@@ -1,7 +1,7 @@
 extends Control
 
 ## One round-cannonball material/size authority for all first-level world uses.
-const WORLD_SIZE:=Vector2(33.5,33.5)
+const WORLD_SIZE:=Vector2(33.5,35.75)
 const TEXTURE_PATH:="res://assets/first-level/round-beads.png"
 const REGIONS_PATH:="res://assets/first-level/bead-regions.json"
 static var textures:Dictionary={}

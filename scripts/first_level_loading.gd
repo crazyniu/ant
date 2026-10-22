@@ -4,6 +4,11 @@ const OCCLUSION=preload("res://scripts/first_level_loading_occlusion.gdshader")
 const OPENING_POLYGON=[Vector2(94.5,158.75),Vector2(110.25,161.25),Vector2(123,168.75),Vector2(129.5,179.25),Vector2(131.5,189),Vector2(126.75,197.5),Vector2(70,194.5),Vector2(67.25,186.25),Vector2(71.5,173.75),Vector2(81.5,163.5)]
 const GUNNER_BALL_OFFSET=Vector2(44.94,-32.81)
 const GUNNER_SCALE=62.0/966.0
+const AUTHORED_RECEIVE_BALL_SIZE=Vector2(33.5,33.5)
+static func receiving_grip_offset()->Vector2:
+	# The carrier keeps the sphere's bottom on its back. A taller rendering
+	# raises its center, so only the receiving hands follow that height change.
+	return Vector2(0.0,-(preload("res://scripts/first_level_bead.gd").WORLD_SIZE.y-AUTHORED_RECEIVE_BALL_SIZE.y)*.5)
 static func build_gunner(cannon:Control)->Node2D:
 	var gunner:=Node2D.new();gunner.name="LoaderAnt";gunner.show_behind_parent=true;cannon.add_child(gunner)
 	var shadow:=Control.new();shadow.set_script(preload("res://scripts/contact_shadow.gd"));shadow.name="ContactShadow";shadow.radius=Vector2(19,4.3);shadow.strength=.16;gunner.add_child(shadow)
@@ -20,6 +25,7 @@ static func pose_gunner(gunner:Node2D,cannon:Control,receive_center:Vector2,push
 	# metal. Full affine compensation also removes rotation/shear at the feet.
 	gunner.transform=cannon.get_transform().affine_inverse()*Transform2D(0.0,receive_center-GUNNER_BALL_OFFSET)
 	gunner.get_node("Ant").material.set_shader_parameter("push",push_world/GUNNER_SCALE)
+	gunner.get_node("Ant").material.set_shader_parameter("grip_offset",receiving_grip_offset()/GUNNER_SCALE)
 static func prepare_ball(ball:Control,cannon:TextureRect,opening:Vector2)->void:
 	var material:=ShaderMaterial.new();material.shader=OCCLUSION
 	var atlas:=cannon.texture as AtlasTexture

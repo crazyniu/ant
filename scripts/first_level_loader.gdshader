@@ -7,6 +7,8 @@ uniform vec2 source_size=vec2(1040.0,833.0);
 uniform vec4 arm_0=vec4(607.0,410.0,851.0,392.0);
 uniform vec4 arm_1=vec4(616.0,501.0,937.0,493.0);
 uniform vec2 push=vec2(0.0);
+// Only the foreleg grip follows a changed shared ball profile; feet stay fixed.
+uniform vec2 grip_offset=vec2(0.0);
 varying vec4 item_modulate;
 void vertex(){ item_modulate=COLOR; }
 float weight(vec2 p,vec4 limb){
@@ -14,7 +16,7 @@ float weight(vec2 p,vec4 limb){
     float t=clamp(dot(p-limb.xy,v)/max(dot(v,v),1.0),0.0,1.0);
     return (1.0-smoothstep(17.0,35.0,length(p-limb.xy-t*v)))*smoothstep(0.0,.75,t);
 }
-vec2 offset(vec2 p){return push*max(weight(p,arm_0),weight(p,arm_1));}
+vec2 offset(vec2 p){return (push+grip_offset)*max(weight(p,arm_0),weight(p,arm_1));}
 void fragment(){
     vec2 p=(UV-atlas_rect.xy)/atlas_rect.zw*source_size;
     vec2 q=p-offset(p);q=p-offset(q);

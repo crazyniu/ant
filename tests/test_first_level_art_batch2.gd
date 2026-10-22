@@ -16,8 +16,9 @@ func pair(v:Vector2)->Array:return [v.x,v.y]
 func check_ball(node:Control,role:String)->void:
 	var t:Transform2D=scene.get_global_transform().affine_inverse()*node.get_global_transform()
 	var dimensions:=Vector2(t.x.length()*node.size.x,t.y.length()*node.size.y)
-	check(dimensions.distance_to(Ball.WORLD_SIZE)<.001,role+" final world diameter remains 33.5")
+	check(dimensions.distance_to(Ball.WORLD_SIZE)<.001,role+" final world footprint matches the shared width and height")
 	check(node.get_script()==Ball,role+" uses the one ball implementation")
+	check(Vector2(node.edge,node.footprint_height).distance_to(node.size)<.001,role+" paint footprint equals the actual node footprint")
 	role_samples[role]=int(role_samples.get(role,0))+1
 func collect(node:Node)->void:
 	if node is Control and node.get_script()==Ball:
@@ -82,16 +83,20 @@ func run()->void:
 				var back:=contact-Vector2(item.size.x*.5,item.size.y)*item.scale+Vector2(float(pose.posture.x),float(pose.posture.y))*float(pose.source_scale)
 				var expected:=(-item.size*item.scale*.5).lerp(back,smoothstep(0,1,hold))
 				check(item.position.distance_to(expected)<.001,"Pickup lifts the full-size source-cell ball to its view-specific back")
+		for incoming in scene.loading_balls.values():check_ball(incoming,"production_loading")
+		check_ball(scene.get_node("TransportScene/Cannon/HopperAmmo"),"production_hopper")
 		for shot in scene.fx.debug_snapshot().projectiles:
 			projectile_samples+=1
-			check(scene.fx._layout.round_ball_size==Ball.WORLD_SIZE,"Actual shot uses the same 33.5 draw contract")
+			check(scene.fx._layout.round_ball_size==Ball.WORLD_SIZE,"Actual shot uses the same shared world footprint")
 			var transform:Transform2D=scene.get_global_transform().affine_inverse()*scene.fx.get_global_transform()
-			check((Vector2(transform.x.length(),transform.y.length())*scene.fx._layout.round_ball_size).distance_to(Ball.WORLD_SIZE)<.001,"Flight draw layer preserves final 33.5 world dimensions")
+			check((Vector2(transform.x.length(),transform.y.length())*scene.fx._layout.round_ball_size).distance_to(Ball.WORLD_SIZE)<.001,"Flight draw layer preserves final shared world dimensions")
 			check(scene.fx._layout.round_ball_asset==Ball.TEXTURE_PATH,"Actual shot uses the same atlas")
 			check(scene.fx._layout.round_ball_regions.has(shot.color_id),"Actual shot color maps to the same source region")
+	check(int(role_samples.get("production_loading",0))>0,"Actual task-owned loading ball sampled")
 	check(pickup_samples>0,"Actual finite pickup hold sampled")
 	check(projectile_samples>0,"Real fire events exercised flight draw parameters")
 	check(stages.has("outbound") and stages.has("returning") and stages.has("unloading"),"Live outbound, return and unloading sampled")
-	var result:Dictionary={"checks":checks,"failures":failures,"role_samples":role_samples,"projectile_draw_contract_samples":projectile_samples,"pickup_pose_samples":pickup_samples,"views":views,"scope":"Headless live nodes, source alpha, transforms and actual shot draw parameters only; not GPU pixels, rendered leg warp, animation feel, real input or user approval."}
-	var f:=FileAccess.open("res://reports/first-level/batch-2/art-test.json",FileAccess.WRITE);f.store_string(JSON.stringify(result,"\t"));f.close();print("ART_BATCH2 ",JSON.stringify(result))
+	var result:Dictionary={"checks":checks,"failures":failures,"role_samples":role_samples,"projectile_draw_contract_samples":projectile_samples,"pickup_pose_samples":pickup_samples,"views":views,"world_size":pair(Ball.WORLD_SIZE),"scope":"Headless live nodes, source alpha, transforms and actual shot draw parameters only; not GPU pixels, rendered leg warp, animation feel, real input or user approval."}
+	var destination:=OS.get_environment("ANT_ART_REPORT");if destination.is_empty():destination="user://first-level-art-test.json"
+	var f:=FileAccess.open(destination,FileAccess.WRITE);f.store_string(JSON.stringify(result,"\t"));f.close();print("ART_BATCH2 ",JSON.stringify(result))
 	scene.audio_service.stop_music();scene.audio_service.stop_all_sfx();await create_timer(.4).timeout;scene.queue_free();await process_frame;await process_frame;quit(0 if failures.is_empty() else 1)
