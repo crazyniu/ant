@@ -65,19 +65,20 @@ func build_type_card(kind:String,bounds:Rect2,owned:bool,equipped:bool)->void:
 	var effective_mult:=minf(mult*float(economy.get("level_multiplier",1.)),float(products.get("max_speed_multiplier",1.5)))
 	var speed:=SpeedEmblem.new();speed.name="SpeedEmblem_"+kind;speed.kind="speed";speed.position=bounds.position+Vector2(111,487);speed.size=Vector2(52,52);speed.ink=Color("c88420");content.add_child(speed)
 	text_label("+%d%%"%roundi((effective_mult-1.)*100.),Rect2(bounds.position+Vector2(175,482),Vector2(170,62)),38,"Speed_"+kind,content)
-	# The painted action and real Button share the same mobile-sized bounds.
+	# Keep the mobile hit target; center the slimmer paint and content inside it.
 	var action_bounds:=Rect2(bounds.position+Vector2(35,576),Vector2(335,120))
+	var paint_bounds:=Rect2(action_bounds.position+Vector2(0,15),Vector2(335,90))
 	if owned:
-		skin.panel("game/primary" if equipped else "game/secondary",action_bounds,content,"Equip_"+kind,42)
-		icon("check" if equipped else "play",Rect2(action_bounds.get_center()-Vector2(32,32),Vector2(64,64)),content,Color.WHITE if equipped else INK)
+		skin.panel("game/primary" if equipped else "game/secondary",paint_bounds,content,"Equip_"+kind,28)
+		var equip_icon:=icon("check" if equipped else "play",Rect2(action_bounds.get_center()-Vector2(32,32),Vector2(64,64)),content,Color.WHITE if equipped else INK);equip_icon.name="EquipIcon_"+kind
 		button("EquipButton_"+kind,action_bounds,func():equip_requested.emit(kind),equipped or busy,"Equipped" if equipped else "Equip "+kind)
 	else:
 		var price:int=int(products.get("types",{}).get(kind,{}).get("price",500))
 		var affordable:=int(economy.get("points",0))>=price
-		skin.panel("game/primary" if affordable else "game/secondary",action_bounds,content,"Buy_"+kind,42)
-		coin(action_bounds.position+Vector2(65,60),24)
-		text_label(str(price),Rect2(action_bounds.position+Vector2(98,28),Vector2(120,64)),38,"Price_"+kind,content,Color.WHITE if affordable else INK,affordable)
-		icon("plus" if affordable else "lock",Rect2(action_bounds.position+Vector2(246,34),Vector2(52,52)),content,Color.WHITE if affordable else INK)
+		skin.panel("game/primary" if affordable else "game/secondary",paint_bounds,content,"Buy_"+kind,28)
+		coin(action_bounds.position+Vector2(65,60),24,"PriceCoin_"+kind)
+		text_label(str(price),Rect2(action_bounds.position+Vector2(98,32),Vector2(120,56)),38,"Price_"+kind,content,Color.WHITE if affordable else INK,affordable)
+		var buy_icon:=icon("plus" if affordable else "lock",Rect2(action_bounds.position+Vector2(246,34),Vector2(52,52)),content,Color.WHITE if affordable else INK);buy_icon.name="BuyIcon_"+kind
 		button("BuyButton_"+kind,action_bounds,func():purchase_requested.emit(kind),busy or not affordable or not economy.get("ready",true),"Unlock "+kind if affordable else "Need %d points"%price)
 
 func build_training()->void:
@@ -94,10 +95,13 @@ func build_training()->void:
 	text_label("+%d%%"%roundi(((next_mult if lv<4 else multiplier)-1.)*100.),Rect2(425,1276,350,60),38,"TrainingEffect",content)
 	var b:=Rect2(409,1352,386,120)
 	var affordable:=int(economy.get("points",0))>=price
-	skin.panel("game/primary" if lv<4 and affordable else "game/secondary",b,content,"TrainAction",42)
+	skin.panel("game/primary" if lv<4 and affordable else "game/secondary",Rect2(b.position+Vector2(0,16),Vector2(386,88)),content,"TrainAction",28)
 	if lv<4:
-		coin(b.position+Vector2(72,60),24);text_label(str(price),Rect2(b.position+Vector2(110,29),Vector2(130,62)),38,"TrainingPrice",content,Color.WHITE if affordable else INK,affordable);icon("arrow" if affordable else "lock",Rect2(b.position+Vector2(283,33),Vector2(53,53)),content,Color.WHITE if affordable else INK)
-	else:icon("check",Rect2(b.get_center()-Vector2(30,30),Vector2(60,60)),content,INK)
+		coin(b.position+Vector2(72,60),24,"TrainingCoin")
+		text_label(str(price),Rect2(b.position+Vector2(110,32),Vector2(130,56)),38,"TrainingPrice",content,Color.WHITE if affordable else INK,affordable)
+		var training_icon:=icon("arrow" if affordable else "lock",Rect2(b.position+Vector2(283,34),Vector2(52,52)),content,Color.WHITE if affordable else INK);training_icon.name="TrainingIcon"
+	else:
+		var max_icon:=icon("check",Rect2(b.get_center()-Vector2(30,30),Vector2(60,60)),content,INK);max_icon.name="TrainingIcon"
 	button("TrainingButton",b,func():purchase_requested.emit("level_%d"%(lv+1)),busy or lv>=4 or not affordable or not economy.get("ready",true),"Maximum training level" if lv>=4 else ("Upgrade all colors" if affordable else "Need %d points"%price))
 
 func fixed_title(title:String,bounds:Rect2,id:String)->void:
@@ -112,12 +116,14 @@ func meta_icon(kind:String,bounds:Rect2,id:String)->void:
 		var t:=TextureRect.new();t.name=id;t.texture=load(path);t.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;t.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;t.position=bounds.position;t.size=bounds.size;t.mouse_filter=Control.MOUSE_FILTER_IGNORE;content.add_child(t)
 	else:icon("arrow",bounds,content,Color("f9c03f"))
 
-func coin(center:Vector2,radius:float)->void:
-	meta_icon("coin",Rect2(center-Vector2.ONE*radius,Vector2.ONE*radius*2.),"Coin")
+func coin(center:Vector2,radius:float,id:String="Coin")->void:
+	meta_icon("coin",Rect2(center-Vector2.ONE*radius,Vector2.ONE*radius*2.),id)
 
 func icon_action(kind:String,bounds:Rect2,call:Callable,tip:String)->void:
-	skin.panel("game/secondary",bounds,content,"BackArt",34)
-	var g:=icon("arrow",Rect2(bounds.position+Vector2(26,26),bounds.size-Vector2(52,52)),content,INK);g.name="BackArrow";g.rotation=PI;g.pivot_offset=g.size*.5
+	var disc:=AtlasTexture.new();disc.atlas=load("res://assets/first-level/deck-controls.png");disc.region=Rect2(1279,91,590,581);disc.filter_clip=true
+	var disc_size:=Vector2(100,100.0*581.0/590.0)
+	UiSkin.place_texture(disc,Rect2(bounds.get_center()-disc_size*.5,disc_size),content,"BackArt",true)
+	var g:=icon("arrow",Rect2(bounds.get_center()-Vector2(34,34),Vector2(68,68)),content,Color("ffe4a1"));g.name="BackArrow";g.rotation=PI;g.pivot_offset=g.size*.5
 	button("BackButton",bounds,call,false,tip)
 
 func button(id:String,bounds:Rect2,call:Callable,disabled:bool,tip:String)->void:
