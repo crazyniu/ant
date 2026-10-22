@@ -71,5 +71,27 @@
     "Runtime GPU/native click/animation/audio/user confirmation remain separate",
     "No later-level, world-ant, ball, dragon, cannon, shop or gameplay changes"
   ],
-  "offline_preview_boundary": "CPU sRGB tint approximation plus area-prefiltered reductions; not GPU. Earlier direct-affine previews can alias source details."
+  "offline_preview_boundary": "CPU sRGB tint approximation plus area-prefiltered reductions; not GPU. Earlier direct-affine previews can alias source details.",
+  "native_followup": {
+    "utc": "2026-10-22T03:28:25Z",
+    "build": "a1ee1d854e53b3fef4def2b3afaa588ddd741b47",
+    "pixels": [
+      1440,
+      2560
+    ],
+    "image_resampled": false,
+    "rendering_method": "gl_compatibility",
+    "png_sha256": "7f75f69d6e9f13665fc9a1a9676090da6d4f4c8112e06edb9de83d5184a56d18",
+    "checked": [
+      "complete-ant silhouette",
+      "five distinct card colors including unavailable dimming"
+    ],
+    "operator_observed": [
+      "green/purple native inputs triggered transport"
+    ],
+    "build_identity_boundary": "Driver build ref is operator-supplied; frozen worktree HEAD checked separately.",
+    "audio_driver": "Dummy",
+    "full_screen_or_user_acceptance": false,
+    "historical_boundary": "Original pending-GPU fields describe pre-follow-up source/headless delivery."
+  }
 }

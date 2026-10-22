@@ -169,7 +169,7 @@ func _ready()->void:
 	var cell_points:Dictionary={}
 	for cell in rules.board.values():cell_points["%d,%d"%[cell.x,cell.y]]=board_plane.center(cell.x,cell.y)
 	fx.set_layout({"stock_points":stock_points,"cell_points":cell_points})
-	if is_approved_first_level():fx.set_layout({"round_ball_size":APPROVED_BALL_SIZE,"round_ball_asset":ApprovedBead.TEXTURE_PATH,"round_ball_regions":JSON.parse_string(FileAccess.get_file_as_string(ApprovedBead.REGIONS_PATH))})
+	if is_approved_first_level():fx.set_layout({"round_ball_size":APPROVED_BALL_SIZE,"round_ball_asset":ApprovedBead.TEXTURE_PATH,"round_ball_regions":JSON.parse_string(FileAccess.get_file_as_string(ApprovedBead.REGIONS_PATH)),"stock_hud_feedback":false})
 	fx.auto_advance=false
 	ready_to_simulate=true
 	sync_view();consume_rule_events()
@@ -350,16 +350,18 @@ func build_transport()->void:
 	cannon.pivot_offset=SceneLayout.point(scene_layout.cannon.pivot)
 	if is_approved_first_level():
 		var hopper:=bead("blue",SceneLayout.point(scene_layout.cannon.hopper)-APPROVED_BALL_SIZE*.5,APPROVED_BALL_SIZE.x,layer);hopper.name="HopperAmmo";hopper.hide()
+	var live:=group("LiveCarriers",layer);layer.move_child(live,1)
+	# The approved first-level scene has no side inventory HUD. Ammo remains
+	# authoritative in Rules; real carriers, the hopper and shots are retained.
+	if is_approved_first_level():return
 	var stock:=group("Stock",layer)
 	var stock_colors:Array=[]
 	for color in COLORS:
 		if int(rules.initial_counts.get(color,0))>0:stock_colors.append(color)
 	for j in stock_colors.size():
 		var color:String=stock_colors[j];var anchor:=SceneLayout.stock_anchor(scene_layout,j)
-		if is_approved_first_level():bead(color,anchor+Vector2(24-APPROVED_BALL_SIZE.x*.5,-APPROVED_BALL_SIZE.y*.5),APPROVED_BALL_SIZE.x,stock)
-		else:bead(color,anchor+Vector2(12,-18),25,stock)
+		bead(color,anchor+Vector2(12,-18),25,stock)
 		var label:=text_label("0",Rect2(anchor+Vector2(0,13),Vector2(53,34)),23,"Count_"+color,stock,Color("fff7d9"));label.add_theme_color_override("font_outline_color",Color("573719"));label.add_theme_constant_override("outline_size",5)
-	var live:=group("LiveCarriers",layer);layer.move_child(live,1)
 
 func build_hud()->void:
 	if is_approved_first_level():build_approved_hud();return
@@ -472,7 +474,8 @@ func sync_view()->void:
 	get_node("WorkSlots/CarrierCount").text="%d / %d"%[int(view_snapshot.carrier_count),int(view_snapshot.carrier_limit)]
 	get_node("WorkSlots/CapacityState").text="BUSY" if view_snapshot.capacity_full else ""
 	sync_approved_transport_displays()
-	for color in color_buttons:get_node("TransportScene/Stock/Count_"+color).text=str(rules.inventory.get(color,0))
+	if not is_approved_first_level():
+		for color in color_buttons:get_node("TransportScene/Stock/Count_"+color).text=str(rules.inventory.get(color,0))
 	get_node("TopHUD/SpeedLabel").text="×%d"%rules.speed_multiplier
 	serpent.sync_snapshot(view_snapshot)
 	var projectile:Dictionary=rules.projectile
@@ -574,7 +577,7 @@ func consume_rule_events()->void:
 		if event.type in ["cannon_fired","segment_hit","segment_removed"]:
 			fx.set_layout({"dragon_hit":serpent.target_point(str(event.get("target_segment_id",event.get("segment_id",""))),float(event.get("target_s",rules.head_s())))})
 		fx.consume_event(event);serpent.consume_event(event)
-		if event.type=="bead_delivered":stock_arrivals[event.color]=event.time_us
+		if event.type=="bead_delivered" and not is_approved_first_level():stock_arrivals[event.color]=event.time_us
 		if sound_map.has(event.type):audio_service.play_event(sound_map[event.type])
 		if event.type in ["victory","defeat"] and last_outcome.is_empty():
 			last_outcome=event.type

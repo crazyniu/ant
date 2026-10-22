@@ -1,0 +1,102 @@
+{
+  "base_commit": "a1ee1d854e53b3fef4def2b3afaa588ddd741b47",
+  "generated_at_utc": "2026-10-22T03:35:45.263469+00:00",
+  "status": "Rejected side inventory HUD removed; first-ball node test passed, this delta not yet GL-reviewed",
+  "headless": {
+    "checkpoints": [
+      {
+        "board": 240,
+        "carriers": 0,
+        "delivered_blue": 0,
+        "hits_blue": 0,
+        "inventory_blue": 0,
+        "name": "initial",
+        "shots_blue": 0,
+        "spent_blue": 0,
+        "time_us": 0
+      },
+      {
+        "board": 239,
+        "carriers": 1,
+        "delivered_blue": 0,
+        "hits_blue": 0,
+        "inventory_blue": 0,
+        "name": "pickup",
+        "shots_blue": 0,
+        "spent_blue": 0,
+        "time_us": 3700000
+      },
+      {
+        "board": 239,
+        "carriers": 1,
+        "delivered_blue": 0,
+        "hits_blue": 0,
+        "inventory_blue": 0,
+        "name": "unloading",
+        "shots_blue": 0,
+        "spent_blue": 0,
+        "time_us": 8625000
+      },
+      {
+        "board": 239,
+        "carriers": 0,
+        "delivered_blue": 1,
+        "hits_blue": 0,
+        "inventory_blue": 0,
+        "name": "delivery-and-fire",
+        "shots_blue": 1,
+        "spent_blue": 1,
+        "time_us": 8825000
+      },
+      {
+        "board": 239,
+        "carriers": 0,
+        "delivered_blue": 1,
+        "hits_blue": 1,
+        "inventory_blue": 0,
+        "name": "hit",
+        "shots_blue": 1,
+        "spent_blue": 1,
+        "time_us": 9275000
+      }
+    ],
+    "checks": 87,
+    "event_times_us": {
+      "bead_delivered": 8825000,
+      "bead_picked_up": 3700000,
+      "bead_unloading": 8625000,
+      "cannon_fired": 8825000,
+      "segment_hit": 9275000
+    },
+    "failures": [],
+    "scope": "First-level rejected side inventory HUD removal and actual first-blue-ball pickup, unload, ammo debit, flight, pause and hit. No new loading animation, native pointer/GL test, full replay, later level or user acceptance."
+  },
+  "node_delta": {
+    "initial_render_records_before": 327,
+    "initial_render_records_after": 317,
+    "removed_render_records": 10,
+    "removed_kind": "five side inventory balls and five labels",
+    "unchanged_render_records": 317,
+    "comparison_note": "315 identically named records unchanged; the two remaining TopHUD anonymous controls have identical content and shifted generated names after removal."
+  },
+  "changed_source_hashes": {
+    "scripts/play.gd": "e8591cacee44246215b5f4e29cdc8fde2b1e6d5951064181d6562f50b61885f3",
+    "scripts/rescue_fx.gd": "1bd799a4cf38bec178d8594d805d1d62c04bd228f3fda4b59a9ed4a4f0e954a2",
+    "tests/test_first_level_inventory_hud.gd": "da44d4ffcbd88231f681028b5844bd51258a0815462cfd37c2d4bc1f4c908dd9"
+  },
+  "unchanged_source_hashes": {
+    "scripts/rescue_rules.gd": "61c7718f206b4bcc8dc96fcdd1bb67a19ba2a0fda43a9041abddc3f400472942",
+    "data/serpent-levels/serpent-01.json": "bf09222005648bdc853e3fa7bab15c505dc297b0931ded1d9be3bfa0af2896b5",
+    "data/scenes/first-level-approved.json": "78a3acdc51da5a95f66cda0df4b1fc2f44ff9aabe749fba158afb76f0ba8d957",
+    "scripts/first_level_color.gdshader": "d6bcc8c073749c55ab74aa7fba04026d01452dcb019b42f384df4dadb078c2bb",
+    "assets/first-level/card-portrait.png": "ddc98e3300dbdbac8e08847776dfe755f9326632cb4e2abf5f603a658d499377"
+  },
+  "not_claimed": [
+    "Full cannon loading/hand-off animation",
+    "Native GL appearance of this HUD-removal delta",
+    "Native input or full-round completion in this test",
+    "Audio listening",
+    "User visual acceptance",
+    "Later levels"
+  ]
+}

@@ -56,6 +56,7 @@ var _layout := {
 	"cell_points": {}, "board_origin": Vector2(147.25, 324.25), "cell_size": Vector2(19.1, 18.5),
 	"rescue_center": Vector2(829, 163), "route_direction": Vector2.RIGHT,
 	"route_units_to_pixels": 1.0,
+	"stock_hud_feedback": true,
 	"stock_points": {"red": Vector2(404, 1007), "blue": Vector2(585, 966),
 		"yellow": Vector2(657, 966), "green": Vector2(729, 966),
 		"purple": Vector2(801, 966), "white": Vector2(873, 966)},
@@ -207,10 +208,13 @@ func consume_event(event: Dictionary, context: Dictionary = {}) -> bool:
 			# mechanic. No persistent ring or overlapping multicolor explosion.
 			_burst(origin, IVORY, 3, "contact", seed_value, 14.0, 0.20)
 		"bead_delivered":
-			var stocks: Dictionary = _layout.stock_points
-			var stock: Vector2 = stocks.get(str(event.get("color", "")), _layout.cannon_center)
-			_flight_spark(_layout.nest, stock, color, seed_value)
-			_ring(stock, color, 16.0, 0.38)
+			# Do not animate toward a removed inventory display. This is only
+			# legacy HUD feedback, never the authoritative ball/ammo transfer.
+			if bool(_layout.stock_hud_feedback):
+				var stocks: Dictionary = _layout.stock_points
+				var stock: Vector2 = stocks.get(str(event.get("color", "")), _layout.cannon_center)
+				_flight_spark(_layout.nest, stock, color, seed_value)
+				_ring(stock, color, 16.0, 0.38)
 		"cannon_fired":
 			_fire(event, color, seed_value)
 		"segment_hit":

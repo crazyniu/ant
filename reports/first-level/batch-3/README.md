@@ -39,3 +39,9 @@ The current tree retains only current runtime art, test/comparison code and conc
 - A supported desktop Godot route is available. Separate actual device logs report audio fallback to Dummy; no sound listening pass is claimed.
 
 [#5](https://github.com/crazyniu/ant/issues/5) and [#9](https://github.com/crazyniu/ant/issues/9) stay open. Only first level; no merge/deploy or later-level unlock.
+
+## Native GPU follow-up, 2026-10-22 03:28:25 UTC
+
+A real OpenGL compatibility root-viewport readback of frozen a1ee1d8 is 1440×2560 with no image resampling. It shows the complete ants and distinct blue/red/yellow/green/purple cards, including recognizable unavailable red/yellow dimming. The desktop operator also exercised the green/purple controls and observed transport. This verifies these two local visual corrections, not overall1:1, the complete round, other animations or user acceptance.
+
+Capture SHA-256: `7f75f69d6e9f13665fc9a1a9676090da6d4f4c8112e06edb9de83d5184a56d18`. The capture driver records an operator-supplied build ref rather than automatically verifying Git; the operator checked the frozen worktree HEAD separately. Full screenshot/metadata remain local rather than accumulating another large asset in the repository. The earlier pending-GPU statements above describe the source/headless delivery point before this follow-up. Actual audio driver is Dummy; this is not sound acceptance.
