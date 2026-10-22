@@ -357,7 +357,7 @@ func modal(title: String, rect: Rect2 = Rect2(170,520,600,620)) -> Control:
 	skin.sprite("settings/title",Rect2(470-title_width/2,rect.position.y-47,title_width,145),pause_overlay,"WoodTitlePlaque")
 	title_art(title,Rect2(470-title_width/2+44,rect.position.y-5,title_width-88,65),pause_overlay)
 	skin.sprite("settings/close",Rect2(rect.end.x-57,rect.position.y-29,80,80),pause_overlay,"PaintedClose")
-	var close:=Button.new();close.name="CloseButton";close.flat=true;close.position=Vector2(rect.end.x-73,rect.position.y-45);close.size=Vector2(112,112);close.tooltip_text="Close";pause_overlay.add_child(close);close.pressed.connect(close_current_modal)
+	var close:=Button.new();close.name="CloseButton";close.flat=true;close.position=Vector2(rect.end.x-77,rect.position.y-49);close.size=Vector2(120,120);close.tooltip_text="Close";pause_overlay.add_child(close);close.pressed.connect(close_current_modal)
 	return pause_overlay
 
 func close_button(parent: Control, title: String, at_y: float) -> void:
@@ -367,9 +367,21 @@ func close_button(parent: Control, title: String, at_y: float) -> void:
 	b.pressed.connect(dismiss_modal)
 
 func action(parent: Control, title: String, at_y: float, callback: Callable, primary: bool = false) -> void:
-	frame(Rect2(274,at_y,392,76),"Action_"+title,parent,24,"54d35b" if primary else "fff4de","27a33e" if primary else "edc995","258338" if primary else "c7985e")
-	text_label(title,Rect2(282,at_y+5,376,59),27,"Text_"+title,parent,Color.WHITE if primary else INK)
-	var b:=Button.new();b.name="Button_"+title;b.flat=true;b.position=Vector2(274,at_y);b.size=Vector2(392,76);parent.add_child(b);b.pressed.connect(callback)
+	# 118 logical units remain 45pt high on a 360pt-wide portrait phone.
+	# Use the authored enamel/gold buttons, not the narrow list-row treatment.
+	var bounds:=Rect2(190,at_y,560,118)
+	skin.panel("game/primary" if primary else "game/secondary",bounds,parent,"Action_"+title,44)
+	text_label(title,Rect2(210,at_y+8,520,102),38,"Text_"+title,parent,Color.WHITE if primary else INK)
+	var b:=Button.new();b.name="Button_"+title;b.flat=true;b.position=bounds.position;b.size=bounds.size;b.tooltip_text=title;parent.add_child(b);b.pressed.connect(callback)
+
+func modal_copy(value:String,rect:Rect2,px:int,id:String,parent:Control)->Label:
+	# Finish layout before attachment: modal motion caches the initial position.
+	var label:=Label.new();label.name=id;label.text=value;label.position=rect.position;label.size=rect.size
+	label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;label.vertical_alignment=VERTICAL_ALIGNMENT_CENTER
+	label.add_theme_font_override("font",font);label.add_theme_font_size_override("font_size",px)
+	label.add_theme_color_override("font_color",INK);label.mouse_filter=Control.MOUSE_FILTER_IGNORE;parent.add_child(label)
+	return label
 
 func show_screen(which: String) -> void:
 	match which:
@@ -387,11 +399,11 @@ func show_screen(which: String) -> void:
 		"error": show_error()
 
 func show_pause() -> void:
-	var m:=modal("PAUSED")
-	action(m,"CONTINUE",704,dismiss_modal,true)
-	action(m,"SETTINGS",801,show_settings)
-	action(m,"LEVEL SELECT",898,show_leave)
-	action(m,"RESTART",995,func():show_restart())
+	var m:=modal("PAUSED",Rect2(130,480,680,830))
+	action(m,"CONTINUE",724,dismiss_modal,true)
+	action(m,"SETTINGS",864,show_settings)
+	action(m,"LEVEL SELECT",1004,show_leave)
+	action(m,"RESTART",1144,func():show_restart())
 
 func show_restart() -> void:
 	var m:=modal("RESTART LEVEL?")
@@ -415,13 +427,15 @@ func show_settings() -> void:
 		var fill_clip:=Control.new();fill_clip.name="ProgressClip%d"%i;fill_clip.position=Vector2(369,y+15);fill_clip.size=Vector2(306*audio_visual_state[key]/100.0,27);fill_clip.clip_contents=true;fill_clip.mouse_filter=Control.MOUSE_FILTER_IGNORE;m.add_child(fill_clip)
 		skin.sprite("settings/fill",Rect2(0,0,306,27),fill_clip,"AmberFill")
 		var knob:=skin.sprite("settings/knob",Rect2(346+audio_visual_state[key]*3.06,y+3,49,49),m,"PearlKnob%d"%i)
-		var slider:=HSlider.new();slider.name="MusicVolume" if i==0 else "SoundVolume";slider.position=Vector2(346,y);slider.size=Vector2(355,57);slider.value=audio_visual_state[key];slider.tooltip_text="Music volume · 0 = mute" if i==0 else "Sound volume · 0 = mute";m.add_child(slider)
+		# Expand only vertical input bounds around the original 57-unit track center.
+		# Width and grabber stay unchanged, preserving the 306-unit volume mapping.
+		var slider:=HSlider.new();slider.name="MusicVolume" if i==0 else "SoundVolume";slider.position=Vector2(346,y-30.5);slider.size=Vector2(355,118);slider.value=audio_visual_state[key];slider.tooltip_text="Music volume · 0 = mute" if i==0 else "Sound volume · 0 = mute";m.add_child(slider)
 		var blank:=texture_from_svg('<svg xmlns="http://www.w3.org/2000/svg" width="49" height="49"/>')
 		for state in ["slider","grabber_area","grabber_area_highlight","focus"]:slider.add_theme_stylebox_override(state,StyleBoxEmpty.new())
 		for state in ["grabber","grabber_highlight","grabber_disabled"]:slider.add_theme_icon_override(state,blank)
 		if key=="sound":slider.drag_ended.connect(func(changed):
 			if changed:audio_service.play_ui_click())
-		slider.value_changed.connect(func(value):audio_visual_state[key]=value;audio_visual_state[key+"_muted"]=value==0;fill_clip.size.x=306*value/100.0;knob.position.x=346+value*3.06;audio_service.apply_settings_state(audio_visual_state))
+		slider.value_changed.connect(func(value):audio_visual_state[key]=value;audio_visual_state[key+"_muted"]=value==0;fill_clip.size.x=306*value/100.0;ui_motion.set_live_position(knob,Vector2(346+value*3.06,y+3));audio_service.apply_settings_state(audio_visual_state))
 
 func close_current_modal() -> void:
 	if modal_title in ["SETTINGS","RESTART LEVEL?","LEAVE THIS LEVEL?","CHOOSE A LEVEL"]:show_pause()

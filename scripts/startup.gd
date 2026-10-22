@@ -202,18 +202,18 @@ func refresh_home_profile_controls()->void:
 		entrance.add_theme_constant_override("outline_size",5)
 
 func show_profile_recovery(last_error:String="")->void:
-	var m:=modal("COULDN'T LOAD",Rect2(149,500,642,730))
-	text_label("YOUR SAVE HAS NOT BEEN RESET",Rect2(185,650,570,50),22,"RecoveryTitle",m)
+	var m:=modal("COULDN'T LOAD",Rect2(130,350,680,1080))
+	modal_copy("YOUR SAVE\nHAS NOT BEEN RESET",Rect2(190,490,560,110),38,"RecoveryTitle",m)
 	var reasons:Array[String]=[]
 	if not profile_state.get("ready",false):reasons.append("PROGRESS: "+str(profile_state.get("reason","load_failed")).replace("_"," ").to_upper())
 	if not economy_state.get("ready",false):reasons.append("POINTS: "+str(economy_state.get("reason","load_failed")).replace("_"," ").to_upper())
 	if not last_error.is_empty():reasons.append(last_error.replace("_"," ").to_upper())
-	text_label("\n".join(reasons),Rect2(175,725,590,115),16,"RecoveryReason",m)
-	text_label("PLAY IS BLOCKED UNTIL RECOVERY SUCCEEDS",Rect2(170,850,600,45),17,"RecoveryNotice",m)
-	action(m,"RETRY LOAD",940,retry_profile_load,true)
+	modal_copy("\n".join(reasons),Rect2(190,612,560,224),32,"RecoveryReason",m)
+	modal_copy("PLAY IS BLOCKED UNTIL\nRECOVERY SUCCEEDS",Rect2(190,850,560,95),32,"RecoveryNotice",m)
+	action(m,"RETRY LOAD",975,retry_profile_load,true)
 	if profile_state.get("recovery_allowed",false) or economy_state.get("recovery_allowed",false):
-		action(m,"RESTORE BACKUP",1040,restore_profile_backups)
-		text_label("RESTORES THE LAST VALID LOCAL BACKUP",Rect2(175,1140,590,40),16,"BackupNotice",m)
+		action(m,"RESTORE BACKUP",1115,restore_profile_backups)
+		modal_copy("RESTORES THE LAST VALID\nLOCAL BACKUP",Rect2(190,1255,560,95),32,"BackupNotice",m)
 
 func retry_profile_load()->void:
 	profile_state=saves.load_save().state;economy_state=progression.load_save().state
@@ -481,10 +481,10 @@ func close_current_modal()->void:
 func show_meta_failure(reason:String,retry_settings:bool=false,retry_navigation:bool=false)->void:
 	meta_settings_recovery_pending=retry_settings
 	meta_navigation_recovery_pending=retry_navigation
-	var m:=modal("COULDN'T SAVE",Rect2(149,500,642,620))
-	text_label("VOLUME CHANGES ARE NOT SAVED" if retry_settings else ("MAP POSITION IS NOT SAVED" if retry_navigation else "YOUR SAVED PROGRESS IS KEPT"),Rect2(185,685,570,50),22,"SafeSave",m)
-	text_label(reason.replace("_"," ").to_upper(),Rect2(185,758,570,80),19,"SaveReason",m)
-	action(m,"TRY AGAIN",945,func():
+	var m:=modal("COULDN'T SAVE",Rect2(130,470,680,790))
+	modal_copy("VOLUME CHANGES\nARE NOT SAVED" if retry_settings else ("MAP POSITION\nIS NOT SAVED" if retry_navigation else "YOUR SAVED PROGRESS\nIS KEPT"),Rect2(190,670,560,110),38,"SafeSave",m)
+	modal_copy(reason.replace("_"," ").to_upper(),Rect2(190,810,560,140),32,"SaveReason",m)
+	action(m,"TRY AGAIN",1060,func():
 		if meta_navigation_recovery_pending:
 			if save_navigation():close_current_modal()
 			return

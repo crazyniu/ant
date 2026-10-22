@@ -71,6 +71,14 @@ func _restore_transform(target: Control) -> void:
 	var rest:=_rest(target)
 	target.position=rest.position;target.scale=rest.scale;target.pivot_offset=rest.pivot
 
+func set_live_position(target:Control,position:Vector2)->void:
+	# A drag during modal entrance owns its artwork position immediately. Do not
+	# let the original reveal tween or a later close restore an obsolete value.
+	_cancel(target,TRANSFORM_META)
+	_restore_transform(target)
+	var rest:=_rest(target);rest.position=position
+	target.set_meta(REST_META,rest);target.position=position
+
 func prepare_modal(overlay: Control, center: Vector2) -> void:
 	discard_retired()
 	overlay.mouse_filter=Control.MOUSE_FILTER_STOP

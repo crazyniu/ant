@@ -42,6 +42,7 @@ var pending_save_kind := ""
 var pending_entrance := 0
 var last_save_reason := ""
 var settings_dirty := false
+var settings_return_to_pause := false
 var recovery_reset_confirm := false
 var scout_result: Dictionary = {}
 var scout_seconds := 0.0
@@ -698,7 +699,9 @@ func close_current_modal()->void:
 		return
 	if modal_title=="YOUR FIRST RESCUE":finish_tutorial();return
 	if modal_title=="SETTINGS":
-		if commit_settings():show_pause()
+		if commit_settings():
+			if settings_return_to_pause:show_pause()
+			else:dismiss_modal()
 		return
 	if modal_title=="COULDN'T SAVE":
 		if pending_save_kind=="victory":show_save_error()
@@ -730,6 +733,8 @@ func show_pause()->void:
 
 func show_settings()->void:
 	if not profile_state.get("ready",false):show_load_recovery();return
+	# Recovery rebuilds the settings page but must not replace its original caller.
+	if modal_title not in ["SETTINGS","COULDN'T SAVE"]:settings_return_to_pause=modal_title=="PAUSED"
 	super.show_settings()
 	for name in ["MusicVolume","SoundVolume"]:
 		var slider:HSlider=pause_overlay.get_node(name)
@@ -787,26 +792,26 @@ func finish_tutorial()->void:
 	pending_save_kind="";modal_title="";dismiss_modal()
 
 func show_restart()->void:
-	var m:=modal("RESTART LEVEL?")
-	skin.sprite("game/recall",Rect2(402,666,136,136),m,"RecallEmblem")
-	text_label("YOUR CURRENT ROUND WILL RESET",Rect2(204,835,532,54),22,"RestartWarning",m)
-	action(m,"RESTART",929,func():replace_level(level_index),true);action(m,"CANCEL",1025,show_pause)
+	var m:=modal("RESTART LEVEL?",Rect2(130,470,680,820))
+	skin.sprite("game/recall",Rect2(402,610,136,136),m,"RecallEmblem")
+	modal_copy("YOUR CURRENT ROUND\nWILL RESET",Rect2(190,790,560,110),38,"RestartWarning",m)
+	action(m,"RESTART",1000,func():replace_level(level_index),true);action(m,"CANCEL",1140,show_pause)
 
 func show_leave()->void:
-	var m:=modal("LEAVE THIS LEVEL?")
-	icon("arrow",Rect2(402,666,136,136),m,Color("d08436"))
-	text_label("SELECTING A LEVEL STARTS A FRESH ROUND",Rect2(193,828,554,54),19,"LeaveWarning",m)
-	text_label("SAVED COMPLETIONS STAY UNLOCKED",Rect2(204,881,532,48),20,"ProgressNotice",m)
-	action(m,"LEVEL SELECT",971,show_levels,true)
-	action(m,"CANCEL",1055,show_pause)
+	var m:=modal("LEAVE THIS LEVEL?",Rect2(130,470,680,820))
+	icon("arrow",Rect2(402,610,136,136),m,Color("d08436"))
+	modal_copy("SELECTING A LEVEL\nSTARTS A FRESH ROUND",Rect2(190,770,560,110),38,"LeaveWarning",m)
+	modal_copy("SAVED COMPLETIONS\nSTAY UNLOCKED",Rect2(190,892,560,86),32,"ProgressNotice",m)
+	action(m,"LEVEL SELECT",1000,show_levels,true)
+	action(m,"CANCEL",1140,show_pause)
 
 func show_levels(_page:int=-1)->void:
 	if pending_save_kind=="victory":show_save_error();return
 	if rules.status=="running":
-		var m:=modal("LEAVE THIS LEVEL?")
-		text_label("THIS ROUND WILL START OVER",Rect2(204,790,532,54),24,"LeaveWarning",m)
-		action(m,"LEAVE",945,func():transition_to_startup("map"),true)
-		action(m,"CANCEL",1040,show_pause)
+		var m:=modal("LEAVE THIS LEVEL?",Rect2(130,470,680,820))
+		modal_copy("THIS ROUND\nWILL START OVER",Rect2(190,750,560,110),38,"LeaveWarning",m)
+		action(m,"LEAVE",1000,func():transition_to_startup("map"),true)
+		action(m,"CANCEL",1140,show_pause)
 	else:transition_to_startup("map")
 
 func build_level_tile(parent:Control,entry:Dictionary,bounds:Rect2)->void:
@@ -904,14 +909,14 @@ func show_outcome(won:bool)->void:
 	var shop_button:=Button.new();shop_button.name="ShopButton";shop_button.flat=true;shop_button.position=shop_bounds.position;shop_button.size=shop_bounds.size;shop_button.tooltip_text="Ant shop";m.add_child(shop_button);shop_button.pressed.connect(func():transition_to_startup("shop"))
 
 func show_save_error()->void:
-	var m:=modal("COULDN'T SAVE",Rect2(149,520,642,650))
-	skin.sprite("game/recall",Rect2(402,662,136,136),m,"SaveRecoveryEmblem")
-	var copy:Dictionary={"victory":"LEVEL COMPLETE · SAVE PENDING","settings":"VOLUME CHANGES ARE NOT SAVED","tutorial":"TUTORIAL CHOICE IS NOT SAVED","entrance":"LEVEL ENTRY WAS NOT SAVED"}
-	text_label(copy.get(pending_save_kind,"LOCAL SAVE IS UNAVAILABLE"),Rect2(193,823,554,48),21,"SaveStatus",m)
-	text_label("RETRY WITHOUT LOSING THIS RESULT" if pending_save_kind=="victory" else "YOUR PREVIOUS SAVE IS KEPT",Rect2(193,880,554,44),19,"SaveNotice",m)
-	text_label(last_save_reason.replace("_"," ").to_upper(),Rect2(180,926,580,34),15,"SaveReason",m)
-	action(m,"RETRY SAVE",982,retry_save,true)
-	if pending_save_kind!="victory":action(m,"BACK",1070,close_current_modal)
+	var m:=modal("COULDN'T SAVE",Rect2(130,400,680,960))
+	skin.sprite("game/recall",Rect2(402,530,136,136),m,"SaveRecoveryEmblem")
+	var copy:Dictionary={"victory":"LEVEL COMPLETE\nSAVE PENDING","settings":"VOLUME CHANGES\nARE NOT SAVED","tutorial":"TUTORIAL CHOICE\nIS NOT SAVED","entrance":"LEVEL ENTRY\nWAS NOT SAVED"}
+	modal_copy(copy.get(pending_save_kind,"LOCAL SAVE IS UNAVAILABLE"),Rect2(190,694,560,110),38,"SaveStatus",m)
+	modal_copy("RETRY WITHOUT LOSING\nTHIS RESULT" if pending_save_kind=="victory" else "YOUR PREVIOUS SAVE IS KEPT",Rect2(190,822,560,90),32,"SaveNotice",m)
+	modal_copy(last_save_reason.replace("_"," ").to_upper(),Rect2(190,930,560,110),32,"SaveReason",m)
+	action(m,"RETRY SAVE",1064,retry_save,true)
+	if pending_save_kind!="victory":action(m,"BACK",1204,close_current_modal)
 
 func retry_save()->void:
 	match pending_save_kind:
@@ -925,14 +930,14 @@ func retry_save()->void:
 		_:show_load_recovery()
 
 func show_load_recovery()->void:
-	var m:=modal("COULDN'T LOAD",Rect2(149,520,642,700))
-	text_label("YOUR SAVE HAS NOT BEEN RESET",Rect2(185,654,570,48),23,"RecoveryTitle",m)
-	text_label(str(profile_state.get("reason","load_failed")).replace("_"," ").to_upper(),Rect2(170,716,600,48),16,"RecoveryReason",m)
-	text_label("PLAY IS BLOCKED UNTIL RECOVERY SUCCEEDS",Rect2(175,778,590,45),18,"RecoveryNotice",m)
-	action(m,"RETRY LOAD",854,retry_load,true)
+	var m:=modal("COULDN'T LOAD",Rect2(130,350,680,1080))
+	modal_copy("YOUR SAVE\nHAS NOT BEEN RESET",Rect2(190,490,560,110),38,"RecoveryTitle",m)
+	modal_copy(str(profile_state.get("reason","load_failed")).replace("_"," ").to_upper(),Rect2(190,622,560,125),32,"RecoveryReason",m)
+	modal_copy("PLAY IS BLOCKED UNTIL\nRECOVERY SUCCEEDS",Rect2(190,769,560,95),32,"RecoveryNotice",m)
+	action(m,"RETRY LOAD",920,retry_load,true)
 	if profile_state.get("recovery_allowed",false):
-		action(m,"RESTORE BACKUP",944,restore_backup)
-		action(m,"RESET PROGRESS",1034,confirm_progress_reset)
+		action(m,"RESTORE BACKUP",1060,restore_backup)
+		action(m,"RESET PROGRESS",1200,confirm_progress_reset)
 
 func retry_load()->void:
 	var result:Dictionary=saves.load_save();profile_state=result.state
@@ -947,11 +952,11 @@ func restore_backup()->void:
 
 func confirm_progress_reset()->void:
 	recovery_reset_confirm=true
-	var m:=modal("COULDN'T LOAD",Rect2(149,570,642,590))
-	text_label("RESET ALL COMPLETIONS AND SETTINGS?",Rect2(180,716,580,50),21,"ResetWarning",m)
-	text_label("PRESERVED RECOVERY FILES WILL BE KEPT",Rect2(180,780,580,45),18,"PreservationNotice",m)
-	action(m,"RESET PROGRESS",900,reset_saved_progress,true)
-	action(m,"CANCEL",995,func():recovery_reset_confirm=false;show_load_recovery())
+	var m:=modal("COULDN'T LOAD",Rect2(130,470,680,820))
+	modal_copy("RESET ALL COMPLETIONS\nAND SETTINGS?",Rect2(190,670,560,110),38,"ResetWarning",m)
+	modal_copy("PRESERVED RECOVERY FILES\nWILL BE KEPT",Rect2(190,810,560,95),32,"PreservationNotice",m)
+	action(m,"RESET PROGRESS",1000,reset_saved_progress,true)
+	action(m,"CANCEL",1140,func():recovery_reset_confirm=false;show_load_recovery())
 
 func reset_saved_progress()->void:
 	if not recovery_reset_confirm:return
@@ -961,12 +966,12 @@ func reset_saved_progress()->void:
 	else:profile_state.reason=result.reason;show_load_recovery()
 
 func show_error()->void:
-	var m:=modal("COULDN'T LOAD")
-	text_label("THIS ROUND NEEDS A SAFE RESTART",Rect2(195,773,550,54),22,"ErrorTitle",m)
-	text_label("NO AMMO OR PROGRESS WAS INVENTED",Rect2(195,838,550,48),20,"RecoveryNotice",m)
-	if not level_load_reason.is_empty():text_label(level_load_reason.replace("_"," ").to_upper(),Rect2(190,890,560,38),16,"LoadReason",m)
-	action(m,"TRY AGAIN" if rules.status=="load_error" else "RESTART",951,func():replace_level(level_index),true)
-	action(m,"LEVEL SELECT",1041,show_levels)
+	var m:=modal("COULDN'T LOAD",Rect2(130,470,680,820))
+	modal_copy("THIS ROUND NEEDS\nA SAFE RESTART",Rect2(190,650,560,110),38,"ErrorTitle",m)
+	modal_copy("NO AMMO OR PROGRESS\nWAS INVENTED",Rect2(190,785,560,90),32,"RecoveryNotice",m)
+	if not level_load_reason.is_empty():modal_copy(level_load_reason.replace("_"," ").to_upper(),Rect2(190,887,560,90),32,"LoadReason",m)
+	action(m,"TRY AGAIN" if rules.status=="load_error" else "RESTART",1000,func():replace_level(level_index),true)
+	action(m,"LEVEL SELECT",1140,show_levels)
 
 func replace_level(index:int)->void:
 	if replacement_pending or index<1 or index>level_ids.size():return
@@ -980,11 +985,11 @@ func replace_level(index:int)->void:
 func request_home()->void:
 	if pending_save_kind=="victory":show_save_error();return
 	if rules.status=="running":
-		var m:=modal("LEAVE THIS LEVEL?")
-		icon("home",Rect2(402,666,136,136),m,Color("d08436"))
-		text_label("THIS ROUND WILL START OVER",Rect2(204,828,532,54),24,"LeaveWarning",m)
-		text_label("COMPLETED LEVELS STAY UNLOCKED",Rect2(204,881,532,48),20,"ProgressNotice",m)
-		action(m,"HOME",971,return_home,true);action(m,"CANCEL",1055,show_pause)
+		var m:=modal("LEAVE THIS LEVEL?",Rect2(130,470,680,820))
+		icon("home",Rect2(402,610,136,136),m,Color("d08436"))
+		modal_copy("THIS ROUND\nWILL START OVER",Rect2(190,770,560,110),38,"LeaveWarning",m)
+		modal_copy("COMPLETED LEVELS\nSTAY UNLOCKED",Rect2(190,892,560,86),32,"ProgressNotice",m)
+		action(m,"HOME",1000,return_home,true);action(m,"CANCEL",1140,show_pause)
 	else:return_home()
 
 func return_home()->void:
