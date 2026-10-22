@@ -9,6 +9,14 @@ var evidence_directory:=""
 func check(ok:bool,note:String)->void:
 	checks+=1
 	if not ok:failures.append(note);push_error(note)
+func check_card_hints(phase:String)->void:
+	var messages:Dictionary={"ready":"Send one ant","blocked":"No reachable ball","all_reserved":"Matching balls are already claimed","collected":"All balls collected"}
+	for color in scene.color_buttons:
+		var button:Button=scene.color_buttons[color]
+		var state:String=str(scene.view_snapshot.color_states[color].state)
+		var message:String="All four ants are busy" if scene.view_snapshot.capacity_full else str(messages.get(state,"Send one ant"))
+		check(button.tooltip_text.is_empty() and button.get_tooltip(Vector2.ZERO).is_empty(),phase+": first-level card has no default desktop tooltip")
+		check(button.accessibility_description==message,phase+": equivalent state description remains available to assistive technology")
 func run()->void:
 	evidence_directory=OS.get_environment("ANT_CARD_EVIDENCE_DIR")
 	if evidence_directory.is_empty():evidence_directory="user://first-level-card-evidence"
@@ -24,6 +32,9 @@ func run()->void:
 	check(scene.ready_to_simulate and scene.level_index==1,"Only approved first level starts")
 	if not scene.ready_to_simulate:quit(1);return
 	check(scene.color_buttons.size()==5,"Exactly five real color entrances remain")
+	check_card_hints("initial")
+	for repeat in 3:
+		scene.sync_view();check_card_hints("resync_%d"%repeat)
 	var colors:Array=["blue","red","yellow","green","purple"]
 	var material_ids:Dictionary={}
 	for i in colors.size():
@@ -55,6 +66,7 @@ func run()->void:
 		var before:int=scene.rules.tasks.size()
 		var available:int=scene.rules.snapshot().available_counts[chosen]
 		scene.color_buttons[chosen].pressed.emit();scene.sync_view()
+		check_card_hints("dispatch_%d"%i)
 		check(scene.rules.tasks.size()==before+1,"One connected button press creates exactly one ant")
 		# The frozen rules count balls still on the board, including reservations.
 		# A click reserves; only the actual pickup removes a ball from this number.
@@ -63,6 +75,8 @@ func run()->void:
 	check(scene.rules.tasks.size()==4,"Transport capacity remains four")
 	scene.color_buttons.blue.pressed.emit();scene.sync_view()
 	check(scene.rules.tasks.size()==4,"Fifth press cannot create a fifth carrier")
+	check(scene.get_node("ClickFeedback").text=="ALL FOUR ANTS ARE BUSY","Real fifth-press refusal remains visible without a hover tooltip")
+	check_card_hints("capacity-full")
 	export_state("capacity-full")
 	var original_board_count:int=scene.rules.board.size()
 	for step in 300:
@@ -78,14 +92,16 @@ func run()->void:
 	check(displayed_total==scene.rules.board.size(),"Five live card counts sum to actual remaining board balls")
 	export_state("after-first-pickup")
 	scene.rules.set_paused(true);scene.sync_view()
+	check_card_hints("paused")
 	for color in colors:
 		check(scene.color_buttons[color].disabled,"Paused color button is disabled")
 		var count:Label=scene.get_node("CandidateQueues/Remaining_"+color)
 		check(count.is_visible_in_tree() and count.text==str(scene.rules.snapshot().available_counts[color]),"Paused real count remains visible")
 	export_state("paused")
 	scene.rules.set_paused(false);scene.sync_view()
+	check_card_hints("resumed")
 	for color in colors:check(not scene.color_buttons[color].disabled,"Resume restores the existing button")
-	var report:Dictionary={"checks":checks,"failures":failures,"states":states,"scope":"Only first-level card art binding, immutable hit/count rectangles, authoritative live counts, connected button signals, capacity and pause state. No later level, full gameplay replay, native input, GL shader pixels or user visual acceptance."}
+	var report:Dictionary={"checks":checks,"failures":failures,"states":states,"scope":"Only first-level card art binding, immutable hit/count rectangles, authoritative live counts, connected button signals, capacity, pause state and absent default card tooltips with retained state descriptions. No later level, full gameplay replay, native input, screen-reader or physical-phone acceptance, GL shader pixels or user visual acceptance."}
 	var f:=FileAccess.open(evidence_directory.path_join("card-test.json"),FileAccess.WRITE)
 	f.store_string(JSON.stringify(report,"\t"));f.close()
 	scene.audio_service.stop_music();scene.audio_service.stop_all_sfx()

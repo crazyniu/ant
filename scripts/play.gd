@@ -299,9 +299,16 @@ func build_candidates()->void:
 		var count_rect:=Rect2(x+width*.56,y+(94 if is_approved_first_level() else 27),width*.39,65)
 		var count_label:=text_label(str(fixture.remaining.get(color,0)),count_rect,clampi(roundi(width*.25 if is_approved_first_level() else width*.19),28,42),"Remaining_"+color,layer,Color("fff2cf") if is_approved_first_level() else INK)
 		if is_approved_first_level():count_label.add_theme_color_override("font_outline_color",Color("301a08"));count_label.add_theme_constant_override("outline_size",5)
-		var button:=Button.new();button.name="ColorButton_"+color;button.position=bounds.position;button.size=bounds.size;button.flat=true;button.tooltip_text="Send one "+color+" ant";layer.add_child(button)
+		var button:=Button.new();button.name="ColorButton_"+color;button.position=bounds.position;button.size=bounds.size;button.flat=true;layer.add_child(button)
+		set_color_control_hint(button,"Send one "+color+" ant")
 		button.pressed.connect(func():select_color(color));color_buttons[color]=button
 		var state_icon:=icon("barrier",Rect2(x+width-35,y+8,24,24),layer,INK);state_icon.name="ColorState_"+color;state_icon.hide()
+
+func set_color_control_hint(button:Button,message:String)->void:
+	# First-level cards explain state visibly and on actual refusal. Do not let
+	# touch-generated mouse hover add an unrelated default desktop tooltip.
+	button.tooltip_text="" if is_approved_first_level() else message
+	if is_approved_first_level():button.accessibility_description=message
 
 func select_color(color:String)->bool:
 	if is_instance_valid(pause_overlay) or not profile_state.get("ready",false):return false
@@ -479,7 +486,7 @@ func sync_view()->void:
 		get_node("CandidateQueues/ColorAnt_"+color).modulate=Color(.55,.55,.55,.72) if state in ["collected","blocked"] else Color.WHITE
 		var indicator:Control=get_node("CandidateQueues/ColorState_"+color)
 		indicator.visible=state!="ready";indicator.kind="check" if state=="collected" else ("clock" if state=="all_reserved" else "barrier");indicator.queue_redraw()
-		color_buttons[color].tooltip_text="All four ants are busy" if view_snapshot.capacity_full else ({"ready":"Send one ant","blocked":"No reachable ball","all_reserved":"Matching balls are already claimed","collected":"All balls collected"}.get(state,"Send one ant"))
+		set_color_control_hint(color_buttons[color],"All four ants are busy" if view_snapshot.capacity_full else ({"ready":"Send one ant","blocked":"No reachable ball","all_reserved":"Matching balls are already claimed","collected":"All balls collected"}.get(state,"Send one ant")))
 	get_node("WorkSlots/CarrierCount").text="%d / %d"%[int(view_snapshot.carrier_count),int(view_snapshot.carrier_limit)]
 	get_node("WorkSlots/CapacityState").text="BUSY" if view_snapshot.capacity_full else ""
 	sync_approved_transport_displays()
