@@ -8,8 +8,11 @@ const Adventure = preload("res://scripts/adventure_view.gd")
 const Shop = preload("res://scripts/ant_shop_view.gd")
 const Rules = preload("res://scripts/rescue_rules.gd")
 const SceneLayout = preload("res://scripts/scene_layout.gd")
+const FirstPreview = preload("res://scripts/first_level_preview.gd")
 const TITLE = preload("res://assets/startup/title.png")
 const HOME_RESOURCES: Array[String] = [
+	"res://assets/first-level/round-beads.png", "res://assets/first-level/bronze-cannon.png",
+	"res://assets/first-level/princess.png", "res://assets/first-level/slender-ants.png", "res://assets/first-level/cannon-loader.png",
 	"res://assets/worlds/ruins-courtyard.png", "res://assets/worlds/supply-cart.png",
 	"res://assets/worlds/ice-valley.png", "res://assets/worlds/winter-camp.png",
 	"res://assets/worlds/forest-traveler.png",
@@ -149,7 +152,13 @@ func on_loaded(finished_request_id:int,owner_id:int) -> void:
 		if start_mode=="play" and profiles_ready():call_deferred("launch_game",entry_screen)
 	else:call_deferred("handover_game",load_generation)
 
+func read_first_preview_configuration()->Dictionary:
+	return FirstPreview.read_configuration(Catalog.level_path(1,false))
+
 func build_home() -> void:
+	var preview_source:=read_first_preview_configuration()
+	if not preview_source.ok:
+		on_load_failed({"reason":preview_source.reason});return
 	font=loader.get_resource("res://assets/fonts/Title.ttf")
 	atlas=loader.get_resource("res://assets/characters-atlas.png")
 	ant_atlas=loader.get_resource("res://assets/ants-atlas.png")
@@ -159,18 +168,9 @@ func build_home() -> void:
 	home_art=group("HomeArtwork")
 	var bg:=TextureRect.new();bg.name="Garden";bg.texture=loader.get_resource("res://assets/serpent/environment.png");bg.size=size;bg.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;home_art.add_child(bg)
 	var title:=TextureRect.new();title.name="BrandTitle";title.texture=TITLE;title.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;title.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;title.position=Vector2(100,125);title.size=Vector2(740,370);home_art.add_child(title)
-	var view=load("res://scripts/serpent_view.gd").new();home_art.add_child(view)
-	view.configure({"head_start_s":85.0,"goal_s":100.0,"pitch":6.0},[
-		{"position":Vector2(240,1030),"out":Vector2(90,0)},
-		{"position":Vector2(690,930),"in":Vector2(-60,110),"out":Vector2(0,-90)},
-		{"position":Vector2(430,675),"in":Vector2(130,0)}])
-	var segments:Array=[];var ids:Array=[];var positions:Dictionary={}
-	for i in range(8):
-		var id:="home-%d"%i;ids.append(id);positions[id]=85.0-(i+1)*6.0
-		segments.append({"id":id,"color":COLORS[i%6],"hp":1,"kind":"normal"})
-	view.sync_snapshot({"paused":true,"speed_multiplier":1,"status":"ready","head_s":85.0,"alive_segment_ids":ids,"segments":segments,"segment_s":positions})
-	view.add_princess(home_art,Vector2(145,168))
-	art(Rect2(48,654,412,337),Rect2(390,1008,174,142),"HomeCannon",home_art)
+	# Same read-only first-level actors as Prep, not a legacy decorative battle.
+	var first_config:Dictionary=preview_source.config
+	FirstPreview.build(first_config,Rect2(192,510,556,714),home_art,"HomeLevelPreview")
 	home_button("PlayButton","play",Rect2(290,1240,360,136),func():open_adventure("preparation",level_index),true)
 	home_button("LevelsButton","levels",Rect2(397,1415,146,112),func():open_adventure("map"),false)
 	refresh_home_profile_controls()

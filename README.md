@@ -8,6 +8,8 @@ Latest small delta: [remove the rejected cannon-side inventory HUD](reports/firs
 
 Current animation candidate: [same-ball loading and real event clock](reports/first-level/batch-5/README.md). Only first-level unload timing changes .2→.8s; the same34-color/minimum2s schedule is retimed for real capacity, not zero-think input. Production headless replay reaches114.75s, saves138 points, peaks at4 carriers. Native×1/×2 animation and current-screen self-check still pending. Earlier batch reports remain exact historical versions.
 
+Current Home/Prep/tutorial consistency candidate: [read-only actual scene and phone-scaled illustrated rules](reports/first-level/batch-6/README.md). This fixes old preview assets and inactive armor teaching; current real GL and user acceptance are still pending. The required mobile-game UI/self-check gate is in `docs/FIRST_LEVEL_UI_SELF_CHECK.md`.
+
 ---
 
 # Ant Rescue: single-ant rescue and growth

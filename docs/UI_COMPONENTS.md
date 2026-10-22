@@ -1,5 +1,7 @@
 # Current UI component contract
 
+**Current first-level override (2026-10-22):** Follow `FIRST_LEVEL_UI_SELF_CHECK.md` for the portrait mobile-game target, 30-minute detailed review, real screenshots and Issue follow-through. Only the approved first level is open: 240 circular balls, 20 ordinary segments, four transports, five color inputs, and no cannon-side inventory HUD. Older multi-level examples below are historical engineering context, not permission to enter later content or restore old controls. Their old GL statements do not establish acceptance of the current candidate.
+
 Version: single-ant API 3.1.0 and map/preparation/shop continuation, 2026-10-21. This replaces the earlier automatic-team UI contract. See `CURRENT_IMPLEMENTATION.md` for rules/economy authority and `PUBLIC_VERIFICATION.md` for bounded evidence.
 
 ## Canvas and hierarchy

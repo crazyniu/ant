@@ -1,0 +1,60 @@
+{
+  "status": "candidate-only; native UI self-check and user confirmation pending",
+  "base_commit": "e3b1866f65c8e7d3b0327adf2e8a1d9888105c65",
+  "scope": "Approved first-level Home/Prep read-only preview, illustrated tutorial, mobile UI acceptance rules; no rules/shop/later-level changes",
+  "preview_test": {
+    "checks": 1493,
+    "failures": [],
+    "phone_metrics": {
+      "body_px_at_360_width": 13.7872340425532,
+      "close_height_at_360_width": 49.0212765957447,
+      "continue_height_at_360_width": 53.6170212765957,
+      "scope": "Layout/node metrics only, not phone GL, touch, or user acceptance."
+    },
+    "scope": "Only approved first-level normal Home/Prep/HowTo read-only nodes and actual tutorial-save handler. No other level, real GL, touch, audio or natural play."
+  },
+  "minimal_first_level_test": {
+    "checks": 48,
+    "failures": [],
+    "scope": "First-level-only headless controller/entry, historical metadata recovery, hopper selector, distance gait and non-overlapping feedback. Later level numbers are rejected inputs only; no later config or scene was exercised. No GL/native input/sound/visual acceptance."
+  },
+  "cli_cases": [
+    {
+      "args": [
+        "--campaign",
+        "--auto-replay",
+        "--level=13"
+      ],
+      "entered": "serpent-01",
+      "ok": true
+    },
+    {
+      "args": [
+        "--level=13"
+      ],
+      "entered": "home-first-level-only",
+      "ok": true
+    },
+    {
+      "args": [
+        "--auto-replay",
+        "--level=99"
+      ],
+      "entered": "serpent-01",
+      "ok": true
+    }
+  ],
+  "source_hashes": {
+    "scripts/first_level_preview.gd": "5bed0d7cdc79d1d46febd31d5c3d538f24cba52e394cbf1716c945e30b3489c2",
+    "scripts/startup.gd": "df67e3f9199b55da9cc1e63a32ba90f8f2e61181c1779ec3a390a796fd64b29b",
+    "scripts/adventure_view.gd": "897680bfdf69ddf5120bb9068df4bc7a69ffb3cc81cd02365cd924b8a75f73b2",
+    "scripts/play.gd": "a5101e6696b2ad73f6c26f5f7b37d0bee23e25d953cfa8dea1b0f3327d97d6c0",
+    "tests/test_first_level_previews.gd": "5a37c0d1dc75575c5a34da27d57718ecd1a8ef34b43ce950a0ab7536ef675b55",
+    "docs/FIRST_LEVEL_UI_SELF_CHECK.md": "f8261ea4c3a33b3b95b5d6b45ef9492bc64a995f70f2663eae2a26fc984d4078",
+    "data/serpent-levels/serpent-01.json": "e5adc544bfbb8c82d883252f70a7c36fa19695693cad9f7804a9058a6044bfea"
+  },
+  "precommit_review_fixes": [
+    "Home preview moved below actual title alpha bounds and above Play; no layer overlap",
+    "Preview JSON/shape failure checked before Home/audio creation, existing error and real retry tested"
+  ]
+}

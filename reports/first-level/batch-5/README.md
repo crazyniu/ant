@@ -45,3 +45,17 @@ The original full-screen reference, entire UI, shop, real audio and user approva
 ## Mobile-game self-check gate
 
 Every implemented page is a portrait mobile-game interface, not a webpage/card-form layout: follow the approved game art, readable phone-scale hierarchy and real touch regions; avoid webpage-style panels, long explanatory text and duplicated controls. Review real screenshots and continuous input/animation against the approved image, PRD and global style before sharing for user acceptance. Headless counts and offline composites cannot satisfy this gate. Current new animation is still pending that native self-check. The existing periodic review is managed separately; no duplicate timer is created by this batch.
+
+## Versioned real x1 follow-up on e3b1866
+
+A real first-blue input was recorded in `loader-x1-take3-silent.mp4`: 456x812
+window capture, 30fps, 30 seconds, no audio track, **not native 2K video**. Its
+SHA256 is `7d8f0366dbeaec583bc69237a5f63ab688f926e2993c8b1e659e691f5ab65de1`.
+The actual count changed 80 to 79, capacity returned to 0/4, and the first blue
+segment disappeared. Original video key-frame and 14-17s samples show the ball
+entering brass occlusion, appearing in the dark mouth and firing in order, with
+no obvious frame bleed or foot slide in this one case. The tiny receiving grip
+is still subtle at phone scale. This does not validate multi-ball/x2, full 1:1,
+natural play, audio or final acceptance; .8s remains a candidate. The earlier
+discarded editor take and missed-window take are not cited as success. The QA
+contact sheet is analysis only, not an original runtime screenshot.

@@ -14,6 +14,8 @@ const Catalog = preload("res://scripts/level_catalog.gd")
 const UiSkin = preload("res://scripts/ui_skin.gd")
 const Icon = preload("res://scripts/ui_icon.gd")
 const Bead = preload("res://scripts/bead.gd")
+const ApprovedBall = preload("res://scripts/first_level_bead.gd")
+const FirstPreview = preload("res://scripts/first_level_preview.gd")
 const BoardPlane = preload("res://scripts/board_plane.gd")
 const Serpent = preload("res://scripts/serpent_view.gd")
 const Carrier = preload("res://scripts/directional_carrier.gd")
@@ -355,7 +357,8 @@ func _build_preparation() -> void:
 	var summary := level_summary(selected_level)
 	_label("LEVEL %02d" % selected_level, Rect2(210, 154, 520, 48), 31, "LevelHeading", _page, CREAM, true)
 	_panel("game/panel", Rect2(42, 280, 856, 700), "PreviewStoneFrame", _page, 40)
-	_build_scene_preview(config, Rect2(65, 305, 503, 642), _page)
+	if not _build_scene_preview(config, Rect2(65, 305, 503, 642), _page):
+		_label("SCENE UNAVAILABLE",Rect2(130,500,680,90),34,"SceneUnavailable",_page,CREAM,true);return
 	var preview:Control=_page.get_node("ScenePreview/ActualLevelScene/PreviewSerpent")
 	preview.add_head_portrait(_page,Rect2(630,322,170,155))
 	var metadata:Dictionary=preview.manifest
@@ -385,7 +388,8 @@ func _build_preparation() -> void:
 		_label(str(int(summary.needs[color])), Rect2(x + 27, y-4, 46, 31), 22, "Need_%s" % color, _page)
 		index += 1
 	var detail:=Control.new();detail.name="BossDetails";detail.position=Vector2(584,315);detail.size=Vector2(287,625)
-	detail.tooltip_text="%s: %d normal (1 hit), %d armored (2 hits).\nDefeat the whole dragon before it reaches %s.\nMatching bead counts below show the required hits."%["Armored dragon" if summary.armored>0 else "Serpent dragon",summary.normal,summary.armored,summary.target]
+	detail.tooltip_text="%d normal segments (1 hit each).\nProtect %s. Matching ball counts show required hits."%[summary.normal,summary.target]
+	if summary.armored>0:detail.tooltip_text+="\n%d armored segments (2 hits each)."%summary.armored
 	detail.mouse_filter=Control.MOUSE_FILTER_STOP;_page.add_child(detail)
 	_ant_choice("worker", Rect2(50, 1070, 407, 297))
 	_ant_choice("swift", Rect2(483, 1070, 407, 297))
@@ -395,12 +399,14 @@ func _build_preparation() -> void:
 	_button("BeginLevel", Rect2(190, 1444, 560, 127), "", _request_begin, true, _page)
 	_icon("play", Rect2(428, 1465, 85, 85), _page)
 
-func _build_scene_preview(config: Dictionary, bounds: Rect2, parent: Control) -> void:
+func _build_scene_preview(config: Dictionary, bounds: Rect2, parent: Control) -> bool:
+	if config.get("level_id","")=="serpent-01":
+		return FirstPreview.build(config,bounds,parent)!=null
 	var viewport := _group("ScenePreview", parent); viewport.position = bounds.position; viewport.size = bounds.size; viewport.clip_contents = true
 	var scene := _group("ActualLevelScene", viewport)
 	var factor := bounds.size.x / 940.0; scene.scale = Vector2.ONE * factor
 	var layout_result:=SceneLayout.load_for(config)
-	if not layout_result.ok:return
+	if not layout_result.ok:return false
 	var layout:Dictionary=layout_result.data
 	_texture(load(str(layout.background)), Rect2(Vector2.ZERO, LOGICAL_SIZE), "Forest", scene)
 	var serpent := Serpent.new(); serpent.name = "PreviewSerpent"; scene.add_child(serpent)
@@ -421,6 +427,7 @@ func _build_scene_preview(config: Dictionary, bounds: Rect2, parent: Control) ->
 	var foot:=SceneLayout.point(layout.nest.position)
 	_carrier(foot+Vector2(-95,4), 66, "blue", "PreviewWorker", scene)
 	_carrier(foot+Vector2(95,4), 66, "green", "PreviewWorker2", scene)
+	return true
 
 func _mosaic(config: Dictionary, bounds: Rect2, parent: Control, actual: bool) -> void:
 	var grid: Array = config.get("grid", []); var palette: Dictionary = config.get("palette", {})
@@ -515,7 +522,7 @@ func _atlas(texture: Texture2D, region: Rect2, bounds: Rect2, id: String, parent
 	return _texture(atlas, bounds, id, parent)
 
 func _bead(color: String, at: Vector2, edge: float, parent: Node) -> Control:
-	var bead := Bead.new(); bead.color_id = color; bead.edge = edge; bead.position = at; bead.size = Vector2(edge, edge + 3); parent.add_child(bead); return bead
+	var bead := ApprovedBall.new(); bead.color_id = color; bead.edge = edge; bead.footprint_height=edge; bead.position = at; bead.size = Vector2(edge, edge); parent.add_child(bead); return bead
 
 func _carrier(foot: Vector2, diameter: float, color: String, id: String, parent: Node) -> Control:
 	var actor := _group(id, parent); actor.position = foot

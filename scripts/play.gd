@@ -746,15 +746,35 @@ func commit_settings()->bool:
 	if pending_save_kind=="settings":pending_save_kind=""
 	return true
 
+func tutorial_ant(parent:Control,foot:Vector2,diameter:float,id:String)->Control:
+	var actor:=Control.new();actor.name=id;actor.position=foot;actor.mouse_filter=Control.MOUSE_FILTER_IGNORE;parent.add_child(actor)
+	var sprite:=TextureRect.new();sprite.name="Ant";sprite.mouse_filter=Control.MOUSE_FILTER_IGNORE;actor.add_child(sprite)
+	ApprovedCarrier.prepare(actor,"blue",diameter)
+	ApprovedCarrier.apply(actor,{"time":0.0,"moving":false,"direction":Vector2(1,1),"stage":"idle","diameter":diameter})
+	return actor
+
 func show_tutorial()->void:
-	var m:=modal("YOUR FIRST RESCUE",Rect2(149,423,642,800))
-	ant("red",Rect2(400,552,140,106),"TutorialAnt",m)
-	var steps:Array[String]=["ONE TAP SENDS ONE ANT","UP TO FOUR ANTS CARRY AT ONCE","EACH ANT CARRIES ONE MATCHING BALL","DELIVERED BALLS BECOME AMMO","ARMORED SEGMENTS TAKE TWO HITS","REMOVE EVERY SEGMENT TO WIN"]
-	for i in steps.size():
-		icon("arrow",Rect2(211,674+i*58,26,30),m,Color("d09536"))
-		text_label(steps[i],Rect2(251,667+i*58,487,46),18,"StepText%d"%i,m)
-	text_label("THE DRAGON WAITS FOR YOUR FIRST ANT",Rect2(190,1037,560,48),20,"ObservationNotice",m)
-	action(m,"LET'S GO",1115,finish_tutorial,true)
+	var m:=modal("YOUR FIRST RESCUE",Rect2(70,330,800,1125))
+	# Game illustrations and four short rules, sized for a 360-wide phone view.
+	# HUD illustrations reuse actual art; they are not live transport tasks.
+	tutorial_ant(m,Vector2(226,576),116,"TutorialAnt")
+	for index in 4:tutorial_ant(m,Vector2(153+index*48,745),48,"CapacityAnt%d"%index)
+	var ball:=ApprovedBead.new();ball.name="TutorialBall";ball.color_id="blue";ball.edge=60;ball.footprint_height=60;ball.size=Vector2(60,60);ball.position=Vector2(143,865);m.add_child(ball)
+	icon("arrow",Rect2(205,878,28,28),m,INK)
+	approved_texture(str(scene_layout.cannon.texture),SceneLayout.rect(scene_layout.cannon.region),Rect2(239,831,91,125),m,"TutorialCannon")
+	serpent.add_head_portrait(m,Rect2(123,1009,155,153))
+	var target:=SceneLayout.target_texture(scene_layout)
+	UiSkin.place_texture(target,Rect2(285,1040,51,88),m,"TutorialPrincess",true)
+	var steps:Array[String]=["TAP A COLOR\nSEND ONE ANT","UP TO FOUR ANTS\nCARRY AT ONCE","MATCHING BALLS\nLOAD THE CANNON","CLEAR THE DRAGON\nBEFORE IT REACHES HER"]
+	for index in steps.size():
+		var line:=text_label(steps[index],Rect2(350,470+index*180,480,125),36,"StepText%d"%index,m)
+		line.horizontal_alignment=HORIZONTAL_ALIGNMENT_LEFT
+	text_label("DRAGON MOVES AFTER YOUR FIRST ANT",Rect2(110,1188,720,50),30,"ObservationNotice",m)
+	var bounds:=Rect2(190,1275,560,140)
+	frame(bounds,"TutorialContinueArt",m,30,"54d35b")
+	text_label("LET'S GO",Rect2(210,1304,520,76),42,"TutorialContinueLabel",m,Color.WHITE,true)
+	var next:=Button.new();next.name="TutorialContinue";next.flat=true;next.position=bounds.position;next.size=bounds.size;next.tooltip_text="Start the first rescue";m.add_child(next);next.pressed.connect(finish_tutorial)
+	var close:Button=m.get_node("CloseButton");close.size=Vector2(128,128);close.position+=Vector2(-8,-8)
 
 func finish_tutorial()->void:
 	var result:Dictionary=saves.set_tutorial_completed(true);profile_state=result.state

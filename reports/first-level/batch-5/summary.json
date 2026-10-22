@@ -348,5 +348,18 @@
     "Measured10-point dark-mouth polygon excludes copper frame/gold front lip",
     "Original image region padded to1040px with unchanged62/966 physical scale prevents foreleg clipping",
     "Terminal incoming ball stays task-owned at frozen world center/orientation; never jumps back or credits after defeat"
-  ]
+  ],
+  "native_gl_followup_x1": {
+    "build": "e3b1866f65c8e7d3b0327adf2e8a1d9888105c65",
+    "artifact": "loader-x1-take3-silent.mp4",
+    "sha256": "7d8f0366dbeaec583bc69237a5f63ab688f926e2993c8b1e659e691f5ab65de1",
+    "width": 456,
+    "height": 812,
+    "fps": 30,
+    "duration_sec": 30,
+    "audio_streams": 0,
+    "capture_kind": "real desktop-window recording, not native 2K video",
+    "observed": "Actual first blue input: 80 to 79, visible handoff/occluded path/dark-mouth ball/fire, first blue segment removed, capacity back to 0/4. Key original frame and 14-17 second samples checked. No obvious copper-frame bleed or loader-foot slide in this single case.",
+    "limits": "Only one x1 blue case. Not multi-ball/x2/global 1:1/natural-play/sound/user acceptance. Grip remains subtle at phone scale. Discarded take1/editor and take2/missed-window are not evidence."
+  }
 }
