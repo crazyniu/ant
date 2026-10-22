@@ -10,7 +10,7 @@ a new level, merge, deployment, or approval to close the tracking Issue.
   enamel-and-gold skins, not the thin list-row frame. Bounds are **560 × 118** logical
   units; text is **38 px**. At 360-wide scale, the hit height is **45.2 px**.
 - Pause's four actions start at y=724, 864, 1004, 1144. The panel is
-  (130, 480, 680, 830). The original single 112 × 112 Home target remains above
+  (130, 480, 680, 830). The single Home target is now 120 × 120 and remains above
   Continue with a 24-unit gap. No extra controls or skills were added.
 - Restart, Leave, running-round Map/Home confirmation, save/load recovery, reset
   confirmation, and startup recovery were reflowed as groups. Warnings are 38 px;
@@ -93,3 +93,7 @@ godot --headless --path . --script tests/test_ant_navigation_save_boundary.gd
 
 No GUI, screenshot, GL rendering, native input, actual touch device, sound quality,
 full multi-level suite, or user visual acceptance is claimed by this report.
+
+Integration follow-up: tutorial Close is finalized before reveal animation; Pause
+Level Select now uses one guarded Leave confirmation. See
+`../mobile-navigation-review.md` for the subsequent combined checks.

@@ -253,8 +253,8 @@ func _render_page() -> void:
 	_build_header()
 
 func _build_header() -> void:
-	_button("BackButton", Rect2(28, 30, 112, 100), "", func(): back_requested.emit(), false, _page)
-	var back := _icon("arrow", Rect2(56, 48, 58, 58), _page, INK)
+	_button("BackButton", Rect2(24, 20, 116, 120), "", func(): back_requested.emit(), false, _page)
+	var back := _icon("arrow", Rect2(53, 51, 58, 58), _page, INK)
 	back.pivot_offset = Vector2(29, 29); back.rotation = PI
 	var title_key := "ADVENTURE" if screen == "map" else "READY"
 	if title_textures.get(title_key) is Texture2D:
@@ -264,11 +264,11 @@ func _build_header() -> void:
 	_panel("game/row", Rect2(650, 43, 244, 78), "PointBalanceFrame", _page, 24)
 	_emblem("coin", Rect2(659, 49, 65, 65), _page)
 	_label(str(int(economy.get("points", economy.get("balance", 0)))), Rect2(722, 47, 145, 66), 32, "PointBalance", _page)
-	_button("SettingsButton", Rect2(811, 136, 83, 78), "", func(): settings_requested.emit(), false, _page)
-	_emblem("settings", Rect2(826, 149, 53, 51), _page, INK)
+	_button("SettingsButton", Rect2(790, 132, 116, 116), "", func(): settings_requested.emit(), false, _page)
+	_emblem("settings", Rect2(821.5, 164.5, 53, 51), _page, INK)
 
 func _build_map() -> void:
-	_label("ADVENTURE TRAIL", Rect2(180, 139, 580, 56), 34, "RegionTitle", _page, CREAM, true)
+	_label("ADVENTURE TRAIL", Rect2(180, 139, 580, 56), 38, "RegionTitle", _page, CREAM, true)
 	_scroll = ScrollContainer.new(); _scroll.name = "MapScroll"
 	_scroll.position = Vector2(16, 226); _scroll.size = Vector2(908, 1174)
 	_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
@@ -276,11 +276,14 @@ func _build_map() -> void:
 	_scroll.follow_focus = true; _scroll.mouse_filter = Control.MOUSE_FILTER_STOP
 	_page.add_child(_scroll)
 	var canvas := Control.new(); canvas.name = "MapCanvas"
-	var height := maxf(1480.0, 370.0 + level_definitions.size() * 390.0)
+	# With only the real first level enabled, there is no long trail to scroll.
+	# Keep its complete destination and scene preview in the initial safe viewport.
+	var compact_first := _has_only_first_level()
+	var height := _scroll.size.y if compact_first else maxf(1480.0, 370.0 + level_definitions.size() * 390.0)
 	canvas.custom_minimum_size = Vector2(884, height); canvas.mouse_filter = Control.MOUSE_FILTER_PASS
 	_scroll.add_child(canvas)
 	var centers: Array[Vector2] = []
-	for i in level_definitions.size(): centers.append(Vector2(226 if i % 2 == 0 else 654, height - 230 - i * 390))
+	for i in level_definitions.size(): centers.append(Vector2(154, 600) if compact_first else Vector2(226 if i % 2 == 0 else 654, height - 230 - i * 390))
 	var trail := MapTrail.new(); trail.name = "ConnectedTrail"; trail.size = canvas.custom_minimum_size; trail.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	for i in range(centers.size() - 1):
 		var from := centers[i]; var to := centers[i + 1]
@@ -290,26 +293,35 @@ func _build_map() -> void:
 		trail.points.append_array(curve.tessellate(4, 5))
 	canvas.add_child(trail)
 	for i in level_definitions.size():
-		_map_node(level_definitions[i], centers[i], canvas)
+		_map_node(level_definitions[i], centers[i], canvas, compact_first)
 		if i==0 or str(level_definitions[i].get("region_id","forest"))!=str(level_definitions[i-1].get("region_id","forest")):
 			var layout:=SceneLayout.load_for(level_definitions[i])
-			if layout.ok:_label(str(layout.data.region_label),Rect2(centers[i].x-195,centers[i].y+130,390,42),25,"Region_%d"%i,canvas,CREAM,true)
+			if layout.ok:
+				var region_bounds:=Rect2(24,738,260,100) if compact_first else Rect2(centers[i].x-195,centers[i].y+130,390,42)
+				_label(str(layout.data.region_label),region_bounds,32 if compact_first else 25,"Region_%d"%i,canvas,CREAM,true)
 	var complete := 0
 	for config in level_definitions:
 		if _is_completed(int(config.level_number)): complete += 1
-	_label("%d / %d COMPLETE" % [complete, level_definitions.size()], Rect2(225, 38, 434, 53), 30, "CompletionProgress", canvas, INK, true)
+	_label("%d / %d COMPLETE" % [complete, level_definitions.size()], Rect2(225, 38, 434, 53), 38, "CompletionProgress", canvas, INK, true)
 	if level_definitions.is_empty(): _label("No levels available", Rect2(170, 510, 560, 80), 36, "EmptyCatalog", canvas)
 	_button("ShopButton", Rect2(350, 1480, 240, 120), "", func():
 		_capture_scroll(); shop_requested.emit(), true, _page)
 	_emblem("shop", Rect2(425, 1495, 90, 90), _page)
 	call_deferred("_restore_scroll", _scroll, _page_revision)
 
+func _has_only_first_level() -> bool:
+	return level_definitions.size()==1 and int(level_definitions[0].level_number)==1
+
 func _restore_scroll(target: ScrollContainer, revision: int) -> void:
 	# Container scrollbar limits are established by the layout pass, not _ready.
 	# A page may be rebuilt several times in the same frame; ignore stale restores.
+	if not is_inside_tree(): return
 	await get_tree().process_frame
-	if revision != _page_revision or not is_instance_valid(target) or target != _scroll or screen != "map": return
-	if map_scroll < 0:
+	if not is_inside_tree() or revision != _page_revision or not is_instance_valid(target) or target != _scroll or screen != "map": return
+	if _has_only_first_level():
+		# Legacy saved zero or large offsets cannot hide the only destination.
+		map_scroll=0
+	elif map_scroll < 0:
 		var index := 0
 		for i in level_definitions.size():
 			if int(level_definitions[i].level_number) == selected_level: index = i
@@ -319,7 +331,7 @@ func _restore_scroll(target: ScrollContainer, revision: int) -> void:
 	map_scroll = _scroll.scroll_vertical
 	_scroll_has_restored=true
 
-func _map_node(config: Dictionary, center: Vector2, parent: Control) -> void:
+func _map_node(config: Dictionary, center: Vector2, parent: Control, compact_first: bool=false) -> void:
 	var number := int(config.level_number)
 	var unlocked := _is_unlocked(number); var completed := _is_completed(number)
 	var node := _group("LevelNode%d" % number, parent)
@@ -334,17 +346,29 @@ func _map_node(config: Dictionary, center: Vector2, parent: Control) -> void:
 	var hit := _hit("ChooseLevel%d" % number, Rect2(0, 0, 184, 184), node)
 	hit.tooltip_text = "Open level %d" % number if unlocked else "Complete level %d first" % (number - 1)
 	hit.disabled = not unlocked
-	hit.pressed.connect(func():
-		if not _is_unlocked(number): return
-		_capture_scroll(); selected_level = number; choose_level.emit(number))
+	hit.pressed.connect(func(): _choose_map_level(number))
 	var left := center.x > 450
 	var sign_x := center.x - 490 if left else center.x + 128
 	var sign := _group("SceneSign%d" % number, parent)
+	if compact_first:
+		sign.position=Vector2(310,128);sign.size=Vector2(500,1016)
+		_panel("game/panel",Rect2(Vector2.ZERO,sign.size),"CarvedSign",sign,40)
+		_label(str(config.get("title","Level 1")),Rect2(24,20,452,110),38,"SceneTitle",sign)
+		FirstPreview.build(config,Rect2(26,142,448,797),sign,"ScenePreview")
+		_label("CLEARED" if completed else "READY",Rect2(28,944,444,48),38,"LevelState",sign,Color("347b28"))
+		var preview_hit:=_hit("ChooseLevelPreview%d"%number,Rect2(Vector2.ZERO,sign.size),sign)
+		preview_hit.disabled=not unlocked;preview_hit.tooltip_text=hit.tooltip_text
+		preview_hit.pressed.connect(func(): _choose_map_level(number))
+		return
 	sign.position = Vector2(sign_x, center.y - 120)
 	_panel("game/panel", Rect2(0, 0, 330, 239), "CarvedSign", sign, 30)
 	_label(str(config.get("title", "Level %d" % number)), Rect2(22, 17, 286, 72), 23, "SceneTitle", sign)
 	_mosaic(config, Rect2(81, 92, 168, 105), sign, false)
 	_label("CLEARED" if completed else ("READY" if unlocked else "LOCKED"), Rect2(29, 197, 272, 29), 18, "LevelState", sign, Color("347b28") if unlocked else INK)
+
+func _choose_map_level(number: int) -> void:
+	if not _is_unlocked(number): return
+	_capture_scroll();selected_level=number;choose_level.emit(number)
 
 func _build_preparation() -> void:
 	var config := _definition(selected_level)
@@ -397,8 +421,8 @@ func _build_preparation() -> void:
 	detail.tooltip_text="%d normal segments (1 hit each).\nProtect %s."%[summary.normal,summary.target]
 	if summary.armored>0:detail.tooltip_text+="\n%d armored segments (2 hits each)."%summary.armored
 	detail.mouse_filter=Control.MOUSE_FILTER_STOP;_page.add_child(detail)
-	_ant_choice("worker", Rect2(50, 1070, 407, 297))
-	_ant_choice("swift", Rect2(483, 1070, 407, 297))
+	_ant_choice("worker", Rect2(50, 1000, 407, 367))
+	_ant_choice("swift", Rect2(483, 1000, 407, 367))
 	var carry_level := int(economy.get("carry_level", 1))
 	_emblem("speed",Rect2(316,1385,36,36),_page,CREAM)
 	_label("Lv.%d   +%d%%" % [carry_level,roundi((_multiplier(selected_type)-1.)*100.)], Rect2(366, 1377, 292, 56), 38, "LoadoutSummary", _page, CREAM, true)
@@ -474,10 +498,10 @@ func _ant_choice(carrier_type: String, bounds: Rect2) -> void:
 	_label("+%d%%" % roundi((_multiplier(carrier_type)-1.)*100.), Rect2(252,156,127,52), 38, "MovementSpeed", card)
 	card.set_meta("owned",owned)
 	var caption := ""
-	_button("Equip_" + carrier_type, Rect2(28, 222, 351, 58), caption, func():
+	_button("Equip_" + carrier_type, Rect2(28, 222, 351, 120), caption, func():
 		if not _owned(carrier_type): shop_requested.emit(); return
 		selected_type = carrier_type; _begin_pending = false; _render_page(), selected, card, 23)
-	_icon("check" if selected else ("arrow" if owned else "lock"), Rect2(180, 230, 45, 41), card, CREAM if selected else INK)
+	_icon("check" if selected else ("arrow" if owned else "lock"), Rect2(181, 261.5, 45, 41), card, CREAM if selected else INK)
 
 func _request_begin() -> void:
 	if _begin_pending or not _is_unlocked(selected_level) or not _owned(selected_type): return

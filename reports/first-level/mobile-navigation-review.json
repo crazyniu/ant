@@ -1,0 +1,62 @@
+{
+  "date_utc": "2026-10-22",
+  "review_baseline": "b9907d9",
+  "renderer_verified": false,
+  "physical_phone_verified": false,
+  "later_levels_exercised": false,
+  "tests": {
+    "map": {
+      "checks": 177,
+      "failures": []
+    },
+    "previews": {
+      "checks": 1649,
+      "failures": []
+    },
+    "modals": {
+      "checks": 1399,
+      "failures": []
+    },
+    "shop": {
+      "checks": 440,
+      "failures": []
+    },
+    "settings": {
+      "checks": 20,
+      "failures": []
+    },
+    "navigation": {
+      "checks": 20,
+      "failures": []
+    },
+    "first_level_minimal": {
+      "checks": 48,
+      "failures": []
+    }
+  },
+  "level_config_sha256": "e5adc544bfbb8c82d883252f70a7c36fa19695693cad9f7804a9058a6044bfea",
+  "map": {
+    "canvas_height": 1174,
+    "viewport_height": 1174,
+    "card": [
+      310,
+      128,
+      500,
+      1016
+    ],
+    "preview": [
+      26,
+      142,
+      448,
+      797
+    ],
+    "restored_offsets": [
+      -1,
+      0,
+      411,
+      99999
+    ],
+    "restored_result": 0
+  },
+  "scope": "Finite headless production callbacks, nodes, layout and persistence only; not renderer, physical touch, audio, full natural play or user acceptance."
+}

@@ -342,7 +342,7 @@ func apply_rescue_presentation() -> void:
 	for child in get_node("TransportScene/Stock").get_children():
 		if child is Label:child.text="0"
 
-func modal(title: String, rect: Rect2 = Rect2(170,520,600,620)) -> Control:
+func modal(title: String, rect: Rect2 = Rect2(170,520,600,620), close_hit_size: float = 120.0) -> Control:
 	reset_presentation()
 	audio_service.set_music_preview(false)
 	audio_service.set_game_paused(true)
@@ -357,7 +357,7 @@ func modal(title: String, rect: Rect2 = Rect2(170,520,600,620)) -> Control:
 	skin.sprite("settings/title",Rect2(470-title_width/2,rect.position.y-47,title_width,145),pause_overlay,"WoodTitlePlaque")
 	title_art(title,Rect2(470-title_width/2+44,rect.position.y-5,title_width-88,65),pause_overlay)
 	skin.sprite("settings/close",Rect2(rect.end.x-57,rect.position.y-29,80,80),pause_overlay,"PaintedClose")
-	var close:=Button.new();close.name="CloseButton";close.flat=true;close.position=Vector2(rect.end.x-77,rect.position.y-49);close.size=Vector2(120,120);close.tooltip_text="Close";pause_overlay.add_child(close);close.pressed.connect(close_current_modal)
+	var close:=Button.new();close.name="CloseButton";close.flat=true;close.position=Vector2(rect.end.x-17,rect.position.y+11)-Vector2.ONE*close_hit_size*.5;close.size=Vector2.ONE*close_hit_size;close.tooltip_text="Close";pause_overlay.add_child(close);close.pressed.connect(close_current_modal)
 	return pause_overlay
 
 func close_button(parent: Control, title: String, at_y: float) -> void:

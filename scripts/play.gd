@@ -393,14 +393,14 @@ func build_approved_hud()->void:
 		if str(entry[1])=="pause":icon("pause",Rect2(at+Vector2(23,21),Vector2(42,44)),hud,Color("ffe4a1"))
 		else:
 			var gear:=preload("res://scripts/first_level_medallion.gd").new();gear.position=at;gear.size=Vector2(88,88);gear.kind="gear_only";hud.add_child(gear)
-		var button:=Button.new();button.name=str(entry[0]);button.position=at;button.size=Vector2(88,88);button.flat=true;hud.add_child(button)
+		var button:=Button.new();button.name=str(entry[0]);button.position=at-Vector2(14,14);button.size=Vector2(116,116);button.flat=true;hud.add_child(button)
 		button.pressed.connect(show_pause if str(entry[0])=="PauseButton" else show_settings)
 	for entry in [["SpeedButton","speed",420]]:
 		var bounds:=Rect2(float(entry[2]),1530,100,98.5)
 		approved_medallion(hud,bounds,"Disc_"+str(entry[0]))
-		var button:=Button.new();button.name=str(entry[0]);button.position=bounds.position;button.size=Vector2(100,100);button.flat=true;hud.add_child(button)
+		var button:=Button.new();button.name=str(entry[0]);button.position=bounds.get_center()-Vector2(58,58);button.size=Vector2(116,116);button.flat=true;hud.add_child(button)
 		if str(entry[1])=="speed":
-			text_label("×1",Rect2(bounds.position+Vector2(12,19),Vector2(76,58)),27,"SpeedLabel",hud,Color("ffe5b0"))
+			text_label("×1",Rect2(bounds.position+Vector2(12,19),Vector2(76,58)),38,"SpeedLabel",hud,Color("ffe5b0"))
 			button.pressed.connect(func():rules.set_speed(2 if rules.speed_multiplier==1 else 1))
 		else:
 			icon(str(entry[1]),Rect2(bounds.position+Vector2(24,22),Vector2(52,54)),hud,Color("ffe5b0"))
@@ -669,13 +669,13 @@ func apply_actor_poses()->void:
 	cannon.position=SceneLayout.rect(scene_layout.cannon.rect).position+cp.offset;cannon.rotation=cp.rotation;cannon.scale=cp.scale
 	if is_approved_first_level():sync_loading_ball_poses()
 
-func modal(title:String,rect:Rect2=Rect2(170,520,600,620))->Control:
+func modal(title:String,rect:Rect2=Rect2(170,520,600,620),close_hit_size:float=120.0)->Control:
 	if is_instance_valid(pause_overlay):
 		ensure_ui_motion();ui_motion.discard_modal(pause_overlay);pause_overlay=null
 	var freeze:bool=rules.status in ["ready","running"]
 	if freeze:rules.set_paused(true)
 	if is_instance_valid(fx):fx.set_paused(freeze)
-	return super.modal(title,rect)
+	return super.modal(title,rect,close_hit_size)
 
 func dismiss_modal()->void:
 	if not profile_state.get("ready",false):show_load_recovery();return
@@ -729,7 +729,7 @@ func show_pause()->void:
 	if modal_title=="YOUR FIRST RESCUE":return
 	super.show_pause()
 	icon("home",Rect2(430,610,80,70),pause_overlay,INK)
-	var home:=Button.new();home.name="HomeButton";home.flat=true;home.position=Vector2(414,588);home.size=Vector2(112,112);home.tooltip_text="Home";pause_overlay.add_child(home);home.pressed.connect(request_home)
+	var home:=Button.new();home.name="HomeButton";home.flat=true;home.position=Vector2(410,584);home.size=Vector2(120,120);home.tooltip_text="Home";pause_overlay.add_child(home);home.pressed.connect(request_home)
 
 func show_settings()->void:
 	if not profile_state.get("ready",false):show_load_recovery();return
@@ -759,7 +759,7 @@ func tutorial_ant(parent:Control,foot:Vector2,diameter:float,id:String)->Control
 	return actor
 
 func show_tutorial()->void:
-	var m:=modal("YOUR FIRST RESCUE",Rect2(70,330,800,1125))
+	var m:=modal("YOUR FIRST RESCUE",Rect2(70,330,800,1125),128)
 	# Game illustrations and four short rules, sized for a 360-wide phone view.
 	# HUD illustrations reuse actual art; they are not live transport tasks.
 	var rows:Array[Control]=[]
@@ -783,7 +783,6 @@ func show_tutorial()->void:
 	frame(bounds,"TutorialContinueArt",m,30,"54d35b")
 	text_label("LET'S GO",Rect2(210,1304,520,76),42,"TutorialContinueLabel",m,Color.WHITE,true)
 	var next:=Button.new();next.name="TutorialContinue";next.flat=true;next.position=bounds.position;next.size=bounds.size;next.tooltip_text="Start the first rescue";m.add_child(next);next.pressed.connect(finish_tutorial)
-	var close:Button=m.get_node("CloseButton");close.size=Vector2(128,128);close.position+=Vector2(-8,-8)
 
 func finish_tutorial()->void:
 	var result:Dictionary=saves.set_tutorial_completed(true);profile_state=result.state
@@ -798,11 +797,12 @@ func show_restart()->void:
 	action(m,"RESTART",1000,func():replace_level(level_index),true);action(m,"CANCEL",1140,show_pause)
 
 func show_leave()->void:
+	if pending_save_kind=="victory":show_save_error();return
 	var m:=modal("LEAVE THIS LEVEL?",Rect2(130,470,680,820))
 	icon("arrow",Rect2(402,610,136,136),m,Color("d08436"))
 	modal_copy("SELECTING A LEVEL\nSTARTS A FRESH ROUND",Rect2(190,770,560,110),38,"LeaveWarning",m)
 	modal_copy("SAVED COMPLETIONS\nSTAY UNLOCKED",Rect2(190,892,560,86),32,"ProgressNotice",m)
-	action(m,"LEVEL SELECT",1000,show_levels,true)
+	action(m,"LEAVE",1000,func():transition_to_startup("map"),true)
 	action(m,"CANCEL",1140,show_pause)
 
 func show_levels(_page:int=-1)->void:

@@ -53,6 +53,8 @@ func run()->void:
 	await create_timer(.15).timeout
 	home.queue_free();await process_frame;await process_frame
 	var report:Dictionary={"pass":failures.is_empty(),"checks":checks,"failures":failures,"scope":"Real headless startup/preparation/settings button callbacks with write failure, repeat failure, close/back, retry and independent disk reload. No visual/audio/native-input acceptance."}
+	DirAccess.make_dir_recursive_absolute("res://reports/flow")
 	var file:=FileAccess.open("res://reports/flow/settings-recovery.json",FileAccess.WRITE)
+	if file==null:push_error("Cannot create test report");quit(1);return
 	file.store_string(JSON.stringify(report,"\t")+"\n");file.close()
 	print("ANT_SETTINGS_RECOVERY ",JSON.stringify(report));quit(0 if failures.is_empty() else 1)

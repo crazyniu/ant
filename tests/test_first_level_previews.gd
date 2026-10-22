@@ -99,6 +99,8 @@ func run()->void:
 		inspect_mobile_label(capacity,14,kind+" capacity");inspect_mobile_label(speed,14,kind+" speed")
 		check(capacity.get_rect().get_center().x==speed.get_rect().get_center().x,kind+" numeric states share an axis")
 		check(speed.get_rect().end.y+12<=card.get_node("Equip_"+kind).position.y,kind+" speed does not collide with selection button")
+		check(card.get_node("Equip_"+kind).size.y>=116 and card.get_rect().position.y>=page.get_node("PreviewStoneFrame").get_rect().end.y+20,kind+" real selection target fits between preview and footer")
+		check(Rect2(Vector2.ZERO,card.size).encloses(card.get_node("Equip_"+kind).get_rect()),kind+" full button remains inside its plinth")
 		check(speed.get_theme_font("font").get_string_size("+38%",HORIZONTAL_ALIGNMENT_LEFT,-1,38).x+12<=speed.size.x,kind+" max upgrade text has side clearance")
 	var summary:Label=page.get_node("LoadoutSummary")
 	check(summary.get_theme_font("font").get_string_size("Lv.4   +38%",HORIZONTAL_ALIGNMENT_LEFT,-1,38).x+20<=summary.size.x,"Maximum real loadout text fits without shrinking")
@@ -123,6 +125,10 @@ func run()->void:
 	var game=load("res://scenes/play.tscn").instantiate();game.profile_directory=profile;game.profile_directory_resolved=true;game.use_command_line_catalog=false;game.use_command_line_level=false
 	root.add_child(game);current_scene=game;game.set_process(false)
 	check(game.modal_title=="YOUR FIRST RESCUE","First normal entry actually shows the tutorial")
+	for id in ["PauseButton","SettingsButton","SpeedButton"]:
+		var touch:Button=game.get_node("TopHUD/"+id)
+		check(touch.size==Vector2(116,116) and Rect2(0,0,940,1672).encloses(touch.get_rect()),id+" approved art keeps enlarged in-bounds touch target")
+	check(game.get_node("TopHUD/SpeedLabel").get_theme_font_size("font_size")==38,"Current speed is readable without changing its real state")
 	var modal:Control=game.pause_overlay
 	var steps:=modal.find_children("StepText*","Label",false,false)
 	check(steps.size()==4,"Four short illustrated instructions")
@@ -151,6 +157,7 @@ func run()->void:
 	check(modal.get_node("TutorialIllustration3/ThreatDragon").get_global_rect().position.y>=990,"Settled dragon is beside the princess, not at screen origin")
 	var button:Button=modal.get_node("TutorialContinue")
 	check(button.size.y>=140 and modal.get_node("CloseButton").size.y>=128,"Primary and close touch bounds scale to phone proportions")
+	check(modal.get_node("CloseButton").get_rect().get_center().is_equal_approx(modal.get_node("PaintedClose").get_rect().get_center()),"Tutorial close target stays centered after modal reveal")
 	check(game.rules.tasks.is_empty() and game.rules.inventory.values().all(func(value):return value==0),"Illustrations do not create tasks or ammo")
 	metrics={"body_px_at_360_width":min_font*360.0/940,"continue_height_at_360_width":button.size.y*360.0/940,"close_height_at_360_width":128.0*360/940,"scope":"Layout/node metrics only, not phone GL, touch, or user acceptance."}
 	button.pressed.emit();check(game.saves.get_view_state().tutorial_completed,"Actual tutorial continuation persists completion")

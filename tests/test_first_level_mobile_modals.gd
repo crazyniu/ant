@@ -163,7 +163,7 @@ func run()->void:
 	for name in ["show_pause","show_restart","show_leave","show_levels","request_home","show_error"]:
 		game.call(name);await inspect_layout(game,"play/"+name)
 		if name=="show_pause":
-			check(game.pause_overlay.get_node("HomeButton").size==Vector2(112,112),"Pause preserves the one existing Home hit target")
+			check(game.pause_overlay.get_node("HomeButton").size==Vector2(120,120),"Pause keeps one Home with a mobile-size hit target")
 			var button_count:=0
 			for child in game.pause_overlay.get_children():
 				if child is Button:button_count+=1

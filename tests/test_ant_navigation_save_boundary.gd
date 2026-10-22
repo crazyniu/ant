@@ -50,6 +50,8 @@ func run()->void:
 	home.audio_service.stop_music();home.audio_service.stop_all_sfx();await create_timer(.15).timeout
 	home.queue_free();await process_frame;await process_frame
 	var report:Dictionary={"pass":failures.is_empty(),"checks":checks,"failures":failures,"scope":"Real headless menu callbacks, navigation write failure, retry, shop/Home/start guards, retained map position and no economy side effects. No production-save writes or visual/audio/native-input acceptance."}
+	DirAccess.make_dir_recursive_absolute("res://reports/flow")
 	var file:=FileAccess.open("res://reports/flow/navigation-save-boundary.json",FileAccess.WRITE)
+	if file==null:push_error("Cannot create test report");quit(1);return
 	file.store_string(JSON.stringify(report,"\t")+"\n");file.close()
 	print("ANT_NAVIGATION_SAVE_BOUNDARY ",JSON.stringify(report));quit(0 if failures.is_empty() else 1)
