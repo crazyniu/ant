@@ -56,13 +56,22 @@
         1024
       ],
       "mode": "RGBA",
-      "sha256": "0c353fb03ed54f8f71036bb489802b026b072fd1b94e5e4a69d3a8b0c594d60b",
+      "sha256": "55fcad55ed042dd885be350925a42755577c98d57d993f05a39269bca8278f7a",
       "alpha_bbox": [
-        0,
+        23,
         19,
-        1522,
-        1024
-      ]
+        1516,
+        1005
+      ],
+      "regions": "assets/first-level/bead-regions.json",
+      "palette": [
+        "red",
+        "blue",
+        "yellow",
+        "green",
+        "purple"
+      ],
+      "status": "original-led-material-candidate-not-native-accepted"
     },
     "color-card.png": {
       "native_size": [
