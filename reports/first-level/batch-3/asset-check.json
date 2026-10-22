@@ -1,0 +1,22 @@
+{
+  "checks": {
+    "dimensions_and_RGBA": true,
+    "sha256_matches_manifest": true,
+    "pixels_unchanged_from_generation": true,
+    "region_within_source": true,
+    "all_alpha128_source_pixels_in_region": true
+  },
+  "alpha128_bbox": [
+    299,
+    78,
+    1316,
+    1060
+  ],
+  "region": [
+    281,
+    60,
+    1053,
+    1018
+  ],
+  "not_GL_validation": true
+}

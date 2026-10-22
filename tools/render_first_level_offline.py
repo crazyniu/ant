@@ -36,9 +36,14 @@ def stamp(canvas,im,item):
  im=im.transform((r-l,bt-t),Image.Transform.AFFINE,coeff,Image.Resampling.BICUBIC)
  mod=np.array(item.get('modulate',[1,1,1,1]));im=Image.fromarray(np.uint8(np.array(im)*mod))
  canvas.alpha_composite(im,(l,t))
-def compose(path):
+def compose(path,ancestor_modulates=None):
  data=json.loads(path.read_text());can=Image.new('RGBA',SIZE);ignored=[];cache={}
  for item in data['nodes']:
+  # Optional reconstruction for historical exports that omitted a non-drawing
+  # ancestor's modulation. The caller must derive it from recorded real state.
+  for prefix,color in (ancestor_modulates or {}).items():
+   if item['name'].startswith(prefix):
+    item=item.copy();item['modulate']=(np.array(item.get('modulate',[1,1,1,1]))*np.array(color)).tolist()
   typ=item['type'];w,h=item['size']
   if typ=='texture':
    p=ROOT/item['path'].removeprefix('res://')

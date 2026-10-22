@@ -265,7 +265,9 @@ func build_candidates()->void:
 		if int(rules.initial_counts.get(color,0))>0:active_colors.append(color)
 	if is_approved_first_level():active_colors=["blue","red","yellow","green","purple"]
 	var layout:=color_control_layout(active_colors.size())
+	var portrait_data:Dictionary={}
 	if is_approved_first_level():
+		portrait_data=JSON.parse_string(FileAccess.get_file_as_string("res://assets/first-level/card-portrait.json"))
 		layout.clear()
 		var gap:=12.0;var width:=(816.0-float(active_colors.size()-1)*gap)/float(active_colors.size())
 		for index in active_colors.size():layout.append(Rect2(62+index*(width+gap),1342,width,176))
@@ -275,13 +277,21 @@ func build_candidates()->void:
 		var x:=bounds.position.x;var y:=bounds.position.y;var width:=bounds.size.x
 		var ant_width:=minf(76.0,width*.39)
 		if is_approved_first_level():
-			ant_width=width*.78
 			var card:=approved_texture("res://assets/first-level/color-card.png",Rect2(122,120,1049,999),Rect2(x,y+11,width,width*999.0/1049.0),layer,"ColorPlate_"+color)
 			approved_tint(card,color)
-		else:frame(bounds,"ColorPlate_"+color,layer,18)
-		var actor:=ground_ant(color,Vector2(x+width*(.46 if is_approved_first_level() else .32),y+(113 if is_approved_first_level() else 85)),"ColorAnt_"+color,layer,ant_width)
-		carrier_motion.prepare(actor,color,ant_width)
-		carrier_motion.apply(actor,{"time":0.0,"distance":0.0,"moving":false,"direction":Vector2(1,1) if is_approved_first_level() else Vector2.UP,"stage":"idle","pickup":0.0,"diameter":ant_width,"phase":0.0})
+			# HUD portraits are not world carriers. Preserve the five true controls,
+			# their count rectangles, and all moving-ant/cargo geometry unchanged.
+			var region:Rect2=SceneLayout.rect(portrait_data.region)
+			var factor:=minf(width*float(portrait_data.max_width_ratio)/region.size.x,float(portrait_data.max_height)/region.size.y)
+			var span:Vector2=region.size*factor
+			var at:=Vector2(x+width*float(portrait_data.center_x_ratio)-span.x*.5,y+float(portrait_data.top_offset))
+			var portrait:=approved_texture(str(portrait_data.texture),region,Rect2(at,span),layer,"ColorAnt_"+color)
+			approved_tint(portrait,color)
+		else:
+			frame(bounds,"ColorPlate_"+color,layer,18)
+			var actor:=ground_ant(color,Vector2(x+width*.32,y+85),"ColorAnt_"+color,layer,ant_width)
+			carrier_motion.prepare(actor,color,ant_width)
+			carrier_motion.apply(actor,{"time":0.0,"distance":0.0,"moving":false,"direction":Vector2.UP,"stage":"idle","pickup":0.0,"diameter":ant_width,"phase":0.0})
 		var count_rect:=Rect2(x+width*.56,y+(94 if is_approved_first_level() else 27),width*.39,65)
 		var count_label:=text_label(str(fixture.remaining.get(color,0)),count_rect,clampi(roundi(width*.25 if is_approved_first_level() else width*.19),28,42),"Remaining_"+color,layer,Color("fff2cf") if is_approved_first_level() else INK)
 		if is_approved_first_level():count_label.add_theme_color_override("font_outline_color",Color("301a08"));count_label.add_theme_constant_override("outline_size",5)

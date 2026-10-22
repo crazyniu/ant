@@ -1,0 +1,41 @@
+{
+	"checks": 72,
+	"failures": [
+		"Existing number rectangle is unchanged",
+		"Existing number rectangle is unchanged",
+		"Existing number rectangle is unchanged",
+		"Existing number rectangle is unchanged",
+		"Existing number rectangle is unchanged",
+		"Reservation immediately updates the chosen color's live count",
+		"Reservation immediately updates the chosen color's live count",
+		"Reservation immediately updates the chosen color's live count",
+		"Reservation immediately updates the chosen color's live count"
+	],
+	"scope": "Only first-level card art binding, immutable hit/count rectangles, authoritative live counts, connected button signals, capacity and pause state. No later level, full gameplay replay, native input, GL shader pixels or user visual acceptance.",
+	"states": [
+		{
+			"carrier_count": 0,
+			"nodes": "res://reports/first-level/batch-3/nodes-initial.json",
+			"paused": false,
+			"state": "initial"
+		},
+		{
+			"carrier_count": 1,
+			"nodes": "res://reports/first-level/batch-3/nodes-one-reserved.json",
+			"paused": false,
+			"state": "one-reserved"
+		},
+		{
+			"carrier_count": 4,
+			"nodes": "res://reports/first-level/batch-3/nodes-capacity-full.json",
+			"paused": false,
+			"state": "capacity-full"
+		},
+		{
+			"carrier_count": 4,
+			"nodes": "res://reports/first-level/batch-3/nodes-paused.json",
+			"paused": true,
+			"state": "paused"
+		}
+	]
+}

@@ -105,6 +105,20 @@
         1186,
         1293
       ]
+    },
+    "card-portrait.png": {
+      "native_size": [
+        1414,
+        1113
+      ],
+      "mode": "RGBA",
+      "sha256": "9a32a556d8fe8c340f750907f26a5a03a1cb49f6b74d6f16479dff5bc465ea65",
+      "alpha_bbox": [
+        0,
+        17,
+        1384,
+        1103
+      ]
     }
   },
   "deck_regions": {
@@ -127,5 +141,6 @@
     722,
     1219
   ],
-  "documentation_updated_at_utc": "2026-10-22T01:00:00Z"
+  "documentation_updated_at_utc": "2026-10-22T02:40:48.644008+00:00",
+  "card_portrait_manifest": "assets/first-level/card-portrait.json"
 }
