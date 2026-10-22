@@ -2,7 +2,7 @@
 
 Only the user-approved first level is accessible in this candidate. Later level content remains archived for compatibility, not enabled or newly tested. Do not merge or deploy this review branch. Visuals are **not user accepted** and no GL screenshot is claimed.
 
-See [current card-only candidate](../reports/first-level/batch-3/README.md) and its exact unaccepted differences. [Batch 2](../reports/first-level/batch-2/README.md) and `FIRST_LEVEL_PUBLICATION.json` describe the immutable initial `0491e05` publication, not the latest changed-file hashes. The current delta is in batch-3/summary.json. Earlier `SOURCE_MANIFEST.json` / `PUBLICATION_CHECK.json` and the implementation history below describe the already-published base, not current first-level acceptance.
+See [current full-ant/card-color correction](../reports/first-level/batch-3/README.md) and its exact unaccepted differences. The c763ed1 bust was rejected; current complete-ant art and five-color shader correction still require fresh native GPU validation. [Batch 2](../reports/first-level/batch-2/README.md) and `FIRST_LEVEL_PUBLICATION.json` describe the immutable initial `0491e05` publication, not the latest changed-file hashes. The current delta is in batch-3/summary.json. Earlier `SOURCE_MANIFEST.json` / `PUBLICATION_CHECK.json` and the implementation history below describe the already-published base, not current first-level acceptance.
 
 ---
 

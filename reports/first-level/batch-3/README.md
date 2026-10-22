@@ -1,48 +1,41 @@
-# First-level batch 3: five battle-card portrait candidates
+# First-level card correction: full ant, not a bust
 
-**Candidate, not 1:1 accepted. No Godot/GL screenshot or native-input acceptance is claimed here.** This is a bounded follow-up to public `0491e05510829dee88b930bd5f86698f86e43082`. Only the five battle color-card illustrations change. Shop, world ants, round balls, stage, paths, cannon and gameplay rules are not changed.
+**Candidate only, not pixel-identical extraction or user accepted.** The previous `c763ed1` half-body interpretation was wrong: the approved card retains a complete abdomen, thin standing legs and a three-quarter viewer-facing head. This correction replaces that rejected bust, without changing any gameplay rule or world actor.
 
-## Actual change
+## Current artifact
 
-- Independent transparent `assets/first-level/card-portrait.png`, with region/pivot-like display placement, source reference, alpha bounds and SHA-256 in `card-portrait.json`.
-- Derived with built-in image generation from the actual approved leftmost blue-card crop, not a new overall art direction. The accepted-for-candidate source pixels and generated alpha are copied unchanged; Godot uses an AtlasTexture region to remove far transparent padding.
-- A large three-quarter, viewer-facing head and small upper thorax replace the five old side-facing walking-ant thumbnails. The same one blue source is tinted through the existing shader into blue/red/yellow/green/purple. This is a HUD illustration, not a new ant class or a change to world-ant physical size.
-- `scripts/play.gd::build_candidates()` retains the existing five buttons, signal handlers, hit rectangles and numerical label rectangles. No 20/30 team size, duplicated blue selector, extra slot, plus or skill is restored.
-- Card numbers are the real balls still on the board, **including reserved balls**. A reservation does not decrement them; actual pickup does. The production rules are unchanged.
+- `assets/first-level/card-portrait.png` now contains one complete blue ant. The old filename denotes a HUD illustration, not permission to crop off the body.
+- `card-portrait.json` records source crop, unmodified generated-pixel hash, alpha bounds, source region and exact display geometry. Only source padding is excluded through AtlasTexture; head and abdomen are not independently stretched or resized.
+- Source is the approved battle image's leftmost blue-card region `[50,1242,234,1396]`. This is an AI-assisted reconstruction, not an exact cutout. Antenna tips, joints and eye rim still differ and require actual-size/rendered comparison.
+- Existing five buttons, real board counts, single-ant dispatch, four-carrier limit, blocked/pause dimming and count-label rectangles are unchanged. Original duplicate blue card,20/30 teams and old skills are not restored.
+- Card frame/background remain unchanged. Restoring the complete ant silhouette does not establish the entire card/deck/screen as1:1.
 
-## Source and same-position comparison
+## Real-GPU color defect corrected in source
 
-- Approved source: `reports/first-level/approved-battle.jpeg` (864×1536).
-- Read-only reference crop: [approved-blue-card-crop.png](approved-blue-card-crop.png), original box `[50,1242,234,1396]`. It is an input/inspection reference, not a runtime card background.
-- Exact generation instruction: [portrait-prompt.txt](portrait-prompt.txt). Two preceding variants were rejected before runtime binding for thick limbs/antenna tips and redesigned facial features; those rejected raster files are not shipped.
-- [cards-reference-before-after.png](cards-reference-before-after.png) compares original art, `0491e05` card nodes and current portrait nodes in the same current button positions. Original four-card/20/30 labels are identified as legacy art, not current gameplay.
-- [cards-live-state-offline.png](cards-live-state-offline.png) shows one reservation, full transport capacity, actual first pickup and pause. The first actual pickup in this bounded test is at3.7 simulated seconds; blue80 becomes79 then, not on the click.
+The actual c763ed1 root-viewport PNG showed purple turning blue and yellow turning green. Its shader multiplied recolored pixels by fragment `COLOR`, which already includes the blue source texture. Following the [Godot4.6 CanvasItem contract](https://docs.godotengine.org/en/4.6/tutorials/shaders/shader_reference/canvas_item_shader.html), it now captures node modulation in the vertex stage and applies that varying once. This affects only the five card plates and illustrations. Ten material instances remain independent; actual blocked/pause modulation is preserved. **The new shader still needs a fresh native2K per-color check.** CPU compositions did not model the old implicit second texture multiplication and did not prove its colors correct.
 
-These are **CPU node compositions, not Godot rendering**. Shader tint, filtering and text are approximated. Barrier/clock/check custom icons are omitted by this compositor. Red/yellow are initially dim because of actual blocked state, not because their raw portrait material is darker. Historical batch-2 exports omitted the old non-drawing card parent modulation; the comparison tool reconstructs only that known parent factor from the recorded blocked/collected icon and unchanged `sync_view()` logic. The reconstruction is explicit in code, not represented as a captured frame.
+## Verification and small evidence policy
 
-## Finite verification
+Headless import and **82 narrow checks passed**, including ten independent materials and a static shader contract. Five source/alpha checks passed. Of327 shared initial exported nodes,322 are unchanged; only five card illustration geometry records differ. This does not test shader output pixels.
 
-Headless import and `tests/test_first_level_card_portraits.gd`: **79 checks, zero failures**. This covers five real source/tint bindings, non-intercepting art/text, unchanged hit/count rectangles, connected button signals sending one ant each, four-carrier capacity, authoritative counts before and after actual pickup, pause/restore and visibility. Signals are not native pointer events.
+The exact bounded result and source hashes are in [summary.json](summary.json). Only the card-specific test is rerun for this correction; earlier110.425s/148-point full replay belongs to0491e05, not a newly executed gameplay suite. Native pointer, GPU appearance, animation quality, audio and user approval are not inferred from headless checks.
 
-Initial node comparison against `0491e05`: all shared exported nodes are field-for-field identical; the only removals are the ten old portrait sprite/shadow children, and the only additions are the five independent portrait nodes. All stage, ball, carrier, cannon, label and other initial exported nodes remain unchanged. Exact source/evidence hashes are in [summary.json](summary.json).
-
-The first narrow test harness had nine failed assertions because it used bit-exact floating-point rectangle equality and incorrectly expected reservations to remove board balls. [card-test-first-harness.json](card-test-first-harness.json) preserves that run. The harness was corrected to a0.001 logical-pixel tolerance and the frozen reservation/pickup semantics, then added actual pickup checks. No production rule was changed to satisfy the test.
-
-Reproduce after a normal headless import:
+Run after normal import, using isolated HOME/XDG directories:
 
 ```sh
-godot --headless --path . --script tests/test_first_level_card_portraits.gd
-python tools/compare_first_level_cards.py
+ANT_CARD_EVIDENCE_DIR=/tmp/ant-card-evidence godot --headless --path . --script tests/test_first_level_card_portraits.gd
+python tools/compare_first_level_cards.py --nodes-dir /tmp/ant-card-evidence
 ```
 
-Use an isolated HOME/XDG test profile. No later level or whole-game suite is exercised. Batch-2's110.425-second victory/148-point result and its other check counts remain evidence for `0491e05`, not a newly rerun result for this portrait-only commit.
+Without the environment variable, the test writes to `user://first-level-card-evidence`. Full node dumps and offline images stay local. The comparison explicitly labels itself **not Godot/GL**; CPU tint/filter/text are approximate; strong image reductions use a local area prefilter to avoid affine undersampling and small custom state icons are omitted. Real unavailable colors remain dim rather than being brightened for presentation.
 
-## Still open
+The current tree retains only current runtime art, test/comparison code and concise verification records. Prior candidate imagery, repeated full-node snapshots and bulky geometry artifacts remain available in public commit history and a verified local archive; history was not rewritten. [c763ed1](https://github.com/crazyniu/ant/tree/c763ed1c6061e6ce6afffca37477738336b4915d/reports/first-level/batch-3) is the **rejected bust candidate**, not the visual target.
 
-- The portrait is not a pixel-identical extraction. Antenna tips/front appendages remain somewhat thicker, the face rounder, and mouth/far-eye features more prominent than the approved original.
-- The card frames/background panels are unchanged and still need their original-art material/composition review. An improved face does not make the whole card, bottom deck or full screen1:1.
-- Shop still uses its old assets; no shop upgrade/economy work is included.
-- Round-ball shape/highlights/packing, dragon, cannon crew/loading and complete screen restoration remain open under their existing issues.
-- This portrait commit still needs real Godot rendering, native card hit tests and user visual confirmation. A supported desktop Godot route is now available for separate verification; prior shell/Xorg failures do not mean the entire graphics environment is unavailable.
+## Remaining work
 
-Issue mapping: [#5](https://github.com/crazyniu/ant/issues/5), with future shop consistency under [#9](https://github.com/crazyniu/ant/issues/9). Keep both open. Do not merge/deploy this candidate.
+- Actual Godot card rendering and native click comparison, then user visual confirmation.
+- Source-faithful card frame/material and exact small feature matching.
+- Ball packing/material, dragon texture/rendering, full moving-ant posture, cannon loading/recoil/hit animation and shop restoration remain separate open tasks. This correction changes none of them.
+- A supported desktop Godot route is available. Separate actual device logs report audio fallback to Dummy; no sound listening pass is claimed.
+
+[#5](https://github.com/crazyniu/ant/issues/5) and [#9](https://github.com/crazyniu/ant/issues/9) stay open. Only first level; no merge/deploy or later-level unlock.

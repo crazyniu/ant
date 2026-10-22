@@ -1,32 +1,28 @@
 {
-  "status": "portrait-only candidate, no GL/native input/user acceptance",
-  "base_commit": "0491e05510829dee88b930bd5f86698f86e43082",
-  "generated_at_utc": "2026-10-22T02:48:43.326337+00:00",
+  "status": "full-ant card and tint correction candidate; GL/user acceptance pending",
+  "replaces_rejected_bust_commit": "c763ed1c6061e6ce6afffca37477738336b4915d",
+  "generated_at_utc": "2026-10-22T03:17:12.104332+00:00",
   "headless_import": "passed",
-  "checks": 79,
+  "headless_card_checks": 82,
   "failures": [],
+  "source_alpha_checks": 5,
   "same_shared_initial_nodes": 322,
-  "modified_shared_initial_nodes": [],
-  "removed_old_portrait_children": [
-    "CandidateQueues/ColorAnt_blue/FootShadow",
-    "CandidateQueues/ColorAnt_blue/Ant",
-    "CandidateQueues/ColorAnt_red/FootShadow",
-    "CandidateQueues/ColorAnt_red/Ant",
-    "CandidateQueues/ColorAnt_yellow/FootShadow",
-    "CandidateQueues/ColorAnt_yellow/Ant",
-    "CandidateQueues/ColorAnt_green/FootShadow",
-    "CandidateQueues/ColorAnt_green/Ant",
-    "CandidateQueues/ColorAnt_purple/FootShadow",
-    "CandidateQueues/ColorAnt_purple/Ant"
-  ],
-  "added_portrait_nodes": [
+  "modified_initial_nodes": [
     "CandidateQueues/ColorAnt_blue",
-    "CandidateQueues/ColorAnt_red",
-    "CandidateQueues/ColorAnt_yellow",
     "CandidateQueues/ColorAnt_green",
-    "CandidateQueues/ColorAnt_purple"
+    "CandidateQueues/ColorAnt_purple",
+    "CandidateQueues/ColorAnt_red",
+    "CandidateQueues/ColorAnt_yellow"
   ],
-  "first_real_pickup_us": 3700000,
+  "added_removed_initial_nodes": 0,
+  "node_comparison_boundary": "Source shader changes are not proven by node equality. Only the five card illustration geometry records differ; material colors need actual GPU validation.",
+  "shader_correction": {
+    "cause": "Fragment COLOR includes the main texture; multiplying painted RGB by it applied blue source RGB and alpha twice",
+    "fix": "Vertex varying carries only node/vertex modulation; tint, real unavailable dimming and alpha now apply once",
+    "official_reference": "https://docs.godotengine.org/en/4.6/tutorials/shaders/shader_reference/canvas_item_shader.html",
+    "independent_materials": 10,
+    "GPU_color_acceptance": false
+  },
   "unchanged_source_hashes": {
     "data/serpent-levels/serpent-01.json": "bf09222005648bdc853e3fa7bab15c505dc297b0931ded1d9be3bfa0af2896b5",
     "data/scenes/first-level-approved.json": "78a3acdc51da5a95f66cda0df4b1fc2f44ff9aabe749fba158afb76f0ba8d957",
@@ -39,43 +35,41 @@
     "scripts/startup.gd": "188cdaab8976833996a46938c775401f1559b968ca4b90f7fcb71b8b884b468f",
     "assets/first-level/slender-ants.png": "d5cfe909930285759e1af539212f89f5dd098c041637c5c2150760f536fe127c",
     "assets/first-level/slender-ants.json": "2e1e46613d0adaa184551a217d790f692b9f15870d799ae0badd0cb7655a2133",
-    "assets/first-level/round-beads.png": "0c353fb03ed54f8f71036bb489802b026b072fd1b94e5e4a69d3a8b0c594d60b"
+    "assets/first-level/round-beads.png": "0c353fb03ed54f8f71036bb489802b026b072fd1b94e5e4a69d3a8b0c594d60b",
+    "scripts/play.gd": "39a6e45b9faa20a3de5e9e7daa2409fff9ad7c863003d4638aae2170d775a3a6"
   },
   "changed_source_hashes": {
-    "assets/first-level/card-portrait.png": "9a32a556d8fe8c340f750907f26a5a03a1cb49f6b74d6f16479dff5bc465ea65",
-    "assets/first-level/card-portrait.json": "20fe9afc1352fc89bf3bd855daca70f5a1dff36636b920a378e4b7a7f3fe47da",
-    "assets/first-level/manifest.json": "0142751addc003aa3b37eba678ace65b253a1a86ac4a909cb0d383ff402a0066",
-    "scripts/play.gd": "39a6e45b9faa20a3de5e9e7daa2409fff9ad7c863003d4638aae2170d775a3a6",
-    "tests/test_first_level_card_portraits.gd": "334192227aa95ef62be3747ee58fbfda87e56d80bf5c5651a385e8ca641e76c5",
-    "tools/compare_first_level_cards.py": "495a37fe2ea6044a7c1986f9e371eda5179f36a101fe00d27af448f67dd262f9",
-    "tools/render_first_level_offline.py": "127bb18cfc3faf5ddea9661d26b11f7673daf3d54fe7c3fcb70c4a96a572492f"
+    "assets/first-level/card-portrait.png": "ddc98e3300dbdbac8e08847776dfe755f9326632cb4e2abf5f603a658d499377",
+    "assets/first-level/card-portrait.json": "36df55861bb5a918afcfac40d2d5ddbf0511b94799eba1480184f25c31fb7d3c",
+    "assets/first-level/manifest.json": "14180a8dcd0d0de243058319540438b21fa0fbb52c688a18612d01d594fb96e2",
+    "scripts/first_level_color.gdshader": "d6bcc8c073749c55ab74aa7fba04026d01452dcb019b42f384df4dadb078c2bb",
+    "tests/test_first_level_card_portraits.gd": "467ad3101e0377698f3f8538681eeeaf5ae7146ad8eb0a4be3db5587cf4203c9",
+    "tools/compare_first_level_cards.py": "abb8f2768137b1c647707cd85959d685a3df644934ed1d31accffa529d660042",
+    "tools/render_first_level_offline.py": "dc658f51708e44fb6b5e57a7d9b7f2fe4aeee81b3340a12f858fcc8799dc13b3"
   },
-  "evidence_hashes": {
-    "reports/first-level/batch-3/README.md": "ff23e38a521aaa14d8ef6d4126ebaaa149b7cf0676f3fc72d83d5031685c5694",
-    "reports/first-level/batch-3/approved-blue-card-crop.png": "4a94de8db82fbbaf34dfc23789a65fb500cd37d7994b94fad42133f831c579f7",
-    "reports/first-level/batch-3/asset-check.json": "b403f0583477e7fd18e35e2748f5f07072e47e423eed952bcf259609a95ac4f7",
-    "reports/first-level/batch-3/card-test-first-harness.json": "30b8ae55f8b1bc6f2293bd7300ff1e22a92f6537a7fc3d4d964e35bd7141b8a1",
-    "reports/first-level/batch-3/card-test.json": "be93c682b3b986d80fb57443be6e41fa186ab7c2152486e2e2a4ae0040a7e613",
-    "reports/first-level/batch-3/cards-live-state-offline.png": "dc0f6ff6c47a86d26d85e430e4211ab63af4009059701ee8ab6a870a380d9e23",
-    "reports/first-level/batch-3/cards-reference-before-after.png": "163c4a2c326e7bd9a55db5f303b3e98c2951dc30c3f3919937581a10bca8e3d9",
-    "reports/first-level/batch-3/nodes-after-first-pickup.json": "ca5df8fcaa96f89d377c25394c525504a8e1684f456d14b6f8b63eea2a512e2f",
-    "reports/first-level/batch-3/nodes-capacity-full.json": "4748b3592b22e2b873834237b585a09a2898cefb0ef2c0625c4388aa94550ff5",
-    "reports/first-level/batch-3/nodes-initial.json": "ff453cace0e6acadbaeba2c484ec0871e96356e63e3f07423fd3b1b576a096cc",
-    "reports/first-level/batch-3/nodes-one-reserved.json": "7bd7c567cb529e9bef7d2fc6af5ba91beace6dd6a0b8f131cf15300014066f5f",
-    "reports/first-level/batch-3/nodes-paused.json": "72ea2b9747233a9d7a5cb7a18d69f5b699f9af7e7e12aa769fcde82a863d7ae2",
-    "reports/first-level/batch-3/portrait-prompt.txt": "2b0e06c54ca8a8aee27c5cec3445b8118e6058d276ddf443c280bc52427c94be"
+  "first_real_pickup_us": 3700000,
+  "local_evidence_files": [
+    "nodes-initial.json",
+    "nodes-one-reserved.json",
+    "nodes-capacity-full.json",
+    "nodes-after-first-pickup.json",
+    "nodes-paused.json",
+    "cards-reference-current.png",
+    "cards-live-state-offline.png"
+  ],
+  "repository_cleanup": {
+    "removed_reproducible_or_superseded_tracked_files": 32,
+    "removed_bytes": 10188371,
+    "local_archive_verified": true,
+    "public_history_rewritten": false
   },
   "limitations": [
-    "source face/antenna fidelity still imperfect",
-    "CPU comparison only; custom state icons omitted",
-    "native pointer, GL shader/filtering and user visual acceptance pending",
-    "shop and all other open visual tickets are unchanged"
+    "Generated full ant is not an exact source cutout; antenna tips, joints and eye rim still differ",
+    "Card frames/backgrounds are unchanged",
+    "Only card-specific headless binding/state checks rerun;110.425s/148 points remains0491e05 evidence",
+    "Offline composition is not Godot; tint/filter/text approximate",
+    "Runtime GPU/native click/animation/audio/user confirmation remain separate",
+    "No later-level, world-ant, ball, dragon, cannon, shop or gameplay changes"
   ],
-  "asset_read_checks": {
-    "dimensions_and_RGBA": true,
-    "sha256_matches_manifest": true,
-    "pixels_unchanged_from_generation": true,
-    "region_within_source": true,
-    "all_alpha128_source_pixels_in_region": true
-  }
+  "offline_preview_boundary": "CPU sRGB tint approximation plus area-prefiltered reductions; not GPU. Earlier direct-affine previews can alias source details."
 }

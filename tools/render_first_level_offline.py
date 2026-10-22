@@ -27,6 +27,12 @@ def paint_shader(im,item):
 def stamp(canvas,im,item):
  a,b,c,d,e,f=item['matrix'];w,h=item['size'];iw,ih=im.size
  if not w or not h:return
+ # Local preview only: prefilter severe reductions before affine sampling.
+ # Direct affine bicubic reduction aliases high-frequency source pixels; this
+ # CPU area filter is not a claim about Godot's native filtering.
+ target=(max(1,math.ceil(math.hypot(a,b)*w)),max(1,math.ceil(math.hypot(c,d)*h)))
+ if iw>target[0]*1.5 or ih>target[1]*1.5:
+  im=im.resize((min(iw,target[0]),min(ih,target[1])),Image.Resampling.LANCZOS);iw,ih=im.size
  A=a*w/iw;B=b*w/iw;C=c*h/ih;D=d*h/ih
  corners=[(e,f),(e+A*iw,f+B*iw),(e+C*ih,f+D*ih),(e+A*iw+C*ih,f+B*iw+D*ih)]
  l=max(0,math.floor(min(q[0] for q in corners)));t=max(0,math.floor(min(q[1] for q in corners)));r=min(canvas.width,math.ceil(max(q[0] for q in corners)));bt=min(canvas.height,math.ceil(max(q[1] for q in corners)))

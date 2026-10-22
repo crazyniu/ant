@@ -1,67 +1,61 @@
 #!/usr/bin/env python3
-"""Card-only source/node comparison. Never represents Godot/GL output."""
+"""Compose approved/current card rows from current nodes. Never Godot/GL output.
+Raw nodes and images are local evidence, not committed snapshots.
+"""
 from pathlib import Path
-import json
+import argparse
 from PIL import Image, ImageDraw, ImageFont
 from render_first_level_offline import compose
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "reports/first-level/batch-3"
-FONT = str(ROOT / "assets/fonts/Title.ttf")
+FONT = str(ROOT / 'assets/fonts/Title.ttf')
 
 
 def main():
-    before_path = ROOT / "reports/first-level/batch-2/nodes-after-initial.json"
-    # The old card actor was a non-drawing Control. Its disabled modulation was
-    # absent from leaf-only batch-2 exports. Reconstruct only this known ancestor
-    # from recorded visible blocked/collected icons and play.gd sync_view().
-    inherited = {}
-    for item in json.loads(before_path.read_text())["nodes"]:
-        if item["name"].startswith("CandidateQueues/ColorState_") and item.get("kind") in ("barrier", "check"):
-            color = item["name"].removeprefix("CandidateQueues/ColorState_")
-            inherited[f"CandidateQueues/ColorAnt_{color}/"] = [.55, .55, .55, .72]
-    before, _, _ = compose(before_path, inherited)
-    after, _, omitted = compose(OUT / "nodes-initial.json")
-    reference = Image.open(ROOT / "reports/first-level/approved-battle.jpeg")
-    before.convert("RGB").save(OUT / "before-offline.png")
-    after.convert("RGB").save(OUT / "after-offline.png")
-    canvas = Image.new("RGB", (940, 850), "#e4d5b7")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--nodes-dir', type=Path, required=True)
+    parser.add_argument('--output-dir', type=Path)
+    args = parser.parse_args()
+    output = args.output_dir or args.nodes_dir
+    output.mkdir(parents=True, exist_ok=True)
+    after, _, omitted = compose(args.nodes_dir / 'nodes-initial.json')
+    reference = Image.open(ROOT / 'reports/first-level/approved-battle.jpeg')
+    canvas = Image.new('RGB', (940, 610), '#e4d5b7')
     draw = ImageDraw.Draw(canvas)
     title = ImageFont.truetype(FONT, 24)
     label = ImageFont.truetype(FONT, 20)
     note = ImageFont.truetype(FONT, 17)
-    draw.text((22, 16), "CARD ART COMPARISON / OFFLINE ONLY / NOT GODOT OR GL", font=title, fill="#382719")
+    draw.text((22, 16), 'FULL-ANT CARD COMPARISON / OFFLINE ONLY / NOT GODOT OR GL', font=title, fill='#382719')
     panels = [
-        ("APPROVED ART: four legacy cards; 20/30 are NOT current rules", reference.crop((50, 1242, 860, 1400))),
-        ("BEFORE: five live controls / old small side-facing carrier art", before.crop((62, 1342, 878, 1518))),
-        ("CANDIDATE: same five controls and live counts / new portrait art", after.crop((62, 1342, 878, 1518))),
+        ('APPROVED ART: complete ants; four old cards / 20/30 are NOT current rules', reference.crop((50, 1242, 860, 1400))),
+        ('CURRENT CANDIDATE: five colors / complete ants / same hit areas and counts', after.crop((62, 1342, 878, 1518))),
     ]
     for i, (text, image) in enumerate(panels):
-        top = 66 + i * 237
-        draw.text((25, top), text, font=label, fill="#382719")
-        image = image.convert("RGBA")
-        # Equal displayed row width. Source and candidate card counts intentionally differ.
+        top = 66 + i * 225
+        draw.text((25, top), text, font=label, fill='#382719')
+        image = image.convert('RGBA')
         width = 816
         height = round(image.height * width / image.width)
         image = image.resize((width, height), Image.Resampling.LANCZOS)
         canvas.paste(image, (62, top + 35), image)
-    draw.text((22, 789), "Actual node positions. CPU color tint/filtering/text approximation, not GPU pixels.", font=note, fill="#382719")
-    draw.text((22, 817), "One press sends one ant. Capacity 4. Original hit/count rectangles unchanged.", font=note, fill="#382719")
-    canvas.save(OUT / "cards-reference-before-after.png")
+    draw.text((22, 535), 'Red/yellow dimming is the real blocked state. It is not removed for this comparison.', font=note, fill='#382719')
+    draw.text((22, 560), 'CPU tint/filter/text approximation. Frame material and exact ant details remain open.', font=note, fill='#382719')
+    draw.text((22, 585), 'Original complete abdomen/legs restored as a candidate, not pixel-identical extraction.', font=note, fill='#382719')
+    canvas.save(output / 'cards-reference-current.png')
 
-    states = Image.new("RGB", (940, 980), "#e4d5b7")
+    states = Image.new('RGB', (940, 980), '#e4d5b7')
     d = ImageDraw.Draw(states)
-    d.text((22, 15), "LIVE-STATE NODE COMPOSITION / NOT GODOT OR GL", font=title, fill="#382719")
-    for i, state in enumerate(["one-reserved", "capacity-full", "after-first-pickup", "paused"]):
-        page, _, _ = compose(OUT / f"nodes-{state}.json")
-        d.text((25, 63 + i * 215), state.upper(), font=label, fill="#382719")
+    d.text((22, 15), 'LIVE-STATE NODE COMPOSITION / NOT GODOT OR GL', font=title, fill='#382719')
+    for i, state in enumerate(['one-reserved', 'capacity-full', 'after-first-pickup', 'paused']):
+        page, _, _ = compose(args.nodes_dir / f'nodes-{state}.json')
+        d.text((25, 63 + i * 215), state.upper(), font=label, fill='#382719')
         crop = page.crop((62, 1342, 878, 1518))
         states.paste(crop, (62, 93 + i * 215), crop)
-    d.text((22, 930), "Counts include reservations until actual pickup. Not native input or GL acceptance.", font=note, fill="#382719")
-    d.text((22, 955), "CPU tint/text approximation; barrier/clock/check icons are omitted in this compositor.", font=note, fill="#382719")
-    states.save(OUT / "cards-live-state-offline.png")
-    print({"not_godot_render": True, "omitted_custom_icons": omitted, "output": str(OUT)})
+    d.text((22, 930), 'Counts include reservations until actual pickup. Not native input or GL acceptance.', font=note, fill='#382719')
+    d.text((22, 955), 'CPU tint/text approximation; barrier/clock/check icons are omitted in this compositor.', font=note, fill='#382719')
+    states.save(output / 'cards-live-state-offline.png')
+    print({'not_godot_render': True, 'omitted_custom_icons': omitted, 'output': str(output)})
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

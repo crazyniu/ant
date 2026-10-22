@@ -2,15 +2,15 @@
   "status": "candidate-not-user-accepted",
   "texture": "res://assets/first-level/card-portrait.png",
   "region": [
-    281,
-    60,
-    1053,
-    1018
+    114,
+    113,
+    1099,
+    1055
   ],
   "max_width_ratio": 0.86,
   "max_height": 104.0,
-  "center_x_ratio": 0.43,
-  "top_offset": 18.0,
+  "center_x_ratio": 0.45,
+  "top_offset": 23.0,
   "reference": {
     "path": "reports/first-level/approved-battle.jpeg",
     "region_xyxy": [
@@ -19,33 +19,33 @@
       234,
       1396
     ],
-    "role": "plain blue ant from approved leftmost color card"
+    "role": "complete plain blue ant from approved leftmost card; original count/frame are not runtime content"
   },
-  "runtime_role": "HUD portrait only; not the world carrier model or a new character type",
+  "runtime_role": "HUD full-ant illustration; complete abdomen, legs and antennae; not world carrier model or a new character type",
   "native_size": [
-    1414,
-    1113
+    1254,
+    1254
   ],
   "mode": "RGBA",
-  "sha256": "9a32a556d8fe8c340f750907f26a5a03a1cb49f6b74d6f16479dff5bc465ea65",
+  "sha256": "ddc98e3300dbdbac8e08847776dfe755f9326632cb4e2abf5f603a658d499377",
   "alpha_bbox": [
     0,
-    17,
-    1384,
-    1103
+    18,
+    1240,
+    1254
   ],
   "alpha128_bbox": [
-    299,
-    78,
-    1316,
-    1060
+    132,
+    131,
+    1195,
+    1150
   ],
   "pixel_editing": "none; generated source alpha and pixels copied unchanged; AtlasTexture source region excludes far transparent padding",
-  "color": "One blue portrait, existing first_level_color shader and five real COLOR_VALUES; no new color rules",
+  "color": "One blue full-ant source, existing first_level_color shader and five real COLOR_VALUES; unavailable-state modulation retained",
   "known_differences": [
-    "Antenna tips and front appendages remain somewhat thicker than approved source",
-    "Face is rounder and small mouth/mandible dots are more prominent",
-    "Candidate bust framing is intentionally close; not a pixel-identical source extraction",
-    "Shader color, filtering and final readability remain unverified in GL"
+    "Generated reconstruction, not exact pixel extraction or user acceptance",
+    "Antenna ends, foot joints and eye rim still differ from the approved source; verify at actual card size",
+    "Card frame/background and original four-card to current five-color mapping are unchanged",
+    "Native GPU filtering, pointer hit testing and user visual acceptance for this correction remain pending"
   ]
 }

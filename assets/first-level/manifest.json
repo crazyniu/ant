@@ -108,16 +108,16 @@
     },
     "card-portrait.png": {
       "native_size": [
-        1414,
-        1113
+        1254,
+        1254
       ],
       "mode": "RGBA",
-      "sha256": "9a32a556d8fe8c340f750907f26a5a03a1cb49f6b74d6f16479dff5bc465ea65",
+      "sha256": "ddc98e3300dbdbac8e08847776dfe755f9326632cb4e2abf5f603a658d499377",
       "alpha_bbox": [
         0,
-        17,
-        1384,
-        1103
+        18,
+        1240,
+        1254
       ]
     }
   },
@@ -141,6 +141,6 @@
     722,
     1219
   ],
-  "documentation_updated_at_utc": "2026-10-22T02:40:48.644008+00:00",
+  "documentation_updated_at_utc": "2026-10-22T03:06:59.639890+00:00",
   "card_portrait_manifest": "assets/first-level/card-portrait.json"
 }

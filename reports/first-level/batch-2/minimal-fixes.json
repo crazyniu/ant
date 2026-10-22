@@ -1,5 +1,0 @@
-{
-	"checks": 48,
-	"failures": [],
-	"scope": "First-level-only headless controller/entry, historical metadata recovery, hopper selector, distance gait and non-overlapping feedback. Later level numbers are rejected inputs only; no later config or scene was exercised. No GL/native input/sound/visual acceptance."
-}
