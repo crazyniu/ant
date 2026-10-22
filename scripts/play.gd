@@ -42,7 +42,6 @@ var pending_save_kind := ""
 var pending_entrance := 0
 var last_save_reason := ""
 var settings_dirty := false
-var settings_return_to_pause := false
 var recovery_reset_confirm := false
 var scout_result: Dictionary = {}
 var scout_seconds := 0.0
@@ -699,9 +698,9 @@ func close_current_modal()->void:
 		return
 	if modal_title=="YOUR FIRST RESCUE":finish_tutorial();return
 	if modal_title=="SETTINGS":
-		if commit_settings():
-			if settings_return_to_pause:show_pause()
-			else:dismiss_modal()
+		# Closing Settings is not consent to resume a timed battle (PRD §10).
+		# Both Gear and Pause entries stay frozen until explicit Continue.
+		if commit_settings():show_pause()
 		return
 	if modal_title=="COULDN'T SAVE":
 		if pending_save_kind=="victory":show_save_error()
@@ -733,8 +732,6 @@ func show_pause()->void:
 
 func show_settings()->void:
 	if not profile_state.get("ready",false):show_load_recovery();return
-	# Recovery rebuilds the settings page but must not replace its original caller.
-	if modal_title not in ["SETTINGS","COULDN'T SAVE"]:settings_return_to_pause=modal_title=="PAUSED"
 	super.show_settings()
 	for name in ["MusicVolume","SoundVolume"]:
 		var slider:HSlider=pause_overlay.get_node(name)

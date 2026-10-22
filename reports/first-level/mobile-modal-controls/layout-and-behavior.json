@@ -1,5 +1,5 @@
 {
-	"checks": 1399,
+	"checks": 1423,
 	"failures": [],
 	"layouts": [
 		{
@@ -36,7 +36,7 @@
 					"font_size": 32,
 					"lines": 1,
 					"name": "SaveReason",
-					"rect": "[P: (190.0, 930.0), S: (560.0, 110.0)]",
+					"rect": "[P: (190.0, 930.0), S: (560.0, 109.9998)]",
 					"text": "TEMPORARY WRITE FAILED"
 				},
 				{
@@ -54,62 +54,7 @@
 					"text": "BACK"
 				}
 			],
-			"panel": "[P: (130.0, 400.0), S: (680.0, 960.0)]",
-			"state": "gear settings-save failure"
-		},
-		{
-			"buttons": [
-				{
-					"name": "CloseButton",
-					"rect": "[P: (733.0, 351.0), S: (120.0, 120.0)]"
-				},
-				{
-					"name": "Button_RETRY SAVE",
-					"rect": "[P: (190.0, 1064.0), S: (560.0, 118.0)]"
-				},
-				{
-					"name": "Button_BACK",
-					"rect": "[P: (190.0, 1204.0), S: (560.0, 118.0)]"
-				}
-			],
-			"labels": [
-				{
-					"font_size": 38,
-					"lines": 2,
-					"name": "SaveStatus",
-					"rect": "[P: (190.0, 694.0), S: (560.0, 110.0)]",
-					"text": "VOLUME CHANGES\nARE NOT SAVED"
-				},
-				{
-					"font_size": 32,
-					"lines": 1,
-					"name": "SaveNotice",
-					"rect": "[P: (190.0, 822.0), S: (560.0, 90.0)]",
-					"text": "YOUR PREVIOUS SAVE IS KEPT"
-				},
-				{
-					"font_size": 32,
-					"lines": 1,
-					"name": "SaveReason",
-					"rect": "[P: (190.0, 930.0), S: (560.0, 110.0)]",
-					"text": "TEMPORARY WRITE FAILED"
-				},
-				{
-					"font_size": 38,
-					"lines": 1,
-					"name": "Text_RETRY SAVE",
-					"rect": "[P: (210.0, 1072.0), S: (520.0, 102.0)]",
-					"text": "RETRY SAVE"
-				},
-				{
-					"font_size": 38,
-					"lines": 1,
-					"name": "Text_BACK",
-					"rect": "[P: (210.0, 1212.0), S: (520.0, 102.0)]",
-					"text": "BACK"
-				}
-			],
-			"panel": "[P: (130.0, 400.0), S: (680.0, 960.0)]",
+			"panel": "[P: (130.0, 400.0), S: (680.0, 959.9998)]",
 			"state": "gear settings-save failure"
 		},
 		{
@@ -165,6 +110,61 @@
 				}
 			],
 			"panel": "[P: (130.0, 400.0), S: (680.0, 959.9998)]",
+			"state": "gear settings-save failure"
+		},
+		{
+			"buttons": [
+				{
+					"name": "CloseButton",
+					"rect": "[P: (733.0, 351.0), S: (120.0, 120.0)]"
+				},
+				{
+					"name": "Button_RETRY SAVE",
+					"rect": "[P: (190.0, 1064.0), S: (560.0, 118.0)]"
+				},
+				{
+					"name": "Button_BACK",
+					"rect": "[P: (190.0, 1204.0), S: (560.0, 118.0)]"
+				}
+			],
+			"labels": [
+				{
+					"font_size": 38,
+					"lines": 2,
+					"name": "SaveStatus",
+					"rect": "[P: (190.0, 694.0), S: (560.0, 110.0)]",
+					"text": "VOLUME CHANGES\nARE NOT SAVED"
+				},
+				{
+					"font_size": 32,
+					"lines": 1,
+					"name": "SaveNotice",
+					"rect": "[P: (190.0, 822.0), S: (560.0, 90.0)]",
+					"text": "YOUR PREVIOUS SAVE IS KEPT"
+				},
+				{
+					"font_size": 32,
+					"lines": 1,
+					"name": "SaveReason",
+					"rect": "[P: (190.0, 930.0), S: (560.0, 110.0001)]",
+					"text": "TEMPORARY WRITE FAILED"
+				},
+				{
+					"font_size": 38,
+					"lines": 1,
+					"name": "Text_RETRY SAVE",
+					"rect": "[P: (210.0, 1072.0), S: (520.0, 102.0)]",
+					"text": "RETRY SAVE"
+				},
+				{
+					"font_size": 38,
+					"lines": 1,
+					"name": "Text_BACK",
+					"rect": "[P: (210.0, 1212.0), S: (520.0, 102.0)]",
+					"text": "BACK"
+				}
+			],
+			"panel": "[P: (130.0, 400.0), S: (680.0, 959.9999)]",
 			"state": "pause settings-save failure"
 		},
 		{
@@ -201,7 +201,7 @@
 					"font_size": 32,
 					"lines": 1,
 					"name": "SaveReason",
-					"rect": "[P: (190.0, 930.0), S: (560.0, 109.9999)]",
+					"rect": "[P: (190.0, 930.0), S: (560.0, 110.0002)]",
 					"text": "TEMPORARY WRITE FAILED"
 				},
 				{
@@ -268,7 +268,7 @@
 					"font_size": 38,
 					"lines": 1,
 					"name": "Text_LEVEL SELECT",
-					"rect": "[P: (210.0, 1012.0), S: (520.0, 102.0002)]",
+					"rect": "[P: (210.0, 1012.0), S: (520.0, 101.9999)]",
 					"text": "LEVEL SELECT"
 				},
 				{
@@ -279,7 +279,7 @@
 					"text": "RESTART"
 				}
 			],
-			"panel": "[P: (130.0, 480.0), S: (680.0, 829.9998)]",
+			"panel": "[P: (130.0, 480.0), S: (680.0, 829.9996)]",
 			"state": "play/show_pause"
 		},
 		{
@@ -309,7 +309,7 @@
 					"font_size": 38,
 					"lines": 1,
 					"name": "Text_RESTART",
-					"rect": "[P: (210.0, 1008.0), S: (520.0, 101.9996)]",
+					"rect": "[P: (210.0, 1008.0), S: (520.0, 102.0)]",
 					"text": "RESTART"
 				},
 				{
@@ -320,7 +320,7 @@
 					"text": "CANCEL"
 				}
 			],
-			"panel": "[P: (130.0, 470.0), S: (680.0, 819.9998)]",
+			"panel": "[P: (130.0, 470.0), S: (680.0, 819.9999)]",
 			"state": "play/show_restart"
 		},
 		{
@@ -357,7 +357,7 @@
 					"font_size": 38,
 					"lines": 1,
 					"name": "Text_LEAVE",
-					"rect": "[P: (210.0, 1008.0), S: (520.0, 101.9996)]",
+					"rect": "[P: (210.0, 1008.0), S: (520.0, 101.9999)]",
 					"text": "LEAVE"
 				},
 				{
@@ -368,7 +368,7 @@
 					"text": "CANCEL"
 				}
 			],
-			"panel": "[P: (130.0, 470.0), S: (680.0, 819.9998)]",
+			"panel": "[P: (130.0, 470.0), S: (680.0, 819.9999)]",
 			"state": "play/show_leave"
 		},
 		{
@@ -398,7 +398,7 @@
 					"font_size": 38,
 					"lines": 1,
 					"name": "Text_LEAVE",
-					"rect": "[P: (210.0, 1008.0), S: (520.0, 102.0)]",
+					"rect": "[P: (210.0, 1008.0), S: (520.0, 101.9998)]",
 					"text": "LEAVE"
 				},
 				{
@@ -409,7 +409,7 @@
 					"text": "CANCEL"
 				}
 			],
-			"panel": "[P: (130.0, 470.0), S: (680.0, 820.0)]",
+			"panel": "[P: (130.0, 470.0), S: (680.0, 819.9996)]",
 			"state": "play/show_levels"
 		},
 		{
@@ -446,7 +446,7 @@
 					"font_size": 38,
 					"lines": 1,
 					"name": "Text_HOME",
-					"rect": "[P: (210.0, 1008.0), S: (520.0, 102.0002)]",
+					"rect": "[P: (210.0, 1008.0), S: (520.0, 102.0)]",
 					"text": "HOME"
 				},
 				{
@@ -457,7 +457,7 @@
 					"text": "CANCEL"
 				}
 			],
-			"panel": "[P: (130.0, 470.0), S: (680.0, 819.9998)]",
+			"panel": "[P: (130.0, 470.0), S: (680.0, 820.0)]",
 			"state": "play/request_home"
 		},
 		{
@@ -501,7 +501,7 @@
 					"font_size": 38,
 					"lines": 1,
 					"name": "Text_RESTART",
-					"rect": "[P: (210.0, 1008.0), S: (520.0, 102.0)]",
+					"rect": "[P: (210.0, 1008.0), S: (520.0, 101.9998)]",
 					"text": "RESTART"
 				},
 				{
@@ -512,7 +512,7 @@
 					"text": "LEVEL SELECT"
 				}
 			],
-			"panel": "[P: (130.0, 470.0), S: (680.0, 820.0001)]",
+			"panel": "[P: (130.0, 470.0), S: (680.0, 819.9998)]",
 			"state": "play/show_error"
 		},
 		{
@@ -556,7 +556,7 @@
 					"text": "RETRY SAVE"
 				}
 			],
-			"panel": "[P: (130.0, 400.0), S: (680.0, 960.0004)]",
+			"panel": "[P: (130.0, 400.0), S: (680.0, 960.0)]",
 			"state": "play/save-error/victory"
 		},
 		{
@@ -593,7 +593,7 @@
 					"font_size": 32,
 					"lines": 1,
 					"name": "SaveReason",
-					"rect": "[P: (190.0, 930.0), S: (560.0, 109.9998)]",
+					"rect": "[P: (190.0, 930.0), S: (560.0, 110.0002)]",
 					"text": "STORAGE CHANGED RETRY LOAD"
 				},
 				{
@@ -611,7 +611,7 @@
 					"text": "BACK"
 				}
 			],
-			"panel": "[P: (130.0, 400.0), S: (680.0, 959.9998)]",
+			"panel": "[P: (130.0, 400.0), S: (680.0, 960.0002)]",
 			"state": "play/save-error/settings"
 		},
 		{
@@ -648,7 +648,7 @@
 					"font_size": 32,
 					"lines": 1,
 					"name": "SaveReason",
-					"rect": "[P: (190.0, 930.0), S: (560.0, 110.0007)]",
+					"rect": "[P: (190.0, 930.0), S: (560.0, 109.9998)]",
 					"text": "STORAGE CHANGED RETRY LOAD"
 				},
 				{
@@ -666,7 +666,7 @@
 					"text": "BACK"
 				}
 			],
-			"panel": "[P: (130.0, 400.0), S: (680.0, 960.0002)]",
+			"panel": "[P: (130.0, 400.0), S: (680.0, 959.9998)]",
 			"state": "play/save-error/tutorial"
 		},
 		{
@@ -703,7 +703,7 @@
 					"font_size": 32,
 					"lines": 1,
 					"name": "SaveReason",
-					"rect": "[P: (190.0, 930.0), S: (560.0, 110.0002)]",
+					"rect": "[P: (190.0, 930.0), S: (560.0, 110.0006)]",
 					"text": "STORAGE CHANGED RETRY LOAD"
 				},
 				{
@@ -758,7 +758,7 @@
 					"font_size": 32,
 					"lines": 1,
 					"name": "SaveReason",
-					"rect": "[P: (190.0, 930.0), S: (560.0, 110.0)]",
+					"rect": "[P: (190.0, 930.0), S: (560.0, 109.9998)]",
 					"text": "STORAGE CHANGED RETRY LOAD"
 				},
 				{
@@ -776,7 +776,7 @@
 					"text": "BACK"
 				}
 			],
-			"panel": "[P: (130.0, 400.0), S: (680.0, 959.9999)]",
+			"panel": "[P: (130.0, 400.0), S: (680.0, 960.0002)]",
 			"state": "play/save-error/"
 		},
 		{
@@ -824,7 +824,7 @@
 					"font_size": 38,
 					"lines": 1,
 					"name": "Text_RETRY LOAD",
-					"rect": "[P: (210.0, 928.0), S: (520.0, 102.0001)]",
+					"rect": "[P: (210.0, 928.0), S: (520.0, 102.0004)]",
 					"text": "RETRY LOAD"
 				},
 				{
@@ -879,7 +879,7 @@
 					"font_size": 38,
 					"lines": 1,
 					"name": "Text_RESET PROGRESS",
-					"rect": "[P: (210.0, 1008.0), S: (520.0, 102.0002)]",
+					"rect": "[P: (210.0, 1008.0), S: (520.0, 102.0)]",
 					"text": "RESET PROGRESS"
 				},
 				{
@@ -890,7 +890,7 @@
 					"text": "CANCEL"
 				}
 			],
-			"panel": "[P: (130.0, 470.0), S: (680.0, 820.0)]",
+			"panel": "[P: (130.0, 470.0), S: (680.0, 820.0001)]",
 			"state": "play/reset-confirmation"
 		},
 		{
@@ -927,7 +927,7 @@
 					"text": "TRY AGAIN"
 				}
 			],
-			"panel": "[P: (130.0, 470.0), S: (680.0, 790.0001)]",
+			"panel": "[P: (130.0, 470.0), S: (680.0, 790.0)]",
 			"state": "startup/save-error/settings"
 		},
 		{
@@ -964,7 +964,7 @@
 					"text": "TRY AGAIN"
 				}
 			],
-			"panel": "[P: (130.0, 470.0), S: (680.0, 790.0)]",
+			"panel": "[P: (130.0, 470.0), S: (680.0, 790.0001)]",
 			"state": "startup/save-error/navigation"
 		},
 		{
@@ -1001,7 +1001,7 @@
 					"text": "TRY AGAIN"
 				}
 			],
-			"panel": "[P: (130.0, 470.0), S: (680.0, 790.0002)]",
+			"panel": "[P: (130.0, 470.0), S: (680.0, 790.0001)]",
 			"state": "startup/save-error/other"
 		},
 		{
@@ -1024,7 +1024,7 @@
 					"font_size": 38,
 					"lines": 2,
 					"name": "RecoveryTitle",
-					"rect": "[P: (190.0, 490.0), S: (560.0, 110.0)]",
+					"rect": "[P: (190.0, 490.0), S: (560.0, 109.9999)]",
 					"text": "YOUR SAVE\nHAS NOT BEEN RESET"
 				},
 				{
@@ -1045,7 +1045,7 @@
 					"font_size": 38,
 					"lines": 1,
 					"name": "Text_RETRY LOAD",
-					"rect": "[P: (210.0, 983.0), S: (520.0, 101.9996)]",
+					"rect": "[P: (210.0, 983.0), S: (520.0, 102.0)]",
 					"text": "RETRY LOAD"
 				},
 				{

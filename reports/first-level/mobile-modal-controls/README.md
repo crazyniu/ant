@@ -1,6 +1,8 @@
 # First-level mobile modal controls
 
-2026-10-22. Isolated implementation based on `b9907d9`. This report covers only
+2026-10-22. Current regression includes the Settings pause-contract correction
+after `c70a52b`. The original 1399-check candidate wrongly expected Gear close
+to resume battle; that expectation was rejected against PRD §10, not approved. This report covers only
 shared modals reachable from the approved first level. It is not visual acceptance,
 a new level, merge, deployment, or approval to close the tracking Issue.
 
@@ -23,10 +25,10 @@ a new level, merge, deployment, or approval to close the tracking Issue.
   y=683.5 / 816.5. Their 349 × 57 painted tracks, 49 × 49 knob, 306-unit x range,
   endpoint/zero-mute rules and persistence behavior stay unchanged. The two hit
   rectangles have a 15-unit vertical gap.
-- Gear → Settings → X/Back returns directly to the same running game. Pause →
-  Settings → X/Back returns to Pause. The original caller survives repeated save
-  failure, recovery X/Back, and successful retry. Failure does not unfreeze or leave
-  the game. Startup Settings still closes to its original Prep/Map screen.
+- Gear → Settings → X/Back and Pause → Settings → X/Back both return to Pause.
+  The timed battle remains frozen until explicit Continue, including after repeated
+  save failure, recovery X/Back and successful retry. Startup Settings still returns
+  to the originating Prep/Map page. Failure does not unfreeze or leave the game.
 - A focused boundary probe found that an immediate slider edit during the 0.22s
   entrance previously let the reveal tween restore the old knob position. The tiny
   `UiMotion.set_live_position` helper cancels that obsolete positional tween and
@@ -49,7 +51,7 @@ rechecked when combining this shared base Close change with the parallel tutoria
 
 ## Verification
 
-- `test_first_level_mobile_modals.gd`: **1399 / 1399 passed**. The JSON includes
+- `test_first_level_mobile_modals.gd`: **1423 / 1423 passed**. The JSON includes
   measured panel, button and label rectangles for every adjusted group, actual font
   metrics/line counts, original skin regions and color checks. Also covers pause
   Continue/confirmation Cancel, Settings origins × X/Back × save success/failure,
@@ -83,8 +85,9 @@ godot --headless --path . --script tests/test_ant_navigation_save_boundary.gd
    38/32px lines, full labels, no clipping/overlap, and complete panel bounds. The
    headless text-fit checks are not proof of final perceived visual quality.
 3. From an active first-level game: Gear → Settings → X and Android-style Back;
-   confirm no extra Pause page, the same round resumes, and Pause → Settings →
-   X/Back instead stays paused. Recheck repeated open/close and failure retry.
+   confirm both Gear and Pause origins return to Pause with time still frozen;
+   only explicit Continue resumes the same round. Recheck X/Back through repeated
+   save failure and successful retry. This current correction still needs GL input.
 4. Drag both sliders in their enlarged top/bottom bands, including immediately on
    entrance; verify the track art stays in place, the knob never snaps to its old
    value, the sliders do not steal each other's input, and zero is silent. Real
