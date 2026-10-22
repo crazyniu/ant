@@ -5,6 +5,21 @@ the approved first level only. Desktop Godot is a development verification host;
 the product UI is a portrait mobile game, not a website. This does not authorize
 new levels, controls, mobile packaging, SDKs, merging, or deployment.
 
+## Design confirmation before implementation
+
+Present one coherent first-level page/state design set for user confirmation
+before further visual reconstruction. Use no irregularly shaped buttons: regular
+rectangles/rounded rectangles for text actions and regular circles for icon actions.
+Confirm silhouettes, visible proportions, type/icon occupancy, padding, and distinct
+touch targets in the designs first. Keep the approved forest/character references
+unless explicitly superseded. Existing candidates are not implicit design approval.
+Authorized functionality fixes may continue independently. A user's explicit narrow
+UI correction can be implemented without inventing a broader redesign.
+
+The four transport pedestals remain, with the internal four-carrier rule. Do not
+show an extra x / 4 numeric HUD beside them. Keep five color-card remaining counts,
+the speed control, and existing full-capacity rejection feedback.
+
 ## Review every 30 minutes during development
 
 Review all implemented pages and their related code against the approved art,

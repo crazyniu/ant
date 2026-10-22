@@ -146,14 +146,14 @@ func run()->void:
 		var touch:Button=game.get_node("TopHUD/"+id)
 		check(touch.size==Vector2(116,116) and Rect2(0,0,940,1672).encloses(touch.get_rect()),id+" approved art keeps enlarged in-bounds touch target")
 	check(game.get_node("TopHUD/SpeedLabel").get_theme_font_size("font_size")==38,"Current speed is readable without changing its real state")
-	var capacity:Label=game.get_node("WorkSlots/CarrierCount");var busy:Label=game.get_node("WorkSlots/CapacityState")
-	inspect_mobile_label(capacity,14,"Battle transport count");inspect_mobile_label(busy,12,"Battle capacity state")
-	for label in [capacity,busy]:
+	check(not game.has_node("WorkSlots/CarrierCount"),"Rejected numeric transport HUD is absent")
+	var busy:Label=game.get_node("WorkSlots/CapacityState")
+	inspect_mobile_label(busy,12,"Battle capacity state")
+	for label in [busy]:
 		check(label.get_theme_color("font_outline_color")==Color("301a08") and label.get_theme_constant("outline_size")==3,"Light deck state has a dark outline, not a white halo")
 		check(Rect2(744,1220,170,120).encloses(label.get_rect()),"Existing capacity readout uses the open deck margin")
 		for index in 4:check(not label.get_rect().intersects(game.get_node("WorkSlots/TransportPedestal%d"%index).get_rect()),"Capacity readout clears all four real pedestals")
 		check(label.get_rect().end.y<1342,"Capacity readout clears the five color cards")
-	check(not capacity.get_rect().intersects(busy.get_rect()),"Capacity count and full-state label do not overlap")
 	check(busy.get_theme_font("font").get_string_size("BUSY",HORIZONTAL_ALIGNMENT_LEFT,-1,32).x+6<=busy.size.x,"Full-capacity state fits without shrinking")
 	for message in ["ALL FOUR ANTS ARE BUSY","NO REACHABLE BALL","THESE BALLS ARE ALREADY CLAIMED"]:
 		game.show_click_feedback(message);await process_frame

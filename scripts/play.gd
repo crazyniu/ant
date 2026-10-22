@@ -426,11 +426,10 @@ func build_slots()->void:
 			var actor:=ground_ant("blue",Vector2(x+11,1287),"TransportPreview%d"%index,layer,73)
 			carrier_motion.prepare(actor,"blue",73);carrier_motion.apply(actor,{"time":0.0,"moving":false,"direction":Vector2.RIGHT,"stage":"idle","diameter":73})
 			actor.hide()
-		# Reuse the open right-hand deck margin; do not cover the four pedestals
-		# or add another HUD. Counts/status stay readable at phone width.
-		var count:=text_label("0 / 4",Rect2(748,1229,160,58),38,"CarrierCount",layer,Color("fff1d2"))
+		# The four pedestals show transport occupancy. The rejected numeric
+		# x / 4 HUD is absent; Rules still owns the unchanged four-ant limit.
 		var state:=text_label("",Rect2(748,1293,160,44),32,"CapacityState",layer,Color("fff1d2"))
-		for label in [count,state]:label.add_theme_color_override("font_outline_color",Color("301a08"));label.add_theme_constant_override("outline_size",3)
+		for label in [state]:label.add_theme_color_override("font_outline_color",Color("301a08"));label.add_theme_constant_override("outline_size",3)
 		return
 	ant("yellow",Rect2(405,1222,54,44),"CarrierCapacity",layer)
 	text_label("0 / 4",Rect2(465,1222,100,46),25,"CarrierCount",layer,Color("fff1d2"),true)
@@ -492,7 +491,8 @@ func sync_view()->void:
 		var indicator:Control=get_node("CandidateQueues/ColorState_"+color)
 		indicator.visible=state!="ready";indicator.kind="check" if state=="collected" else ("clock" if state=="all_reserved" else "barrier");indicator.queue_redraw()
 		set_color_control_hint(color_buttons[color],"All four ants are busy" if view_snapshot.capacity_full else ({"ready":"Send one ant","blocked":"No reachable ball","all_reserved":"Matching balls are already claimed","collected":"All balls collected"}.get(state,"Send one ant")))
-	get_node("WorkSlots/CarrierCount").text="%d / %d"%[int(view_snapshot.carrier_count),int(view_snapshot.carrier_limit)]
+	var carrier_count:=get_node_or_null("WorkSlots/CarrierCount")
+	if carrier_count:carrier_count.text="%d / %d"%[int(view_snapshot.carrier_count),int(view_snapshot.carrier_limit)]
 	get_node("WorkSlots/CapacityState").text="BUSY" if view_snapshot.capacity_full else ""
 	sync_approved_transport_displays()
 	if not is_approved_first_level():

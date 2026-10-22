@@ -16,7 +16,8 @@ func _verify_displays(label:String)->void:
 	check(scene.color_buttons.size()==5,label+": five actual color entrances remain")
 	for color in scene.color_buttons:
 		check(scene.get_node("CandidateQueues/Remaining_"+color).text==str(scene.rules.snapshot().available_counts[color]),label+": "+str(color)+" card retains actual board count")
-	check(scene.get_node("WorkSlots/CarrierCount").text=="%d / 4"%scene.rules.tasks.size(),label+": actual transport count remains")
+	check(not scene.has_node("WorkSlots/CarrierCount"),label+": rejected numeric transport HUD is absent")
+	check(scene.rules.snapshot().carrier_limit==4 and scene.rules.snapshot().carrier_count==scene.rules.tasks.size(),label+": internal capacity remains four with authoritative occupancy")
 	check(scene.rules.conservation_errors().is_empty(),label+": authoritative ammunition conservation holds")
 	check(scene.stock_arrivals.is_empty(),label+": no removed-label animation is queued")
 	for effect in scene.fx.debug_snapshot().effects:
