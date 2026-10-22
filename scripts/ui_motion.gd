@@ -141,7 +141,7 @@ func close_modal(overlay: Control) -> void:
 	fade.tween_property(overlay,"modulate:a",0.0,CLOSE_DURATION)
 	fade.tween_callback(_finish_close.bind(overlay))
 
-func _disable_input(node: Node) -> void:
+static func _disable_input(node: Node) -> void:
 	if node is Control:
 		node.mouse_filter=Control.MOUSE_FILTER_IGNORE
 		node.focus_mode=Control.FOCUS_NONE
@@ -157,11 +157,19 @@ func _cancel_tree(node: Node) -> void:
 		_cancel(node,TRANSFORM_META);_cancel(node,ALPHA_META)
 	for child in node.get_children():_cancel_tree(child)
 
+static func retire_control(control: Control) -> void:
+	if not is_instance_valid(control):return
+	# A touch release also produces an engine mouse release. Keep the old
+	# focused Control inside the tree until both have unwound, but immediately
+	# remove its input/paint/name so the replacement is the only active page.
+	_disable_input(control)
+	control.hide();control.process_mode=Node.PROCESS_MODE_DISABLED
+	control.name="RetiredUI%d"%control.get_instance_id()
+	control.queue_free()
+
 func _finish_close(overlay: Control) -> void:
 	retired_modals.erase(overlay)
-	if is_instance_valid(overlay):
-		if overlay.get_parent():overlay.get_parent().remove_child(overlay)
-		overlay.queue_free()
+	retire_control(overlay)
 
 func discard_modal(overlay: Control) -> void:
 	if not is_instance_valid(overlay):return

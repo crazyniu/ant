@@ -12,6 +12,7 @@ signal settings_requested
 const SceneLayout = preload("res://scripts/scene_layout.gd")
 const Catalog = preload("res://scripts/level_catalog.gd")
 const UiSkin = preload("res://scripts/ui_skin.gd")
+const UiMotion = preload("res://scripts/ui_motion.gd")
 const Icon = preload("res://scripts/ui_icon.gd")
 const Bead = preload("res://scripts/bead.gd")
 const ApprovedBall = preload("res://scripts/first_level_bead.gd")
@@ -230,7 +231,7 @@ func _capture_scroll() -> void:
 
 func _clear_page() -> void:
 	_page_revision += 1
-	if is_instance_valid(_page): remove_child(_page); _page.queue_free()
+	if is_instance_valid(_page): UiMotion.retire_control(_page)
 	_scroll = null
 	_scroll_has_restored=false
 	_page = _group("AdventurePage", self)
@@ -307,17 +308,18 @@ func _build_map() -> void:
 	_button("ShopButton", Rect2(350, 1480, 240, 120), "", func():
 		_capture_scroll(); shop_requested.emit(), true, _page)
 	_emblem("shop", Rect2(438, 1508, 64, 64), _page)
-	call_deferred("_restore_scroll", _scroll, _page_revision)
+	call_deferred("_restore_scroll", _page_revision)
 
 func _has_only_first_level() -> bool:
 	return level_definitions.size()==1 and int(level_definitions[0].level_number)==1
 
-func _restore_scroll(target: ScrollContainer, revision: int) -> void:
+func _restore_scroll(revision: int) -> void:
+	# Pass only the generation, never a Control that an intervening rebuild can free.
 	# Container scrollbar limits are established by the layout pass, not _ready.
 	# A page may be rebuilt several times in the same frame; ignore stale restores.
-	if not is_inside_tree(): return
+	if not is_inside_tree() or revision != _page_revision or screen != "map": return
 	await get_tree().process_frame
-	if not is_inside_tree() or revision != _page_revision or not is_instance_valid(target) or target != _scroll or screen != "map": return
+	if not is_inside_tree() or revision != _page_revision or not is_instance_valid(_scroll) or screen != "map": return
 	if _has_only_first_level():
 		# Legacy saved zero or large offsets cannot hide the only destination.
 		map_scroll=0

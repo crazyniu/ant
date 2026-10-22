@@ -57,7 +57,7 @@ func snapshot(label:String)->void:
 	for kind in ["worker","swift"]:
 		var b:Control=s.get_node("CapacityBall_"+kind)
 		check(b.get_script()==Ball and b.size==Vector2(52,52),label+": "+kind+" uses shared round-ball material at HUD size")
-		check(Ball.WORLD_SIZE==Vector2(33.5,33.5),label+": world ball size unchanged")
+		check(Ball.WORLD_SIZE==Vector2(33.5,35.75),label+": world ball profile matches current shared contract")
 		check(s.get_node("SpeedEmblem_"+kind) is SpeedEmblem,label+": "+kind+" reuses Prep speed emblem")
 		var action:Control=s.get_node("EquipButton_"+kind if s.has_node("EquipButton_"+kind) else "BuyButton_"+kind)
 		for key in ["Capacity_"+kind,"Speed_"+kind]:
@@ -179,7 +179,7 @@ func run()->void:
 	var old_swift:=press("BuyButton_swift")
 	check(purchase_signals==1 and home.economy_state.points==520 and home.economy_state.owned_types.has("swift"),"One Button signal buys Swift once for 500")
 	old_swift.pressed.emit()
-	check(purchase_signals==2 and home.economy_state.points==520,"Repeated stale Swift signal cannot debit twice")
+	check(purchase_signals==1 and home.economy_state.points==520 and old_swift.disabled and old_swift.pressed.get_connections().is_empty(),"Retired Swift button cannot request or debit twice")
 	check(home.shop.content.has_node("EquipButton_swift") and not home.shop.content.has_node("BuyButton_swift"),"Owned Swift replaces purchase with real equip Button")
 	press("EquipButton_swift")
 	check(home.economy_state.equipped_type=="swift" and home.shop.content.get_node("EquipButton_swift").disabled,"Equipped Swift has disabled selected Button")

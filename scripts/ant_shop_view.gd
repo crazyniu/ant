@@ -35,7 +35,7 @@ func show_feedback(reason:String)->void:
 	if is_instance_valid(feedback):feedback.text=reason.replace("_"," ").to_upper()
 
 func rebuild()->void:
-	if is_instance_valid(content):remove_child(content);content.queue_free()
+	if is_instance_valid(content):UiMotion.retire_control(content)
 	content=Control.new();content.name="ShopContent";content.size=size;content.mouse_filter=Control.MOUSE_FILTER_IGNORE;add_child(content)
 	var backdrop:=TextureRect.new();backdrop.name="Workshop";backdrop.texture=load("res://assets/meta-ui/shop-workshop-background.png") if ResourceLoader.exists("res://assets/meta-ui/shop-workshop-background.png") else load("res://assets/serpent/environment.png");backdrop.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;backdrop.size=size;backdrop.mouse_filter=Control.MOUSE_FILTER_IGNORE;content.add_child(backdrop)
 	icon_action("back",Rect2(28,45,120,120),func():back_requested.emit(),"Back to adventure")
