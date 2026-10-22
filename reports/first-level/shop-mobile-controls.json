@@ -1,11 +1,18 @@
 {
 	"action_height": 120,
-	"checks": 311,
+	"back_rect": [
+		28,
+		45,
+		120,
+		120
+	],
+	"back_title_gap": 32,
+	"checks": 440,
 	"failures": [],
 	"pass": true,
 	"phone_scale": 0.382978723404255,
 	"primary_font": 38,
-	"scope": "First-level-only /tmp base profile, production Shop callbacks, fixture receipts through existing progression service, geometry/font assertions, duplicate signals, write failure/retry and reload. No gameplay victories, native touch, GL, audio, visual acceptance or later-level testing.",
+	"scope": "First-level-only /tmp base profile, production Shop callbacks, fixture receipts through existing progression service, exact game/primary and game/secondary atlas-region assertions, transparent event layers, visible border-only focus, geometry/font/price bounds, duplicate signals, write failure/retry and reload. No gameplay victories, native touch, GL, audio, visual acceptance or later-level testing.",
 	"secondary_font": 32,
 	"snapshots": [
 		{

@@ -29,9 +29,21 @@ func snapshot(label:String)->void:
 		check(b.size.y>=116.0,label+": "+id+" has mobile hit height")
 		check(b.get_rect()==paint.get_rect(),label+": "+id+" hit matches painted action")
 		check(paint.has_node("PaintedNineSlice"),label+": "+id+" uses existing painted skin")
+		var primary:bool=false
+		if id.begins_with("EquipButton_"):primary=home.economy_state.equipped_type==id.get_slice("_",1)
+		elif id=="BuyButton_swift":primary=int(home.economy_state.points)>=500
+		else:primary=int(home.economy_state.carry_level)<4 and int(home.economy_state.points)>=int(home.shop.products.levels[str(mini(int(home.economy_state.carry_level)+1,4))].price)
+		check_skin(paint,"game/primary" if primary else "game/secondary",label)
+		check_button_style(b,label)
 		var panel:Control=s.get_node("TrainingPanel" if id=="TrainingButton" else "Card_"+id.get_slice("_",1))
 		check(panel.get_rect().encloses(b.get_rect()),label+": "+id+" stays inside its own card")
 		controls.append({"name":id,"rect":[b.position.x,b.position.y,b.size.x,b.size.y],"disabled":b.disabled})
+	var back:Button=s.get_node("BackButton")
+	check(back.size==Vector2(120,120) and back.get_rect()==s.get_node("BackArt").get_rect(),label+": Back is a real 45.96px target with matching art")
+	check(s.get_node("ShopTitle").position.x-back.get_rect().end.x==32.0,label+": Back retains 32-unit title gap")
+	check((s.get_node("BackArrow").position+s.get_node("BackArrow").size*.5).is_equal_approx(back.get_rect().get_center()) and s.get_node("BackArrow").size==Vector2(68,68),label+": Back arrow keeps centered proportional bounds")
+	check_skin(s.get_node("BackArt"),"game/secondary",label)
+	check_button_style(back,label)
 	for kind in ["worker","swift"]:
 		var b:Control=s.get_node("CapacityBall_"+kind)
 		check(b.get_script()==Ball and b.size==Vector2(52,52),label+": "+kind+" uses shared round-ball material at HUD size")
@@ -52,7 +64,20 @@ func snapshot(label:String)->void:
 	check(s.get_node("ShopFeedback").get_theme_font_size("font_size")==32,label+": feedback is 12.26px at 360 width")
 	check(s.get_node("TrainingEffect").get_rect().end.y<s.get_node("TrainingButton").position.y,label+": training effect clear of button")
 	check(s.get_node("TrainingPanel").get_rect().end.y<s.get_node("ShopFeedback").position.y,label+": feedback clear of panel")
+	for pair in [["Price_swift","BuyButton_swift"],["TrainingPrice","TrainingButton"]]:
+		if s.has_node(pair[0]):check(s.get_node(pair[1]).get_rect().encloses(s.get_node(pair[0]).get_rect()),label+": real price stays inside its own painted action")
 	snapshots.append({"name":label,"points":home.economy_state.points,"level":home.economy_state.carry_level,"equipped":home.economy_state.equipped_type,"worker_speed":s.get_node("Speed_worker").text,"swift_speed":s.get_node("Speed_swift").text,"controls":controls})
+func check_skin(paint:Control,key:String,label:String)->void:
+	var texture:AtlasTexture=paint.get_node("PaintedNineSlice").texture
+	var expected:AtlasTexture=home.shop.skin.texture(key)
+	check(texture.atlas.resource_path=="res://assets/ui/v03/game-skin-atlas.png" and texture.region==expected.region,label+": "+paint.name+" uses exact "+key+" atlas region, never game/row")
+	var slice:NinePatchRect=paint.get_node("PaintedNineSlice")
+	check((slice.size*slice.scale).is_equal_approx(paint.size),label+": "+paint.name+" painted slice matches panel bounds")
+func check_button_style(b:Button,label:String)->void:
+	for state in ["normal","hover","pressed","disabled"]:
+		check(b.get_theme_stylebox(state) is StyleBoxEmpty,label+": "+b.name+" "+state+" event layer cannot cover painted skin")
+	var focus:StyleBox=b.get_theme_stylebox("focus")
+	check(focus is StyleBoxFlat and not focus.draw_center and focus.border_width_left>0 and focus.border_color.a>0,label+": "+b.name+" has visible border-only keyboard focus")
 func run()->void:
 	home=load("res://scenes/startup.tscn").instantiate();home.profile_directory=profile;home.use_command_line_catalog=false
 	root.add_child(home);current_scene=home
@@ -123,7 +148,7 @@ func run()->void:
 	check(reloaded._record.purchases.size()==4,"Exactly four paid products are committed")
 	check(reloaded._record.completed_levels.keys()==["serpent-01"],"No other level fixture or unlock was tested")
 	home.close_shop();check(home.phase=="preparation" and home.adventure.selected_level==1,"Back returns to first-level preparation")
-	var report:Dictionary={"pass":failures.is_empty(),"checks":checks,"failures":failures,"scope":"First-level-only /tmp base profile, production Shop callbacks, fixture receipts through existing progression service, geometry/font assertions, duplicate signals, write failure/retry and reload. No gameplay victories, native touch, GL, audio, visual acceptance or later-level testing.","phone_scale":360.0/940.0,"primary_font":38,"secondary_font":32,"action_height":120,"snapshots":snapshots}
+	var report:Dictionary={"pass":failures.is_empty(),"checks":checks,"failures":failures,"scope":"First-level-only /tmp base profile, production Shop callbacks, fixture receipts through existing progression service, exact game/primary and game/secondary atlas-region assertions, transparent event layers, visible border-only focus, geometry/font/price bounds, duplicate signals, write failure/retry and reload. No gameplay victories, native touch, GL, audio, visual acceptance or later-level testing.","phone_scale":360.0/940.0,"primary_font":38,"secondary_font":32,"action_height":120,"back_rect":[28,45,120,120],"back_title_gap":32,"snapshots":snapshots}
 	var output:=FileAccess.open("res://reports/first-level/shop-mobile-controls.json",FileAccess.WRITE);output.store_string(JSON.stringify(report,"\t")+"\n");output.close()
 	home.audio_service.stop_music();home.audio_service.stop_all_sfx();await create_timer(.2).timeout
 	home.queue_free();await process_frame;await process_frame

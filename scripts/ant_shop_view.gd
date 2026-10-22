@@ -18,7 +18,9 @@ func _ready()->void:
 	size=Vector2(940,1672);mouse_filter=Control.MOUSE_FILTER_STOP
 	font=load("res://assets/fonts/Title.ttf");skin=UiSkin.new();atlas=load("res://assets/characters-atlas.png");ant_atlas=load("res://assets/ants-atlas.png")
 	theme=Theme.new()
-	for s in ["normal","hover","pressed","disabled","focus"]:theme.set_stylebox(s,"Button",StyleBoxEmpty.new())
+	for s in ["normal","hover","pressed","disabled"]:theme.set_stylebox(s,"Button",StyleBoxEmpty.new())
+	var focus:=StyleBoxFlat.new();focus.draw_center=false;focus.border_color=Color("fff4b5");focus.set_border_width_all(3);focus.set_corner_radius_all(38)
+	theme.set_stylebox("focus","Button",focus)
 	built=true;rebuild()
 
 func set_data(state:Dictionary,config:Dictionary={}) -> void:
@@ -36,7 +38,7 @@ func rebuild()->void:
 	if is_instance_valid(content):remove_child(content);content.queue_free()
 	content=Control.new();content.name="ShopContent";content.size=size;content.mouse_filter=Control.MOUSE_FILTER_IGNORE;add_child(content)
 	var backdrop:=TextureRect.new();backdrop.name="Workshop";backdrop.texture=load("res://assets/meta-ui/shop-workshop-background.png") if ResourceLoader.exists("res://assets/meta-ui/shop-workshop-background.png") else load("res://assets/serpent/environment.png");backdrop.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;backdrop.size=size;backdrop.mouse_filter=Control.MOUSE_FILTER_IGNORE;content.add_child(backdrop)
-	icon_action("back",Rect2(28,45,108,108),func():back_requested.emit(),"Back to adventure")
+	icon_action("back",Rect2(28,45,120,120),func():back_requested.emit(),"Back to adventure")
 	fixed_title("ANT SHOP",Rect2(180,45,580,120),"ShopTitle")
 	frame(Rect2(665,197,230,76),"Balance",content,22)
 	coin(Vector2(710,235),28);text_label(str(economy.get("points",0)),Rect2(748,207,129,56),38,"Points",content,INK,true)
@@ -66,13 +68,13 @@ func build_type_card(kind:String,bounds:Rect2,owned:bool,equipped:bool)->void:
 	# The painted action and real Button share the same mobile-sized bounds.
 	var action_bounds:=Rect2(bounds.position+Vector2(35,576),Vector2(335,120))
 	if owned:
-		frame(action_bounds,"Equip_"+kind,content,27,"54d35b" if equipped else "fff3db")
+		skin.panel("game/primary" if equipped else "game/secondary",action_bounds,content,"Equip_"+kind,42)
 		icon("check" if equipped else "play",Rect2(action_bounds.get_center()-Vector2(32,32),Vector2(64,64)),content,Color.WHITE if equipped else INK)
 		button("EquipButton_"+kind,action_bounds,func():equip_requested.emit(kind),equipped or busy,"Equipped" if equipped else "Equip "+kind)
 	else:
 		var price:int=int(products.get("types",{}).get(kind,{}).get("price",500))
 		var affordable:=int(economy.get("points",0))>=price
-		frame(action_bounds,"Buy_"+kind,content,27,"54d35b" if affordable else "fff3db")
+		skin.panel("game/primary" if affordable else "game/secondary",action_bounds,content,"Buy_"+kind,42)
 		coin(action_bounds.position+Vector2(65,60),24)
 		text_label(str(price),Rect2(action_bounds.position+Vector2(98,28),Vector2(120,64)),38,"Price_"+kind,content,Color.WHITE if affordable else INK,affordable)
 		icon("plus" if affordable else "lock",Rect2(action_bounds.position+Vector2(246,34),Vector2(52,52)),content,Color.WHITE if affordable else INK)
@@ -92,7 +94,7 @@ func build_training()->void:
 	text_label("+%d%%"%roundi(((next_mult if lv<4 else multiplier)-1.)*100.),Rect2(425,1276,350,60),38,"TrainingEffect",content)
 	var b:=Rect2(409,1352,386,120)
 	var affordable:=int(economy.get("points",0))>=price
-	frame(b,"TrainAction",content,25,"54d35b" if lv<4 and affordable else "fff3db")
+	skin.panel("game/primary" if lv<4 and affordable else "game/secondary",b,content,"TrainAction",42)
 	if lv<4:
 		coin(b.position+Vector2(72,60),24);text_label(str(price),Rect2(b.position+Vector2(110,29),Vector2(130,62)),38,"TrainingPrice",content,Color.WHITE if affordable else INK,affordable);icon("arrow" if affordable else "lock",Rect2(b.position+Vector2(283,33),Vector2(53,53)),content,Color.WHITE if affordable else INK)
 	else:icon("check",Rect2(b.get_center()-Vector2(30,30),Vector2(60,60)),content,INK)
@@ -114,8 +116,8 @@ func coin(center:Vector2,radius:float)->void:
 	meta_icon("coin",Rect2(center-Vector2.ONE*radius,Vector2.ONE*radius*2.),"Coin")
 
 func icon_action(kind:String,bounds:Rect2,call:Callable,tip:String)->void:
-	frame(bounds,"BackArt",content,30)
-	var g:=icon("arrow",Rect2(bounds.position+Vector2(23,23),bounds.size-Vector2(46,46)),content,INK);g.rotation=PI;g.pivot_offset=g.size*.5
+	skin.panel("game/secondary",bounds,content,"BackArt",34)
+	var g:=icon("arrow",Rect2(bounds.position+Vector2(26,26),bounds.size-Vector2(52,52)),content,INK);g.name="BackArrow";g.rotation=PI;g.pivot_offset=g.size*.5
 	button("BackButton",bounds,call,false,tip)
 
 func button(id:String,bounds:Rect2,call:Callable,disabled:bool,tip:String)->void:
