@@ -1,0 +1,109 @@
+{
+  "recorded_utc": "2026-10-22T01:28:03.932738+00:00",
+  "candidate_base_commit": "b28895054b88ffab85a70af435f1a82e118733dd",
+  "engine": "Godot 4.6.3 headless",
+  "scope": [
+    "I04 first-level runtime access gate",
+    "I07 authoritative next-shot hopper color",
+    "I08 actual-distance foot phase",
+    "I09 feedback/speed control separation"
+  ],
+  "first_level_only": true,
+  "runtime_files_sha256": {
+    "scripts/adventure_view.gd": "8cf743dfc431a8006d4dcabb687fe5d23e0f5bc6d343657ca2e5619f12e6112f",
+    "scripts/first_level_carrier.gd": "f15823008588022216d8f5af79a0574a217b59ff97a34eb1319d6b3639dbdcd6",
+    "scripts/level_catalog.gd": "045b5490eab6733e08ebaa01dd3add6017cea0f9d8d8ba97d459e10c5c209a93",
+    "scripts/play.gd": "9c8abcce4955c2810741e9b524ea56741b69afe3eef446e20f3beacd81e7e29c",
+    "scripts/startup.gd": "188cdaab8976833996a46938c775401f1559b968ca4b90f7fcb71b8b884b468f",
+    "tests/test_first_level_restoration.gd": "0d84489268c8286b774b2e1c88cbc8385617f73f9b7e6fcfd3e48358ce28da5b",
+    "tests/test_first_level_minimal_batch.gd": "f22467b357552870a88dc3076b20de1047f5e67f390d50db2d5758b02e91eb7a",
+    "tests/test_first_level_entry_cli.gd": "43a52e48f4ce55956e3a9bb546aafa716ded07971b3932285df26d95c1106676"
+  },
+  "results": {
+    "minimal-fixes": {
+      "checks": 48,
+      "failures": [],
+      "scope": "First-level-only headless controller/entry, historical metadata recovery, hopper selector, distance gait and non-overlapping feedback. Later level numbers are rejected inputs only; no later config or scene was exercised. No GL/native input/sound/visual acceptance."
+    },
+    "restoration-test": {
+      "cargo_samples": 8349,
+      "checks": 18922,
+      "failures": [],
+      "observed_stages": [
+        "outbound",
+        "returning",
+        "unloading"
+      ],
+      "remaining_balls": 207,
+      "scope": "Headless production nodes/rules/size assertions only. Not GL rendering, real mouse, natural play, animation feel, sound or user approval.",
+      "status": "victory",
+      "time_us": 110425000
+    },
+    "settings-recovery": {
+      "checks": 20,
+      "failures": [],
+      "pass": true,
+      "scope": "Real headless startup/preparation/settings button callbacks with write failure, repeat failure, close/back, retry and independent disk reload. No visual/audio/native-input acceptance."
+    },
+    "navigation-save-boundary": {
+      "checks": 20,
+      "failures": [],
+      "pass": true,
+      "scope": "Real headless menu callbacks, navigation write failure, retry, shop/Home/start guards, retained map position and no economy side effects. No production-save writes or visual/audio/native-input acceptance."
+    },
+    "cli-gate": {
+      "cases": [
+        {
+          "args": [
+            "--level=2"
+          ],
+          "entered": "home-first-level-only",
+          "ok": true
+        },
+        {
+          "args": [
+            "--auto-replay",
+            "--level=13"
+          ],
+          "entered": "serpent-01",
+          "ok": true
+        },
+        {
+          "args": [
+            "--campaign-drafts",
+            "--level=1"
+          ],
+          "entered": "home-first-level-only",
+          "ok": true
+        }
+      ],
+      "pass": true,
+      "scope": "Actual command-line startup requests were restricted to Home/serpent-01. No later configuration or scene was loaded."
+    }
+  },
+  "final_log_sha256": {
+    "minimal-fixes.log": "e4326632ad15ec148e9c3c67246daf2a62d4aa05c88e97528711a40407a0a92d",
+    "restoration-test.log": "a7e69294aefd02c2c6fd4155605ebaf3c89b9d1f583e601160e40e5fe4e50c24",
+    "cli-gate.log": "e7344bb472d04d17f3cf18db13f1ec0b1b0945f380a0b70c14bf931cb7236082",
+    "test_ant_settings_recovery.log": "74d5a8b3bc99428d68c325b72026a0d7fafd35e061d7c3c368824ecf1f1505ce",
+    "test_ant_navigation_save_boundary.log": "648563c1c1e1029904893e936deafd4015ea1fbe81156dc06a2e7bb0ea426539"
+  },
+  "known_expected_warnings": "first_level_review_only emitted by deliberately rejected resource/handover requests in minimal-fixes.log",
+  "excluded": [
+    "GL rendering",
+    "native mouse/touch",
+    "audible sound verification",
+    "animation feel/foot planting",
+    "human-play balance",
+    "user acceptance",
+    "later levels",
+    "merge/push/deploy"
+  ],
+  "not_fixed_in_this_batch": [
+    "full visual reference fidelity and shop art",
+    "world-ant footprint/route clearance audit",
+    "offline layered composition and real GL capture",
+    "inventory/projectile full-chain visual scale verification",
+    "approved-screen user review"
+  ]
+}

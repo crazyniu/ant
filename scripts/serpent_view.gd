@@ -16,6 +16,8 @@ var head_art:TextureRect
 var tail:Control
 var tail_art:TextureRect
 var body_diameter:=48.0
+var head_physical_width:=84.0
+var tail_physical_width:=-1.0
 var auxiliary:Dictionary={}
 var auxiliary_atlas:Texture2D
 var last_head_s:=0.0
@@ -40,6 +42,7 @@ func configure(config:Dictionary,knots:Array)->bool:
 	if not parsed is Dictionary:return false
 	manifest=parsed;atlas=load(str(manifest.path) if str(manifest.path).begins_with("res://") else "res://"+str(manifest.path))
 	if atlas==null:return false
+	head_physical_width=float(config.get("head_physical_width",84.0));tail_physical_width=float(config.get("tail_physical_width",-1.0))
 	goal_s=float(config.goal_s);pitch=float(config.pitch);head_s=float(config.head_start_s);last_head_s=head_s
 	route.configure(knots,goal_s)
 	body_diameter=clampf(pitch*route.baked_length/goal_s*1.13,35.0,62.0)
@@ -81,7 +84,7 @@ func sync_snapshot(snapshot:Dictionary)->void:
 		var tail_s:=maxf(0.0,float(last.display_s)-pitch*.30)
 		tail.position=route.point_at(tail_s)
 		var key:String=DIRECTIONS[posmod(roundi(route.tangent_at(tail_s).angle()/(PI/4)),8)]
-		_apply_region(tail_art,manifest.tails[key],body_diameter*.84)
+		_apply_region(tail_art,manifest.tails[key],tail_physical_width if tail_physical_width>0 else body_diameter*.84)
 	last_head_s=head_s
 func _make_body(segment:Dictionary,rank:int,s:float)->void:
 	var node:=Control.new();node.name="Segment_"+str(segment.id);node.mouse_filter=Control.MOUSE_FILTER_IGNORE;add_child(node);move_child(node,0)
@@ -102,7 +105,7 @@ func _set_head_heading(direction:Vector2)->void:
 	var index:int=posmod(roundi(direction.angle()/(PI/4.0)),8);var key:String=DIRECTIONS[index]
 	if key==current_head_direction:return
 	if not manifest.heads.has(key):return
-	_apply_region(head_art,manifest.heads[key],84.0);current_head_direction=key
+	_apply_region(head_art,manifest.heads[key],head_physical_width);current_head_direction=key
 func target_point(id:String,fallback_s:float)->Vector2:
 	if bodies.has(id):return bodies[id].node.position
 	return route.point_at(fallback_s)

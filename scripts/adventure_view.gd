@@ -10,6 +10,7 @@ signal shop_requested
 signal settings_requested
 
 const SceneLayout = preload("res://scripts/scene_layout.gd")
+const Catalog = preload("res://scripts/level_catalog.gd")
 const UiSkin = preload("res://scripts/ui_skin.gd")
 const Icon = preload("res://scripts/ui_icon.gd")
 const Bead = preload("res://scripts/bead.gd")
@@ -110,6 +111,7 @@ func set_data(definitions: Array, progress_state: Dictionary, economy_state: Dic
 			var config: Dictionary = definition.get("config", definition).duplicate(true)
 			if not config.is_empty():
 				config["level_number"] = int(definition.get("number", config.get("level_number", level_definitions.size() + 1)))
+				if not Catalog.runtime_config_allowed(config,int(config.level_number)):continue
 				level_definitions.append(config)
 	progress = progress_state.duplicate(true)
 	economy = economy_state.duplicate(true)
@@ -143,6 +145,8 @@ func get_navigation_state() -> Dictionary:
 	return {"screen": screen, "region_id": map_region, "scroll_y": map_scroll, "selected_level": selected_level, "selected_type": selected_type}
 
 func restore_navigation_state(state: Dictionary) -> void:
+	if not Catalog.runtime_level_allowed(int(state.get("selected_level",1))):
+		state={"selected_level":1,"screen":"map","region_id":str(_definition(1).get("region_id","forest")),"scroll_y":-1}
 	var saved_region:=str(state.get("region_id", state.get("region", "")))
 	map_region = saved_region if not saved_region.is_empty() else str(_definition(selected_level).get("region_id","forest"))
 	map_scroll = -1 if saved_region.is_empty() else int(state.get("scroll_y", state.get("scroll", -1)))
@@ -188,6 +192,7 @@ func _definition(number: int) -> Dictionary:
 	return {}
 
 func _is_unlocked(number: int) -> bool:
+	if not Catalog.runtime_level_allowed(number):return false
 	if not bool(progress.get("ready", true)): return false
 	for entry in progress.get("levels", []):
 		if int(entry.get("number", 0)) == number: return bool(entry.get("unlocked", false))

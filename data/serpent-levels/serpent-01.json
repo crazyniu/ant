@@ -1,190 +1,339 @@
 {
-  "schema_version": 3,
-  "level_id": "serpent-01",
-  "level_number": 1,
-  "title": "One click, one carrier",
-  "width": 10,
-  "height": 8,
-  "palette": {
-    "R": "red",
-    "B": "blue",
-    "G": "green"
-  },
-  "grid": [
-    "..........",
-    "..........",
-    "..........",
-    "..........",
-    "....GGR...",
-    "...BRGBG..",
-    "..RBR.BGB.",
-    "..RG...BR."
-  ],
-  "segments": [
-    {
-      "id": "serpent-01-s01",
-      "color": "red",
-      "kind": "normal",
-      "hp": 1
-    },
-    {
-      "id": "serpent-01-s02",
-      "color": "blue",
-      "kind": "normal",
-      "hp": 1
-    },
-    {
-      "id": "serpent-01-s03",
-      "color": "green",
-      "kind": "normal",
-      "hp": 1
-    },
-    {
-      "id": "serpent-01-s04",
-      "color": "red",
-      "kind": "normal",
-      "hp": 1
-    },
-    {
-      "id": "serpent-01-s05",
-      "color": "blue",
-      "kind": "normal",
-      "hp": 1
-    },
-    {
-      "id": "serpent-01-s06",
-      "color": "green",
-      "kind": "normal",
-      "hp": 1
-    },
-    {
-      "id": "serpent-01-s07",
-      "color": "red",
-      "kind": "normal",
-      "hp": 1
-    },
-    {
-      "id": "serpent-01-s08",
-      "color": "blue",
-      "kind": "normal",
-      "hp": 1
-    },
-    {
-      "id": "serpent-01-s09",
-      "color": "green",
-      "kind": "normal",
-      "hp": 1
-    },
-    {
-      "id": "serpent-01-s10",
-      "color": "red",
-      "kind": "normal",
-      "hp": 1
-    },
-    {
-      "id": "serpent-01-s11",
-      "color": "blue",
-      "kind": "normal",
-      "hp": 1
-    },
-    {
-      "id": "serpent-01-s12",
-      "color": "green",
-      "kind": "normal",
-      "hp": 1
-    }
-  ],
-  "serpent": {
-    "head_start_s": 52.0,
-    "goal_s": 122.0,
-    "speed_units_sec": 1.1666666666666667,
-    "pitch": 4.0
-  },
-  "parameters": {
-    "max_inflight_ants": 4,
-    "projectile_flight_sec": 0.45,
-    "cannon_cooldown_sec": 0.65
-  },
-  "transport": {
-    "carrier_type": "worker",
-    "outbound_speed_cells_sec": 2.5,
-    "returning_speed_cells_sec": 2.0,
-    "pickup_pause_sec": 0.3,
-    "unload_pause_sec": 0.2
-  },
-  "tools": [],
-  "solution": {
-    "kind": "timed_single_click_no_tool_core_replay",
-    "minimum_input_gap_sec": 1.4,
-    "inputs": [
-      {
-        "at_sec": 0.0,
-        "color": "red"
-      },
-      {
-        "at_sec": 1.4,
-        "color": "blue"
-      },
-      {
-        "at_sec": 2.8,
-        "color": "green"
-      },
-      {
-        "at_sec": 4.2,
-        "color": "red"
-      },
-      {
-        "at_sec": 5.6,
-        "color": "blue"
-      },
-      {
-        "at_sec": 7.0,
-        "color": "green"
-      },
-      {
-        "at_sec": 8.4,
-        "color": "red"
-      },
-      {
-        "at_sec": 9.8,
-        "color": "blue"
-      },
-      {
-        "at_sec": 11.2,
-        "color": "green"
-      },
-      {
-        "at_sec": 12.6,
-        "color": "red"
-      },
-      {
-        "at_sec": 14.0,
-        "color": "blue"
-      },
-      {
-        "at_sec": 15.4,
-        "color": "green"
-      }
-    ]
-  },
-  "pending_systems": [
-    "combo",
-    "mechanisms",
-    "upgrades",
-    "shop",
-    "ads"
-  ],
-  "validation_scope": "Single-click core only. Supersedes prior automatic-team replay; not human acceptance.",
-  "content_version": "serpent-click-core-20261021.1",
-  "rewards": {
-    "fast_seconds": 20.0,
-    "normal_seconds": 35.0
-  },
-  "region_id": "forest",
-  "boss_profile": "serpent",
-  "defense_target": {
-    "id": "princess",
-    "display_name": "Princess",
-    "fixed": true
-  }
+	"boss_profile": "serpent",
+	"content_version": "first-level-approved-flower-candidate-20261022.1",
+	"defense_target": {
+		"display_name": "Princess",
+		"fixed": true,
+		"id": "princess"
+	},
+	"grid": [
+		"PGGGPPPPPPPPGGGP",
+		"PGGBBBRRRBBBBGGP",
+		"PGBBBBRRRBBBBBGP",
+		"PBBRRBRRRBRRBBBP",
+		"PBBRRRYYYRRRBBBP",
+		"PBBBRYYYYYRBBBBP",
+		"GBRRRYYYYYRRRBBG",
+		"GBRRRRYYYRRRRBBG",
+		"GBBRRBRRRBBRBBBG",
+		"PBBBBBRRRGBBBBBP",
+		"PBBGGBBBBGBBGGBP",
+		"PGBGGGGBBGBGGGBP",
+		"PGGGGGGGBGGGGGBP",
+		"PGGBGGGGBGGGGBGP",
+		"PGGGPGGGBGGBGGGP"
+	],
+	"height": 15.0,
+	"level_id": "serpent-01",
+	"level_number": 1.0,
+	"palette": {
+		"B": "blue",
+		"G": "green",
+		"P": "purple",
+		"R": "red",
+		"Y": "yellow"
+	},
+	"parameters": {
+		"cannon_cooldown_sec": 0.65,
+		"max_inflight_ants": 4.0,
+		"projectile_flight_sec": 0.45
+	},
+	"pending_systems": [
+		"combo",
+		"mechanisms",
+		"upgrades",
+		"shop",
+		"ads"
+	],
+	"region_id": "forest",
+	"rewards": {
+		"fast_seconds": 110.0,
+		"normal_seconds": 130.0
+	},
+	"scene_layout": "res://data/scenes/first-level-approved.json",
+	"schema_version": 3.0,
+	"segments": [
+		{
+			"color": "blue",
+			"hp": 1.0,
+			"id": "serpent-01-s01",
+			"kind": "normal"
+		},
+		{
+			"color": "yellow",
+			"hp": 1.0,
+			"id": "serpent-01-s02",
+			"kind": "normal"
+		},
+		{
+			"color": "green",
+			"hp": 1.0,
+			"id": "serpent-01-s03",
+			"kind": "normal"
+		},
+		{
+			"color": "purple",
+			"hp": 1.0,
+			"id": "serpent-01-s04",
+			"kind": "normal"
+		},
+		{
+			"color": "red",
+			"hp": 1.0,
+			"id": "serpent-01-s05",
+			"kind": "normal"
+		},
+		{
+			"color": "blue",
+			"hp": 1.0,
+			"id": "serpent-01-s06",
+			"kind": "normal"
+		},
+		{
+			"color": "yellow",
+			"hp": 1.0,
+			"id": "serpent-01-s07",
+			"kind": "normal"
+		},
+		{
+			"color": "green",
+			"hp": 1.0,
+			"id": "serpent-01-s08",
+			"kind": "normal"
+		},
+		{
+			"color": "purple",
+			"hp": 1.0,
+			"id": "serpent-01-s09",
+			"kind": "normal"
+		},
+		{
+			"color": "red",
+			"hp": 1.0,
+			"id": "serpent-01-s10",
+			"kind": "normal"
+		},
+		{
+			"color": "blue",
+			"hp": 1.0,
+			"id": "serpent-01-s11",
+			"kind": "normal"
+		},
+		{
+			"color": "yellow",
+			"hp": 1.0,
+			"id": "serpent-01-s12",
+			"kind": "normal"
+		},
+		{
+			"color": "green",
+			"hp": 1.0,
+			"id": "serpent-01-s13",
+			"kind": "normal"
+		},
+		{
+			"color": "purple",
+			"hp": 1.0,
+			"id": "serpent-01-s14",
+			"kind": "normal"
+		},
+		{
+			"color": "red",
+			"hp": 1.0,
+			"id": "serpent-01-s15",
+			"kind": "normal"
+		},
+		{
+			"color": "blue",
+			"hp": 1.0,
+			"id": "serpent-01-s16",
+			"kind": "normal"
+		},
+		{
+			"color": "yellow",
+			"hp": 1.0,
+			"id": "serpent-01-s17",
+			"kind": "normal"
+		},
+		{
+			"color": "green",
+			"hp": 1.0,
+			"id": "serpent-01-s18",
+			"kind": "normal"
+		},
+		{
+			"color": "purple",
+			"hp": 1.0,
+			"id": "serpent-01-s19",
+			"kind": "normal"
+		},
+		{
+			"color": "red",
+			"hp": 1.0,
+			"id": "serpent-01-s20",
+			"kind": "normal"
+		}
+	],
+	"serpent": {
+		"goal_s": 100.0,
+		"head_physical_width": 120.0,
+		"head_start_s": 80.0,
+		"pitch": 4.0,
+		"speed_units_sec": 0.137931034482759,
+		"tail_physical_width": 72.0
+	},
+	"solution": {
+		"inputs": [
+			{
+				"at_sec": 0.0,
+				"color": "blue"
+			},
+			{
+				"at_sec": 2.0,
+				"color": "green"
+			},
+			{
+				"at_sec": 4.0,
+				"color": "blue"
+			},
+			{
+				"at_sec": 6.0,
+				"color": "green"
+			},
+			{
+				"at_sec": 8.85,
+				"color": "blue"
+			},
+			{
+				"at_sec": 12.05,
+				"color": "green"
+			},
+			{
+				"at_sec": 14.05,
+				"color": "green"
+			},
+			{
+				"at_sec": 16.05,
+				"color": "green"
+			},
+			{
+				"at_sec": 19.5,
+				"color": "blue"
+			},
+			{
+				"at_sec": 22.7,
+				"color": "purple"
+			},
+			{
+				"at_sec": 25.9,
+				"color": "purple"
+			},
+			{
+				"at_sec": 27.9,
+				"color": "purple"
+			},
+			{
+				"at_sec": 31.05,
+				"color": "blue"
+			},
+			{
+				"at_sec": 35.15,
+				"color": "purple"
+			},
+			{
+				"at_sec": 41.05,
+				"color": "purple"
+			},
+			{
+				"at_sec": 44.25,
+				"color": "green"
+			},
+			{
+				"at_sec": 46.25,
+				"color": "green"
+			},
+			{
+				"at_sec": 51.2,
+				"color": "blue"
+			},
+			{
+				"at_sec": 54.9,
+				"color": "blue"
+			},
+			{
+				"at_sec": 57.8,
+				"color": "red"
+			},
+			{
+				"at_sec": 61.0,
+				"color": "green"
+			},
+			{
+				"at_sec": 63.65,
+				"color": "red"
+			},
+			{
+				"at_sec": 67.35,
+				"color": "red"
+			},
+			{
+				"at_sec": 71.15,
+				"color": "yellow"
+			},
+			{
+				"at_sec": 73.15,
+				"color": "red"
+			},
+			{
+				"at_sec": 77.9,
+				"color": "red"
+			},
+			{
+				"at_sec": 81.6,
+				"color": "yellow"
+			},
+			{
+				"at_sec": 86.3,
+				"color": "yellow"
+			},
+			{
+				"at_sec": 88.3,
+				"color": "green"
+			},
+			{
+				"at_sec": 93.05,
+				"color": "yellow"
+			},
+			{
+				"at_sec": 97.65,
+				"color": "yellow"
+			},
+			{
+				"at_sec": 99.85,
+				"color": "blue"
+			},
+			{
+				"at_sec": 102.35,
+				"color": "green"
+			},
+			{
+				"at_sec": 110.0,
+				"color": "green"
+			}
+		],
+		"kind": "timed_single_click_no_tool_core_replay",
+		"minimum_input_gap_sec": 2.0
+	},
+	"title": "One click, one carrier",
+	"tools": [],
+	"transport": {
+		"approach_distance_cells": 8.25,
+		"carrier_type": "worker",
+		"outbound_speed_cells_sec": 2.5,
+		"pickup_pause_sec": 0.3,
+		"returning_speed_cells_sec": 2.0,
+		"unload_pause_sec": 0.2
+	},
+	"validation_scope": "First-level visual restoration candidate. 16 columns x 15 rows measured from approved UI; board and boss content reauthored, rule engine unchanged. Requires real run and user confirmation.",
+	"width": 16.0
 }

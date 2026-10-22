@@ -1,0 +1,131 @@
+{
+  "reference_manifest": "reports/first-level/approved-reference-manifest.json",
+  "status": "candidate-not-user-accepted",
+  "card_region": [
+    122,
+    120,
+    1049,
+    999
+  ],
+  "cannon_region": [
+    210,
+    104,
+    811,
+    1114
+  ],
+  "cannon_muzzle_source": [
+    768,
+    130
+  ],
+  "cannon_hopper_source": [
+    598,
+    832
+  ],
+  "images": {
+    "bronze-cannon.png": {
+      "native_size": [
+        1158,
+        1359
+      ],
+      "mode": "RGBA",
+      "sha256": "9d1e4b4c8837ab8b01d8b4526bc9fe09e118245d010020c9f9185babe45ac93a",
+      "alpha_bbox": [
+        81,
+        86,
+        1128,
+        1359
+      ]
+    },
+    "slender-ants.png": {
+      "native_size": [
+        1774,
+        887
+      ],
+      "mode": "RGBA",
+      "sha256": "d5cfe909930285759e1af539212f89f5dd098c041637c5c2150760f536fe127c",
+      "alpha_bbox": [
+        23,
+        19,
+        1752,
+        887
+      ]
+    },
+    "round-beads.png": {
+      "native_size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "0c353fb03ed54f8f71036bb489802b026b072fd1b94e5e4a69d3a8b0c594d60b",
+      "alpha_bbox": [
+        0,
+        19,
+        1522,
+        1024
+      ]
+    },
+    "color-card.png": {
+      "native_size": [
+        1295,
+        1214
+      ],
+      "mode": "RGBA",
+      "sha256": "66191f770e2a0780fe626e42d3d8e57d91a5606a29734a3582bc72d05487a91e",
+      "alpha_bbox": [
+        0,
+        0,
+        1294,
+        1214
+      ]
+    },
+    "deck-controls.png": {
+      "native_size": [
+        1983,
+        793
+      ],
+      "mode": "RGBA",
+      "sha256": "380ec9467aa5bd9ec44caa800a1f7a7b4fdd5b6ef5252d364f6ea864dd2ea0db",
+      "alpha_bbox": [
+        106,
+        19,
+        1945,
+        775
+      ]
+    },
+    "princess.png": {
+      "native_size": [
+        1216,
+        1293
+      ],
+      "mode": "RGBA",
+      "sha256": "87e80ffc56ae742c838b1f84f648efd3508cd6ff23741b86c2a5d2fc0f40ce86",
+      "alpha_bbox": [
+        25,
+        35,
+        1186,
+        1293
+      ]
+    }
+  },
+  "deck_regions": {
+    "transport_pedestal": [
+      101,
+      163,
+      948,
+      476
+    ],
+    "round_button": [
+      1279,
+      91,
+      590,
+      581
+    ]
+  },
+  "princess_region": [
+    275,
+    32,
+    722,
+    1219
+  ],
+  "documentation_updated_at_utc": "2026-10-22T01:00:00Z"
+}

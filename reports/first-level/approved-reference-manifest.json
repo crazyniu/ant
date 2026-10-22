@@ -1,0 +1,36 @@
+{
+  "status": "Independent candidate. Not runtime visually accepted. No rollout beyond level 1.",
+  "rules_authority": "One click, one ant, one round ball; maximum four concurrent carriers. Original damage, conservation and terminal ordering are retained. The candidate adds optional approach_distance_cells to transport time; this is a disclosed timing correction, not a byte-identical Rules engine. Old 20/30 cards and old tools are not mechanics to restore.",
+  "battle": {
+    "path": "reports/first-level/approved-battle.jpeg",
+    "sha256": "2834990e47b7f1b2b1edd7242d09cb938b51eaeb64369ac821bdfe3d64735c71",
+    "native_size": [
+      864,
+      1536
+    ]
+  },
+  "shop": {
+    "path": "reports/first-level/approved-shop.jpeg",
+    "sha256": "9fc20788cf081cb1d5d00025460ee9675a1d5587e4659d58410529b8d104fa2c",
+    "native_size": [
+      864,
+      1536
+    ]
+  },
+  "acceptance_gate": "User explicitly confirms first level before any later level replication.",
+  "original_battle_native_size": [
+    941,
+    1672
+  ],
+  "logical_canvas": [
+    940,
+    1672
+  ],
+  "output_viewport": [
+    1440,
+    2560
+  ],
+  "scale_rule": "uniform min(output_width/940, output_height/1672), centered; inverse transform for input. Upscaled output is not native 2K art.",
+  "documentation_updated_at_utc": "2026-10-22T02:14:06.039219+00:00",
+  "source_note": "User-confirmed first-level battle and shop visuals; private retrieval provenance is retained separately, not published."
+}

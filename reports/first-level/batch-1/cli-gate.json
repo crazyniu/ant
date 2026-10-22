@@ -1,0 +1,29 @@
+{
+  "cases": [
+    {
+      "args": [
+        "--level=2"
+      ],
+      "entered": "home-first-level-only",
+      "ok": true
+    },
+    {
+      "args": [
+        "--auto-replay",
+        "--level=13"
+      ],
+      "entered": "serpent-01",
+      "ok": true
+    },
+    {
+      "args": [
+        "--campaign-drafts",
+        "--level=1"
+      ],
+      "entered": "home-first-level-only",
+      "ok": true
+    }
+  ],
+  "pass": true,
+  "scope": "Actual command-line startup requests were restricted to Home/serpent-01. No later configuration or scene was loaded."
+}

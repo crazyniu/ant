@@ -5,6 +5,10 @@ const SceneLayout = preload("res://scripts/scene_layout.gd")
 const Rules = preload("res://scripts/rescue_rules.gd")
 const FX = preload("res://scripts/rescue_fx.gd")
 const CarrierMotion = preload("res://scripts/directional_carrier.gd")
+const ApprovedCarrier = preload("res://scripts/first_level_carrier.gd")
+const ApprovedBead = preload("res://scripts/first_level_bead.gd")
+const APPROVED_BALL_SIZE:=ApprovedBead.WORLD_SIZE
+var carrier_motion:Script=CarrierMotion
 const CarrierRoute = preload("res://scripts/carrier_route.gd")
 const SerpentView = preload("res://scripts/serpent_view.gd")
 const Saves = preload("res://scripts/save_service.gd")
@@ -83,12 +87,14 @@ const COLOR_VALUES={"red":Color("ed4137"),"blue":Color("329cfa"),"yellow":Color(
 func _ready()->void:
 	var cold_entry:=not profile_directory_resolved
 	var arguments := OS.get_cmdline_user_args()
-	if use_command_line_catalog and "--campaign-drafts" in arguments:campaign_drafts=true
+	# Review scope is independent of catalog existence, saves, CLI and QA.
+	campaign_drafts=false;level_index=1
 	level_ids=Catalog.level_ids(campaign_drafts)
 	var requested_level := 0
 	for arg in arguments:
 		if use_command_line_level and arg.begins_with("--level="):
-			requested_level=clampi(int(arg.trim_prefix("--level=")),1,level_ids.size())
+			var number:=int(arg.trim_prefix("--level="))
+			if Catalog.runtime_level_allowed(number,campaign_drafts):requested_level=number
 	auto_replay=auto_replay or "--auto-replay" in arguments
 	capture_play="--capture-play" in arguments
 	# Every replay session starts in /tmp regardless of the normal profile override.
@@ -108,30 +114,31 @@ func _ready()->void:
 	saves=Saves.new(profile_directory,level_ids,30)
 	var loaded:Dictionary=saves.load_save()
 	profile_state=loaded.state
-	if qa_fixture_mode and loaded.ok:
-		var fixture_level := clampi(level_index,1,level_ids.size())
-		for i in range(fixture_level-1):saves.mark_complete(level_ids[i],"qa-fixture")
-		saves.set_current_entrance(level_ids[fixture_level-1])
+	if qa_fixture_mode and loaded.ok and (qa_level_config.is_empty() or Catalog.runtime_config_allowed(qa_level_config,1,false)):
+		saves.set_current_entrance(level_ids[0])
 		saves.set_tutorial_completed(true)
 		profile_state=saves.get_view_state()
 	elif loaded.ok and requested_level>0:
 		# --level is a request, not an unlock bypass, in either catalog.
 		var entrance:Dictionary=saves.set_current_entrance(level_ids[requested_level-1])
 		profile_state=entrance.state
-	if profile_state.ready:
-		level_index=level_ids.find(profile_state.resume_level_id)+1
-	else:level_index=1
+	level_index=1 # Preserve historical progress; only the runtime entrance is projected.
 	audio_visual_state={"music":float(profile_state.music_volume),"sound":float(profile_state.sfx_volume),"music_muted":int(profile_state.music_volume)==0,"sound_muted":int(profile_state.sfx_volume)==0}
 	var config_result:=read_level_configuration(Catalog.level_path(level_index,campaign_drafts))
 	if qa_fixture_mode and not qa_level_config.is_empty():
 		config_result={"ok":true,"config":qa_level_config.duplicate(true)}
 	elif config_result.ok:
 		config_result=Catalog.check_identity(config_result.config,level_index,campaign_drafts)
+	if not config_result.ok:
+		level_load_reason=str(config_result.reason);build_load_failure_ui();return
 	level_config=config_result.get("config",{})
+	if not Catalog.runtime_config_allowed(level_config,level_index,campaign_drafts):
+		level_load_reason="first_level_review_only";build_load_failure_ui();return
 	var scene_result:=SceneLayout.load_for(level_config)
 	if not scene_result.ok:
 		level_load_reason=str(scene_result.reason);build_load_failure_ui();return
 	scene_layout=scene_result.data
+	carrier_motion=ApprovedCarrier if is_approved_first_level() else CarrierMotion
 	# Draft source identity remains unchanged, including its null production number.
 	# Rules use level_number 1..30 for the normal 3/6/9/16 unlock context.
 	if not campaign_drafts:level_config.level_number=level_index
@@ -162,6 +169,7 @@ func _ready()->void:
 	var cell_points:Dictionary={}
 	for cell in rules.board.values():cell_points["%d,%d"%[cell.x,cell.y]]=board_plane.center(cell.x,cell.y)
 	fx.set_layout({"stock_points":stock_points,"cell_points":cell_points})
+	if is_approved_first_level():fx.set_layout({"round_ball_size":APPROVED_BALL_SIZE,"round_ball_asset":ApprovedBead.TEXTURE_PATH,"round_ball_regions":JSON.parse_string(FileAccess.get_file_as_string(ApprovedBead.REGIONS_PATH))})
 	fx.auto_advance=false
 	ready_to_simulate=true
 	sync_view();consume_rule_events()
@@ -185,6 +193,10 @@ func read_level_configuration(path:String)->Dictionary:
 	return {"ok":true,"config":parser.data}
 
 func build_load_failure_ui()->void:
+	# Failure can occur before rules are constructed. Keep recovery navigation
+	# operational without fabricating a playable board, run or reward.
+	if not is_instance_valid(rules):rules=Rules.new()
+	rules.status="load_error";ready_to_simulate=false
 	# Build only a navigable error shell. Invalid content must never become a fake
 	# board, an empty frozen window or a fabricated completion.
 	var canvas_scale:=minf(1440.0/940.0,2560.0/1672.0)
@@ -198,6 +210,25 @@ func build_load_failure_ui()->void:
 	build_environment()
 	if profile_state.get("ready",false):show_error()
 	else:show_load_recovery()
+
+func is_approved_first_level()->bool:
+	return str(scene_layout.get("id",""))=="first_level_approved"
+
+func bead(id:String,pos:Vector2,edge:float,parent:Node=self)->Control:
+	if not is_approved_first_level():return super.bead(id,pos,edge,parent)
+	var b:=ApprovedBead.new();b.color_id=id;b.edge=edge;b.position=pos;b.size=Vector2(edge,edge);b.footprint_height=edge;parent.add_child(b);return b
+
+func place_board_bead(color_id:String,x:int,y:int,plane:RefCounted,parent:Node)->Control:
+	if not is_approved_first_level():return super.place_board_bead(color_id,x,y,plane,parent)
+	var span:Vector2=APPROVED_BALL_SIZE;var center:Vector2=plane.center(x,y)
+	var b:=ApprovedBead.new();b.color_id=color_id;b.edge=span.x;b.footprint_height=span.y;b.position=center-span*.5;b.size=span;parent.add_child(b);return b
+
+func approved_texture(path:String,region:Rect2,bounds:Rect2,parent:Node,id:String)->TextureRect:
+	var texture:=AtlasTexture.new();texture.atlas=load(path);texture.region=region;texture.filter_clip=true
+	return UiSkin.place_texture(texture,bounds,parent,id)
+
+func approved_tint(target:CanvasItem,color:String)->void:
+	var material:=ShaderMaterial.new();material.shader=preload("res://scripts/first_level_color.gdshader");material.set_shader_parameter("tint",COLOR_VALUES[color]);target.material=material
 
 func build_mosaic()->void:
 	var board:=group("Mosaic")
@@ -232,17 +263,28 @@ func build_candidates()->void:
 	var active_colors:Array=[]
 	for color in COLORS:
 		if int(rules.initial_counts.get(color,0))>0:active_colors.append(color)
+	if is_approved_first_level():active_colors=["blue","red","yellow","green","purple"]
 	var layout:=color_control_layout(active_colors.size())
+	if is_approved_first_level():
+		layout.clear()
+		var gap:=12.0;var width:=(816.0-float(active_colors.size()-1)*gap)/float(active_colors.size())
+		for index in active_colors.size():layout.append(Rect2(62+index*(width+gap),1342,width,176))
 	for i in active_colors.size():
 		var color:String=active_colors[i]
 		var bounds:Rect2=layout[i]
 		var x:=bounds.position.x;var y:=bounds.position.y;var width:=bounds.size.x
 		var ant_width:=minf(76.0,width*.39)
-		frame(bounds,"ColorPlate_"+color,layer,18)
-		var actor:=ground_ant(color,Vector2(x+width*.32,y+85),"ColorAnt_"+color,layer,ant_width)
-		CarrierMotion.prepare(actor,color,ant_width)
-		CarrierMotion.apply(actor,{"time":0.0,"distance":0.0,"moving":false,"direction":Vector2.UP,"stage":"idle","pickup":0.0,"diameter":ant_width,"phase":0.0})
-		text_label(str(fixture.remaining.get(color,0)),Rect2(x+width*.56,y+27,width*.35,65),clampi(roundi(width*.19),28,40),"Remaining_"+color,layer,INK)
+		if is_approved_first_level():
+			ant_width=width*.78
+			var card:=approved_texture("res://assets/first-level/color-card.png",Rect2(122,120,1049,999),Rect2(x,y+11,width,width*999.0/1049.0),layer,"ColorPlate_"+color)
+			approved_tint(card,color)
+		else:frame(bounds,"ColorPlate_"+color,layer,18)
+		var actor:=ground_ant(color,Vector2(x+width*(.46 if is_approved_first_level() else .32),y+(113 if is_approved_first_level() else 85)),"ColorAnt_"+color,layer,ant_width)
+		carrier_motion.prepare(actor,color,ant_width)
+		carrier_motion.apply(actor,{"time":0.0,"distance":0.0,"moving":false,"direction":Vector2(1,1) if is_approved_first_level() else Vector2.UP,"stage":"idle","pickup":0.0,"diameter":ant_width,"phase":0.0})
+		var count_rect:=Rect2(x+width*.56,y+(94 if is_approved_first_level() else 27),width*.39,65)
+		var count_label:=text_label(str(fixture.remaining.get(color,0)),count_rect,clampi(roundi(width*.25 if is_approved_first_level() else width*.19),28,42),"Remaining_"+color,layer,Color("fff2cf") if is_approved_first_level() else INK)
+		if is_approved_first_level():count_label.add_theme_color_override("font_outline_color",Color("301a08"));count_label.add_theme_constant_override("outline_size",5)
 		var button:=Button.new();button.name="ColorButton_"+color;button.position=bounds.position;button.size=bounds.size;button.flat=true;button.tooltip_text="Send one "+color+" ant";layer.add_child(button)
 		button.pressed.connect(func():select_color(color));color_buttons[color]=button
 		var state_icon:=icon("barrier",Rect2(x+width-35,y+8,24,24),layer,INK);state_icon.name="ColorState_"+color;state_icon.hide()
@@ -251,7 +293,7 @@ func select_color(color:String)->bool:
 	if is_instance_valid(pause_overlay) or not profile_state.get("ready",false):return false
 	var result:Dictionary=rules.click_color(color)
 	if not result.ok:
-		var messages:Dictionary={"carrier_limit":"ALL FOUR ANTS ARE BUSY","color_blocked":"NO REACHABLE BEAD","color_all_reserved":"THESE BEADS ARE ALREADY CLAIMED","color_collected":"ALL COLLECTED","simulation_frozen":"PAUSED"}
+		var messages:Dictionary={"carrier_limit":"ALL FOUR ANTS ARE BUSY","color_blocked":"NO REACHABLE BALL","color_all_reserved":"THESE BALLS ARE ALREADY CLAIMED","color_collected":"ALL COLLECTED","simulation_frozen":"PAUSED"}
 		show_click_feedback(str(messages.get(result.get("reason",""),"NOT AVAILABLE")))
 		return false
 	var notice:=get_node_or_null("RoundRestartNotice")
@@ -261,7 +303,9 @@ func select_color(color:String)->bool:
 func show_click_feedback(message:String)->void:
 	var old:=get_node_or_null("ClickFeedback")
 	if old:remove_child(old);old.queue_free()
-	var label:=text_label(message,Rect2(130,1530,680,42),22,"ClickFeedback",self,Color("fff3d7"))
+	var bounds:=Rect2(52,1534,340,94) if is_approved_first_level() else Rect2(130,1530,680,42)
+	var label:=text_label(message,bounds,22,"ClickFeedback",self,Color("fff3d7"))
+	label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	label.add_theme_color_override("font_outline_color",Color("513316"));label.add_theme_constant_override("outline_size",4)
 	ensure_ui_motion();ui_motion.reveal_hint(label);audio_service.play_event("error")
 	feedback_serial+=1;var serial:=feedback_serial
@@ -269,6 +313,7 @@ func show_click_feedback(message:String)->void:
 		if is_inside_tree() and feedback_serial==serial and is_instance_valid(label):label.queue_free())
 
 func tint_red(target:CanvasItem,color:String)->void:
+	if is_approved_first_level() and target.name=="Cannon":return # Preserve bronze; ammo and muzzle FX show the live color.
 	var material:ShaderMaterial
 	if target.material is ShaderMaterial:material=target.material
 	else:material=ShaderMaterial.new();material.shader=shield_shader;target.material=material
@@ -288,18 +333,26 @@ func build_threat()->void:
 func build_transport()->void:
 	var layer:=group("TransportScene")
 	SceneLayout.add_nest(layer,scene_layout)
-	var cannon:=art(Rect2(48,654,412,337),SceneLayout.rect(scene_layout.cannon.rect),"Cannon",layer);cannon.pivot_offset=SceneLayout.point(scene_layout.cannon.pivot)
+	var cannon:TextureRect
+	if is_approved_first_level():
+		cannon=approved_texture(str(scene_layout.cannon.texture),SceneLayout.rect(scene_layout.cannon.region),SceneLayout.rect(scene_layout.cannon.rect),layer,"Cannon")
+	else:cannon=art(Rect2(48,654,412,337),SceneLayout.rect(scene_layout.cannon.rect),"Cannon",layer)
+	cannon.pivot_offset=SceneLayout.point(scene_layout.cannon.pivot)
+	if is_approved_first_level():
+		var hopper:=bead("blue",SceneLayout.point(scene_layout.cannon.hopper)-APPROVED_BALL_SIZE*.5,APPROVED_BALL_SIZE.x,layer);hopper.name="HopperAmmo";hopper.hide()
 	var stock:=group("Stock",layer)
 	var stock_colors:Array=[]
 	for color in COLORS:
 		if int(rules.initial_counts.get(color,0))>0:stock_colors.append(color)
 	for j in stock_colors.size():
 		var color:String=stock_colors[j];var anchor:=SceneLayout.stock_anchor(scene_layout,j)
-		bead(color,anchor+Vector2(12,-18),25,stock)
+		if is_approved_first_level():bead(color,anchor+Vector2(24-APPROVED_BALL_SIZE.x*.5,-APPROVED_BALL_SIZE.y*.5),APPROVED_BALL_SIZE.x,stock)
+		else:bead(color,anchor+Vector2(12,-18),25,stock)
 		var label:=text_label("0",Rect2(anchor+Vector2(0,13),Vector2(53,34)),23,"Count_"+color,stock,Color("fff7d9"));label.add_theme_color_override("font_outline_color",Color("573719"));label.add_theme_constant_override("outline_size",5)
 	var live:=group("LiveCarriers",layer);layer.move_child(live,1)
 
 func build_hud()->void:
+	if is_approved_first_level():build_approved_hud();return
 	var hud:=group("TopHUD")
 	frame(Rect2(405,24,130,65),"Level",hud,8)
 	text_label("%02d"%level_index,Rect2(410,27,120,54),32,"LevelNumber",hud)
@@ -309,11 +362,58 @@ func build_hud()->void:
 	text_label("×1",Rect2(30,20,88,65),28,"SpeedLabel",hud,Color("fff5df"),true)
 	speed.pressed.connect(func():rules.set_speed(2 if rules.speed_multiplier==1 else 1))
 
+func approved_medallion(parent:Node,bounds:Rect2,id:String)->TextureRect:
+	return approved_texture("res://assets/first-level/deck-controls.png",Rect2(1279,91,590,581),bounds,parent,id)
+
+func build_approved_hud()->void:
+	var hud:=group("TopHUD")
+	text_label("01",Rect2(410,25,120,54),32,"LevelNumber",hud,Color("fff3d9"),true)
+	for entry in [["PauseButton","pause",Vector2(21,15)],["SettingsButton","settings",Vector2(831,15)]]:
+		var at:Vector2=entry[2]
+		approved_medallion(hud,Rect2(at,Vector2(88,86.66)),"Disc_"+str(entry[0]))
+		if str(entry[1])=="pause":icon("pause",Rect2(at+Vector2(23,21),Vector2(42,44)),hud,Color("ffe4a1"))
+		else:
+			var gear:=preload("res://scripts/first_level_medallion.gd").new();gear.position=at;gear.size=Vector2(88,88);gear.kind="gear_only";hud.add_child(gear)
+		var button:=Button.new();button.name=str(entry[0]);button.position=at;button.size=Vector2(88,88);button.flat=true;hud.add_child(button)
+		button.pressed.connect(show_pause if str(entry[0])=="PauseButton" else show_settings)
+	for entry in [["SpeedButton","speed",420]]:
+		var bounds:=Rect2(float(entry[2]),1530,100,98.5)
+		approved_medallion(hud,bounds,"Disc_"+str(entry[0]))
+		var button:=Button.new();button.name=str(entry[0]);button.position=bounds.position;button.size=Vector2(100,100);button.flat=true;hud.add_child(button)
+		if str(entry[1])=="speed":
+			text_label("×1",Rect2(bounds.position+Vector2(12,19),Vector2(76,58)),27,"SpeedLabel",hud,Color("ffe5b0"))
+			button.pressed.connect(func():rules.set_speed(2 if rules.speed_multiplier==1 else 1))
+		else:
+			icon(str(entry[1]),Rect2(bounds.position+Vector2(24,22),Vector2(52,54)),hud,Color("ffe5b0"))
+			button.pressed.connect(request_home if str(entry[1])=="home" else show_restart)
+
 func build_slots()->void:
 	var layer:=group("WorkSlots")
+	if is_approved_first_level():
+		for index in 4:
+			var x:=165.0+float(index)*161.0
+			approved_texture("res://assets/first-level/deck-controls.png",Rect2(101,163,948,476),Rect2(x-55,1250,132,66.28),layer,"TransportPedestal%d"%index)
+			var actor:=ground_ant("blue",Vector2(x+11,1287),"TransportPreview%d"%index,layer,73)
+			carrier_motion.prepare(actor,"blue",73);carrier_motion.apply(actor,{"time":0.0,"moving":false,"direction":Vector2.RIGHT,"stage":"idle","diameter":73})
+			actor.hide()
+		text_label("0 / 4",Rect2(388,1309,164,35),23,"CarrierCount",layer,Color("fff1d2"),true)
+		text_label("",Rect2(570,1309,120,35),18,"CapacityState",layer,Color("fff1d2"),true)
+		return
 	ant("yellow",Rect2(405,1222,54,44),"CarrierCapacity",layer)
 	text_label("0 / 4",Rect2(465,1222,100,46),25,"CarrierCount",layer,Color("fff1d2"),true)
 	text_label("",Rect2(567,1224,90,42),18,"CapacityState",layer,Color("fff1d2"),true)
+
+func sync_approved_transport_displays()->void:
+	if not is_approved_first_level():return
+	var tasks:Array=rules.tasks.values()
+	for index in 4:
+		var actor:Control=get_node("WorkSlots/TransportPreview%d"%index)
+		actor.visible=index<tasks.size()
+		if not actor.visible:continue
+		var task:Dictionary=tasks[index]
+		var state:Dictionary=actor.get_meta(carrier_motion.CACHE_KEY)
+		state.material.set_shader_parameter("tint",COLOR_VALUES[task.color])
+		actor.tooltip_text="In transit · "+str(task.color)
 
 func build_tools()->void:
 	pass
@@ -358,9 +458,10 @@ func sync_view()->void:
 		get_node("CandidateQueues/ColorAnt_"+color).modulate=Color(.55,.55,.55,.72) if state in ["collected","blocked"] else Color.WHITE
 		var indicator:Control=get_node("CandidateQueues/ColorState_"+color)
 		indicator.visible=state!="ready";indicator.kind="check" if state=="collected" else ("clock" if state=="all_reserved" else "barrier");indicator.queue_redraw()
-		color_buttons[color].tooltip_text="All four ants are busy" if view_snapshot.capacity_full else ({"ready":"Send one ant","blocked":"No reachable bead","all_reserved":"Matching beads are already claimed","collected":"All beads collected"}.get(state,"Send one ant"))
+		color_buttons[color].tooltip_text="All four ants are busy" if view_snapshot.capacity_full else ({"ready":"Send one ant","blocked":"No reachable ball","all_reserved":"Matching balls are already claimed","collected":"All balls collected"}.get(state,"Send one ant"))
 	get_node("WorkSlots/CarrierCount").text="%d / %d"%[int(view_snapshot.carrier_count),int(view_snapshot.carrier_limit)]
 	get_node("WorkSlots/CapacityState").text="BUSY" if view_snapshot.capacity_full else ""
+	sync_approved_transport_displays()
 	for color in color_buttons:get_node("TransportScene/Stock/Count_"+color).text=str(rules.inventory.get(color,0))
 	get_node("TopHUD/SpeedLabel").text="×%d"%rules.speed_multiplier
 	serpent.sync_snapshot(view_snapshot)
@@ -371,11 +472,21 @@ func sync_view()->void:
 	else:
 		var next_target:Dictionary=rules.next_fire_target()
 		if not next_target.is_empty():tint_red(get_node("TransportScene/Cannon"),str(next_target.color))
+	if is_approved_first_level():sync_hopper_ammo()
 	fx.sync_snapshot(view_snapshot)
 	sync_carriers()
 	if is_instance_valid(fx):move_child(fx,-1)
 	if is_instance_valid(pause_overlay):move_child(pause_overlay,-1)
 	apply_gameplay_interaction_motion()
+
+func sync_hopper_ammo()->void:
+	var hopper:Control=get_node("TransportScene/HopperAmmo");hopper.hide()
+	# A fired ball is no longer in the hopper. During cooldown preview only the
+	# same target/color the authoritative next-fire selector would actually use.
+	if not rules.projectile.is_empty() or rules.status not in ["ready","running"]:return
+	var target:Dictionary=rules.next_fire_target()
+	if target.is_empty():return
+	hopper.color_id=str(target.color);hopper.queue_redraw();hopper.show()
 
 func apply_gameplay_interaction_motion()->void:
 	if not ready_to_simulate:return
@@ -397,9 +508,13 @@ func sync_carriers()->void:
 	for id in rules.tasks:
 		var task:Dictionary=rules.tasks[id]
 		if not carriers.has(id):
-			var actor:=ground_ant(task.color,Vector2.ZERO,"Carrier%d"%id,container,48)
-			var carried:=bead(task.color,Vector2(-12,-48),24,actor);carried.name="CarriedBead"
-			CarrierMotion.prepare(actor,task.color,48.0)
+			var carrier_diameter:=ApprovedCarrier.WORLD_DIAMETER if is_approved_first_level() else 48.0
+			var actor:=ground_ant(task.color,Vector2.ZERO,"Carrier%d"%id,container,carrier_diameter)
+			var target_cell:Array=task.path[-1]
+			var cargo_size:Vector2=APPROVED_BALL_SIZE if is_approved_first_level() else Vector2(24,27)
+			var carried:=bead(task.color,Vector2(-cargo_size.x*.5,-48),cargo_size.x,actor);carried.name="CarriedBead"
+			if is_approved_first_level():carried.footprint_height=cargo_size.y;carried.size=cargo_size;carried.set_meta("world_size",cargo_size)
+			carrier_motion.prepare(actor,task.color,carrier_diameter)
 			actor.set_meta("carrier_route",CarrierRoute.build(task.path,board_plane,SceneLayout.point(scene_layout.nest.position)))
 			carriers[id]=actor
 		var return_depart:int=task.get("return_depart_us",task.pickup_us)
@@ -420,15 +535,23 @@ func sync_carriers()->void:
 		var elapsed:=float(rules.time_us-task.depart_us)/1000000.0
 		var leg_sec:=float(task.pickup_us-task.depart_us)/1000000.0
 		# Continue the stride rather than snapping phase when the load is acquired.
-		var stride_time:=minf(elapsed,leg_sec)*CarrierMotion.OUTBOUND_CADENCE
-		if task.stage=="returning":stride_time+=maxf(0.0,float(rules.time_us-return_depart)/1000000.0)*CarrierMotion.LOADED_CADENCE
-		CarrierMotion.apply(actor,{"time":float(rules.time_us)/1000000.0,
-			"distance":pose.travelled if task.stage=="outbound" else pose.total_length*2.0-pose.travelled,
-			"moving":not holding and task.stage!="unloading","direction":direction,"stage":"pickup" if holding else ("returning" if task.stage=="unloading" else task.stage),
-			"pickup":hold_fraction if holding else 0.0,"diameter":48.0,"phase":stride_time*TAU+float(id)*1.7})
+		var stride_time:float=minf(elapsed,leg_sec)*carrier_motion.OUTBOUND_CADENCE
+		if task.stage=="returning":stride_time+=maxf(0.0,float(rules.time_us-return_depart)/1000000.0)*carrier_motion.LOADED_CADENCE
+		var travelled:float=pose.travelled if task.stage=="outbound" else pose.total_length*2.0-pose.travelled
 		var carried:=actor.get_node("CarriedBead") as Control
-		carried.scale=Vector2.ONE*lerpf(.65,1.0,smoothstep(0,1,hold_fraction)) if holding else Vector2.ONE
-		if holding:carried.position.y+=(1.0-smoothstep(0,1,hold_fraction))*6.0
+		if is_approved_first_level():carried.scale=Vector2.ONE/actor.scale
+		carrier_motion.apply(actor,{"time":float(rules.time_us)/1000000.0,
+			"distance":pose.travelled if task.stage=="outbound" else pose.total_length*2.0-pose.travelled,
+			"outbound_distance":minf(travelled,pose.total_length),"loaded_distance":maxf(0.0,travelled-pose.total_length),"phase_offset":float(id)*1.7,
+			"moving":not holding and task.stage!="unloading","direction":direction,"stage":"pickup" if holding else ("returning" if task.stage=="unloading" else task.stage),
+			"pickup":hold_fraction if holding else 0.0,"diameter":ApprovedCarrier.WORLD_DIAMETER if is_approved_first_level() else 48.0,"phase":stride_time*TAU+float(id)*1.7})
+		if is_approved_first_level():
+			# Lift the unchanged ball from its real source-cell center to this view
+			# of the back. The existing pickup hold still owns all timing/events.
+			if holding:carried.position=(-carried.size*carried.scale*.5).lerp(carried.position,smoothstep(0,1,hold_fraction))
+		else:
+			carried.scale=Vector2.ONE*lerpf(.65,1.0,smoothstep(0,1,hold_fraction)) if holding else Vector2.ONE
+			if holding:carried.position.y+=(1.0-smoothstep(0,1,hold_fraction))*6.0
 
 func sample_carrier_path(path:Array,t:float)->Dictionary:
 	# Direct diagnostics only; live carriers cache this immutable route once.
@@ -555,7 +678,7 @@ func commit_settings()->bool:
 func show_tutorial()->void:
 	var m:=modal("YOUR FIRST RESCUE",Rect2(149,423,642,800))
 	ant("red",Rect2(400,552,140,106),"TutorialAnt",m)
-	var steps:Array[String]=["ONE TAP SENDS ONE ANT","UP TO FOUR ANTS CARRY AT ONCE","EACH ANT TAKES ONE MATCHING BEAD","DELIVERED BEADS BECOME AMMO","ARMORED SEGMENTS TAKE TWO HITS","REMOVE EVERY SEGMENT TO WIN"]
+	var steps:Array[String]=["ONE TAP SENDS ONE ANT","UP TO FOUR ANTS CARRY AT ONCE","EACH ANT CARRIES ONE MATCHING BALL","DELIVERED BALLS BECOME AMMO","ARMORED SEGMENTS TAKE TWO HITS","REMOVE EVERY SEGMENT TO WIN"]
 	for i in steps.size():
 		icon("arrow",Rect2(211,674+i*58,26,30),m,Color("d09536"))
 		text_label(steps[i],Rect2(251,667+i*58,487,46),18,"StepText%d"%i,m)
@@ -654,24 +777,35 @@ func result_action(parent:Control,title:String,y:float,callback:Callable,primary
 
 func show_outcome(won:bool)->void:
 	if won and rules.status=="victory" and not victory_saved:show_save_error();return
-	var m:=modal("SAVED!" if won else "TRY AGAIN",Rect2(98,335,744,1040))
+	var m:=modal("SAVED!" if won else "TRY AGAIN",Rect2(98,335,744,1140 if won else 1040))
 	if won:
 		serpent.hide()
 		UiSkin.place_texture(SceneLayout.target_texture(scene_layout),Rect2(310,535,320,270),m,"SavedDefenseTarget",true)
 		UiSkin.place_texture(load("res://assets/meta-ui/ant-coin.png"),Rect2(357,829,62,62),m,"RewardCoin",true)
 		text_label("+%d"%int(reward_receipt.get("total",0)),Rect2(427,825,205,67),40,"PointsEarned",m,INK,true)
-		text_label("%d + %d  ·  %.1fs"%[int(reward_receipt.get("base",0)),int(reward_receipt.get("time_bonus",0)),elapsed_round_seconds()],Rect2(280,891,380,34),19,"RewardBreakdown",m)
+		text_label("%d BASE + %d TIME  ·  %.1fs"%[int(reward_receipt.get("base",0)),int(reward_receipt.get("time_bonus",0)),elapsed_round_seconds()],Rect2(230,891,480,34),19,"RewardBreakdown",m)
 
+		# No SDK is connected. Expose the unavailable optional bonus honestly,
+		# without a mock ad, reward callback, or a gate on normal progression.
+		var ad:=Button.new();ad.name="RewardedAdUnavailable";ad.disabled=true
+		ad.position=Vector2(190,934);ad.size=Vector2(560,80)
+		ad.tooltip_text="Rewarded ads are not connected. Your points are already saved."
+		frame(Rect2(ad.position,ad.size),"AdUnavailablePanel",m,24,"e6dfc9")
+		text_label("BONUS ADS UNAVAILABLE",Rect2(210,941,520,32),21,"AdStatus",m,INK,true)
+		text_label("YOUR POINTS ARE SAVED · CONTINUE ANY TIME",Rect2(210,977,520,27),16,"AdExplanation",m)
+		m.add_child(ad)
 	else:serpent.add_head_portrait(m,Rect2(290,570,360,300))
 	var next_id:String=profile_state.get("next_level_id","") if victory_saved else ""
-	if won and not next_id.is_empty():result_action(m,"NEXT LEVEL",934,func():replace_level(level_ids.find(next_id)+1),true)
-	result_action(m,"PLAY AGAIN" if won else "RETRY",1076,func():replace_level(level_index),not won or next_id.is_empty())
-	var map_bounds:=Rect2(190,1218,260,118)
-	frame(map_bounds,"MapAction",m,30);icon("levels",Rect2(280,1237,80,80),m,INK)
+	if not Catalog.runtime_level_allowed(level_ids.find(next_id)+1,campaign_drafts):next_id=""
+	if won and not next_id.is_empty():result_action(m,"NEXT LEVEL",1034,func():replace_level(level_ids.find(next_id)+1),true)
+	result_action(m,"PLAY AGAIN" if won else "RETRY",1176 if won else 1076,func():replace_level(level_index),not won or next_id.is_empty())
+	var footer_y:=1318. if won else 1218.
+	var map_bounds:=Rect2(190,footer_y,260,118)
+	frame(map_bounds,"MapAction",m,30);icon("levels",Rect2(280,footer_y+19,80,80),m,INK)
 	var map_button:=Button.new();map_button.name="MapButton";map_button.flat=true;map_button.position=map_bounds.position;map_button.size=map_bounds.size;map_button.tooltip_text="Adventure map";m.add_child(map_button);map_button.pressed.connect(show_levels)
-	var shop_bounds:=Rect2(490,1218,260,118)
+	var shop_bounds:=Rect2(490,footer_y,260,118)
 	frame(shop_bounds,"ShopAction",m,30)
-	UiSkin.place_texture(load("res://assets/meta-ui/ant-coin.png"),Rect2(580,1237,80,80),m,"ShopCoin",true)
+	UiSkin.place_texture(load("res://assets/meta-ui/ant-coin.png"),Rect2(580,footer_y+19,80,80),m,"ShopCoin",true)
 	var shop_button:=Button.new();shop_button.name="ShopButton";shop_button.flat=true;shop_button.position=shop_bounds.position;shop_button.size=shop_bounds.size;shop_button.tooltip_text="Ant shop";m.add_child(shop_button);shop_button.pressed.connect(func():transition_to_startup("shop"))
 
 func show_save_error()->void:
@@ -741,6 +875,7 @@ func show_error()->void:
 
 func replace_level(index:int)->void:
 	if replacement_pending or index<1 or index>level_ids.size():return
+	if not Catalog.runtime_level_allowed(index,campaign_drafts):return
 	if pending_save_kind=="victory":show_save_error();return
 	var result:Dictionary=saves.set_current_entrance(level_ids[index-1]);profile_state=result.state
 	if not result.ok:
@@ -774,7 +909,7 @@ func transition_to_startup(mode:String)->void:
 	next.use_command_line_catalog=false;next.start_mode=mode
 	next.campaign_drafts=campaign_drafts;next.profile_directory=profile_directory;next.profile_directory_resolved=true
 	next.auto_replay=auto_replay;next.qa_fixture_mode=qa_fixture_mode;next.qa_level_config=qa_level_config.duplicate(true)
-	next.level_index=level_ids.find(profile_state.resume_level_id)+1
+	next.level_index=1
 	get_tree().root.add_child(next);get_tree().current_scene=next;queue_free()
 
 func _notification(what:int)->void:

@@ -1,0 +1,642 @@
+{
+  "method": "Current integrated 3-to-6 visible legs/groups. Every solid alpha toe ROI hull vertex, 720 equally spaced phase samples, outbound and returning. Exact two-step inverse warp solved numerically. Includes no carried ball or body in ground-contact sweep.",
+  "poses": [
+    {
+      "name": "E",
+      "visible_legs": 4,
+      "groups": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "ground_source_bounds": [
+        [
+          60.0,
+          313.0
+        ],
+        [
+          338.0,
+          368.0
+        ]
+      ],
+      "pickup_posture_upper_bound_px": 0.014599508947670486,
+      "analytic_gait_displacement_bound_px_excluding_posture": {
+        "outbound": {
+          "planar_norm": 1.7714285714285714,
+          "projected_norm": 2.2142857142857144
+        },
+        "returning": {
+          "planar_norm": 1.3285714285714285,
+          "projected_norm": 1.6238095238095238
+        }
+      },
+      "outbound_planar": {
+        "shift_min_px": [
+          -1.7714285714285722,
+          0.0
+        ],
+        "shift_max_px": [
+          1.7714285714285722,
+          0.0
+        ],
+        "maximum_shift_norm_px": 1.7714285714285722,
+        "source_inverse_residual_px": 9.848633339970547e-07
+      },
+      "outbound_projected": {
+        "shift_min_px": [
+          -1.7714285714285722,
+          -2.2142857142857144
+        ],
+        "shift_max_px": [
+          1.7714285714285722,
+          0.0
+        ],
+        "maximum_shift_norm_px": 2.2142857142857144,
+        "source_inverse_residual_px": 9.905594652476054e-07
+      },
+      "returning_planar": {
+        "shift_min_px": [
+          -1.3285714285714292,
+          0.0
+        ],
+        "shift_max_px": [
+          1.3285714285714292,
+          6.780118900095999e-06
+        ],
+        "maximum_shift_norm_px": 1.3285714285714292,
+        "source_inverse_residual_px": 5.684341886080802e-14
+      },
+      "returning_projected": {
+        "shift_min_px": [
+          -1.3285714285714292,
+          -1.6238095238095243
+        ],
+        "shift_max_px": [
+          1.3285714285714292,
+          6.780118900095999e-06
+        ],
+        "maximum_shift_norm_px": 1.6238095238095243,
+        "source_inverse_residual_px": 5.684341886080802e-14
+      }
+    },
+    {
+      "name": "SE",
+      "visible_legs": 4,
+      "groups": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "ground_source_bounds": [
+        [
+          23.0,
+          219.0
+        ],
+        [
+          320.0,
+          330.0
+        ]
+      ],
+      "pickup_posture_upper_bound_px": 0.081179918728005,
+      "analytic_gait_displacement_bound_px_excluding_posture": {
+        "outbound": {
+          "planar_norm": 1.3585829352073928,
+          "projected_norm": 2.3013759090116785
+        },
+        "returning": {
+          "planar_norm": 1.0189372014055447,
+          "projected_norm": 1.691702191712369
+        }
+      },
+      "outbound_planar": {
+        "shift_min_px": [
+          -1.2525891552447455,
+          -0.5260874452027959
+        ],
+        "shift_max_px": [
+          1.2525891552447455,
+          0.5260874452027959
+        ],
+        "maximum_shift_norm_px": 1.358582935207397,
+        "source_inverse_residual_px": 5.123796534383003e-14
+      },
+      "outbound_projected": {
+        "shift_min_px": [
+          -1.2525891552447455,
+          -2.2759174988031066
+        ],
+        "shift_max_px": [
+          1.2525891552447455,
+          0.5260874452027959
+        ],
+        "maximum_shift_norm_px": 2.3013698329079273,
+        "source_inverse_residual_px": 5.123796534383003e-14
+      },
+      "returning_planar": {
+        "shift_min_px": [
+          -0.9394418664335564,
+          -0.39456558390209295
+        ],
+        "shift_max_px": [
+          0.9394418664335555,
+          0.39456558390209295
+        ],
+        "maximum_shift_norm_px": 1.0189372014055444,
+        "source_inverse_residual_px": 5.422982071392023e-14
+      },
+      "returning_projected": {
+        "shift_min_px": [
+          -0.9394418664335564,
+          -1.671053043706701
+        ],
+        "shift_max_px": [
+          0.9394418664335555,
+          0.39456558390209295
+        ],
+        "maximum_shift_norm_px": 1.6916984759308484,
+        "source_inverse_residual_px": 5.422982071392023e-14
+      }
+    },
+    {
+      "name": "S",
+      "visible_legs": 6,
+      "groups": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "ground_source_bounds": [
+        [
+          24.0,
+          222.0
+        ],
+        [
+          263.0,
+          349.0
+        ]
+      ],
+      "pickup_posture_upper_bound_px": 0.06289583860030973,
+      "analytic_gait_displacement_bound_px_excluding_posture": {
+        "outbound": {
+          "planar_norm": 0.744,
+          "projected_norm": 2.3359360488869974
+        },
+        "returning": {
+          "planar_norm": 0.5579999999999999,
+          "projected_norm": 1.7170094261868547
+        }
+      },
+      "outbound_planar": {
+        "shift_min_px": [
+          -0.00032522685002867036,
+          -0.7440000000000033
+        ],
+        "shift_max_px": [
+          0.00032657639515853987,
+          0.7440000000000038
+        ],
+        "maximum_shift_norm_px": 0.7440000000000038,
+        "source_inverse_residual_px": 6.355287432313019e-14
+      },
+      "outbound_projected": {
+        "shift_min_px": [
+          -0.0014778838682563133,
+          -2.3359341866076884
+        ],
+        "shift_max_px": [
+          0.0005729373420120254,
+          0.7440000000000038
+        ],
+        "maximum_shift_norm_px": 2.3359341866076884,
+        "source_inverse_residual_px": 2.818935407293831e-08
+      },
+      "returning_planar": {
+        "shift_min_px": [
+          -0.00034181462199533996,
+          -0.5579999999999998
+        ],
+        "shift_max_px": [
+          0.00034293806685248285,
+          0.5579999999999998
+        ],
+        "maximum_shift_norm_px": 0.5579999999999998,
+        "source_inverse_residual_px": 6.355287432313019e-14
+      },
+      "returning_projected": {
+        "shift_min_px": [
+          -0.00046354785358282413,
+          -1.7170090981840822
+        ],
+        "shift_max_px": [
+          0.00038450745219087423,
+          0.5579999999999998
+        ],
+        "maximum_shift_norm_px": 1.7170090981840822,
+        "source_inverse_residual_px": 4.556346636343676e-13
+      }
+    },
+    {
+      "name": "SW",
+      "visible_legs": 4,
+      "groups": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "ground_source_bounds": [
+        [
+          73.0,
+          233.0
+        ],
+        [
+          362.0,
+          333.0
+        ]
+      ],
+      "pickup_posture_upper_bound_px": 0.07881349258963642,
+      "analytic_gait_displacement_bound_px_excluding_posture": {
+        "outbound": {
+          "planar_norm": 1.3585829352073926,
+          "projected_norm": 2.301375909011678
+        },
+        "returning": {
+          "planar_norm": 1.0189372014055444,
+          "projected_norm": 1.6917021917123691
+        }
+      },
+      "outbound_planar": {
+        "shift_min_px": [
+          -1.2525891552447455,
+          -0.5260874452027959
+        ],
+        "shift_max_px": [
+          1.2525891552447455,
+          0.5260874452027959
+        ],
+        "maximum_shift_norm_px": 1.3585829352073984,
+        "source_inverse_residual_px": 6.355287432313019e-14
+      },
+      "outbound_projected": {
+        "shift_min_px": [
+          -1.2525891552447455,
+          -2.2759174988031066
+        ],
+        "shift_max_px": [
+          1.2525891552447455,
+          0.5260874452027959
+        ],
+        "maximum_shift_norm_px": 2.301369832907927,
+        "source_inverse_residual_px": 6.355287432313019e-14
+      },
+      "returning_planar": {
+        "shift_min_px": [
+          -0.9394418664335564,
+          -0.39456558390209295
+        ],
+        "shift_max_px": [
+          0.9394418664335564,
+          0.39456558390209295
+        ],
+        "maximum_shift_norm_px": 1.0189372014055444,
+        "source_inverse_residual_px": 6.355287432313019e-14
+      },
+      "returning_projected": {
+        "shift_min_px": [
+          -0.9394418664335564,
+          -1.6710530437067006
+        ],
+        "shift_max_px": [
+          0.9394418664335564,
+          0.39456558390209295
+        ],
+        "maximum_shift_norm_px": 1.6916984759308475,
+        "source_inverse_residual_px": 6.355287432313019e-14
+      }
+    },
+    {
+      "name": "W",
+      "visible_legs": 4,
+      "groups": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "ground_source_bounds": [
+        [
+          80.0,
+          263.0
+        ],
+        [
+          338.0,
+          372.0
+        ]
+      ],
+      "pickup_posture_upper_bound_px": 0.2174059568834446,
+      "analytic_gait_displacement_bound_px_excluding_posture": {
+        "outbound": {
+          "planar_norm": 1.7714285714285714,
+          "projected_norm": 2.2142857142857144
+        },
+        "returning": {
+          "planar_norm": 1.3285714285714285,
+          "projected_norm": 1.6238095238095238
+        }
+      },
+      "outbound_planar": {
+        "shift_min_px": [
+          -1.7714285714285722,
+          0.0
+        ],
+        "shift_max_px": [
+          1.7714285714285722,
+          0.0
+        ],
+        "maximum_shift_norm_px": 1.7714285714285722,
+        "source_inverse_residual_px": 9.89124714578793e-07
+      },
+      "outbound_projected": {
+        "shift_min_px": [
+          -1.7714285714285722,
+          -2.2142857142857153
+        ],
+        "shift_max_px": [
+          1.7714285714285722,
+          0.0
+        ],
+        "maximum_shift_norm_px": 2.2142857142857153,
+        "source_inverse_residual_px": 9.962234564357407e-07
+      },
+      "returning_planar": {
+        "shift_min_px": [
+          -1.3285714285714292,
+          0.0
+        ],
+        "shift_max_px": [
+          1.3285714285714292,
+          0.0028431616993049857
+        ],
+        "maximum_shift_norm_px": 1.3285714285714292,
+        "source_inverse_residual_px": 9.923320872497032e-07
+      },
+      "returning_projected": {
+        "shift_min_px": [
+          -1.3285714285714292,
+          -1.6238095238095243
+        ],
+        "shift_max_px": [
+          1.3285714285714292,
+          0.0028421783128269595
+        ],
+        "maximum_shift_norm_px": 1.6238095238095243,
+        "source_inverse_residual_px": 9.833329188371415e-07
+      }
+    },
+    {
+      "name": "NW",
+      "visible_legs": 3,
+      "groups": [
+        0,
+        1,
+        0
+      ],
+      "ground_source_bounds": [
+        [
+          76.0,
+          252.0
+        ],
+        [
+          227.0,
+          374.0
+        ]
+      ],
+      "pickup_posture_upper_bound_px": 0.15464722408317197,
+      "analytic_gait_displacement_bound_px_excluding_posture": {
+        "outbound": {
+          "planar_norm": 1.3585829352073928,
+          "projected_norm": 2.3013759090116785
+        },
+        "returning": {
+          "planar_norm": 1.0189372014055447,
+          "projected_norm": 1.691702191712369
+        }
+      },
+      "outbound_planar": {
+        "shift_min_px": [
+          -1.2525891552447437,
+          -0.5260874452027959
+        ],
+        "shift_max_px": [
+          1.2525891552447437,
+          0.5260874452027959
+        ],
+        "maximum_shift_norm_px": 1.3585829352073964,
+        "source_inverse_residual_px": 5.684341886080802e-14
+      },
+      "outbound_projected": {
+        "shift_min_px": [
+          -1.2525891552447437,
+          -2.275917498803107
+        ],
+        "shift_max_px": [
+          1.2525891552447437,
+          0.5260874452027959
+        ],
+        "maximum_shift_norm_px": 2.301369832907927,
+        "source_inverse_residual_px": 9.188051521778386e-07
+      },
+      "returning_planar": {
+        "shift_min_px": [
+          -0.9394418664335564,
+          -0.3945655839020925
+        ],
+        "shift_max_px": [
+          0.9394418664335564,
+          0.39456558390209295
+        ],
+        "maximum_shift_norm_px": 1.0189372014055447,
+        "source_inverse_residual_px": 6.355287432313019e-14
+      },
+      "returning_projected": {
+        "shift_min_px": [
+          -0.9394418664335564,
+          -1.671053043706701
+        ],
+        "shift_max_px": [
+          0.9394418664335564,
+          0.39456558390209295
+        ],
+        "maximum_shift_norm_px": 1.691698475930847,
+        "source_inverse_residual_px": 1.9452492174487536e-09
+      }
+    },
+    {
+      "name": "N",
+      "visible_legs": 4,
+      "groups": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "ground_source_bounds": [
+        [
+          24.0,
+          227.0
+        ],
+        [
+          269.0,
+          331.0
+        ]
+      ],
+      "pickup_posture_upper_bound_px": 0.05721657708097837,
+      "analytic_gait_displacement_bound_px_excluding_posture": {
+        "outbound": {
+          "planar_norm": 0.744,
+          "projected_norm": 2.335936048886998
+        },
+        "returning": {
+          "planar_norm": 0.5579999999999999,
+          "projected_norm": 1.7170094261868547
+        }
+      },
+      "outbound_planar": {
+        "shift_min_px": [
+          0.0,
+          -0.7440000000000033
+        ],
+        "shift_max_px": [
+          0.0,
+          0.7440000000000038
+        ],
+        "maximum_shift_norm_px": 0.7440000000000038,
+        "source_inverse_residual_px": 5.955433342649105e-14
+      },
+      "outbound_projected": {
+        "shift_min_px": [
+          0.0,
+          -2.3359341866076875
+        ],
+        "shift_max_px": [
+          0.0,
+          0.7440000000000038
+        ],
+        "maximum_shift_norm_px": 2.3359341866076875,
+        "source_inverse_residual_px": 5.955433342649105e-14
+      },
+      "returning_planar": {
+        "shift_min_px": [
+          0.0,
+          -0.5579999999999998
+        ],
+        "shift_max_px": [
+          0.0,
+          0.5579999999999998
+        ],
+        "maximum_shift_norm_px": 0.5579999999999998,
+        "source_inverse_residual_px": 5.684341886080802e-14
+      },
+      "returning_projected": {
+        "shift_min_px": [
+          0.0,
+          -1.7170090981840822
+        ],
+        "shift_max_px": [
+          0.0,
+          0.5579999999999998
+        ],
+        "maximum_shift_norm_px": 1.7170090981840822,
+        "source_inverse_residual_px": 5.859285502108464e-14
+      }
+    },
+    {
+      "name": "NE",
+      "visible_legs": 3,
+      "groups": [
+        0,
+        1,
+        0
+      ],
+      "ground_source_bounds": [
+        [
+          152.0,
+          264.0
+        ],
+        [
+          314.0,
+          380.0
+        ]
+      ],
+      "pickup_posture_upper_bound_px": 0.025341829555488027,
+      "analytic_gait_displacement_bound_px_excluding_posture": {
+        "outbound": {
+          "planar_norm": 1.3585829352073926,
+          "projected_norm": 2.301375909011678
+        },
+        "returning": {
+          "planar_norm": 1.0189372014055442,
+          "projected_norm": 1.691702191712369
+        }
+      },
+      "outbound_planar": {
+        "shift_min_px": [
+          -1.2525891552447455,
+          -0.5260874452027959
+        ],
+        "shift_max_px": [
+          1.2525891552447455,
+          0.5260874452027959
+        ],
+        "maximum_shift_norm_px": 1.3585829352073984,
+        "source_inverse_residual_px": 1.1823431123048067e-11
+      },
+      "outbound_projected": {
+        "shift_min_px": [
+          -1.2525891552447455,
+          -2.275917498803107
+        ],
+        "shift_max_px": [
+          1.2525891552447455,
+          0.5260874452027959
+        ],
+        "maximum_shift_norm_px": 2.3013698329079277,
+        "source_inverse_residual_px": 1.1823431123048067e-11
+      },
+      "returning_planar": {
+        "shift_min_px": [
+          -0.9394418664335564,
+          -0.39456558390209295
+        ],
+        "shift_max_px": [
+          0.9394418664335564,
+          0.39456558390209295
+        ],
+        "maximum_shift_norm_px": 1.0189372014055447,
+        "source_inverse_residual_px": 5.684341886080802e-14
+      },
+      "returning_projected": {
+        "shift_min_px": [
+          -0.9394418664335564,
+          -1.671053043706701
+        ],
+        "shift_max_px": [
+          0.9394418664335564,
+          0.39456558390209295
+        ],
+        "maximum_shift_norm_px": 1.6916984759308484,
+        "source_inverse_residual_px": 5.684341886080802e-14
+      }
+    }
+  ],
+  "hashes": {
+    "assets/first-level/slender-ants.json": "2e1e46613d0adaa184551a217d790f692b9f15870d799ae0badd0cb7655a2133",
+    "scripts/first_level_carrier.gdshader": "b452bbc0a309fae4c1fbee790f6c8d2a9f5ba381e7f439e8af4d2032c1661779",
+    "scripts/first_level_carrier.gd": "6ae9814b5cdab7891b8b38ed6ff13caa0a22ad25185a10aef900bfb0c119fd22"
+  }
+}

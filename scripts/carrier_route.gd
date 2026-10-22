@@ -2,7 +2,8 @@ extends RefCounted
 ## Presentation-only route geometry. Build once per task, then sample in either
 ## direction using the Rules' existing normalized progress and timestamps.
 ## Rules paths contain empty transit cells and one occupied final target. Only
-## interior transit-cell right angles are rounded; endpoints are never changed.
+## interior transit-cell right angles are rounded. A scene may explicitly opt
+## into bounded exterior-screen corners; occupied endpoints are never changed.
 const CORNER_RADIUS := 0.22
 const ARC_STEPS := 12
 const EPSILON := 0.000001
@@ -33,6 +34,7 @@ static func build(path: Array, plane: RefCounted, nest: Vector2 = NEST_POSITION)
 	route.start_depth = cells[0].y
 	route.end_depth = cells[-1].y
 	var previous := cells[0]
+	var previous_screen := _map(previous,plane,nest)
 	for i in range(1, cells.size() - 1):
 		var cell := cells[i]
 		var incoming := cell - cells[i - 1]
@@ -48,15 +50,34 @@ static func build(path: Array, plane: RefCounted, nest: Vector2 = NEST_POSITION)
 		if can_round:
 			var entry := cell - incoming * CORNER_RADIUS
 			var exit := cell + outgoing * CORNER_RADIUS
-			_append_segment(route, previous, previous, entry, false, plane, nest)
+			_append_mapped_segment(route,previous_screen,previous_screen,_map(entry,plane,nest),previous,previous,entry,false)
 			# This quadratic's whole control hull is inside this one empty cell.
 			# Adjacent occupied cells and the final target cannot be cut across.
 			_append_segment(route, entry, cell, exit, true, plane, nest)
 			previous = exit
+			previous_screen = _map(exit,plane,nest)
 		else:
-			_append_segment(route, previous, previous, cell, false, plane, nest)
-			previous = cell
-	_append_segment(route, previous, previous, cells[-1], false, plane, nest)
+			var current_screen:=_map(cell,plane,nest)
+			var screen_in:=current_screen-_map(cells[i-1],plane,nest)
+			var screen_out:=_map(cells[i+1],plane,nest)-current_screen
+			var exterior:bool=cell.x<0 or cell.x>=plane.columns or cell.y<0 or cell.y>=plane.rows
+			var exterior_bend:bool=plane.exterior_corner_radius_px>0 and exterior and not _is_nest(cell,plane) \
+				and not _is_nest(cells[i-1],plane) and not _is_nest(cells[i+1],plane) \
+				and screen_in.length()>EPSILON and screen_out.length()>EPSILON \
+				and screen_in.normalized().dot(screen_out.normalized())<.995
+			if exterior_bend:
+				var radius:=minf(plane.exterior_corner_radius_px,minf(screen_in.length(),screen_out.length())*.45)
+				var entry_screen:=current_screen-screen_in.normalized()*radius
+				var exit_screen:=current_screen+screen_out.normalized()*radius
+				var entry:=cell-incoming*(radius/screen_in.length())
+				var exit:=cell+outgoing*(radius/screen_out.length())
+				_append_mapped_segment(route,previous_screen,previous_screen,entry_screen,previous,previous,entry,false)
+				_append_mapped_segment(route,entry_screen,current_screen,exit_screen,entry,cell,exit,true)
+				previous=exit;previous_screen=exit_screen
+			else:
+				_append_mapped_segment(route,previous_screen,previous_screen,current_screen,previous,previous,cell,false)
+				previous=cell;previous_screen=current_screen
+	_append_mapped_segment(route,previous_screen,previous_screen,_map(cells[-1],plane,nest),previous,previous,cells[-1],false)
 	return route
 
 static func sample(route: Dictionary, t: float) -> Dictionary:
@@ -103,6 +124,10 @@ static func _append_segment(route: Dictionary, a: Vector2, b: Vector2, c: Vector
 	var screen_a := _map(a, plane, nest)
 	var screen_b := _map(b, plane, nest)
 	var screen_c := _map(c, plane, nest)
+	_append_mapped_segment(route,screen_a,screen_b,screen_c,a,b,c,curved)
+
+static func _append_mapped_segment(route:Dictionary,screen_a:Vector2,screen_b:Vector2,screen_c:Vector2,
+		a:Vector2,b:Vector2,c:Vector2,curved:bool)->void:
 	var lengths := PackedFloat64Array([0.0])
 	var length := 0.0
 	if curved:

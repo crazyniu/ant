@@ -1,0 +1,6 @@
+{
+	"checks": 20,
+	"failures": [],
+	"pass": true,
+	"scope": "Real headless startup/preparation/settings button callbacks with write failure, repeat failure, close/back, retry and independent disk reload. No visual/audio/native-input acceptance."
+}

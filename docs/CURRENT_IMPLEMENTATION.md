@@ -1,3 +1,11 @@
+# First-level review candidate (2026-10-22)
+
+Only the user-approved first level is accessible in this candidate. Later level content remains archived for compatibility, not enabled or newly tested. Do not merge or deploy this review branch. Visuals are **not user accepted** and no GL screenshot is claimed.
+
+See [current visual batch](../reports/first-level/batch-2/README.md), its source inventory and exact unaccepted differences. `FIRST_LEVEL_PUBLICATION.json` identifies this candidate; earlier `SOURCE_MANIFEST.json` / `PUBLICATION_CHECK.json` and the implementation history below describe the already-published base, not current first-level acceptance.
+
+---
+
 # Current implementation contract
 
 Version: 2026-10-21 Snow Courtyard continuation; rules API 3.1.0, level schema 3, economy schema/version 1. This document describes current source behavior and separates it from the broader product target. The earlier automatic-team contract and its 30-level reports are historical. The published API 3.0.0 core is a prior, smaller snapshot, not evidence that the new UI has passed review.

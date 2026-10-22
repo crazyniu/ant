@@ -6,6 +6,8 @@ const Catalog = preload("res://scripts/level_catalog.gd")
 const Progression = preload("res://scripts/ant_progression.gd")
 const Adventure = preload("res://scripts/adventure_view.gd")
 const Shop = preload("res://scripts/ant_shop_view.gd")
+const Rules = preload("res://scripts/rescue_rules.gd")
+const SceneLayout = preload("res://scripts/scene_layout.gd")
 const TITLE = preload("res://assets/startup/title.png")
 const HOME_RESOURCES: Array[String] = [
 	"res://assets/worlds/ruins-courtyard.png", "res://assets/worlds/supply-cart.png",
@@ -51,13 +53,20 @@ var adventure:Control
 var shop:Control
 var shop_return_screen:="map"
 var meta_settings_dirty:=false
+var meta_settings_recovery_pending:=false
+var meta_navigation_recovery_pending:=false
+var load_generation := 0
+var active_request_id := -1
+var launch_origin := "preparation"
+var loader_owner_id := 0
 
 func _ready() -> void:
 	if DisplayServer.get_name()!="headless":get_window().mode=Window.MODE_MAXIMIZED
 	var canvas_scale := minf(1440.0/940.0,2560.0/1672.0)
 	size=Vector2(940,1672);scale=Vector2.ONE*canvas_scale;position=(Vector2(1440,2560)-size*scale)*.5
 	var args:=OS.get_cmdline_user_args()
-	if use_command_line_catalog:campaign_drafts=campaign_drafts or "--campaign-drafts" in args
+	# First-level review scope cannot be widened by CLI, QA or restored progress.
+	campaign_drafts=false;level_index=1
 	if not profile_directory_resolved:
 		var profile_root:=profile_directory
 		if profile_root.is_empty():profile_root=OS.get_environment("ANT_RESCUE_PROFILE_DIR")
@@ -68,28 +77,38 @@ func _ready() -> void:
 		auto_replay=true;qa_fixture_mode=true;start_mode="play"
 		profile_directory="/tmp/ant-rescue-replay-%d-%d"%[OS.get_process_id(),Time.get_ticks_usec()]
 		for arg in args:
-			if arg.begins_with("--level="):level_index=clampi(int(arg.trim_prefix("--level=")),1,Catalog.level_ids(campaign_drafts).size())
+			if arg.begins_with("--level=") and Catalog.runtime_level_allowed(int(arg.trim_prefix("--level="))):level_index=1
 	saves=Saves.new(profile_directory,Catalog.level_ids(campaign_drafts),30)
 	var result:Dictionary=saves.load_save();profile_state=result.state
 	progression=Progression.new(profile_directory)
 	economy_state=progression.load_save().state
 	if profile_state.ready and not qa_fixture_mode:
-		level_index=Catalog.level_ids(campaign_drafts).find(profile_state.resume_level_id)+1
+		level_index=1 # Project the entrance without erasing historical saves.
 		for arg in args:
 			if use_command_line_catalog and arg.begins_with("--level="):
-				var requested:=clampi(int(arg.trim_prefix("--level=")),1,Catalog.level_ids(campaign_drafts).size())
+				var requested:=int(arg.trim_prefix("--level="))
+				if not Catalog.runtime_level_allowed(requested,campaign_drafts):continue
 				var entrance:Dictionary=saves.set_current_entrance(Catalog.level_ids(campaign_drafts)[requested-1])
 				profile_state=entrance.state
 	audio_visual_state={"music":float(profile_state.music_volume),"sound":float(profile_state.sfx_volume),"music_muted":int(profile_state.music_volume)==0,"sound_muted":int(profile_state.sfx_volume)==0}
 	theme=Theme.new()
 	for state in ["normal","hover","pressed","disabled","focus"]:theme.set_stylebox(state,"Button",StyleBoxEmpty.new())
 	build_boot_shell()
-	loader=Loader.new();loader.name="StartupLoader";add_child(loader)
-	loader.progress_changed.connect(update_progress)
-	loader.completed.connect(on_loaded)
-	loader.failed.connect(on_load_failed)
+	create_loader()
 	record_event("splash")
 	call_deferred("begin_home_load")
+
+func create_loader() -> void:
+	loader_owner_id+=1
+	loader=Loader.new();loader.name="StartupLoader";add_child(loader)
+	loader.progress_changed.connect(update_progress.bind(loader_owner_id))
+	loader.completed.connect(on_loaded.bind(loader_owner_id))
+	loader.failed.connect(on_load_failed.bind(loader_owner_id))
+
+func start_resource_batch(paths:Array[String]) -> void:
+	# start() can fail synchronously, so establish ownership before calling it.
+	active_request_id=loader.request_id+1
+	loader.start(paths)
 
 func record_event(event:String) -> void:
 	var row:Dictionary={"event":event,"ticks_us":Time.get_ticks_usec(),"phase":phase,"batch":batch,"profile":profile_directory,"campaign":campaign_drafts}
@@ -108,16 +127,18 @@ func build_boot_shell() -> void:
 	loading_label=Label.new();loading_label.name="LoadingStatus";loading_label.text="LOADING";loading_label.position=Vector2(240,1095);loading_label.size=Vector2(460,45);loading_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;loading_label.add_theme_font_size_override("font_size",22);loading_label.add_theme_color_override("font_color",INK);loading_layer.add_child(loading_label)
 
 func begin_home_load() -> void:
+	load_generation+=1
 	phase="loading";batch="home";record_event("resource_batch_requested")
 	var paths:Array[String]=HOME_RESOURCES.duplicate()
 	paths.append(AudioService.BGM_PATH)
 	for path in AudioService.SFX_PATHS.values():paths.append(str(path))
-	loader.start(paths)
+	start_resource_batch(paths)
 
-func update_progress(value:float) -> void:
-	progress_bar.value=value
+func update_progress(value:float,owner_id:int) -> void:
+	if owner_id==loader_owner_id and phase=="loading":progress_bar.value=value
 
-func on_loaded(_request_id:int) -> void:
+func on_loaded(finished_request_id:int,owner_id:int) -> void:
+	if owner_id!=loader_owner_id or phase!="loading" or finished_request_id!=active_request_id:return
 	record_event("resource_batch_loaded")
 	if batch=="home":
 		# Retain the real loaded resources until the destination owns its references.
@@ -125,8 +146,8 @@ func on_loaded(_request_id:int) -> void:
 		retained_resources.append(loader.get_resource(AudioService.BGM_PATH))
 		for path in AudioService.SFX_PATHS.values():retained_resources.append(loader.get_resource(path))
 		build_home()
-		if start_mode=="play":call_deferred("launch_game",entry_screen)
-	else:call_deferred("handover_game")
+		if start_mode=="play" and profiles_ready():call_deferred("launch_game",entry_screen)
+	else:call_deferred("handover_game",load_generation)
 
 func build_home() -> void:
 	font=loader.get_resource("res://assets/fonts/Title.ttf")
@@ -152,15 +173,68 @@ func build_home() -> void:
 	art(Rect2(48,654,412,337),Rect2(390,1008,174,142),"HomeCannon",home_art)
 	home_button("PlayButton","play",Rect2(290,1240,360,136),func():open_adventure("preparation",level_index),true)
 	home_button("LevelsButton","levels",Rect2(397,1415,146,112),func():open_adventure("map"),false)
-	var level_button:Button=home_art.get_node("LevelsButton");level_button.disabled=not profile_state.ready
-	if profile_state.ready:
-		text_label("LEVEL %d"%(Catalog.level_ids(campaign_drafts).find(profile_state.resume_level_id)+1),Rect2(270,1371,400,37),22,"SavedEntrance",home_art,INK,true)
-		if profile_state.tutorial_completed:text_label("FRESH ROUND · SAVED PROGRESS KEPT",Rect2(185,1530,570,36),17,"ResumeMeaning",home_art,INK,true)
+	refresh_home_profile_controls()
 	if campaign_drafts:text_label("CAMPAIGN PREVIEW",Rect2(200,82,540,38),21,"CatalogIdentity",home_art,INK,true)
 	home_ready=true;phase="home";loading_layer.hide();home_art.move_to_front();record_event("home_ready")
+	if not profiles_ready():show_profile_recovery();return
 	if start_mode in ["map","preparation","shop"]:
 		open_adventure("preparation" if start_mode=="preparation" else "map",level_index)
 		if start_mode=="shop":open_shop()
+
+func profiles_ready()->bool:
+	return profile_state.get("ready",false) and economy_state.get("ready",false)
+
+func refresh_home_profile_controls()->void:
+	home_art.get_node("LevelsButton").disabled=not profiles_ready()
+	for id in ["SavedEntrance","ResumeMeaning"]:
+		var old:=home_art.get_node_or_null(id)
+		if old!=null:home_art.remove_child(old);old.queue_free()
+	if profile_state.ready:
+		text_label("LEVEL 1",Rect2(270,1371,400,37),22,"SavedEntrance",home_art,INK,true)
+		if profile_state.tutorial_completed:text_label("FRESH ROUND · SAVED PROGRESS KEPT",Rect2(185,1530,570,36),17,"ResumeMeaning",home_art,INK,true)
+
+func show_profile_recovery(last_error:String="")->void:
+	var m:=modal("COULDN'T LOAD",Rect2(149,500,642,730))
+	text_label("YOUR SAVE HAS NOT BEEN RESET",Rect2(185,650,570,50),22,"RecoveryTitle",m)
+	var reasons:Array[String]=[]
+	if not profile_state.get("ready",false):reasons.append("PROGRESS: "+str(profile_state.get("reason","load_failed")).replace("_"," ").to_upper())
+	if not economy_state.get("ready",false):reasons.append("POINTS: "+str(economy_state.get("reason","load_failed")).replace("_"," ").to_upper())
+	if not last_error.is_empty():reasons.append(last_error.replace("_"," ").to_upper())
+	text_label("\n".join(reasons),Rect2(175,725,590,115),16,"RecoveryReason",m)
+	text_label("PLAY IS BLOCKED UNTIL RECOVERY SUCCEEDS",Rect2(170,850,600,45),17,"RecoveryNotice",m)
+	action(m,"RETRY LOAD",940,retry_profile_load,true)
+	if profile_state.get("recovery_allowed",false) or economy_state.get("recovery_allowed",false):
+		action(m,"RESTORE BACKUP",1040,restore_profile_backups)
+		text_label("RESTORES THE LAST VALID LOCAL BACKUP",Rect2(175,1140,590,40),16,"BackupNotice",m)
+
+func retry_profile_load()->void:
+	profile_state=saves.load_save().state;economy_state=progression.load_save().state
+	if profiles_ready():finish_profile_recovery()
+	else:show_profile_recovery()
+
+func restore_profile_backups()->void:
+	# Restore only failed stores, through their existing checked/quarantined path.
+	# Never reset defaults, mint rewards, or overwrite a healthy companion store.
+	var last_error:=""
+	if not profile_state.get("ready",false) and profile_state.get("recovery_allowed",false):
+		var restored:Dictionary=saves.recover_from_backup();profile_state=restored.state
+		if not restored.ok:last_error=str(restored.reason)
+	if not economy_state.get("ready",false) and economy_state.get("recovery_allowed",false):
+		var restored:Dictionary=progression.recover_from_backup();economy_state=restored.state
+		if not restored.ok:last_error=str(restored.reason)
+	if profiles_ready():finish_profile_recovery()
+	else:show_profile_recovery(last_error)
+
+func finish_profile_recovery()->void:
+	level_index=1
+	audio_visual_state={"music":float(profile_state.music_volume),"sound":float(profile_state.sfx_volume),"music_muted":int(profile_state.music_volume)==0,"sound_muted":int(profile_state.sfx_volume)==0}
+	audio_service.apply_settings_state(audio_visual_state)
+	meta_settings_dirty=false;meta_settings_recovery_pending=false
+	close_current_modal();refresh_home_profile_controls()
+	if is_instance_valid(adventure):adventure.hide()
+	if is_instance_valid(shop):shop.hide()
+	home_art.show();home_art.move_to_front();phase="home";start_mode="home"
+	record_event("profile_recovered")
 
 func home_button(id:String,kind:String,bounds:Rect2,callback:Callable,primary:bool) -> void:
 	frame(bounds,id+"Art",home_art,32,"54d35b" if primary else "fff3db")
@@ -169,14 +243,78 @@ func home_button(id:String,kind:String,bounds:Rect2,callback:Callable,primary:bo
 
 func launch_game(screen:String="") -> void:
 	if launch_pending or not home_ready:return
-	launch_pending=true;entry_screen=screen;batch="game";phase="loading"
-	loading_layer.show();loading_layer.move_to_front();loading_label.text="LOADING";progress_bar.value=0
+	if not Catalog.runtime_level_allowed(level_index,campaign_drafts):return
+	if not profiles_ready():show_profile_recovery();return
+	launch_origin=phase if phase in ["preparation","map"] else "preparation"
+	launch_pending=true;entry_screen=screen;batch="game";phase="loading";load_generation+=1
+	reset_loading_controls()
+	loading_layer.show();loading_layer.move_to_front()
+	show_loading_back()
 	record_event("play_requested")
-	var game_paths:Array[String]=["res://scenes/play.tscn"]
-	loader.start(game_paths)
+	call_deferred("prepare_game_resources",load_generation)
 
-func handover_game() -> void:
-	if not is_inside_tree() or not launch_pending:return
+func prepare_game_resources(expected_generation:int) -> void:
+	if expected_generation!=load_generation or phase!="loading" or not launch_pending:return
+	if not Catalog.runtime_level_allowed(level_index,campaign_drafts):
+		on_load_failed({"reason":"first_level_review_only"});return
+	var path:=Catalog.level_path(level_index,campaign_drafts)
+	var config:Variant=JSON.parse_string(FileAccess.get_file_as_string(path)) if FileAccess.file_exists(path) else null
+	if qa_fixture_mode and not qa_level_config.is_empty():config=qa_level_config.duplicate(true)
+	if not config is Dictionary:
+		on_load_failed({"path":path,"reason":"level_data_unavailable"});return
+	if not Catalog.runtime_config_allowed(config,level_index,campaign_drafts):
+		on_load_failed({"path":path,"reason":"first_level_review_only"});return
+	if not qa_fixture_mode and not Catalog.check_identity(config,level_index,campaign_drafts).ok:
+		on_load_failed({"path":path,"reason":"level_identity_invalid"});return
+	if not Rules.validate_level(config).is_empty():
+		on_load_failed({"path":path,"reason":"level_rules_invalid"});return
+	var layout:Dictionary=SceneLayout.load_for(config)
+	if not layout.ok:
+		on_load_failed({"path":path,"reason":layout.reason});return
+	var game_paths:Array[String]=["res://scenes/play.tscn",str(layout.data.background),str(layout.data.defense_target.texture)]
+	start_resource_batch(game_paths)
+
+func clear_loading_actions() -> void:
+	for id in ["RetryButton","BackButton"]:
+		var button:=loading_layer.get_node_or_null(id)
+		if button!=null:loading_layer.remove_child(button);button.queue_free()
+
+func reset_loading_controls() -> void:
+	clear_loading_actions();loading_label.text="LOADING";loading_label.size.y=45
+	progress_bar.show();progress_bar.value=0
+
+func loading_button(id:String,title:String,y:float,callback:Callable) -> void:
+	var button:=Button.new();button.name=id;button.text=title;button.position=Vector2(300,y);button.size=Vector2(340,118)
+	button.add_theme_font_size_override("font_size",28);button.add_theme_color_override("font_color",INK)
+	var outline:=StyleBoxFlat.new();outline.bg_color=Color("edd0a1");outline.set_border_width_all(3);outline.border_color=Color("9a6229");outline.set_corner_radius_all(22)
+	for state in ["normal","hover","pressed"]:button.add_theme_stylebox_override(state,outline)
+	loading_layer.add_child(button);button.pressed.connect(callback)
+
+func show_loading_back() -> void:
+	if home_ready:loading_button("BackButton","BACK TO PREPARATION" if launch_origin=="preparation" else "BACK TO MAP",1380,return_from_loading)
+
+func return_from_loading() -> void:
+	if not home_ready or batch!="game" or phase not in ["loading","error"]:return
+	# Godot cannot cancel a native load. Detach our old owner immediately so its
+	# completion cannot call back, and invalidate any already deferred handover.
+	load_generation+=1;active_request_id=-1;launch_pending=false;start_mode="home"
+	remove_child(loader);loader.queue_free();create_loader()
+	clear_loading_actions();loading_layer.hide()
+	if is_instance_valid(adventure):adventure.release_begin_lock()
+	open_adventure(launch_origin,level_index)
+	record_event("load_returned")
+
+func retry_loading() -> void:
+	if phase!="error":return
+	reset_loading_controls();phase="loading";load_generation+=1
+	show_loading_back();record_event("retry_requested")
+	if batch=="game":call_deferred("prepare_game_resources",load_generation)
+	else:begin_home_load()
+
+func handover_game(expected_generation:int) -> void:
+	if not is_inside_tree() or not launch_pending or phase!="loading" or expected_generation!=load_generation:return
+	if not Catalog.runtime_level_allowed(level_index,campaign_drafts) or (qa_fixture_mode and not qa_level_config.is_empty() and not Catalog.runtime_config_allowed(qa_level_config,level_index,campaign_drafts)):
+		on_load_failed({"reason":"first_level_review_only"});return
 	var packed:PackedScene=loader.get_resource("res://scenes/play.tscn")
 	if packed==null:on_load_failed({"message":"The game scene could not be opened."});return
 	var next=packed.instantiate()
@@ -190,28 +328,23 @@ func handover_game() -> void:
 	get_tree().root.add_child(next);get_tree().current_scene=next
 	loader.release_resources();retained_resources.clear();queue_free()
 
-func on_load_failed(error:Dictionary) -> void:
+func on_load_failed(error:Dictionary,owner_id:int=-1) -> void:
+	if owner_id>=0 and owner_id!=loader_owner_id:return
+	if phase!="loading" or (error.has("request_id") and int(error.request_id)!=active_request_id):return
 	phase="error";record_event("resource_load_failed")
 	loading_label.text="COULDN'T LOAD\nCHECK GAME FILES AND TRY AGAIN"
-	loading_label.size.y=95
-	progress_bar.hide()
-	var existing:=loading_layer.get_node_or_null("RetryButton")
-	if existing!=null:loading_layer.remove_child(existing);existing.queue_free()
-	var retry:=Button.new();retry.name="RetryButton";retry.text="TRY AGAIN";retry.position=Vector2(300,1230);retry.size=Vector2(340,118)
-	retry.add_theme_font_size_override("font_size",28);retry.add_theme_color_override("font_color",INK)
-	var outline:=StyleBoxFlat.new();outline.bg_color=Color("edd0a1");outline.set_border_width_all(3);outline.border_color=Color("9a6229");outline.set_corner_radius_all(22)
-	for state in ["normal","hover","pressed"]:retry.add_theme_stylebox_override(state,outline)
-	loading_layer.add_child(retry)
-	retry.pressed.connect(func():
-		loading_layer.remove_child(retry);retry.queue_free();loading_label.text="LOADING";progress_bar.show();phase="loading";record_event("retry_requested");loader.retry())
-	push_warning("Startup resource unavailable: "+str(error.get("path","scene")))
+	loading_label.size.y=95;progress_bar.hide();clear_loading_actions()
+	loading_button("RetryButton","TRY AGAIN",1230,retry_loading)
+	show_loading_back()
+	push_warning("Startup resource unavailable: "+str(error.get("path","scene"))+" · "+str(error.get("reason",error.get("message","load_failed"))))
 
 func reset_presentation() -> void:
 	pass
 
 func _unhandled_key_input(event:InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		if is_instance_valid(pause_overlay):close_current_modal()
+		if phase in ["loading","error"] and batch=="game":return_from_loading()
+		elif is_instance_valid(pause_overlay):close_current_modal()
 		elif phase=="shop":close_shop()
 		elif phase=="preparation":open_adventure("map")
 		elif phase=="map":show_home_again()
@@ -220,23 +353,26 @@ func _unhandled_key_input(event:InputEvent) -> void:
 
 func meta_levels()->Array:
 	var result:Array=[]
-	for number in range(1,Catalog.level_ids(campaign_drafts).size()+1):
+	for number in [1]:
 		var path:=Catalog.level_path(number,campaign_drafts)
 		if not FileAccess.file_exists(path):continue
 		var config=JSON.parse_string(FileAccess.get_file_as_string(path))
 		if config is Dictionary and Catalog.check_identity(config,number,campaign_drafts).ok:result.append({"number":number,"config":config})
 	return result
 
-func save_navigation()->void:
-	if not is_instance_valid(adventure) or not economy_state.get("ready",false):return
+func save_navigation()->bool:
+	if not is_instance_valid(adventure):return true
+	if not economy_state.get("ready",false):show_profile_recovery();return false
 	var state:Dictionary=adventure.get_navigation_state()
 	var result:Dictionary=progression.set_navigation({"region_id":str(state.region_id),"scroll_y":maxf(0.,float(state.scroll_y)),"selected_level":int(state.selected_level)})
-	if result.ok:economy_state=result.state
-	else:show_meta_failure(result.reason)
+	if not result.ok:
+		show_meta_failure(result.reason,false,true);return false
+	economy_state=result.state;meta_navigation_recovery_pending=false;return true
 
 func open_adventure(screen:String="map",number:int=-1)->void:
 	if launch_pending:return
-	if not profile_state.get("ready",false) or not economy_state.get("ready",false):show_meta_failure(str(economy_state.get("reason","profile_unavailable")));return
+	if not profiles_ready():show_profile_recovery();return
+	if not Catalog.runtime_level_allowed(number,campaign_drafts):number=1
 	home_art.hide()
 	if is_instance_valid(shop):shop.hide()
 	if not is_instance_valid(adventure):
@@ -245,7 +381,7 @@ func open_adventure(screen:String="map",number:int=-1)->void:
 		adventure.set_data(meta_levels(),profile_state,economy_state)
 		add_child(adventure)
 		adventure.restore_navigation_state(economy_state.get("navigation",{}))
-		adventure.choose_level.connect(func(n):phase="preparation";adventure.show_preparation(n);save_navigation())
+		adventure.choose_level.connect(choose_prepared_level)
 		adventure.begin_level.connect(begin_prepared_level)
 		adventure.shop_requested.connect(open_shop)
 		adventure.settings_requested.connect(show_settings)
@@ -258,19 +394,28 @@ func open_adventure(screen:String="map",number:int=-1)->void:
 	else:adventure.show_map()
 	adventure.show();adventure.move_to_front();record_event("adventure_"+screen)
 
+func choose_prepared_level(number:int)->void:
+	if not Catalog.runtime_level_allowed(number,campaign_drafts):return
+	if adventure.show_preparation(number):phase="preparation";save_navigation()
+
 func begin_prepared_level(number:int,type_id:String)->void:
 	if launch_pending:return
+	if not Catalog.runtime_level_allowed(number,campaign_drafts):
+		if is_instance_valid(adventure):adventure.release_begin_lock()
+		return
 	var equipped:Dictionary=progression.equip(type_id)
 	if not equipped.ok:adventure.release_begin_lock();show_meta_failure(equipped.reason);return
 	economy_state=equipped.state
 	var entered:Dictionary=saves.set_current_entrance(Catalog.level_ids(campaign_drafts)[number-1])
 	if not entered.ok:adventure.release_begin_lock();show_meta_failure(entered.reason);return
-	profile_state=entered.state;level_index=number;save_navigation();launch_game("")
+	profile_state=entered.state;level_index=number
+	if not save_navigation():adventure.release_begin_lock();return
+	launch_game("")
 
 func open_shop()->void:
-	if not economy_state.get("ready",false):show_meta_failure(str(economy_state.get("reason","profile_unavailable")));return
+	if not profiles_ready():show_profile_recovery();return
 	shop_return_screen=phase if phase in ["map","preparation"] else "map"
-	save_navigation()
+	if not save_navigation():return
 	if is_instance_valid(adventure):adventure.hide()
 	home_art.hide()
 	if not is_instance_valid(shop):
@@ -292,7 +437,7 @@ func close_shop()->void:
 	open_adventure(shop_return_screen,number)
 
 func show_home_again()->void:
-	save_navigation()
+	if not save_navigation():return
 	if is_instance_valid(adventure):adventure.hide()
 	if is_instance_valid(shop):shop.hide()
 	home_art.show();home_art.move_to_front();phase="home"
@@ -307,19 +452,31 @@ func show_settings()->void:
 func save_meta_settings()->bool:
 	if not meta_settings_dirty:return true
 	var result:Dictionary=saves.set_volumes(audio_visual_state.music,audio_visual_state.sound);profile_state=result.state
-	if not result.ok:show_meta_failure(result.reason);return false
-	meta_settings_dirty=false;return true
+	if not result.ok:show_meta_failure(result.reason,true);return false
+	meta_settings_dirty=false;meta_settings_recovery_pending=false;return true
 
 func close_current_modal()->void:
+	if modal_title=="COULDN'T SAVE" and meta_settings_recovery_pending:
+		show_settings();return
 	if modal_title=="SETTINGS" and not save_meta_settings():return
 	if is_instance_valid(pause_overlay):ui_motion.discard_modal(pause_overlay)
 	pause_overlay=null;modal_title="";audio_service.set_music_preview(false);audio_service.set_game_paused(false)
 
-func show_meta_failure(reason:String)->void:
+func show_meta_failure(reason:String,retry_settings:bool=false,retry_navigation:bool=false)->void:
+	meta_settings_recovery_pending=retry_settings
+	meta_navigation_recovery_pending=retry_navigation
 	var m:=modal("COULDN'T SAVE",Rect2(149,500,642,620))
-	text_label("YOUR SAVED PROGRESS IS KEPT",Rect2(185,685,570,50),22,"SafeSave",m)
+	text_label("VOLUME CHANGES ARE NOT SAVED" if retry_settings else ("MAP POSITION IS NOT SAVED" if retry_navigation else "YOUR SAVED PROGRESS IS KEPT"),Rect2(185,685,570,50),22,"SafeSave",m)
 	text_label(reason.replace("_"," ").to_upper(),Rect2(185,758,570,80),19,"SaveReason",m)
 	action(m,"TRY AGAIN",945,func():
+		if meta_navigation_recovery_pending:
+			if save_navigation():close_current_modal()
+			return
+		if meta_settings_recovery_pending:
+			# Retry the failed write with the values the player selected. A successful
+			# read of the old file is not a successful settings transaction.
+			if save_meta_settings():show_settings()
+			return
 		var state:Dictionary=progression.load_save();economy_state=state.state
 		var loaded:Dictionary=saves.load_save();profile_state=loaded.state
 		if state.ok and loaded.ok:close_current_modal();open_adventure("map")

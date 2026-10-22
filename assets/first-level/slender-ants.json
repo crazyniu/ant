@@ -1,0 +1,622 @@
+{
+  "texture": "res://assets/first-level/slender-ants.png",
+  "atlas_size": [
+    1774,
+    887
+  ],
+  "source_physical_width": 420,
+  "poses": [
+    {
+      "name": "E",
+      "angle_degrees": 0,
+      "region": [
+        24,
+        32,
+        438,
+        392
+      ],
+      "foot_anchor": [
+        220,
+        351
+      ],
+      "legs": [
+        [
+          176,
+          244,
+          74.76,
+          331.78
+        ],
+        [
+          236,
+          251,
+          265.81,
+          356.63
+        ],
+        [
+          209,
+          248,
+          168.64,
+          357.41
+        ],
+        [
+          266,
+          239,
+          322.93,
+          322.24
+        ]
+      ],
+      "leg_groups": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "cargo_bottom_contact": [
+        112,
+        205
+      ],
+      "solid_toe_rois": [
+        [
+          56,
+          320,
+          87,
+          341
+        ],
+        [
+          253,
+          348,
+          282,
+          370
+        ],
+        [
+          154,
+          348,
+          182,
+          372
+        ],
+        [
+          306,
+          313,
+          340,
+          335
+        ]
+      ]
+    },
+    {
+      "name": "SE",
+      "angle_degrees": 45,
+      "region": [
+        509,
+        72,
+        401,
+        355
+      ],
+      "foot_anchor": [
+        206,
+        313
+      ],
+      "legs": [
+        [
+          132,
+          185,
+          38.04,
+          228.13
+        ],
+        [
+          181,
+          218,
+          220.2,
+          318.57
+        ],
+        [
+          141,
+          218,
+          116.35,
+          287.9
+        ],
+        [
+          265,
+          197,
+          305.94,
+          286.25
+        ]
+      ],
+      "leg_groups": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "cargo_bottom_contact": [
+        108,
+        115
+      ],
+      "solid_toe_rois": [
+        [
+          19,
+          219,
+          52,
+          239
+        ],
+        [
+          208,
+          308,
+          237,
+          333
+        ],
+        [
+          102,
+          275,
+          131,
+          302
+        ],
+        [
+          294,
+          276,
+          322,
+          300
+        ]
+      ]
+    },
+    {
+      "name": "S",
+      "angle_degrees": 90,
+      "region": [
+        968,
+        64,
+        289,
+        373
+      ],
+      "foot_anchor": [
+        147,
+        331
+      ],
+      "legs": [
+        [
+          94,
+          205,
+          37.56,
+          235.46
+        ],
+        [
+          85,
+          250,
+          53.55,
+          293.44
+        ],
+        [
+          108,
+          242,
+          97.78,
+          336.31
+        ],
+        [
+          185,
+          241,
+          197.4,
+          335.71
+        ],
+        [
+          208,
+          250,
+          233.4,
+          292.75
+        ],
+        [
+          211,
+          205,
+          252.24,
+          232.54
+        ]
+      ],
+      "leg_groups": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "cargo_bottom_contact": [
+        145,
+        100
+      ],
+      "solid_toe_rois": [
+        [
+          17,
+          224,
+          49,
+          247
+        ],
+        [
+          38,
+          282,
+          66,
+          307
+        ],
+        [
+          82,
+          324,
+          112,
+          352
+        ],
+        [
+          185,
+          323,
+          215,
+          350
+        ],
+        [
+          222,
+          281,
+          249,
+          307
+        ],
+        [
+          244,
+          222,
+          272,
+          247
+        ]
+      ]
+    },
+    {
+      "name": "SW",
+      "angle_degrees": 135,
+      "region": [
+        1342,
+        74,
+        390,
+        358
+      ],
+      "foot_anchor": [
+        203,
+        313
+      ],
+      "legs": [
+        [
+          128,
+          202,
+          87.16,
+          279.7
+        ],
+        [
+          161,
+          217,
+          165.37,
+          321.34
+        ],
+        [
+          241,
+          207,
+          276.34,
+          294.84
+        ],
+        [
+          288,
+          183,
+          347.92,
+          243.96
+        ]
+      ],
+      "leg_groups": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "cargo_bottom_contact": [
+        280,
+        110
+      ],
+      "solid_toe_rois": [
+        [
+          71,
+          270,
+          101,
+          295
+        ],
+        [
+          149,
+          310,
+          179,
+          338
+        ],
+        [
+          262,
+          283,
+          293,
+          309
+        ],
+        [
+          333,
+          233,
+          363,
+          260
+        ]
+      ]
+    },
+    {
+      "name": "W",
+      "angle_degrees": 180,
+      "region": [
+        40,
+        446,
+        425,
+        397
+      ],
+      "foot_anchor": [
+        200,
+        355
+      ],
+      "legs": [
+        [
+          141,
+          228,
+          96.18,
+          315.81
+        ],
+        [
+          208,
+          233,
+          172.71,
+          360.24
+        ],
+        [
+          231,
+          234,
+          322.06,
+          338.14
+        ],
+        [
+          203,
+          240,
+          203.21,
+          273.48
+        ]
+      ],
+      "leg_groups": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "cargo_bottom_contact": [
+        285,
+        205
+      ],
+      "solid_toe_rois": [
+        [
+          77,
+          305,
+          111,
+          331
+        ],
+        [
+          157,
+          349,
+          187,
+          378
+        ],
+        [
+          308,
+          326,
+          339,
+          352
+        ],
+        [
+          191,
+          263,
+          221,
+          291
+        ]
+      ]
+    },
+    {
+      "name": "NW",
+      "angle_degrees": 225,
+      "region": [
+        521,
+        451,
+        380,
+        399
+      ],
+      "foot_anchor": [
+        189,
+        354
+      ],
+      "legs": [
+        [
+          124,
+          230,
+          89.44,
+          262.76
+        ],
+        [
+          153,
+          245,
+          127.91,
+          326.41
+        ],
+        [
+          195,
+          250,
+          216.76,
+          360.83
+        ]
+      ],
+      "leg_groups": [
+        0,
+        1,
+        0
+      ],
+      "cargo_bottom_contact": [
+        255,
+        245
+      ],
+      "solid_toe_rois": [
+        [
+          73,
+          252,
+          102,
+          279
+        ],
+        [
+          112,
+          314,
+          142,
+          341
+        ],
+        [
+          202,
+          348,
+          231,
+          377
+        ]
+      ]
+    },
+    {
+      "name": "N",
+      "angle_degrees": 270,
+      "region": [
+        963,
+        461,
+        293,
+        387
+      ],
+      "foot_anchor": [
+        147,
+        344
+      ],
+      "legs": [
+        [
+          95,
+          196,
+          38.57,
+          251.87
+        ],
+        [
+          106,
+          254,
+          51.61,
+          320.84
+        ],
+        [
+          196,
+          254,
+          253.93,
+          319.98
+        ],
+        [
+          211,
+          194,
+          254.54,
+          236.6
+        ]
+      ],
+      "leg_groups": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "cargo_bottom_contact": [
+        147,
+        258
+      ],
+      "solid_toe_rois": [
+        [
+          20,
+          240,
+          52,
+          266
+        ],
+        [
+          36,
+          310,
+          65,
+          337
+        ],
+        [
+          241,
+          308,
+          273,
+          337
+        ],
+        [
+          247,
+          222,
+          278,
+          247
+        ]
+      ]
+    },
+    {
+      "name": "NE",
+      "angle_degrees": 315,
+      "region": [
+        1346,
+        445,
+        380,
+        405
+      ],
+      "foot_anchor": [
+        187,
+        357
+      ],
+      "legs": [
+        [
+          187,
+          249,
+          161.94,
+          367.76
+        ],
+        [
+          221,
+          250,
+          255.27,
+          322.81
+        ],
+        [
+          260,
+          217,
+          301.45,
+          275.84
+        ]
+      ],
+      "leg_groups": [
+        0,
+        1,
+        0
+      ],
+      "cargo_bottom_contact": [
+        110,
+        245
+      ],
+      "solid_toe_rois": [
+        [
+          149,
+          356,
+          179,
+          383
+        ],
+        [
+          240,
+          310,
+          272,
+          337
+        ],
+        [
+          291,
+          264,
+          323,
+          290
+        ]
+      ]
+    }
+  ],
+  "source": "First-level approved-reference-derived candidate. Source raster unchanged. Atlas-local feet measured at alpha>=128; only visible legs articulate, hidden legs are not invented. Back-contact anchors are per-view anatomical candidates. Real visual gait/load acceptance remains pending.",
+  "annotation_version": 2,
+  "cargo_contact_definition": "Atlas-region-local bottom-center contact of the 33.5-world-diameter cargo. Converted with unchanged physical width 62/source width420. Overlaps the dorsal mass for occlusion; not a ground-contact footprint.",
+  "footprint_definition": "Ground clearance uses measured solid toe pixels plus bounded shader displacement; body/cargo screen silhouette is audited separately, not misclassified as ground contact."
+}

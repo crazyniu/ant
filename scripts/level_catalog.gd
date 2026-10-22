@@ -2,6 +2,13 @@ extends RefCounted
 ## Segmented-serpent schema has a separate catalog/profile from legacy single-dragon.
 const PAGE_SIZE := 10
 const VALIDATION_IDS := ["serpent-01", "serpent-02", "serpent-03", "serpent-04", "serpent-05", "serpent-06", "serpent-07", "serpent-08", "serpent-09", "serpent-10", "serpent-11", "serpent-12", "serpent-13"]
+## This review build admits only the user-designated first level. Catalog
+## presence, saved completion, CLI flags and QA fixtures are not approval.
+## Keep the full catalog for non-destructive save loading, not runtime access.
+static func runtime_level_allowed(number:int,campaign_drafts:bool=false)->bool:
+	return number==1 and not campaign_drafts
+static func runtime_config_allowed(config:Dictionary,number:int,campaign_drafts:bool=false)->bool:
+	return runtime_level_allowed(number,campaign_drafts) and str(config.get("level_id",""))=="serpent-01"
 static func level_ids(campaign_drafts:bool)->Array[String]:
 	var result:Array[String]=[]
 	if campaign_drafts:

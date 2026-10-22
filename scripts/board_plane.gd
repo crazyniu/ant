@@ -14,10 +14,14 @@ var cell_width_basis:=515.0
 var depth_ratio:=.93
 var entrance_cell:=Vector2.ZERO
 var gateway:=Vector2(467,940)
+var exterior_centers:Dictionary={}
+var exterior_corner_radius_px:=0.0
 func _init(width:int=16,height:int=16,layout:Dictionary={},entrance:Array=[])->void:
 	columns=width;rows=height;entrance_cell=Vector2(width/2,height)
 	if entrance.size()==2:entrance_cell=Vector2(entrance[0],entrance[1])
 	var ground:Dictionary=layout.get("board_plane",{})
+	exterior_centers=ground.get("exterior_centers",{})
+	exterior_corner_radius_px=float(ground.get("exterior_corner_radius_px",0.0))
 	for key in ["top_left","top_right","bottom_left","bottom_right"]:
 		if ground.has(key):set(key+"_corner",Vector2(ground[key][0],ground[key][1]))
 	cell_width_basis=float(ground.get("cell_width_basis",515.0));depth_ratio=float(ground.get("depth_ratio",.93))
@@ -32,7 +36,11 @@ func project(cell:Vector2)->Vector2:
 	var left:=top_left.lerp(bottom_left_corner,v)
 	var right:=top_right.lerp(bottom_right_corner,v)
 	return left.lerp(right,cell.x/float(columns))
-func center(x:float,y:float)->Vector2:return project(Vector2(x+.5,y+.5))
+func center(x:float,y:float)->Vector2:
+	var key:="%d,%d"%[int(x),int(y)]
+	if exterior_centers.has(key) and is_equal_approx(x,roundf(x)) and is_equal_approx(y,roundf(y)) and (x<0 or y<0 or x>=columns or y>=rows):
+		var point:Array=exterior_centers[key];return Vector2(float(point[0]),float(point[1]))
+	return project(Vector2(x+.5,y+.5))
 func footprint(x:float,y:float)->Vector2:
 	var p:=project(Vector2(x,y))
 	return Vector2(project(Vector2(x+1,y)).x-p.x,project(Vector2(x,y+1)).y-p.y)

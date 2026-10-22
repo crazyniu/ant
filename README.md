@@ -1,3 +1,11 @@
+# First-level review candidate (2026-10-22)
+
+Only the user-approved first level is accessible in this candidate. Later level content remains archived for compatibility, not enabled or newly tested. Do not merge or deploy this review branch. Visuals are **not user accepted** and no GL screenshot is claimed.
+
+See [current visual batch](reports/first-level/batch-2/README.md), its source inventory and exact unaccepted differences. `FIRST_LEVEL_PUBLICATION.json` identifies this candidate; earlier `SOURCE_MANIFEST.json` / `PUBLICATION_CHECK.json` and the implementation history below describe the already-published base, not current first-level acceptance.
+
+---
+
 # Ant Rescue: single-ant rescue and growth
 
 A portrait Godot **4.6.3** game: click a color to send one ant for one bead, deliver it to fire one matching projectile, and destroy a segmented serpent before its head reaches the fixed goal. Runtime UI is English and icon-first. Normal play is offline and needs no account, backend, external plugin or secret.

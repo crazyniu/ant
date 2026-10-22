@@ -40,6 +40,7 @@ var _last_sequence := -1
 var _terminal := false
 var _effects: Array[Dictionary] = []
 var _projectiles: Array[Dictionary] = []
+var _round_ball_textures:Dictionary={}
 var _recoil_age := 9.0
 var _hit_age := 9.0
 var _dragon_defeat_age := -1.0
@@ -49,6 +50,7 @@ var _charge_color := GOLD
 var _accepted := 0
 var _dropped := 0
 var _layout := {
+	"round_ball_size":Vector2.ZERO,"round_ball_asset":"","round_ball_regions":{},
 	"segment_mode": false, "cannon_muzzle": Vector2(466, 909), "cannon_center": Vector2(472, 950),
 	"dragon_hit": Vector2(300, 184), "dragon_foot": null, "nest": Vector2(467, 1074),
 	"cell_points": {}, "board_origin": Vector2(147.25, 324.25), "cell_size": Vector2(19.1, 18.5),
@@ -472,7 +474,7 @@ func _fire(event: Dictionary, color: Color, seed_value: int) -> void:
 		_projectiles.pop_front()
 	var duration: float = clampf(float(int(event.get("hit_us", 600000)) - int(event.get("fire_us", 0))) / 1000000.0, 0.05, 8.0)
 	_projectiles.append({"id": int(event.get("id", -1)), "from": muzzle, "to": _layout.dragon_hit,
-		"color": color, "armor_id": str(event.get("armor_id", "")), "fire_us": int(event.get("fire_us", 0)), "hit_us": int(event.get("hit_us", 600000)),
+		"color": color, "color_id":str(event.get("color","")), "armor_id": str(event.get("armor_id", "")), "fire_us": int(event.get("fire_us", 0)), "hit_us": int(event.get("hit_us", 600000)),
 		"duration": duration, "age": 0.0})
 
 func _remove_projectile(id: int) -> void:
@@ -874,4 +876,11 @@ func _draw_projectile(shot: Dictionary) -> void:
 	var point := _shot_position(shot, fraction)
 	if not reduced_motion:
 		_draw_projectile_trail(shot, fraction)
-	_draw_projectile_shell(point, shot.color, _shot_tangent(shot, fraction))
+	if not str(_layout.round_ball_asset).is_empty():
+		var color_id:String=str(shot.color_id)
+		if not _round_ball_textures.has(color_id):
+			var region:Array=_layout.round_ball_regions[color_id]
+			var texture:=AtlasTexture.new();texture.atlas=load(str(_layout.round_ball_asset));texture.region=Rect2(region[0],region[1],region[2],region[3]);texture.filter_clip=true;_round_ball_textures[color_id]=texture
+		var ball_size:Vector2=_layout.round_ball_size
+		draw_texture_rect(_round_ball_textures[color_id],Rect2(point-ball_size*.5,ball_size),false)
+	else:_draw_projectile_shell(point, shot.color, _shot_tangent(shot, fraction))

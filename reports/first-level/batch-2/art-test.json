@@ -1,0 +1,160 @@
+{
+	"checks": 4826,
+	"failures": [],
+	"pickup_pose_samples": 36,
+	"projectile_draw_contract_samples": 36,
+	"role_samples": {
+		"board": 240,
+		"eight_view_cargo": 16,
+		"hopper": 1,
+		"production_cargo": 1178,
+		"stock": 5
+	},
+	"scope": "Headless live nodes, source alpha, transforms and actual shot draw parameters only; not GPU pixels, rendered leg warp, animation feel, real input or user approval.",
+	"views": [
+		{
+			"cargo_bottom_world": [
+				-14.1430244445801,
+				-18.8252944946289
+			],
+			"depth_scale": 0.88,
+			"frame": "E",
+			"visible_legs": 4
+		},
+		{
+			"cargo_bottom_world": [
+				-12.8439750671387,
+				-25.5803413391113
+			],
+			"depth_scale": 0.88,
+			"frame": "SE",
+			"visible_legs": 4
+		},
+		{
+			"cargo_bottom_world": [
+				-0.373121500015259,
+				-29.8671989440918
+			],
+			"depth_scale": 0.88,
+			"frame": "S",
+			"visible_legs": 6
+		},
+		{
+			"cargo_bottom_world": [
+				9.88935565948486,
+				-26.2298679351807
+			],
+			"depth_scale": 0.88,
+			"frame": "SW",
+			"visible_legs": 4
+		},
+		{
+			"cargo_bottom_world": [
+				10.9285936355591,
+				-19.344913482666
+			],
+			"depth_scale": 0.88,
+			"frame": "W",
+			"visible_legs": 4
+		},
+		{
+			"cargo_bottom_world": [
+				8.46040344238281,
+				-14.01881980896
+			],
+			"depth_scale": 0.88,
+			"frame": "NW",
+			"visible_legs": 3
+		},
+		{
+			"cargo_bottom_world": [
+				-0.113311611115932,
+				-11.0310115814209
+			],
+			"depth_scale": 0.88,
+			"frame": "N",
+			"visible_legs": 4
+		},
+		{
+			"cargo_bottom_world": [
+				-10.1159782409668,
+				-14.4085330963135
+			],
+			"depth_scale": 0.88,
+			"frame": "NE",
+			"visible_legs": 3
+		},
+		{
+			"cargo_bottom_world": [
+				-16.0716171264648,
+				-21.3923835754395
+			],
+			"depth_scale": 1.0,
+			"frame": "E",
+			"visible_legs": 4
+		},
+		{
+			"cargo_bottom_world": [
+				-14.5954303741455,
+				-29.0685691833496
+			],
+			"depth_scale": 1.0,
+			"frame": "SE",
+			"visible_legs": 4
+		},
+		{
+			"cargo_bottom_world": [
+				-0.424001693725586,
+				-33.9399948120117
+			],
+			"depth_scale": 1.0,
+			"frame": "S",
+			"visible_legs": 6
+		},
+		{
+			"cargo_bottom_world": [
+				11.237904548645,
+				-29.8066673278809
+			],
+			"depth_scale": 1.0,
+			"frame": "SW",
+			"visible_legs": 4
+		},
+		{
+			"cargo_bottom_world": [
+				12.4188566207886,
+				-21.9828567504883
+			],
+			"depth_scale": 1.0,
+			"frame": "W",
+			"visible_legs": 4
+		},
+		{
+			"cargo_bottom_world": [
+				9.61409473419189,
+				-15.930477142334
+			],
+			"depth_scale": 1.0,
+			"frame": "NW",
+			"visible_legs": 3
+		},
+		{
+			"cargo_bottom_world": [
+				-0.128763198852539,
+				-12.5352363586426
+			],
+			"depth_scale": 1.0,
+			"frame": "N",
+			"visible_legs": 4
+		},
+		{
+			"cargo_bottom_world": [
+				-11.4954299926758,
+				-16.3733329772949
+			],
+			"depth_scale": 1.0,
+			"frame": "NE",
+			"visible_legs": 3
+		}
+	]
+}

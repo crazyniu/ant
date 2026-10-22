@@ -1,0 +1,5680 @@
+{
+  "method": "Source alpha toe hull plus mathematically bounded planar stride +/-12 source pixels (loaded +/-9), every phase, at actual heading frames. No all-eight-yaw ellipse imposed on straight paths. Endpoint cells and board matrix, ant width, ball diameter, nest, gateway, dragon and Rules untouched. 0.5px AA margin; 60Hz sampled heading requires interpolation margin before acceptance.",
+  "exterior_centers": {
+    "0,-1": [
+      228.381256103516,
+      322.0
+    ],
+    "1,-1": [
+      260.810424804688,
+      322.0
+    ],
+    "2,-1": [
+      293.239593505859,
+      322.0
+    ],
+    "3,-1": [
+      325.668762207031,
+      322.0
+    ],
+    "4,-1": [
+      358.097900390625,
+      322.0
+    ],
+    "5,-1": [
+      390.527099609375,
+      322.0
+    ],
+    "6,-1": [
+      422.956237792969,
+      322.0
+    ],
+    "7,-1": [
+      455.385406494141,
+      322.0
+    ],
+    "8,-1": [
+      487.814575195312,
+      322.0
+    ],
+    "9,-1": [
+      520.243713378906,
+      322.0
+    ],
+    "10,-1": [
+      552.672912597656,
+      322.0
+    ],
+    "11,-1": [
+      585.10205078125,
+      322.0
+    ],
+    "12,-1": [
+      617.53125,
+      322.0
+    ],
+    "13,-1": [
+      649.960388183594,
+      322.0
+    ],
+    "14,-1": [
+      682.389587402344,
+      322.0
+    ],
+    "15,-1": [
+      714.818725585938,
+      322.0
+    ],
+    "-1,-1": [
+      196.0,
+      326.0
+    ],
+    "16,-1": [
+      730.0,
+      334.0
+    ],
+    "16,0": [
+      750.0,
+      360.0
+    ],
+    "16,15": [
+      739.0,
+      857.0
+    ]
+  },
+  "exterior_corner_radius_px": 12.0,
+  "result": {
+    "name": "candidate_bound",
+    "routes": 369,
+    "covered_resource_targets": 240,
+    "time_pose_samples": 492711,
+    "foot_vertex_samples": 57613298,
+    "worst": {
+      "ground": {
+        "clearance": 3.0327199777734397,
+        "target": [
+          14,
+          0
+        ],
+        "path": [
+          [
+            8,
+            15
+          ],
+          [
+            9,
+            15
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            11,
+            15
+          ],
+          [
+            12,
+            15
+          ],
+          [
+            13,
+            15
+          ],
+          [
+            14,
+            15
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            15,
+            14
+          ],
+          [
+            15,
+            13
+          ],
+          [
+            16,
+            13
+          ],
+          [
+            16,
+            12
+          ],
+          [
+            16,
+            11
+          ],
+          [
+            16,
+            10
+          ],
+          [
+            16,
+            9
+          ],
+          [
+            16,
+            8
+          ],
+          [
+            16,
+            7
+          ],
+          [
+            16,
+            6
+          ],
+          [
+            16,
+            5
+          ],
+          [
+            16,
+            4
+          ],
+          [
+            16,
+            3
+          ],
+          [
+            16,
+            2
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            16,
+            0
+          ],
+          [
+            16,
+            -1
+          ],
+          [
+            15,
+            -1
+          ],
+          [
+            14,
+            -1
+          ],
+          [
+            14,
+            0
+          ]
+        ],
+        "source_labels": [
+          "authored_replay"
+        ],
+        "stage": "outbound",
+        "frame": "N",
+        "position": [
+          746.8666835711583,
+          356.8759002662681
+        ],
+        "foot_pixel": [
+          761.4160169044917,
+          341.4120374091252
+        ],
+        "phase": 280.55972435257115,
+        "fraction": 0.9113475177304964
+      },
+      "projected": {
+        "clearance": 1.654871907004185,
+        "target": [
+          14,
+          0
+        ],
+        "path": [
+          [
+            8,
+            15
+          ],
+          [
+            9,
+            15
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            11,
+            15
+          ],
+          [
+            12,
+            15
+          ],
+          [
+            13,
+            15
+          ],
+          [
+            14,
+            15
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            15,
+            14
+          ],
+          [
+            15,
+            13
+          ],
+          [
+            16,
+            13
+          ],
+          [
+            16,
+            12
+          ],
+          [
+            16,
+            11
+          ],
+          [
+            16,
+            10
+          ],
+          [
+            16,
+            9
+          ],
+          [
+            16,
+            8
+          ],
+          [
+            16,
+            7
+          ],
+          [
+            16,
+            6
+          ],
+          [
+            16,
+            5
+          ],
+          [
+            16,
+            4
+          ],
+          [
+            16,
+            3
+          ],
+          [
+            16,
+            2
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            16,
+            0
+          ],
+          [
+            16,
+            -1
+          ],
+          [
+            15,
+            -1
+          ],
+          [
+            14,
+            -1
+          ],
+          [
+            14,
+            0
+          ]
+        ],
+        "source_labels": [
+          "authored_replay"
+        ],
+        "stage": "outbound",
+        "frame": "N",
+        "position": [
+          746.8666835711583,
+          356.8759002662681
+        ],
+        "foot_pixel": [
+          761.4160169044917,
+          339.4634659805538
+        ],
+        "phase": 280.55972435257115,
+        "fraction": 0.9113475177304964
+      },
+      "dragon": {
+        "clearance": 80.99652996724832,
+        "target": [
+          12,
+          0
+        ],
+        "stage": "returning",
+        "frame": "W",
+        "position": [
+          730.0610794892008,
+          859.0465176638694
+        ],
+        "foot_pixel": [
+          751.4649525078981,
+          857.8656143249068
+        ]
+      }
+    },
+    "route_results": [
+      {
+        "target": [
+          8,
+          14
+        ],
+        "sources": [
+          "initial",
+          "peel_layer_0"
+        ],
+        "length": 310.4782131021963,
+        "ground": 17.89634372270643,
+        "projected": 16.890622946656553,
+        "dragon": 95.22161761988087
+      },
+      {
+        "target": [
+          7,
+          14
+        ],
+        "sources": [
+          "initial",
+          "peel_layer_0"
+        ],
+        "length": 343.174143333114,
+        "ground": 17.900381737017028,
+        "projected": 16.897506890297862,
+        "dragon": 94.95943900027272
+      },
+      {
+        "target": [
+          9,
+          14
+        ],
+        "sources": [
+          "initial",
+          "peel_layer_0"
+        ],
+        "length": 343.1739576125042,
+        "ground": 17.90037936196502,
+        "projected": 16.897509592617133,
+        "dragon": 94.95948120065792
+      },
+      {
+        "target": [
+          6,
+          14
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 371.30062630625133,
+        "ground": 17.895428967634224,
+        "projected": 16.893691150372117,
+        "dragon": 95.1845030972894
+      },
+      {
+        "target": [
+          10,
+          14
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 371.3585764591469,
+        "ground": 17.895689646180237,
+        "projected": 16.89424485022009,
+        "dragon": 95.1722209808373
+      },
+      {
+        "target": [
+          5,
+          14
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 403.99403169081296,
+        "ground": 17.894789298991462,
+        "projected": 16.89185307198686,
+        "dragon": 95.23564551914811
+      },
+      {
+        "target": [
+          11,
+          14
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 404.05180635978746,
+        "ground": 17.89486874225173,
+        "projected": 16.892193783973834,
+        "dragon": 90.112323863036
+      },
+      {
+        "target": [
+          4,
+          14
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 436.68744472294634,
+        "ground": 17.894808077662546,
+        "projected": 16.8908790858556,
+        "dragon": 95.27918714023471
+      },
+      {
+        "target": [
+          12,
+          14
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 436.7450438734163,
+        "ground": 17.894756630261043,
+        "projected": 16.891062935067982,
+        "dragon": 89.79048500995683
+      },
+      {
+        "target": [
+          3,
+          14
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 469.380865404098,
+        "ground": 17.89523690858389,
+        "projected": 16.89047274855332,
+        "dragon": 95.31670453332157
+      },
+      {
+        "target": [
+          13,
+          14
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 469.438289001589,
+        "ground": 17.89508983639124,
+        "projected": 16.89053937758439,
+        "dragon": 89.79047778387559
+      },
+      {
+        "target": [
+          2,
+          14
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 502.0742937357103,
+        "ground": 17.895919374150946,
+        "projected": 16.890443339282406,
+        "dragon": 95.34936654053534
+      },
+      {
+        "target": [
+          14,
+          14
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 502.13154174585577,
+        "ground": 17.895701911003886,
+        "projected": 16.89042136716365,
+        "dragon": 89.79061783014922
+      },
+      {
+        "target": [
+          1,
+          14
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 534.76772971922,
+        "ground": 17.89675501489579,
+        "projected": 16.890665288466675,
+        "dragon": 94.93756363412786
+      },
+      {
+        "target": [
+          15,
+          14
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 534.8248021077629,
+        "ground": 17.89648554343697,
+        "projected": 16.890575764719493,
+        "dragon": 88.30716241156061
+      },
+      {
+        "target": [
+          0,
+          14
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 567.4611733560602,
+        "ground": 17.897678357727976,
+        "projected": 16.89105434060447,
+        "dragon": 94.96250710193657
+      },
+      {
+        "target": [
+          15,
+          13
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 620.314884844208,
+        "ground": 5.599716517930502,
+        "projected": 5.599716517930502,
+        "dragon": 81.04171504661869
+      },
+      {
+        "target": [
+          0,
+          13
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 662.7354950562775,
+        "ground": 13.222106915811677,
+        "projected": 13.222106915811677,
+        "dragon": 95.35535768223029
+      },
+      {
+        "target": [
+          15,
+          12
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 654.6982676364854,
+        "ground": 5.759443671538612,
+        "projected": 5.759443671538612,
+        "dragon": 81.13065729421756
+      },
+      {
+        "target": [
+          0,
+          12
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 697.1205250935687,
+        "ground": 13.112874013907742,
+        "projected": 13.112874013907742,
+        "dragon": 95.16434837278238
+      },
+      {
+        "target": [
+          15,
+          11
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 689.0816504287623,
+        "ground": 5.564636500851837,
+        "projected": 5.564636500851837,
+        "dragon": 81.02166744291111
+      },
+      {
+        "target": [
+          0,
+          11
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 731.5055551308599,
+        "ground": 13.512584749739265,
+        "projected": 13.512584749739265,
+        "dragon": 94.99219624461864
+      },
+      {
+        "target": [
+          15,
+          10
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 723.4650332210394,
+        "ground": 5.853227952472932,
+        "projected": 5.853227952472932,
+        "dragon": 81.18516283195856
+      },
+      {
+        "target": [
+          0,
+          10
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 765.8905851681513,
+        "ground": 13.4981363740851,
+        "projected": 13.4981363740851,
+        "dragon": 95.27487951989092
+      },
+      {
+        "target": [
+          15,
+          9
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 757.8484160133165,
+        "ground": 5.766633102114561,
+        "projected": 5.766633102114561,
+        "dragon": 81.13477663533266
+      },
+      {
+        "target": [
+          0,
+          9
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 800.2756152054426,
+        "ground": 13.067602248066098,
+        "projected": 13.067602248066098,
+        "dragon": 95.13032652443886
+      },
+      {
+        "target": [
+          15,
+          8
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 792.2317988055936,
+        "ground": 5.7240291237911105,
+        "projected": 5.7240291237911105,
+        "dragon": 81.11051423321624
+      },
+      {
+        "target": [
+          0,
+          8
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 834.6606452427337,
+        "ground": 13.126506308993273,
+        "projected": 13.126506308993273,
+        "dragon": 94.99821385954077
+      },
+      {
+        "target": [
+          15,
+          7
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 826.6151815978707,
+        "ground": 5.721313157099586,
+        "projected": 5.721313157099586,
+        "dragon": 81.10897977687065
+      },
+      {
+        "target": [
+          0,
+          7
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 869.045675280025,
+        "ground": 13.216900639208232,
+        "projected": 13.216900639208232,
+        "dragon": 95.31888481657526
+      },
+      {
+        "target": [
+          15,
+          6
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 860.9985643901477,
+        "ground": 5.7538169111465205,
+        "projected": 5.7538169111465205,
+        "dragon": 81.12744035315994
+      },
+      {
+        "target": [
+          0,
+          6
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 903.4307053173162,
+        "ground": 13.336894003302467,
+        "projected": 13.336894003302467,
+        "dragon": 95.2052072427979
+      },
+      {
+        "target": [
+          15,
+          5
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 895.3819471824247,
+        "ground": 5.817104481279006,
+        "projected": 5.817104481279006,
+        "dragon": 81.16397401050472
+      },
+      {
+        "target": [
+          0,
+          5
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 937.8157353546073,
+        "ground": 13.491782720811084,
+        "projected": 13.491782720811084,
+        "dragon": 95.1001931168866
+      },
+      {
+        "target": [
+          15,
+          4
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 929.7653299747019,
+        "ground": 5.908749408272387,
+        "projected": 5.908749408272387,
+        "dragon": 81.21692959578347
+      },
+      {
+        "target": [
+          0,
+          4
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 972.2007653918988,
+        "ground": 13.195422830595543,
+        "projected": 13.195422830595543,
+        "dragon": 95.00289476048206
+      },
+      {
+        "target": [
+          15,
+          3
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 964.1487127669791,
+        "ground": 5.589363163589031,
+        "projected": 5.589363163589031,
+        "dragon": 81.03577039121559
+      },
+      {
+        "target": [
+          0,
+          3
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 1006.5857954291901,
+        "ground": 13.382979201139465,
+        "projected": 13.382979201139465,
+        "dragon": 95.3575601950927
+      },
+      {
+        "target": [
+          15,
+          2
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 998.5320955592558,
+        "ground": 5.72493224732278,
+        "projected": 5.72493224732278,
+        "dragon": 81.11102480582332
+      },
+      {
+        "target": [
+          0,
+          2
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 1040.970825466481,
+        "ground": 13.132400937659622,
+        "projected": 13.132400937659622,
+        "dragon": 95.27177285566697
+      },
+      {
+        "target": [
+          15,
+          1
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 1032.9154783515332,
+        "ground": 5.883558616324576,
+        "projected": 5.883558616324576,
+        "dragon": 81.2027292164197
+      },
+      {
+        "target": [
+          0,
+          1
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 1075.3558555037725,
+        "ground": 13.351714901925614,
+        "projected": 13.351714901925614,
+        "dragon": 95.19165835244279
+      },
+      {
+        "target": [
+          15,
+          0
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 1061.4450628311242,
+        "ground": 5.887092523423901,
+        "projected": 5.400947316052602,
+        "dragon": 81.20471431414592
+      },
+      {
+        "target": [
+          0,
+          0
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 1109.7408855410638,
+        "ground": 13.132624943922952,
+        "projected": 13.132624943922952,
+        "dragon": 95.11667480701705
+      },
+      {
+        "target": [
+          14,
+          0
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 1130.5477739962569,
+        "ground": 3.443726850761369,
+        "projected": 2.0658787799921954,
+        "dragon": 81.06651296903895
+      },
+      {
+        "target": [
+          1,
+          0
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 1185.8288103908096,
+        "ground": 8.516690747960132,
+        "projected": 7.199993043249214,
+        "dragon": 95.36330797211455
+      },
+      {
+        "target": [
+          13,
+          0
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 1162.9802868520771,
+        "ground": 3.3214850841732835,
+        "projected": 1.9436370134041097,
+        "dragon": 81.03047756332687
+      },
+      {
+        "target": [
+          2,
+          0
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 1218.2610983503225,
+        "ground": 8.602643977603709,
+        "projected": 7.28594627289277,
+        "dragon": 94.94246539479424
+      },
+      {
+        "target": [
+          12,
+          0
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 1195.4127592064144,
+        "ground": 3.210475771621166,
+        "projected": 1.8326277008519116,
+        "dragon": 80.99652996724832
+      },
+      {
+        "target": [
+          3,
+          0
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 1250.693394652711,
+        "ground": 8.690374050595956,
+        "projected": 7.373676345885039,
+        "dragon": 94.95854778461924
+      },
+      {
+        "target": [
+          11,
+          0
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 1227.8452887516128,
+        "ground": 3.1084955552475764,
+        "projected": 1.7306474844784026,
+        "dragon": 81.20066195177782
+      },
+      {
+        "target": [
+          4,
+          0
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 1283.1256745316646,
+        "ground": 8.60314210842536,
+        "projected": 7.46258816497356,
+        "dragon": 94.97382539245444
+      },
+      {
+        "target": [
+          10,
+          0
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 1260.2777778576897,
+        "ground": 3.5066367221204624,
+        "projected": 2.1287886513512886,
+        "dragon": 81.16730634171991
+      },
+      {
+        "target": [
+          5,
+          0
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 1315.558012289406,
+        "ground": 8.685994736788782,
+        "projected": 7.4587888738085875,
+        "dragon": 94.98835279380371
+      },
+      {
+        "target": [
+          9,
+          0
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 1292.710324094483,
+        "ground": 3.3023618091436515,
+        "projected": 1.9245137383744777,
+        "dragon": 81.13614846374882
+      },
+      {
+        "target": [
+          6,
+          0
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 1347.9903088887604,
+        "ground": 8.447103391660518,
+        "projected": 7.130405686949562,
+        "dragon": 95.00218939914375
+      },
+      {
+        "target": [
+          8,
+          0
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 1325.1428299544807,
+        "ground": 3.3126274012820236,
+        "projected": 1.9347793305127694,
+        "dragon": 81.106563551642
+      },
+      {
+        "target": [
+          7,
+          0
+        ],
+        "sources": [
+          "initial",
+          "authored_replay",
+          "peel_layer_0"
+        ],
+        "length": 1380.4226385860845,
+        "ground": 8.508568907675286,
+        "projected": 7.191871202964368,
+        "dragon": 95.01537928101206
+      },
+      {
+        "target": [
+          8,
+          13
+        ],
+        "sources": [
+          "authored_replay",
+          "peel_layer_1"
+        ],
+        "length": 344.87874705315573,
+        "ground": 17.896003211641528,
+        "projected": 16.89440461726756,
+        "dragon": 95.01746000013692
+      },
+      {
+        "target": [
+          7,
+          14
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 343.157379768863,
+        "ground": 17.900169370689365,
+        "projected": 16.897752881332888,
+        "dragon": 94.96324850306004
+      },
+      {
+        "target": [
+          9,
+          14
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 343.157379768863,
+        "ground": 17.900169370689365,
+        "projected": 16.897752881332888,
+        "dragon": 94.96324850306004
+      },
+      {
+        "target": [
+          7,
+          13
+        ],
+        "sources": [
+          "authored_replay",
+          "peel_layer_1"
+        ],
+        "length": 374.75138365016574,
+        "ground": 17.8993884617602,
+        "projected": 16.892167286029345,
+        "dragon": 95.34631885305909
+      },
+      {
+        "target": [
+          6,
+          14
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 375.83654643552967,
+        "ground": 17.894987660174575,
+        "projected": 16.89237246601315,
+        "dragon": 95.11825408850952
+      },
+      {
+        "target": [
+          8,
+          12
+        ],
+        "sources": [
+          "authored_replay",
+          "peel_layer_2"
+        ],
+        "length": 379.27928100411515,
+        "ground": 17.902313201087363,
+        "projected": 16.89444581209026,
+        "dragon": 95.30029856713548
+      },
+      {
+        "target": [
+          7,
+          13
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 374.73691304208955,
+        "ground": 17.899542827663684,
+        "projected": 16.892264510945633,
+        "dragon": 95.34937892882924
+      },
+      {
+        "target": [
+          9,
+          13
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 374.7727316476045,
+        "ground": 17.899165326925953,
+        "projected": 16.892028656009757,
+        "dragon": 95.34180533025823
+      },
+      {
+        "target": [
+          10,
+          14
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 375.83654643552967,
+        "ground": 17.894987660174575,
+        "projected": 16.89237246601315,
+        "dragon": 95.11825408850952
+      },
+      {
+        "target": [
+          8,
+          11
+        ],
+        "sources": [
+          "authored_replay",
+          "peel_layer_3"
+        ],
+        "length": 413.67981495507456,
+        "ground": 17.895976422328395,
+        "projected": 16.890529394011107,
+        "dragon": 95.15972361183027
+      },
+      {
+        "target": [
+          7,
+          12
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 409.12150870884585,
+        "ground": 17.89484852872272,
+        "projected": 16.891929197498076,
+        "dragon": 95.13232423744236
+      },
+      {
+        "target": [
+          9,
+          12
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 409.15731798507824,
+        "ground": 17.894909674264426,
+        "projected": 16.892138599542644,
+        "dragon": 95.12545023366556
+      },
+      {
+        "target": [
+          6,
+          13
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 407.3994130420895,
+        "ground": 17.899711635547682,
+        "projected": 16.89790109637342,
+        "dragon": 95.01888517880391
+      },
+      {
+        "target": [
+          10,
+          13
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 407.4352316476044,
+        "ground": 17.900080448856233,
+        "projected": 16.897456915182087,
+        "dragon": 95.01201323986518
+      },
+      {
+        "target": [
+          5,
+          14
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 408.5157131021963,
+        "ground": 17.89578635589565,
+        "projected": 16.890446444725782,
+        "dragon": 95.24900316054524
+      },
+      {
+        "target": [
+          8,
+          10
+        ],
+        "sources": [
+          "authored_replay",
+          "peel_layer_4"
+        ],
+        "length": 448.0803489060341,
+        "ground": 17.8948104683872,
+        "projected": 16.891606620321593,
+        "dragon": 95.04117565226288
+      },
+      {
+        "target": [
+          7,
+          11
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 443.5061046837435,
+        "ground": 17.900926794871918,
+        "projected": 16.896914058284082,
+        "dragon": 94.9499807244556
+      },
+      {
+        "target": [
+          9,
+          11
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 443.5419046265038,
+        "ground": 17.901303375220344,
+        "projected": 16.896533926349438,
+        "dragon": 94.94369000672668
+      },
+      {
+        "target": [
+          4,
+          13
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 471.0884147108858,
+        "ground": 17.901699699577136,
+        "projected": 16.89546815111643,
+        "dragon": 95.03098284782972
+      },
+      {
+        "target": [
+          3,
+          14
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 466.5552862264338,
+        "ground": 17.895055916986607,
+        "projected": 16.890589603811236,
+        "dragon": 95.35121586645283
+      },
+      {
+        "target": [
+          15,
+          13
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 569.2248838663867,
+        "ground": 17.896037857712347,
+        "projected": 16.89492980267225,
+        "dragon": 88.28493087745132
+      },
+      {
+        "target": [
+          15,
+          12
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 657.0994018134617,
+        "ground": 5.313942066756567,
+        "projected": 5.313942066756567,
+        "dragon": 87.05430844032531
+      },
+      {
+        "target": [
+          15,
+          11
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 691.4827846057385,
+        "ground": 5.584937710002691,
+        "projected": 5.584937710002691,
+        "dragon": 87.2673869324082
+      },
+      {
+        "target": [
+          15,
+          10
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 725.8661673980157,
+        "ground": 5.402897440763809,
+        "projected": 5.402897440763809,
+        "dragon": 87.12415082738302
+      },
+      {
+        "target": [
+          15,
+          9
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 760.2495501902928,
+        "ground": 5.29065756121156,
+        "projected": 5.29065756121156,
+        "dragon": 87.03585541443042
+      },
+      {
+        "target": [
+          15,
+          8
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 794.6329329825699,
+        "ground": 5.235161510305716,
+        "projected": 5.235161510305716,
+        "dragon": 86.99223886316014
+      },
+      {
+        "target": [
+          15,
+          7
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 829.0163157748469,
+        "ground": 5.2243758121211386,
+        "projected": 5.2243758121211386,
+        "dragon": 86.9838238610706
+      },
+      {
+        "target": [
+          15,
+          6
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 863.399698567124,
+        "ground": 5.2516212431883105,
+        "projected": 5.2516212431883105,
+        "dragon": 87.00512024473343
+      },
+      {
+        "target": [
+          15,
+          5
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 897.783081359401,
+        "ground": 5.316249388762117,
+        "projected": 5.316249388762117,
+        "dragon": 87.05614174914957
+      },
+      {
+        "target": [
+          15,
+          4
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 932.1664641516782,
+        "ground": 5.417000512290315,
+        "projected": 5.417000512290315,
+        "dragon": 87.13507047931006
+      },
+      {
+        "target": [
+          15,
+          3
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 966.5498469439553,
+        "ground": 5.553083777305801,
+        "projected": 5.553083777305801,
+        "dragon": 87.24198286011489
+      },
+      {
+        "target": [
+          15,
+          2
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1000.9332297362321,
+        "ground": 5.195684710693627,
+        "projected": 5.195684710693627,
+        "dragon": 86.9615413378317
+      },
+      {
+        "target": [
+          15,
+          1
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1035.3166125285095,
+        "ground": 5.3678543462174275,
+        "projected": 5.3678543462174275,
+        "dragon": 87.09715766689617
+      },
+      {
+        "target": [
+          15,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1063.8461970081005,
+        "ground": 5.476222888515963,
+        "projected": 4.895876383939269,
+        "dragon": 87.18126294700319
+      },
+      {
+        "target": [
+          14,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1132.9489081732331,
+        "ground": 3.0332034504525516,
+        "projected": 1.6553553796832974,
+        "dragon": 86.994999337248
+      },
+      {
+        "target": [
+          13,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1165.3814210290532,
+        "ground": 3.4270625995542723,
+        "projected": 2.0492145287850176,
+        "dragon": 86.94620577041576
+      },
+      {
+        "target": [
+          12,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1197.8138933833905,
+        "ground": 3.3332817709314195,
+        "projected": 1.9554337001622453,
+        "dragon": 87.28868260159183
+      },
+      {
+        "target": [
+          11,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1230.2464229285888,
+        "ground": 3.2473090934074302,
+        "projected": 1.8694610226381765,
+        "dragon": 87.23488722773854
+      },
+      {
+        "target": [
+          10,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1262.6789120346657,
+        "ground": 3.1676982115361043,
+        "projected": 1.78985014076693,
+        "dragon": 87.18543264379014
+      },
+      {
+        "target": [
+          9,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1295.111458271459,
+        "ground": 3.490414904092546,
+        "projected": 2.1125668333233723,
+        "dragon": 87.13986750064494
+      },
+      {
+        "target": [
+          8,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1327.5439641314567,
+        "ground": 3.5198834333891673,
+        "projected": 2.1420353626199935,
+        "dragon": 87.09782628795682
+      },
+      {
+        "target": [
+          0,
+          13
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 601.8627085688962,
+        "ground": 17.895141151279404,
+        "projected": 16.893008139359146,
+        "dragon": 95.2012038438093
+      },
+      {
+        "target": [
+          0,
+          12
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 689.701391566049,
+        "ground": 17.901345453204016,
+        "projected": 16.892977169097758,
+        "dragon": 95.13199198003143
+      },
+      {
+        "target": [
+          0,
+          11
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 724.0864216033401,
+        "ground": 17.89474118281972,
+        "projected": 16.891305099355602,
+        "dragon": 95.3559485186017
+      },
+      {
+        "target": [
+          0,
+          10
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 758.4714516406316,
+        "ground": 17.899513092849492,
+        "projected": 16.89698569003826,
+        "dragon": 95.1614327942886
+      },
+      {
+        "target": [
+          0,
+          9
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 792.8564816779228,
+        "ground": 17.896713260573584,
+        "projected": 16.890616947426654,
+        "dragon": 94.98473389729044
+      },
+      {
+        "target": [
+          0,
+          8
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 827.241511715214,
+        "ground": 17.894984878492068,
+        "projected": 16.892684742223786,
+        "dragon": 95.25945011907915
+      },
+      {
+        "target": [
+          0,
+          7
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 861.6265417525052,
+        "ground": 17.899857865909606,
+        "projected": 16.89695096853013,
+        "dragon": 95.10905398937828
+      },
+      {
+        "target": [
+          0,
+          6
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 896.0115717897964,
+        "ground": 17.898022630873065,
+        "projected": 16.89122323174218,
+        "dragon": 94.97078282327426
+      },
+      {
+        "target": [
+          0,
+          5
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 930.3966018270876,
+        "ground": 17.894826903600944,
+        "projected": 16.89083500202065,
+        "dragon": 95.28198416986021
+      },
+      {
+        "target": [
+          0,
+          4
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 964.781631864379,
+        "ground": 17.895944490905077,
+        "projected": 16.894750857663524,
+        "dragon": 95.16176028612408
+      },
+      {
+        "target": [
+          0,
+          3
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 999.1666619016703,
+        "ground": 17.900554815715427,
+        "projected": 16.896555591581635,
+        "dragon": 95.05018358007314
+      },
+      {
+        "target": [
+          0,
+          2
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1033.5516919389615,
+        "ground": 17.899156971816634,
+        "projected": 16.89193075953298,
+        "dragon": 94.9463612451797
+      },
+      {
+        "target": [
+          0,
+          1
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1067.9367219762526,
+        "ground": 17.89565152600551,
+        "projected": 16.89042246995412,
+        "dragon": 95.29087329764147
+      },
+      {
+        "target": [
+          0,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1102.321752013544,
+        "ground": 17.894747852136295,
+        "projected": 16.891502832042423,
+        "dragon": 95.19862406014768
+      },
+      {
+        "target": [
+          1,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1178.4096768632899,
+        "ground": 8.815772100749172,
+        "projected": 7.499074396038255,
+        "dragon": 94.9828874562197
+      },
+      {
+        "target": [
+          2,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1210.841964822803,
+        "ground": 8.84334432247151,
+        "projected": 7.526646617760555,
+        "dragon": 94.98679589405126
+      },
+      {
+        "target": [
+          3,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1243.2742611251913,
+        "ground": 8.588657463955544,
+        "projected": 7.552533978177765,
+        "dragon": 94.99050031766443
+      },
+      {
+        "target": [
+          4,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1275.7065410041448,
+        "ground": 8.607996578073779,
+        "projected": 7.577476564180717,
+        "dragon": 94.99401777125404
+      },
+      {
+        "target": [
+          5,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1308.1388787618862,
+        "ground": 8.626593944438662,
+        "projected": 7.510002859515209,
+        "dragon": 94.99735769764138
+      },
+      {
+        "target": [
+          6,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1340.5711753612406,
+        "ground": 8.441872438847232,
+        "projected": 7.1251747341362766,
+        "dragon": 95.00053872657355
+      },
+      {
+        "target": [
+          7,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1373.0035050585648,
+        "ground": 8.45791946379809,
+        "projected": 7.141221759087153,
+        "dragon": 95.00356787231536
+      },
+      {
+        "target": [
+          11,
+          13
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 438.452098065592,
+        "ground": 17.899996942387883,
+        "projected": 16.89244903240426,
+        "dragon": 90.11143503013047
+      },
+      {
+        "target": [
+          12,
+          14
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 433.95708361011,
+        "ground": 17.89485371936872,
+        "projected": 16.890827598070846,
+        "dragon": 90.11496146571746
+      },
+      {
+        "target": [
+          15,
+          12
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 603.6249656250104,
+        "ground": 17.900518285165592,
+        "projected": 16.89278504277205,
+        "dragon": 88.27717489964456
+      },
+      {
+        "target": [
+          14,
+          13
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 599.0939845633579,
+        "ground": 17.899130637663628,
+        "projected": 16.8978455020419,
+        "dragon": 88.23842681701343
+      },
+      {
+        "target": [
+          15,
+          11
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 691.4668718143032,
+        "ground": 5.581174884226925,
+        "projected": 5.581174884226925,
+        "dragon": 88.23741864202617
+      },
+      {
+        "target": [
+          15,
+          10
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 725.8502546065804,
+        "ground": 5.368549287452652,
+        "projected": 5.368549287452652,
+        "dragon": 88.2970022504632
+      },
+      {
+        "target": [
+          15,
+          9
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 760.2336373988575,
+        "ground": 5.7325186132542285,
+        "projected": 5.7325186132542285,
+        "dragon": 88.28944513855386
+      },
+      {
+        "target": [
+          15,
+          8
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 794.6170201911345,
+        "ground": 5.632968385406798,
+        "projected": 5.632968385406798,
+        "dragon": 88.29113030340886
+      },
+      {
+        "target": [
+          15,
+          7
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 829.0004029834116,
+        "ground": 5.587674997697263,
+        "projected": 5.587674997697263,
+        "dragon": 88.30137843047518
+      },
+      {
+        "target": [
+          15,
+          6
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 863.3837857756887,
+        "ground": 5.588408455878152,
+        "projected": 5.588408455878152,
+        "dragon": 88.23807557666699
+      },
+      {
+        "target": [
+          15,
+          5
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 897.7671685679657,
+        "ground": 5.630100431228584,
+        "projected": 5.630100431228584,
+        "dragon": 88.24927509788397
+      },
+      {
+        "target": [
+          15,
+          4
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 932.1505513602428,
+        "ground": 5.70995153805768,
+        "projected": 5.70995153805768,
+        "dragon": 88.27093974847314
+      },
+      {
+        "target": [
+          15,
+          3
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 966.53393415252,
+        "ground": 5.305009945858956,
+        "projected": 5.305009945858956,
+        "dragon": 88.30555688904988
+      },
+      {
+        "target": [
+          15,
+          2
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1000.9173169447968,
+        "ground": 5.428275840981996,
+        "projected": 5.428275840981996,
+        "dragon": 88.25023854910123
+      },
+      {
+        "target": [
+          15,
+          1
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1035.3006997370742,
+        "ground": 5.589410406168099,
+        "projected": 5.589410406168099,
+        "dragon": 88.28624207989353
+      },
+      {
+        "target": [
+          15,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1063.8302842166652,
+        "ground": 5.775373366126928,
+        "projected": 4.895691186424983,
+        "dragon": 88.28028306395447
+      },
+      {
+        "target": [
+          14,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1132.9329953817978,
+        "ground": 3.0327199777734397,
+        "projected": 1.654871907004185,
+        "dragon": 87.87204513990405
+      },
+      {
+        "target": [
+          13,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1165.3655082376179,
+        "ground": 3.426352670776641,
+        "projected": 2.0485046000073868,
+        "dragon": 87.67069530980747
+      },
+      {
+        "target": [
+          12,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1197.7979805919551,
+        "ground": 3.332446340474951,
+        "projected": 1.954598269705777,
+        "dragon": 87.71357672247271
+      },
+      {
+        "target": [
+          11,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1230.2305101371535,
+        "ground": 3.2463701124044926,
+        "projected": 1.8685220416352384,
+        "dragon": 87.75741535991946
+      },
+      {
+        "target": [
+          10,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1262.6629992432304,
+        "ground": 3.1666594572448536,
+        "projected": 1.7888113864756798,
+        "dragon": 87.80188143656261
+      },
+      {
+        "target": [
+          9,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1295.0955454800237,
+        "ground": 3.4891360876530864,
+        "projected": 2.1112880168839125,
+        "dragon": 87.89466765949868
+      },
+      {
+        "target": [
+          8,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1327.5280513400214,
+        "ground": 3.518471778026452,
+        "projected": 2.1406237072572787,
+        "dragon": 87.89173651763178
+      },
+      {
+        "target": [
+          0,
+          12
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 636.2642437817323,
+        "ground": 17.902284314552873,
+        "projected": 16.894984903294347,
+        "dragon": 95.0217951593421
+      },
+      {
+        "target": [
+          1,
+          13
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 631.7690774771418,
+        "ground": 17.898414776436883,
+        "projected": 16.89886510397806,
+        "dragon": 95.13840285911218
+      },
+      {
+        "target": [
+          0,
+          11
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 724.0703247901542,
+        "ground": 17.894745115568366,
+        "projected": 16.891266130992516,
+        "dragon": 95.35771086504937
+      },
+      {
+        "target": [
+          0,
+          10
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 758.4553548274455,
+        "ground": 17.89942780511528,
+        "projected": 16.89708809087467,
+        "dragon": 95.16310193872917
+      },
+      {
+        "target": [
+          0,
+          9
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 792.8403848647367,
+        "ground": 17.896766153751486,
+        "projected": 16.89063429750396,
+        "dragon": 94.98631881098649
+      },
+      {
+        "target": [
+          0,
+          8
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 827.225414902028,
+        "ground": 17.894967226636666,
+        "projected": 16.892629893188246,
+        "dragon": 95.26098668294715
+      },
+      {
+        "target": [
+          0,
+          7
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 861.6104449393192,
+        "ground": 17.899780070248358,
+        "projected": 16.89704083116104,
+        "dragon": 95.11052009007594
+      },
+      {
+        "target": [
+          0,
+          6
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 895.9954749766105,
+        "ground": 17.898082805611683,
+        "projected": 16.891253796080903,
+        "dragon": 94.97218442617624
+      },
+      {
+        "target": [
+          0,
+          5
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 930.3805050139017,
+        "ground": 17.89483687965969,
+        "projected": 16.890814259786037,
+        "dragon": 95.28335161972306
+      },
+      {
+        "target": [
+          0,
+          4
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 964.765535051193,
+        "ground": 17.895910864289263,
+        "projected": 16.894685643945582,
+        "dragon": 95.16307250364507
+      },
+      {
+        "target": [
+          0,
+          3
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 999.1505650884842,
+        "ground": 17.900483250297892,
+        "projected": 16.896630681606062,
+        "dragon": 95.05144473064692
+      },
+      {
+        "target": [
+          0,
+          2
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1033.5355951257754,
+        "ground": 17.899217378840028,
+        "projected": 16.891966949266273,
+        "dragon": 94.9475750491897
+      },
+      {
+        "target": [
+          0,
+          1
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1067.9206251630667,
+        "ground": 17.89567829425862,
+        "projected": 16.89042434529522,
+        "dragon": 95.2920650575765
+      },
+      {
+        "target": [
+          0,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1102.3056552003582,
+        "ground": 17.89474484603195,
+        "projected": 16.89147439049178,
+        "dragon": 95.19977429531296
+      },
+      {
+        "target": [
+          1,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1178.393580050104,
+        "ground": 8.815275628139256,
+        "projected": 7.49857792342828,
+        "dragon": 94.98395371678218
+      },
+      {
+        "target": [
+          2,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1210.8258680096171,
+        "ground": 8.842706010066305,
+        "projected": 7.526008305355349,
+        "dragon": 94.98783376754325
+      },
+      {
+        "target": [
+          3,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1243.2581643120054,
+        "ground": 8.587884517826998,
+        "projected": 7.5517325142775285,
+        "dragon": 94.991511276246
+      },
+      {
+        "target": [
+          4,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1275.690444190959,
+        "ground": 8.607070868542214,
+        "projected": 7.57651593965554,
+        "dragon": 94.99500317555122
+      },
+      {
+        "target": [
+          5,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1308.1227819487003,
+        "ground": 8.625519598882375,
+        "projected": 7.508889170893161,
+        "dragon": 94.99831880741877
+      },
+      {
+        "target": [
+          6,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1340.5550785480548,
+        "ground": 8.440971242776008,
+        "projected": 7.1242735380650695,
+        "dragon": 95.00147671098817
+      },
+      {
+        "target": [
+          7,
+          0
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 1372.987408245379,
+        "ground": 8.456906337217939,
+        "projected": 7.140208632507,
+        "dragon": 95.00448381790038
+      },
+      {
+        "target": [
+          11,
+          13
+        ],
+        "sources": [
+          "authored_replay",
+          "peel_layer_1"
+        ],
+        "length": 440.1421153916567,
+        "ground": 17.896290842636198,
+        "projected": 16.895238018608474,
+        "dragon": 95.10232618443291
+      },
+      {
+        "target": [
+          12,
+          14
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 441.194879768863,
+        "ground": 17.90013909266999,
+        "projected": 16.892649230813728,
+        "dragon": 95.3607653839241
+      },
+      {
+        "target": [
+          6,
+          12
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 441.76734204217917,
+        "ground": 17.896016917019825,
+        "projected": 16.890494540865777,
+        "dragon": 95.25816686704337
+      },
+      {
+        "target": [
+          8,
+          9
+        ],
+        "sources": [
+          "authored_replay",
+          "peel_layer_5"
+        ],
+        "length": 482.4808828569935,
+        "ground": 17.896904459738938,
+        "projected": 16.89576598644013,
+        "dragon": 95.39321304009376
+      },
+      {
+        "target": [
+          7,
+          10
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 477.89070096701545,
+        "ground": 17.8969355994792,
+        "projected": 16.89086973361091,
+        "dragon": 95.24005498497704
+      },
+      {
+        "target": [
+          9,
+          10
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 477.92649157211054,
+        "ground": 17.89673593476097,
+        "projected": 16.890780164455094,
+        "dragon": 95.23414682082472
+      },
+      {
+        "target": [
+          6,
+          11
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 476.13527135041016,
+        "ground": 17.895612688849678,
+        "projected": 16.893807628341904,
+        "dragon": 95.08135697548869
+      },
+      {
+        "target": [
+          8,
+          8
+        ],
+        "sources": [
+          "authored_replay",
+          "peel_layer_6"
+        ],
+        "length": 516.8814168079529,
+        "ground": 17.901048449724723,
+        "projected": 16.89758014393827,
+        "dragon": 95.30396375959742
+      },
+      {
+        "target": [
+          7,
+          9
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 512.2752975588945,
+        "ground": 17.894746482396332,
+        "projected": 16.891340687191747,
+        "dragon": 95.1036152371876
+      },
+      {
+        "target": [
+          9,
+          9
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 512.3110788221284,
+        "ground": 17.894765105292684,
+        "projected": 16.891471290192865,
+        "dragon": 95.09813607852217
+      },
+      {
+        "target": [
+          10,
+          12
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 441.8031513184116,
+        "ground": 17.89585351861278,
+        "projected": 16.89045844590235,
+        "dragon": 95.2517676028153
+      },
+      {
+        "target": [
+          8,
+          7
+        ],
+        "sources": [
+          "authored_replay",
+          "peel_layer_7"
+        ],
+        "length": 551.2819507589122,
+        "ground": 17.90080737888469,
+        "projected": 16.89348253491942,
+        "dragon": 95.22603451750174
+      },
+      {
+        "target": [
+          7,
+          8
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 546.6598944596138,
+        "ground": 17.897021717779808,
+        "projected": 16.89613459130892,
+        "dragon": 94.98478186648471
+      },
+      {
+        "target": [
+          9,
+          8
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 546.6956663767876,
+        "ground": 17.897208014846104,
+        "projected": 16.89643338482448,
+        "dragon": 94.97967440132494
+      },
+      {
+        "target": [
+          6,
+          9
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 544.8711308922279,
+        "ground": 17.897004216345636,
+        "projected": 16.890901770611226,
+        "dragon": 95.24202347339478
+      },
+      {
+        "target": [
+          8,
+          6
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 585.6824847098716,
+        "ground": 17.897500872820107,
+        "projected": 16.891287018844842,
+        "dragon": 95.15740241736364
+      },
+      {
+        "target": [
+          7,
+          7
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 581.0444916694071,
+        "ground": 17.902297881923097,
+        "projected": 16.89598100532936,
+        "dragon": 95.32996401403136
+      },
+      {
+        "target": [
+          9,
+          7
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 581.0802542363181,
+        "ground": 17.902613840967533,
+        "projected": 16.895712007131685,
+        "dragon": 95.32509062884375
+      },
+      {
+        "target": [
+          6,
+          8
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 579.2390611262806,
+        "ground": 17.894748349184624,
+        "projected": 16.890940141035692,
+        "dragon": 95.12346900156426
+      },
+      {
+        "target": [
+          5,
+          9
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 577.4669642255612,
+        "ground": 17.902989174332134,
+        "projected": 16.895075529307295,
+        "dragon": 95.36526173285944
+      },
+      {
+        "target": [
+          6,
+          10
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 576.5093258134734,
+        "ground": 17.896532047327145,
+        "projected": 16.89549568129538,
+        "dragon": 95.04709143076168
+      },
+      {
+        "target": [
+          8,
+          5
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 620.0830186608309,
+        "ground": 17.89563643618109,
+        "projected": 16.890460050426867,
+        "dragon": 95.09649901319274
+      },
+      {
+        "target": [
+          7,
+          6
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 615.4290891885082,
+        "ground": 17.898742003219276,
+        "projected": 16.891954404867114,
+        "dragon": 95.23572236617545
+      },
+      {
+        "target": [
+          9,
+          6
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 615.4648424009509,
+        "ground": 17.898531054679687,
+        "projected": 16.891822142770664,
+        "dragon": 95.23114002428554
+      },
+      {
+        "target": [
+          5,
+          13
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 440.06191304208954,
+        "ground": 17.895899612653576,
+        "projected": 16.894513373457897,
+        "dragon": 95.11662720300211
+      },
+      {
+        "target": [
+          6,
+          7
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 613.6069916694071,
+        "ground": 17.895974781321335,
+        "projected": 16.894353016574755,
+        "dragon": 95.01853542070538
+      },
+      {
+        "target": [
+          8,
+          4
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 654.4835526117904,
+        "ground": 17.894830353902893,
+        "projected": 16.890622125220936,
+        "dragon": 95.04208957830878
+      },
+      {
+        "target": [
+          7,
+          5
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 649.8136870171511,
+        "ground": 17.895775095026732,
+        "projected": 16.890474640531682,
+        "dragon": 95.15166632558308
+      },
+      {
+        "target": [
+          9,
+          5
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 649.8494308709169,
+        "ground": 17.895674355771163,
+        "projected": 16.890452909061942,
+        "dragon": 95.14734259097183
+      },
+      {
+        "target": [
+          6,
+          6
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 647.9749225218416,
+        "ground": 17.899663221200353,
+        "projected": 16.898809379973994,
+        "dragon": 95.3754573898125
+      },
+      {
+        "target": [
+          6,
+          10
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 510.50320096701546,
+        "ground": 17.90222086623453,
+        "projected": 16.895695247899663,
+        "dragon": 95.37702260075882
+      },
+      {
+        "target": [
+          11,
+          13
+        ],
+        "sources": [
+          "authored_replay"
+        ],
+        "length": 440.0977316476044,
+        "ground": 17.896067354994372,
+        "projected": 16.89482971277563,
+        "dragon": 95.11023894603856
+      },
+      {
+        "target": [
+          9,
+          13
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 374.78703958911393,
+        "ground": 17.89901884300556,
+        "projected": 16.891938947097312,
+        "dragon": 95.33878086136362
+      },
+      {
+        "target": [
+          6,
+          13
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 407.42908981516985,
+        "ground": 17.900016272506317,
+        "projected": 16.89753211429623,
+        "dragon": 95.01319138871798
+      },
+      {
+        "target": [
+          10,
+          13
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 407.46457375346967,
+        "ground": 17.900392391303328,
+        "projected": 16.897103169166904,
+        "dragon": 95.0063857897826
+      },
+      {
+        "target": [
+          5,
+          13
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 440.1068034628799,
+        "ground": 17.89611162784383,
+        "projected": 16.894911699650674,
+        "dragon": 95.10862133905717
+      },
+      {
+        "target": [
+          4,
+          13
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 472.78452459362325,
+        "ground": 17.89477659093167,
+        "projected": 16.891699014755652,
+        "dragon": 95.19107177852509
+      },
+      {
+        "target": [
+          12,
+          13
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 472.8196645041146,
+        "ground": 17.894809608413524,
+        "projected": 16.891862293327158,
+        "dragon": 95.18522017197806
+      },
+      {
+        "target": [
+          3,
+          13
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 505.4622532077228,
+        "ground": 17.89513516627797,
+        "projected": 16.890493272649937,
+        "dragon": 95.26301905811276
+      },
+      {
+        "target": [
+          13,
+          13
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 505.49722109127725,
+        "ground": 17.895058528038113,
+        "projected": 16.890532992901612,
+        "dragon": 95.25755637978651
+      },
+      {
+        "target": [
+          2,
+          13
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 538.1399893054966,
+        "ground": 17.896612025237815,
+        "projected": 16.890650028812075,
+        "dragon": 95.32634788530538
+      },
+      {
+        "target": [
+          14,
+          13
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 538.1747851535745,
+        "ground": 17.89645254468882,
+        "projected": 16.89059528424795,
+        "dragon": 95.32122897642458
+      },
+      {
+        "target": [
+          1,
+          13
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 570.8177328872576,
+        "ground": 17.898822349276468,
+        "projected": 16.891733738698846,
+        "dragon": 94.93948348452973
+      },
+      {
+        "target": [
+          14,
+          12
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 635.1055980114895,
+        "ground": 17.895869023718088,
+        "projected": 16.894603893575393,
+        "dragon": 95.16473184470794
+      },
+      {
+        "target": [
+          1,
+          12
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 667.7874372424727,
+        "ground": 17.89519077647306,
+        "projected": 16.89313382017808,
+        "dragon": 95.1979774611323
+      },
+      {
+        "target": [
+          14,
+          11
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 669.4897389414389,
+        "ground": 17.90210214326674,
+        "projected": 16.893857926440212,
+        "dragon": 94.9982831501481
+      },
+      {
+        "target": [
+          1,
+          11
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 702.1730219258906,
+        "ground": 17.901310217615578,
+        "projected": 16.895815592781897,
+        "dragon": 95.0373221477636
+      },
+      {
+        "target": [
+          14,
+          10
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 703.8738801784817,
+        "ground": 17.895635327749545,
+        "projected": 16.890421520215575,
+        "dragon": 95.29014371159543
+      },
+      {
+        "target": [
+          1,
+          10
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 736.5586069120417,
+        "ground": 17.896879828741596,
+        "projected": 16.890752155414724,
+        "dragon": 95.33447996356554
+      },
+      {
+        "target": [
+          14,
+          9
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 738.2580217228499,
+        "ground": 17.895165740192038,
+        "projected": 16.89295243094209,
+        "dragon": 95.15262319127339
+      },
+      {
+        "target": [
+          1,
+          9
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 770.9441922011544,
+        "ground": 17.894743146147427,
+        "projected": 16.89145675347663,
+        "dragon": 95.20049540702746
+      },
+      {
+        "target": [
+          14,
+          8
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 772.6421635747759,
+        "ground": 17.899252255681866,
+        "projected": 16.898498317822042,
+        "dragon": 95.02781498785548
+      },
+      {
+        "target": [
+          1,
+          8
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 805.3297777934578,
+        "ground": 17.8970726638309,
+        "projected": 16.89658383181168,
+        "dragon": 95.0783987618997
+      },
+      {
+        "target": [
+          14,
+          7
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 807.0263057344923,
+        "ground": 17.90005170324265,
+        "projected": 16.892591992793538,
+        "dragon": 95.35913689273389
+      },
+      {
+        "target": [
+          1,
+          7
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 839.7153636891812,
+        "ground": 17.902847597600566,
+        "projected": 16.894864044751966,
+        "dragon": 94.9666849023428
+      },
+      {
+        "target": [
+          14,
+          6
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 841.410448202232,
+        "ground": 17.895885318017083,
+        "projected": 16.89046473721093,
+        "dragon": 95.25304766428553
+      },
+      {
+        "target": [
+          1,
+          6
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 874.1009498885544,
+        "ground": 17.89767667957989,
+        "projected": 16.891176715568232,
+        "dragon": 95.30824482920521
+      },
+      {
+        "target": [
+          14,
+          5
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 875.7945909782283,
+        "ground": 17.894738198288522,
+        "projected": 16.89132221198804,
+        "dragon": 95.15556851212433
+      },
+      {
+        "target": [
+          1,
+          5
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 908.4865363918069,
+        "ground": 17.89508554912146,
+        "projected": 16.89049553773686,
+        "dragon": 95.21191149429255
+      },
+      {
+        "target": [
+          14,
+          4
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 910.1787340627137,
+        "ground": 17.895992239852834,
+        "projected": 16.894536529104393,
+        "dragon": 95.06569710639234
+      },
+      {
+        "target": [
+          1,
+          4
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 942.872123199169,
+        "ground": 17.89493631327968,
+        "projected": 16.892221709765995,
+        "dragon": 95.12283957786856
+      },
+      {
+        "target": [
+          14,
+          3
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 944.5628774559227,
+        "ground": 17.89915501142481,
+        "projected": 16.899064942119534,
+        "dragon": 94.98258027977353
+      },
+      {
+        "target": [
+          1,
+          3
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 977.2577103108707,
+        "ground": 17.896755133866304,
+        "projected": 16.89587432131328,
+        "dragon": 95.04024172972426
+      },
+      {
+        "target": [
+          14,
+          2
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 978.9470211580891,
+        "ground": 17.902551487546862,
+        "projected": 16.89446918715817,
+        "dragon": 95.352977836919
+      },
+      {
+        "target": [
+          1,
+          2
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 1011.6432977271428,
+        "ground": 17.900158803040593,
+        "projected": 16.89776535726391,
+        "dragon": 94.96344001676168
+      },
+      {
+        "target": [
+          14,
+          1
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 1013.3311651694466,
+        "ground": 17.89852862445142,
+        "projected": 16.89173184129819,
+        "dragon": 95.27992157263242
+      },
+      {
+        "target": [
+          1,
+          1
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 1046.028885448216,
+        "ground": 17.901676864615744,
+        "projected": 16.893833749632925,
+        "dragon": 95.33908073920509
+      },
+      {
+        "target": [
+          13,
+          1
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 1111.7944360228944,
+        "ground": 17.899697571041152,
+        "projected": 16.898333028370597,
+        "dragon": 94.97199056156538
+      },
+      {
+        "target": [
+          2,
+          1
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 1144.4573385771682,
+        "ground": 17.897348461355417,
+        "projected": 16.896846153927978,
+        "dragon": 95.02368918685808
+      },
+      {
+        "target": [
+          12,
+          1
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 1144.2418737639903,
+        "ground": 17.89681680353062,
+        "projected": 16.89597755364003,
+        "dragon": 95.03841623106058
+      },
+      {
+        "target": [
+          3,
+          1
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 1176.9045967355753,
+        "ground": 17.895493630365657,
+        "projected": 16.89356456002629,
+        "dragon": 95.08695154279607
+      },
+      {
+        "target": [
+          11,
+          1
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 1176.6893189827929,
+        "ground": 17.895228031184445,
+        "projected": 16.892982866779324,
+        "dragon": 95.1012982224913
+      },
+      {
+        "target": [
+          4,
+          1
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 1209.3518623806608,
+        "ground": 17.894761854771314,
+        "projected": 16.891529672468124,
+        "dragon": 95.14692680421523
+      },
+      {
+        "target": [
+          10,
+          1
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 1209.1367716788675,
+        "ground": 17.894733836420478,
+        "projected": 16.891204710732143,
+        "dragon": 95.16091126371327
+      },
+      {
+        "target": [
+          5,
+          1
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 1241.799135512107,
+        "ground": 17.894982851226324,
+        "projected": 16.89055795754162,
+        "dragon": 95.20386340564379
+      },
+      {
+        "target": [
+          9,
+          1
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 1241.5842318517748,
+        "ground": 17.895167273389095,
+        "projected": 16.890463059063038,
+        "dragon": 95.21750255736744
+      },
+      {
+        "target": [
+          6,
+          1
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 1274.246416129591,
+        "ground": 17.896012133465696,
+        "projected": 16.890493358014908,
+        "dragon": 95.25798549345163
+      },
+      {
+        "target": [
+          8,
+          1
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 1274.0316995010708,
+        "ground": 17.8963867450002,
+        "projected": 16.890604893819603,
+        "dragon": 95.27129512274813
+      },
+      {
+        "target": [
+          7,
+          1
+        ],
+        "sources": [
+          "peel_layer_1"
+        ],
+        "length": 1306.6937042327847,
+        "ground": 17.8977267656869,
+        "projected": 16.891202803224626,
+        "dragon": 95.30949580599189
+      },
+      {
+        "target": [
+          7,
+          12
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 406.33164540595374,
+        "ground": 17.894769600863082,
+        "projected": 16.890947108186705,
+        "dragon": 95.22493791015833
+      },
+      {
+        "target": [
+          9,
+          12
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 406.4031106204,
+        "ground": 17.894734561087795,
+        "projected": 16.891215154818777,
+        "dragon": 95.21107469498709
+      },
+      {
+        "target": [
+          6,
+          12
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 438.992685312512,
+        "ground": 17.896082355050847,
+        "projected": 16.890490184412037,
+        "dragon": 95.30834763824419
+      },
+      {
+        "target": [
+          10,
+          12
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 439.0639785213888,
+        "ground": 17.89575765404522,
+        "projected": 16.89043200579337,
+        "dragon": 95.29550273417895
+      },
+      {
+        "target": [
+          5,
+          12
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 471.6537327019902,
+        "ground": 17.898721898150086,
+        "projected": 16.891675804178057,
+        "dragon": 95.38035995093574
+      },
+      {
+        "target": [
+          11,
+          12
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 471.7248538964228,
+        "ground": 17.898187553622943,
+        "projected": 16.89137823801162,
+        "dragon": 95.3683984550774
+      },
+      {
+        "target": [
+          4,
+          12
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 504.3147875747158,
+        "ground": 17.902149523890394,
+        "projected": 16.89389104026238,
+        "dragon": 94.99902433033088
+      },
+      {
+        "target": [
+          12,
+          12
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 504.38573674594164,
+        "ground": 17.9014626207003,
+        "projected": 16.893416357308503,
+        "dragon": 94.98803883874133
+      },
+      {
+        "target": [
+          3,
+          12
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 536.9758499310118,
+        "ground": 17.90038014104036,
+        "projected": 16.896740507435663,
+        "dragon": 95.0532757897862
+      },
+      {
+        "target": [
+          13,
+          12
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 537.046627070379,
+        "ground": 17.900973376720348,
+        "projected": 16.89613416416352,
+        "dragon": 95.04295954677885
+      },
+      {
+        "target": [
+          2,
+          12
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 569.6369197711958,
+        "ground": 17.898008347005142,
+        "projected": 16.898293262445936,
+        "dragon": 95.10137760542618
+      },
+      {
+        "target": [
+          13,
+          11
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 633.9433062306904,
+        "ground": 17.895121256816626,
+        "projected": 16.89052179079839,
+        "dragon": 95.3092392108114
+      },
+      {
+        "target": [
+          2,
+          11
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 666.5723013137563,
+        "ground": 17.895737002022315,
+        "projected": 16.8904234576141,
+        "dragon": 95.34185379459741
+      },
+      {
+        "target": [
+          13,
+          10
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 668.3274882493467,
+        "ground": 17.896754570561868,
+        "projected": 16.896225085019708,
+        "dragon": 95.13438882430061
+      },
+      {
+        "target": [
+          2,
+          10
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 700.9577332845566,
+        "ground": 17.89566651464137,
+        "projected": 16.89419741384685,
+        "dragon": 95.17323651203195
+      },
+      {
+        "target": [
+          13,
+          9
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 702.7116705755113,
+        "ground": 17.900829080025304,
+        "projected": 16.892989814053145,
+        "dragon": 94.9774044733893
+      },
+      {
+        "target": [
+          2,
+          9
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 735.3431655584998,
+        "ground": 17.902330186741523,
+        "projected": 16.89494879403444,
+        "dragon": 95.02108973110889
+      },
+      {
+        "target": [
+          13,
+          8
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 737.095853209417,
+        "ground": 17.895364362764568,
+        "projected": 16.89043074881497,
+        "dragon": 95.27679695959515
+      },
+      {
+        "target": [
+          2,
+          8
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 769.7285981358148,
+        "ground": 17.89657300946128,
+        "projected": 16.890636182597625,
+        "dragon": 95.32511619489324
+      },
+      {
+        "target": [
+          13,
+          7
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 771.480036151296,
+        "ground": 17.89527689194751,
+        "projected": 16.8932184427494,
+        "dragon": 95.14582544744377
+      },
+      {
+        "target": [
+          2,
+          7
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 804.1140310167309,
+        "ground": 17.8947524055649,
+        "projected": 16.891541200199637,
+        "dragon": 95.19709613330835
+      },
+      {
+        "target": [
+          13,
+          6
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 805.8642194013814,
+        "ground": 17.89932040453698,
+        "projected": 16.898406390948658,
+        "dragon": 95.02646220585115
+      },
+      {
+        "target": [
+          2,
+          6
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 838.4994642014778,
+        "ground": 17.897015862110305,
+        "projected": 16.89648938097971,
+        "dragon": 95.07998591357303
+      },
+      {
+        "target": [
+          13,
+          5
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 840.2484029599068,
+        "ground": 17.900227006139186,
+        "projected": 16.892707088841732,
+        "dragon": 95.36239055632096
+      },
+      {
+        "target": [
+          2,
+          5
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 872.8848976902858,
+        "ground": 17.902462906865424,
+        "projected": 16.895161591894617,
+        "dragon": 94.97245663675197
+      },
+      {
+        "target": [
+          13,
+          4
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 874.6325868271053,
+        "ground": 17.89607073650161,
+        "projected": 16.890508329465245,
+        "dragon": 95.26018476622636
+      },
+      {
+        "target": [
+          2,
+          4
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 907.270331483385,
+        "ground": 17.89806623696953,
+        "projected": 16.89138512170651,
+        "dragon": 95.31771439667257
+      },
+      {
+        "target": [
+          13,
+          3
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 909.0167710032107,
+        "ground": 17.894736929242324,
+        "projected": 16.89110099669973,
+        "dragon": 95.16597152812557
+      },
+      {
+        "target": [
+          2,
+          3
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 941.6557655810052,
+        "ground": 17.895280028970937,
+        "projected": 16.890435233661695,
+        "dragon": 95.22441303435238
+      },
+      {
+        "target": [
+          13,
+          2
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 943.4009554884573,
+        "ground": 17.89566879264816,
+        "projected": 16.893919369596038,
+        "dragon": 95.07885308333059
+      },
+      {
+        "target": [
+          2,
+          2
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 976.0411999833777,
+        "ground": 17.89480846141984,
+        "projected": 16.891769200676613,
+        "dragon": 95.13790636228028
+      },
+      {
+        "target": [
+          12,
+          2
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 1041.8818135512668,
+        "ground": 17.894970174208947,
+        "projected": 16.890567935543107,
+        "dragon": 95.20276242134518
+      },
+      {
+        "target": [
+          3,
+          2
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 1074.4868571356071,
+        "ground": 17.89594492884799,
+        "projected": 16.890477514204395,
+        "dragon": 95.2554007382474
+      },
+      {
+        "target": [
+          11,
+          2
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 1074.3459258428318,
+        "ground": 17.89622511532055,
+        "projected": 16.890552409600208,
+        "dragon": 95.26575883600437
+      },
+      {
+        "target": [
+          4,
+          2
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 1106.9507898586162,
+        "ground": 17.897956122744567,
+        "projected": 16.891324978500492,
+        "dragon": 95.31509604024174
+      },
+      {
+        "target": [
+          10,
+          2
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 1106.8100456114544,
+        "ground": 17.898389436149202,
+        "projected": 16.891566689124172,
+        "dragon": 95.32516130107753
+      },
+      {
+        "target": [
+          5,
+          2
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 1139.4147300677714,
+        "ground": 17.90073162565545,
+        "projected": 16.893044245059475,
+        "dragon": 95.37148007536356
+      },
+      {
+        "target": [
+          9,
+          2
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 1139.274172856695,
+        "ground": 17.90129948784477,
+        "projected": 16.893432987721376,
+        "dragon": 95.38126765338944
+      },
+      {
+        "target": [
+          6,
+          2
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 1171.8786777627488,
+        "ground": 17.90206860694572,
+        "projected": 16.895484742852005,
+        "dragon": 94.97852555459255
+      },
+      {
+        "target": [
+          8,
+          2
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 1171.738307578109,
+        "ground": 17.901481545758344,
+        "projected": 16.896003229699097,
+        "dragon": 94.98787597007473
+      },
+      {
+        "target": [
+          7,
+          2
+        ],
+        "sources": [
+          "peel_layer_2"
+        ],
+        "length": 1204.3426329432211,
+        "ground": 17.89923585379751,
+        "projected": 16.89852062471044,
+        "dragon": 95.028142106596
+      },
+      {
+        "target": [
+          7,
+          11
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 440.7169698633633,
+        "ground": 17.900748490701694,
+        "projected": 16.89672171449105,
+        "dragon": 95.00015013983594
+      },
+      {
+        "target": [
+          9,
+          11
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 440.788416414322,
+        "ground": 17.90150521242721,
+        "projected": 16.89598140342094,
+        "dragon": 94.9874912369406
+      },
+      {
+        "target": [
+          6,
+          11
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 473.3613435116588,
+        "ground": 17.896505376710277,
+        "projected": 16.895618489696638,
+        "dragon": 95.09525228684224
+      },
+      {
+        "target": [
+          10,
+          11
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 473.4326180521251,
+        "ground": 17.896894432046324,
+        "projected": 16.89628596684458,
+        "dragon": 95.0834470238059
+      },
+      {
+        "target": [
+          5,
+          11
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 506.0057246430883,
+        "ground": 17.89486079508606,
+        "projected": 16.892068152443382,
+        "dragon": 95.17829847088598
+      },
+      {
+        "target": [
+          11,
+          11
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 506.0768271641874,
+        "ground": 17.894969856258378,
+        "projected": 16.892425586758854,
+        "dragon": 95.16724301259397
+      },
+      {
+        "target": [
+          4,
+          11
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 538.6501132579795,
+        "ground": 17.894982338984452,
+        "projected": 16.890587527056997,
+        "dragon": 95.25144137563207
+      },
+      {
+        "target": [
+          12,
+          11
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 538.7210437509483,
+        "ground": 17.89487615406858,
+        "projected": 16.890704630120542,
+        "dragon": 95.24104962957455
+      },
+      {
+        "target": [
+          3,
+          11
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 571.2945093566551,
+        "ground": 17.896307103143727,
+        "projected": 16.890549978916063,
+        "dragon": 95.31635060115826
+      },
+      {
+        "target": [
+          12,
+          10
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 635.5835978158071,
+        "ground": 17.897829900049906,
+        "projected": 16.89800913855406,
+        "dragon": 95.10562778101225
+      },
+      {
+        "target": [
+          3,
+          10
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 668.1955766637084,
+        "ground": 17.896270007621357,
+        "projected": 16.895362904057205,
+        "dragon": 95.149900614817
+      },
+      {
+        "target": [
+          12,
+          9
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 669.9678289988317,
+        "ground": 17.89897197778841,
+        "projected": 16.891821094382113,
+        "dragon": 94.94259207835277
+      },
+      {
+        "target": [
+          3,
+          9
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 702.5808639966581,
+        "ground": 17.901702577652216,
+        "projected": 16.893580826688837,
+        "dragon": 94.99193672152533
+      },
+      {
+        "target": [
+          12,
+          8
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 704.3520604897799,
+        "ground": 17.894838976170853,
+        "projected": 16.89076545898511,
+        "dragon": 95.23650939038416
+      },
+      {
+        "target": [
+          3,
+          8
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 736.9661516331606,
+        "ground": 17.895647811309125,
+        "projected": 16.89042223961636,
+        "dragon": 95.29070655406127
+      },
+      {
+        "target": [
+          12,
+          7
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 738.7362922888851,
+        "ground": 17.896307417066392,
+        "projected": 16.895267782909237,
+        "dragon": 95.10176284954005
+      },
+      {
+        "target": [
+          3,
+          7
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 771.3514395734455,
+        "ground": 17.895074003275873,
+        "projected": 16.89271755134443,
+        "dragon": 95.1589308757918
+      },
+      {
+        "target": [
+          12,
+          6
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 773.12052439638,
+        "ground": 17.90200877273564,
+        "projected": 16.89553547845278,
+        "dragon": 94.97946079993926
+      },
+      {
+        "target": [
+          3,
+          6
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 805.7367278177428,
+        "ground": 17.898716123278643,
+        "projected": 16.899176675816307,
+        "dragon": 95.03883823703482
+      },
+      {
+        "target": [
+          12,
+          5
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 807.5047568124983,
+        "ground": 17.89783614109065,
+        "projected": 16.891260524784496,
+        "dragon": 95.31219202793037
+      },
+      {
+        "target": [
+          3,
+          5
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 840.1220163662823,
+        "ground": 17.9008938495093,
+        "projected": 16.893154345819227,
+        "dragon": 95.37432119476263
+      },
+      {
+        "target": [
+          12,
+          4
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 841.8889895374733,
+        "ground": 17.895036048321362,
+        "projected": 16.89052199417588,
+        "dragon": 95.20820402177327
+      },
+      {
+        "target": [
+          3,
+          4
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 874.5073052192947,
+        "ground": 17.896392859580338,
+        "projected": 16.89060699368049,
+        "dragon": 95.27149915666482
+      },
+      {
+        "target": [
+          12,
+          3
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 876.273222571539,
+        "ground": 17.895058324677994,
+        "projected": 16.892565037412623,
+        "dragon": 95.1126484568534
+      },
+      {
+        "target": [
+          3,
+          3
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 908.8925943770103,
+        "ground": 17.89476679035863,
+        "projected": 16.890905119312688,
+        "dragon": 95.17672007336974
+      },
+      {
+        "target": [
+          11,
+          3
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 974.7716845155794,
+        "ground": 17.895590194286804,
+        "projected": 16.89042294860214,
+        "dragon": 95.24038245435142
+      },
+      {
+        "target": [
+          4,
+          3
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 1007.3554722472084,
+        "ground": 17.897246710664373,
+        "projected": 16.890962645263823,
+        "dragon": 95.29703838857165
+      },
+      {
+        "target": [
+          10,
+          3
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 1007.2524713565666,
+        "ground": 17.897553649855652,
+        "projected": 16.89111359885089,
+        "dragon": 95.30512638344004
+      },
+      {
+        "target": [
+          5,
+          3
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 1039.8360795338867,
+        "ground": 17.89999592335467,
+        "projected": 16.89255560481372,
+        "dragon": 95.35809051397679
+      },
+      {
+        "target": [
+          9,
+          3
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 1039.733265673957,
+        "ground": 17.90042094600404,
+        "projected": 16.892835674675666,
+        "dragon": 95.36593086481761
+      },
+      {
+        "target": [
+          6,
+          3
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 1072.3166943061726,
+        "ground": 17.90266464695462,
+        "projected": 16.89500345109502,
+        "dragon": 94.9694121270526
+      },
+      {
+        "target": [
+          8,
+          3
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 1072.2140674673062,
+        "ground": 17.9021745006964,
+        "projected": 16.895396069651746,
+        "dragon": 94.97687978470131
+      },
+      {
+        "target": [
+          7,
+          3
+        ],
+        "sources": [
+          "peel_layer_3"
+        ],
+        "length": 1104.7973165637386,
+        "ground": 17.89951896380848,
+        "projected": 16.898145298614402,
+        "dragon": 95.02257756495193
+      },
+      {
+        "target": [
+          7,
+          10
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 475.1022949372389,
+        "ground": 17.895864206714883,
+        "projected": 16.890460518314704,
+        "dragon": 95.2521998387371
+      },
+      {
+        "target": [
+          9,
+          10
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 475.1737228163288,
+        "ground": 17.89558918347445,
+        "projected": 16.890422878592087,
+        "dragon": 95.24033561665894
+      },
+      {
+        "target": [
+          6,
+          10
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 507.7300023274548,
+        "ground": 17.899944557362527,
+        "projected": 16.892522199092472,
+        "dragon": 95.35712207326885
+      },
+      {
+        "target": [
+          10,
+          10
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 507.80125819112754,
+        "ground": 17.899372499333065,
+        "projected": 16.892157292554742,
+        "dragon": 95.34599957503586
+      },
+      {
+        "target": [
+          5,
+          10
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 540.3577172010191,
+        "ground": 17.9005913630733,
+        "projected": 16.896887220403553,
+        "dragon": 95.00287793313503
+      },
+      {
+        "target": [
+          11,
+          10
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 540.4288010403997,
+        "ground": 17.901194134462216,
+        "projected": 16.89627489522115,
+        "dragon": 94.99260384218772
+      },
+      {
+        "target": [
+          4,
+          10
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 572.985439558259,
+        "ground": 17.89689080558919,
+        "projected": 16.89627985927317,
+        "dragon": 95.08355187484607
+      },
+      {
+        "target": [
+          11,
+          9
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 637.2572386137512,
+        "ground": 17.89716088487938,
+        "projected": 16.890870896989348,
+        "dragon": 95.34248880381988
+      },
+      {
+        "target": [
+          4,
+          9
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 669.8522012088553,
+        "ground": 17.89965019732359,
+        "projected": 16.892231331637536,
+        "dragon": 94.9560453261504
+      },
+      {
+        "target": [
+          11,
+          8
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 671.6415270367714,
+        "ground": 17.894790239658157,
+        "projected": 16.891771036500955,
+        "dragon": 95.18844699832778
+      },
+      {
+        "target": [
+          4,
+          8
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 704.2373519788237,
+        "ground": 17.89495873780371,
+        "projected": 16.890608502173095,
+        "dragon": 95.2493614666928
+      },
+      {
+        "target": [
+          11,
+          7
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 706.0258157681319,
+        "ground": 17.8982085199971,
+        "projected": 16.89839934136915,
+        "dragon": 95.04998888779738
+      },
+      {
+        "target": [
+          4,
+          7
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 738.6225030527557,
+        "ground": 17.895971126801207,
+        "projected": 16.89464940506163,
+        "dragon": 95.11385067214819
+      },
+      {
+        "target": [
+          11,
+          6
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 740.4101048080655,
+        "ground": 17.900657679093992,
+        "projected": 16.892994324189388,
+        "dragon": 95.37017241387647
+      },
+      {
+        "target": [
+          4,
+          6
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 773.0076544308818,
+        "ground": 17.90129950697048,
+        "projected": 16.896173856565355,
+        "dragon": 94.99085836153353
+      },
+      {
+        "target": [
+          11,
+          5
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 774.7943941568058,
+        "ground": 17.895920354870405,
+        "projected": 16.890472096046263,
+        "dragon": 95.25443784784609
+      },
+      {
+        "target": [
+          4,
+          5
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 807.3928061134316,
+        "ground": 17.898301385497195,
+        "projected": 16.891516515512762,
+        "dragon": 95.3231660019307
+      },
+      {
+        "target": [
+          11,
+          4
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 809.1786838145867,
+        "ground": 17.89475475135731,
+        "projected": 16.89148118503251,
+        "dragon": 95.14886843448218
+      },
+      {
+        "target": [
+          4,
+          4
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 841.7779581006359,
+        "ground": 17.895184298027875,
+        "projected": 16.89045773535129,
+        "dragon": 95.21859904989076
+      },
+      {
+        "target": [
+          10,
+          4
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 907.6947663098324,
+        "ground": 17.896680998968886,
+        "projected": 16.89071421000266,
+        "dragon": 95.28072304778702
+      },
+      {
+        "target": [
+          5,
+          4
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 940.258073381843,
+        "ground": 17.899165906864663,
+        "projected": 16.892029013270445,
+        "dragon": 95.34181720513173
+      },
+      {
+        "target": [
+          9,
+          4
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 940.19222769919,
+        "ground": 17.899441017663854,
+        "projected": 16.89220026990656,
+        "dragon": 95.34736625727862
+      },
+      {
+        "target": [
+          6,
+          4
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 972.7553552312528,
+        "ground": 17.902736061464168,
+        "projected": 16.89445288928255,
+        "dragon": 94.95838483316977
+      },
+      {
+        "target": [
+          8,
+          4
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 972.6896965642918,
+        "ground": 17.90305376286119,
+        "projected": 16.894711350069407,
+        "dragon": 94.9636486754869
+      },
+      {
+        "target": [
+          7,
+          4
+        ],
+        "sources": [
+          "peel_layer_4"
+        ],
+        "length": 1005.2526445657276,
+        "ground": 17.89987224412491,
+        "projected": 16.89770403925734,
+        "dragon": 95.01586206823697
+      },
+      {
+        "target": [
+          7,
+          9
+        ],
+        "sources": [
+          "peel_layer_5"
+        ],
+        "length": 509.4876206280461,
+        "ground": 17.895540858243788,
+        "projected": 16.893662021236903,
+        "dragon": 95.08468304040389
+      },
+      {
+        "target": [
+          9,
+          9
+        ],
+        "sources": [
+          "peel_layer_5"
+        ],
+        "length": 509.5590298268792,
+        "ground": 17.895789773488424,
+        "projected": 16.894155145967822,
+        "dragon": 95.07369876669709
+      },
+      {
+        "target": [
+          6,
+          9
+        ],
+        "sources": [
+          "peel_layer_5"
+        ],
+        "length": 542.0986617603658,
+        "ground": 17.894890017005295,
+        "projected": 16.890648319266113,
+        "dragon": 95.19498276108449
+      },
+      {
+        "target": [
+          10,
+          9
+        ],
+        "sources": [
+          "peel_layer_5"
+        ],
+        "length": 542.1698989388551,
+        "ground": 17.894809011181916,
+        "projected": 16.890782063759442,
+        "dragon": 95.18463649782358
+      },
+      {
+        "target": [
+          5,
+          9
+        ],
+        "sources": [
+          "peel_layer_5"
+        ],
+        "length": 574.7097103762479,
+        "ground": 17.897102011334166,
+        "projected": 16.89089507570605,
+        "dragon": 95.29305552249107
+      },
+      {
+        "target": [
+          10,
+          8
+        ],
+        "sources": [
+          "peel_layer_5"
+        ],
+        "length": 638.9642286264368,
+        "ground": 17.895553909339245,
+        "projected": 16.89382489772462,
+        "dragon": 95.13145388664356
+      },
+      {
+        "target": [
+          5,
+          8
+        ],
+        "sources": [
+          "peel_layer_5"
+        ],
+        "length": 671.5421749513343,
+        "ground": 17.894744067131388,
+        "projected": 16.8914664732218,
+        "dragon": 95.20009724826926
+      },
+      {
+        "target": [
+          10,
+          7
+        ],
+        "sources": [
+          "peel_layer_5"
+        ],
+        "length": 673.3485823650419,
+        "ground": 17.901386972831194,
+        "projected": 16.896091262385553,
+        "dragon": 94.98942023423024
+      },
+      {
+        "target": [
+          5,
+          7
+        ],
+        "sources": [
+          "peel_layer_5"
+        ],
+        "length": 705.9271972332891,
+        "ground": 17.897744493768478,
+        "projected": 16.8976723704865,
+        "dragon": 95.06092631017815
+      },
+      {
+        "target": [
+          10,
+          6
+        ],
+        "sources": [
+          "peel_layer_5"
+        ],
+        "length": 707.7329364124039,
+        "ground": 17.89758048108443,
+        "projected": 16.891127244001705,
+        "dragon": 95.30581214285124
+      },
+      {
+        "target": [
+          5,
+          6
+        ],
+        "sources": [
+          "peel_layer_5"
+        ],
+        "length": 740.312219819619,
+        "ground": 17.90126357606204,
+        "projected": 16.893408134767075,
+        "dragon": 95.380661387156
+      },
+      {
+        "target": [
+          10,
+          5
+        ],
+        "sources": [
+          "peel_layer_5"
+        ],
+        "length": 742.1172907687563,
+        "ground": 17.89483338787794,
+        "projected": 16.890732939550478,
+        "dragon": 95.18816992916858
+      },
+      {
+        "target": [
+          5,
+          5
+        ],
+        "sources": [
+          "peel_layer_5"
+        ],
+        "length": 774.6972427105545,
+        "ground": 17.896185013913495,
+        "projected": 16.89054035195629,
+        "dragon": 95.26433964714582
+      },
+      {
+        "target": [
+          9,
+          5
+        ],
+        "sources": [
+          "peel_layer_5"
+        ],
+        "length": 840.6510104832776,
+        "ground": 17.898357272249413,
+        "projected": 16.89154830227553,
+        "dragon": 95.32443523089289
+      },
+      {
+        "target": [
+          6,
+          5
+        ],
+        "sources": [
+          "peel_layer_5"
+        ],
+        "length": 873.1946120941495,
+        "ground": 17.901855989387787,
+        "projected": 16.893822374240923,
+        "dragon": 94.94479470866614
+      },
+      {
+        "target": [
+          8,
+          5
+        ],
+        "sources": [
+          "peel_layer_5"
+        ],
+        "length": 873.1651464199493,
+        "ground": 17.90202234909387,
+        "projected": 16.893940246257817,
+        "dragon": 94.94742457754981
+      },
+      {
+        "target": [
+          7,
+          5
+        ],
+        "sources": [
+          "peel_layer_5"
+        ],
+        "length": 905.7085685053488,
+        "ground": 17.90032316644276,
+        "projected": 16.89718003142954,
+        "dragon": 95.00762079824162
+      },
+      {
+        "target": [
+          7,
+          8
+        ],
+        "sources": [
+          "peel_layer_6"
+        ],
+        "length": 543.8729469362507,
+        "ground": 17.901590432745532,
+        "projected": 16.896258844765057,
+        "dragon": 95.38713750710787
+      },
+      {
+        "target": [
+          9,
+          8
+        ],
+        "sources": [
+          "peel_layer_6"
+        ],
+        "length": 543.9443374464333,
+        "ground": 17.902240042870737,
+        "projected": 16.89567892133845,
+        "dragon": 95.37672181393222
+      },
+      {
+        "target": [
+          6,
+          8
+        ],
+        "sources": [
+          "peel_layer_6"
+        ],
+        "length": 576.4673218108579,
+        "ground": 17.89635629750986,
+        "projected": 16.89519088753023,
+        "dragon": 95.05279498580705
+      },
+      {
+        "target": [
+          9,
+          7
+        ],
+        "sources": [
+          "peel_layer_6"
+        ],
+        "length": 640.7045678557698,
+        "ground": 17.90031169602031,
+        "projected": 16.892763081676897,
+        "dragon": 95.36394401963173
+      },
+      {
+        "target": [
+          6,
+          7
+        ],
+        "sources": [
+          "peel_layer_6"
+        ],
+        "length": 673.2654978932757,
+        "ground": 17.900812057547,
+        "projected": 16.89665597476728,
+        "dragon": 94.9990568432983
+      },
+      {
+        "target": [
+          9,
+          6
+        ],
+        "sources": [
+          "peel_layer_6"
+        ],
+        "length": 675.0889949855041,
+        "ground": 17.895408580333857,
+        "projected": 16.890420856567086,
+        "dragon": 95.23147098833066
+      },
+      {
+        "target": [
+          6,
+          6
+        ],
+        "sources": [
+          "peel_layer_6"
+        ],
+        "length": 707.6503997622758,
+        "ground": 17.89795380963515,
+        "projected": 16.89132372508302,
+        "dragon": 95.31504056601523
+      },
+      {
+        "target": [
+          8,
+          6
+        ],
+        "sources": [
+          "peel_layer_6"
+        ],
+        "length": 773.6403685854578,
+        "ground": 17.900783686970385,
+        "projected": 16.89307949231639,
+        "dragon": 95.37239594744088
+      },
+      {
+        "target": [
+          7,
+          6
+        ],
+        "sources": [
+          "peel_layer_6"
+        ],
+        "length": 806.1650399379671,
+        "ground": 17.900915260405423,
+        "projected": 16.896550697178924,
+        "dragon": 94.99729407873599
+      },
+      {
+        "target": [
+          7,
+          7
+        ],
+        "sources": [
+          "peel_layer_7"
+        ],
+        "length": 578.2582738623199,
+        "ground": 17.89755674188526,
+        "projected": 16.89117940582979,
+        "dragon": 95.25690486801867
+      }
+    ]
+  },
+  "length_delta_px": {
+    "minimum": -41.41854985628311,
+    "maximum": 8.038806311105873e-05,
+    "all": [
+      -2.0235205681728985e-05,
+      -1.6670548006914032e-05,
+      -4.980326679060454e-05,
+      -4.569471807762682,
+      -4.511147814535093,
+      -4.572042680525044,
+      -4.513707251052551,
+      -4.574548685256673,
+      -4.5162094835176845,
+      -4.577119520217991,
+      -4.518768951291975,
+      -4.579659816535695,
+      -4.521267397210238,
+      -4.582200090349943,
+      -4.523826890040027,
+      -4.584740340228791,
+      -18.792002973175045,
+      -9.070577178829467,
+      -18.79203158836856,
+      -9.070606498228244,
+      -18.792060203561732,
+      -9.070635817626112,
+      -18.792088818755587,
+      -9.07063461944665,
+      -18.79205639879251,
+      -9.070599088991457,
+      -18.792085013986366,
+      -9.070563558536264,
+      -18.792052594024312,
+      -9.070592877934018,
+      -18.792020174061236,
+      -9.070622197331772,
+      -18.79204878925532,
+      -9.070586666876693,
+      -18.79207740444815,
+      -9.070615986275243,
+      -18.79207550206388,
+      -9.07058427051993,
+      -18.79207359968416,
+      -9.070583072338877,
+      -18.792071697296706,
+      -9.07058187415737,
+      -24.645807072435673,
+      -9.070580675976316,
+      -41.41854985628311,
+      -34.19828921857038,
+      -41.41528581027296,
+      -34.19502500172757,
+      -41.41200885999547,
+      -34.19176007140891,
+      -41.40873956869723,
+      -34.188488676345514,
+      -41.405461125460306,
+      -34.185231881734126,
+      -41.40219803075706,
+      -34.18195902505954,
+      -41.3989180923993,
+      -34.17869121738545,
+      1.6279229726023914e-05,
+      -2.2269710996170033e-05,
+      8.247867015143129e-06,
+      2.0134311739639088e-05,
+      -2.4304216310611082e-05,
+      -8.241489865667972e-06,
+      2.6063940538278985e-05,
+      5.750429045292549e-05,
+      -2.4304216310611082e-05,
+      -3.276221042369798e-05,
+      9.587656847998005e-06,
+      -2.492568876277801e-05,
+      1.996042453811242e-05,
+      2.0883196384602343e-05,
+      4.178856272574194e-06,
+      -5.728293092488457e-05,
+      -1.8859042484109523e-05,
+      -2.1817073161400913e-05,
+      -4.574511009329228,
+      -4.574521543818207,
+      -4.523788618965341,
+      -13.594209271953332,
+      -13.594237887147528,
+      -13.594266502340247,
+      -13.594234082378193,
+      -13.59426269757114,
+      -13.594230277609086,
+      -13.594197857646009,
+      -13.594226472839978,
+      -13.594255088033833,
+      -13.594253185648654,
+      -13.594251283267909,
+      -13.594249380880456,
+      -19.447984756029427,
+      -36.22072753986686,
+      -36.21746349385694,
+      -36.214186543579444,
+      -36.210917252281206,
+      -36.20763880905429,
+      -36.204375714351045,
+      -36.201095775983276,
+      -4.58470201459977,
+      -13.655304682005976,
+      -13.655334001403844,
+      -13.65533280322336,
+      -13.655297272768166,
+      -13.655261742313087,
+      -13.65529106171175,
+      -13.655320381109505,
+      -13.655284850654425,
+      -13.655314170051952,
+      -13.655282454289704,
+      -13.655281256118542,
+      -13.655280057937489,
+      -13.655278859755981,
+      -38.78298740234004,
+      -38.77972318550701,
+      -38.7764582551888,
+      -38.77318686012518,
+      -38.76993006551379,
+      -38.76665720883943,
+      -38.76338940115534,
+      -4.513672655844005,
+      -4.513711902089028,
+      -4.523811383046564,
+      -4.523861329548026,
+      -13.594167514271817,
+      -13.594196129465558,
+      -13.594163709502482,
+      -13.59419232469645,
+      -13.594159904733374,
+      -13.59412748477132,
+      -13.59415609996529,
+      -13.594184715158121,
+      -13.594182812773965,
+      -13.59418091039322,
+      -13.594179008005767,
+      -19.44791438315474,
+      -36.22065716699217,
+      -36.21739312098225,
+      -36.214116170704756,
+      -36.21084687940652,
+      -36.2075684361796,
+      -36.204305341476356,
+      -36.20102540310859,
+      -4.584724724126772,
+      -4.58469909699329,
+      -13.655353832568721,
+      -13.655352634388464,
+      -13.655317103933271,
+      -13.655281573478078,
+      -13.655310892875832,
+      -13.655340212274496,
+      -13.655304681819302,
+      -13.655334001217057,
+      -13.655302285455832,
+      -13.655301087274665,
+      -13.65529988910339,
+      -13.655298690921882,
+      -38.78300723350594,
+      -38.77974301667291,
+      -38.77647808635447,
+      -38.773206691281075,
+      -38.76994989667969,
+      -38.76667703999533,
+      -38.76340923232101,
+      4.021064972903332e-05,
+      -2.8373226996336598e-05,
+      -5.848688147125358e-07,
+      -2.076849449395013e-05,
+      -4.437476252405759e-05,
+      -3.753736746148206e-05,
+      -6.361815684385874e-05,
+      1.574594091380277e-05,
+      -1.4030346505933267e-05,
+      -7.772929620841751e-06,
+      -6.561579237995829e-05,
+      -8.774778734732536e-06,
+      2.2046931803743064e-05,
+      1.633568456327339e-05,
+      -5.8923260439769365e-06,
+      -3.329549940644938e-05,
+      -2.2092589915700955e-05,
+      -4.376399829197908e-07,
+      2.6115942659998836e-05,
+      2.2456952137872577e-06,
+      4.3522537453100085e-05,
+      3.2189359444600996e-06,
+      -4.63128767478338e-05,
+      -3.8959580024311435e-05,
+      1.3856908537945856e-05,
+      -2.2092589915700955e-05,
+      -2.1301783590388368e-05,
+      1.3461300113704056e-05,
+      7.283594868567889e-06,
+      -5.038188646722119e-05,
+      -3.2167731546906e-05,
+      -1.5737897570033965e-05,
+      3.797931191229509e-05,
+      2.6316195828712807e-05,
+      2.3019903665044694e-05,
+      4.451073891686974e-05,
+      2.7034552260829514e-05,
+      4.162985459288393e-05,
+      3.236011582430365e-05,
+      2.078104722613716e-05,
+      5.011653956898954e-05,
+      1.897067545542086e-05,
+      4.275320964097773e-05,
+      7.548804546786414e-06,
+      2.0684847186203115e-06,
+      -5.674337512573402e-05,
+      2.6955245857607224e-06,
+      -5.766674826190865e-05,
+      -4.1912650317499356e-05,
+      1.3302382853908057e-05,
+      1.2904660366075404e-05,
+      2.5153240812869626e-05,
+      3.1785538794792956e-05,
+      -1.1982865544268861e-07,
+      2.3015258193481714e-05,
+      -2.792735926959722e-06,
+      7.515278412029147e-06,
+      4.7831141273491085e-05,
+      5.472524185279326e-05,
+      4.190067670606368e-05,
+      2.5647345978541125e-05,
+      4.241821466166584e-05,
+      1.4635974707744026e-05,
+      1.3263573123367678e-05,
+      3.486398281893344e-05,
+      7.871266666370502e-05,
+      2.988600590470014e-05,
+      3.759588435059413e-05,
+      5.394782829171163e-05,
+      4.860063017986249e-05,
+      3.539476529113017e-05,
+      4.7830772928136867e-05,
+      3.8395080764530576e-05,
+      3.808730753007694e-05,
+      3.904699678969337e-05,
+      5.596705477728392e-05,
+      1.505804084445117e-05,
+      3.9778740756446496e-05,
+      3.020486474270001e-05,
+      5.281632752485166e-06,
+      3.573319020233612e-06,
+      1.4120819969321019e-05,
+      -1.2309986232139636e-05,
+      6.6606731934371055e-06,
+      -3.305740818859704e-05,
+      1.449198282443831e-05,
+      -1.2892139352516097e-05,
+      4.355678811407415e-06,
+      -1.368336700124928e-05,
+      7.723332828390994e-06,
+      -4.4620845642384666e-05,
+      -1.616728468434303e-05,
+      -4.922766925119504e-05,
+      -2.7645504360407358e-05,
+      2.8071773385818233e-05,
+      1.3154668749848497e-05,
+      2.157680296477338e-05,
+      3.613840078742214e-05,
+      2.5748079224285902e-06,
+      5.543135898733453e-06,
+      -4.257657565176487e-06,
+      -2.385422817496874e-05,
+      3.207405779903638e-05,
+      2.072380982554023e-05,
+      -1.0380917615293583e-05,
+      -6.396272965503158e-06,
+      5.2299146773293614e-06,
+      1.7571323155607388e-05,
+      -2.7129874752063188e-05,
+      2.8969068694095768e-05,
+      1.9515836811478948e-05,
+      2.3205587012853357e-05,
+      6.233761723706266e-06,
+      2.448729628667934e-05,
+      2.522428439988289e-05,
+      1.698307141850819e-05,
+      2.3856055122450925e-05,
+      3.353476881784445e-05,
+      2.7997039069305174e-05,
+      1.590831107023405e-05,
+      -2.4839452692049235e-05,
+      -5.8622298979571497e-05,
+      -2.9376429210969945e-05,
+      -5.3315996865421766e-05,
+      -1.6893528709260863e-05,
+      -5.6747898554476706e-05,
+      -3.382244153726788e-05,
+      -3.339319766837434e-05,
+      -2.365764191836206e-05,
+      -6.475371583292144e-05,
+      -3.302505058400129e-05,
+      -2.37724502767378e-05,
+      -2.5943603873201937e-05,
+      1.6022978570617852e-06,
+      2.6681321628529986e-05,
+      -5.0200833925373445e-05,
+      1.7025151578309305e-05,
+      -5.389265197663917e-05,
+      -2.7970583232672652e-05,
+      -8.459642685920699e-06,
+      3.444747028424899e-05,
+      -6.255555570078286e-05,
+      -1.4171479278957122e-05,
+      -4.9346758032697835e-05,
+      -2.332547376227012e-05,
+      -1.008500260013534e-05,
+      -5.860721671524516e-06,
+      -3.4780323403538205e-05,
+      7.685016726100002e-06,
+      -2.833620305864315e-05,
+      -8.894167422113242e-06,
+      -1.3104823665344156e-05,
+      -4.815441343453131e-06,
+      -4.766835206737596e-05,
+      -5.303539819578873e-05,
+      -7.136295914733637e-05,
+      -4.0069561464406434e-05,
+      -7.875273183799436e-05,
+      -5.2054178354410396e-05,
+      -6.76319689318916e-05,
+      -1.4317843806566088e-05,
+      -1.7061446783372958e-05,
+      1.088772739876731e-05,
+      3.3030956956281443e-06,
+      -3.5839191127706727e-05,
+      -6.784395282011246e-06,
+      -4.5243051431498316e-05,
+      -4.380701420814148e-05,
+      4.670492785407987e-06,
+      8.524129611942044e-06,
+      -1.603644921033265e-05,
+      -5.2327316097944276e-05,
+      -2.1785746184832533e-06,
+      -3.4518776942604745e-05,
+      -7.949442078825086e-06,
+      -2.6174101208198408e-05,
+      -2.9251958153508895e-05,
+      -1.3682222402167099e-05,
+      -1.2183022874978633e-05,
+      -7.143259779240907e-06,
+      -9.140612746705301e-07,
+      -9.942331871570786e-06,
+      -9.46046407079848e-06,
+      2.9560274811046838e-05,
+      -1.2357036212051753e-06,
+      -2.1956438104098197e-05,
+      -1.6614347828181053e-05,
+      -1.403658609433478e-05,
+      -5.594770698280627e-05,
+      2.8349303420327487e-06,
+      8.795225539870444e-06,
+      -2.518318842703593e-05,
+      -5.196691950004606e-05,
+      -3.682618671518867e-05,
+      -6.104320118538453e-05,
+      2.8866887760159443e-05,
+      3.1847697300690925e-05,
+      3.552211990154319e-05,
+      -2.6756352212942147e-05,
+      1.8567027609606157e-05,
+      -3.826053591637901e-05,
+      3.3556248126842547e-06,
+      7.814632886038453e-05,
+      8.038806311105873e-05,
+      -9.752792038852931e-06
+    ]
+  }
+}

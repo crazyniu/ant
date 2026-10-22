@@ -1,0 +1,53 @@
+{
+  "recorded_utc": "2026-10-22T02:19:22.757936+00:00",
+  "local_previous_candidate": "f1cc47430381730101461e0b678d869b2d1a098d",
+  "public_base_commit": "4eb814b164a866a763bf894a32c6b495633d1830",
+  "status": "independent first-level candidate, not GL or user accepted",
+  "source_hashes": {
+    "scripts/first_level_carrier.gd": "6ae9814b5cdab7891b8b38ed6ff13caa0a22ad25185a10aef900bfb0c119fd22",
+    "scripts/first_level_carrier.gdshader": "b452bbc0a309fae4c1fbee790f6c8d2a9f5ba381e7f439e8af4d2032c1661779",
+    "scripts/first_level_bead.gd": "b15b74ad6f799565e8a0af011b02df964d46d70e439a639ea45a1893c0e582c3",
+    "scripts/play.gd": "81e5cc52f12f5b963f25536ce2c2b35fa20125e76b36e0c274d845b6796bcf1a",
+    "scripts/carrier_route.gd": "9fbf2b04e64f1a94ab153fc084c87d8d096974a714f25e77bffef7fcde574622",
+    "scripts/board_plane.gd": "c15e73e00328af5ba6081b52a0c1bb040316f9403ff6093d28f4f8f2e51c0709",
+    "assets/first-level/slender-ants.json": "2e1e46613d0adaa184551a217d790f692b9f15870d799ae0badd0cb7655a2133",
+    "assets/first-level/slender-ants.png": "d5cfe909930285759e1af539212f89f5dd098c041637c5c2150760f536fe127c",
+    "assets/first-level/round-beads.png": "0c353fb03ed54f8f71036bb489802b026b072fd1b94e5e4a69d3a8b0c594d60b",
+    "data/scenes/first-level-approved.json": "78a3acdc51da5a95f66cda0df4b1fc2f44ff9aabe749fba158afb76f0ba8d957",
+    "data/serpent-levels/serpent-01.json": "bf09222005648bdc853e3fa7bab15c505dc297b0931ded1d9be3bfa0af2896b5",
+    "tests/test_first_level_art_batch2.gd": "0d8d73397a1aa501a980f35bf695834d34166a6156f8e954a2d15b3bfd1bcecd",
+    "tests/test_first_level_minimal_batch.gd": "f6106d4410c56009d7341e374ea560541306e2951be3249de0053541b11b5f69",
+    "tests/test_first_level_restoration.gd": "9aa65202f6907a881e2196899de31a092600b3b9793114854e9265b7725dde99",
+    "tests/export_first_level_batch2.gd": "5cd082ab2d7646ce0dddd4b76210009f214342340a6c7aa6e52c5e1ce4b10253",
+    "tools/render_first_level_offline.py": "a2795d355010dd14feff907dd12ef6b1de03df5eaf80a649b2a52da808cc07e1",
+    "tools/compare_first_level_art.py": "3493d231534f560727dee643ea701b70c60cdb02606054430641a1738cf6b942"
+  },
+  "evidence_hashes": {
+    "art-test.json": "da33d5f05c9cbd50a1b384cc783bf34db3ca440ec8b5005f0542797ff31297f0",
+    "restoration-test.json": "3691e181c91463fb75f9ea9c7c7573c631bf51d494c2d4cc22106390c7af7a4d",
+    "minimal-fixes.json": "e0e937afe40648a0db512a592704a66339b0a295bc5e2aa719b36beecd61e94a",
+    "audit_footpath_integrated.json": "83b3544504f91fcc469808b0b0903318297204b4c5cc86ae4990c81bf5406151",
+    "reference-before-after.png": "fc26cbd2e9ae5696fff9ef04174ce32d5571dfa046aa74be2bc663775ecc092b",
+    "cargo-before-after.png": "30c7aed363f128b53813aacb7aabb34bad9868298c0713fdbc9eda1179485c64",
+    "audit_footpath_geometry_overlay.png": "315f1483e6eb84323d82ae87b31fbc1ec3794bc8b1d486f290dd9047d6bdb8d7",
+    "audit_footpath_corrected_endpoint_overlay.png": "f3a1e17d6d72a0f945df8ca0915d7c5e8cf04126570c2288fc2ebfbc0511be51"
+  },
+  "checks": {
+    "art": 4826,
+    "full_first_level": 18922,
+    "entry_hopper_phase_feedback": 48,
+    "actual_routes": 369,
+    "resource_targets": 240
+  },
+  "first_level_result": {
+    "time_seconds": 110.425,
+    "points_saved": 148,
+    "balls_remaining": 207,
+    "no_next": true
+  },
+  "later_levels_modified_or_played": false,
+  "full_rendered_visual_pass": false,
+  "user_accepted": false,
+  "failed_material_candidates_integrated": false,
+  "evidence_boundary": "Offline CPU compositions and headless geometry/transform tests are not GPU game frames. No GL/native input/audio/natural-play acceptance."
+}

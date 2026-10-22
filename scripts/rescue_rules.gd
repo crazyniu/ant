@@ -133,6 +133,10 @@ static func validate_level(config: Dictionary) -> Array[String]:
 			errors.append("entrance_cell must lie on the exterior transit ring")
 	if str(transport.get("carrier_type", "")) != "worker":
 		errors.append("current slice supports the basic worker transport only")
+	if transport.has("approach_distance_cells"):
+		var approach:Variant=transport.approach_distance_cells
+		if not _is_number(approach) or not is_finite(float(approach)) or float(approach)<0.0:
+			errors.append("approach_distance_cells must be finite and non-negative")
 	for key in ["outbound_speed_cells_sec", "returning_speed_cells_sec"]:
 		if not _is_number(transport.get(key)) or float(transport.get(key, 0)) <= 0.0:
 			errors.append(key + " must be finite and positive")
@@ -287,8 +291,12 @@ func click_color(color: String) -> Dictionary:
 		_emit("dragon_started", {"head_s": head_s(), "goal_s": float(level.serpent.goal_s)})
 	_task_sequence += 1
 	var efficiency:float=float(ant_loadout.speed_multiplier)
-	var outbound_us := maxi(1, int(ceil(float(target.distance) / (float(level.transport.outbound_speed_cells_sec)*efficiency) * TIMEBASE)))
-	var return_us := maxi(1, int(ceil(float(target.distance) / (float(level.transport.returning_speed_cells_sec)*efficiency) * TIMEBASE)))
+	# The authored nest-to-board approach is real walking, not a zero-time
+	# decorative teleport. Omitted on existing content preserves its timings.
+	var approach_distance:=maxf(0.0,float(level.transport.get("approach_distance_cells",0.0)))
+	var travel_distance:=float(target.distance)+approach_distance
+	var outbound_us := maxi(1, int(ceil(travel_distance / (float(level.transport.outbound_speed_cells_sec)*efficiency) * TIMEBASE)))
+	var return_us := maxi(1, int(ceil(travel_distance / (float(level.transport.returning_speed_cells_sec)*efficiency) * TIMEBASE)))
 	var pickup_us := time_us + outbound_us
 	var return_depart_us := pickup_us + seconds_to_us(float(level.transport.pickup_pause_sec))
 	var unload_us := return_depart_us + return_us

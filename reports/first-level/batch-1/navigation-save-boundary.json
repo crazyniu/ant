@@ -1,0 +1,6 @@
+{
+	"checks": 20,
+	"failures": [],
+	"pass": true,
+	"scope": "Real headless menu callbacks, navigation write failure, retry, shop/Home/start guards, retained map position and no economy side effects. No production-save writes or visual/audio/native-input acceptance."
+}
