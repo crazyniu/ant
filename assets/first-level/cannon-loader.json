@@ -1,0 +1,45 @@
+{
+  "status": "loading-pose candidate, not user accepted",
+  "texture": "res://assets/first-level/cannon-loader.png",
+  "sha256": "6da23f6452228b4facc6a1d76d8daf635ccef3bb85ffb245c3d19350034886d1",
+  "canvas": [
+    1374,
+    1145
+  ],
+  "region": [
+    185,
+    223,
+    1040,
+    833
+  ],
+  "foot_anchor_in_region": [
+    386,
+    790
+  ],
+  "visible_world_width": 62,
+  "ball_center_offset_world": [
+    44.94,
+    -32.81
+  ],
+  "foreleg_tip_source": [
+    [
+      1036,
+      615
+    ],
+    [
+      1122,
+      716
+    ]
+  ],
+  "reference": "reports/first-level/approved-battle.jpeg; small blue worker beside cannon, not card portrait",
+  "limitations": [
+    "AI reconstructed receiving stance; more side-on/chunky than approved tiny worker",
+    "Fixed holding forelimbs, four supporting legs stay planted; only forelegs have a bounded 4px receiving push",
+    "Cannon-side receiving station stays planted; ball enters behind brass and reappears at actual opening",
+    "Needs real GL actual-scale and x1/x2 animation review"
+  ],
+  "physical_source_width": 966,
+  "padded_sprite_width_world": 66.74948240165631,
+  "foreleg_push_max_world": 4,
+  "ground_anchor_policy": "Full inverse cannon affine transform preserves planted ground contacts; ball opening follows recoil."
+}

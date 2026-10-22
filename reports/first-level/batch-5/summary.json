@@ -1,0 +1,352 @@
+{
+  "base_commit": "b4a6d7d2cafe9bbbb4cc72552d06712d5e8d0813",
+  "created_at_utc": "2026-10-22T04:12:14.946293+00:00",
+  "status": "First-level handoff candidate only; native GL animation self-check and user acceptance pending",
+  "only_numeric_rule_change": {
+    "transport.unload_pause_sec": {
+      "before": 0.2,
+      "candidate": 0.8
+    }
+  },
+  "unchanged": {
+    "enemy_budget_seconds": 145,
+    "time_reward_fast_seconds": 110,
+    "time_reward_normal_seconds": 130,
+    "max_transport_capacity": 4,
+    "outbound_cells_per_second": 2.5,
+    "returning_cells_per_second": 2.0,
+    "pickup_seconds": 0.3,
+    "cannon_cooldown_seconds": 0.65,
+    "projectile_seconds": 0.45,
+    "world_ball_diameter": 33.5
+  },
+  "solution": {
+    "status": "victory",
+    "time_sec": 114.75,
+    "remaining": 207,
+    "conservation": [],
+    "rejected": [],
+    "inputs": [
+      {
+        "at_sec": 0.0,
+        "color": "blue"
+      },
+      {
+        "at_sec": 2.0,
+        "color": "green"
+      },
+      {
+        "at_sec": 4.0,
+        "color": "blue"
+      },
+      {
+        "at_sec": 6.0,
+        "color": "green"
+      },
+      {
+        "at_sec": 9.425,
+        "color": "blue"
+      },
+      {
+        "at_sec": 12.325,
+        "color": "green"
+      },
+      {
+        "at_sec": 14.325,
+        "color": "green"
+      },
+      {
+        "at_sec": 16.325,
+        "color": "green"
+      },
+      {
+        "at_sec": 20.65,
+        "color": "blue"
+      },
+      {
+        "at_sec": 23.55,
+        "color": "purple"
+      },
+      {
+        "at_sec": 25.9,
+        "color": "purple"
+      },
+      {
+        "at_sec": 27.9,
+        "color": "purple"
+      },
+      {
+        "at_sec": 32.775,
+        "color": "blue"
+      },
+      {
+        "at_sec": 36.575,
+        "color": "purple"
+      },
+      {
+        "at_sec": 41.625,
+        "color": "purple"
+      },
+      {
+        "at_sec": 44.525,
+        "color": "green"
+      },
+      {
+        "at_sec": 46.525,
+        "color": "green"
+      },
+      {
+        "at_sec": 53.2,
+        "color": "blue"
+      },
+      {
+        "at_sec": 55.75,
+        "color": "blue"
+      },
+      {
+        "at_sec": 58.65,
+        "color": "red"
+      },
+      {
+        "at_sec": 61.0,
+        "color": "green"
+      },
+      {
+        "at_sec": 66.225,
+        "color": "red"
+      },
+      {
+        "at_sec": 68.775,
+        "color": "red"
+      },
+      {
+        "at_sec": 72.575,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 74.575,
+        "color": "red"
+      },
+      {
+        "at_sec": 81.05,
+        "color": "red"
+      },
+      {
+        "at_sec": 83.6,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 88.3,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 90.3,
+        "color": "green"
+      },
+      {
+        "at_sec": 96.775,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 100.225,
+        "color": "yellow"
+      },
+      {
+        "at_sec": 102.425,
+        "color": "blue"
+      },
+      {
+        "at_sec": 104.925,
+        "color": "green"
+      },
+      {
+        "at_sec": 114.3,
+        "color": "green"
+      }
+    ],
+    "scope": "Candidate 0.8s unload; same free Worker and same 34-color input order, minimum 2s click gap, retimed for actual free capacity. Headless production replay, not a human or visual playtest.",
+    "unload_pause_sec": 0.8,
+    "max_capacity": 4,
+    "max_simultaneous_unloads": 2,
+    "saved_points": 138,
+    "prior_version": {
+      "commit": "b4a6d7d",
+      "time_sec": 110.425,
+      "unload_pause_sec": 0.2,
+      "saved_points": 148
+    },
+    "old_absolute_timestamps_on_new_candidate": {
+      "accepted": 21,
+      "rejected": 13,
+      "outcome": "defeat at 145 seconds; historical schedule is not reused"
+    }
+  },
+  "headless": {
+    "loading": {
+      "checks": 72,
+      "failures": [],
+      "samples": [
+        {
+          "center": [
+            356.366729736328,
+            1048.443359375
+          ],
+          "label": "unload-start",
+          "neutral_receiver_to_ball_distance": 0.000390815694117919,
+          "time_us": 8625000,
+          "world_size": [
+            33.5,
+            33.5
+          ]
+        },
+        {
+          "center": [
+            381.160522460938,
+            1055.9404296875
+          ],
+          "label": "unload-mid",
+          "neutral_receiver_to_ball_distance": 25.9022541046143,
+          "time_us": 9025000,
+          "world_size": [
+            33.5,
+            33.5
+          ]
+        },
+        {
+          "center": [
+            452.000061035156,
+            1097.0
+          ],
+          "label": "double-speed-near-completion",
+          "neutral_receiver_to_ball_distance": 107.254127502441,
+          "time_us": 9424998,
+          "world_size": [
+            33.5,
+            33.5
+          ]
+        }
+      ],
+      "scope": "Headless source/node geometry, exact task timing, pause/x2, conservation, opening ownership, real fire/hit. Includes real145s defeat during unloading. No native pointer/GL, readable animation, material, audio, concurrent hand-grip or user acceptance."
+    },
+    "first_blue_inventory_chain": {
+      "checkpoints": [
+        {
+          "board": 240,
+          "carriers": 0,
+          "delivered_blue": 0,
+          "hits_blue": 0,
+          "inventory_blue": 0,
+          "name": "initial",
+          "shots_blue": 0,
+          "spent_blue": 0,
+          "time_us": 0
+        },
+        {
+          "board": 239,
+          "carriers": 1,
+          "delivered_blue": 0,
+          "hits_blue": 0,
+          "inventory_blue": 0,
+          "name": "pickup",
+          "shots_blue": 0,
+          "spent_blue": 0,
+          "time_us": 3700000
+        },
+        {
+          "board": 239,
+          "carriers": 1,
+          "delivered_blue": 0,
+          "hits_blue": 0,
+          "inventory_blue": 0,
+          "name": "unloading",
+          "shots_blue": 0,
+          "spent_blue": 0,
+          "time_us": 8625000
+        },
+        {
+          "board": 239,
+          "carriers": 0,
+          "delivered_blue": 1,
+          "hits_blue": 0,
+          "inventory_blue": 0,
+          "name": "delivery-and-fire",
+          "shots_blue": 1,
+          "spent_blue": 1,
+          "time_us": 9425000
+        },
+        {
+          "board": 239,
+          "carriers": 0,
+          "delivered_blue": 1,
+          "hits_blue": 1,
+          "inventory_blue": 0,
+          "name": "hit",
+          "shots_blue": 1,
+          "spent_blue": 1,
+          "time_us": 9875000
+        }
+      ],
+      "checks": 93,
+      "event_times_us": {
+        "bead_delivered": 9425000,
+        "bead_picked_up": 3700000,
+        "bead_unloading": 8625000,
+        "cannon_fired": 9425000,
+        "segment_hit": 9875000
+      },
+      "failures": [],
+      "scope": "First-level rejected side inventory HUD removal and actual first-blue-ball pickup, unload, ammo debit, flight, pause and hit. No new loading animation, native pointer/GL test, full replay, later level or user acceptance."
+    },
+    "first_level_gate_selector_feedback": {
+      "checks": 48,
+      "failures": [],
+      "scope": "First-level-only headless controller/entry, historical metadata recovery, hopper selector, distance gait and non-overlapping feedback. Later level numbers are rejected inputs only; no later config or scene was exercised. No GL/native input/sound/visual acceptance."
+    },
+    "production_first_level_replay": {
+      "cargo_samples": 8814,
+      "checks": 19938,
+      "failures": [],
+      "max_capacity": 4,
+      "max_loading": 2,
+      "observed_stages": [
+        "outbound",
+        "returning",
+        "unloading"
+      ],
+      "remaining_balls": 207,
+      "saved_reward": {
+        "base": 100,
+        "elapsed_sim_seconds": 114.75,
+        "first_clear": true,
+        "time_bonus": 38,
+        "total": 138
+      },
+      "scope": "Headless production nodes/rules/size assertions only. Not GL rendering, real mouse, natural play, animation feel, sound or user approval.",
+      "status": "victory",
+      "time_us": 114750000
+    }
+  },
+  "sha256": {
+    "data/serpent-levels/serpent-01.json": "e5adc544bfbb8c82d883252f70a7c36fa19695693cad9f7804a9058a6044bfea",
+    "scripts/play.gd": "cc0f426ed1b6f0459ec6595a7604271d2f8274a5ed8bc6262b1cb783c3c5060a",
+    "scripts/rescue_fx.gd": "9ec02d4269f456cf239a4ec7baa75d0ac0d0a1d3f21a42e4f37a7ae04b32405e",
+    "scripts/first_level_loading.gd": "8da624b1ad813528be25af006baf53fda9bbe730b9e1736eeec2f0469b0e3271",
+    "scripts/first_level_loading_occlusion.gdshader": "32bfeb465ec804c34bc95f7fccaaaf11214de483ea749acd015ebb9e89751cd1",
+    "scripts/first_level_loader.gdshader": "a288ea51561ad3fd02fae892338d42ba06138340001760ad2d5496ff722cb23c",
+    "assets/first-level/cannon-loader.png": "6da23f6452228b4facc6a1d76d8daf635ccef3bb85ffb245c3d19350034886d1",
+    "assets/first-level/cannon-loader.json": "71fa1e370b39f873c34e047764e1f34d971837187fc8b03ba3a2f4fe23ad0ca0"
+  },
+  "not_passed": [
+    "New loader/material/alpha occlusion and exact grip in native GPU frames",
+    "Readable complete x1/x2 animation, simultaneous unloading silhouettes and operator input",
+    "Full target-change/inventory/error/victory-interruption matrix remains; real145s defeat mid-unload now has finite node evidence",
+    "Whole-screen approved-reference match and final user visual acceptance",
+    "Real audio listening; latest desktop session used Dummy audio"
+  ],
+  "pre_gl_review_fixes": [
+    "Complete inverse cannon transform prevents grounded worker rotating/sliding with recoil",
+    "Measured10-point dark-mouth polygon excludes copper frame/gold front lip",
+    "Original image region padded to1040px with unchanged62/966 physical scale prevents foreleg clipping",
+    "Terminal incoming ball stays task-owned at frozen world center/orientation; never jumps back or credits after defeat"
+  ]
+}

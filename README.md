@@ -1,10 +1,12 @@
 # First-level review candidate (2026-10-22)
 
-Only the user-approved first level is accessible in this candidate. Later level content remains archived for compatibility, not enabled or newly tested. Do not merge or deploy this review branch. Visuals are **not user accepted**. Native 1440×2560 GL has verified the a1ee1d8 complete-ant cards and five colors only; overall1:1 and the latest HUD-removal delta remain unaccepted.
+Only the user-approved first level is accessible in this candidate. Later level content remains archived for compatibility, not enabled or newly tested. Do not merge or deploy this review branch. Visuals are **not user accepted**. Native 1440×2560 GL has locally verified a1ee1d8 full-ant cards/five colors and b4a6d7d side-HUD removal/basic blue supply chain. The new loading candidate and overall1:1 remain unaccepted.
 
 See [current full-ant/card-color correction](reports/first-level/batch-3/README.md) and its exact unaccepted differences. The rejected c763ed1 bust is replaced by a complete ant candidate; native GPU five-color verification is recorded in batch3; overall visual acceptance remains open. Superseded images/raw snapshots are kept in history and local evidence, not accumulated in the current tree. [Batch 2](reports/first-level/batch-2/README.md) and `FIRST_LEVEL_PUBLICATION.json` describe the immutable initial `0491e05` publication, not the latest changed-file hashes. The current delta is in batch-3/summary.json. Earlier `SOURCE_MANIFEST.json` / `PUBLICATION_CHECK.json` and the implementation history below describe the already-published base, not current first-level acceptance.
 
 Latest small delta: [remove the rejected cannon-side inventory HUD](reports/first-level/batch-4/README.md), preserving internal ammo rules and existing controls;87 first-ball headless checks passed. This is not completed loading animation.
+
+Current animation candidate: [same-ball loading and real event clock](reports/first-level/batch-5/README.md). Only first-level unload timing changes .2→.8s; the same34-color/minimum2s schedule is retimed for real capacity, not zero-think input. Production headless replay reaches114.75s, saves138 points, peaks at4 carriers. Native×1/×2 animation and current-screen self-check still pending. Earlier batch reports remain exact historical versions.
 
 ---
 

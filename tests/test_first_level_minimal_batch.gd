@@ -83,7 +83,7 @@ func run()->void:
 	# the frontmost legal authoritative target. No fixture reward is settled.
 	scene.rules.inventory.red=1;scene.rules.inventory.blue=1;scene.rules.status="running"
 	var target:Dictionary=scene.rules.next_fire_target();check(target.color=="blue","Fixture distinguishes palette order from true next-shot order")
-	scene.sync_hopper_ammo();var hopper:Control=scene.get_node("TransportScene/HopperAmmo")
+	scene.sync_hopper_ammo();var hopper:Control=scene.get_node("TransportScene/Cannon/HopperAmmo")
 	check(hopper.visible and hopper.color_id==target.color,"Hopper uses authoritative next-fire color")
 	scene.rules._check_fire();check(scene.rules.projectile.color==target.color,"Actual subsequent fire matches hopper color")
 	scene.sync_hopper_ammo();check(not hopper.visible,"Fired ball is not duplicated in hopper during flight")

@@ -2,6 +2,10 @@
 
 Scope: current single-ant serpent gameplay plus adventure/preparation/shop UI, 2026-10-21. Paths below are project-relative. Production resources use local `res://` paths, not generation-workspace paths or private download URLs. Native dimensions below were read from the actual PNG files; display size and viewport resolution are separate facts.
 
+## Current first-level loader candidate
+
+`assets/first-level/cannon-loader.png` is a1374×1145 RGBA generated receiving-pose asset, not a full scene. Its padded region/feet/ball contact and limitations are in `cannon-loader.json`. Runtime visible width is62 logical pixels; ball diameter stays33.5. Four support feet are planted and only the two forelegs receive a bounded4px push. This source is still more side-on/chunky than the approved tiny worker; native actual-scale/animation comparison is pending. It is not an accepted replacement for the world transport atlas. See batch-5 for exact source hash and timing boundary.
+
 ## Source records and rights
 
 - `assets/meta-ui/manifest.json` is the source record for the new meta UI: exact source filenames, SHA-256, native sizes, source regions, centered anchors and measured alpha evidence. `generation-prompts.json` retains generation provenance; `validation-report.json` describes asset-level checks.

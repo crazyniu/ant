@@ -12,7 +12,7 @@ func check(ok:bool,note:String)->void:
 	if not ok:failures.append(note);push_error(note)
 func _verify_displays(label:String)->void:
 	check(not scene.has_node("TransportScene/Stock"),label+": rejected side inventory HUD is absent")
-	check(scene.has_node("TransportScene/Cannon") and scene.has_node("TransportScene/HopperAmmo") and scene.has_node("TransportScene/LiveCarriers"),label+": actual cannon, hopper and carriers remain")
+	check(scene.has_node("TransportScene/Cannon") and scene.has_node("TransportScene/Cannon/HopperAmmo") and scene.has_node("TransportScene/LiveCarriers"),label+": actual cannon, hopper and carriers remain")
 	check(scene.color_buttons.size()==5,label+": five actual color entrances remain")
 	for color in scene.color_buttons:
 		check(scene.get_node("CandidateQueues/Remaining_"+color).text==str(scene.rules.snapshot().available_counts[color]),label+": "+str(color)+" card retains actual board count")
@@ -46,7 +46,7 @@ func run()->void:
 	_verify_displays("initial")
 	for index in 4:check(scene.has_node("WorkSlots/TransportPedestal%d"%index),"Transport pedestal %d remains"%index)
 	for name in ["SpeedButton","PauseButton","SettingsButton"]:check(scene.has_node("TopHUD/"+name),name+" remains")
-	check(not scene.get_node("TransportScene/HopperAmmo").visible,"No fictional loaded ball at zero initial inventory")
+	check(not scene.get_node("TransportScene/Cannon/HopperAmmo").visible,"No fictional loaded ball at zero initial inventory")
 	records=[];walk(scene)
 	var nodes:=FileAccess.open(evidence_directory.path_join("nodes-initial.json"),FileAccess.WRITE)
 	nodes.store_string(JSON.stringify({"label":"OFFLINE NODE DATA · NOT GODOT RENDER","canvas":[940,1672],"nodes":records},"\t"));nodes.close()
@@ -56,11 +56,11 @@ func run()->void:
 	check(scene.rules.board.size()==239 and int(scene.get_node("CandidateQueues/Remaining_blue").text)==79,"Actual blue pickup removes exactly one board ball")
 	_advance_to(8625000,"unloading")
 	check(scene.rules.tasks.size()==1 and scene.rules.inventory.blue==0,"Unloading retains capacity and does not credit early ammo")
-	_advance_to(8825000,"delivery-and-fire")
+	_advance_to(9425000,"delivery-and-fire")
 	check(scene.rules.tasks.is_empty() and scene.rules.inventory.blue==0,"Delivery releases capacity; actual fire consumes credited ammo once")
 	check(scene.rules.delivered_counts.blue==1 and scene.rules.spent_counts.blue==1 and scene.rules.shot_counts.blue==1,"One delivery, one debit, one shot remain authoritative")
 	check(not scene.rules.projectile.is_empty() and scene.rules.projectile.color=="blue","The same actual blue shot remains in flight")
-	check(not scene.get_node("TransportScene/HopperAmmo").visible,"Already-fired ammo is not duplicated in the hopper")
+	check(not scene.get_node("TransportScene/Cannon/HopperAmmo").visible,"Already-fired ammo is not duplicated in the hopper")
 	check(scene.fx.debug_snapshot().projectiles.size()==1,"Actual fired-ball presentation remains")
 	for effect in scene.fx.debug_snapshot().effects:
 		if effect.kind=="ring":
@@ -69,13 +69,13 @@ func run()->void:
 	scene.rules.set_paused(true);scene.sync_view();scene.consume_rule_events();scene.rules.update_us(1000000)
 	check(scene.rules.time_us==frozen and scene.rules.projectile.color=="blue","Pause freezes the authoritative shot without changing ammo")
 	scene.rules.set_paused(false);scene.sync_view();scene.consume_rule_events()
-	_advance_to(9275000,"hit")
+	_advance_to(9875000,"hit")
 	check(scene.rules.projectile.is_empty() and scene.rules.hit_counts.blue==1,"Existing blue shot resolves exactly one hit at unchanged deadline")
 	check(scene.fx.debug_snapshot().projectiles.is_empty(),"Hit removes actual projectile presentation")
 	var event_times:Dictionary={}
 	for event in observed_events:
 		if event.type in ["bead_picked_up","bead_unloading","bead_delivered","cannon_fired","segment_hit"]:event_times[event.type]=event.time_us
-	check(event_times=={"bead_picked_up":3700000,"bead_unloading":8625000,"bead_delivered":8825000,"cannon_fired":8825000,"segment_hit":9275000},"Removing HUD does not change the first legal supply/fire/hit timeline")
+	check(event_times=={"bead_picked_up":3700000,"bead_unloading":8625000,"bead_delivered":9425000,"cannon_fired":9425000,"segment_hit":9875000},"Removing HUD does not change the first legal supply/fire/hit timeline")
 	var report:Dictionary={"checks":checks,"failures":failures,"checkpoints":checkpoints,"event_times_us":event_times,"scope":"First-level rejected side inventory HUD removal and actual first-blue-ball pickup, unload, ammo debit, flight, pause and hit. No new loading animation, native pointer/GL test, full replay, later level or user acceptance."}
 	var f:=FileAccess.open(evidence_directory.path_join("inventory-hud-test.json"),FileAccess.WRITE)
 	f.store_string(JSON.stringify(report,"\t"));f.close()

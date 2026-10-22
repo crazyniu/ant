@@ -3,6 +3,8 @@ var scene:Control
 var checks:=0
 var failures:Array[String]=[]
 var cargo_samples:=0
+var max_capacity:=0
+var max_loading:=0
 var stages:Dictionary={}
 func check(value:bool,note:String)->void:
 	checks+=1
@@ -21,6 +23,7 @@ func run()->void:
 	check(scene.get_node("TransportScene/Cannon").material==null,"Bronze cannon is not dyed by ammo color")
 	for i in range(3200):
 		scene.advance_replay(.05);scene.sync_view();scene.consume_rule_events();scene.fx.advance(.05);scene.serpent.advance(.05);scene.apply_actor_poses();scene.present_pending_outcome()
+		max_capacity=maxi(max_capacity,scene.rules.tasks.size());max_loading=maxi(max_loading,scene.loading_balls.size())
 		check(scene.rules.tasks.size()<=4,"No hidden queued fifth carrier")
 		for id in scene.carriers:
 			var actor:Control=scene.carriers[id]
@@ -36,7 +39,7 @@ func run()->void:
 	check(scene.rules.status=="victory","Actual final damage reaches victory")
 	check(scene.rules.conservation_errors().is_empty(),"Ball ledger conserves resources")
 	check(scene.victory_saved,"First-level victory saved")
-	check(int(scene.reward_receipt.get("total",0))==148,"Latest 110/130 thresholds save 100 base plus 48 time points for this feasible replay")
+	check(int(scene.reward_receipt.get("total",0))==138,"Candidate 0.8-second handoff and unchanged 110/130 thresholds save 100 base plus 38 time points")
 	# The authoritative victory precedes the defeated-dragon presentation. Let
 	# that real FX clock finish without advancing the already-finalized Rules.
 	for i in range(120):
@@ -46,7 +49,7 @@ func run()->void:
 	if is_instance_valid(scene.pause_overlay):check(scene.pause_overlay.get_node_or_null("Button_NEXT LEVEL")==null,"Victory does not expose unapproved Next level")
 	check(scene.pending_save_kind.is_empty(),"No pending save error")
 	check(stages.has("outbound") and stages.has("returning") and stages.has("unloading"),"Outbound loaded-return and unload are observed")
-	var report:Dictionary={"checks":checks,"failures":failures,"status":scene.rules.status,"time_us":scene.rules.time_us,"remaining_balls":scene.rules.board.size(),"cargo_samples":cargo_samples,"observed_stages":stages.keys(),"scope":"Headless production nodes/rules/size assertions only. Not GL rendering, real mouse, natural play, animation feel, sound or user approval."}
+	var report:Dictionary={"checks":checks,"failures":failures,"status":scene.rules.status,"time_us":scene.rules.time_us,"remaining_balls":scene.rules.board.size(),"cargo_samples":cargo_samples,"max_capacity":max_capacity,"max_loading":max_loading,"saved_reward":scene.reward_receipt.duplicate(true),"observed_stages":stages.keys(),"scope":"Headless production nodes/rules/size assertions only. Not GL rendering, real mouse, natural play, animation feel, sound or user approval."}
 	print("FIRST_LEVEL_RESTORATION ",JSON.stringify(report))
 	var report_path:=OS.get_environment("ANT_RESTORATION_REPORT")
 	if report_path.is_empty():report_path="res://reports/first-level/batch-1/restoration-test.json"

@@ -27,3 +27,8 @@ The test writes only local evidence. See [summary.json](summary.json) for checks
 This is **not** a completed loading animation. The current 200ms unloading window has no continuous back-to-hopper hand-off; first delivery and fire occur at the same authoritative timestamp, so there is no post-credit loading interval. A readable hand-off must use valid transport states and the real fire event without inventing inventory or silently delaying rules. Cannon-worker assets, contact/ownership transitions, pause/x2/terminal edge cases and real GL/user acceptance remain open.
 
 Native a1ee1d8 full-ant/five-color verification is separately recorded in batch 3. It does not validate this later HUD-removal delta. Current device audio uses Dummy; no listening pass is claimed.
+
+
+## Subsequent native GL check, exact b4a6d7d build
+
+At 2026-10-22 03:49:32 UTC, native 1440×2560 OpenGL evidence and actual input confirmed removal of the rejected right-side inventory group. One blue click changed 80→79, transport returned to0/4, and the first blue segment disappeared without the HUD returning. No empty-node UI error was observed. Frozen HEAD and tracked-clean source were independently checked; driver build-ref is operator-supplied. PNG hash is in summary.json. This validates only this removal/basic supply-chain delta, not the later loading candidate, overall1:1, audio or user acceptance.

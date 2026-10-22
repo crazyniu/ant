@@ -7,6 +7,7 @@ const FX = preload("res://scripts/rescue_fx.gd")
 const CarrierMotion = preload("res://scripts/directional_carrier.gd")
 const ApprovedCarrier = preload("res://scripts/first_level_carrier.gd")
 const ApprovedBead = preload("res://scripts/first_level_bead.gd")
+const ApprovedLoading = preload("res://scripts/first_level_loading.gd")
 const APPROVED_BALL_SIZE:=ApprovedBead.WORLD_SIZE
 var carrier_motion:Script=CarrierMotion
 const CarrierRoute = preload("res://scripts/carrier_route.gd")
@@ -60,6 +61,9 @@ var serpent:Control
 var serpent_elapsed:=0.0
 var view_snapshot:Dictionary={}
 var carriers:Dictionary={}
+var loading_balls:Dictionary={}
+var loading_sources:Dictionary={}
+var loader_idle_ball_center:=Vector2(356.367,1048.443)
 var board_plane:RefCounted
 var grid_origin:=Vector2.ZERO
 var cell_edge:=35.0
@@ -169,7 +173,7 @@ func _ready()->void:
 	var cell_points:Dictionary={}
 	for cell in rules.board.values():cell_points["%d,%d"%[cell.x,cell.y]]=board_plane.center(cell.x,cell.y)
 	fx.set_layout({"stock_points":stock_points,"cell_points":cell_points})
-	if is_approved_first_level():fx.set_layout({"round_ball_size":APPROVED_BALL_SIZE,"round_ball_asset":ApprovedBead.TEXTURE_PATH,"round_ball_regions":JSON.parse_string(FileAccess.get_file_as_string(ApprovedBead.REGIONS_PATH)),"stock_hud_feedback":false})
+	if is_approved_first_level():fx.set_layout({"round_ball_size":APPROVED_BALL_SIZE,"round_ball_asset":ApprovedBead.TEXTURE_PATH,"round_ball_regions":JSON.parse_string(FileAccess.get_file_as_string(ApprovedBead.REGIONS_PATH)),"stock_hud_feedback":false,"authoritative_charge_preview":true,"event_clock_presentation":true})
 	fx.auto_advance=false
 	ready_to_simulate=true
 	sync_view();consume_rule_events()
@@ -349,7 +353,9 @@ func build_transport()->void:
 	else:cannon=art(Rect2(48,654,412,337),SceneLayout.rect(scene_layout.cannon.rect),"Cannon",layer)
 	cannon.pivot_offset=SceneLayout.point(scene_layout.cannon.pivot)
 	if is_approved_first_level():
-		var hopper:=bead("blue",SceneLayout.point(scene_layout.cannon.hopper)-APPROVED_BALL_SIZE*.5,APPROVED_BALL_SIZE.x,layer);hopper.name="HopperAmmo";hopper.hide()
+		var hopper:=bead("blue",SceneLayout.point(scene_layout.cannon.hopper)-cannon.position-APPROVED_BALL_SIZE*.5,APPROVED_BALL_SIZE.x,cannon);hopper.name="HopperAmmo";hopper.hide()
+		ApprovedLoading.prepare_ball(hopper,cannon,SceneLayout.point(scene_layout.cannon.hopper)-cannon.position)
+		ApprovedLoading.build_gunner(cannon)
 	var live:=group("LiveCarriers",layer);layer.move_child(live,1)
 	# The approved first-level scene has no side inventory HUD. Ammo remains
 	# authoritative in Rules; real carriers, the hopper and shots are retained.
@@ -485,21 +491,23 @@ func sync_view()->void:
 	else:
 		var next_target:Dictionary=rules.next_fire_target()
 		if not next_target.is_empty():tint_red(get_node("TransportScene/Cannon"),str(next_target.color))
-	if is_approved_first_level():sync_hopper_ammo()
 	fx.sync_snapshot(view_snapshot)
+	if is_approved_first_level():sync_hopper_ammo()
 	sync_carriers()
 	if is_instance_valid(fx):move_child(fx,-1)
 	if is_instance_valid(pause_overlay):move_child(pause_overlay,-1)
 	apply_gameplay_interaction_motion()
 
 func sync_hopper_ammo()->void:
-	var hopper:Control=get_node("TransportScene/HopperAmmo");hopper.hide()
+	var hopper:Control=get_node("TransportScene/Cannon/HopperAmmo");hopper.hide()
+	fx.set_cannon_charge(0.0,"blue")
 	# A fired ball is no longer in the hopper. During cooldown preview only the
 	# same target/color the authoritative next-fire selector would actually use.
 	if not rules.projectile.is_empty() or rules.status not in ["ready","running"]:return
 	var target:Dictionary=rules.next_fire_target()
 	if target.is_empty():return
 	hopper.color_id=str(target.color);hopper.queue_redraw();hopper.show()
+	fx.set_cannon_charge(1.0,str(target.color))
 
 func apply_gameplay_interaction_motion()->void:
 	if not ready_to_simulate:return
@@ -562,9 +570,58 @@ func sync_carriers()->void:
 			# Lift the unchanged ball from its real source-cell center to this view
 			# of the back. The existing pickup hold still owns all timing/events.
 			if holding:carried.position=(-carried.size*carried.scale*.5).lerp(carried.position,smoothstep(0,1,hold_fraction))
+			if task.stage=="unloading" and rules.status in ["ready","running"]:
+				# Ownership is a single transport task, not new inventory. Only
+				# its cannon-attached view is visible during the real unload window.
+				if not loading_sources.has(id):
+					var layer:Control=get_node("TransportScene")
+					loading_sources[id]=layer.get_global_transform().affine_inverse()*(carried.get_global_transform()*(carried.size*.5))
+				if not loading_balls.has(id):
+					var incoming:=bead(task.color,Vector2.ZERO,APPROVED_BALL_SIZE.x,get_node("TransportScene/Cannon"))
+					incoming.name="LoadingBall%d"%id;incoming.set_meta("transport_task_id",id)
+					incoming.set_meta("delivery_us",int(task.delivery_us))
+					ApprovedLoading.prepare_ball(incoming,get_node("TransportScene/Cannon"),SceneLayout.point(scene_layout.cannon.hopper)-SceneLayout.rect(scene_layout.cannon.rect).position)
+					loading_balls[id]=incoming
+			if loading_balls.has(id):carried.hide()
 		else:
 			carried.scale=Vector2.ONE*lerpf(.65,1.0,smoothstep(0,1,hold_fraction)) if holding else Vector2.ONE
 			if holding:carried.position.y+=(1.0-smoothstep(0,1,hold_fraction))*6.0
+	if is_approved_first_level():sync_loading_ball_poses()
+
+func sync_loading_ball_poses()->void:
+	var cannon:Control=get_node("TransportScene/Cannon")
+	var hopper:Control=cannon.get_node("HopperAmmo")
+	var anchor:Vector2=SceneLayout.point(scene_layout.cannon.hopper)-SceneLayout.rect(scene_layout.cannon.rect).position
+	ApprovedLoading.attach_ball(hopper,cannon,cannon.get_transform()*anchor)
+	for id in loading_balls.keys():
+		if not rules.tasks.has(id) or rules.tasks[id].stage!="unloading":
+			loading_balls[id].hide();loading_balls[id].queue_free();loading_balls.erase(id);loading_sources.erase(id);continue
+		var task:Dictionary=rules.tasks[id]
+		var point:Vector2=ApprovedLoading.transfer_center(loading_sources[id],cannon.get_transform()*anchor,int(task.unload_us),int(task.delivery_us),rules.time_us)
+		var ball:Control=loading_balls[id]
+		if rules.status not in ["ready","running"]:
+			if not ball.has_meta("terminal_center"):
+				ball.set_meta("terminal_center",point);ball.set_meta("terminal_rotation",cannon.rotation)
+			point=ball.get_meta("terminal_center")
+			ball.rotation=float(ball.get_meta("terminal_rotation"))-cannon.rotation
+		else:ball.rotation=0.0
+		ApprovedLoading.attach_ball(ball,cannon,point)
+	var gunner:Node2D=cannon.get_node("LoaderAnt")
+	# The approved cannon-side worker is a planted receiving station. Do not
+	# teleport one loader between overlapping unloading tasks or across brass.
+	var push:=Vector2.ZERO
+	var receive:Vector2=loader_idle_ball_center
+	for id in loading_balls:
+		var task:Dictionary=rules.tasks[id]
+		var elapsed:=float(rules.time_us-int(task.unload_us))/1000000.0
+		if elapsed>=.20 and elapsed<.40:
+			var direction:Vector2=(cannon.get_transform()*anchor-Vector2(loading_sources[id])).normalized()
+			var candidate:Vector2=direction*sin((elapsed-.20)/.20*PI)*4.0
+			if candidate.length()>push.length():push=candidate
+	if rules.status not in ["ready","running"]:
+		if not gunner.has_meta("terminal_push"):gunner.set_meta("terminal_push",push)
+		push=gunner.get_meta("terminal_push")
+	ApprovedLoading.pose_gunner(gunner,cannon,receive,push)
 
 func sample_carrier_path(path:Array,t:float)->Dictionary:
 	# Direct diagnostics only; live carriers cache this immutable route once.
@@ -609,6 +666,7 @@ func present_pending_outcome()->void:
 func apply_actor_poses()->void:
 	var cp:Dictionary=fx.cannon_pose();var cannon:Control=get_node("TransportScene/Cannon")
 	cannon.position=SceneLayout.rect(scene_layout.cannon.rect).position+cp.offset;cannon.rotation=cp.rotation;cannon.scale=cp.scale
+	if is_approved_first_level():sync_loading_ball_poses()
 
 func modal(title:String,rect:Rect2=Rect2(170,520,600,620))->Control:
 	if is_instance_valid(pause_overlay):

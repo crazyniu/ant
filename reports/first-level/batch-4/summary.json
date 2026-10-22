@@ -1,7 +1,7 @@
 {
   "base_commit": "a1ee1d854e53b3fef4def2b3afaa588ddd741b47",
   "generated_at_utc": "2026-10-22T03:35:45.263469+00:00",
-  "status": "Rejected side inventory HUD removed; first-ball node test passed, this delta not yet GL-reviewed",
+  "status": "Rejected side HUD removal has subsequent local native GL verification; complete new loading animation and overall acceptance are separate",
   "headless": {
     "checkpoints": [
       {
@@ -98,5 +98,29 @@
     "Audio listening",
     "User visual acceptance",
     "Later levels"
-  ]
+  ],
+  "native_gl_followup": {
+    "commit": "b4a6d7d2cafe9bbbb4cc72552d06712d5e8d0813",
+    "capture_utc": "2026-10-22T03:49:32Z",
+    "pixels": [
+      1440,
+      2560
+    ],
+    "resampled": false,
+    "png_sha256": "4ae150506eb95ea8d9f87cc3649e95edbd9456087f7685c80acdd28d01d4e658",
+    "driver": "opengl3/gl_compatibility",
+    "build_identity": "Operator independently verified frozen git HEAD and tracked clean tree; capture driver build_ref itself is operator-supplied",
+    "observed": [
+      "No right-side five balls/five inventory numbers",
+      "Actual native blue click 80 to 79, transport returned to 0/4",
+      "First blue segment removed; next yellow segment exposed; HUD did not reappear",
+      "No observed empty-node UI error"
+    ],
+    "not_claimed": [
+      "New loading animation",
+      "Overall original-design visual match",
+      "Audio listening",
+      "User approval"
+    ]
+  }
 }

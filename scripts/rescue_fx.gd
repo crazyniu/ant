@@ -42,6 +42,9 @@ var _effects: Array[Dictionary] = []
 var _projectiles: Array[Dictionary] = []
 var _round_ball_textures:Dictionary={}
 var _recoil_age := 9.0
+var _recoil_fire_us := -1
+var _consuming_event_us := -1
+var _consuming_event_kind := ""
 var _hit_age := 9.0
 var _dragon_defeat_age := -1.0
 var _knockback_pixels := Vector2.ZERO
@@ -57,6 +60,7 @@ var _layout := {
 	"rescue_center": Vector2(829, 163), "route_direction": Vector2.RIGHT,
 	"route_units_to_pixels": 1.0,
 	"stock_hud_feedback": true,
+	"authoritative_charge_preview": false, "event_clock_presentation": false,
 	"stock_points": {"red": Vector2(404, 1007), "blue": Vector2(585, 966),
 		"yellow": Vector2(657, 966), "green": Vector2(729, 966),
 		"purple": Vector2(801, 966), "white": Vector2(873, 966)},
@@ -127,6 +131,7 @@ func reset_for_run(run_id: int) -> void:
 	_effects.clear()
 	_projectiles.clear()
 	_recoil_age = 9.0
+	_recoil_fire_us = -1
 	_hit_age = 9.0
 	_dragon_defeat_age = -1.0
 	_knockback_pixels = Vector2.ZERO
@@ -146,7 +151,7 @@ func sync_snapshot(snapshot: Dictionary) -> void:
 	_speed = clampf(float(snapshot.get("speed_multiplier", 1.0)), 1.0, 2.0)
 	var state: String = str(snapshot.get("status", "running"))
 	_terminal = state in ["victory", "defeat", "load_error"]
-	if _terminal:
+	if _terminal or bool(_layout.authoritative_charge_preview):
 		_charge = 0.0
 	else:
 		var stock:Dictionary=snapshot.get("inventory",{})
@@ -186,6 +191,8 @@ func consume_event(event: Dictionary, context: Dictionary = {}) -> bool:
 	if not context.is_empty():
 		set_layout(context)
 	var kind: String = str(event.type)
+	_consuming_event_us=int(event.get("time_us",_simulation_us))
+	_consuming_event_kind=kind
 	var color: Color = _color(str(event.get("color", "yellow")))
 	var seed_value: int = run * 1000003 + sequence * 7919
 	var origin := _event_point(event)
@@ -247,6 +254,7 @@ func consume_event(event: Dictionary, context: Dictionary = {}) -> bool:
 				_tool_hint("recall", seed_value + 1)
 		"victory":
 			_terminal = true
+			_clear_shooting_effects()
 			_charge = 0.0
 			_projectiles.clear()
 			# Only presentation follows this clock. Victory/save processing never waits.
@@ -257,6 +265,7 @@ func consume_event(event: Dictionary, context: Dictionary = {}) -> bool:
 				_burst(_layout.rescue_center, GOLD, 46, "confetti", seed_value, 150.0, 2.4)
 		"defeat", "load_error":
 			_terminal = true
+			_clear_shooting_effects()
 			_charge = 0.0
 			_projectiles.clear()
 			_ring(_layout.dragon_hit, Color("e99062"), 29.0, 0.5)
@@ -266,8 +275,10 @@ func consume_event(event: Dictionary, context: Dictionary = {}) -> bool:
 		"target_reserved", "slot_released", "dragon_started", "team_work_state", "color_clicked", "bead_unloading":
 			pass # Avoid duplicated debit/pickup cues and per-ant visual noise.
 		_:
+			_consuming_event_us=-1;_consuming_event_kind=""
 			return false
 	_accepted += 1
+	_consuming_event_us=-1;_consuming_event_kind=""
 	queue_redraw()
 	return true
 
@@ -314,7 +325,9 @@ func advance(real_delta: float) -> void:
 		return
 	var step := minf(real_delta, 60.0) * (_speed if not _terminal else 1.0)
 	_clock += step
-	_recoil_age += step
+	if bool(_layout.event_clock_presentation) and _synced and not _terminal and _recoil_fire_us>=0:
+		_recoil_age=maxf(0.0,float(_simulation_us-_recoil_fire_us)/1000000.0)
+	else:_recoil_age += step
 	# A fatal hit holds only the dragon's existing impact pose, never the game,
 	# particles, cannon, persistence or ordinary 0.48-second nonfatal hit clock.
 	var hit_step := step
@@ -324,12 +337,15 @@ func advance(real_delta: float) -> void:
 	if _dragon_defeat_age >= 0.0:
 		_dragon_defeat_age = minf(_dragon_defeat_age + step, DRAGON_DEFEAT_DURATION)
 	for index in range(_effects.size() - 1, -1, -1):
-		_effects[index].age += step
+		if bool(_layout.event_clock_presentation) and _synced and not _terminal:
+			_effects[index].age=maxf(0.0,float(_simulation_us-int(_effects[index].born_us))/1000000.0)
+		else:_effects[index].age += step
 		if float(_effects[index].age) >= float(_effects[index].life):
 			_effects.remove_at(index)
 	for index in range(_projectiles.size() - 1, -1, -1):
 		_projectiles[index].age += step
-		if float(_projectiles[index].age) > float(_projectiles[index].duration) + 0.25:
+		var expired:bool=_simulation_us>int(_projectiles[index].hit_us)+250000 if _synced and bool(_layout.event_clock_presentation) else float(_projectiles[index].age)>float(_projectiles[index].duration)+0.25
+		if expired:
 			_projectiles.remove_at(index)
 	queue_redraw()
 
@@ -466,7 +482,8 @@ func _event_point(event: Dictionary) -> Vector2:
 	return _layout.nest
 
 func _fire(event: Dictionary, color: Color, seed_value: int) -> void:
-	_recoil_age = 0.0
+	_recoil_fire_us=int(event.get("time_us",_simulation_us))
+	_recoil_age = maxf(0.0,float(_simulation_us-_recoil_fire_us)/1000000.0) if bool(_layout.event_clock_presentation) and _synced else 0.0
 	_charge = 0.0
 	var muzzle: Vector2 = _layout.cannon_muzzle
 	var aim: Vector2 = (_layout.dragon_hit - muzzle).normalized()
@@ -511,8 +528,16 @@ func _add_effect(effect: Dictionary) -> void:
 	if _effects.size() >= MAX_EFFECTS:
 		_effects.pop_front()
 	effect["age"] = 0.0
+	effect["born_us"]=_consuming_event_us if _consuming_event_us>=0 else _simulation_us
+	effect["event_kind"]=_consuming_event_kind
 	effect["life"] = clampf(float(effect.get("life", 0.4)), 0.05, MAX_LIFETIME)
 	_effects.append(effect)
+
+func _clear_shooting_effects()->void:
+	if not bool(_layout.event_clock_presentation):return
+	_recoil_age=9.0;_recoil_fire_us=-1
+	for index in range(_effects.size()-1,-1,-1):
+		if str(_effects[index].get("event_kind",""))=="cannon_fired":_effects.remove_at(index)
 
 func _burst(point: Vector2, color: Color, count: int, kind: String, seed_value: int, speed: float, life: float) -> void:
 	if reduced_motion:
