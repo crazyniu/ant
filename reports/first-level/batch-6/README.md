@@ -46,7 +46,15 @@ window scale: Home preview integration against the forest, Prep detail density,
 tutorial full text/art alignment/contrast/pressed states/real button behavior.
 Fix obvious defects before submitting the result to the user.
 
-This batch does not alter the .8-second loading candidate, enemy budget, reward
+This batch does not alter the current .8-second loading implementation, enemy budget, reward
 thresholds, ball arrangement, rules, prices/upgrades, shop artwork or later levels.
-The loading candidate remains pending its own real-animation check. #9 and #11
+Limited x1/x2 loading checks are recorded in batch5; full animation acceptance remains open. #9 and #11
 remain open; this is not a claim that the whole UI is restored 1:1.
+
+### Test-exit warning
+
+All listed assertions and CLI cases passed. A repeat of the minimal48 test and
+two short CLI exits logged an ObjectDB shutdown warning. One verbose repeat of
+the same auto-replay CLI did not reproduce it; its cause is not established.
+This remains an explicit runtime-cleanup investigation, not a clean-log claim
+or evidence of an in-game visual failure.

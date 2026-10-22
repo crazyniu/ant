@@ -1,4 +1,4 @@
-# Batch5: actual same-ball handoff candidate
+# Batch5: actual same-ball handoff
 
 Base: `b4a6d7d`. Scope: first level only. No later level, merge, deployment or user visual acceptance. b4 HUD removal is independently GL-verified; this new animation is not.
 
@@ -44,7 +44,7 @@ The original full-screen reference, entire UI, shop, real audio and user approva
 
 ## Mobile-game self-check gate
 
-Every implemented page is a portrait mobile-game interface, not a webpage/card-form layout: follow the approved game art, readable phone-scale hierarchy and real touch regions; avoid webpage-style panels, long explanatory text and duplicated controls. Review real screenshots and continuous input/animation against the approved image, PRD and global style before sharing for user acceptance. Headless counts and offline composites cannot satisfy this gate. Current new animation is still pending that native self-check. The existing periodic review is managed separately; no duplicate timer is created by this batch.
+Every implemented page is a portrait mobile-game interface, not a webpage/card-form layout: follow the approved game art, readable phone-scale hierarchy and real touch regions; avoid webpage-style panels, long explanatory text and duplicated controls. Review real screenshots and continuous input/animation against the approved image, PRD and global style before sharing for user acceptance. Headless counts and offline composites cannot satisfy this gate. Limited native cases are recorded below; whole animation self-check is not complete. The existing periodic review is managed separately; no duplicate timer is created by this batch.
 
 ## Versioned real x1 follow-up on e3b1866
 
@@ -56,6 +56,26 @@ segment disappeared. Original video key-frame and 14-17s samples show the ball
 entering brass occlusion, appearing in the dark mouth and firing in order, with
 no obvious frame bleed or foot slide in this one case. The tiny receiving grip
 is still subtle at phone scale. This does not validate multi-ball/x2, full 1:1,
-natural play, audio or final acceptance; .8s remains a candidate. The earlier
+natural play, audio or final acceptance. The .8s parameter is now current as
+recorded below; this one case alone is not complete acceptance. The earlier
 discarded editor take and missed-window take are not cited as success. The QA
 contact sheet is analysis only, not an original runtime screenshot.
+
+## Current .8s parameter after limited x2 follow-up
+
+`loader-x2-silent.mp4` is a real 456x812, 30fps, 30-second desktop recording
+without audio, not 2K video. SHA256:
+`63e3ea6f181dfd6dc5ba54c19153c371b86f0aa9ce9494dfe1b53b5ade150d74`.
+Actual quick blue/green/purple clicks produced counts79/66/32, three returns to0/4
+and three corresponding segment removals. The10-14s samples show sequential
+receiving/mouth/fire, without obvious receiver teleport or copper-frame overpaint.
+No side inventory HUD returned. Original12.15s frame was also checked.
+
+Following these bounded x1/x2 cases, **0.8 simulation seconds is the current
+first-level unload parameter**, not an unadopted timing proposal. 0.2 is historical.
+The145s deadline and110/130 reward thresholds remain unchanged. The114.75s/138-point
+script result is versioned evidence, not a natural-play or economy approval.
+
+Still open: complete anatomy/1:1, phone touch/readability, natural full play, actual
+pause during hand/ball transfer, receiving-grip clarity, sound, target/inventory/
+error/victory interruption matrix, and user confirmation. No Issue is closed.

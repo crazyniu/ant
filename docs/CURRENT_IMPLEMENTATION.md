@@ -6,7 +6,7 @@ See [current full-ant/card-color correction](../reports/first-level/batch-3/READ
 
 Latest small delta: [remove the rejected cannon-side inventory HUD](../reports/first-level/batch-4/README.md), preserving internal ammo rules and existing controls;87 first-ball headless checks passed. This is not completed loading animation.
 
-Current animation candidate: [same-ball loading and real event clock](../reports/first-level/batch-5/README.md). Only first-level unload timing changes .2→.8s; the same34-color/minimum2s schedule is retimed for real capacity, not zero-think input. Production headless replay reaches114.75s, saves138 points, peaks at4 carriers. Native×1/×2 animation and current-screen self-check still pending. Earlier batch reports remain exact historical versions.
+Current animation candidate: [same-ball loading and real event clock](../reports/first-level/batch-5/README.md). First-level unload is now .8s after limited real x1/x2 checks (.2 is historical); the same34-color/minimum2s schedule is retimed for real capacity, not zero-think input. Production headless replay reaches114.75s, saves138 points, peaks at4 carriers. Limited native x1 single-ball and x2 three-ball checks are recorded in batch5; overall animation/current-screen self-check remains open. Earlier batch reports remain exact historical versions.
 
 Current Home/Prep/tutorial consistency candidate: [read-only actual scene and phone-scaled illustrated rules](../reports/first-level/batch-6/README.md). This fixes old preview assets and inactive armor teaching; current real GL and user acceptance are still pending. The required mobile-game UI/self-check gate is in `FIRST_LEVEL_UI_SELF_CHECK.md`.
 

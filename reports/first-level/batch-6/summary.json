@@ -56,5 +56,8 @@
   "precommit_review_fixes": [
     "Home preview moved below actual title alpha bounds and above Play; no layer overlap",
     "Preview JSON/shape failure checked before Home/audio creation, existing error and real retry tested"
+  ],
+  "warnings": [
+    "Repeated minimal48 and two short CLI processes logged ObjectDB shutdown warning. One verbose same-CLI repeat did not reproduce; cause unestablished, cleanup investigation open."
   ]
 }

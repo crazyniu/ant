@@ -1,7 +1,7 @@
 {
   "base_commit": "b4a6d7d2cafe9bbbb4cc72552d06712d5e8d0813",
   "created_at_utc": "2026-10-22T04:12:14.946293+00:00",
-  "status": "First-level handoff candidate only; native GL animation self-check and user acceptance pending",
+  "status": "Current first-level unload is 0.8 simulation seconds. Limited real x1 single-ball and x2 three-ball checks recorded; whole presentation, natural play and user acceptance remain open.",
   "only_numeric_rule_change": {
     "transport.unload_pause_sec": {
       "before": 0.2,
@@ -361,5 +361,24 @@
     "capture_kind": "real desktop-window recording, not native 2K video",
     "observed": "Actual first blue input: 80 to 79, visible handoff/occluded path/dark-mouth ball/fire, first blue segment removed, capacity back to 0/4. Key original frame and 14-17 second samples checked. No obvious copper-frame bleed or loader-foot slide in this single case.",
     "limits": "Only one x1 blue case. Not multi-ball/x2/global 1:1/natural-play/sound/user acceptance. Grip remains subtle at phone scale. Discarded take1/editor and take2/missed-window are not evidence."
+  },
+  "native_gl_followup_x2": {
+    "build": "e3b1866f65c8e7d3b0327adf2e8a1d9888105c65",
+    "artifact": "loader-x2-silent.mp4",
+    "sha256": "63e3ea6f181dfd6dc5ba54c19153c371b86f0aa9ce9494dfe1b53b5ade150d74",
+    "width": 456,
+    "height": 812,
+    "fps": 30,
+    "duration_sec": 30,
+    "audio_streams": 0,
+    "capture_kind": "real scaled desktop-window video, not native 2K video",
+    "observed": "Actual quick blue/green/purple inputs, counts 79/66/32, three returns to 0/4 and three corresponding segments removed. Sampled 10-14 second return/receive/mouth/fire sequence, no obvious loader teleport across carriers or copper-frame ball overpaint, no side inventory HUD.",
+    "limits": "Only this x2 sequence; 0.4 wall seconds per unload is short. Samples do not establish whole motion feel, native touch, natural full play, paused hand/ball input test, anatomy 1:1, actual sound or user acceptance."
+  },
+  "current_parameter_decision": {
+    "unload_pause_sec": 0.8,
+    "status": "current implementation parameter, not final visual acceptance",
+    "unchanged": "145 simulation-second deadline, 110/130 reward thresholds, movement and upgrade effects",
+    "historical_unload_pause_sec": 0.2
   }
 }
